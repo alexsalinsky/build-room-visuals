@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Claude Code Setup — The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 12px; }
+  .frame-wrap { flex: 1; max-height: 80vh; width: 100%; display: flex; align-items: center; justify-content: center; }
+  svg { width: auto; height: auto; max-width: 100%; max-height: 100%; }
+  .title-screen { font-size: 60px; font-weight: 700; text-align: center; color: #1a1a1a; letter-spacing: -1px; line-height: 1.1; }
+  .title-screen .sub { display: block; font-size: 22px; font-weight: 400; margin-top: 18px; color: #666; letter-spacing: 0; }
+  .caption { max-width: 920px; text-align: center; font-size: 18px; line-height: 1.5; color: #333; padding: 0 12px; min-height: 56px; }
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
+  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
+
+  .scene { display: none; }
+  .scene.active { display: block; }
+
+  .box { fill: #fff; stroke: #1a1a1a; stroke-width: 2.5; }
+  .box-soft { fill: #f3f4f6; stroke: #d1d5db; stroke-width: 1.5; }
+  .box-finale { fill: #1a1a1a; stroke: #1a1a1a; stroke-width: 2.5; }
+  .line { fill: none; stroke: #1a1a1a; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .line-thin { fill: none; stroke: #d1d5db; stroke-width: 1.5; }
+  .highlight { fill: #fde68a; stroke: #92400e; stroke-width: 2.5; }
+
+  .page-h { font-size: 24px; font-weight: 700; fill: #1a1a1a; }
+  .page-sub { font-size: 14px; font-weight: 400; fill: #666; }
+  .nav-brand { font-size: 18px; font-weight: 700; fill: #1a1a1a; }
+  .label-b { font-size: 14px; font-weight: 400; fill: #1a1a1a; }
+  .label-b-bold { font-size: 14px; font-weight: 600; fill: #1a1a1a; }
+  .label-b-white { font-size: 14px; font-weight: 400; fill: #fff; }
+  .label-sm { font-size: 12px; font-weight: 400; fill: #666; }
+  .btn-text { font-size: 14px; font-weight: 600; fill: #1a1a1a; }
+  .btn-text-white { font-size: 16px; font-weight: 700; fill: #fff; }
+  .click-label { font-size: 14px; font-weight: 700; fill: #92400e; }
+  .warn-x { font-size: 40px; font-weight: 700; fill: #b91c1c; }
+  .ok-check { font-size: 28px; font-weight: 700; fill: #047857; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="frame-wrap" id="frame">
+    <div class="title-screen" id="titleScreen">
+      Claude Code on your<br/>desktop in 4 steps
+      <span class="sub">The Build Room</span>
+    </div>
+
+    <!-- ============ STEP 2: GitHub Desktop ============ -->
+    <svg class="scene" data-scene="2" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <!-- browser chrome -->
+      <rect x="20" y="20" width="1060" height="680" rx="10" class="box"/>
+      <rect x="20" y="20" width="1060" height="40" rx="10" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="2"/>
+      <circle cx="45" cy="40" r="6" fill="#ef4444"/>
+      <circle cx="65" cy="40" r="6" fill="#f59e0b"/>
+      <circle cx="85" cy="40" r="6" fill="#10b981"/>
+      <rect x="110" y="30" width="500" height="20" rx="4" fill="#fff" stroke="#d1d5db"/>
+      <text x="125" y="44" class="label-sm">github.com/desktop</text>
+
+      <!-- nav -->
+      <rect x="20" y="60" width="1060" height="60" fill="#fff" stroke="none"/>
+      <line x1="20" y1="120" x2="1080" y2="120" class="line-thin"/>
+      <text x="60" y="98" class="nav-brand">GitHub Desktop</text>
+
+      <!-- hero -->
+      <text x="550" y="220" text-anchor="middle" class="page-h" style="font-size:36px">Focus on what matters</text>
+      <text x="550" y="260" text-anchor="middle" class="page-sub" style="font-size:16px">instead of fighting with Git.</text>
+
+      <!-- download button highlighted -->
+      <rect x="380" y="320" width="340" height="80" rx="12" class="highlight"/>
+      <text x="550" y="370" text-anchor="middle" class="btn-text-white" style="fill:#1a1a1a">Download for macOS</text>
+
+      <!-- cursor -->
+      <g transform="translate(540, 358)">
+        <path d="M 0 0 L 0 18 L 5 13 L 9 22 L 12 21 L 8 12 L 15 12 Z" fill="#1a1a1a" stroke="#fff" stroke-width="1.5"/>
+      </g>
+      <text x="740" y="370" class="click-label">← click here</text>
+
+      <text x="550" y="440" text-anchor="middle" class="label-sm">Also available for Windows</text>
+
+      <!-- info card -->
+      <rect x="200" y="520" width="700" height="140" rx="10" class="box-soft"/>
+      <text x="230" y="555" class="label-b-bold" style="font-size:16px">Why GitHub Desktop?</text>
+      <text x="230" y="590" class="label-b">It's the bridge Claude Code needs to talk to your project folders.</text>
+      <text x="230" y="615" class="label-b">Install it. Sign in with your GitHub account (free to create).</text>
+      <text x="230" y="640" class="label-b">You won't actually use it directly. Claude Code rides on top of it.</text>
+    </svg>
+
+    <!-- ============ STEP 3: Quit Claude properly ============ -->
+    <svg class="scene" data-scene="3" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <text x="550" y="70" text-anchor="middle" class="page-h" style="font-size:28px">Fully quit Claude. Closing the window is not enough.</text>
+
+      <!-- LEFT: not enough -->
+      <rect x="60" y="120" width="460" height="520" rx="12" class="box"/>
+      <text x="290" y="160" text-anchor="middle" class="label-b-bold" style="font-size:18px">NOT ENOUGH</text>
+
+      <!-- mock claude window -->
+      <rect x="100" y="200" width="380" height="280" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+      <rect x="100" y="200" width="380" height="32" rx="8" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="2"/>
+      <circle cx="120" cy="216" r="6" fill="#ef4444"/>
+      <circle cx="140" cy="216" r="6" fill="#f59e0b"/>
+      <circle cx="160" cy="216" r="6" fill="#10b981"/>
+      <text x="290" y="221" text-anchor="middle" class="label-sm">Claude</text>
+
+      <!-- big red X over the close button -->
+      <circle cx="120" cy="216" r="14" fill="none" stroke="#b91c1c" stroke-width="3"/>
+      <text x="350" y="350" text-anchor="middle" class="warn-x" style="font-size:80px">X</text>
+      <text x="290" y="430" text-anchor="middle" class="label-sm">clicking the X</text>
+
+      <text x="290" y="540" text-anchor="middle" class="label-b" style="font-style:italic">Claude keeps running</text>
+      <text x="290" y="565" text-anchor="middle" class="label-b" style="font-style:italic">in the background.</text>
+      <text x="290" y="600" text-anchor="middle" class="label-b-bold" style="fill:#b91c1c">Code panel won't appear.</text>
+
+      <!-- RIGHT: full quit -->
+      <rect x="580" y="120" width="460" height="520" rx="12" class="highlight"/>
+      <text x="810" y="160" text-anchor="middle" class="label-b-bold" style="font-size:18px">DO THIS</text>
+
+      <rect x="620" y="195" width="380" height="190" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+      <text x="810" y="230" text-anchor="middle" class="label-b-bold">Mac</text>
+      <line x1="640" y1="245" x2="980" y2="245" class="line-thin"/>
+      <text x="810" y="280" text-anchor="middle" class="label-b">Press</text>
+      <rect x="700" y="295" width="220" height="50" rx="8" fill="#1a1a1a"/>
+      <text x="810" y="328" text-anchor="middle" class="label-b-white" style="font-size:18px;font-weight:600">Cmd + Q</text>
+      <text x="810" y="370" text-anchor="middle" class="label-sm">while Claude is the active app</text>
+
+      <rect x="620" y="410" width="380" height="210" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+      <text x="810" y="445" text-anchor="middle" class="label-b-bold">Windows</text>
+      <line x1="640" y1="460" x2="980" y2="460" class="line-thin"/>
+      <text x="810" y="490" text-anchor="middle" class="label-b">Find the Claude icon in</text>
+      <text x="810" y="510" text-anchor="middle" class="label-b">the system tray (bottom right)</text>
+      <text x="810" y="545" text-anchor="middle" class="label-b">Right-click it</text>
+      <rect x="700" y="560" width="220" height="42" rx="6" fill="#1a1a1a"/>
+      <text x="810" y="588" text-anchor="middle" class="label-b-white" style="font-weight:600">Quit Claude</text>
+    </svg>
+
+    <!-- ============ STEP 4: Code panel appears ============ -->
+    <svg class="scene" data-scene="4" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <!-- Claude app frame -->
+      <rect x="20" y="20" width="1060" height="680" rx="10" class="box"/>
+      <rect x="20" y="20" width="1060" height="40" rx="10" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="2"/>
+      <circle cx="45" cy="40" r="6" fill="#ef4444"/>
+      <circle cx="65" cy="40" r="6" fill="#f59e0b"/>
+      <circle cx="85" cy="40" r="6" fill="#10b981"/>
+      <text x="540" y="44" text-anchor="middle" class="label-sm">Claude</text>
+
+      <!-- LEFT SIDEBAR -->
+      <rect x="20" y="60" width="220" height="640" fill="#f9fafb" stroke="#1a1a1a" stroke-width="2"/>
+
+      <!-- Sidebar items -->
+      <rect x="35" y="85" width="190" height="42" rx="6" fill="#1a1a1a"/>
+      <text x="55" y="112" class="label-b-white" style="font-weight:600">+ New chat</text>
+
+      <text x="50" y="170" class="label-b">Chats</text>
+      <text x="50" y="200" class="label-sm">Today's session</text>
+      <text x="50" y="222" class="label-sm">Trip planning</text>
+      <text x="50" y="244" class="label-sm">Hubly contacts</text>
+
+      <text x="50" y="290" class="label-b">Projects</text>
+      <text x="50" y="320" class="label-sm">Book draft</text>
+      <text x="50" y="342" class="label-sm">DBALP cohort</text>
+
+      <!-- Highlighted Code panel -->
+      <rect x="30" y="385" width="200" height="60" rx="8" class="highlight"/>
+      <text x="55" y="412" class="label-b-bold" style="font-size:16px">{ } Code</text>
+      <text x="55" y="432" class="label-sm">NEW</text>
+
+      <text x="50" y="490" class="label-b">Settings</text>
+      <text x="50" y="520" class="label-sm">Profile</text>
+      <text x="50" y="542" class="label-sm">Integrations</text>
+
+      <!-- cursor on Code -->
+      <g transform="translate(85, 395)">
+        <path d="M 0 0 L 0 18 L 5 13 L 9 22 L 12 21 L 8 12 L 15 12 Z" fill="#1a1a1a" stroke="#fff" stroke-width="1.5"/>
+      </g>
+      <text x="260" y="420" class="click-label">← the Code panel</text>
+
+      <!-- Main content area -->
+      <text x="660" y="180" text-anchor="middle" class="page-h" style="font-size:30px">Welcome back, Alex</text>
+      <text x="660" y="220" text-anchor="middle" class="page-sub" style="font-size:16px">What do you want to build today?</text>
+
+      <rect x="320" y="280" width="680" height="240" rx="12" class="box-soft"/>
+      <text x="660" y="320" text-anchor="middle" class="label-b-bold" style="font-size:16px">Tip</text>
+      <text x="660" y="360" text-anchor="middle" class="label-b">If you don't see Code in the sidebar:</text>
+      <text x="660" y="395" text-anchor="middle" class="label-b">1. Confirm GitHub Desktop is installed</text>
+      <text x="660" y="425" text-anchor="middle" class="label-b">2. Fully quit Claude (Cmd+Q or tray Quit)</text>
+      <text x="660" y="455" text-anchor="middle" class="label-b">3. Reopen Claude</text>
+      <text x="660" y="490" text-anchor="middle" class="label-sm" style="font-style:italic">Claude scans for GitHub Desktop on startup.</text>
+    </svg>
+
+    <!-- ============ STEP 5: Open folder ============ -->
+    <svg class="scene" data-scene="5" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <!-- Claude Code window -->
+      <rect x="20" y="20" width="1060" height="680" rx="10" class="box"/>
+      <rect x="20" y="20" width="1060" height="40" rx="10" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="2"/>
+      <circle cx="45" cy="40" r="6" fill="#ef4444"/>
+      <circle cx="65" cy="40" r="6" fill="#f59e0b"/>
+      <circle cx="85" cy="40" r="6" fill="#10b981"/>
+      <text x="540" y="44" text-anchor="middle" class="label-sm">Claude  ·  Code</text>
+
+      <text x="550" y="120" text-anchor="middle" class="page-h" style="font-size:28px">Claude Code</text>
+      <text x="550" y="155" text-anchor="middle" class="page-sub">Pick a folder and start building.</text>
+
+      <!-- Open folder button -->
+      <rect x="380" y="200" width="340" height="80" rx="12" class="highlight"/>
+      <text x="550" y="250" text-anchor="middle" class="btn-text" style="font-size:20px">Open Folder</text>
+
+      <g transform="translate(540, 240)">
+        <path d="M 0 0 L 0 18 L 5 13 L 9 22 L 12 21 L 8 12 L 15 12 Z" fill="#1a1a1a" stroke="#fff" stroke-width="1.5"/>
+      </g>
+      <text x="740" y="250" class="click-label">← click here</text>
+
+      <!-- folder picker mockup -->
+      <rect x="180" y="340" width="740" height="320" rx="12" class="box"/>
+      <rect x="180" y="340" width="740" height="40" rx="12" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="2"/>
+      <text x="550" y="365" text-anchor="middle" class="label-b-bold">Select a folder</text>
+
+      <!-- folder list -->
+      <text x="220" y="410" class="label-b">Documents</text>
+      <text x="240" y="445" class="label-b">my-projects</text>
+      <text x="260" y="478" class="label-b">  campaign-tracker</text>
+      <rect x="240" y="490" width="640" height="34" rx="4" class="highlight"/>
+      <text x="260" y="513" class="label-b-bold">  dbalp-build</text>
+      <text x="260" y="548" class="label-b">  contact-tools</text>
+      <text x="240" y="582" class="label-b">scratch</text>
+      <text x="220" y="616" class="label-b">Desktop</text>
+
+      <!-- open button -->
+      <rect x="770" y="630" width="120" height="32" rx="6" fill="#1a1a1a"/>
+      <text x="830" y="652" text-anchor="middle" class="label-b-white" style="font-weight:600">Open</text>
+    </svg>
+
+    <!-- ============ STEP 6: Troubleshooting ============ -->
+    <svg class="scene" data-scene="6" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <text x="550" y="80" text-anchor="middle" class="page-h" style="font-size:32px">Still stuck?</text>
+      <text x="550" y="115" text-anchor="middle" class="page-sub" style="font-size:16px">Walk through this list.</text>
+
+      <!-- finale card -->
+      <rect x="120" y="170" width="860" height="430" rx="14" class="box-finale"/>
+      <text x="550" y="220" text-anchor="middle" class="label-b-white" style="font-size:24px;font-weight:700">Code panel still missing?</text>
+
+      <line x1="200" y1="250" x2="900" y2="250" stroke="#fff" stroke-width="1.5" opacity="0.3"/>
+
+      <!-- Fix 1 -->
+      <circle cx="180" cy="295" r="22" fill="#fde68a"/>
+      <text x="180" y="303" text-anchor="middle" class="btn-text" style="font-size:18px">1</text>
+      <text x="220" y="290" class="label-b-white" style="font-size:18px;font-weight:600">Check GitHub Desktop</text>
+      <text x="220" y="315" class="label-b-white">Open it. Sign in if it prompts. Leave it running in the background.</text>
+
+      <!-- Fix 2 -->
+      <circle cx="180" cy="385" r="22" fill="#fde68a"/>
+      <text x="180" y="393" text-anchor="middle" class="btn-text" style="font-size:18px">2</text>
+      <text x="220" y="380" class="label-b-white" style="font-size:18px;font-weight:600">Restart your computer</text>
+      <text x="220" y="405" class="label-b-white">A clean reboot clears stuck Claude processes that a quit didn't catch.</text>
+
+      <!-- Fix 3 -->
+      <circle cx="180" cy="475" r="22" fill="#fde68a"/>
+      <text x="180" y="483" text-anchor="middle" class="btn-text" style="font-size:18px">3</text>
+      <text x="220" y="470" class="label-b-white" style="font-size:18px;font-weight:600">Reinstall Claude Desktop</text>
+      <text x="220" y="495" class="label-b-white">Download a fresh copy from claude.ai. Install over the top.</text>
+
+      <line x1="200" y1="535" x2="900" y2="535" stroke="#fff" stroke-width="1.5" opacity="0.3"/>
+      <text x="550" y="572" text-anchor="middle" class="label-b-white" style="font-style:italic">Still stuck? Ping the cohort space and we'll work through it.</text>
+    </svg>
+  </div>
+
+  <div class="caption" id="caption"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">← Prev</button>
+      <button id="next">Next →</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">6</span></div>
+  </div>
+</div>
+<div class="hint">← → arrow keys also work</div>
+
+<script>
+const captions = [
+  "Get Claude Code working on your desktop in four steps.",
+  "Go to github.com/desktop. Download. Run the installer. Sign in with your GitHub account if you have one (free to create).",
+  "Closing the window is NOT enough. Fully quit Claude: Cmd+Q on Mac, or right-click the tray icon and Quit on Windows.",
+  "Open Claude again. The Code panel now appears in the left sidebar.",
+  "Click Open Folder. Pick any folder where your project will live. You're in.",
+  "If something's off, walk through this list. Or ping the cohort space."
+];
+
+let i = 0;
+const titleScreen = document.getElementById("titleScreen");
+const scenes = document.querySelectorAll(".scene");
+const cap = document.getElementById("caption");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = captions.length;
+
+function render() {
+  cap.textContent = captions[i];
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === captions.length - 1;
+
+  if (i === 0) {
+    titleScreen.style.display = '';
+    scenes.forEach(s => s.classList.remove('active'));
+  } else {
+    titleScreen.style.display = 'none';
+    scenes.forEach(s => {
+      const step = parseInt(s.dataset.scene);
+      s.classList.toggle('active', step === i + 1);
+    });
+  }
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < captions.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") next.click();
+  if (e.key === "ArrowLeft") prev.click();
+});
+
+render();
+</script>
+</body>
+</html>

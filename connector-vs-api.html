@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Connector vs API — The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 12px; }
+  .frame-wrap { flex: 1; max-height: 80vh; width: 100%; display: flex; align-items: center; justify-content: center; }
+  svg { width: auto; height: auto; max-width: 100%; max-height: 100%; }
+  .title-screen { font-size: 60px; font-weight: 700; text-align: center; color: #1a1a1a; letter-spacing: -1px; line-height: 1.1; }
+  .title-screen .sub { display: block; font-size: 22px; font-weight: 400; margin-top: 18px; color: #666; letter-spacing: 0; }
+  .caption { max-width: 920px; text-align: center; font-size: 18px; line-height: 1.5; color: #333; padding: 0 12px; min-height: 56px; }
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
+  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
+
+  .el { opacity: 0; transition: opacity 0.35s ease; }
+  .el.show { opacity: 1; }
+
+  .box { fill: #fff; stroke: #1a1a1a; stroke-width: 2.5; }
+  .box-finale { fill: #1a1a1a; stroke: #1a1a1a; stroke-width: 2.5; }
+  .line-thin { fill: none; stroke: #1a1a1a; stroke-width: 1.5; }
+  .badge { fill: #fde68a; stroke: #92400e; stroke-width: 2; }
+  .head-xl { font-size: 28px; font-weight: 700; fill: #1a1a1a; letter-spacing: 1px; }
+  .head-sub { font-size: 14px; font-style: italic; fill: #666; }
+  .row-label { font-size: 13px; font-weight: 700; fill: #92400e; letter-spacing: 0.5px; }
+  .label-b { font-size: 14px; font-weight: 400; fill: #1a1a1a; }
+  .label-b-bold { font-size: 15px; font-weight: 600; fill: #1a1a1a; }
+  .label-b-white { font-size: 16px; font-weight: 400; fill: #fff; }
+  .label-h-white { font-size: 20px; font-weight: 700; fill: #fff; }
+  .label-sm { font-size: 12px; font-weight: 400; fill: #666; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="frame-wrap" id="frame">
+    <div class="title-screen" id="titleScreen">
+      Connector or API.<br/>Which do I use?
+      <span class="sub">The Build Room</span>
+    </div>
+    <svg id="diagram" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet" style="display:none">
+
+      <!-- Header (always visible from step 2) -->
+      <g class="el" data-step="2">
+        <text x="550" y="38" text-anchor="middle" style="font-size:26px;font-weight:700;fill:#1a1a1a">Connector or API. Which do I use?</text>
+        <text x="550" y="62" text-anchor="middle" class="label-sm">Two ways to plug your build into other tools.</text>
+      </g>
+
+      <!-- STEP 2: Two empty columns + headers -->
+      <g class="el" data-step="2">
+        <!-- CONNECTOR column -->
+        <rect x="40" y="90" width="500" height="490" rx="12" class="box"/>
+        <text x="290" y="135" text-anchor="middle" class="head-xl">CONNECTOR</text>
+        <text x="290" y="160" text-anchor="middle" class="head-sub">lives inside Claude</text>
+        <line x1="60" y1="180" x2="520" y2="180" class="line-thin"/>
+
+        <!-- API column -->
+        <rect x="560" y="90" width="500" height="490" rx="12" class="box"/>
+        <text x="810" y="135" text-anchor="middle" class="head-xl">API</text>
+        <text x="810" y="160" text-anchor="middle" class="head-sub">lives anywhere</text>
+        <line x1="580" y1="180" x2="1040" y2="180" class="line-thin"/>
+      </g>
+
+      <!-- STEP 3: CONNECTOR setup -->
+      <g class="el" data-step="3">
+        <text x="60" y="210" class="row-label">HOW TO SET IT UP</text>
+        <text x="60" y="240" class="label-b-bold">One click in Claude</text>
+        <text x="60" y="265" class="label-b">Settings → Integrations →</text>
+        <text x="60" y="285" class="label-b">toggle on. Done.</text>
+      </g>
+
+      <!-- STEP 4: API setup -->
+      <g class="el" data-step="4">
+        <text x="580" y="210" class="row-label">HOW TO SET IT UP</text>
+        <text x="580" y="240" class="label-b-bold">Generate a key</text>
+        <text x="580" y="265" class="label-b">1. Make a token in the tool</text>
+        <text x="580" y="285" class="label-b">2. Paste it in a .env file</text>
+        <text x="580" y="305" class="label-b">3. Tell Claude where it is</text>
+      </g>
+
+      <!-- STEP 5: CONNECTOR can do + limits -->
+      <g class="el" data-step="5">
+        <line x1="60" y1="315" x2="520" y2="315" class="line-thin"/>
+        <text x="60" y="345" class="row-label">WHAT YOU CAN DO</text>
+        <text x="60" y="372" class="label-b">• Fast experiments</text>
+        <text x="60" y="395" class="label-b">• Ask questions in chat</text>
+        <text x="60" y="418" class="label-b">• Build artifacts inside Claude</text>
+
+        <line x1="60" y1="445" x2="520" y2="445" class="line-thin"/>
+        <text x="60" y="475" class="row-label">LIMITS</text>
+        <text x="60" y="502" class="label-b">• Only tools Claude supports</text>
+        <text x="60" y="525" class="label-b">• Only works inside Claude</text>
+        <text x="60" y="555" class="label-sm" style="font-style:italic">If you close Claude, it stops.</text>
+      </g>
+
+      <!-- STEP 6: API can do + limits -->
+      <g class="el" data-step="6">
+        <line x1="580" y1="335" x2="1040" y2="335" class="line-thin"/>
+        <text x="580" y="365" class="row-label">WHAT YOU CAN DO</text>
+        <text x="580" y="392" class="label-b">• Reach any tool</text>
+        <text x="580" y="415" class="label-b">• Builds that run on their own</text>
+        <text x="580" y="438" class="label-b">• Live outside Claude</text>
+
+        <line x1="580" y1="460" x2="1040" y2="460" class="line-thin"/>
+        <text x="580" y="490" class="row-label">LIMITS</text>
+        <text x="580" y="517" class="label-b">• More setup</text>
+        <text x="580" y="540" class="label-b">• You manage the key</text>
+        <text x="580" y="570" class="label-sm" style="font-style:italic">Treat keys like passwords.</text>
+      </g>
+
+      <!-- STEP 7: rule of thumb -->
+      <g class="el" data-step="7">
+        <rect x="100" y="605" width="900" height="105" rx="12" class="box-finale"/>
+        <text x="550" y="640" text-anchor="middle" class="label-h-white">Rule of thumb</text>
+        <text x="550" y="670" text-anchor="middle" class="label-b-white">Connector for fast experiments.</text>
+        <text x="550" y="693" text-anchor="middle" class="label-b-white">API for builds that live outside Claude or run without you.</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="caption" id="caption"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">← Prev</button>
+      <button id="next">Next →</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">7</span></div>
+  </div>
+</div>
+<div class="hint">← → arrow keys also work</div>
+
+<script>
+const captions = [
+  "Connector or API. Same idea, different shape. Here's when to use each.",
+  "Two ways to plug your build into other tools. They're different.",
+  "Connectors are click-and-go. Settings, Integrations, toggle on. Done.",
+  "APIs need a key. You generate it, store it, hand it to your build. Slightly more work upfront.",
+  "Connectors are great for fast experiments and tools that live inside Claude.",
+  "APIs are for builds that need to run on their own, or reach tools without connectors, or live outside Claude.",
+  "Use connectors to explore. Move to APIs when the build needs to live and run on its own."
+];
+
+let i = 0;
+const titleScreen = document.getElementById("titleScreen");
+const diagram = document.getElementById("diagram");
+const cap = document.getElementById("caption");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = captions.length;
+
+function render() {
+  cap.textContent = captions[i];
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === captions.length - 1;
+
+  if (i === 0) {
+    titleScreen.style.display = '';
+    diagram.style.display = 'none';
+  } else {
+    titleScreen.style.display = 'none';
+    diagram.style.display = '';
+    document.querySelectorAll('#diagram .el').forEach(el => {
+      const step = parseInt(el.dataset.step);
+      el.classList.toggle('show', step <= i + 1);
+    });
+  }
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < captions.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") next.click();
+  if (e.key === "ArrowLeft") prev.click();
+});
+
+render();
+</script>
+</body>
+</html>

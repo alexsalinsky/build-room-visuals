@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>What's happening inside the robot?</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 12px; }
+  .frame-wrap { flex: 1; max-height: 80vh; width: 100%; display: flex; align-items: center; justify-content: center; }
+  svg { width: auto; height: auto; max-width: 100%; max-height: 100%; }
+  .title-screen { font-size: 60px; font-weight: 700; text-align: center; color: #1a1a1a; letter-spacing: -1px; line-height: 1.1; }
+  .title-screen .sub { display: block; font-size: 22px; font-weight: 400; margin-top: 18px; color: #666; letter-spacing: 0; }
+  .caption { max-width: 920px; text-align: center; font-size: 18px; line-height: 1.5; color: #333; padding: 0 12px; min-height: 56px; }
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
+  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
+
+  .el { opacity: 0; transition: opacity 0.35s ease; }
+  .el.show { opacity: 1; }
+
+  .box { fill: #fff; stroke: #1a1a1a; stroke-width: 2.5; }
+  .box-finale { fill: #1a1a1a; stroke: #1a1a1a; stroke-width: 2.5; }
+  .box-wrap { fill: none; stroke: #1a1a1a; stroke-width: 2.5; stroke-dasharray: 8 6; }
+  .line { fill: none; stroke: #1a1a1a; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .arrow { fill: #1a1a1a; }
+  .label-h { font-size: 22px; font-weight: 700; fill: #1a1a1a; }
+  .label-h-white { font-size: 22px; font-weight: 700; fill: #fff; }
+  .label-b { font-size: 16px; font-weight: 400; fill: #1a1a1a; }
+  .label-b-white { font-size: 16px; font-weight: 400; fill: #fff; }
+  .label-edge { font-size: 14px; font-weight: 500; fill: #555; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="frame-wrap" id="frame">
+    <div class="title-screen" id="titleScreen">
+      What's happening<br/>inside the robot?
+      <span class="sub">The Build Room</span>
+    </div>
+    <svg id="diagram" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet" style="display:none">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" class="arrow"/>
+        </marker>
+      </defs>
+
+      <!-- ========== STEP 2: CHAT (center, with prompt inside) ========== -->
+      <g class="el" data-step="2">
+        <rect x="420" y="270" width="240" height="140" rx="10" class="box"/>
+        <text x="540" y="305" text-anchor="middle" class="label-h">Chat</text>
+        <rect x="450" y="325" width="180" height="65" rx="6" class="box"/>
+        <text x="540" y="365" text-anchor="middle" class="label-b">prompt</text>
+      </g>
+
+      <!-- ========== STEP 3: LLM + arrows (prompt up / response down) ========== -->
+      <g class="el" data-step="3">
+        <rect x="440" y="50" width="200" height="90" rx="45" class="box"/>
+        <text x="540" y="105" text-anchor="middle" class="label-h">LLM</text>
+        <!-- Chat → LLM (prompt) - left side -->
+        <path d="M 500 270 L 500 145" class="line" marker-end="url(#arrow)"/>
+        <text x="465" y="210" text-anchor="middle" class="label-edge">prompt</text>
+        <!-- LLM → Chat (response) - right side -->
+        <path d="M 580 145 L 580 265" class="line" marker-end="url(#arrow)"/>
+        <text x="624" y="210" text-anchor="middle" class="label-edge">response</text>
+      </g>
+
+      <!-- ========== STEP 4: CONTEXT box + Memory ========== -->
+      <g class="el" data-step="4">
+        <rect x="40" y="230" width="280" height="220" rx="10" class="box"/>
+        <text x="180" y="268" text-anchor="middle" class="label-h">Context</text>
+        <text x="70" y="312" class="label-b">• Memory</text>
+      </g>
+
+      <!-- ========== STEP 5: Context fills out ========== -->
+      <g class="el" data-step="5">
+        <text x="70" y="347" class="label-b">• MD files</text>
+        <text x="70" y="382" class="label-b">• Chat history</text>
+        <text x="70" y="417" class="label-b">• References</text>
+      </g>
+
+      <!-- ========== STEP 6: Context joins the prompt line (elbow connector) ========== -->
+      <g class="el" data-step="6">
+        <!-- Elbow: right from Context, up, right to prompt line (avoids Chat box at x=420-660 / y=270-410) -->
+        <path d="M 320 340 L 380 340 L 380 200 L 495 200" class="line" marker-end="url(#arrow)"/>
+        <text x="395" y="190" class="label-edge">joins</text>
+      </g>
+
+      <!-- ========== STEP 7: INTEGRATION box (containing Key + Platform) ========== -->
+      <g class="el" data-step="7">
+        <!-- Outer Integration box -->
+        <rect x="730" y="50" width="290" height="380" rx="10" class="box"/>
+        <text x="875" y="85" text-anchor="middle" class="label-h">Integration</text>
+
+        <!-- Key sub-box inside -->
+        <rect x="760" y="110" width="230" height="80" rx="8" class="box"/>
+        <text x="875" y="142" text-anchor="middle" class="label-h">Key</text>
+        <text x="875" y="170" text-anchor="middle" class="label-b">(API token)</text>
+
+        <!-- arrow Key → Platform (inside Integration) -->
+        <path d="M 875 195 L 875 245" class="line" marker-end="url(#arrow)"/>
+
+        <!-- Platform sub-box inside -->
+        <rect x="760" y="250" width="230" height="160" rx="8" class="box"/>
+        <text x="875" y="295" text-anchor="middle" class="label-h">Platform</text>
+        <text x="875" y="325" text-anchor="middle" class="label-b">e.g. ClickUp,</text>
+        <text x="875" y="350" text-anchor="middle" class="label-b">Google Drive,</text>
+        <text x="875" y="375" text-anchor="middle" class="label-b">Notion, Trello</text>
+
+        <!-- LLM ↔ Integration (two-way) -->
+        <path d="M 640 80 L 725 80" class="line" marker-end="url(#arrow)"/>
+        <path d="M 725 110 L 640 110" class="line" marker-end="url(#arrow)"/>
+      </g>
+
+      <!-- ========== STEP 8: Outer wrapper around the whole system ========== -->
+      <g class="el" data-step="8">
+        <rect x="20" y="20" width="1060" height="450" rx="14" class="box-wrap"/>
+        <text x="40" y="46" class="label-edge">the system</text>
+      </g>
+
+      <!-- ========== STEP 9: System → Product ========== -->
+      <g class="el" data-step="9">
+        <!-- Arrow from outer wrapper to Product -->
+        <path d="M 550 470 L 550 530" class="line" marker-end="url(#arrow)"/>
+
+        <!-- Product box (finale) -->
+        <rect x="240" y="540" width="620" height="160" rx="12" class="box-finale"/>
+        <text x="550" y="578" text-anchor="middle" class="label-h-white">Product</text>
+        <text x="280" y="615" class="label-b-white">• Travel itinerary</text>
+        <text x="280" y="645" class="label-b-white">• Application</text>
+        <text x="280" y="675" class="label-b-white">• Virtual assistant</text>
+        <text x="580" y="615" class="label-b-white">• WhatsApp digest</text>
+        <text x="580" y="645" class="label-b-white">• Automation</text>
+        <text x="580" y="675" class="label-b-white">• …something you build</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="caption" id="caption"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">← Prev</button>
+      <button id="next">Next →</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">9</span></div>
+  </div>
+</div>
+<div class="hint">← → arrow keys also work</div>
+
+<script>
+const captions = [
+  "What's happening inside the robot?",
+  "Start in the middle: Chat. Where you write a prompt.",
+  "The prompt goes out to the LLM. The LLM returns a response. That's what most people are doing.",
+  "Context can travel with the prompt. First piece: memory. Claude and ChatGPT build memory about you.",
+  "Context fills out: memory, MD files, chat history, references you've given it.",
+  "Context joins the prompt on its way up. It rides along.",
+  "Sometimes the LLM calls an integration. Inside an integration: a key (your API token) gives access to a platform.",
+  "Zoom out. All of this together is the system.",
+  "And out of that system, we build a product. Something you can use and share outside of the chat. A travel itinerary. An app. A virtual assistant. A WhatsApp digest."
+];
+
+let i = 0;
+const titleScreen = document.getElementById("titleScreen");
+const diagram = document.getElementById("diagram");
+const cap = document.getElementById("caption");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = captions.length;
+
+function render() {
+  cap.textContent = captions[i];
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === captions.length - 1;
+
+  if (i === 0) {
+    titleScreen.style.display = '';
+    diagram.style.display = 'none';
+  } else {
+    titleScreen.style.display = 'none';
+    diagram.style.display = '';
+    document.querySelectorAll('#diagram .el').forEach(el => {
+      const step = parseInt(el.dataset.step);
+      el.classList.toggle('show', step <= i + 1);
+    });
+  }
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < captions.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") next.click();
+  if (e.key === "ArrowLeft") prev.click();
+});
+
+render();
+</script>
+</body>
+</html>

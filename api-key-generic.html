@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How to find an API key — The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 12px; }
+  .frame-wrap { flex: 1; max-height: 80vh; width: 100%; display: flex; align-items: center; justify-content: center; }
+  svg { width: auto; height: auto; max-width: 100%; max-height: 100%; }
+  .title-screen { font-size: 60px; font-weight: 700; text-align: center; color: #1a1a1a; letter-spacing: -1px; line-height: 1.1; }
+  .title-screen .sub { display: block; font-size: 22px; font-weight: 400; margin-top: 18px; color: #666; letter-spacing: 0; }
+  .caption { max-width: 920px; text-align: center; font-size: 18px; line-height: 1.5; color: #333; padding: 0 12px; min-height: 56px; }
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
+  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
+
+  .scene { display: none; }
+  .scene.active { display: block; }
+
+  .box { fill: #fff; stroke: #1a1a1a; stroke-width: 2.5; }
+  .box-dark { fill: #1e1e1e; stroke: #1e1e1e; stroke-width: 2; }
+  .box-soft { fill: #f3f4f6; stroke: #d1d5db; stroke-width: 1.5; }
+  .box-finale { fill: #1a1a1a; stroke: #1a1a1a; stroke-width: 2.5; }
+  .line { fill: none; stroke: #1a1a1a; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .line-thin { fill: none; stroke: #d1d5db; stroke-width: 1.5; }
+  .highlight { fill: #fde68a; stroke: #92400e; stroke-width: 2.5; }
+  .highlight-soft { fill: #fde68a; opacity: 0.55; stroke: #92400e; stroke-width: 2; }
+
+  .nav-brand { font-size: 18px; font-weight: 700; fill: #1a1a1a; }
+  .nav-item { font-size: 14px; font-weight: 500; fill: #555; }
+  .page-h { font-size: 24px; font-weight: 700; fill: #1a1a1a; }
+  .page-sub { font-size: 14px; font-weight: 400; fill: #666; }
+  .label-b { font-size: 14px; font-weight: 400; fill: #1a1a1a; }
+  .label-b-bold { font-size: 14px; font-weight: 600; fill: #1a1a1a; }
+  .label-b-white { font-size: 14px; font-weight: 400; fill: #fff; }
+  .label-sm { font-size: 12px; font-weight: 400; fill: #666; }
+  .label-sm-white { font-size: 12px; font-weight: 400; fill: #d1d5db; }
+  .btn-text { font-size: 14px; font-weight: 600; fill: #1a1a1a; }
+  .click-label { font-size: 14px; font-weight: 700; fill: #92400e; }
+  .mono { font-family: "SF Mono", Consolas, "Courier New", monospace; font-size: 13px; fill: #e5e7eb; }
+  .mono-comment { font-family: "SF Mono", Consolas, "Courier New", monospace; font-size: 13px; fill: #6b9955; }
+  .mono-key { font-family: "SF Mono", Consolas, "Courier New", monospace; font-size: 13px; fill: #9cdcfe; }
+  .mono-val { font-family: "SF Mono", Consolas, "Courier New", monospace; font-size: 13px; fill: #ce9178; }
+  .warn { font-size: 13px; font-weight: 600; fill: #b91c1c; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="frame-wrap" id="frame">
+    <div class="title-screen" id="titleScreen">
+      How to find<br/>an API key
+      <span class="sub">The Build Room</span>
+    </div>
+
+    <!-- ============ STEP 2: Hubly dashboard ============ -->
+    <svg class="scene" data-scene="2" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <!-- browser chrome -->
+      <rect x="20" y="20" width="1060" height="680" rx="10" class="box"/>
+      <rect x="20" y="20" width="1060" height="40" rx="10" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="2"/>
+      <circle cx="45" cy="40" r="6" fill="#ef4444"/>
+      <circle cx="65" cy="40" r="6" fill="#f59e0b"/>
+      <circle cx="85" cy="40" r="6" fill="#10b981"/>
+      <rect x="110" y="30" width="500" height="20" rx="4" fill="#fff" stroke="#d1d5db"/>
+      <text x="125" y="44" class="label-sm">app.hubly.com/dashboard</text>
+
+      <!-- top nav -->
+      <rect x="20" y="60" width="1060" height="60" fill="#fff" stroke="none"/>
+      <line x1="20" y1="120" x2="1080" y2="120" class="line-thin"/>
+      <text x="60" y="98" class="nav-brand">Hubly</text>
+      <text x="220" y="98" class="nav-item">Dashboard</text>
+      <text x="320" y="98" class="nav-item">Contacts</text>
+      <text x="410" y="98" class="nav-item">Campaigns</text>
+      <text x="510" y="98" class="nav-item">Reports</text>
+
+      <!-- avatar (highlighted) -->
+      <circle cx="1030" cy="90" r="20" class="highlight"/>
+      <text x="1030" y="95" text-anchor="middle" class="btn-text">A</text>
+
+      <!-- cursor pointing at avatar -->
+      <g transform="translate(995, 55)">
+        <path d="M 0 0 L 0 18 L 5 13 L 9 22 L 12 21 L 8 12 L 15 12 Z" fill="#1a1a1a" stroke="#fff" stroke-width="1.5"/>
+      </g>
+      <text x="900" y="50" class="click-label">click your avatar →</text>
+
+      <!-- page content -->
+      <text x="60" y="170" class="page-h">Welcome back, Alex</text>
+      <text x="60" y="195" class="page-sub">Here's what's happening across your accounts.</text>
+
+      <!-- widgets -->
+      <rect x="60" y="220" width="300" height="140" rx="8" class="box-soft"/>
+      <text x="80" y="250" class="label-b-bold">Contacts</text>
+      <text x="80" y="310" style="font-size:36px;font-weight:700;fill:#1a1a1a">1,284</text>
+      <text x="80" y="335" class="label-sm">+24 this week</text>
+
+      <rect x="390" y="220" width="300" height="140" rx="8" class="box-soft"/>
+      <text x="410" y="250" class="label-b-bold">Active campaigns</text>
+      <text x="410" y="310" style="font-size:36px;font-weight:700;fill:#1a1a1a">7</text>
+      <text x="410" y="335" class="label-sm">2 ending soon</text>
+
+      <rect x="720" y="220" width="300" height="140" rx="8" class="box-soft"/>
+      <text x="740" y="250" class="label-b-bold">Open rate</text>
+      <text x="740" y="310" style="font-size:36px;font-weight:700;fill:#1a1a1a">38%</text>
+      <text x="740" y="335" class="label-sm">+3% vs last month</text>
+
+      <rect x="60" y="390" width="960" height="280" rx="8" class="box-soft"/>
+      <text x="80" y="420" class="label-b-bold">Recent activity</text>
+      <line x1="80" y1="440" x2="1000" y2="440" class="line-thin"/>
+      <text x="80" y="470" class="label-sm">• New contact added: Maria Lopez</text>
+      <text x="80" y="500" class="label-sm">• Campaign "Spring Outreach" sent to 412 recipients</text>
+      <text x="80" y="530" class="label-sm">• Report exported: Q2 performance</text>
+      <text x="80" y="560" class="label-sm">• 14 emails opened in the last hour</text>
+    </svg>
+
+    <!-- ============ STEP 3: dropdown ============ -->
+    <svg class="scene" data-scene="3" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <rect x="20" y="20" width="1060" height="680" rx="10" class="box"/>
+      <rect x="20" y="20" width="1060" height="40" rx="10" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="2"/>
+      <circle cx="45" cy="40" r="6" fill="#ef4444"/>
+      <circle cx="65" cy="40" r="6" fill="#f59e0b"/>
+      <circle cx="85" cy="40" r="6" fill="#10b981"/>
+      <rect x="110" y="30" width="500" height="20" rx="4" fill="#fff" stroke="#d1d5db"/>
+      <text x="125" y="44" class="label-sm">app.hubly.com/dashboard</text>
+
+      <rect x="20" y="60" width="1060" height="60" fill="#fff" stroke="none"/>
+      <line x1="20" y1="120" x2="1080" y2="120" class="line-thin"/>
+      <text x="60" y="98" class="nav-brand">Hubly</text>
+      <text x="220" y="98" class="nav-item">Dashboard</text>
+      <text x="320" y="98" class="nav-item">Contacts</text>
+      <text x="410" y="98" class="nav-item">Campaigns</text>
+      <text x="510" y="98" class="nav-item">Reports</text>
+
+      <circle cx="1030" cy="90" r="20" fill="#1a1a1a"/>
+      <text x="1030" y="95" text-anchor="middle" class="label-b-white" style="font-weight:600">A</text>
+
+      <!-- dimmed page content -->
+      <g opacity="0.35">
+        <text x="60" y="170" class="page-h">Welcome back, Alex</text>
+        <text x="60" y="195" class="page-sub">Here's what's happening across your accounts.</text>
+        <rect x="60" y="220" width="300" height="140" rx="8" class="box-soft"/>
+        <rect x="390" y="220" width="300" height="140" rx="8" class="box-soft"/>
+        <rect x="720" y="220" width="300" height="140" rx="8" class="box-soft"/>
+      </g>
+
+      <!-- dropdown -->
+      <rect x="900" y="125" width="170" height="200" rx="8" class="box" filter=""/>
+      <text x="920" y="160" class="label-b">Profile</text>
+      <line x1="910" y1="175" x2="1060" y2="175" class="line-thin"/>
+      <rect x="905" y="185" width="160" height="36" rx="4" class="highlight"/>
+      <text x="920" y="208" class="label-b-bold">Settings</text>
+      <line x1="910" y1="230" x2="1060" y2="230" class="line-thin"/>
+      <text x="920" y="253" class="label-b">Billing</text>
+      <line x1="910" y1="265" x2="1060" y2="265" class="line-thin"/>
+      <text x="920" y="288" class="label-b">Help</text>
+      <line x1="910" y1="300" x2="1060" y2="300" class="line-thin"/>
+      <text x="920" y="320" class="label-b">Log out</text>
+
+      <!-- cursor -->
+      <g transform="translate(960, 188)">
+        <path d="M 0 0 L 0 18 L 5 13 L 9 22 L 12 21 L 8 12 L 15 12 Z" fill="#1a1a1a" stroke="#fff" stroke-width="1.5"/>
+      </g>
+      <text x="700" y="210" class="click-label">click Settings →</text>
+    </svg>
+
+    <!-- ============ STEP 4: Settings page ============ -->
+    <svg class="scene" data-scene="4" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <rect x="20" y="20" width="1060" height="680" rx="10" class="box"/>
+      <rect x="20" y="20" width="1060" height="40" rx="10" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="2"/>
+      <circle cx="45" cy="40" r="6" fill="#ef4444"/>
+      <circle cx="65" cy="40" r="6" fill="#f59e0b"/>
+      <circle cx="85" cy="40" r="6" fill="#10b981"/>
+      <rect x="110" y="30" width="500" height="20" rx="4" fill="#fff" stroke="#d1d5db"/>
+      <text x="125" y="44" class="label-sm">app.hubly.com/settings</text>
+
+      <rect x="20" y="60" width="1060" height="60" fill="#fff" stroke="none"/>
+      <line x1="20" y1="120" x2="1080" y2="120" class="line-thin"/>
+      <text x="60" y="98" class="nav-brand">Hubly</text>
+      <circle cx="1030" cy="90" r="20" fill="#1a1a1a"/>
+      <text x="1030" y="95" text-anchor="middle" class="label-b-white" style="font-weight:600">A</text>
+
+      <text x="60" y="170" class="page-h">Settings</text>
+
+      <!-- sidebar -->
+      <rect x="60" y="200" width="240" height="450" rx="8" class="box-soft"/>
+      <text x="80" y="235" class="label-b">General</text>
+      <line x1="80" y1="250" x2="280" y2="250" class="line-thin"/>
+      <text x="80" y="280" class="label-b">Profile</text>
+      <line x1="80" y1="295" x2="280" y2="295" class="line-thin"/>
+      <text x="80" y="325" class="label-b">Security</text>
+      <line x1="80" y1="340" x2="280" y2="340" class="line-thin"/>
+
+      <!-- highlighted Developer/API -->
+      <rect x="70" y="355" width="220" height="40" rx="6" class="highlight"/>
+      <text x="80" y="380" class="label-b-bold">Developer / API</text>
+      <line x1="80" y1="400" x2="280" y2="400" class="line-thin"/>
+
+      <text x="80" y="430" class="label-b">Integrations</text>
+      <line x1="80" y1="445" x2="280" y2="445" class="line-thin"/>
+      <text x="80" y="475" class="label-b">Billing</text>
+      <line x1="80" y1="490" x2="280" y2="490" class="line-thin"/>
+      <text x="80" y="520" class="label-b">Team</text>
+
+      <!-- cursor -->
+      <g transform="translate(140, 360)">
+        <path d="M 0 0 L 0 18 L 5 13 L 9 22 L 12 21 L 8 12 L 15 12 Z" fill="#1a1a1a" stroke="#fff" stroke-width="1.5"/>
+      </g>
+      <text x="310" y="383" class="click-label">← click Developer / API</text>
+
+      <!-- main panel placeholder -->
+      <rect x="340" y="200" width="680" height="450" rx="8" class="box-soft"/>
+      <text x="360" y="235" class="label-b-bold">General</text>
+      <line x1="360" y1="250" x2="1000" y2="250" class="line-thin"/>
+      <text x="360" y="285" class="label-sm">Workspace name</text>
+      <rect x="360" y="295" width="380" height="36" rx="4" fill="#fff" stroke="#d1d5db"/>
+      <text x="372" y="318" class="label-b">Acme PR</text>
+      <text x="360" y="370" class="label-sm">Time zone</text>
+      <rect x="360" y="380" width="380" height="36" rx="4" fill="#fff" stroke="#d1d5db"/>
+      <text x="372" y="403" class="label-b">America / New York</text>
+    </svg>
+
+    <!-- ============ STEP 5: Developer/API page ============ -->
+    <svg class="scene" data-scene="5" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <rect x="20" y="20" width="1060" height="680" rx="10" class="box"/>
+      <rect x="20" y="20" width="1060" height="40" rx="10" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="2"/>
+      <circle cx="45" cy="40" r="6" fill="#ef4444"/>
+      <circle cx="65" cy="40" r="6" fill="#f59e0b"/>
+      <circle cx="85" cy="40" r="6" fill="#10b981"/>
+      <rect x="110" y="30" width="500" height="20" rx="4" fill="#fff" stroke="#d1d5db"/>
+      <text x="125" y="44" class="label-sm">app.hubly.com/settings/developer</text>
+
+      <rect x="20" y="60" width="1060" height="60" fill="#fff" stroke="none"/>
+      <line x1="20" y1="120" x2="1080" y2="120" class="line-thin"/>
+      <text x="60" y="98" class="nav-brand">Hubly</text>
+      <circle cx="1030" cy="90" r="20" fill="#1a1a1a"/>
+      <text x="1030" y="95" text-anchor="middle" class="label-b-white" style="font-weight:600">A</text>
+
+      <text x="60" y="170" class="page-h">Developer / API</text>
+      <text x="60" y="195" class="page-sub">Create and manage Personal Access Tokens for this account.</text>
+
+      <!-- API keys panel -->
+      <rect x="60" y="230" width="960" height="420" rx="8" class="box-soft"/>
+      <text x="85" y="270" class="label-b-bold" style="font-size:18px">Personal Access Tokens</text>
+      <line x1="85" y1="285" x2="995" y2="285" class="line-thin"/>
+
+      <text x="85" y="320" class="label-sm">You have no active tokens. Generate one to connect Hubly to other tools.</text>
+
+      <!-- empty state list -->
+      <rect x="85" y="345" width="910" height="80" rx="6" fill="#fff" stroke="#e5e7eb" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <text x="540" y="392" text-anchor="middle" class="label-sm">No tokens yet</text>
+
+      <!-- highlighted CTA button -->
+      <rect x="85" y="460" width="240" height="48" rx="8" class="highlight"/>
+      <text x="205" y="490" text-anchor="middle" class="btn-text">+ Generate new token</text>
+
+      <!-- cursor -->
+      <g transform="translate(190, 480)">
+        <path d="M 0 0 L 0 18 L 5 13 L 9 22 L 12 21 L 8 12 L 15 12 Z" fill="#1a1a1a" stroke="#fff" stroke-width="1.5"/>
+      </g>
+      <text x="350" y="490" class="click-label">← click here</text>
+
+      <text x="85" y="560" class="label-sm">Tokens give other apps permission to act on your behalf.</text>
+      <text x="85" y="582" class="label-sm">Treat them like passwords. Never paste them in a public chat or commit them to GitHub.</text>
+    </svg>
+
+    <!-- ============ STEP 6: Create token modal ============ -->
+    <svg class="scene" data-scene="6" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <!-- dimmed bg -->
+      <rect x="20" y="20" width="1060" height="680" rx="10" fill="#e5e7eb" stroke="#1a1a1a" stroke-width="2.5"/>
+      <rect x="20" y="20" width="1060" height="40" rx="10" fill="#d1d5db" stroke="#1a1a1a" stroke-width="2"/>
+
+      <!-- modal -->
+      <rect x="250" y="100" width="600" height="540" rx="12" class="box"/>
+      <text x="280" y="150" class="page-h">Create a new token</text>
+      <text x="280" y="175" class="page-sub">Name it after where you'll use it, so you can revoke it later.</text>
+      <line x1="280" y1="195" x2="820" y2="195" class="line-thin"/>
+
+      <!-- name field -->
+      <text x="280" y="230" class="label-b-bold">Token name</text>
+      <rect x="280" y="245" width="540" height="42" rx="6" fill="#fff" stroke="#d1d5db" stroke-width="1.5"/>
+      <text x="295" y="272" class="label-b">Claude integration</text>
+
+      <!-- permissions -->
+      <text x="280" y="320" class="label-b-bold">Permissions</text>
+      <rect x="280" y="335" width="18" height="18" rx="3" fill="#1a1a1a"/>
+      <path d="M 284 344 L 288 348 L 295 340" fill="none" stroke="#fff" stroke-width="2"/>
+      <text x="308" y="350" class="label-b">Read contacts</text>
+
+      <rect x="280" y="365" width="18" height="18" rx="3" fill="#1a1a1a"/>
+      <path d="M 284 374 L 288 378 L 295 370" fill="none" stroke="#fff" stroke-width="2"/>
+      <text x="308" y="380" class="label-b">Read campaigns</text>
+
+      <rect x="280" y="395" width="18" height="18" rx="3" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+      <text x="308" y="410" class="label-b">Write contacts</text>
+
+      <rect x="280" y="425" width="18" height="18" rx="3" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+      <text x="308" y="440" class="label-b">Write campaigns</text>
+
+      <!-- expiry -->
+      <text x="280" y="485" class="label-b-bold">Expires</text>
+      <rect x="280" y="500" width="240" height="38" rx="6" fill="#fff" stroke="#d1d5db" stroke-width="1.5"/>
+      <text x="295" y="525" class="label-b">90 days</text>
+      <path d="M 495 515 L 505 525 L 515 515" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+
+      <!-- CTA -->
+      <rect x="640" y="575" width="180" height="44" rx="8" class="highlight"/>
+      <text x="730" y="603" text-anchor="middle" class="btn-text">Generate</text>
+
+      <rect x="540" y="575" width="90" height="44" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+      <text x="585" y="603" text-anchor="middle" class="label-b">Cancel</text>
+
+      <!-- cursor -->
+      <g transform="translate(715, 595)">
+        <path d="M 0 0 L 0 18 L 5 13 L 9 22 L 12 21 L 8 12 L 15 12 Z" fill="#1a1a1a" stroke="#fff" stroke-width="1.5"/>
+      </g>
+      <text x="870" y="603" class="click-label">click →</text>
+    </svg>
+
+    <!-- ============ STEP 7: Token shown ============ -->
+    <svg class="scene" data-scene="7" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <rect x="20" y="20" width="1060" height="680" rx="10" class="box"/>
+      <rect x="20" y="20" width="1060" height="40" rx="10" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="2"/>
+      <circle cx="45" cy="40" r="6" fill="#ef4444"/>
+      <circle cx="65" cy="40" r="6" fill="#f59e0b"/>
+      <circle cx="85" cy="40" r="6" fill="#10b981"/>
+      <rect x="110" y="30" width="500" height="20" rx="4" fill="#fff" stroke="#d1d5db"/>
+      <text x="125" y="44" class="label-sm">app.hubly.com/settings/developer</text>
+
+      <text x="60" y="110" class="page-h">Token created</text>
+      <text x="60" y="135" class="page-sub">"Claude integration"</text>
+
+      <!-- warning banner -->
+      <rect x="60" y="160" width="980" height="60" rx="8" fill="#fef3c7" stroke="#b91c1c" stroke-width="2"/>
+      <text x="80" y="185" class="warn">⚠  You'll only see this token once.</text>
+      <text x="80" y="207" class="label-sm">Copy it now and store it somewhere safe. If you lose it, you'll need to generate a new one.</text>
+
+      <!-- token display -->
+      <text x="60" y="270" class="label-b-bold">Your token</text>
+
+      <rect x="60" y="285" width="980" height="70" rx="8" class="box-dark"/>
+      <text x="80" y="328" class="mono" style="font-size:16px">hbl_sk_live_xxxxxxxxxxxxx_DO_NOT_SHARE</text>
+
+      <!-- highlighted copy button -->
+      <rect x="880" y="300" width="140" height="40" rx="6" class="highlight"/>
+      <text x="950" y="325" text-anchor="middle" class="btn-text">📋  Copy</text>
+
+      <!-- cursor -->
+      <g transform="translate(935, 318)">
+        <path d="M 0 0 L 0 18 L 5 13 L 9 22 L 12 21 L 8 12 L 15 12 Z" fill="#1a1a1a" stroke="#fff" stroke-width="1.5"/>
+      </g>
+      <text x="760" y="385" class="click-label">↑ click Copy</text>
+
+      <!-- guidance card -->
+      <rect x="60" y="430" width="980" height="200" rx="8" class="box-soft"/>
+      <text x="85" y="465" class="label-b-bold">What this string is</text>
+      <line x1="85" y1="478" x2="1015" y2="478" class="line-thin"/>
+      <text x="85" y="505" class="label-sm">A long random string that proves it's you, without using your password.</text>
+      <text x="85" y="530" class="label-sm">Anything holding this string can read your Hubly contacts and campaigns.</text>
+      <text x="85" y="565" class="label-b-bold">Where it goes next</text>
+      <text x="85" y="590" class="label-sm">Into a small file on your computer called .env, so your AI assistant can use it without you pasting it in chat.</text>
+    </svg>
+
+    <!-- ============ STEP 8: .env editor ============ -->
+    <svg class="scene" data-scene="8" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <!-- editor window -->
+      <rect x="60" y="60" width="980" height="600" rx="10" class="box-dark"/>
+
+      <!-- title bar -->
+      <rect x="60" y="60" width="980" height="36" rx="10" fill="#252526" stroke="#1e1e1e" stroke-width="2"/>
+      <circle cx="85" cy="78" r="6" fill="#ef4444"/>
+      <circle cx="105" cy="78" r="6" fill="#f59e0b"/>
+      <circle cx="125" cy="78" r="6" fill="#10b981"/>
+      <text x="540" y="83" text-anchor="middle" class="label-sm-white">.env  —  Visual Studio Code</text>
+
+      <!-- tab -->
+      <rect x="60" y="96" width="120" height="32" fill="#1e1e1e" stroke="none"/>
+      <text x="80" y="117" class="label-sm-white">.env</text>
+      <line x1="60" y1="128" x2="1040" y2="128" stroke="#333" stroke-width="1"/>
+
+      <!-- line numbers + code -->
+      <text x="90" y="170" class="mono" style="fill:#6b7280">1</text>
+      <text x="130" y="170" class="mono-comment"># Hubly API token, generated 2026-06-09</text>
+
+      <text x="90" y="200" class="mono" style="fill:#6b7280">2</text>
+      <text x="130" y="200" class="mono-key">HUBLY_API_KEY</text>
+      <text x="265" y="200" class="mono">=</text>
+      <text x="278" y="200" class="mono-val">hbl_sk_live_xxxxxxxxxxxxx_DO_NOT_SHARE</text>
+
+      <text x="90" y="230" class="mono" style="fill:#6b7280">3</text>
+
+      <text x="90" y="260" class="mono" style="fill:#6b7280">4</text>
+      <text x="130" y="260" class="mono-comment"># other tokens live here too</text>
+
+      <text x="90" y="290" class="mono" style="fill:#6b7280">5</text>
+      <text x="130" y="290" class="mono-key">OPENAI_API_KEY</text>
+      <text x="278" y="290" class="mono">=</text>
+      <text x="291" y="290" class="mono-val">sk-...</text>
+
+      <!-- highlight ring around the .env line -->
+      <rect x="120" y="183" width="640" height="26" rx="4" fill="none" stroke="#fde68a" stroke-width="2.5" stroke-dasharray="6 4"/>
+
+      <!-- status bar -->
+      <rect x="60" y="624" width="980" height="36" rx="10" fill="#007acc" stroke="none"/>
+      <text x="80" y="647" class="label-sm-white" style="fill:#fff">.env  ·  1 file open  ·  saved</text>
+      <text x="1020" y="647" text-anchor="end" class="label-sm-white" style="fill:#fff">UTF-8</text>
+
+      <!-- explanatory callout -->
+      <rect x="780" y="420" width="240" height="180" rx="10" fill="#fde68a" stroke="#92400e" stroke-width="2"/>
+      <text x="800" y="450" class="label-b-bold">.env file</text>
+      <text x="800" y="478" class="label-sm">A plain text file in your</text>
+      <text x="800" y="495" class="label-sm">project folder. Holds keys</text>
+      <text x="800" y="512" class="label-sm">your AI assistant can read</text>
+      <text x="800" y="529" class="label-sm">but no one else sees.</text>
+      <text x="800" y="565" class="label-sm" style="font-style:italic">Never share it. Never</text>
+      <text x="800" y="582" class="label-sm" style="font-style:italic">commit it to GitHub.</text>
+    </svg>
+
+    <!-- ============ STEP 9: AI chat ============ -->
+    <svg class="scene" data-scene="9" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <rect x="60" y="40" width="980" height="640" rx="14" class="box"/>
+
+      <!-- chat header -->
+      <rect x="60" y="40" width="980" height="60" rx="14" fill="#f9fafb" stroke="#1a1a1a" stroke-width="2.5"/>
+      <circle cx="100" cy="70" r="16" fill="#1a1a1a"/>
+      <text x="100" y="75" text-anchor="middle" class="label-b-white" style="font-weight:700">C</text>
+      <text x="130" y="68" class="label-b-bold" style="font-size:16px">Claude</text>
+      <text x="130" y="88" class="label-sm">your AI assistant</text>
+
+      <!-- user bubble -->
+      <rect x="380" y="140" width="620" height="120" rx="14" fill="#1a1a1a"/>
+      <text x="405" y="175" class="label-b-white" style="font-weight:600">You</text>
+      <text x="405" y="205" class="label-b-white">I added HUBLY_API_KEY to my .env file.</text>
+      <text x="405" y="230" class="label-b-white">Use it to fetch my last 10 contacts from Hubly.</text>
+
+      <!-- AI bubble -->
+      <rect x="100" y="290" width="700" height="220" rx="14" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1.5"/>
+      <text x="125" y="325" class="label-b-bold">Claude</text>
+      <text x="125" y="358" class="label-b">Got it. Reading HUBLY_API_KEY from your .env.</text>
+      <text x="125" y="385" class="label-b">Calling Hubly's contacts API...</text>
+
+      <line x1="125" y1="405" x2="775" y2="405" class="line-thin"/>
+
+      <text x="125" y="432" class="label-sm">1. Maria Lopez  ·  maria@example.com</text>
+      <text x="125" y="455" class="label-sm">2. Devon Park  ·  devon@example.com</text>
+      <text x="125" y="478" class="label-sm">3. Priya Singh  ·  priya@example.com</text>
+      <text x="125" y="498" class="label-sm" style="font-style:italic">...and 7 more.</text>
+
+      <!-- payoff banner -->
+      <rect x="60" y="555" width="980" height="105" rx="12" class="box-finale"/>
+      <text x="550" y="595" text-anchor="middle" class="label-b-white" style="font-size:22px;font-weight:700">That's the handoff.</text>
+      <text x="550" y="625" text-anchor="middle" class="label-b-white">You found the key. You stored it. Your AI assistant uses it for you.</text>
+      <text x="550" y="648" text-anchor="middle" class="label-sm-white">No copy-paste in chat. No password sharing. Same pattern for every tool.</text>
+    </svg>
+  </div>
+
+  <div class="caption" id="caption"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">← Prev</button>
+      <button id="next">Next →</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">9</span></div>
+  </div>
+</div>
+<div class="hint">← → arrow keys also work</div>
+
+<script>
+const captions = [
+  "How to find an API key, store it, and hand it to your AI assistant.",
+  "Step one. You're logged into the tool. Here it's Hubly, but it's the same shape everywhere. Click your avatar, top right.",
+  "A menu opens. Click Settings. Almost every web app puts API access behind Settings.",
+  "In Settings, find a tab called Developer, API, or sometimes Personal Access Tokens. Click it.",
+  "This is the page you came for. Click Generate new token.",
+  "Name your token after where you'll use it. Pick read-only permissions if you only need to look at data. Click Generate.",
+  "The tool shows you the token once. Copy it now. After you close this page it's gone, and you have to make a new one.",
+  "Open a file called .env in your project folder. Paste the token in. One line: the name, an equals sign, the value. Save.",
+  "Now tell your AI assistant the key is in your .env file. It reads it from disk, calls the tool, and does the work. You never paste the token in chat."
+];
+
+let i = 0;
+const titleScreen = document.getElementById("titleScreen");
+const scenes = document.querySelectorAll(".scene");
+const cap = document.getElementById("caption");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = captions.length;
+
+function render() {
+  cap.textContent = captions[i];
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === captions.length - 1;
+
+  if (i === 0) {
+    titleScreen.style.display = '';
+    scenes.forEach(s => s.classList.remove('active'));
+  } else {
+    titleScreen.style.display = 'none';
+    scenes.forEach(s => {
+      const step = parseInt(s.dataset.scene);
+      s.classList.toggle('active', step === i + 1);
+    });
+  }
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < captions.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") next.click();
+  if (e.key === "ArrowLeft") prev.click();
+});
+
+render();
+</script>
+</body>
+</html>

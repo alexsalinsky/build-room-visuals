@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Handling AI Lies — The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 14px; }
+  .frame-wrap { flex: 1; max-height: 80vh; width: 100%; max-width: 1100px; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .frame-wrap > * { width: 100%; }
+  .caption { max-width: 920px; text-align: center; font-size: 18px; line-height: 1.5; color: #333; padding: 0 12px; min-height: 56px; }
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
+  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
+
+  /* Title screen */
+  .title-screen { text-align: center; }
+  .title-screen h1 { font-size: 64px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; }
+  .title-screen .sub { display: block; font-size: 22px; font-weight: 400; margin-top: 18px; color: #666; }
+
+  /* Plain big message screen */
+  .message { text-align: center; max-width: 900px; margin: 0 auto; }
+  .message h2 { font-size: 44px; font-weight: 800; letter-spacing: -0.8px; line-height: 1.15; margin-bottom: 18px; }
+  .message p { font-size: 22px; color: #444; line-height: 1.5; }
+  .message .punch { background: #1a1a1a; color: #fff; padding: 24px 36px; border-radius: 14px; display: inline-block; font-size: 28px; font-weight: 700; margin-top: 22px; }
+  .message .accent { background: #fde68a; padding: 2px 10px; border-radius: 5px; }
+
+  /* Lie pattern card layout */
+  .lie-card { max-width: 1000px; margin: 0 auto; }
+  .lie-card .pattern { display: flex; align-items: baseline; gap: 14px; margin-bottom: 4px; }
+  .lie-card .pattern-num { font-size: 14px; font-weight: 700; color: #888; letter-spacing: 1.5px; }
+  .lie-card h2 { font-size: 30px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 20px; }
+  .lie-card .row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 720px) { .lie-card .row { grid-template-columns: 1fr; } }
+
+  .box { border-radius: 12px; padding: 22px 24px; }
+  .box-bad { background: #fef2f2; border: 2.5px solid #b91c1c; }
+  .box-bad .lbl { font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #b91c1c; margin-bottom: 10px; }
+  .box-bad .content { font-size: 16px; color: #1a1a1a; line-height: 1.55; font-style: italic; }
+
+  .box-fix { background: #f0fdf4; border: 2.5px solid #166534; }
+  .box-fix .lbl { font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #166534; margin-bottom: 10px; }
+  .box-fix .content { font-size: 16px; color: #1a1a1a; line-height: 1.55; }
+  .box-fix .content strong { background: #fde68a; padding: 1px 5px; border-radius: 3px; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="frame-wrap" id="frame"></div>
+  <div class="caption" id="caption"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">← Prev</button>
+      <button id="next">Next →</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">12</span></div>
+  </div>
+</div>
+<div class="hint">← → arrow keys also work</div>
+
+<script>
+const slides = [
+  {
+    html: `<div class="title-screen"><h1>Handling AI Lies</h1><span class="sub">Knowing what to check, and what to ship · The Build Room</span></div>`,
+    caption: "AI lies. That's the job to manage, not a flaw to fix."
+  },
+  {
+    html: `<div class="message"><h2>AI lies.</h2><p style="margin-top:14px">Not always. Not on everything. But often enough that "trust and verify" stops being a virtue and starts being the skill.</p></div>`,
+    caption: "Naming it. Saying it out loud. It lies. We learn to work with that."
+  },
+  {
+    html: `<div class="message"><h2>The principle</h2><p>Don't ask AI questions.</p><div class="punch">Give it <span class="accent" style="background:#fde68a;color:#1a1a1a">material</span>.</div><p style="margin-top:22px;font-size:18px;color:#666">When AI has source material, it's mostly reliable. When it doesn't, it fills the gap with plausible-sounding fiction.</p></div>`,
+    caption: "The single most important shift. Stop asking. Start handing it the source."
+  },
+  {
+    html: `<div class="lie-card">
+      <div class="pattern"><span class="pattern-num">LIE #1</span></div>
+      <h2>Fabricated citations / sources</h2>
+      <div class="row">
+        <div class="box box-bad">
+          <div class="lbl">WHAT IT DOES</div>
+          <div class="content">"According to a 2024 Forbes article on AI adoption, 67% of CMOs..."<br/><br/>The article does not exist.</div>
+        </div>
+        <div class="box box-fix">
+          <div class="lbl">HOW TO CATCH IT</div>
+          <div class="content">Tell it: <strong>"no citations unless I provide the source."</strong><br/><br/>If you need sources, paste them in or use a tool with web search enabled.</div>
+        </div>
+      </div>
+    </div>`,
+    caption: "Fabricated sources are the #1 trap. They sound real. They're often not."
+  },
+  {
+    html: `<div class="lie-card">
+      <div class="pattern"><span class="pattern-num">LIE #2</span></div>
+      <h2>Specific numbers and stats</h2>
+      <div class="row">
+        <div class="box box-bad">
+          <div class="lbl">WHAT IT DOES</div>
+          <div class="content">"82% of B2B buyers consult three vendors before deciding."<br/><br/>Sounds authoritative. Sourced nowhere.</div>
+        </div>
+        <div class="box box-fix">
+          <div class="lbl">HOW TO CATCH IT</div>
+          <div class="content">Don't ask for stats. If you need them, <strong>paste the data in</strong>.<br/><br/>Force the rule: "if you don't know, say so. No invented numbers."</div>
+        </div>
+      </div>
+    </div>`,
+    caption: "If a stat sounds confident and round, assume it's invented until proven."
+  },
+  {
+    html: `<div class="lie-card">
+      <div class="pattern"><span class="pattern-num">LIE #3</span></div>
+      <h2>Quotes and named people</h2>
+      <div class="row">
+        <div class="box box-bad">
+          <div class="lbl">WHAT IT DOES</div>
+          <div class="content">"As Seth Godin said, 'The best marketers tell stories that...'"<br/><br/>Seth never said that.</div>
+        </div>
+        <div class="box box-fix">
+          <div class="lbl">HOW TO CATCH IT</div>
+          <div class="content">Never ask "what did X say." <strong>Paste the transcript or article</strong>, then ask it to pull quotes from the source.<br/><br/>For PR work: this is the high-risk one.</div>
+        </div>
+      </div>
+    </div>`,
+    caption: "Fabricated quotes attributed to real people. The reputational risk is highest here."
+  },
+  {
+    html: `<div class="lie-card">
+      <div class="pattern"><span class="pattern-num">LIE #4</span></div>
+      <h2>Math, counting, lists with constraints</h2>
+      <div class="row">
+        <div class="box box-bad">
+          <div class="lbl">WHAT IT DOES</div>
+          <div class="content">"Here are 5 reasons:" → actually lists 7.<br/><br/>Or wrong totals in tables. Or off-by-one counts. AI is weirdly bad at this.</div>
+        </div>
+        <div class="box box-fix">
+          <div class="lbl">HOW TO CATCH IT</div>
+          <div class="content"><strong>Eyeball the count yourself</strong>, or ask it to count its own output as a second step.<br/><br/>For totals, use a calculator or spreadsheet. AI is not a calculator.</div>
+        </div>
+      </div>
+    </div>`,
+    caption: "Yes, AI can be bad at counting. Don't be surprised. Just check."
+  },
+  {
+    html: `<div class="lie-card">
+      <div class="pattern"><span class="pattern-num">LIE #5</span></div>
+      <h2>Recent information</h2>
+      <div class="row">
+        <div class="box box-bad">
+          <div class="lbl">WHAT IT DOES</div>
+          <div class="content">"The latest version of Monday.com added..."<br/><br/>It doesn't actually know what's been added after its training cutoff. It guesses.</div>
+        </div>
+        <div class="box box-fix">
+          <div class="lbl">HOW TO CATCH IT</div>
+          <div class="content"><strong>Paste current info in</strong>, or use a connector with web search.<br/><br/>Ask it to flag dates it's unsure about.</div>
+        </div>
+      </div>
+    </div>`,
+    caption: "AI doesn't know what it doesn't know. Especially about recent dates and updates."
+  },
+  {
+    html: `<div class="lie-card">
+      <div class="pattern"><span class="pattern-num">LIE #6</span></div>
+      <h2>URLs and links</h2>
+      <div class="row">
+        <div class="box box-bad">
+          <div class="lbl">WHAT IT DOES</div>
+          <div class="content">"You can read more at example.com/marketing-trends-2026"<br/><br/>The URL pattern looks right. The page doesn't exist.</div>
+        </div>
+        <div class="box box-fix">
+          <div class="lbl">HOW TO CATCH IT</div>
+          <div class="content"><strong>Click every link before sending</strong>. Or tell it: "no links unless I provide them."<br/><br/>For client-facing copy, this is non-negotiable.</div>
+        </div>
+      </div>
+    </div>`,
+    caption: "Fabricated URLs that look real. Always click before you ship."
+  },
+  {
+    html: `<div class="lie-card">
+      <div class="pattern"><span class="pattern-num">LIE #7</span></div>
+      <h2>"What I just did"</h2>
+      <div class="row">
+        <div class="box box-bad">
+          <div class="lbl">WHAT IT DOES</div>
+          <div class="content">"I reviewed the document and incorporated your changes."<br/><br/>It didn't. It's being agreeable.</div>
+        </div>
+        <div class="box box-fix">
+          <div class="lbl">HOW TO CATCH IT</div>
+          <div class="content"><strong>Make it quote from the doc</strong>. "Quote the section where you used X."<br/><br/>If it can't quote, it didn't read. Sycophancy is the lie.</div>
+        </div>
+      </div>
+    </div>`,
+    caption: "The sycophantic lie. It tells you what you want to hear. Make it prove it did the work."
+  },
+  {
+    html: `<div class="message"><h2>The skill</h2><p style="margin-top:8px">Verification is a craft, not a chore.</p><p style="margin-top:18px;color:#444">You don't reread every word. You learn what THIS kind of prompt tends to get wrong. Then you scan for THAT.</p><div class="punch" style="font-size:22px">Like editing a junior writer.<br/>You don't re-read. You pattern-match.</div></div>`,
+    caption: "The real skill isn't being paranoid. It's knowing where the patterns of failure are."
+  },
+  {
+    html: `<div class="message"><h2>The takeaway</h2><div style="display:flex;flex-direction:column;gap:14px;margin-top:20px;text-align:left;max-width:720px;margin-left:auto;margin-right:auto">
+      <div style="background:#fff;border:2.5px solid #1a1a1a;padding:18px 24px;border-radius:10px;font-size:18px"><strong>1. Don't ask. Give it material.</strong></div>
+      <div style="background:#fff;border:2.5px solid #1a1a1a;padding:18px 24px;border-radius:10px;font-size:18px"><strong>2. Know the seven patterns of lies. Watch for them.</strong></div>
+      <div style="background:#1a1a1a;color:#fff;border:2.5px solid #1a1a1a;padding:18px 24px;border-radius:10px;font-size:20px"><strong>3. You own what you ship. Always.</strong></div>
+    </div></div>`,
+    caption: "Three moves. Practice them and AI stops lying to you (mostly)."
+  }
+];
+
+let i = 0;
+const frame = document.getElementById("frame");
+const cap = document.getElementById("caption");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = slides.length;
+
+function render() {
+  frame.innerHTML = slides[i].html;
+  cap.textContent = slides[i].caption;
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === slides.length - 1;
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < slides.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") next.click();
+  if (e.key === "ArrowLeft") prev.click();
+});
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GitHub in 60 Seconds — The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 12px; }
+  .frame-wrap { flex: 1; max-height: 80vh; width: 100%; display: flex; align-items: center; justify-content: center; }
+  svg { width: auto; height: auto; max-width: 100%; max-height: 100%; }
+  .title-screen { font-size: 60px; font-weight: 700; text-align: center; color: #1a1a1a; letter-spacing: -1px; line-height: 1.1; }
+  .title-screen .sub { display: block; font-size: 22px; font-weight: 400; margin-top: 18px; color: #666; letter-spacing: 0; }
+  .caption { max-width: 920px; text-align: center; font-size: 18px; line-height: 1.5; color: #333; padding: 0 12px; min-height: 56px; }
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
+  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
+
+  .el { opacity: 0; transition: opacity 0.35s ease; }
+  .el.show { opacity: 1; }
+
+  .box { fill: #fff; stroke: #1a1a1a; stroke-width: 2.5; }
+  .box-finale { fill: #1a1a1a; stroke: #1a1a1a; stroke-width: 2.5; }
+  .box-yellow { fill: #fde68a; stroke: #92400e; stroke-width: 2.5; }
+  .line { fill: none; stroke: #1a1a1a; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .line-thin { fill: none; stroke: #1a1a1a; stroke-width: 1.5; }
+  .arrow { fill: #1a1a1a; }
+  .label-h { font-size: 22px; font-weight: 700; fill: #1a1a1a; }
+  .label-h-white { font-size: 22px; font-weight: 700; fill: #fff; }
+  .label-b { font-size: 15px; font-weight: 400; fill: #1a1a1a; }
+  .label-b-bold { font-size: 16px; font-weight: 600; fill: #1a1a1a; }
+  .label-b-white { font-size: 16px; font-weight: 400; fill: #fff; }
+  .label-sm { font-size: 13px; font-weight: 400; fill: #555; }
+  .label-edge { font-size: 14px; font-weight: 500; fill: #555; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="frame-wrap" id="frame">
+    <div class="title-screen" id="titleScreen">
+      GitHub in<br/>60 seconds
+      <span class="sub">The Build Room</span>
+    </div>
+    <svg id="diagram" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet" style="display:none">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" class="arrow"/>
+        </marker>
+      </defs>
+
+      <!-- STEP 2: Local project folder -->
+      <g class="el" data-step="2">
+        <rect x="120" y="400" width="320" height="240" rx="12" class="box"/>
+        <!-- folder tab -->
+        <path d="M 140 400 L 140 380 L 230 380 L 250 400 Z" fill="#fde68a" stroke="#1a1a1a" stroke-width="2.5"/>
+        <text x="280" y="438" class="label-h">Your project</text>
+        <line x1="140" y1="450" x2="420" y2="450" class="line-thin"/>
+        <text x="160" y="485" class="label-b">README.md</text>
+        <text x="160" y="520" class="label-b">instructions.md</text>
+        <text x="160" y="555" class="label-b">settings.json</text>
+        <text x="160" y="590" class="label-b">notes.md</text>
+        <text x="280" y="625" text-anchor="middle" class="label-sm" style="font-style:italic">on your computer</text>
+      </g>
+
+      <!-- STEP 3: GitHub cloud -->
+      <g class="el" data-step="3">
+        <!-- cloud shape -->
+        <path d="M 720 130
+                 C 700 100, 740 70, 780 80
+                 C 790 50, 840 50, 860 75
+                 C 900 60, 950 90, 940 130
+                 C 980 140, 980 180, 940 195
+                 L 720 195
+                 C 680 190, 680 145, 720 130 Z"
+              fill="#fff" stroke="#1a1a1a" stroke-width="2.5"/>
+        <text x="830" y="150" text-anchor="middle" class="label-h">GitHub</text>
+        <text x="830" y="180" text-anchor="middle" class="label-sm">an online folder</text>
+
+        <!-- mirrored folder inside GitHub area -->
+        <rect x="680" y="240" width="300" height="200" rx="12" class="box"/>
+        <path d="M 700 240 L 700 220 L 790 220 L 810 240 Z" fill="#fde68a" stroke="#1a1a1a" stroke-width="2.5"/>
+        <text x="830" y="278" class="label-h" text-anchor="middle">Your project</text>
+        <line x1="700" y1="290" x2="960" y2="290" class="line-thin"/>
+        <text x="720" y="320" class="label-b">README.md</text>
+        <text x="720" y="350" class="label-b">instructions.md</text>
+        <text x="720" y="380" class="label-b">settings.json</text>
+        <text x="720" y="410" class="label-b">notes.md</text>
+
+        <!-- arrow up from local to GitHub -->
+        <path d="M 440 480 C 560 480, 600 340, 680 340" class="line" marker-end="url(#arrow)"/>
+        <text x="555" y="395" text-anchor="middle" class="label-edge">copy lives here</text>
+      </g>
+
+      <!-- STEP 4: three reasons -->
+      <g class="el" data-step="4">
+        <!-- AI can read -->
+        <rect x="500" y="460" width="180" height="80" rx="10" class="box"/>
+        <circle cx="525" cy="500" r="14" fill="#1a1a1a"/>
+        <text x="525" y="506" text-anchor="middle" class="label-b-white" style="font-weight:700;font-size:13px">C</text>
+        <text x="548" y="488" class="label-b-bold">Your AI</text>
+        <text x="548" y="510" class="label-sm">can read it</text>
+
+        <!-- share -->
+        <rect x="700" y="460" width="180" height="80" rx="10" class="box"/>
+        <circle cx="722" cy="498" r="8" fill="#1a1a1a"/>
+        <circle cx="738" cy="498" r="8" fill="#1a1a1a"/>
+        <circle cx="730" cy="488" r="8" fill="#1a1a1a"/>
+        <text x="760" y="488" class="label-b-bold">Share it</text>
+        <text x="760" y="510" class="label-sm">with teammates</text>
+
+        <!-- come back -->
+        <rect x="900" y="460" width="160" height="80" rx="10" class="box"/>
+        <circle cx="930" cy="500" r="16" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
+        <line x1="930" y1="500" x2="930" y2="490" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="930" y1="500" x2="938" y2="504" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/>
+        <text x="955" y="495" class="label-b-bold">Come</text>
+        <text x="955" y="515" class="label-b-bold">back later</text>
+      </g>
+
+      <!-- STEP 5: Git is the sync tool -->
+      <g class="el" data-step="5">
+        <!-- sync arrows between local and github -->
+        <rect x="470" y="180" width="180" height="60" rx="30" class="box-yellow"/>
+        <text x="560" y="205" text-anchor="middle" class="label-b-bold">Git</text>
+        <text x="560" y="225" text-anchor="middle" class="label-sm">the syncing tool</text>
+
+        <!-- bi-directional little arrows -->
+        <path d="M 440 210 L 465 210" class="line" marker-end="url(#arrow)"/>
+        <path d="M 655 210 L 678 210" class="line" marker-end="url(#arrow)"/>
+
+        <!-- helper note -->
+        <text x="560" y="265" text-anchor="middle" class="label-sm" style="font-style:italic">GitHub Desktop handles Git for you</text>
+      </g>
+
+      <!-- STEP 6 finale -->
+      <g class="el" data-step="6">
+        <rect x="60" y="40" width="1000" height="100" rx="12" class="box-finale"/>
+        <text x="560" y="80" text-anchor="middle" class="label-h-white">That's it.</text>
+        <text x="560" y="115" text-anchor="middle" class="label-b-white">The rest is detail you learn as you go.</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="caption" id="caption"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">← Prev</button>
+      <button id="next">Next →</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">6</span></div>
+  </div>
+</div>
+<div class="hint">← → arrow keys also work</div>
+
+<script>
+const captions = [
+  "GitHub in 60 seconds. No fear required.",
+  "Your project is a folder on your computer with files in it. Code, notes, instructions, whatever.",
+  "GitHub is a place online where a copy of that folder lives. Think Google Drive for builders.",
+  "Three reasons it matters: your AI can read what's there, you can share it with teammates, and you can always come back to it.",
+  "Git is the syncing tool. GitHub is the website where your folder lives. You'll mostly use GitHub Desktop, which handles the Git part for you.",
+  "GitHub stops being scary when you remember: it's just an online folder your AI can read."
+];
+
+let i = 0;
+const titleScreen = document.getElementById("titleScreen");
+const diagram = document.getElementById("diagram");
+const cap = document.getElementById("caption");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = captions.length;
+
+function render() {
+  cap.textContent = captions[i];
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === captions.length - 1;
+
+  if (i === 0) {
+    titleScreen.style.display = '';
+    diagram.style.display = 'none';
+  } else {
+    titleScreen.style.display = 'none';
+    diagram.style.display = '';
+    document.querySelectorAll('#diagram .el').forEach(el => {
+      const step = parseInt(el.dataset.step);
+      el.classList.toggle('show', step <= i + 1);
+    });
+  }
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < captions.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") next.click();
+  if (e.key === "ArrowLeft") prev.click();
+});
+
+render();
+</script>
+</body>
+</html>

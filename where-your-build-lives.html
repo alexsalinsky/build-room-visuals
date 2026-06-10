@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Where Your Build Lives — The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 12px; }
+  .frame-wrap { flex: 1; max-height: 80vh; width: 100%; display: flex; align-items: center; justify-content: center; }
+  svg { width: auto; height: auto; max-width: 100%; max-height: 100%; }
+  .title-screen { font-size: 60px; font-weight: 700; text-align: center; color: #1a1a1a; letter-spacing: -1px; line-height: 1.1; }
+  .title-screen .sub { display: block; font-size: 22px; font-weight: 400; margin-top: 18px; color: #666; letter-spacing: 0; }
+  .caption { max-width: 920px; text-align: center; font-size: 18px; line-height: 1.5; color: #333; padding: 0 12px; min-height: 56px; }
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
+  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
+
+  .el { opacity: 0; transition: opacity 0.35s ease; }
+  .el.show { opacity: 1; }
+
+  .box { fill: #fff; stroke: #1a1a1a; stroke-width: 2.5; }
+  .box-finale { fill: #1a1a1a; stroke: #1a1a1a; stroke-width: 2.5; }
+  .badge { fill: #fde68a; stroke: #92400e; stroke-width: 2; }
+  .line-thin { fill: none; stroke: #1a1a1a; stroke-width: 1.5; }
+  .head-card { font-size: 22px; font-weight: 700; fill: #1a1a1a; letter-spacing: 0.5px; }
+  .row-label { font-size: 12px; font-weight: 700; fill: #92400e; letter-spacing: 0.5px; }
+  .label-b { font-size: 13px; font-weight: 400; fill: #1a1a1a; }
+  .label-b-bold { font-size: 14px; font-weight: 600; fill: #1a1a1a; }
+  .label-b-white { font-size: 16px; font-weight: 400; fill: #fff; }
+  .label-h-white { font-size: 20px; font-weight: 700; fill: #fff; }
+  .label-sm { font-size: 12px; font-weight: 400; fill: #555; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="frame-wrap" id="frame">
+    <div class="title-screen" id="titleScreen">
+      Where does<br/>your build live?
+      <span class="sub">The Build Room</span>
+    </div>
+    <svg id="diagram" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet" style="display:none">
+
+      <!-- Header always visible from step 2 -->
+      <g class="el" data-step="2">
+        <text x="550" y="35" text-anchor="middle" style="font-size:24px;font-weight:700;fill:#1a1a1a">Where does your build live?</text>
+        <text x="550" y="58" text-anchor="middle" class="label-sm">Three places. Each works for different things.</text>
+      </g>
+
+      <!-- STEP 2: three empty cards with header labels only -->
+      <g class="el" data-step="2">
+        <!-- INSIDE CLAUDE -->
+        <rect x="30" y="90" width="340" height="490" rx="12" class="box"/>
+        <rect x="50" y="105" width="300" height="44" rx="22" class="badge"/>
+        <text x="200" y="134" text-anchor="middle" class="head-card" style="font-size:18px">INSIDE CLAUDE</text>
+
+        <!-- OUTSIDE CLAUDE -->
+        <rect x="380" y="90" width="340" height="490" rx="12" class="box"/>
+        <rect x="400" y="105" width="300" height="44" rx="22" class="badge"/>
+        <text x="550" y="134" text-anchor="middle" class="head-card" style="font-size:18px">OUTSIDE CLAUDE</text>
+
+        <!-- HYBRID -->
+        <rect x="730" y="90" width="340" height="490" rx="12" class="box"/>
+        <rect x="750" y="105" width="300" height="44" rx="22" class="badge"/>
+        <text x="900" y="134" text-anchor="middle" class="head-card" style="font-size:18px">HYBRID</text>
+      </g>
+
+      <!-- STEP 3: fill INSIDE CLAUDE -->
+      <g class="el" data-step="3">
+        <text x="50" y="180" class="row-label">FORMS</text>
+        <text x="50" y="205" class="label-b">Project · Artifact · Custom GPT</text>
+
+        <line x1="50" y1="222" x2="350" y2="222" class="line-thin"/>
+        <text x="50" y="248" class="row-label">PROS</text>
+        <text x="50" y="270" class="label-b">• Fastest to build</text>
+        <text x="50" y="290" class="label-b">• Share via Claude Team</text>
+
+        <text x="50" y="320" class="row-label">CONS</text>
+        <text x="50" y="343" class="label-b">• Only runs when</text>
+        <text x="50" y="362" class="label-b">  someone opens Claude</text>
+
+        <line x1="50" y1="382" x2="350" y2="382" class="line-thin"/>
+        <text x="50" y="408" class="row-label">EXAMPLES</text>
+        <text x="50" y="432" class="label-b">• Shared dashboard</text>
+        <text x="50" y="454" class="label-b">• Team prompt library</text>
+        <text x="50" y="476" class="label-b">• Internal Q&amp;A</text>
+      </g>
+
+      <!-- STEP 4: fill OUTSIDE CLAUDE -->
+      <g class="el" data-step="4">
+        <text x="400" y="180" class="row-label">FORMS</text>
+        <text x="400" y="205" class="label-b">Server · Scheduled job · App · Bot</text>
+
+        <line x1="400" y1="222" x2="700" y2="222" class="line-thin"/>
+        <text x="400" y="248" class="row-label">PROS</text>
+        <text x="400" y="270" class="label-b">• Runs without you</text>
+        <text x="400" y="290" class="label-b">• On a schedule</text>
+        <text x="400" y="310" class="label-b">• Sends to email / WhatsApp</text>
+
+        <text x="400" y="338" class="row-label">CONS</text>
+        <text x="400" y="361" class="label-b">• More setup</text>
+        <text x="400" y="381" class="label-b">• You manage the server</text>
+
+        <line x1="400" y1="400" x2="700" y2="400" class="line-thin"/>
+        <text x="400" y="426" class="row-label">EXAMPLES</text>
+        <text x="400" y="450" class="label-b">• Daily WhatsApp briefing</text>
+        <text x="400" y="472" class="label-b">• Weekly report</text>
+        <text x="400" y="494" class="label-b">• Always-on assistant</text>
+      </g>
+
+      <!-- STEP 5: fill HYBRID -->
+      <g class="el" data-step="5">
+        <text x="750" y="180" class="row-label">FORMS</text>
+        <text x="750" y="202" class="label-b">Claude does the thinking,</text>
+        <text x="750" y="220" class="label-b">output goes to Monday /</text>
+        <text x="750" y="238" class="label-b">Slack / email</text>
+
+        <line x1="750" y1="256" x2="1050" y2="256" class="line-thin"/>
+        <text x="750" y="282" class="row-label">PROS</text>
+        <text x="750" y="304" class="label-b">• Human-in-the-loop</text>
+        <text x="750" y="324" class="label-b">• Less server work</text>
+
+        <text x="750" y="352" class="row-label">CONS</text>
+        <text x="750" y="374" class="label-b">• You trigger it manually</text>
+
+        <line x1="750" y1="392" x2="1050" y2="392" class="line-thin"/>
+        <text x="750" y="418" class="row-label">EXAMPLE</text>
+        <text x="750" y="442" class="label-b">• A Claude project that</text>
+        <text x="750" y="462" class="label-b">  emails a draft report</text>
+        <text x="750" y="482" class="label-b">  to your team lead</text>
+      </g>
+
+      <!-- STEP 6: finale -->
+      <g class="el" data-step="6">
+        <rect x="40" y="605" width="1020" height="105" rx="12" class="box-finale"/>
+        <text x="550" y="640" text-anchor="middle" class="label-h-white">Pick one for your First Brick.</text>
+        <text x="550" y="670" text-anchor="middle" class="label-b-white">Run while you sleep? OUTSIDE.  Share with the team today? INSIDE.</text>
+        <text x="550" y="693" text-anchor="middle" class="label-b-white">Not sure? HYBRID. You can always move later.</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="caption" id="caption"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">← Prev</button>
+      <button id="next">Next →</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">6</span></div>
+  </div>
+</div>
+<div class="hint">← → arrow keys also work</div>
+
+<script>
+const captions = [
+  "Where does your build live? Three options.",
+  "Three places your build can live. Each works for different things.",
+  "INSIDE Claude is fastest. Great for team-shared dashboards and prompt libraries. But it only runs when someone opens Claude.",
+  "OUTSIDE Claude runs on its own. Sends results to you. Great for always-on tools. More setup.",
+  "HYBRID is the middle ground. Claude does the thinking, the output lands in Monday or Slack. You still trigger it, but the result is shareable.",
+  "Pick one for your First Brick. You can always move later. Don't overthink."
+];
+
+let i = 0;
+const titleScreen = document.getElementById("titleScreen");
+const diagram = document.getElementById("diagram");
+const cap = document.getElementById("caption");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = captions.length;
+
+function render() {
+  cap.textContent = captions[i];
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === captions.length - 1;
+
+  if (i === 0) {
+    titleScreen.style.display = '';
+    diagram.style.display = 'none';
+  } else {
+    titleScreen.style.display = 'none';
+    diagram.style.display = '';
+    document.querySelectorAll('#diagram .el').forEach(el => {
+      const step = parseInt(el.dataset.step);
+      el.classList.toggle('show', step <= i + 1);
+    });
+  }
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < captions.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") next.click();
+  if (e.key === "ArrowLeft") prev.click();
+});
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How to Prompt — Plan First, Build Second</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 12px; }
+  .frame-wrap { flex: 1; max-height: 80vh; width: 100%; max-width: 920px; display: flex; align-items: center; justify-content: center; padding: 0 16px; }
+  .title-screen { font-size: 56px; font-weight: 800; text-align: center; color: #1a1a1a; letter-spacing: -1.5px; line-height: 1.1; }
+  .title-screen .sub { display: block; font-size: 22px; font-weight: 400; margin-top: 18px; color: #666; letter-spacing: 0; }
+  .caption { max-width: 920px; text-align: center; font-size: 18px; line-height: 1.5; color: #333; padding: 0 12px; min-height: 56px; }
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
+  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
+
+  /* Chat window */
+  .chat { width: 100%; max-width: 820px; max-height: 100%; background: #fff; border: 2.5px solid #1a1a1a; border-radius: 14px; padding: 22px 24px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; }
+  .chat-header { font-size: 12px; color: #888; letter-spacing: 2px; font-weight: 700; padding-bottom: 12px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
+  .chat-header span:last-child { color: #16a34a; }
+
+  .bubble { max-width: 88%; padding: 14px 18px; border-radius: 14px; font-size: 16px; line-height: 1.55; opacity: 0; transition: opacity 0.4s ease, transform 0.4s ease; transform: translateY(8px); }
+  .bubble.show { opacity: 1; transform: translateY(0); }
+  .bubble.user { background: #1a1a1a; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+  .bubble.ai { background: #f4ede0; color: #1a1a1a; align-self: flex-start; border-bottom-left-radius: 4px; }
+  .bubble .role { font-size: 11px; letter-spacing: 1.5px; font-weight: 700; opacity: 0.7; margin-bottom: 4px; }
+  .bubble.ai .role { color: #92400e; }
+  .bubble strong { font-weight: 700; }
+
+  .highlight { background: #fde68a; padding: 1px 4px; border-radius: 3px; color: #1a1a1a; }
+
+  .title-screen-wrap { width: 100%; display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="frame-wrap" id="frame"></div>
+  <div class="caption" id="caption"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">← Prev</button>
+      <button id="next">Next →</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">9</span></div>
+  </div>
+</div>
+<div class="hint">← → arrow keys also work</div>
+
+<script>
+const captions = [
+  "How to prompt. The trick most people miss.",
+  "Most people open the chat and start ordering the AI around. Then they're surprised when it builds the wrong thing.",
+  "Better move: planning mode. Talk through what you want before you tell the AI to do anything.",
+  "Move 1: Say what you're hoping for. Don't filter. Talk like you're explaining it to a friend.",
+  "Move 2: Ask the AI to repeat back what it understood. This is the magic line.",
+  "It tells you what it thinks you're asking. Now you see the gap.",
+  "You correct. Or expand. Or sharpen.",
+  "Keep going until the AI's understanding matches yours. Then, and only then, switch to building.",
+  "Planning is half the work. Skip it and you redo the same build three times."
+];
+
+// Each step shows which bubbles are visible
+const visibleBubbles = [
+  [],          // step 1: title
+  [1],         // mistake example
+  [],          // fix: planning mode (blank chat header)
+  [1],         // user says what they're hoping for
+  [1,2],       // user says "tell me what you understand me to be asking"
+  [1,2,3],     // AI echoes back
+  [1,2,3,4],   // user corrects/expands
+  [1,2,3,4,5], // user says "OK let's build it"
+  [1,2,3,4,5]  // final state (payoff)
+];
+
+const stepHTML = [
+  // Step 1: Title screen
+  `<div class="title-screen-wrap"><div class="title-screen">How to Prompt<span class="sub">Plan first, build second · The Build Room</span></div></div>`,
+
+  // Step 2: The mistake (chat showing premature action)
+  `<div class="chat">
+    <div class="chat-header"><span>Most people start like this</span><span>● Live</span></div>
+    <div class="bubble user show" data-id="1"><div class="role">YOU</div>Build me a tool that organizes my Monday board and sends reminders to my team.</div>
+  </div>`,
+
+  // Step 3: The fix - planning mode (blank chat, ready)
+  `<div class="chat">
+    <div class="chat-header"><span>Better: planning mode</span><span>● Ready</span></div>
+    <div style="padding:40px;text-align:center;color:#999;font-style:italic">talk first. build later.</div>
+  </div>`,
+
+  // Step 4: Say what you're hoping for
+  `<div class="chat">
+    <div class="chat-header"><span>Planning conversation</span><span>● Ready</span></div>
+    <div class="bubble user show" data-id="1"><div class="role">YOU</div>OK so I'm hoping for something that takes the chaos out of my week. I'm in client-facing PR. Every Monday I lose two hours just figuring out what to do. There are pitches in my email, calendar events, a Monday board, and I have to mentally stitch it all together. I want one place that tells me what matters today.</div>
+  </div>`,
+
+  // Step 5: The magic line
+  `<div class="chat">
+    <div class="chat-header"><span>Planning conversation</span><span>● Ready</span></div>
+    <div class="bubble user show" data-id="1"><div class="role">YOU</div>OK so I'm hoping for something that takes the chaos out of my week. I'm in client-facing PR. Every Monday I lose two hours just figuring out what to do. There are pitches in my email, calendar events, a Monday board, and I have to mentally stitch it all together. I want one place that tells me what matters today.</div>
+    <div class="bubble user show" data-id="2"><div class="role">YOU</div>Before you start building, <span class="highlight">tell me what you understand me to be asking</span>. We're still in planning.</div>
+  </div>`,
+
+  // Step 6: AI echoes back
+  `<div class="chat">
+    <div class="chat-header"><span>Planning conversation</span><span>● Ready</span></div>
+    <div class="bubble user show" data-id="1"><div class="role">YOU</div>OK so I'm hoping for something that takes the chaos out of my week. I'm in client-facing PR. Every Monday I lose two hours just figuring out what to do. There are pitches in my email, calendar events, a Monday board, and I have to mentally stitch it all together. I want one place that tells me what matters today.</div>
+    <div class="bubble user show" data-id="2"><div class="role">YOU</div>Before you start building, <span class="highlight">tell me what you understand me to be asking</span>. We're still in planning.</div>
+    <div class="bubble ai show" data-id="3"><div class="role">AI</div>Here's what I understand:
+    <br/><br/>You want a <strong>Monday morning briefing</strong> that pulls from three sources (email pitches, calendar, Monday board) and produces a single ranked view of what to focus on today. The goal is to remove ~2 hrs of weekly stitching work. The user is you. Is that right? Anything I'm missing?</div>
+  </div>`,
+
+  // Step 7: User corrects/expands
+  `<div class="chat">
+    <div class="chat-header"><span>Planning conversation</span><span>● Ready</span></div>
+    <div class="bubble user show" data-id="1"><div class="role">YOU</div>OK so I'm hoping for something that takes the chaos out of my week. I'm in client-facing PR. Every Monday I lose two hours just figuring out what to do. There are pitches in my email, calendar events, a Monday board, and I have to mentally stitch it all together. I want one place that tells me what matters today.</div>
+    <div class="bubble user show" data-id="2"><div class="role">YOU</div>Before you start building, <span class="highlight">tell me what you understand me to be asking</span>. We're still in planning.</div>
+    <div class="bubble ai show" data-id="3"><div class="role">AI</div>Here's what I understand:
+    <br/><br/>You want a <strong>Monday morning briefing</strong> that pulls from three sources (email pitches, calendar, Monday board) and produces a single ranked view of what to focus on today. The goal is to remove ~2 hrs of weekly stitching work. The user is you. Is that right? Anything I'm missing?</div>
+    <div class="bubble user show" data-id="4"><div class="role">YOU</div>Close. Two things to add. <strong>One</strong>, it should flag pitches that haven't been replied to in 48+ hours. <strong>Two</strong>, the output should land in WhatsApp at 8am, not in an email I'll ignore.</div>
+  </div>`,
+
+  // Step 8: Aligned, switch to building
+  `<div class="chat">
+    <div class="chat-header"><span>Planning conversation</span><span>● Aligned</span></div>
+    <div class="bubble user show" data-id="1"><div class="role">YOU</div>OK so I'm hoping for something that takes the chaos out of my week. I'm in client-facing PR. Every Monday I lose two hours just figuring out what to do. There are pitches in my email, calendar events, a Monday board, and I have to mentally stitch it all together. I want one place that tells me what matters today.</div>
+    <div class="bubble user show" data-id="2"><div class="role">YOU</div>Before you start building, <span class="highlight">tell me what you understand me to be asking</span>. We're still in planning.</div>
+    <div class="bubble ai show" data-id="3"><div class="role">AI</div>Here's what I understand:
+    <br/><br/>You want a <strong>Monday morning briefing</strong> that pulls from three sources (email pitches, calendar, Monday board) and produces a single ranked view of what to focus on today. The goal is to remove ~2 hrs of weekly stitching work. The user is you. Is that right? Anything I'm missing?</div>
+    <div class="bubble user show" data-id="4"><div class="role">YOU</div>Close. Two things to add. <strong>One</strong>, it should flag pitches that haven't been replied to in 48+ hours. <strong>Two</strong>, the output should land in WhatsApp at 8am, not in an email I'll ignore.</div>
+    <div class="bubble user show" data-id="5"><div class="role">YOU</div>Good. <span class="highlight">Now let's build the smallest version.</span> What's the first piece we tackle?</div>
+  </div>`,
+
+  // Step 9: Final state with payoff (same chat)
+  `<div class="chat">
+    <div class="chat-header"><span>Planning conversation</span><span>● Aligned · Build mode</span></div>
+    <div class="bubble user show" data-id="1"><div class="role">YOU</div>OK so I'm hoping for something that takes the chaos out of my week. I'm in client-facing PR. Every Monday I lose two hours just figuring out what to do. There are pitches in my email, calendar events, a Monday board, and I have to mentally stitch it all together. I want one place that tells me what matters today.</div>
+    <div class="bubble user show" data-id="2"><div class="role">YOU</div>Before you start building, <span class="highlight">tell me what you understand me to be asking</span>. We're still in planning.</div>
+    <div class="bubble ai show" data-id="3"><div class="role">AI</div>Here's what I understand:
+    <br/><br/>You want a <strong>Monday morning briefing</strong> that pulls from three sources (email pitches, calendar, Monday board) and produces a single ranked view of what to focus on today. The goal is to remove ~2 hrs of weekly stitching work. The user is you. Is that right? Anything I'm missing?</div>
+    <div class="bubble user show" data-id="4"><div class="role">YOU</div>Close. Two things to add. <strong>One</strong>, it should flag pitches that haven't been replied to in 48+ hours. <strong>Two</strong>, the output should land in WhatsApp at 8am, not in an email I'll ignore.</div>
+    <div class="bubble user show" data-id="5"><div class="role">YOU</div>Good. <span class="highlight">Now let's build the smallest version.</span> What's the first piece we tackle?</div>
+  </div>`
+];
+
+let i = 0;
+const frame = document.getElementById("frame");
+const cap = document.getElementById("caption");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = captions.length;
+
+function render() {
+  cap.textContent = captions[i];
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === captions.length - 1;
+  frame.innerHTML = stepHTML[i];
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < captions.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") next.click();
+  if (e.key === "ArrowLeft") prev.click();
+});
+
+render();
+</script>
+</body>
+</html>

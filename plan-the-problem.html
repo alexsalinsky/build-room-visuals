@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Think Like a Designer: Plan the Problem</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 12px; }
+  .frame-wrap { flex: 1; max-height: 80vh; width: 100%; display: flex; align-items: center; justify-content: center; }
+  svg { width: auto; height: auto; max-width: 100%; max-height: 100%; }
+  .title-screen { font-size: 60px; font-weight: 700; text-align: center; color: #1a1a1a; letter-spacing: -1px; line-height: 1.1; }
+  .title-screen .sub { display: block; font-size: 22px; font-weight: 400; margin-top: 18px; color: #666; letter-spacing: 0; }
+  .caption { max-width: 920px; text-align: center; font-size: 18px; line-height: 1.5; color: #333; padding: 0 12px; min-height: 56px; }
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
+  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
+
+  .el { opacity: 0; transition: opacity 0.35s ease; }
+  .el.show { opacity: 1; }
+
+  .box { fill: #fff; stroke: #1a1a1a; stroke-width: 2.5; }
+  .box-finale { fill: #1a1a1a; stroke: #1a1a1a; stroke-width: 2.5; }
+  .line { fill: none; stroke: #1a1a1a; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .line-thin { fill: none; stroke: #1a1a1a; stroke-width: 1.5; }
+  .arrow { fill: #1a1a1a; }
+  .head-xl { font-size: 26px; font-weight: 700; fill: #1a1a1a; letter-spacing: 1px; }
+  .head-q { font-size: 14px; font-style: italic; fill: #666; }
+  .label-h-white { font-size: 22px; font-weight: 700; fill: #fff; }
+  .label-b { font-size: 16px; font-weight: 400; fill: #1a1a1a; }
+  .label-b-bold { font-size: 16px; font-weight: 600; fill: #1a1a1a; }
+  .label-b-white { font-size: 16px; font-weight: 400; fill: #fff; }
+  .label-sm { font-size: 13px; font-weight: 400; fill: #666; }
+  .badge { fill: #fde68a; stroke: #92400e; stroke-width: 2; }
+  .badge-text { font-size: 16px; font-weight: 600; fill: #1a1a1a; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="frame-wrap" id="frame">
+    <div class="title-screen" id="titleScreen">
+      Plan the Problem
+      <span class="sub">Think Like a Designer · The Build Room</span>
+    </div>
+    <svg id="diagram" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet" style="display:none">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" class="arrow"/>
+        </marker>
+      </defs>
+
+      <!-- ===== Header area: always visible from step 2+ ===== -->
+      <g class="el" data-step="2">
+        <text x="550" y="40" text-anchor="middle" style="font-size:30px;font-weight:700;fill:#1a1a1a">Plan the Problem</text>
+        <text x="550" y="68" text-anchor="middle" class="label-sm">What output do I want, what input gets me there, and when does it happen?</text>
+      </g>
+
+      <!-- ===== STEP 2: Three empty columns + headers + questions ===== -->
+      <g class="el" data-step="2">
+        <!-- OUTPUT column -->
+        <rect x="40" y="100" width="320" height="420" rx="12" class="box"/>
+        <text x="200" y="142" text-anchor="middle" class="head-xl">OUTPUT</text>
+        <text x="200" y="170" text-anchor="middle" class="head-q">what do I want?</text>
+        <line x1="60" y1="190" x2="340" y2="190" class="line-thin"/>
+
+        <!-- INPUT column -->
+        <rect x="390" y="100" width="320" height="420" rx="12" class="box"/>
+        <text x="550" y="142" text-anchor="middle" class="head-xl">INPUT</text>
+        <text x="550" y="170" text-anchor="middle" class="head-q">what feeds it?</text>
+        <line x1="410" y1="190" x2="690" y2="190" class="line-thin"/>
+
+        <!-- WHEN column -->
+        <rect x="740" y="100" width="320" height="420" rx="12" class="box"/>
+        <text x="900" y="142" text-anchor="middle" class="head-xl">WHEN</text>
+        <text x="900" y="170" text-anchor="middle" class="head-q">when does it happen?</text>
+        <line x1="760" y1="190" x2="1080" y2="190" class="line-thin"/>
+      </g>
+
+      <!-- ===== STEP 3: Project banner ===== -->
+      <g class="el" data-step="3">
+        <rect x="390" y="20" width="320" height="50" rx="25" class="badge"/>
+        <text x="550" y="52" text-anchor="middle" class="badge-text">Example: Travel itinerary</text>
+      </g>
+
+      <!-- ===== STEP 4: OUTPUT filled ===== -->
+      <g class="el" data-step="4">
+        <text x="60" y="235" class="label-b-bold">Travel itinerary</text>
+        <text x="60" y="270" class="label-b">in a Google Doc</text>
+        <text x="60" y="295" class="label-b">or website</text>
+      </g>
+
+      <!-- ===== STEP 5: INPUT filled ===== -->
+      <g class="el" data-step="5">
+        <text x="410" y="235" class="label-b-bold">• Airline reservations</text>
+        <text x="430" y="260" class="label-sm">from email or calendar</text>
+
+        <text x="410" y="305" class="label-b-bold">• Calendar events</text>
+        <text x="430" y="330" class="label-sm">imported as they land</text>
+
+        <text x="410" y="375" class="label-b-bold">• Travel preferences</text>
+        <text x="430" y="400" class="label-sm">where I like to stay,</text>
+        <text x="430" y="420" class="label-sm">things I like to see</text>
+      </g>
+
+      <!-- ===== STEP 6: WHEN filled ===== -->
+      <g class="el" data-step="6">
+        <text x="760" y="235" class="label-b-bold">• On demand</text>
+        <text x="780" y="260" class="label-sm">I tell it to</text>
+
+        <text x="760" y="305" class="label-b-bold">• On new confirmation</text>
+        <text x="780" y="330" class="label-sm">airline or hotel email</text>
+        <text x="780" y="350" class="label-sm">lands in inbox</text>
+
+        <text x="760" y="395" class="label-b-bold">• On new calendar event</text>
+        <text x="780" y="420" class="label-sm">trip-related event added</text>
+      </g>
+
+      <!-- ===== STEP 7: Arrow down + payoff box ===== -->
+      <g class="el" data-step="7">
+        <!-- Arrow down from the columns -->
+        <path d="M 550 540 L 550 600" class="line" marker-end="url(#arrow)"/>
+        <!-- Payoff box (finale) -->
+        <rect x="200" y="610" width="700" height="90" rx="12" class="box-finale"/>
+        <text x="550" y="645" text-anchor="middle" class="label-h-white">Your prompting plan</text>
+        <text x="550" y="678" text-anchor="middle" class="label-b-white">Now you know what to ask the AI, what to feed it, and when to trigger it.</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="caption" id="caption"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">← Prev</button>
+      <button id="next">Next →</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">7</span></div>
+  </div>
+</div>
+<div class="hint">← → arrow keys also work</div>
+
+<script>
+const captions = [
+  "Think like a designer. Before you build, plan the problem.",
+  "Three questions. What's the OUTPUT I want? What's the INPUT that gets me there? And WHEN does it happen?",
+  "Let's use a real one. We want to build a travel itinerary.",
+  "OUTPUT: a travel itinerary. Maybe in a Google Doc. Maybe on a simple website. Pick the form first.",
+  "INPUT: what feeds it? Airline reservations (from email or calendar). Calendar events. Travel preferences (where I like to stay, what I like to see).",
+  "WHEN: on demand when I ask. Or automatically, when a new confirmation lands in my inbox or a trip event gets added to my calendar.",
+  "Now you have a prompting plan. You know exactly what to ask the AI, what to give it, and when to trigger it. That's the design step."
+];
+
+let i = 0;
+const titleScreen = document.getElementById("titleScreen");
+const diagram = document.getElementById("diagram");
+const cap = document.getElementById("caption");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = captions.length;
+
+function render() {
+  cap.textContent = captions[i];
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === captions.length - 1;
+
+  if (i === 0) {
+    titleScreen.style.display = '';
+    diagram.style.display = 'none';
+  } else {
+    titleScreen.style.display = 'none';
+    diagram.style.display = '';
+    document.querySelectorAll('#diagram .el').forEach(el => {
+      const step = parseInt(el.dataset.step);
+      el.classList.toggle('show', step <= i + 1);
+    });
+  }
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < captions.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") next.click();
+  if (e.key === "ArrowLeft") prev.click();
+});
+
+render();
+</script>
+</body>
+</html>

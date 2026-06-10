@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Build Room — Visual Library</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 56px 32px 96px; }
+  header { margin-bottom: 36px; }
+  h1 { font-size: 48px; font-weight: 800; letter-spacing: -1.2px; margin-bottom: 12px; }
+  .sub { font-size: 19px; color: #666; max-width: 680px; line-height: 1.5; }
+  h2 { font-size: 18px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin: 36px 0 14px; padding-bottom: 8px; border-bottom: 1.5px solid #ddd; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 20px 22px; text-decoration: none; color: #1a1a1a; display: block; transition: all 0.15s ease; }
+  .card:hover { background: #1a1a1a; color: #fff; transform: translateY(-2px); }
+  .card:hover .meta { color: #bbb; }
+  .card .title { font-size: 18px; font-weight: 700; line-height: 1.25; margin-bottom: 5px; }
+  .card .meta { font-size: 13px; color: #666; line-height: 1.45; }
+  footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 13px; color: #888; text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>The Build Room</h1>
+    <p class="sub">Visual library. Click-through lessons for thinking about AI, prompting, building, and shipping.</p>
+  </header>
+
+  <h2>Foundations</h2>
+  <div class="grid">
+    <a class="card" href="inside-the-robot.html">
+      <div class="title">Inside the Robot</div>
+      <div class="meta">How LLMs, context, integrations, and products fit together.</div>
+    </a>
+    <a class="card" href="dream-big-build-small.html">
+      <div class="title">Dream Big, Build Small</div>
+      <div class="meta">Backwards design. Dream → MVP → First Brick.</div>
+    </a>
+    <a class="card" href="plan-the-problem.html">
+      <div class="title">Plan the Problem</div>
+      <div class="meta">Input · Output · When framework.</div>
+    </a>
+  </div>
+
+  <h2>How-to</h2>
+  <div class="grid">
+    <a class="card" href="how-to-prompt.html">
+      <div class="title">How to Prompt</div>
+      <div class="meta">Plan first, build second. The reflect-back move.</div>
+    </a>
+    <a class="card" href="ai-lies.html">
+      <div class="title">Handling AI Lies</div>
+      <div class="meta">Seven patterns of fabrication and how to catch them.</div>
+    </a>
+    <a class="card" href="api-key-generic.html">
+      <div class="title">API Key Flow</div>
+      <div class="meta">How to find and use any API key.</div>
+    </a>
+  </div>
+
+  <h2>Setup</h2>
+  <div class="grid">
+    <a class="card" href="claude-code-setup.html">
+      <div class="title">Claude Code Setup</div>
+      <div class="meta">4 steps. Install GitHub Desktop. Quit Claude fully. Reopen.</div>
+    </a>
+    <a class="card" href="github-60s.html">
+      <div class="title">GitHub in 60 Seconds</div>
+      <div class="meta">Mental model. No deep tech required.</div>
+    </a>
+    <a class="card" href="connector-vs-api.html">
+      <div class="title">Connector vs API</div>
+      <div class="meta">When to use which. Trade-offs.</div>
+    </a>
+    <a class="card" href="where-your-build-lives.html">
+      <div class="title">Where Your Build Lives</div>
+      <div class="meta">Inside Claude · Outside Claude · Hybrid.</div>
+    </a>
+  </div>
+
+  <footer>
+    Alex Salinsky · The Build Room
+  </footer>
+</div>
+</body>
+</html>
