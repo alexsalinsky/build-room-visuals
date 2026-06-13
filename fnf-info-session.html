@@ -17,6 +17,7 @@
 
   h1 { font-size: 56px; font-weight: 800; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 16px; }
   h1.huge { font-size: 72px; }
+  h1.mega { font-size: 100px; }
   h2 { font-size: 34px; font-weight: 700; line-height: 1.15; margin-bottom: 22px; letter-spacing: -0.5px; }
   h3 { font-size: 20px; font-weight: 600; margin-bottom: 12px; color: #444; }
   p { font-size: 19px; line-height: 1.55; color: #333; margin-bottom: 14px; }
@@ -30,7 +31,7 @@
   .three-stack { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 22px 0; }
   .three-stack .word { font-size: 60px; font-weight: 800; letter-spacing: -2px; line-height: 1; }
 
-  .three-products { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 20px 0; }
+  .three-products { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 24px 0; }
   @media (max-width: 720px) { .three-products { grid-template-columns: 1fr; } }
   .product-card { border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 22px 20px; background: #fff; }
   .product-card .tag { font-size: 11px; color: #888; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 6px; }
@@ -51,17 +52,20 @@
   .arc-step.finale .num { color: #999; }
   @media (max-width: 720px) { .arc { flex-direction: column; } .arc-step { max-width: none; } }
 
-  .session-flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 20px 0; }
-  @media (max-width: 720px) { .session-flow { grid-template-columns: repeat(2, 1fr); } }
-  .session-step { border: 2px solid #1a1a1a; border-radius: 10px; padding: 14px 10px; text-align: center; background: #fff; }
-  .session-step .num { font-size: 11px; color: #888; letter-spacing: 1px; font-weight: 700; }
-  .session-step .label { font-size: 14px; font-weight: 700; margin-top: 4px; line-height: 1.2; }
+  /* Session format as vertical agenda */
+  .agenda-list { display: flex; flex-direction: column; gap: 10px; max-width: 580px; margin: 24px auto 0; }
+  .agenda-item { display: flex; align-items: center; gap: 16px; padding: 14px 22px; background: #fff; border: 2px solid #1a1a1a; border-radius: 10px; }
+  .agenda-item .num { font-size: 14px; font-weight: 800; color: #888; min-width: 28px; letter-spacing: 1px; }
+  .agenda-item .label { font-size: 19px; font-weight: 700; }
 
-  .goal-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 24px 0; }
+  .goal-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 28px 0; }
   @media (max-width: 720px) { .goal-grid { grid-template-columns: 1fr; } }
-  .goal-card { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 24px 20px; text-align: center; }
+  .goal-card { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 26px 22px; text-align: center; }
   .goal-card .num { font-size: 12px; color: #888; letter-spacing: 2px; font-weight: 700; margin-bottom: 8px; }
-  .goal-card .label { font-size: 22px; font-weight: 800; line-height: 1.2; }
+  .goal-card .label { font-size: 22px; font-weight: 800; line-height: 1.25; }
+  .goal-card.highlight { background: #1a1a1a; color: #fff; transform: scale(1.06); border-color: #1a1a1a; box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+  .goal-card.highlight .num { color: #fde68a; }
+  .goal-card.highlight .label { font-size: 26px; }
 
   .agreement-cards { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
   .agreement { background: #1a1a1a; color: #fff; border-radius: 12px; padding: 18px 24px; }
@@ -79,27 +83,26 @@
   .ex-card strong { display: block; font-size: 16px; margin-bottom: 4px; }
   .ex-card span { font-size: 13px; color: #666; }
 
-  .schedule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 18px 0; }
+  .schedule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0; }
   @media (max-width: 720px) { .schedule-grid { grid-template-columns: 1fr; } }
-  .schedule-card { border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 24px; background: #fff; text-align: center; }
-  .schedule-card .tag { font-size: 11px; color: #888; letter-spacing: 2px; font-weight: 700; margin-bottom: 10px; }
-  .schedule-card .day { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 4px; }
-  .schedule-card .time { font-size: 20px; font-weight: 600; color: #555; }
-  .schedule-card .seats { font-size: 13px; color: #666; margin-top: 12px; font-style: italic; }
+  .schedule-card { border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 32px 24px; background: #fff; text-align: center; }
+  .schedule-card .tag { font-size: 11px; color: #888; letter-spacing: 2px; font-weight: 700; margin-bottom: 12px; }
+  .schedule-card .day { font-size: 42px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .schedule-card .time { font-size: 22px; font-weight: 600; color: #555; }
 
-  .commit-card { background: #1a1a1a; color: #fff; border-radius: 14px; padding: 28px 32px; max-width: 720px; text-align: left; }
-  .commit-card .label { font-size: 12px; color: #999; letter-spacing: 2px; font-weight: 700; margin-bottom: 8px; }
-  .commit-card .big { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 6px; }
-  .commit-card .small { font-size: 17px; color: #ccc; line-height: 1.5; margin-bottom: 14px; }
-  .commit-card .divider { border-top: 1px solid #444; margin: 18px 0; }
-  .commit-card .practical { font-size: 16px; color: #fde68a; font-weight: 700; }
+  .commit-card { background: #1a1a1a; color: #fff; border-radius: 14px; padding: 32px 38px; max-width: 720px; text-align: center; }
+  .commit-card .label { font-size: 12px; color: #999; letter-spacing: 2px; font-weight: 700; margin-bottom: 10px; }
+  .commit-card .big { font-size: 48px; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
+  .commit-card .small { font-size: 17px; color: #ccc; line-height: 1.5; }
 
   .urgency-card { background: linear-gradient(135deg, #fde68a 0%, #f59e0b 100%); border: 3px solid #92400e; border-radius: 18px; padding: 36px 40px; max-width: 800px; text-align: center; }
-  .urgency-card .skull { font-size: 50px; margin-bottom: 8px; }
   .urgency-card .tag { font-size: 14px; color: #92400e; letter-spacing: 2px; font-weight: 800; margin-bottom: 12px; }
-  .urgency-card h2 { font-size: 42px; color: #1a1a1a; margin-bottom: 14px; line-height: 1.1; }
+  .urgency-card h2 { font-size: 38px; color: #1a1a1a; margin-bottom: 14px; line-height: 1.15; }
   .urgency-card p { font-size: 18px; color: #1a1a1a; line-height: 1.55; margin: 0 0 14px; }
-  .urgency-card .reward { background: #1a1a1a; color: #fde68a; padding: 16px 22px; border-radius: 10px; font-weight: 700; font-size: 17px; display: inline-block; }
+  .urgency-card .reward { background: #1a1a1a; color: #fde68a; padding: 16px 22px; border-radius: 10px; font-weight: 700; font-size: 17px; display: inline-block; margin-top: 8px; }
+
+  .walkaway-list { max-width: 680px; margin: 18px auto 0; text-align: left; }
+  .walkaway-list li { font-size: 22px; margin-bottom: 14px; padding-left: 32px; }
 
   .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
   .hud strong { color: #1a1a1a; font-size: 16px; }
@@ -113,13 +116,17 @@
   @media (max-width: 720px) {
     h1 { font-size: 38px; }
     h1.huge { font-size: 46px; }
+    h1.mega { font-size: 64px; }
     h2 { font-size: 24px; }
     p, ul li { font-size: 16px; }
     .three-stack .word { font-size: 38px; }
     .punch { font-size: 28px; }
-    .commit-card .big { font-size: 28px; }
+    .commit-card .big { font-size: 34px; }
     .gift-hero h2 { font-size: 26px; }
-    .urgency-card h2 { font-size: 30px; }
+    .urgency-card h2 { font-size: 26px; }
+    .schedule-card .day { font-size: 32px; }
+    .goal-card.highlight .label { font-size: 20px; }
+    .walkaway-list li { font-size: 18px; }
   }
 </style>
 </head>
@@ -131,7 +138,7 @@
       <button id="prev">← Prev</button>
       <button id="next">Next →</button>
     </div>
-    <div><strong id="counter">1</strong> / <span id="total">20</span></div>
+    <div><strong id="counter">1</strong> / <span id="total">21</span></div>
   </div>
 </div>
 <div class="hint">← → arrow keys, swipe on mobile</div>
@@ -139,43 +146,38 @@
 <script>
 const slides = [
 
-  // 1. Title
+  // 1. Title — Build Room only
   {
     html: `<div class="slide center">
       <h1 class="huge">Humans V Robots</h1>
       <p class="lead" style="font-size:22px;color:#666;font-weight:400;margin-top:14px">AI Cohort Kick-Off · Info Session</p>
-      <p class="sub" style="margin-top:30px;font-size:16px;color:#888">The Build Room · Alex Salinsky & Thierry Muller</p>
+      <p class="sub" style="margin-top:36px;font-size:18px;color:#888;font-weight:600">The Build Room</p>
     </div>`
   },
 
-  // 2. Welcome (the vibes opener)
+  // 2. Welcome — just Hi 👋
   {
     html: `<div class="slide center">
-      <div class="section-chip">Welcome</div>
-      <h1 style="font-size:60px;margin-top:20px">Hi you. Hi you.<br/>Hi you. 👋</h1>
-      <p class="lead" style="max-width:740px;margin-top:18px">We're glad you're here. Cameras on if you can. We're going to make this fun.</p>
-      <p class="sub" style="margin-top:24px;font-size:17px;color:#666">45 min together. Q&A after. Let's get in.</p>
+      <h1 class="mega" style="margin:0">Hi 👋</h1>
     </div>`
   },
 
-  // 3. Raise your hand (room check)
+  // 3. Who's worked with AI?
   {
     html: `<div class="slide center">
-      <div class="section-chip">Quick Check</div>
-      <h2 style="margin-top:20px">Raise your hand:</h2>
-      <p class="lead" style="font-size:34px;max-width:840px;margin-bottom:18px">Who's already built a product with AI?</p>
-      <p style="font-size:17px;color:#666;max-width:700px">Not "used AI." BUILT something. A tool, an assistant, an automation, a workflow.</p>
-      <p class="sub" style="margin-top:20px;font-size:15px;color:#888;font-style:italic">Alex assesses the room before going further.</p>
+      <h1 style="font-size:64px">Who's worked with AI?</h1>
     </div>`
   },
 
-  // 4. Hosts intro
+  // 4. Hosts — separate lines
   {
     html: `<div class="slide center">
       <div class="section-chip">Your Hosts</div>
-      <h2 style="margin-top:20px">Alex Salinsky & Thierry Muller</h2>
-      <p class="lead" style="max-width:780px;margin-top:14px">Alex builds AI tools and runs The Build Room cohorts. Thierry runs 21-day accountability programs that actually get people to finish things.</p>
-      <p class="sub" style="margin-top:24px;font-size:17px;color:#666">Together we cover both sides: the build skills AND the discipline to actually use them.</p>
+      <h2 style="margin-top:20px;font-size:42px">Alex Salinsky & Thierry Muller</h2>
+      <div style="display:flex;flex-direction:column;gap:20px;max-width:760px;margin-top:28px">
+        <p class="lead" style="font-size:22px;text-align:left"><strong>Alex</strong> builds AI tools and runs The Build Room cohorts.</p>
+        <p class="lead" style="font-size:22px;text-align:left"><strong>Thierry</strong> runs 21-day accountability programs that get people to finish things.</p>
+      </div>
     </div>`
   },
 
@@ -192,7 +194,33 @@ const slides = [
     </div>`
   },
 
-  // 6. What we've made (3 products, ONE slide)
+  // 6. Humans V Robots (MOVED EARLY)
+  {
+    html: `<div class="slide center">
+      <div class="section-chip">The Stance</div>
+      <h2 style="margin-top:20px">Humans V Robots</h2>
+      <p class="gundam">AI is the <strong>tool</strong>.<br/>You are the <strong>builder</strong>.</p>
+      <p class="gundam" style="margin-top:16px;font-size:20px;color:#555;max-width:760px">Most people will let the robot drive. This cohort builds the muscle to stay in the cockpit.</p>
+      <p class="punch">Team Human.</p>
+    </div>`
+  },
+
+  // 7. What you walk away with (MOVED EARLY)
+  {
+    html: `<div class="slide center">
+      <div class="section-chip">What You Walk Away With</div>
+      <h2 style="margin-top:20px">By the end of the cohort</h2>
+      <ul class="walkaway-list">
+        <li><strong>A finished product</strong> · yours, working, useful</li>
+        <li><strong>AI confidence</strong> · you've done it, you can do it again</li>
+        <li><strong>Tools and habits</strong> · to keep building after</li>
+        <li><strong>3 gifts</strong> · from today, still yours</li>
+        <li><strong>A peer group</strong> · who gets what you're doing</li>
+      </ul>
+    </div>`
+  },
+
+  // 8. What we've made (3 products, no caption)
   {
     html: `<div class="slide">
       <div class="section-chip">What We've Made</div>
@@ -217,11 +245,10 @@ const slides = [
           <div class="desc">Accountability tracking program built with AI. Scales without losing the human touch.</div>
         </div>
       </div>
-      <p class="sub" style="text-align:center;font-size:17px;color:#444;font-weight:600">None of these required a dev team. You can build at this level too.</p>
     </div>`
   },
 
-  // 7. GIFT #1 — Skool Community
+  // 9. GIFT #1 — Skool Community
   {
     html: `<div class="slide center">
       <div class="gift-hero">
@@ -232,7 +259,7 @@ const slides = [
     </div>`
   },
 
-  // 8. The Goal
+  // 10. The Goal (Learn AI first, Build a Tool with AI highlighted)
   {
     html: `<div class="slide">
       <div class="section-chip">The Program · The Goal</div>
@@ -240,55 +267,52 @@ const slides = [
       <div class="goal-grid">
         <div class="goal-card">
           <div class="num">01</div>
-          <div class="label">Build a tool with AI</div>
-        </div>
-        <div class="goal-card">
-          <div class="num">02</div>
           <div class="label">Learn AI</div>
+        </div>
+        <div class="goal-card highlight">
+          <div class="num">02</div>
+          <div class="label">Build a Tool with AI</div>
         </div>
         <div class="goal-card">
           <div class="num">03</div>
           <div class="label">Be in a team with accountability</div>
         </div>
       </div>
-      <p class="sub" style="text-align:center;font-size:17px;color:#666;max-width:760px">All three at once. That's why a cohort works where a course doesn't.</p>
     </div>`
   },
 
-  // 9. The Method (4-week arc + key elements)
+  // 11. The Method (4-week arc, S1 = Start the build)
   {
     html: `<div class="slide">
       <div class="section-chip">The Program · The Method</div>
       <h2 style="margin-top:30px;text-align:center">4 weeks. 2-hour calls. Build with peers.</h2>
       <div class="arc">
-        <div class="arc-step"><div class="num">SESSION 1</div><div class="title">Kickoff + start the build</div></div>
+        <div class="arc-step"><div class="num">SESSION 1</div><div class="title">Start the build</div></div>
         <div class="arc-step"><div class="num">SESSION 2</div><div class="title">Learn + build</div></div>
         <div class="arc-step"><div class="num">SESSION 3</div><div class="title">Refine + iterate</div></div>
         <div class="arc-step finale"><div class="num">SESSION 4</div><div class="title">Build Day + Demo Day</div></div>
       </div>
-      <p style="text-align:center;font-size:18px;color:#444;font-weight:600;margin-top:10px">Community. Commitment. Accountability.</p>
-      <p class="sub" style="text-align:center;font-size:15px;color:#888;font-style:italic">Thierry's pep talk lands here.</p>
+      <p style="text-align:center;font-size:20px;color:#1a1a1a;font-weight:700;margin-top:14px">Community. Commitment. Accountability.</p>
     </div>`
   },
 
-  // 10. Standard session format
+  // 12. Session format (agenda-style, no caption)
   {
     html: `<div class="slide center">
-      <div class="section-chip">The Program · A Session</div>
+      <div class="section-chip">A Session</div>
       <h2 style="margin-top:20px">What every session looks like</h2>
-      <div class="session-flow">
-        <div class="session-step"><div class="num">1</div><div class="label">Be Human</div></div>
-        <div class="session-step"><div class="num">2</div><div class="label">Learn</div></div>
-        <div class="session-step"><div class="num">3</div><div class="label">Build</div></div>
-        <div class="session-step"><div class="num">4</div><div class="label">Receive Support</div></div>
-        <div class="session-step"><div class="num">5</div><div class="label">Share</div></div>
-        <div class="session-step"><div class="num">6</div><div class="label">Close</div></div>
+      <div class="agenda-list">
+        <div class="agenda-item"><div class="num">01</div><div class="label">Be Human</div></div>
+        <div class="agenda-item"><div class="num">02</div><div class="label">Learn</div></div>
+        <div class="agenda-item"><div class="num">03</div><div class="label">Build</div></div>
+        <div class="agenda-item"><div class="num">04</div><div class="label">Receive Support</div></div>
+        <div class="agenda-item"><div class="num">05</div><div class="label">Share</div></div>
+        <div class="agenda-item"><div class="num">06</div><div class="label">Close</div></div>
       </div>
-      <p class="sub" style="font-size:17px;color:#666;max-width:780px;margin-top:0">Same heartbeat every week. You settle in and you build. Between sessions: shared cohort space, share wins (especially small ones).</p>
     </div>`
   },
 
-  // 11. GIFT #2 — Fluency Assessment
+  // 13. GIFT #2 — AI Fluency Assessment
   {
     html: `<div class="slide center">
       <div class="gift-hero">
@@ -299,7 +323,7 @@ const slides = [
     </div>`
   },
 
-  // 12. The Agreements
+  // 14. Agreements
   {
     html: `<div class="slide">
       <div class="section-chip">How We Show Up</div>
@@ -328,38 +352,51 @@ const slides = [
     </div>`
   },
 
-  // 13. Humans V Robots
+  // 15. Two cohorts (cleaned, no specifics about people)
   {
     html: `<div class="slide center">
-      <div class="section-chip">The Stance</div>
-      <h2 style="margin-top:20px">Humans V Robots</h2>
-      <p class="gundam">AI is the <strong>tool</strong>.<br/>You are the <strong>builder</strong>.</p>
-      <p class="gundam" style="margin-top:16px;font-size:20px;color:#555;max-width:760px">Most people will let the robot drive. This cohort builds the muscle to stay in the cockpit.</p>
-      <p class="punch">Team Human.</p>
+      <div class="section-chip">Two Cohorts</div>
+      <h2 style="margin-top:20px">Pick the one that fits</h2>
+      <div class="schedule-grid">
+        <div class="schedule-card">
+          <div class="tag">COHORT A</div>
+          <div class="day">Monday</div>
+          <div class="time">Morning</div>
+        </div>
+        <div class="schedule-card">
+          <div class="tag">COHORT B</div>
+          <div class="day">Thursday</div>
+          <div class="time">Afternoon</div>
+        </div>
+      </div>
     </div>`
   },
 
-  // 14. What you get by the end
+  // 16. Commitment ($100-1000, moved BEFORE "What will you build")
   {
     html: `<div class="slide center">
-      <div class="section-chip">By the End</div>
-      <h2 style="margin-top:20px">What you walk away with</h2>
-      <ul style="margin-top:18px;max-width:680px;text-align:left">
-        <li><strong>A finished product</strong> — yours, working, useful</li>
-        <li><strong>AI confidence</strong> — you've done it, you can do it again</li>
-        <li><strong>Tools and habits</strong> — to keep building after the cohort</li>
-        <li><strong>The 3 gifts</strong> from today, still yours</li>
-        <li><strong>A peer group</strong> who gets what you're doing</li>
-      </ul>
+      <div class="section-chip">Your Commitment</div>
+      <div class="commit-card" style="margin-top:14px">
+        <div class="label">SLIDING SCALE · MEANINGFUL CONTRIBUTION</div>
+        <div class="big">$100 – $1000</div>
+        <div class="small">You pick the amount that means something to you and keeps you accountable. If the cohort changes your life, you double it.</div>
+      </div>
+      <p class="sub" style="margin-top:24px;font-size:17px;color:#666;max-width:680px">Stripe link drops in chat. Decide on your own time.</p>
     </div>`
   },
 
-  // 15. What do YOU want to build? (ask room + examples)
+  // 17. What will YOU build? (just the question)
+  {
+    html: `<div class="slide center">
+      <h1 style="font-size:80px;letter-spacing:-2px">What will <span style="color:#16a34a">YOU</span> build?</h1>
+    </div>`
+  },
+
+  // 18. Examples (no chat prompt)
   {
     html: `<div class="slide">
-      <div class="section-chip">Your Turn</div>
-      <h2 style="margin-top:30px;text-align:center">What will YOU build?</h2>
-      <p style="font-size:17px;text-align:center;color:#666;margin-bottom:14px">Examples from past cohorts and personal builds. Drop YOUR idea in chat.</p>
+      <div class="section-chip">For Inspiration</div>
+      <h2 style="margin-top:30px;text-align:center">Real examples from past cohorts</h2>
       <div class="build-examples">
         <div class="ex-card"><strong>Personal AI coach</strong><span>Reads your week, asks the right questions, holds you accountable</span></div>
         <div class="ex-card"><strong>Language learning companion</strong><span>Tuned to your accent and your gaps</span></div>
@@ -368,80 +405,37 @@ const slides = [
         <div class="ex-card"><strong>Client report automator</strong><span>For freelancers and small agencies</span></div>
         <div class="ex-card"><strong>WhatsApp digest bot</strong><span>Your morning briefing, your way</span></div>
       </div>
-      <p style="font-size:17px;text-align:center;color:#444;font-weight:700;margin-top:8px">↓ What's yours? Drop it in chat now.</p>
     </div>`
   },
 
-  // 16. GIFT #3 — Starter Stack (after they share)
+  // 19. GIFT #3 — Starter Stack Advice
   {
     html: `<div class="slide center">
       <div class="gift-hero">
         <span class="ribbon">GIFT 3 OF 3</span>
         <h2>Optimal Starter Stack Advice</h2>
-        <p>You just told us what you want to build. We'll tell you the cheapest, easiest stack to get started, based on where you are right now. Personalized, on the call, today.</p>
+        <p>You just told us what you want to build. We'll point you at the cheapest, easiest stack to start with. Start with Claude (free or ~$20/mo Pro). Add a basic server later if you need one (as little as ~$10/mo). Upgrade only when you outgrow it.</p>
       </div>
     </div>`
   },
 
-  // 17. Two cohort options
-  {
-    html: `<div class="slide">
-      <div class="section-chip">If You're In</div>
-      <h2 style="margin-top:30px;text-align:center">Two cohorts. Pick your fit.</h2>
-      <p style="font-size:16px;color:#666;text-align:center;margin-bottom:8px">Based on what 26 of you told us. All times Colombia time (COT).</p>
-      <div class="schedule-grid">
-        <div class="schedule-card">
-          <div class="tag">COHORT A</div>
-          <div class="day">Monday</div>
-          <div class="time">Morning</div>
-          <div class="seats">9 of you have this as your top slot</div>
-        </div>
-        <div class="schedule-card">
-          <div class="tag">COHORT B</div>
-          <div class="day">Thursday</div>
-          <div class="time">Afternoon</div>
-          <div class="seats">Adds 6 more. 15 total served.</div>
-        </div>
-      </div>
-      <p class="sub" style="text-align:center;font-size:15px;color:#666;margin-top:6px;max-width:760px">Can't make either? Wave 2 runs in July/August. Tell me your preference and you get first pick.</p>
-    </div>`
-  },
-
-  // 18. Your commitment (sliding scale + $20 sub reality)
-  {
-    html: `<div class="slide center">
-      <div class="section-chip">Your Commitment</div>
-      <div class="commit-card" style="margin-top:14px">
-        <div class="label">SLIDING SCALE · MEANINGFUL CONTRIBUTION</div>
-        <div class="big">$100 – $1000</div>
-        <div class="small">You pick the amount that means something to you and keeps you accountable. If the cohort changes your life, you double it.</div>
-        <div class="divider"></div>
-        <div class="practical">Plus ~$20/mo for Codex or Claude Code (your build environment)</div>
-      </div>
-      <p class="sub" style="margin-top:20px;font-size:16px;color:#666;max-width:680px">Stripe link drops in chat right after. Decide on your own time.</p>
-    </div>`
-  },
-
-  // 19. Sign up NOW or DIE (urgency)
+  // 20. First 5 to sign up before the call ends
   {
     html: `<div class="slide center">
       <div class="urgency-card">
-        <div class="tag">FIRST FEW TO SIGN UP</div>
-        <h2>Sign up now or DIE 💀</h2>
-        <p>Within the next hour, the first people who commit get a <strong>30-min private 1:1 with Alex</strong> before Session 1. We dial in your project so you walk into the cohort with a clear first brick to build.</p>
-        <p>This is the ONE on-the-call bonus. After today, the door closes on it.</p>
-        <div class="reward">🎁 First-hour signup = private scoping call with Alex</div>
+        <div class="tag">FIRST 5 TO SIGN UP</div>
+        <h2>Get a Next-Level 1:1 with Alex during the cohort</h2>
+        <p>Sign up <strong>before this call ends</strong> and you're one of the first 5 to lock a private 1-on-1 coaching call with Alex sometime during the cohort, used whenever it lands hardest for you.</p>
+        <div class="reward">🎁 First 5 signups during this call = 1:1 Next Level call</div>
       </div>
     </div>`
   },
 
-  // 20. Stay Human close
+  // 21. Stay Human close (no names, no "who's excited")
   {
     html: `<div class="slide center">
-      <p class="punch" style="font-size:50px;line-height:1.15">Learn AI.<br/>Build Robots.<br/><span style="color:#16a34a">Stay Human.</span></p>
-      <p class="sub" style="margin-top:24px;font-size:22px;color:#1a1a1a;font-weight:700">We're in this together.</p>
-      <p class="sub" style="margin-top:30px;font-size:18px;color:#444">Who's excited? 🙌</p>
-      <p class="sub" style="margin-top:30px;font-size:14px;color:#666">Alex Salinsky · Thierry Muller · The Build Room</p>
+      <p class="punch" style="font-size:54px;line-height:1.15">Learn AI.<br/>Build Robots.<br/><span style="color:#16a34a">Stay Human.</span></p>
+      <p class="sub" style="margin-top:30px;font-size:24px;color:#1a1a1a;font-weight:700">We're in this together.</p>
     </div>`
   }
 ];
