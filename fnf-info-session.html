@@ -137,10 +137,10 @@
 
   .price-pill { display: inline-block; background: #fff; border: 2.5px solid #1a1a1a; color: #1a1a1a; padding: 10px 22px; border-radius: 26px; font-size: 18px; font-weight: 700; margin-top: 22px; }
 
-  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); background: rgba(250,250,250,0.95); backdrop-filter: blur(8px); padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); z-index: 1000; }
   .hud strong { color: #1a1a1a; font-size: 16px; }
   .controls { display: flex; gap: 10px; }
-  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; touch-action: manipulation; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; touch-action: manipulation; position: relative; z-index: 1001; }
   button:hover { background: #1a1a1a; color: #fff; }
   button:disabled { opacity: 0.25; cursor: default; }
   button:disabled:hover { background: #fff; color: #1a1a1a; }
