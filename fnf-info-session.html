@@ -203,7 +203,34 @@ const slides = [
     </div>`
   },
 
-  // 4. Hosts (separated)
+  // 4. Bryce's survey graph (where a real team starts) — moved up from old slot 8
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Where Teams Actually Are</div>
+      <h2 style="margin-top:20px;text-align:center">A real cohort's AI fluency snapshot</h2>
+      <p style="font-size:16px;color:#666;text-align:center;margin-bottom:18px">From a recent corporate team we're working with. This is where most people start.</p>
+      <div class="pie-block">
+        <div>
+          <svg viewBox="0 0 400 400">
+            <path d="M 200,200 L 200,70 A 130,130 0 0,1 224.4,72.4 Z" fill="#ef4444" stroke="#fff" stroke-width="3"/>
+            <path d="M 200,200 L 224.4,72.4 A 130,130 0 1,1 151.8,320.8 Z" fill="#f59e0b" stroke="#fff" stroke-width="3"/>
+            <path d="M 200,200 L 151.8,320.8 A 130,130 0 0,1 145.3,82.1 Z" fill="#84cc16" stroke="#fff" stroke-width="3"/>
+            <path d="M 200,200 L 145.3,82.1 A 130,130 0 0,1 200,70 Z" fill="#16a34a" stroke="#fff" stroke-width="3"/>
+            <text x="270" y="260" font-size="13" font-weight="700" fill="#1a1a1a" text-anchor="middle">most are</text>
+            <text x="270" y="278" font-size="13" font-weight="700" fill="#1a1a1a" text-anchor="middle">here</text>
+          </svg>
+        </div>
+        <div>
+          <div class="pie-legend-row"><div class="sw" style="background:#ef4444"></div><div class="lb"><strong>Exploring</strong> · 3%<div class="d">haven't started yet</div></div></div>
+          <div class="pie-legend-row"><div class="sw" style="background:#f59e0b"></div><div class="lb"><strong>Adopting</strong> · 53%<div class="d">use AI for tasks, reusable prompts</div></div></div>
+          <div class="pie-legend-row"><div class="sw" style="background:#84cc16"></div><div class="lb"><strong>Operating</strong> · 37%<div class="d">AI woven in, shipping things others use</div></div></div>
+          <div class="pie-legend-row"><div class="sw" style="background:#16a34a"></div><div class="lb"><strong>Multiplying</strong> · 7%<div class="d">shape how the team works with AI</div></div></div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 5. Hosts (separated)
   {
     html: `<div class="slide center">
       <div class="section-chip">Your Hosts</div>
@@ -261,34 +288,7 @@ const slides = [
     </div>`
   },
 
-  // 8. Bryce's survey graph (where a real team starts)
-  {
-    html: `<div class="slide">
-      <div class="section-chip">Where Teams Actually Are</div>
-      <h2 style="margin-top:20px;text-align:center">A real cohort's AI fluency snapshot</h2>
-      <p style="font-size:16px;color:#666;text-align:center;margin-bottom:18px">From a recent corporate team we're working with. This is where most people start.</p>
-      <div class="pie-block">
-        <div>
-          <svg viewBox="0 0 400 400">
-            <path d="M 200,200 L 200,70 A 130,130 0 0,1 224.4,72.4 Z" fill="#ef4444" stroke="#fff" stroke-width="3"/>
-            <path d="M 200,200 L 224.4,72.4 A 130,130 0 1,1 151.8,320.8 Z" fill="#f59e0b" stroke="#fff" stroke-width="3"/>
-            <path d="M 200,200 L 151.8,320.8 A 130,130 0 0,1 145.3,82.1 Z" fill="#84cc16" stroke="#fff" stroke-width="3"/>
-            <path d="M 200,200 L 145.3,82.1 A 130,130 0 0,1 200,70 Z" fill="#16a34a" stroke="#fff" stroke-width="3"/>
-            <text x="270" y="260" font-size="13" font-weight="700" fill="#1a1a1a" text-anchor="middle">most are</text>
-            <text x="270" y="278" font-size="13" font-weight="700" fill="#1a1a1a" text-anchor="middle">here</text>
-          </svg>
-        </div>
-        <div>
-          <div class="pie-legend-row"><div class="sw" style="background:#ef4444"></div><div class="lb"><strong>Exploring</strong> · 3%<div class="d">haven't started yet</div></div></div>
-          <div class="pie-legend-row"><div class="sw" style="background:#f59e0b"></div><div class="lb"><strong>Adopting</strong> · 53%<div class="d">use AI for tasks, reusable prompts</div></div></div>
-          <div class="pie-legend-row"><div class="sw" style="background:#84cc16"></div><div class="lb"><strong>Operating</strong> · 37%<div class="d">AI woven in, shipping things others use</div></div></div>
-          <div class="pie-legend-row"><div class="sw" style="background:#16a34a"></div><div class="lb"><strong>Multiplying</strong> · 7%<div class="d">shape how the team works with AI</div></div></div>
-        </div>
-      </div>
-    </div>`
-  },
-
-  // 9. [T] By the end of the cohort (with 3 gifts mention at bottom)
+  // [T] By the end of the cohort (with 3 gifts mention at bottom)
   {
     html: `<div class="slide center"><div class="t-mark">T</div>
       <div class="section-chip">By the End of the Cohort</div>
@@ -332,7 +332,6 @@ const slides = [
         <li>What changes if you don't?</li>
         <li>Why now and not 6 months from now?</li>
       </ul>
-      <p class="sub" style="margin-top:24px;font-size:18px;color:#1a1a1a;font-weight:700;max-width:680px">Drop one sentence in chat. We'll read a few out loud.</p>
     </div>`
   },
 
@@ -432,7 +431,7 @@ const slides = [
       <div class="gift-hero">
         <span class="ribbon">GIFT 2 OF 3</span>
         <h2>AI Fluency Assessment</h2>
-        <p>The 4-level rubric I use with corporate teams (Exploring · Adopting · Operating · Multiplying). Find out exactly where you are with AI and what the next level looks like for you. Free, takes 5 minutes.</p>
+        <p>Take the same 4-level rubric I use with corporate teams (Exploring · Adopting · Operating · Multiplying). Comes with a personalized report showing where your fluency stands across 5 domains, and exactly where to focus to move yourself up to the next level. Free, takes 5 minutes.</p>
       </div>
     </div>`
   },
@@ -504,8 +503,8 @@ const slides = [
     html: `<div class="slide center">
       <div class="urgency-card">
         <div class="tag">FIRST 5 TO SIGN UP</div>
-        <h2>A Next-Level 1:1 with Alex + Thierry during the cohort</h2>
-        <p>The first 5 of you to lock your seat get a private "Next Level" coaching call with both of us. Use it whenever it lands hardest for you, anytime during the cohort.</p>
+        <h2>A Next-Level 1:1 with Alex or Thierry during the cohort</h2>
+        <p>The first 5 of you to lock your seat get a private "Next Level" coaching call with one of us (your pick). Use it whenever it lands hardest for you, anytime during the cohort.</p>
         <div class="value">🎁 $200 VALUE</div>
         <div class="deadline">⚡ BEFORE THIS CALL ENDS</div>
       </div>
@@ -571,7 +570,7 @@ const slides = [
           <div class="cost">~$10/mo</div>
         </div>
       </div>
-      <p style="font-size:16px;color:#444;text-align:center;font-weight:700;margin-top:14px">Total: $20–$30+/mo depending on whether you need a server.</p>
+      <p style="font-size:16px;color:#444;text-align:center;font-weight:700;margin-top:14px">Total: $20+/mo depending on whether you need a server.</p>
     </div>`
   },
 
