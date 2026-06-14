@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EA-OS Morning Briefing</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; background: #075e54; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; overflow: hidden; }
+  .phone { max-width: 380px; height: 100%; margin: 0 auto; background: #ECE5DD; display: flex; flex-direction: column; }
+  .header { background: #075e54; color: #fff; padding: 12px 14px; display: flex; align-items: center; gap: 10px; }
+  .avatar { width: 38px; height: 38px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; }
+  .name { font-size: 16px; font-weight: 600; }
+  .status { font-size: 12px; color: rgba(255,255,255,0.7); }
+  .chat { flex: 1; padding: 16px 12px; overflow-y: auto; background: #ECE5DD; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cg fill='%23d4ccc1' fill-opacity='0.3'%3E%3Cpath d='M40 40h40v40H40z'/%3E%3C/g%3E%3C/svg%3E"); background-size: 50px 50px; }
+  .message { background: #DCF8C6; border-radius: 8px 8px 0 8px; padding: 10px 12px; margin-bottom: 8px; margin-left: auto; max-width: 85%; box-shadow: 0 1px 1px rgba(0,0,0,0.1); }
+  .message-from { background: #fff; border-radius: 8px 8px 8px 0; margin-left: 0; margin-right: auto; }
+  .msg-header { font-size: 12px; font-weight: 700; color: #25D366; margin-bottom: 4px; }
+  .msg-body { font-size: 14px; line-height: 1.4; color: #303030; }
+  .msg-body strong { font-weight: 700; }
+  .msg-time { font-size: 10px; color: #999; text-align: right; margin-top: 2px; }
+  .divider { text-align: center; margin: 14px 0; }
+  .divider span { background: #d8dbd8; color: #6e7677; font-size: 11px; padding: 4px 10px; border-radius: 10px; }
+  .typing-bar { background: #fff; padding: 10px 14px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #ccc; }
+  .typing-bar .input { flex: 1; background: #f0f0f0; border-radius: 18px; padding: 8px 14px; font-size: 13px; color: #999; }
+  .typing-bar .send { width: 36px; height: 36px; border-radius: 50%; background: #075e54; color: #fff; display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="header">
+    <div class="avatar">🤖</div>
+    <div>
+      <div class="name">EA-OS</div>
+      <div class="status">online · your AI brain</div>
+    </div>
+  </div>
+  <div class="chat">
+    <div class="divider"><span>Today · 7:00 AM</span></div>
+    <div class="message message-from">
+      <div class="msg-header">EA-OS</div>
+      <div class="msg-body"><strong>☀️ Good morning, Alex.</strong><br/><br/>You have 3 calls today:<br/>• 9am — Bryce S2 (DBALP)<br/>• 11am — Thierry sync<br/>• 4pm — Ginger check-in<br/><br/><strong>Top priorities</strong><br/>1. Finalize F&F deck before Monday<br/>2. Send Bryce S2 pre-work<br/>3. Reply to Dori re: NC17<br/><br/><strong>You haven't touched in 5+ days:</strong> Substack draft</div>
+      <div class="msg-time">7:00 AM</div>
+    </div>
+    <div class="message">
+      <div class="msg-body">Block 2hrs on calendar for the F&F deck this afternoon</div>
+      <div class="msg-time">7:04 AM ✓✓</div>
+    </div>
+    <div class="message message-from">
+      <div class="msg-header">EA-OS</div>
+      <div class="msg-body">✅ Blocked 2–4pm "F&F deck finalization" on your calendar. Want me to push the 3pm coffee with David to Friday?</div>
+      <div class="msg-time">7:04 AM</div>
+    </div>
+    <div class="message">
+      <div class="msg-body">Yes, do that</div>
+      <div class="msg-time">7:05 AM ✓✓</div>
+    </div>
+    <div class="message message-from">
+      <div class="msg-header">EA-OS</div>
+      <div class="msg-body">Done. ☕ Coffee w/ David moved to Friday 3pm. He'll get the calendar update in a sec.</div>
+      <div class="msg-time">7:05 AM</div>
+    </div>
+  </div>
+  <div class="typing-bar">
+    <div class="input">Message EA-OS...</div>
+    <div class="send">▶</div>
+  </div>
+</div>
+</body>
+</html>

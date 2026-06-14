@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daybreak - Conference Animation v2</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #1e1e2e;
+    --bg-deep: #15151f;
+    --fg: #e8e8ef;
+    --fg-dim: #8888a0;
+    --fg-muted: #55556a;
+    --accent: #f4a261;
+    --accent-glow: rgba(244, 162, 97, 0.3);
+    --accent-soft: rgba(244, 162, 97, 0.12);
+    --green: #4ecdc4;
+    --green-glow: rgba(78, 205, 196, 0.2);
+    --discord-bg: #2b2d31;
+    --discord-sidebar: #1e1f22;
+    --discord-msg: #313338;
+    --discord-hover: #2e3035;
+    --card-bg: rgba(255, 255, 255, 0.06);
+    --card-border: rgba(255, 255, 255, 0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'DM Sans', sans-serif;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .stage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 40%, #252540 0%, var(--bg) 60%, var(--bg-deep) 100%);
+  }
+
+  .stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .scene {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+  }
+  .scene.active { opacity: 1; }
+
+  /* ===== DISCORD CHAT WINDOW ===== */
+  .discord-window {
+    width: 720px;
+    height: 460px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    background: var(--discord-bg);
+    box-shadow: 0 20px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+  }
+
+  .discord-sidebar {
+    width: 72px;
+    background: var(--discord-sidebar);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 0;
+    gap: 8px;
+    border-right: 1px solid rgba(255,255,255,0.04);
+  }
+  .server-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: var(--fg-dim);
+    letter-spacing: 0.05em;
+  }
+  .server-icon.active-server {
+    border-radius: 12px;
+    background: #5865f2;
+    color: #fff;
+    font-weight: 700;
+  }
+  .server-divider {
+    width: 32px;
+    height: 2px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .discord-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .discord-header {
+    height: 48px;
+    background: var(--discord-bg);
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 8px;
+  }
+  .channel-hash {
+    color: var(--fg-dim);
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  .channel-name {
+    color: var(--fg);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .discord-messages {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow: hidden;
+  }
+
+  .msg-group {
+    display: flex;
+    gap: 12px;
+    padding: 4px 0;
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  .msg-group.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .msg-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .msg-avatar.sarah { background: #ed8796; }
+  .msg-avatar.marcus { background: #8aadf4; }
+  .msg-avatar.alex { background: #a6da95; }
+  .msg-avatar.daybreak-av {
+    background: linear-gradient(135deg, var(--accent), #e07b3a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .msg-avatar.daybreak-av svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .msg-content {
+    flex: 1;
+  }
+  .msg-author {
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+  }
+  .msg-author.sarah-name { color: #ed8796; }
+  .msg-author.marcus-name { color: #8aadf4; }
+  .msg-author.alex-name { color: #a6da95; }
+  .msg-author.daybreak-name { color: var(--accent); }
+  .msg-author .msg-time {
+    font-weight: 400;
+    font-size: 0.7rem;
+    color: var(--fg-muted);
+    margin-left: 8px;
+  }
+  .msg-text {
+    font-size: 0.9rem;
+    color: #d0d0da;
+    line-height: 1.4;
+  }
+
+  /* Highlight effect on commitment text */
+  .commitment-span {
+    transition: background 0.5s ease, color 0.3s ease;
+    border-radius: 3px;
+    padding: 0 2px;
+    margin: 0 -2px;
+  }
+  .commitment-span.lit {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  /* Bot embed card */
+  .bot-embed {
+    margin-top: 8px;
+    border-left: 3px solid var(--accent);
+    background: rgba(244, 162, 97, 0.06);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    max-width: 400px;
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  .bot-embed.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .embed-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+  }
+  .embed-task {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--fg);
+    padding: 3px 0;
+  }
+  .embed-task .task-check {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1.5px solid var(--accent);
+    flex-shrink: 0;
+  }
+  .embed-task .task-who {
+    color: var(--fg-dim);
+    font-size: 0.7rem;
+    margin-left: auto;
+  }
+
+  /* ===== SCENE 3: OTHER SOURCES ===== */
+  .sources-layout {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .source-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .source-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    min-width: 300px;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  .source-card.show {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .source-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .source-icon svg { width: 24px; height: 24px; }
+  .source-icon.discord-src { background: #5865f2; }
+  .source-icon.discord-src svg { fill: #fff; }
+  .source-icon.meet-src { background: #2d8cff; }
+  .source-icon.meet-src svg { fill: #fff; }
+  .source-icon.slack-src { background: #4a154b; }
+  .source-icon.slack-src svg { fill: #fff; }
+  .source-icon.email-src { background: #1a73e8; }
+  .source-icon.email-src svg { fill: #fff; }
+
+  .source-info { flex: 1; }
+  .source-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--fg);
+    margin-bottom: 2px;
+  }
+  .source-desc {
+    font-size: 0.75rem;
+    color: var(--fg-dim);
+  }
+
+  .source-commitment {
+    font-size: 0.8rem;
+    color: var(--accent);
+    opacity: 0;
+    white-space: nowrap;
+  }
+  .source-commitment.show {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+
+  .sources-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+  }
+  .sources-arrow.show {
+    opacity: 1;
+    transition: opacity 0.6s ease;
+  }
+  .sources-arrow .arrow-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-soft), var(--accent));
+    border-radius: 1px;
+  }
+  .sources-arrow .arrow-head {
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-top: -8px;
+  }
+
+  .daybreak-logo-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  .daybreak-logo-col.show {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .db-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #e07b3a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 40px var(--accent-glow), 0 0 80px var(--accent-soft);
+  }
+  .db-icon svg {
+    width: 36px;
+    height: 36px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .db-label {
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+  }
+
+  /* ===== SCENE 4: TASK BOARD ===== */
+  .board-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .board-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  .board-header.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .board-header .db-icon-sm {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #e07b3a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .board-header .db-icon-sm svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .board-title {
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--fg);
+  }
+
+  .board-columns {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .board-col {
+    width: 220px;
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  .board-col.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .col-header {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--fg-dim);
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid rgba(255,255,255,0.06);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .col-count {
+    background: rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 1px 8px;
+    font-size: 0.65rem;
+  }
+
+  .board-task {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-bottom: 0.6rem;
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  .board-task.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .board-task .bt-source {
+    font-size: 0.6rem;
+    color: var(--fg-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .board-task .bt-title {
+    font-size: 0.85rem;
+    color: var(--fg);
+    margin-bottom: 6px;
+  }
+  .board-task .bt-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .bt-assignee {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.7rem;
+    color: var(--fg-dim);
+  }
+  .bt-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .bt-dot.sarah-dot { background: #ed8796; }
+  .bt-dot.marcus-dot { background: #8aadf4; }
+  .bt-dot.alex-dot { background: #a6da95; }
+  .bt-due {
+    font-size: 0.65rem;
+    color: var(--fg-muted);
+  }
+  .board-task.accent-border {
+    border-color: var(--accent);
+    border-left: 3px solid var(--accent);
+  }
+
+  /* ===== SCENE 4b: ASK DAYBREAK ===== */
+  .ask-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 560px;
+  }
+
+  .ask-prompt-box {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  .ask-prompt-box.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .ask-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8aadf4, #7c6ccf);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ask-avatar svg { width: 20px; height: 20px; fill: #fff; }
+
+  .ask-question {
+    font-size: 1.05rem;
+    color: var(--fg);
+    line-height: 1.4;
+  }
+  .ask-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background: var(--fg);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink 0.8s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .ask-response {
+    width: 100%;
+    background: rgba(244, 162, 97, 0.04);
+    border: 1px solid rgba(244, 162, 97, 0.15);
+    border-radius: 16px;
+    padding: 1.5rem;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  .ask-response.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .ask-response-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .ask-db-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #e07b3a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ask-db-dot svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .ask-db-name {
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--accent);
+  }
+
+  .ask-answer-line {
+    font-size: 0.95rem;
+    color: var(--fg);
+    line-height: 1.7;
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  .ask-answer-line.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .ask-answer-line .highlight {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .ask-answer-line .green-hl {
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* ===== SCENE 5: CLOSING ===== */
+  .closing-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .closing-text {
+    font-family: 'Sora', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--fg);
+    opacity: 0;
+    transform: scale(0.95);
+    text-align: center;
+    line-height: 1.3;
+  }
+  .closing-text.show {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+  .closing-text .accent-word {
+    color: var(--accent);
+  }
+
+  .closing-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--fg-dim);
+    opacity: 0;
+    letter-spacing: 0.02em;
+  }
+  .closing-sub.show {
+    opacity: 1;
+    transition: opacity 1s ease 0.6s;
+  }
+
+  /* ===== TIMELINE ===== */
+  .timeline-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255,255,255,0.04);
+    z-index: 50;
+  }
+  .timeline-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    opacity: 0.5;
+    transition: width 0.1s linear;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+
+  <!-- SCENE 1: DISCORD CHAT (0-15s) -->
+  <div class="scene" id="scene1">
+    <div class="discord-window">
+      <div class="discord-sidebar">
+        <div class="server-icon active-server">SB</div>
+        <div class="server-divider"></div>
+        <div class="server-icon">MK</div>
+        <div class="server-icon">OPS</div>
+      </div>
+      <div class="discord-main">
+        <div class="discord-header">
+          <span class="channel-hash">#</span>
+          <span class="channel-name">strategy</span>
+        </div>
+        <div class="discord-messages" id="chatMessages">
+
+          <div class="msg-group" data-delay="300">
+            <div class="msg-avatar sarah"></div>
+            <div class="msg-content">
+              <div class="msg-author sarah-name">Sarah <span class="msg-time">Today at 2:14 PM</span></div>
+              <div class="msg-text">just got off the call with Renzo. he's good with the timeline but wants to see updated pricing before Thursday</div>
+            </div>
+          </div>
+
+          <div class="msg-group" data-delay="1400">
+            <div class="msg-avatar marcus"></div>
+            <div class="msg-content">
+              <div class="msg-author marcus-name">Marcus <span class="msg-time">Today at 2:15 PM</span></div>
+              <div class="msg-text">makes sense. <span class="commitment-span" id="c1">I'll update the pricing page by Wednesday</span></div>
+            </div>
+          </div>
+
+          <div class="msg-group" data-delay="2800">
+            <div class="msg-avatar sarah"></div>
+            <div class="msg-content">
+              <div class="msg-author sarah-name">Sarah <span class="msg-time">Today at 2:15 PM</span></div>
+              <div class="msg-text">perfect. <span class="commitment-span" id="c2">I'll send him the vendor comparison doc tomorrow</span></div>
+            </div>
+          </div>
+
+          <div class="msg-group" data-delay="4000">
+            <div class="msg-avatar alex"></div>
+            <div class="msg-content">
+              <div class="msg-author alex-name">Alex <span class="msg-time">Today at 2:16 PM</span></div>
+              <div class="msg-text">cool, and <span class="commitment-span" id="c3">I'll follow up with the client on Friday</span> to lock it in</div>
+            </div>
+          </div>
+
+          <!-- Daybreak bot response -->
+          <div class="msg-group" data-delay="99999" id="botMessage">
+            <div class="msg-avatar daybreak-av">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+              </svg>
+            </div>
+            <div class="msg-content">
+              <div class="msg-author daybreak-name">Daybreak <span class="msg-time">Today at 2:16 PM</span></div>
+              <div class="msg-text" style="font-size:0.8rem; color: var(--fg-dim);">3 commitments detected</div>
+              <div class="bot-embed" id="botEmbed">
+                <div class="embed-title">Tracked Tasks</div>
+                <div class="embed-task"><span class="task-check"></span> Update pricing page <span class="task-who">Marcus, Wed</span></div>
+                <div class="embed-task"><span class="task-check"></span> Send vendor comparison doc <span class="task-who">Sarah, Tomorrow</span></div>
+                <div class="embed-task"><span class="task-check"></span> Follow up with client <span class="task-who">Alex, Friday</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 2: BUT IT'S NOT JUST DISCORD (15-28s) -->
+  <!-- Renamed: SCENE 3 in original brief becomes scene 2 here -->
+  <div class="scene" id="scene2">
+    <h2 style="font-family:'Sora',sans-serif; font-weight:300; font-size:1rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--fg-dim); margin-bottom:2.5rem; opacity:0; transform:translateY(-8px); transition: opacity 0.6s ease, transform 0.6s ease;" id="scene2Label">It works everywhere</h2>
+    <div class="sources-layout">
+      <div class="source-stack" id="sourceStack">
+        <div class="source-card" data-delay="200">
+          <div class="source-icon discord-src">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="source-info">
+            <div class="source-name">Discord</div>
+            <div class="source-desc">Chat channels, threads</div>
+          </div>
+          <span class="source-commitment" data-delay="1800">"I'll update the pricing page"</span>
+        </div>
+
+        <div class="source-card" data-delay="500">
+          <div class="source-icon meet-src">
+            <svg viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0 1 21 8.618v6.764a1 1 0 0 1-1.447.894L15 14M5 18h8a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2z"/></svg>
+          </div>
+          <div class="source-info">
+            <div class="source-name">Zoom</div>
+            <div class="source-desc">Video call transcripts</div>
+          </div>
+          <span class="source-commitment" data-delay="2200">"Let's finalize the roadmap"</span>
+        </div>
+
+        <div class="source-card" data-delay="800">
+          <div class="source-icon slack-src">
+            <svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="source-info">
+            <div class="source-name">Slack</div>
+            <div class="source-desc">Messages, DMs</div>
+          </div>
+          <span class="source-commitment" data-delay="2600">"I'll draft the proposal"</span>
+        </div>
+      </div>
+
+      <div class="sources-arrow" id="sourcesArrow">
+        <div class="arrow-line"></div>
+        <div class="arrow-head">&rsaquo;</div>
+      </div>
+
+      <div class="daybreak-logo-col" id="dbLogoScene2">
+        <div class="db-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </div>
+        <span class="db-label">DAYBREAK</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 3: TASK BOARD (28-42s) -->
+  <div class="scene" id="scene3">
+    <div class="board-layout">
+      <div class="board-header" id="boardHead">
+        <div class="db-icon-sm">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+          </svg>
+        </div>
+        <span class="board-title">All Tasks</span>
+      </div>
+
+      <div class="board-columns" id="boardCols">
+        <div class="board-col" data-delay="200">
+          <div class="col-header">To Do <span class="col-count">2</span></div>
+          <div class="board-task accent-border" data-delay="500">
+            <div class="bt-source">Discord #strategy</div>
+            <div class="bt-title">Update pricing page</div>
+            <div class="bt-meta">
+              <span class="bt-assignee"><span class="bt-dot marcus-dot"></span> Marcus</span>
+              <span class="bt-due">Due Wed</span>
+            </div>
+          </div>
+          <div class="board-task" data-delay="800">
+            <div class="bt-source">Zoom call</div>
+            <div class="bt-title">Finalize the roadmap</div>
+            <div class="bt-meta">
+              <span class="bt-assignee"><span class="bt-dot alex-dot"></span> Alex</span>
+              <span class="bt-due">Due Fri</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="board-col" data-delay="400">
+          <div class="col-header">In Progress <span class="col-count">2</span></div>
+          <div class="board-task accent-border" data-delay="1100">
+            <div class="bt-source">Discord #strategy</div>
+            <div class="bt-title">Send vendor comparison doc</div>
+            <div class="bt-meta">
+              <span class="bt-assignee"><span class="bt-dot sarah-dot"></span> Sarah</span>
+              <span class="bt-due">Due Tomorrow</span>
+            </div>
+          </div>
+          <div class="board-task" data-delay="1400">
+            <div class="bt-source">Slack DM</div>
+            <div class="bt-title">Draft the proposal</div>
+            <div class="bt-meta">
+              <span class="bt-assignee"><span class="bt-dot marcus-dot"></span> Marcus</span>
+              <span class="bt-due">Due Thu</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="board-col" data-delay="600">
+          <div class="col-header">Done <span class="col-count">2</span></div>
+          <div class="board-task" data-delay="1700" style="opacity:0">
+            <div class="bt-source">Zoom call</div>
+            <div class="bt-title">Review Q2 targets</div>
+            <div class="bt-meta">
+              <span class="bt-assignee"><span class="bt-dot sarah-dot"></span> Sarah</span>
+              <span class="bt-due">Completed</span>
+            </div>
+          </div>
+          <div class="board-task" data-delay="2000" style="opacity:0">
+            <div class="bt-source">Discord #strategy</div>
+            <div class="bt-title">Follow up with client</div>
+            <div class="bt-meta">
+              <span class="bt-assignee"><span class="bt-dot alex-dot"></span> Alex</span>
+              <span class="bt-due">Completed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 4: ASK DAYBREAK (38-50s) -->
+  <div class="scene" id="scene4">
+    <div class="ask-wrap">
+      <div class="ask-prompt-box" id="askBox">
+        <div class="ask-avatar">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
+        </div>
+        <div class="ask-question" id="askText"></div>
+      </div>
+
+      <div class="ask-response" id="askResponse">
+        <div class="ask-response-header">
+          <div class="ask-db-dot">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+            </svg>
+          </div>
+          <span class="ask-db-name">Daybreak</span>
+        </div>
+        <div class="ask-answer-line" data-delay="0" id="ans1">
+          <span class="highlight">3 tasks</span> are due this week.
+        </div>
+        <div class="ask-answer-line" data-delay="500" id="ans2" style="margin-top:0.4rem">
+          Marcus is on track with the pricing page. <span class="green-hl">On schedule.</span>
+        </div>
+        <div class="ask-answer-line" data-delay="1000" id="ans3" style="margin-top:0.4rem">
+          Sarah sent the vendor doc this morning. <span class="green-hl">Done.</span>
+        </div>
+        <div class="ask-answer-line" data-delay="1500" id="ans4" style="margin-top:0.4rem">
+          Your client follow-up is <span class="highlight">due Friday</span>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 5: CLOSING (50-60s) -->
+  <div class="scene" id="scene5">
+    <div class="closing-wrap">
+      <div class="closing-text" id="closingText">
+        Nothing falls through<br>the <span class="accent-word">cracks</span>.
+      </div>
+      <div class="closing-sub" id="closingSub">Every channel. Every commitment. Tracked automatically.</div>
+    </div>
+  </div>
+
+  <div class="timeline-bar"><div class="timeline-fill" id="timelineFill"></div></div>
+</div>
+
+<script>
+  const TOTAL = 48000;
+  const t0 = Date.now();
+  const elapsed = () => Date.now() - t0;
+
+  // Timeline
+  const tFill = document.getElementById('timelineFill');
+  function updateBar() {
+    tFill.style.width = Math.min((elapsed() / TOTAL) * 100, 100) + '%';
+    if (elapsed() < TOTAL) requestAnimationFrame(updateBar);
+  }
+  requestAnimationFrame(updateBar);
+
+  // Scene timing (5 scenes, tighter pacing)
+  const scenes = [
+    ['scene1', 0, 11000],
+    ['scene2', 11000, 19000],
+    ['scene3', 19000, 28000],
+    ['scene4', 28000, 38000],
+    ['scene5', 38000, 48000],
+  ];
+
+  let activeId = null;
+  function activate(id) {
+    if (activeId === id) return;
+    document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    activeId = id;
+  }
+
+  // ===== SCENE 1: Discord Chat =====
+  function runScene1() {
+    activate('scene1');
+
+    // Stagger chat messages
+    document.querySelectorAll('#chatMessages .msg-group').forEach(mg => {
+      const d = parseInt(mg.dataset.delay || 0);
+      if (d < 90000) setTimeout(() => mg.classList.add('show'), d);
+    });
+
+    // At ~5.5s: highlight commitments one by one
+    setTimeout(() => document.getElementById('c1').classList.add('lit'), 5500);
+    setTimeout(() => document.getElementById('c2').classList.add('lit'), 6000);
+    setTimeout(() => document.getElementById('c3').classList.add('lit'), 6500);
+
+    // At ~7.5s: show bot message + embed
+    setTimeout(() => {
+      const bot = document.getElementById('botMessage');
+      bot.classList.add('show');
+    }, 7500);
+    setTimeout(() => {
+      document.getElementById('botEmbed').classList.add('show');
+    }, 8200);
+  }
+
+  // ===== SCENE 2: Other Sources =====
+  function runScene2() {
+    activate('scene2');
+
+    // Label
+    setTimeout(() => {
+      const lbl = document.getElementById('scene2Label');
+      lbl.style.opacity = '1';
+      lbl.style.transform = 'translateY(0)';
+    }, 200);
+
+    // Source cards
+    document.querySelectorAll('#sourceStack .source-card').forEach(sc => {
+      const d = parseInt(sc.dataset.delay || 0);
+      setTimeout(() => sc.classList.add('show'), d);
+    });
+
+    // Commitment highlights on each source
+    document.querySelectorAll('#sourceStack .source-commitment').forEach(sc => {
+      const d = parseInt(sc.dataset.delay || 0);
+      setTimeout(() => sc.classList.add('show'), d);
+    });
+
+    // Arrow + logo
+    setTimeout(() => document.getElementById('sourcesArrow').classList.add('show'), 3500);
+    setTimeout(() => document.getElementById('dbLogoScene2').classList.add('show'), 3800);
+  }
+
+  // ===== SCENE 3: Task Board =====
+  function runScene3() {
+    activate('scene3');
+
+    setTimeout(() => document.getElementById('boardHead').classList.add('show'), 200);
+
+    // Columns
+    document.querySelectorAll('#boardCols .board-col').forEach(col => {
+      const d = parseInt(col.dataset.delay || 0);
+      setTimeout(() => col.classList.add('show'), d);
+    });
+
+    // Tasks within columns
+    document.querySelectorAll('#boardCols .board-task').forEach(task => {
+      const d = parseInt(task.dataset.delay || 0);
+      setTimeout(() => task.classList.add('show'), d);
+    });
+  }
+
+  // ===== SCENE 4: Ask Daybreak =====
+  function runScene4() {
+    activate('scene4');
+
+    // Show the prompt box
+    setTimeout(() => document.getElementById('askBox').classList.add('show'), 200);
+
+    // Typewriter effect for the question
+    const question = "What's the status on the Renzo deal?";
+    const askEl = document.getElementById('askText');
+    let charIdx = 0;
+
+    setTimeout(() => {
+      const cursor = document.createElement('span');
+      cursor.className = 'ask-cursor';
+      askEl.appendChild(cursor);
+
+      const typeInterval = setInterval(() => {
+        if (charIdx < question.length) {
+          askEl.insertBefore(document.createTextNode(question[charIdx]), cursor);
+          charIdx++;
+        } else {
+          clearInterval(typeInterval);
+          setTimeout(() => cursor.remove(), 500);
+        }
+      }, 35);
+    }, 500);
+
+    // Show response after typing finishes (~1.5s for typing + 0.5s pause)
+    setTimeout(() => document.getElementById('askResponse').classList.add('show'), 2800);
+
+    // Stagger answer lines
+    ['ans1','ans2','ans3','ans4'].forEach((id, i) => {
+      setTimeout(() => document.getElementById(id).classList.add('show'), 3200 + i * 500);
+    });
+  }
+
+  // ===== SCENE 5: Closing =====
+  function runScene5() {
+    activate('scene5');
+    setTimeout(() => document.getElementById('closingText').classList.add('show'), 500);
+    setTimeout(() => document.getElementById('closingSub').classList.add('show'), 1500);
+  }
+
+  // ===== Orchestrator =====
+  const fns = { scene1: runScene1, scene2: runScene2, scene3: runScene3, scene4: runScene4, scene5: runScene5 };
+  const triggered = new Set();
+
+  function tick() {
+    const e = elapsed();
+    for (const [id, start, end] of scenes) {
+      if (e >= start && e < end && !triggered.has(id)) {
+        triggered.add(id);
+        fns[id]();
+      }
+    }
+    if (e < TOTAL) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+</script>
+
+</body>
+</html>
