@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Claude Starter Pack — The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; line-height: 1.5; }
+  .page { max-width: 880px; margin: 0 auto; padding: 56px 32px 96px; }
+
+  header { margin-bottom: 44px; }
+  .eyebrow { display: inline-block; background: #1a1a1a; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 18px; }
+  h1 { font-size: 54px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 14px; }
+  .sub { font-size: 21px; color: #555; max-width: 680px; line-height: 1.45; }
+
+  h2 { font-size: 16px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 1.5px solid #ddd; }
+  h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  p { font-size: 17px; color: #333; margin-bottom: 14px; }
+
+  .four-docs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 22px 0; }
+  @media (max-width: 640px) { .four-docs { grid-template-columns: 1fr; } }
+  .doc-card { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 18px 22px; }
+  .doc-card .name { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; font-weight: 700; color: #1a1a1a; background: #f0f0f0; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+  .doc-card .title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .doc-card .meta { font-size: 14px; color: #666; }
+
+  .install { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 24px 28px; margin: 18px 0; }
+  .install h3 { font-size: 18px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .install h3 .tag { background: #1a1a1a; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 3px 9px; border-radius: 12px; }
+  .install ol { padding-left: 22px; }
+  .install li { font-size: 16px; color: #333; margin-bottom: 6px; }
+  .install code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; background: #f0f0f0; padding: 1px 6px; border-radius: 3px; }
+
+  .downloads { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 18px 0; }
+  @media (max-width: 640px) { .downloads { grid-template-columns: 1fr; } }
+  .dl { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 8px; padding: 12px 16px; text-decoration: none; color: #1a1a1a; font-size: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: all 0.15s; }
+  .dl:hover { background: #1a1a1a; color: #fff; }
+  .dl .filename { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-weight: 700; }
+  .dl .arrow { font-size: 16px; color: #999; }
+  .dl:hover .arrow { color: #fff; }
+
+  .why { background: #fff; border: 1.5px dashed #888; border-radius: 10px; padding: 18px 22px; margin: 18px 0; }
+  .why ul { list-style: none; padding: 0; }
+  .why li { padding: 6px 0; font-size: 16px; color: #333; }
+  .why li strong { color: #1a1a1a; }
+
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 13px; color: #888; text-align: center; }
+  footer a { color: #555; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="eyebrow">THE BUILD ROOM</div>
+    <h1>Claude Starter Pack</h1>
+    <p class="sub">A portable set of rules and templates that make Claude document your project as you build. Drop it in once. Every session leaves behind a workbench entry, a current architecture doc, a user guide, and an honest TODO list.</p>
+  </header>
+
+  <h2>What this is</h2>
+  <p>One <code>CLAUDE.md</code> file and four templates. The CLAUDE.md is the rule pack Claude actually reads. The templates give it a shape to fill in. Install takes 60 seconds. After one session you stop losing context between sessions.</p>
+
+  <h2>The four documents Claude maintains</h2>
+  <div class="four-docs">
+    <div class="doc-card">
+      <span class="name">WORKBENCH.md</span>
+      <div class="title">What just happened</div>
+      <div class="meta">Per-session log. 100-300 words. Newest at top. Decisions tagged with reasoning.</div>
+    </div>
+    <div class="doc-card">
+      <span class="name">ARCHITECTURE.md</span>
+      <div class="title">How the thing is built</div>
+      <div class="meta">Stack, file map, data flow, key decisions. Updated when the stack changes.</div>
+    </div>
+    <div class="doc-card">
+      <span class="name">USER_GUIDE.md</span>
+      <div class="title">What the user gets</div>
+      <div class="meta">Plain language. What it does, how to use it, settings. Updated on any user-facing change.</div>
+    </div>
+    <div class="doc-card">
+      <span class="name">TODOS.md</span>
+      <div class="title">What's next</div>
+      <div class="meta">Next / Soon / Someday. One line per item. No priorities, no labels, no dates.</div>
+    </div>
+  </div>
+
+  <h2>Install (pick one)</h2>
+
+  <div class="install">
+    <h3>Path A <span class="tag">EVERY PROJECT ON YOUR MACHINE</span></h3>
+    <ol>
+      <li>Open <code>~/.claude/CLAUDE.md</code>. Create it if it doesn't exist.</li>
+      <li>Paste the contents of the starter-pack <code>CLAUDE.md</code> into it.</li>
+      <li>Done. Every new Claude session on this machine now follows the rules.</li>
+    </ol>
+  </div>
+
+  <div class="install">
+    <h3>Path B <span class="tag">ONE PROJECT ONLY</span></h3>
+    <ol>
+      <li>Drop the starter-pack <code>CLAUDE.md</code> in the root of your project folder.</li>
+      <li>Drop the <code>templates/</code> folder next to it.</li>
+      <li>Open Claude in that folder. Done.</li>
+    </ol>
+  </div>
+
+  <p style="font-size: 15px; color: #666;">Most people start with Path B on one project, then graduate to Path A once the rhythm feels right.</p>
+
+  <h2>Download</h2>
+  <div class="downloads">
+    <a class="dl" href="https://raw.githubusercontent.com/alexsalinsky/build-room-visuals/main/claude-starter-pack/CLAUDE.md" target="_blank">
+      <span class="filename">CLAUDE.md</span>
+      <span class="arrow">↓</span>
+    </a>
+    <a class="dl" href="https://raw.githubusercontent.com/alexsalinsky/build-room-visuals/main/claude-starter-pack/README.md" target="_blank">
+      <span class="filename">README.md</span>
+      <span class="arrow">↓</span>
+    </a>
+    <a class="dl" href="https://raw.githubusercontent.com/alexsalinsky/build-room-visuals/main/claude-starter-pack/templates/session-summary.md" target="_blank">
+      <span class="filename">templates/session-summary.md</span>
+      <span class="arrow">↓</span>
+    </a>
+    <a class="dl" href="https://raw.githubusercontent.com/alexsalinsky/build-room-visuals/main/claude-starter-pack/templates/ARCHITECTURE.md" target="_blank">
+      <span class="filename">templates/ARCHITECTURE.md</span>
+      <span class="arrow">↓</span>
+    </a>
+    <a class="dl" href="https://raw.githubusercontent.com/alexsalinsky/build-room-visuals/main/claude-starter-pack/templates/USER_GUIDE.md" target="_blank">
+      <span class="filename">templates/USER_GUIDE.md</span>
+      <span class="arrow">↓</span>
+    </a>
+    <a class="dl" href="https://raw.githubusercontent.com/alexsalinsky/build-room-visuals/main/claude-starter-pack/templates/TODOS.md" target="_blank">
+      <span class="filename">templates/TODOS.md</span>
+      <span class="arrow">↓</span>
+    </a>
+  </div>
+
+  <p style="font-size: 14px; color: #888;">Or browse the full source on <a href="https://github.com/alexsalinsky/build-room-visuals/tree/main/claude-starter-pack" target="_blank" style="color: #555;">GitHub</a>.</p>
+
+  <h2>Why each rule exists</h2>
+  <div class="why">
+    <ul>
+      <li><strong>Workbench.</strong> Captures the decisions and reasoning that <code>git log</code> doesn't.</li>
+      <li><strong>Architecture.</strong> Stops you re-explaining your stack to Claude every Monday.</li>
+      <li><strong>User Guide.</strong> Keeps you honest about what the thing actually does for the person using it.</li>
+      <li><strong>TODOs.</strong> Stops you from carrying unfinished work in your head.</li>
+    </ul>
+  </div>
+
+  <p>Together the four close the loop. Claude builds, Claude documents, you trust the docs, the next session starts warm.</p>
+
+  <footer>
+    Alex Salinsky · The Build Room
+  </footer>
+</div>
+</body>
+</html>
