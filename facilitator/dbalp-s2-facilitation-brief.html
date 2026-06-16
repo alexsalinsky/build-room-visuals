@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DBALP S2 Facilitation Brief · The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; line-height: 1.55; }
+  .page { max-width: 1200px; margin: 0 auto; padding: 40px 28px 90px; }
+
+  h1 { font-size: 38px; font-weight: 800; letter-spacing: -1px; margin: 24px 0 18px; padding-bottom: 12px; border-bottom: 2px solid #1a1a1a; }
+  h1:first-child { margin-top: 0; }
+  h2 { font-size: 26px; font-weight: 700; margin: 36px 0 14px; letter-spacing: -0.3px; padding-top: 10px; border-top: 1px solid #ddd; }
+  h3 { font-size: 20px; font-weight: 700; margin: 26px 0 10px; color: #1a1a1a; }
+  h4 { font-size: 16px; font-weight: 700; margin: 18px 0 8px; color: #333; text-transform: uppercase; letter-spacing: 1px; }
+
+  p { font-size: 16px; margin-bottom: 12px; color: #333; }
+  ul, ol { margin: 8px 0 16px 0; padding-left: 28px; }
+  li { margin-bottom: 6px; font-size: 16px; color: #333; }
+  li > p { margin-bottom: 4px; }
+
+  strong { color: #1a1a1a; font-weight: 700; }
+  em { color: #444; }
+
+  a { color: #1a1a1a; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  a:hover { background: #fde68a; }
+
+  code { background: #f0f0f0; color: #1a1a1a; padding: 2px 6px; border-radius: 4px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 14px; }
+  pre { background: #1a1a1a; color: #fafafa; padding: 16px 20px; border-radius: 8px; overflow-x: auto; margin: 14px 0; }
+  pre code { background: transparent; color: inherit; padding: 0; font-size: 14px; }
+
+  blockquote { border-left: 3px solid #1a1a1a; padding: 6px 18px; background: #fffbe6; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 16px; color: #92400e; }
+  blockquote p { color: inherit; margin-bottom: 6px; }
+
+  hr { border: none; border-top: 1px solid #ddd; margin: 32px 0; }
+
+  /* Tables get the most love — these docs are tables-first */
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 14px; background: #fff; border: 2px solid #1a1a1a; border-radius: 6px; overflow: hidden; }
+  thead { background: #1a1a1a; color: #fff; position: sticky; top: 0; z-index: 10; }
+  th { text-align: left; padding: 12px 14px; font-weight: 700; font-size: 13px; letter-spacing: 0.5px; vertical-align: top; border-right: 1px solid #444; }
+  th:last-child { border-right: none; }
+  td { padding: 14px 14px; vertical-align: top; border-top: 1px solid #e0e0e0; border-right: 1px solid #f0f0f0; font-size: 14px; line-height: 1.5; color: #333; }
+  td:last-child { border-right: none; }
+  tbody tr:nth-child(even) { background: #fafafa; }
+  tbody tr:hover { background: #fff8d6; }
+  td strong { color: #1a1a1a; }
+
+  /* For wide tables (the matrix), allow horizontal scroll without breaking the page */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 18px 0; }
+
+  /* Top metadata block */
+  .meta-block { background: #1a1a1a; color: #fff; padding: 16px 22px; border-radius: 10px; margin-bottom: 30px; font-size: 14px; line-height: 1.6; }
+  .meta-block strong { color: #fde68a; }
+  .meta-block a { color: #fde68a; }
+  .meta-block a:hover { background: rgba(253,230,138,0.2); }
+
+  .br-footer { position: fixed; bottom: 8px; left: 14px; font-size: 11px; color: #888; letter-spacing: 0.5px; }
+
+  @media (max-width: 720px) {
+    .page { padding: 24px 16px 90px; }
+    h1 { font-size: 30px; }
+    h2 { font-size: 22px; }
+    table { font-size: 13px; }
+    th, td { padding: 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+<h1>DBALP S2 Facilitation Brief</h1>
+<blockquote>
+<p><strong>For the live show-and-discuss in S2:</strong> the scrollable companion to this brief is <a href="./s2-matrix.md">s2-matrix.md</a> — one row per person, 8 columns (project / their words / the 4-step loop / win / principle / S4 taste / check-in line). Share-screen the matrix during stage 4 of the session arc. This long-form brief is Alex's prep doc; the matrix is what the team sees.</p>
+</blockquote>
+<p><strong>For:</strong> Alex, walking into S2 Tue Jun 16, 1pm Bogota<br />
+<strong>Source:</strong> S1 transcript verbatim (2026-06-09, 142 min), kickoff transcript, bryce-cohort-notes, ledger sheet.<br />
+<strong>Format:</strong> One page per person. Read what they said in their own words. The small win is something they can SEE at the end of S2's 25-min build block — not a doc, not architecture notes. The stepping stones show how S3 and S4 build from it. Only 3 sessions left.</p>
+<hr />
+<h2>The principles this session is actually teaching</h2>
+<p>The S2 wins are not the point. The PRINCIPLES they surface are the point. Each person's small win is shaped to make them feel a specific principle in their own hands. Read each S2 win section as: "this is the principle we want them to walk away holding."</p>
+<p><strong>The core loop (apply to every project):</strong><br />
+1. <strong>You do it yourself first.</strong> Pick the smallest meaningful slice. Curate it by hand. This is what shows the robot what "good" looks like.<br />
+2. <strong>Ask the robot to do the same.</strong> Don't tell it the answer; ask it to produce one.<br />
+3. <strong>Score the difference.</strong> What did it get right? What did it miss? Where was it confidently wrong?<br />
+4. <strong>Refine through correction.</strong> Tell it what you would have done differently. That's the teaching.<br />
+5. <strong>Repeat until the gap is small.</strong> Only THEN automate the input or delivery.</p>
+<p>This is what makes the participant the expert and the robot the apprentice. Not the other way around. Every win below walks this loop.</p>
+<p><strong>The other thing that must be true at the end of S2:</strong> each person walks away with a TASTE of their final product. Not a description of it — a fragment they can hold up and say "that's a piece of what demo day looks like." The S2 win is shaped so the artifact itself is a primitive version of S4. They should be able to point at what they produced and feel the shape of where this is going.</p>
+<p><strong>Per-person principles surfaced:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Principle their S2 surfaces</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ice</td>
+<td>Teach by curating, score, refine, THEN automate. Rubrics emerge from doing the work, not from naming columns in advance.</td>
+</tr>
+<tr>
+<td>Marley</td>
+<td>Model what "good" looks like before asking the AI to produce it. The expert sample is the prompt.</td>
+</tr>
+<tr>
+<td>Chanel</td>
+<td>Fix the source of truth before adding tools on top. AI diagnoses what's broken; you fix it where the data actually lives.</td>
+</tr>
+<tr>
+<td>Auds</td>
+<td>Shrink the problem. Three sources is overwhelming; one source done well is a win. Add the second next time.</td>
+</tr>
+<tr>
+<td>Kate</td>
+<td>Meet the platform where it is. MCP &gt; API &gt; connector if available. Easiest connection first, hardest data later.</td>
+</tr>
+<tr>
+<td>Ehdina</td>
+<td>Train on the voice of the actual expert. Bryce is in the room — his sign-off is the score.</td>
+</tr>
+<tr>
+<td>Kandice</td>
+<td>Start with understanding, not matching. The hard problem is teaching the AI to know a client; matching comes after that.</td>
+</tr>
+<tr>
+<td>Bryce</td>
+<td>Facilitation is leverage. When you can build alone, helping seven others build creates more value than another personal hack.</td>
+</tr>
+</tbody>
+</table>
+<p>When you debrief at the end of S2, ask each person to name the principle their work surfaced. They probably won't articulate it perfectly the first time. That's the point — they'll feel it before they can say it. By S4 demo day, they should be able to say it.</p>
+<hr />
+<h2>How everyone walked out of S1</h2>
+<p>Last hour of S1 was eaten by Git + Homebrew + Claude Code installs + Monday API key plumbing. Almost nobody got to a second integration. Here's actual S1 end state per person:</p>
+<table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Monday connected?</th>
+<th>Got data back?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Marley</td>
+<td>Yes (pre-session)</td>
+<td>Yes</td>
+<td>Was co-facilitating others; her win was already in hand</td>
+</tr>
+<tr>
+<td>Kate</td>
+<td>Yes (during session)</td>
+<td>Yes, filter slightly off</td>
+<td>"Person filter didn't work on all boards. Let me query items more broadly."</td>
+</tr>
+<tr>
+<td>Chanel</td>
+<td>Yes (late, with 1:1 help)</td>
+<td>Yes, "info on all the client boards and stuff"</td>
+<td>Required full Claude restart via Task Manager</td>
+</tr>
+<tr>
+<td>Kandice</td>
+<td>Yes (demo subject)</td>
+<td>Yes, but answers not what she wanted</td>
+<td>Volunteered to share screen + walked group through Windows install live</td>
+</tr>
+<tr>
+<td>Ice</td>
+<td>Yes (very late)</td>
+<td>Yes</td>
+<td>Had to install Git via Homebrew via Cowork-assisted terminal</td>
+</tr>
+<tr>
+<td>Auds</td>
+<td>Yes (at 4:17am PH time)</td>
+<td>Yes, but data not assignee-accurate</td>
+<td>Last to get unstuck. Working night shift.</td>
+</tr>
+<tr>
+<td>Ehdina</td>
+<td>In progress at session end</td>
+<td>Unknown</td>
+<td>Was on Windows; CoWork helping. May not have closed the loop.</td>
+</tr>
+<tr>
+<td>Bryce</td>
+<td>Already connected</td>
+<td>Yes</td>
+<td>Facilitator mode</td>
+</tr>
+<tr>
+<td>Jenina</td>
+<td><strong>Not named anywhere in S1 transcript</strong></td>
+<td>n/a</td>
+<td>Confirm with Bryce: in cohort?</td>
+</tr>
+</tbody>
+</table>
+<p>Alex's S1 close-out homework: connect Google Drive this week, play with the robot before going to Monday directly. Realistic expectation walking into S2: most people did NOT do the homework. Plan S2 against that.</p>
+<hr />
+<h2>Bryce North — CEO</h2>
+<p><strong>What he said he wants from the cohort (kickoff):</strong> team understands they can build small AI systems, understands what he's already built, gets in the habit of researching and optimizing instead of waiting to be told.</p>
+<p><strong>What he said in S1:</strong> Will be jumping between people to help. Listed his hopes for team builds: "Quick report generators... pull up the most recent sales call from this client... proposal generators." Sunday hacks Spanish accent app + Consuela lead scraper + Stripe finance dashboards + auto-response email tool. Wants team to learn chat/co-work/code difference + how to use Claude Design.</p>
+<p><strong>The "never answer another sales email" line</strong> lives only in his S1 ledger entry, not in anything he said publicly. Treat it as his personal Sunday hack.</p>
+<p><strong>S2 small win:</strong> Bryce's win is OTHER PEOPLE'S wins. Sit him next to whoever's most stuck mid-build block (probably Ehdina if her S1 plumbing didn't close, or Kandice if she's stalled on the client-folder read). If he wants a 5-min personal micro-build for himself: paste 5 sales emails into Claude, ask for 3 categories. Done.</p>
+<p><strong>Stepping stones:</strong><br />
+- S3: Bryce co-leads one mini-lesson (which one of his Sunday hacks does the team want to see live? 10 min.)<br />
+- S4: His Pitchy reporter database is ready (he said "one week left to finish scraping" in S1 — that lands right around S3). Wire it into Kandice's project as the join. That's a demo-day-worthy moment.</p>
+<p><strong>What to say at check-in:</strong> "You bought time today by helping Ehdina close her S1 plumbing. The team needs you as a co-builder more than another tool from you. Hold."</p>
+<hr />
+<h2>Marley — Director, Client Success</h2>
+<p><strong>Her exact words (S1):</strong> <em>"I'll feel accomplished if I can come out of here having built something that streamlines a workflow that everyone has a touchpoint on. Streamline a workflow but also improve the output. Very likely the project will be automating and improving our reporting system. I want people to feel more comfortable and have more time to look at the actual high-level strategy as opposed to just gathering data."</em></p>
+<p><strong>More she said:</strong> Two report types: clients who just want a published link, clients who want minutiae (subject lines, sequences, success rates). Her dream report is two-parted: <strong>client-facing</strong> (analytics, metrics) + <strong>internal</strong> ("here's what we tried, here are recommendations for next campaign"). Data lives in PRVault (analytics) + Monday (leads + statuses + published links) + Inbound Requests. Her current hack: she takes SCREENSHOTS of PRVault dashboards because the CSV downloads are "wildly incorrect." Bryce confirmed: PRVault won't ban screenshots. Alex suggested Playwright in Claude Code (so Claude does the screenshots itself, no screen takeover).</p>
+<p><strong>Her real concern:</strong> "Maybe just having an understanding of what good looks like. What are the metrics that we absolutely need to be reporting on and what's nice to have?" Translation: she doesn't have a clear definition yet. That's the work.</p>
+<p><strong>S2 small win — walks the full loop:</strong><br />
+1. <strong>Marley does it herself first.</strong> Pick ONE real client, ONE recent month. Write the <strong>opening paragraph</strong> of the client-facing section by hand (or grab one she already wrote in a past report). This is the "good" sample. It's the prompt.<br />
+2. <strong>Ask Claude to do the same.</strong> Pull Monday data for that client + paste in a screenshot of PRVault for that month. Hand Claude the sample paragraph and say: "match this voice and structure. Draft the opening paragraph for THIS month using this data."<br />
+3. <strong>Score the gap.</strong> Read both side by side. Where did Claude land the tone? Where did it slip? Which numbers did it pull correctly?<br />
+4. <strong>Refine.</strong> One correction sentence to Claude. ("Don't lead with email opens; lead with placements.")<br />
+5. Park the internal "what we tried" half. That's S3.</p>
+<p><strong>The pass/fail to celebrate:</strong> Did Claude produce one sentence Marley would send to a client without editing? Just one. That sentence is proof "AI writing is good enough" — for one sentence.</p>
+<p><strong>Principle this surfaces:</strong> model what "good" looks like before asking the AI to produce it. The expert sample IS the prompt. Marley is the expert; her past report is the lesson plan.</p>
+<p><strong>Taste of the final product:</strong> the one client-ready sentence is the seed of the full monthly report at S4. She walks out with proof that a real sentence of a real client report came out of this loop. The rest of the report is more of the same loop, repeated.</p>
+<p><strong>Stepping stones:</strong><br />
+- S3: Bryce shares Pitchy reports as inspo (he offered this in S1). Marley adds the <strong>internal "what we tried"</strong> half. Workbench captures Claude's misses.<br />
+- S4: Demo Day. She shows a full monthly report draft for one client + the workbench of edits = proof the system has been learning. Multiplying-level move.</p>
+<p><strong>What to say at check-in:</strong> "You said you'd feel accomplished if you streamlined something everyone touches. You just drafted the part of a client report you usually write from scratch. How much time was that?"</p>
+<hr />
+<h2>Ayeshah (Ice) — Campaign Manager</h2>
+<p><strong>Her exact words (S1):</strong> <em>"Whenever I talk to Bryce about what he does on Claude, it feels like there's just so many opportunities I haven't explored, both for personal and work life. I want to see how far I can push that automation to make admin tasks easier."</em></p>
+<p><strong>Then on her project specifically:</strong> <em>"I'll get like maybe like 100 a day and only two of them end up being relevant. So it just ends up looking really messy and getting becoming really hard to understand. So it'd be really cool if there was a way to kind of get like a brief at the beginning of the day or beginning of the week or a notification every time there was something that was hyper relevant to a client."</em></p>
+<p><strong>On filter approach:</strong> Alex coached her: don't worry about delivery format (email vs dashboard vs Monday) yet. First refine the filtering. Show Claude 10, "I like 7, wish 1 of these other 990 was in here." Iterate.</p>
+<p><strong>Her vibe:</strong> Humor + meta. "I'm just learning radical acceptance of the robots." Comfortable being uncomfortable. Already has Google Alerts running (says they don't work well enough).</p>
+<p><strong>S2 small win — walks the full loop:</strong><br />
+1. <strong>Ice does it herself first.</strong> Pick a batch of ~10 real notifications from the last week. Pick her favorite 3 — the most relevant ones — by gut. No rubric yet. Just instinct. Write down WHY each made the cut in a sentence.<br />
+2. <strong>Ask Claude to do the same.</strong> Paste the same 10 notifications + a paragraph describing ONE client. Ask: "score these 10 from most to least relevant to this client. Pick your top 3. Explain why."<br />
+3. <strong>Score the gap.</strong> Did Claude's top 3 match Ice's top 3? Which one did it miss? Which one did it add?<br />
+4. <strong>Refine.</strong> Ice tells Claude what she'd have done differently. "You missed X because you weighted recency too high." That's her teaching it. That's the rubric being born — not invented in advance.<br />
+5. Park the delivery format. Schedule, email, dashboard — all S3+.</p>
+<p><strong>The pass/fail to celebrate:</strong> Did Ice articulate ONE rule by the end of the block that she didn't have at the start? ("Recency matters less than topic specificity" or similar.) THAT is the rubric being born.</p>
+<p><strong>Principle this surfaces:</strong> rubrics emerge from doing the work and correcting the AI, not from naming columns in advance. The S1 auditor pass said "write 5 named filter criteria as <code>media-monitor-architecture.md</code>." That's backwards — the criteria come AFTER scoring real outputs, not before.</p>
+<p><strong>Taste of the final product:</strong> the one rule Ice articulates at the end of S2 is the first line of the rubric that scores the daily brief at S4. She can point at it and say "that's the seed."</p>
+<p><strong>Stepping stones:</strong><br />
+- S3: Connect to Google Alerts feed (or a news/social API) so input is automated, not pasted. Run on real day's batch.<br />
+- S4: Scheduled brief delivered somewhere (Slack? email? doesn't matter — pick easiest).</p>
+<p><strong>What to say at check-in:</strong> "You said your goal is to see how far you can push the automation. You just made Claude rank media items the way you would. That's not radical acceptance, that's you driving."</p>
+<hr />
+<h2>Chanel — Campaign Manager</h2>
+<p><strong>Her exact words (S1):</strong> <em>"I want to create a system in Monday that organizes my whole day for me, depending on what project is most pressing, what maybe I haven't touched in too long. If I have approvals, like what's important I need to do right now and like lay it out for my whole week."</em></p>
+<p><strong>Her tell, immediately after:</strong> <em>"I already attempted to do this and I have a broken board and workflow that doesn't quite work."</em> She built it with Monday's AI. Items would populate when she was tagged but no comments, no client name, and completed tasks didn't drop off the list. She "didn't think of [things], it was more of an idea rather than like a real plan."</p>
+<p><strong>Alex's S1 call:</strong> STAY INSIDE MONDAY. Don't rebuild in Claude Code as a parallel dashboard — Monday is the source of truth, parallel system would drift. Use Claude Code to talk to Monday and (eventually) build a custom view or improve the broken board.</p>
+<p><strong>Her hope:</strong> <em>"Build a really robust dashboard and then be able to share it with other people... it would just be nice to have like, what's most important today? This is what you need to do. Do that in this amount of time. This is the list."</em> — note: she wants to <strong>share it with the team</strong> (multiplying-level intent).</p>
+<p><strong>S2 small win — walks the full loop:</strong><br />
+1. <strong>Chanel does it herself first.</strong> Open her broken Monday board. Write down by hand on paper what she WANTS to see when she opens it (what columns, what order, what filters). 3-5 lines max. This is the spec. <strong>She doesn't need to type it up.</strong> Take a photo of the page and drop it into Claude — Claude reads handwriting.<br />
+2. <strong>Ask Claude to do the same.</strong> Have Claude read the board via the connector. Ask: "compare what's on this board to this spec. Tell me what's wrong and what's missing." Name herself explicitly in any prompts about her items ("tasks where Assignee is Chanel" — the shared API key won't infer "me").<br />
+3. <strong>Score the gap.</strong> Claude returns a list of issues. Chanel reads it and picks the ONE that bothers her most.<br />
+4. <strong>Refine through correction.</strong> Apply the fix to the board (Claude proposes, Chanel approves). It changes visibly in Monday.<br />
+5. Park the priority + minutes ranking. That's S3.</p>
+<p><strong>The pass/fail to celebrate:</strong> Did one specific thing on her real Monday board change visibly during the build block? She entered S2 with a broken board; she leaves with a less-broken board.</p>
+<p><strong>Principle this surfaces:</strong> fix the source of truth before adding tools on top. Don't build a new dashboard parallel to a broken Monday board — that creates drift. Have AI diagnose where the data lives, and fix it there.</p>
+<p><strong>Taste of the final product:</strong> the one fixed bug is a piece of the dashboard she said she wants to share with the team. She can point at the corrected behavior and say "that's how it's supposed to work for the whole team."</p>
+<p><strong>Stepping stones:</strong><br />
+- S3: Add priority + due + minutes-to-complete ranking logic to the now-less-broken board.<br />
+- S4: Share the dashboard with one teammate (Auds or Kate would love it). Multiplying.</p>
+<p><strong>What to say at check-in:</strong> "You said the board didn't quite work. You just fixed something on it during a 25-minute build block. What else on that list do you want to fix this week?"</p>
+<hr />
+<h2>Audrey (Auds) — PRC</h2>
+<p><strong>Her exact words (S1):</strong> <em>"I do a combination of admin tasks and a lot of writing and research. My days usually fall and I have a hard time tracking everything. Right now what I do is I have to go through everything one by one in order to make sure that I don't miss something. I want to build a task tracker that's connected to everyone else's task tracker that will be updated automatically every time there's movement."</em></p>
+<p><strong>More detail:</strong> <em>"My tasks personally, they live in Monday, Missive and on Slack. I want everything to be in one place. That way, whenever I log in, I just have to look at one board and then go through everything. And not have all of my time wasted, like looking for everything, and then making sure that I did not miss anything."</em></p>
+<p><strong>Personality tell:</strong> <em>"I can't start working on something unless everything is already organized."</em> She works the Philippines night shift (4am COT = her workday). Pulled S1 plumbing into 5am her time and stuck with it.</p>
+<p><strong>Alex's S1 prediction for her:</strong> An HTML dashboard pulling from Monday, reorganized for her preference. Start with Monday (where most lives), add Slack + Missive later.</p>
+<p><strong>S2 small win — walks the full loop:</strong><br />
+1. <strong>Auds does it herself first.</strong> Open Monday. Pick her top 5 tasks for today by hand, in priority order. Write them on a sticky or in a doc. This is the gold standard for her brain.<br />
+2. <strong>Ask Claude to do the same.</strong> Have Claude pull <strong>tasks assigned to Audrey</strong> (name her explicitly — shared API key won't know who "me" is). Ask: "rank these by what I should do first today and why."<br />
+3. <strong>Score the gap.</strong> Compare Claude's top 5 to her top 5. Match? Misses? Surprises?<br />
+4. <strong>Refine through correction.</strong> "You ranked X above Y but client work always comes before internal." That's the rule getting taught.<br />
+5. Park Slack and Missive. One source done well &gt; three sources half-done.</p>
+<p><strong>The pass/fail to celebrate:</strong> Did Auds see her real tasks in a less-cluttered single view, AND did Claude's top 5 land close enough to hers that she'd trust it tomorrow? Even a plain text list counts. "Organized" is her happy place.</p>
+<p><strong>Principle this surfaces:</strong> shrink the problem. Three sources is overwhelming; one source done well is a win. Add the second when the first stops being scary.</p>
+<p><strong>Taste of the final product:</strong> the ranked list is the primitive of the dashboard she wants. At S4, the same list with two more sources merged in and follow-up drafts attached. She walks out with the central feature already working on one source.</p>
+<p><strong>Stepping stones:</strong><br />
+- S3: Add ONE more source — pick Slack or Missive, whichever has the easier connection (Missive has a new MCP per Bryce). Now she sees Monday + one other in one view.<br />
+- S4: Add follow-up draft layer: for each task that needs a follow-up, Claude pre-writes the message. Demo day with all 3 sources or 2 + follow-up drafts.</p>
+<p><strong>What to say at check-in:</strong> "You said you can't start working until everything's organized. You just made Claude organize it. What's the next thing you want it to clean up?"</p>
+<p><strong>Cross-reference:</strong> Chanel wants the same thing. Pair them. Their tools should talk to each other.</p>
+<hr />
+<h2>Kate Sarmiento — Team Lead</h2>
+<p><strong>Her exact words (S1):</strong> <em>"My first vision is, is it possible to integrate both Missive and Monday on Cloud so we can minimize the admin part that we do manually?"</em></p>
+<p><strong>Then on the actual project:</strong> <em>"We monitor the opportunities coming in each client inboxes in Missive. Whenever there are opportunities coming in, the PRCs are doing everything manually. We search the reporter in Muckrack manually, we will find the website, we will input everything on Monday manually. UVPM and DA — these are the two most important data we need to present to the client so they can have another view if it's worth pursuing."</em></p>
+<p><strong>The painful tool sprawl:</strong> UVPM comes from SimilarWeb (browser extension), NOT Muckrack — Muckrack's numbers are stale. DA comes from Muckrack, fallback to Moz Free, which is limited to <strong>5 searches per day</strong>, which is brutal on a Monday morning when opportunities pile in.</p>
+<p><strong>Her ask:</strong> <em>"There are no tools yet that you can get the UVPM and DA at same time. So I'm just wondering if it's possible to get that in one place."</em></p>
+<p><strong>Massive S1 reveal from Bryce:</strong> <em>"Missive just launched an MCP, Alex, so we can do a connection towards it."</em> Better than the API for this case.</p>
+<p><strong>S2 small win — walks the full loop:</strong><br />
+1. <strong>Kate does it herself first.</strong> Pick one recent opportunity from Missive. Look up the UVPM (SimilarWeb extension) and DA (Muckrack or Moz) the way she normally would. Note the numbers AND the time it took.<br />
+2. <strong>Get the Missive MCP connected.</strong> Bryce can help — he flagged the MCP just launched. Have Claude pull the same opportunity.<br />
+3. <strong>Ask Claude to do the same lookup.</strong> "For outlet [name], return UVPM and DA. Show the source for each."<br />
+4. <strong>Score the gap.</strong> Did Claude's numbers match Kate's? If sources differ, which does she trust? (This is where she discovers Claude can be told "always use SimilarWeb for UVPM.")<br />
+5. <strong>Refine.</strong> Lock the source-of-truth rule for each metric.</p>
+<p><strong>The pass/fail to celebrate:</strong> for ONE outlet, did Claude return believable UVPM + DA AND did the time-to-answer beat Kate's manual time?</p>
+<p><strong>Principle this surfaces:</strong> meet the platform where it is. Missive has an MCP; use it. SimilarWeb has no MCP; use a web search and lock the source. Easiest connection first, hardest data later. Don't over-engineer.</p>
+<p><strong>Taste of the final product:</strong> the one-outlet lookup IS one row of her final enrichment workflow. At S4, the same lookup auto-fires when an opportunity arrives in Missive. She walks out having done the core action manually + once via Claude — that's the entire arc compressed.</p>
+<p><strong>Stepping stones:</strong><br />
+- S3: Auto-pull a new opportunity from Missive → enrich with UVPM + DA → format for Monday paste.<br />
+- S4: One-click "enrich this opportunity" workflow demoed end-to-end.</p>
+<p><strong>What to say at check-in:</strong> "You said your first vision was integrating Missive and Monday on Cloud. You're literally connected to Missive's MCP and you just looked up an outlet without opening four tabs. That's the vision in week 2."</p>
+<hr />
+<h2>Ehdina — Content + Social Manager</h2>
+<p><strong>Her exact words (S1, on her cohort hope):</strong> <em>"For me, I think the most basic would be really be comfortable with AI. Like, it integrates with everything that we do and just be comfortable with building. When I think about marketing or anything that we need to build, we build in Claude, and I think that everyone in the team would be able to understand how it works. So it's not just the person who built it, but the entire team would able to understand it exactly."</em></p>
+<p><strong>Then on her actual project:</strong> <em>"The goal basically is to have drafts ready for me to build on because we need to be consistent. We need to lock in and never ghost when we start posting. The only way that happens at that volume, like across LinkedIn, Instagram, and all the other social media platforms is to have drafts ready like two weeks in advance or even one month in advance. The goal is for me to be able to use [Bryce's] sales call transcripts. I can just input that and then we can come up with an on-brand content that is trained with his voice and it already knows if it's for personal brand or for the company voice."</em></p>
+<p><strong>Inputs:</strong> Google Drive folder of videos + a Google Doc with transcripts of all sales calls.</p>
+<p><strong>Big reframe vs. the auditor pass:</strong> The auditor said "extract 5 voice rules + 2 do-not-do examples from existing on-brand pieces." That's NOT what Ehdina said. She wants GENERATIVE drafts FROM Bryce's sales call transcripts, trained on his voice, distinguishing personal-brand vs company voice.</p>
+<p><strong>S2 small win — walks the full loop:</strong><br />
+1. <strong>Ehdina does it herself first.</strong> Pick one of Bryce's sales call transcripts. Read it. Write 2 sentences in Bryce's voice as she'd put them on LinkedIn — her best attempt at his voice. These are the calibration.<br />
+2. <strong>Get Drive connected</strong> (this was her S1 homework; may not have happened). Point Claude at the same transcript.<br />
+3. <strong>Ask Claude to do the same.</strong> "Read this transcript. Give me 5 sentences in Bryce's voice as he'd say them on LinkedIn." Compare to her 2.<br />
+4. <strong>Score the gap — and put Bryce in the loop.</strong> Show Bryce the combined 7 sentences. Which does he claim? Which would he never say? Bryce is the expert; his nods are the score.<br />
+5. <strong>Refine.</strong> Update the prompt with Bryce's correction. ("More plain English, less PR-speak.")</p>
+<p><strong>The pass/fail to celebrate:</strong> did Bryce claim at least 2 sentences as something he'd actually say? Bryce in the room = instant feedback loop, and Ehdina sees the principle "the expert validates" in action.</p>
+<p><strong>Principle this surfaces:</strong> train on the voice of the actual expert, and put the expert in the scoring loop. AI can mimic; the expert decides what passes.</p>
+<p><strong>Stepping stones:</strong><br />
+- S3: Repeat with 3 transcripts. Generate one full LinkedIn post + one Instagram caption. Tag each as personal-brand voice OR company voice.<br />
+- S4: Two weeks' worth of drafts queued. Demo day = scrollable queue.</p>
+<p><strong>Taste of the final product:</strong> the 2 sentences Bryce claimed are the first entries in her brand voice corpus. By S4 there are dozens, and Claude is producing full posts. She walks out with the seed sentences and Bryce's nod attached to them.</p>
+<p><strong>What to say at check-in:</strong> "You said you wanted to be comfortable building. Bryce just nodded at a sentence you didn't write. That's comfortable."</p>
+<p><strong>Risk to watch:</strong> Ehdina's S1 plumbing status wasn't confirmed before the transcript ended. First 2 min of S2 build block: verify she's actually in Claude Code with a working connection. If not, that's her win (small but real).</p>
+<hr />
+<h2>Kandice — Campaign Manager</h2>
+<p><strong>Her exact words (S1 on her project):</strong> <em>"We download lists of reporters from Muckrack based on certain keywords. Those get populated into Google Sheets or into a CSV, which gets run through a list filter tool. Sometimes two, three thousand contacts per campaign to filter it down to about five hundred."</em></p>
+<p><strong>The tedious part:</strong> <em>"Looking through each reporter is like, what do they write about, what outlets do they write for, does it make sense to pitch this person based on the client we're working for. It's very time consuming."</em></p>
+<p><strong>Her overwhelm quote (use carefully):</strong> <em>"The whole thing is very overwhelming because it's kind of like, where do I start? The opportunities are endless. Where's the most impactful place to start? Where do I set aside the time? Sometimes I'm like, okay, it's just easier for me to just keep doing it as I'm doing it now."</em> — She also said the cohort is the answer: "It sounds like all of us have different ideas of kind of what we want to build, and I think that's cool because then we can just all utilize each other's tools."</p>
+<p><strong>HUGE reframe of the auditor's "attendance risk":</strong> Kandice was the S1 demo subject. She volunteered to share her screen. She walked the room through the Windows Run setup live, in real time, while everyone watched. She is NOT a flight risk. She's the most exposed-but-engaged person in the room.</p>
+<p><strong>The S1 first-brick decision (Alex + Bryce + Kandice):</strong> Bryce has scraped 400,000 reporters into profiles with story arcs (1 week left in scraping). He'll provide that database. Kandice's first brick is the <strong>CLIENT SIDE</strong>, not the reporter side. Specifically: have Claude read ONE client's Google Drive folder and produce a paragraph describing the client + the pitch.</p>
+<p><strong>S2 small win — walks the full loop:</strong><br />
+1. <strong>Kandice does it herself first.</strong> Pick ONE client she knows cold. Write one paragraph (3-5 sentences) describing who this client is and what they're pitching this campaign. This is the answer key.<br />
+2. <strong>Get Drive connected.</strong> Point Claude at the same client's Drive folder.<br />
+3. <strong>Ask Claude to do the same.</strong> "Read this folder. In one paragraph, tell me who this client is and what they're pitching this campaign."<br />
+4. <strong>Score the gap.</strong> Compare Kandice's paragraph to Claude's. What did Claude miss? What did it overweight? What field that lives in her head wasn't in the Drive at all?<br />
+5. <strong>Refine.</strong> Either correct Claude's prompt or add the missing context to the Drive folder. The fix tells her which is the real bottleneck.</p>
+<p><strong>The pass/fail to celebrate:</strong> does Claude's paragraph match how Kandice would describe that client? If yes, she has a repeatable client-summarizer. If no, what's missing tells her what fields to add — and that's diagnostic gold.</p>
+<p><strong>Principle this surfaces:</strong> start with understanding, not matching. The reporter match is the visible end product, but it's a thin function of two understood inputs (client + reporter). If understanding the client is hard, matching is impossible. Solve the hard half first.</p>
+<p><strong>Stepping stones:</strong><br />
+- S3: Repeat for 3 clients. Bryce's reporter scrape should be done by then. Match top 10 reporters to ONE client's pitch.<br />
+- S4: End-to-end: client folder → profile → matched reporter shortlist. Multiplying-level move.</p>
+<p><strong>Taste of the final product:</strong> the one client paragraph IS the first row of the client-understanding layer that her final reporter-matching tool sits on top of. By S4 Bryce's reporter database joins this. She walks out with the foundation laid — visibly, in her own words for one real client.</p>
+<p><strong>What to say at check-in:</strong> "You said the hard part is where to start. We just started. Look at that paragraph. That used to take you a meeting and a Google Sheet."</p>
+<hr />
+<h2>Jenina — [role unknown]</h2>
+<p><strong>Status:</strong> Not named once in the S1 transcript (142 min). Not on the ledger sheet. Email exists in team-emails.csv. S2 invite marked needs-action.</p>
+<p><strong>Best guess:</strong> Either she dropped, was sick June 9, or is filed under a different name (Alex spelled people's names tentatively at the start — "is it Adina?", "Ayesha Hoover").</p>
+<p><strong>Before S2:</strong> DM Bryce: "Is Jenina in? If yes — was she on S1 under another name, or did she miss? What's her role + what does she want to build? Should I shape a S2 first brick for her assuming she shows up?"</p>
+<p><strong>If she shows up at S2 cold:</strong> Run the project-canvas template with her in the first 10 minutes while the room is settling. Her S2 win = same as everyone's S1 win was: get Monday connected + ask one question. Don't pretend she's caught up.</p>
+<hr />
+<h2>Cross-cohort connections worth surfacing</h2>
+<ul>
+<li><strong>Chanel ↔ Auds:</strong> identical underlying ask (Monday tasks in one organized place). Suggest they pair from S3 onward.</li>
+<li><strong>Kate ↔ Auds:</strong> both need Missive eventually. Kate's MCP win is Auds' next-session input.</li>
+<li><strong>Marley ↔ Bryce:</strong> Pitchy reports + reporter database both feed Marley's reporting + Kandice's filtering. Bryce should plan to "ship" his data work in S3 when others need it.</li>
+<li><strong>Ehdina ↔ Bryce:</strong> Ehdina's voice training depends on Bryce's transcript folder. Confirm with Bryce in S2: is the Drive folder shared correctly so Ehdina has access?</li>
+<li><strong>Kandice ↔ Bryce:</strong> her reporter side is parked until his scrape finishes (he said "1 week left" on June 9 — so it should be done by S3 on June 23).</li>
+</ul>
+<h2>The arc explicitly</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>S2 win =</th>
+<th>S3 build =</th>
+<th>S4 demo =</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bryce</td>
+<td>Help others land theirs</td>
+<td>Co-lead a 10-min lesson</td>
+<td>Live demo of one Sunday hack</td>
+</tr>
+<tr>
+<td>Marley</td>
+<td>Client-facing section of one report</td>
+<td>Internal "what we tried" half + Pitchy inspo</td>
+<td>Full monthly report + workbench of edits</td>
+</tr>
+<tr>
+<td>Ice</td>
+<td>Top 3 of 10 notifications ranked + reasons</td>
+<td>Auto-feed from real source</td>
+<td>Scheduled brief</td>
+</tr>
+<tr>
+<td>Chanel</td>
+<td>One bug fixed on her real Monday board</td>
+<td>Priority + due + minutes ranking on it</td>
+<td>Dashboard shared with one teammate</td>
+</tr>
+<tr>
+<td>Auds</td>
+<td>Monday tasks in one clean view</td>
+<td>+ Slack OR Missive</td>
+<td>+ follow-up draft layer</td>
+</tr>
+<tr>
+<td>Kate</td>
+<td>Missive MCP connected + 1 outlet enriched</td>
+<td>Auto-enrich a new opportunity</td>
+<td>One-click opportunity enrichment</td>
+</tr>
+<tr>
+<td>Ehdina</td>
+<td>5 sentences in Bryce's voice (Bryce nods at 2)</td>
+<td>Full LinkedIn + Instagram drafts</td>
+<td>2 weeks of queued drafts</td>
+</tr>
+<tr>
+<td>Kandice</td>
+<td>One client described in a paragraph from Drive</td>
+<td>Match 10 reporters to that client</td>
+<td>Full client → reporter shortlist</td>
+</tr>
+</tbody>
+</table>
+<h2>Standing setup correction — name the assignee, don't say "my"</h2>
+<p>Alex flagged in S1 and Auds confirmed: the team is almost certainly sharing one org-level Monday API key (Bryce activated the integrations from his side). The key has no user identity attached. So when anyone asks Claude "what are MY tasks?" or "tasks assigned to me," Claude is guessing — usually pulling whoever the key authenticates as, or returning everything visible.</p>
+<p><strong>The S2 fix:</strong> every Monday prompt names the assignee explicitly. Never "my tasks." Always "tasks assigned to Audrey," "tasks assigned to Chanel," "opportunities Kate is monitoring." Same correction for filter columns: "where the Assignee column contains 'Kandice'."</p>
+<p><strong>Who this affects directly:</strong><br />
+- <strong>Auds</strong> — her one-clean-view S2 win must explicitly request <code>assignee = Audrey</code>. Otherwise she sees Edina's tasks (as happened to Audrey in S1).<br />
+- <strong>Chanel</strong> — same. Her broken-board fix prompts name Chanel as the assignee.<br />
+- <strong>Kate</strong> — name herself when asking about Missive opportunities (Missive has the same user-key question; check during her MCP connect).<br />
+- <strong>Kandice / Ice / Ehdina / Marley</strong> — same standing rule when they touch Monday.</p>
+<p><strong>Better long-term fix (offer, don't push):</strong> each person generates their own personal Monday dev token from their own profile so the key carries their identity. Bryce will know if Monday's plan allows this. Don't burn S2 build block on it; mention it as an S3 cleanup option.</p>
+<p><strong>At check-in if results look wrong:</strong> ask "did you name yourself in the prompt?" before debugging anything else. That's the first cut.</p>
+<hr />
+<h2>Paper is allowed (and welcome)</h2>
+<p>Several Step 1 moves ask the participant to do something by hand: Chanel writes her ideal board view, Auds ranks her top 5 tasks, Ice picks her favorite 3 of 10. <strong>They don't have to type it up.</strong> Tell them they can write it on paper, take a photo, and drop the photo into Claude. Claude reads handwriting. Removes the "now I have to put this in a doc" friction that kills momentum. Especially useful for Chanel (board diagnosis) and Auds (today's ranking) where the on-paper version is the natural shape.</p>
+<hr />
+<h2>Standing rules for S2 facilitation</h2>
+<ul>
+<li><strong>No architecture docs as wins.</strong> Documentation is the byproduct, not the artifact. The win is something on screen that wasn't there 25 minutes ago.</li>
+<li><strong>Cameras-on during build.</strong> Bryce already committed to enforcing this; remind once at the top.</li>
+<li><strong>Share-out is the win, not the brief itself.</strong> Each person gets 60-90 sec to show what changed on their screen. That's where the "closing in" feeling lives.</li>
+<li><strong>Don't argue Marley's "AI isn't good enough."</strong> Let her show a first-section draft and ask the room what they think.</li>
+<li><strong>Bryce as helper, not driver.</strong> Park his own projects this session.</li>
+<li><strong>If plumbing is broken again (Git, Drive auth, etc.):</strong> that's the win for that person. Don't apologize, name it: "you got into the second integration. That was Tuesday-night-engineer work." Sit Bryce next to them.</li>
+</ul>
+</div>
+<div class="br-footer">Alex Salinsky · The Build Room</div>
+<script>
+  // Wrap any wide tables in a horizontally-scrollable container so they don't blow out the page width.
+  document.querySelectorAll('table').forEach(t => {
+    if (t.parentElement.classList.contains('table-wrap')) return;
+    const w = document.createElement('div');
+    w.className = 'table-wrap';
+    t.parentNode.insertBefore(w, t);
+    w.appendChild(t);
+  });
+</script>
+</body>
+</html>
