@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--
+  Build Room Deck Template
+  =========================
+  How to use this file (6 steps):
+    1. Copy this file to build-room-visuals/<deck-slug>.html (kebab-case).
+    2. Rename the <title>, h1, and any cohort-specific text.
+    3. Replace the 3 placeholder content slides marked "CONTENT SLIDE: replace".
+       Pull copy-paste blocks from _template/components.html.
+    4. Link the new deck from build-room-visuals/index.html (add a .card entry
+       with title, meta, and status pill).
+    5. Push to origin. GitHub Pages auto-deploys.
+    6. Verify at https://alexsalinsky.github.io/build-room-visuals/<deck-slug>.html
+       then drop the live URL into Skool.
+
+  Hard rules (do not violate):
+    - No em dashes anywhere. Use commas, periods, or restructure.
+    - Thesis line is verbatim: "Learn AI. Build Robots. Stay Human."
+    - Footer is "Alex Salinsky · The Build Room" (middle dot, no domain).
+    - No audience-participation prompts ("drop in chat", "comment below").
+      Operational mentions like "link is in the chat" are fine.
+    - Do NOT invent URLs. buildroom.work does NOT exist.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deck Title — The Build Room</title>
+<link rel="stylesheet" href="_template/tokens.css">
+<style>
+  /* The shared design language is inlined here so a single deck file is portable.
+     tokens.css above provides the variables; the rules below consume them. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    background: var(--br-bg);
+    color: var(--br-text);
+    font-family: var(--br-font);
+    overflow: hidden;
+  }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 14px; }
+  .slide-wrap { flex: 1; max-height: 82vh; width: 100%; max-width: 1100px; display: flex; align-items: center; justify-content: center; padding: 24px; position: relative; }
+  .slide { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; position: relative; }
+  .slide.center { align-items: center; text-align: center; }
+
+  .section-chip { position: absolute; top: 0; left: 0; font-size: 12px; font-weight: 700; color: var(--br-gray-5); letter-spacing: 2px; text-transform: uppercase; }
+  .slide.center .section-chip { left: 50%; transform: translateX(-50%); }
+
+  h1 { font-size: var(--br-h1); font-weight: 800; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 18px; }
+  h2 { font-size: var(--br-h2); font-weight: 700; line-height: 1.15; margin-bottom: var(--br-space-4); letter-spacing: -0.5px; }
+  h3 { font-size: var(--br-h3); font-weight: 600; margin-bottom: var(--br-space-2); color: var(--br-gray-1); }
+  p  { font-size: var(--br-body); line-height: 1.55; color: #333; margin-bottom: var(--br-space-2); }
+  p.lead { font-size: var(--br-lead); color: var(--br-text); }
+
+  .thesis-stack { display: flex; flex-direction: column; align-items: center; gap: 14px; margin: 24px 0; }
+  .thesis-stack .word { font-size: 72px; font-weight: 800; letter-spacing: -2px; line-height: 1; }
+
+  /* HUD navigation */
+  .hud { display: flex; gap: 24px; align-items: center; font-size: var(--br-meta); color: var(--br-gray-3); }
+  .hud strong { color: var(--br-text); font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: var(--br-card-bg); color: var(--br-text); border: var(--br-border-thin); padding: 8px 18px; border-radius: var(--br-radius-sm); cursor: pointer; font-size: var(--br-meta); font-weight: 500; }
+  button:hover { background: var(--br-text); color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: var(--br-card-bg); color: var(--br-text); }
+  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
+
+  /* Brand footer on every slide */
+  .br-footer { position: fixed; bottom: 8px; left: 14px; font-size: 11px; color: var(--br-gray-4); letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="slide-wrap" id="slideWrap"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">← Prev</button>
+      <button id="next">Next →</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">5</span></div>
+  </div>
+</div>
+<div class="hint">← → arrow keys also work</div>
+<div class="br-footer">Alex Salinsky · The Build Room</div>
+
+<script>
+const slides = [
+
+  // ---- TITLE SLIDE ----
+  // The thesis line ("Learn AI. Build Robots. Stay Human.") is OPTIONAL on the
+  // title slide. Uncomment the thesis-stack block below if this deck wants it
+  // up front (typical for cohort kickoffs; usually omitted for teaching decks).
+  {
+    html: `<div class="slide center">
+      <h1>Deck Title</h1>
+      <p class="lead" style="font-size:26px;color:var(--br-gray-3);font-weight:400">One-line subtitle</p>
+      <!--
+      <div class="thesis-stack">
+        <div class="word">Learn AI.</div>
+        <div class="word">Build Robots.</div>
+        <div class="word">Stay Human.</div>
+      </div>
+      -->
+    </div>`
+  },
+
+  // ---- CONTENT SLIDE: replace ----
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Section Name</div>
+      <h2 style="margin-top:30px">Slide heading</h2>
+      <p>Body copy here. Pull a layout primitive from _template/components.html.</p>
+    </div>`
+  },
+
+  // ---- CONTENT SLIDE: replace ----
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Section Name</div>
+      <h2 style="margin-top:30px">Slide heading</h2>
+      <p>Body copy here.</p>
+    </div>`
+  },
+
+  // ---- CONTENT SLIDE: replace ----
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Section Name</div>
+      <h2 style="margin-top:30px">Slide heading</h2>
+      <p>Body copy here.</p>
+    </div>`
+  },
+
+  // ---- CLOSING / CTA SLIDE ----
+  {
+    html: `<div class="slide center">
+      <h2 style="margin-top:30px">Closing line</h2>
+      <p class="lead" style="margin-top:14px">Next step or CTA. Keep it one sentence. No audience-participation prompts.</p>
+    </div>`
+  }
+];
+
+let i = 0;
+const wrap = document.getElementById("slideWrap");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = slides.length;
+
+function render() {
+  wrap.innerHTML = slides[i].html;
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === slides.length - 1;
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < slides.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") next.click();
+  if (e.key === "ArrowLeft") prev.click();
+});
+
+render();
+</script>
+</body>
+</html>

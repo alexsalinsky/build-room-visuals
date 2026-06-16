@@ -1,0 +1,75 @@
+/*
+ * Build Room Design Tokens
+ *
+ * Source: extracted from build-room-visuals/index.html,
+ * build-room-visuals/how-to-prompt.html, build-room-visuals/fnf-info-session.html,
+ * and brain/the-build-room/tools/kickoff-presentation-generic.html.
+ *
+ * Do NOT add new colors or fonts without confirming against existing decks.
+ * The four pie-chart accent colors map to the four adoption levels:
+ *   Exploring, Adopting, Operating, Multiplying.
+ */
+
+:root {
+  /* Core palette */
+  --br-text:        #1a1a1a;   /* near-black, primary text + borders + filled blocks */
+  --br-bg:          #fafafa;   /* off-white page background */
+  --br-card-bg:     #ffffff;   /* white card / panel fill */
+
+  /* Grays (labels, captions, hints) */
+  --br-gray-1:      #444;      /* h3 / strong secondary */
+  --br-gray-2:      #555;      /* body secondary */
+  --br-gray-3:      #666;      /* sub, captions */
+  --br-gray-4:      #888;      /* meta labels */
+  --br-gray-5:      #999;      /* section-chip color, soft hints */
+  --br-rule:        #ddd;      /* light rules */
+  --br-rule-soft:   #eee;      /* very light rules */
+
+  /* Pie chart / adoption-level accents (kickoff slide 5) */
+  --br-exploring:   #ef4444;   /* red */
+  --br-adopting:    #f59e0b;   /* orange */
+  --br-operating:   #84cc16;   /* lime */
+  --br-multiplying: #16a34a;   /* green */
+
+  /* Highlight / gift / urgency yellow-amber (fnf-info-session) */
+  --br-amber-bg:    #fde68a;
+  --br-amber-fg:    #92400e;
+
+  /* AI bubble beige (how-to-prompt) */
+  --br-bubble-ai:   #f4ede0;
+
+  /* Typography */
+  --br-font:        -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+
+  /* Heading sizes (kickoff baseline) */
+  --br-h1:          68px;
+  --br-h1-small:    48px;
+  --br-h2:          36px;
+  --br-h3:          22px;
+  --br-body:        20px;
+  --br-lead:        26px;
+  --br-meta:        14px;
+
+  /* Spacing scale (extracted from kickoff + index) */
+  --br-space-1:     8px;
+  --br-space-2:     14px;
+  --br-space-3:     18px;
+  --br-space-4:     24px;
+  --br-space-5:     32px;
+  --br-space-6:     48px;
+
+  /* Borders / radii */
+  --br-border:      2.5px solid var(--br-text);   /* canonical card border */
+  --br-border-thin: 1.5px solid var(--br-text);   /* canonical button border */
+  --br-border-rule: 1.5px solid var(--br-rule);
+  --br-radius-sm:   6px;   /* buttons */
+  --br-radius-md:   10px;
+  --br-radius-lg:   12px;  /* cards */
+  --br-radius-xl:   14px;  /* chat / panels */
+
+  /* Highlight pattern used in survey/quote borders */
+  --br-quote-border-left: 4px solid var(--br-text);
+}
+
+/* TODO: confirm hover-elevation shadow value (cards lift on hover but exact
+ * box-shadow varies between decks). Add as --br-card-hover-shadow when locked. */

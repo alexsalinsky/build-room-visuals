@@ -1,6 +1,10 @@
-# Project Operating Rules for Claude
+# LLM Builder Best Practices
 
-These rules govern how you (Claude) work in this project. Follow them automatically. Do not wait to be asked.
+By The Build Room.
+
+This file is imported by your `CLAUDE.md` (or referenced from your `AGENTS.md`). It tells your AI build tool (Claude Code, Codex, or similar) how to maintain the four living documents that close the session loop.
+
+These rules apply to you (the AI assistant) automatically. Do not wait to be asked.
 
 ---
 
