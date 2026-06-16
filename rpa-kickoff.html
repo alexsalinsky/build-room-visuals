@@ -59,14 +59,14 @@
   .async-body strong { font-size: 19px; display: block; margin-bottom: 4px; }
   .async-body { font-size: 16px; color: #444; line-height: 1.5; }
 
-  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); background: rgba(250,250,250,0.95); backdrop-filter: blur(8px); padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); z-index: 1000; }
   .hud strong { color: #1a1a1a; font-size: 16px; }
   .controls { display: flex; gap: 10px; }
-  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; touch-action: manipulation; position: relative; z-index: 1001; }
   button:hover { background: #1a1a1a; color: #fff; }
   button:disabled { opacity: 0.25; cursor: default; }
   button:disabled:hover { background: #fff; color: #1a1a1a; }
-  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
+  .hint { position: fixed; bottom: 8px; right: 12px; opacity: 0.5; font-size: 11px; }
 </style>
 </head>
 <body>
@@ -80,7 +80,7 @@
     <div><strong id="counter">1</strong> / <span id="total">12</span></div>
   </div>
 </div>
-<div class="hint">← → arrow keys also work</div>
+<div class="hint">← → arrow keys, swipe on mobile</div>
 
 <script>
 const slides = [
@@ -327,9 +327,19 @@ prev.onclick = () => { if (i > 0) { i--; render(); } };
 next.onclick = () => { if (i < slides.length - 1) { i++; render(); } };
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowRight" || e.key === " ") next.click();
-  if (e.key === "ArrowLeft") prev.click();
+  if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); next.click(); }
+  if (e.key === "ArrowLeft") { e.preventDefault(); prev.click(); }
 });
+
+let touchStartX = 0;
+document.addEventListener("touchstart", (e) => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+document.addEventListener("touchend", (e) => {
+  const diff = e.changedTouches[0].screenX - touchStartX;
+  if (Math.abs(diff) > 50) {
+    if (diff < 0) next.click();
+    else prev.click();
+  }
+}, {passive: true});
 
 render();
 </script>
