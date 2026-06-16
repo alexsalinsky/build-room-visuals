@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><title>RPA — Adoption Snapshot</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#fafafa;color:#1a1a1a;padding:40px 24px;margin:0}
+.slide-render{max-width:1000px;margin:0 auto;background:#fff;border:2.5px solid #1a1a1a;border-radius:14px;padding:36px 42px}
+.slide-render .slide-title{font-size:36px;font-weight:800;letter-spacing:-0.5px;margin-bottom:8px}
+.slide-render .slide-sub{font-size:18px;color:#666;margin-bottom:28px}
+.pie-row{display:grid;grid-template-columns:1fr 1.1fr;gap:32px;align-items:center}
+@media (max-width:720px){.pie-row{grid-template-columns:1fr}}
+.pie-row svg{width:100%;max-width:380px;height:auto;display:block;margin:0 auto}
+.legend-row{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.legend-row .lswatch{width:26px;height:26px;border-radius:4px;flex-shrink:0}
+.legend-row .lbody{flex:1;font-size:17px}
+.legend-row .lbody strong{font-weight:700}
+.legend-row .lbody .desc{color:#777;font-size:13px}
+.callout{text-align:center;margin-top:12px;font-size:14px;color:#666;font-style:italic}
+.closer{background:#1a1a1a;color:#fff;padding:20px 28px;border-radius:12px;font-size:19px;font-weight:600;text-align:center;margin-top:22px}
+.footer{max-width:1000px;margin:18px auto 0;text-align:center;font-size:13px;color:#888}
+</style></head><body>
+<div class="slide-render">
+  <div class="slide-title">Where you are right now</div>
+  <div class="slide-sub">Based on what the RPA team told us in the survey.</div>
+  <div class="pie-row">
+    <div>
+      <svg viewBox="0 0 400 400">
+        <path d="M 200,200 L 200,70 A 130,130 0 1,1 87.4,265 Z" fill="#f59e0b" stroke="#fff" stroke-width="3"/>
+        <path d="M 200,200 L 87.4,265 A 130,130 0 0,1 200,70 Z" fill="#84cc16" stroke="#fff" stroke-width="3"/>
+        <text x="140" y="160" font-size="14" font-weight="700" fill="#1a1a1a" text-anchor="middle">most of you</text>
+        <text x="140" y="178" font-size="14" font-weight="700" fill="#1a1a1a" text-anchor="middle">are here</text>
+      </svg>
+    </div>
+    <div>
+      <div class="legend-row"><div class="lswatch" style="background:#ef4444"></div><div class="lbody"><strong>Exploring</strong> · 0%<div class="desc">haven't started yet</div></div></div>
+      <div class="legend-row"><div class="lswatch" style="background:#f59e0b"></div><div class="lbody"><strong>Adopting</strong> · 67%<div class="desc">use AI for tasks, have reusable prompts</div></div></div>
+      <div class="legend-row"><div class="lswatch" style="background:#84cc16"></div><div class="lbody"><strong>Operating</strong> · 33%<div class="desc">AI woven into the role, shipping things others use</div></div></div>
+      <div class="legend-row"><div class="lswatch" style="background:#16a34a"></div><div class="lbody"><strong>Multiplying</strong> · 0%<div class="desc">shape how the team works with AI</div></div></div>
+    </div>
+  </div>
+  <div class="callout">Small team, real range. Most of you are at Adopting, with Operating-level builders in the room.</div>
+  <div class="closer">Strong foundation. The goal: bump everyone up to the next level.</div>
+</div>
+<div class="footer">Alex Salinsky · The Build Room</div>
+</body></html>

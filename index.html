@@ -19,6 +19,11 @@
   .card:hover .meta { color: #bbb; }
   .card .title { font-size: 18px; font-weight: 700; line-height: 1.25; margin-bottom: 5px; }
   .card .meta { font-size: 13px; color: #666; line-height: 1.45; }
+  .card .status { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; border: 1.5px solid #1a1a1a; }
+  .card[data-status="live"]     .status { background: #16a34a; color: #fff; border-color: #16a34a; }
+  .card[data-status="draft"]    .status { background: #fde68a; color: #92400e; border-color: #92400e; }
+  .card[data-status="archived"] .status { background: #fafafa; color: #888; border-color: #bbb; }
+  .card:hover .status { filter: none; }
   footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 13px; color: #888; text-align: center; }
 </style>
 </head>
@@ -31,15 +36,18 @@
 
   <h2>Foundations</h2>
   <div class="grid">
-    <a class="card" href="inside-the-robot.html">
+    <a class="card" data-status="live" href="inside-the-robot.html">
+      <div class="status">Live</div>
       <div class="title">Inside the Robot</div>
       <div class="meta">How LLMs, context, integrations, and products fit together.</div>
     </a>
-    <a class="card" href="dream-big-build-small.html">
+    <a class="card" data-status="live" href="dream-big-build-small.html">
+      <div class="status">Live</div>
       <div class="title">Dream Big, Build Small</div>
       <div class="meta">Backwards design. Dream → MVP → First Brick.</div>
     </a>
-    <a class="card" href="plan-the-problem.html">
+    <a class="card" data-status="live" href="plan-the-problem.html">
+      <div class="status">Live</div>
       <div class="title">Plan the Problem</div>
       <div class="meta">Input · Output · When framework.</div>
     </a>
@@ -47,15 +55,18 @@
 
   <h2>How-to</h2>
   <div class="grid">
-    <a class="card" href="how-to-prompt.html">
+    <a class="card" data-status="live" href="how-to-prompt.html">
+      <div class="status">Live</div>
       <div class="title">How to Prompt</div>
       <div class="meta">Plan first, build second. The reflect-back move.</div>
     </a>
-    <a class="card" href="ai-lies.html">
+    <a class="card" data-status="live" href="ai-lies.html">
+      <div class="status">Live</div>
       <div class="title">Handling AI Lies</div>
       <div class="meta">Seven patterns of fabrication and how to catch them.</div>
     </a>
-    <a class="card" href="api-key-generic.html">
+    <a class="card" data-status="live" href="api-key-generic.html">
+      <div class="status">Live</div>
       <div class="title">API Key Flow</div>
       <div class="meta">How to find and use any API key.</div>
     </a>
@@ -63,21 +74,39 @@
 
   <h2>Setup</h2>
   <div class="grid">
-    <a class="card" href="claude-code-setup.html">
+    <a class="card" data-status="live" href="claude-code-setup.html">
+      <div class="status">Live</div>
       <div class="title">Claude Code Setup</div>
       <div class="meta">4 steps. Install GitHub Desktop. Quit Claude fully. Reopen.</div>
     </a>
-    <a class="card" href="github-60s.html">
+    <a class="card" data-status="live" href="github-60s.html">
+      <div class="status">Live</div>
       <div class="title">GitHub in 60 Seconds</div>
       <div class="meta">Mental model. No deep tech required.</div>
     </a>
-    <a class="card" href="connector-vs-api.html">
+    <a class="card" data-status="live" href="connector-vs-api.html">
+      <div class="status">Live</div>
       <div class="title">Connector vs API</div>
       <div class="meta">When to use which. Trade-offs.</div>
     </a>
-    <a class="card" href="where-your-build-lives.html">
+    <a class="card" data-status="live" href="where-your-build-lives.html">
+      <div class="status">Live</div>
       <div class="title">Where Your Build Lives</div>
       <div class="meta">Inside Claude · Outside Claude · Hybrid.</div>
+    </a>
+  </div>
+
+  <h2>Cohort Tab-outs</h2>
+  <div class="grid">
+    <a class="card" data-status="live" href="rpa-adoption-pie.html">
+      <div class="status">Live</div>
+      <div class="title">RPA · Adoption Pie</div>
+      <div class="meta">Where the RPA team is right now. Adopting / Operating mix.</div>
+    </a>
+    <a class="card" data-status="live" href="rpa-fears.html">
+      <div class="status">Live</div>
+      <div class="title">RPA · Fears</div>
+      <div class="meta">Tool overwhelm, practical over flashy, integration not islands.</div>
     </a>
   </div>
 
