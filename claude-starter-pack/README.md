@@ -1,29 +1,49 @@
 # Build Room — Claude Starter Pack
 
-One file. Drop it into your Claude setup once. From then on, every working session leaves behind: a workbench entry of what just happened, a current architecture doc, a user guide for the next reader, and an honest TODO list.
+One file (`team-tech.md`). Save it, then add one line to your existing Claude or Codex config that points to it.
+
+From then on, every working session leaves behind: a workbench entry of what just happened, a current architecture doc, a user guide for the next reader, and an honest TODO list.
 
 You stop losing context between sessions. The next session (yours or someone else's) starts warm.
 
 ## What's inside
 
-**`CLAUDE.md`** — the rule pack. Templates for all four documents are embedded inline so this is the only file you need to install.
+**`team-tech.md`** — the rule pack. All four document templates (workbench, ARCHITECTURE, USER_GUIDE, TODOS) are embedded inline so this is the only file you install.
 
-That's it. One file.
+## Why a separate file (not a CLAUDE.md)
+
+If you already use Claude Code or Codex, you probably already have a `CLAUDE.md` or `AGENTS.md`. Overwriting it would nuke your existing rules. So this pack is a standalone file you point your config at with one line. Nothing of yours gets touched.
 
 ## 60-second install
 
-Pick one of two paths:
+Pick one of two paths.
 
-**Path A: Global (every project on your machine).**
-1. Open `~/.claude/CLAUDE.md`. Create it if it doesn't exist.
-2. Paste the contents of `CLAUDE.md` from this pack into it.
-3. Done. Every new Claude session on your machine now follows these rules.
+### Path A — every project on your machine (Claude Code)
 
-**Path B: One project only.**
-1. Drop `CLAUDE.md` in the root of your project folder.
-2. Open Claude in that folder. Done.
+1. Download `team-tech.md` to `~/.claude/team-tech.md`.
+2. Open `~/.claude/CLAUDE.md` (create it if it doesn't exist).
+3. Add this line anywhere in the file:
+   ```
+   @~/.claude/team-tech.md
+   ```
+4. Done. Every Claude Code session on your machine now follows these rules in addition to whatever else is in your CLAUDE.md.
 
-Either works. Most people start with Path B on one project, then graduate to Path A once the rhythm feels right.
+### Path B — one project (Claude Code)
+
+1. Drop `team-tech.md` in the root of your project folder.
+2. Open or create `CLAUDE.md` in the same folder.
+3. Add this line:
+   ```
+   @team-tech.md
+   ```
+4. Done.
+
+### Codex users
+
+Codex reads `AGENTS.md` and doesn't have a formal import directive. Two options:
+
+- **Easiest:** open `team-tech.md`, copy its contents, paste them into your `AGENTS.md` under a `## Team Tech Rules` heading.
+- **Cleaner:** save `team-tech.md` next to `AGENTS.md`, then add a line at the top of AGENTS.md: `Also follow the rules in team-tech.md (in this folder).` Codex will pick it up when it reads the folder.
 
 ## What you'll see after one session
 

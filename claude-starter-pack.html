@@ -53,11 +53,11 @@
   <header>
     <div class="eyebrow">THE BUILD ROOM</div>
     <h1>Claude Starter Pack</h1>
-    <p class="sub">One file. Drop it into your Claude setup once. Every session leaves behind a workbench entry, a current architecture doc, a user guide, and an honest TODO list.</p>
+    <p class="sub">One file. Save it, then add one line to your existing Claude or Codex config that points to it. Every session leaves behind a workbench entry, a current architecture doc, a user guide, and an honest TODO list.</p>
   </header>
 
   <h2>What this is</h2>
-  <p>One <code>CLAUDE.md</code> file. The rule pack and all four document templates live inside it. Install takes 60 seconds. After one session you stop losing context between sessions.</p>
+  <p>One file, <code>team-tech.md</code>. All four document templates live inside it. You don't overwrite your existing <code>CLAUDE.md</code>. You point at this file with one line. Install takes 60 seconds.</p>
 
   <h2>The four documents Claude maintains</h2>
   <div class="four-docs">
@@ -86,19 +86,31 @@
   <h2>Install (pick one)</h2>
 
   <div class="install">
-    <h3>Path A <span class="tag">EVERY PROJECT ON YOUR MACHINE</span></h3>
+    <h3>Path A <span class="tag">EVERY PROJECT (CLAUDE CODE)</span></h3>
     <ol>
-      <li>Open <code>~/.claude/CLAUDE.md</code>. Create it if it doesn't exist.</li>
-      <li>Paste the contents of the starter-pack <code>CLAUDE.md</code> into it.</li>
-      <li>Done. Every new Claude session on this machine now follows the rules.</li>
+      <li>Download <code>team-tech.md</code> to <code>~/.claude/team-tech.md</code>.</li>
+      <li>Open <code>~/.claude/CLAUDE.md</code> (create it if missing).</li>
+      <li>Add this line anywhere in the file: <code>@~/.claude/team-tech.md</code></li>
+      <li>Done. Your existing CLAUDE.md rules stay; these layer on top.</li>
     </ol>
   </div>
 
   <div class="install">
-    <h3>Path B <span class="tag">ONE PROJECT ONLY</span></h3>
+    <h3>Path B <span class="tag">ONE PROJECT (CLAUDE CODE)</span></h3>
     <ol>
-      <li>Drop the starter-pack <code>CLAUDE.md</code> in the root of your project folder.</li>
-      <li>Open Claude in that folder. Done.</li>
+      <li>Drop <code>team-tech.md</code> in your project's root folder.</li>
+      <li>Open or create <code>CLAUDE.md</code> in the same folder.</li>
+      <li>Add this line: <code>@team-tech.md</code></li>
+      <li>Done.</li>
+    </ol>
+  </div>
+
+  <div class="install">
+    <h3>Codex users <span class="tag">AGENTS.MD</span></h3>
+    <p style="font-size: 15px; color: #333; margin-bottom: 8px;">Codex doesn't have a formal import directive. Two options:</p>
+    <ol>
+      <li><strong>Paste:</strong> open <code>team-tech.md</code>, copy its contents, paste into your <code>AGENTS.md</code> under a <code>## Team Tech Rules</code> heading.</li>
+      <li><strong>Reference:</strong> save <code>team-tech.md</code> next to <code>AGENTS.md</code>, then add a line at the top of AGENTS.md: <em>Also follow the rules in team-tech.md (in this folder).</em></li>
     </ol>
   </div>
 
@@ -106,8 +118,8 @@
 
   <h2>Download</h2>
   <div class="downloads">
-    <a class="dl" href="https://raw.githubusercontent.com/alexsalinsky/build-room-visuals/main/claude-starter-pack/CLAUDE.md" target="_blank">
-      <span class="filename">CLAUDE.md</span>
+    <a class="dl" href="https://raw.githubusercontent.com/alexsalinsky/build-room-visuals/main/claude-starter-pack/team-tech.md" target="_blank">
+      <span class="filename">team-tech.md</span>
       <span class="arrow">↓</span>
     </a>
   </div>
