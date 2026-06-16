@@ -13,17 +13,25 @@
   h1 { font-size: 44px; font-weight: 800; letter-spacing: -1.2px; margin-bottom: 10px; }
   .sub { font-size: 18px; color: #aaa; max-width: 680px; line-height: 1.5; }
   .sub a { color: #fafafa; text-decoration: underline; }
-  h2 { font-size: 16px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin: 36px 0 14px; padding-bottom: 8px; border-bottom: 1px solid #333; }
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
-  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+  h2 { font-size: 14px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin: 36px 0 14px; padding-bottom: 8px; border-bottom: 1px solid #333; }
+  h2.hero { font-size: 18px; color: #fff; border-bottom: 1.5px solid #fff; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 16px; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+  @media (max-width: 900px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .grid-3 { grid-template-columns: 1fr; } }
   .card { background: #262626; border: 2px solid #fafafa; border-radius: 12px; padding: 18px 20px; text-decoration: none; color: #fafafa; display: block; transition: all 0.15s; }
   .card:hover { background: #fafafa; color: #1a1a1a; transform: translateY(-2px); }
   .card:hover .meta { color: #555; }
-  .card .title { font-size: 17px; font-weight: 700; line-height: 1.25; margin-bottom: 4px; }
-  .card .meta { font-size: 12px; color: #aaa; line-height: 1.45; }
+  .card .title { font-size: 18px; font-weight: 700; line-height: 1.25; margin-bottom: 4px; }
+  .card .meta { font-size: 13px; color: #aaa; line-height: 1.45; }
   .card .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; border: 1px solid #fafafa; }
   .card:hover .tag { border-color: #1a1a1a; }
+  .card.hub { background: #0a0a0a; border-color: #16a34a; }
+  .card.hub:hover { background: #16a34a; color: #fff; border-color: #16a34a; }
+  .card.hub:hover .meta { color: #e8ffe8; }
+  .card.hub .tag { border-color: #16a34a; color: #16a34a; }
+  .card.hub:hover .tag { border-color: #fff; color: #fff; }
   footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid #333; font-size: 12px; color: #666; text-align: center; }
   footer a { color: #aaa; }
 </style>
@@ -33,38 +41,48 @@
   <header>
     <div class="pill">Facilitator Only</div>
     <h1>The Build Room — Facilitator Tools</h1>
-    <p class="sub">Cohort kickoffs, hubs, and generators. Not linked from the <a href="../">participant library</a>. Bookmark this page.</p>
+    <p class="sub">Cohort hubs, kickoff decks, and generators. Not linked from the <a href="../">participant library</a>. Bookmark this page.</p>
   </header>
 
-  <h2>Facilitator Hubs (per cohort)</h2>
+  <h2 class="hero">Cohort Hubs</h2>
   <div class="grid">
-    <a class="card" href="rpa-hub.html">
-      <div class="tag">Live</div>
+    <a class="card hub" href="rpa-hub.html">
+      <div class="tag">Live · Tue 10am COT</div>
       <div class="title">RPA Hub</div>
-      <div class="meta">Ginger Gentile · 3 builders · Tuesdays 10am COT. Deck, tracker, Skool, session flow.</div>
+      <div class="meta">Ginger Gentile · 3 builders · S1 today. Deck, ledger, Skool, session flow.</div>
+    </a>
+    <a class="card hub" href="dbalp-hub.html">
+      <div class="tag">Live · Mon 1pm Bogotá</div>
+      <div class="title">DBALP Hub</div>
+      <div class="meta">Bryce North · 8 builders · S2 today. Deck, ledger, Skool, session flow.</div>
     </a>
   </div>
 
-  <h2>Cohort Kickoff Decks</h2>
-  <div class="grid">
+  <h2>Kickoff Decks</h2>
+  <div class="grid-3">
     <a class="card" href="kickoff-deck.html">
       <div class="tag">Template</div>
       <div class="title">Kickoff Deck (generic)</div>
-      <div class="meta">Source template. Clone per cohort and bake their pie + fears into slides 5 + 6.</div>
+      <div class="meta">Source template. Clone per cohort; bake their pie + fears into slides 5 + 6.</div>
     </a>
     <a class="card" href="rpa-kickoff.html">
       <div class="tag">Live</div>
       <div class="title">RPA Kickoff</div>
-      <div class="meta">Per-cohort deck with RPA adoption pie + fears baked in.</div>
+      <div class="meta">RPA adoption pie + fears baked in.</div>
+    </a>
+    <a class="card" href="dbalp-kickoff.html">
+      <div class="tag">Live</div>
+      <div class="title">DBALP Kickoff</div>
+      <div class="meta">DBALP adoption pie + fears baked in. Used Jun 9.</div>
     </a>
   </div>
 
-  <h2>Generators &amp; templates</h2>
+  <h2>Library</h2>
   <div class="grid">
     <a class="card" href="../">
       <div class="tag">Participant library</div>
       <div class="title">Open the participant library</div>
-      <div class="meta">Foundations, How-to, Rule Packs, Setup. Use during sessions.</div>
+      <div class="meta">Foundations, How-to, Rule Packs, Setup. Share these URLs with cohorts.</div>
     </a>
   </div>
 
