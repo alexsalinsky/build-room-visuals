@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Facilitator Hub — RPA</title>
+<!--
+  GENERIC FACILITATOR HUB TEMPLATE.
+
+  Copy this file to brain/the-build-room/cohorts/<owner-slug>/facilitator-hub.html
+  Replace every {{TOKEN}} below with the cohort's value. Leave the structure alone.
+
+  Tokens to swap:
+    RPA        e.g. RPA
+    rpa        e.g. rpa  (lowercase, kebab-case)
+    Ginger Gentile · 3 builders · Tuesdays 10am COT · Starts 2026-06-16    e.g. Ginger Gentile · 3 builders · Tuesdays 10am COT
+    https://alexsalinsky.github.io/build-room-visuals/rpa-kickoff.html        published per-cohort kickoff (e.g. /rpa-kickoff.html)
+    https://alexsalinsky.github.io/build-room-visuals/rpa-adoption-pie.html            published per-cohort adoption pie
+    https://alexsalinsky.github.io/build-room-visuals/rpa-fears.html          published per-cohort fears
+    https://docs.google.com/spreadsheets/d/1wDa_uV7TRYSvfqSCcHAELxvD2WXdVmKmB7NB2GRfulk/edit        cohort tracker Google Sheet
+    https://www.skool.com/the-build-room-3309/classroom          Skool classroom URL
+    TBD           recurring Zoom (or "TBD")
+    ginger-engagement-letter-draft.md  Drive link to signed engagement letter
+
+  Bottom zone (session flow + visual library) is GENERIC. Edit it in the
+  template file when curriculum evolves; new cohorts pick up the latest copy.
+  Older cohorts keep what they were generated with - drift is accepted.
+
+  Locked 2026-06-15 alongside the floating HUD + per-cohort deck model.
+-->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 40px 28px 80px; }
+  header { margin-bottom: 28px; }
+  h1 { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .sub { font-size: 17px; color: #666; }
+  .cohort-pill { display: inline-block; background: #1a1a1a; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 1px; margin-bottom: 14px; }
+
+  h2 { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin: 32px 0 12px; padding-bottom: 6px; border-bottom: 1.5px solid #ddd; }
+  h2.zone { font-size: 11px; color: #aaa; letter-spacing: 2px; border-bottom: none; margin-bottom: 6px; padding-bottom: 0; }
+  h2.zone + h2 { margin-top: 4px; }
+
+  .zone-banner { background: #1a1a1a; color: #fff; padding: 10px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin: 32px 0 14px; display: flex; align-items: center; gap: 12px; }
+  .zone-banner.generic { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; }
+  .zone-banner .badge { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 8px; border-radius: 10px; background: rgba(255,255,255,0.18); }
+  .zone-banner.generic .badge { background: #1a1a1a; color: #fff; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 12px; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  @media (max-width: 720px) { .grid-3 { grid-template-columns: 1fr; } }
+
+  .card { background: #fff; border: 2px solid #1a1a1a; border-radius: 10px; padding: 16px 18px; text-decoration: none; color: #1a1a1a; display: block; transition: all 0.15s; }
+  .card:hover { background: #1a1a1a; color: #fff; }
+  .card:hover .meta { color: #aaa; }
+  .card .title { font-size: 16px; font-weight: 700; line-height: 1.25; margin-bottom: 3px; }
+  .card .meta { font-size: 12px; color: #666; line-height: 1.4; }
+  .card.primary { background: #1a1a1a; color: #fff; }
+  .card.primary .meta { color: #aaa; }
+  .card.primary:hover { background: #444; }
+  .card.tbd { border-style: dashed; opacity: 0.55; }
+
+  .ref-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  @media (max-width: 720px) { .ref-grid { grid-template-columns: 1fr; } }
+  .ref-card { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 8px; padding: 10px 14px; text-decoration: none; color: #1a1a1a; font-size: 13px; transition: all 0.15s; }
+  .ref-card:hover { background: #1a1a1a; color: #fff; }
+  .ref-card strong { display: block; font-size: 14px; margin-bottom: 2px; }
+
+  .session-block { background: #fff; border: 1.5px solid #ddd; border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; }
+  .session-block.s-now { border: 2.5px solid #1a1a1a; background: #fafafa; }
+  .session-block h3 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+  .session-block .when { font-size: 12px; color: #888; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+  .session-block .flow { font-size: 13px; color: #444; line-height: 1.55; margin-bottom: 10px; }
+  .session-block .flow ol { padding-left: 22px; }
+  .session-block .flow li { padding: 2px 0; }
+  .session-block .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .session-block .pill { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 16px; padding: 4px 12px; font-size: 12px; text-decoration: none; color: #1a1a1a; }
+  .session-block .pill:hover { background: #1a1a1a; color: #fff; }
+  .session-block .pill.tbd { border-style: dashed; color: #888; }
+
+  footer { margin-top: 36px; font-size: 12px; color: #888; text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="cohort-pill">RPA COHORT · FACILITATOR HUB</div>
+    <h1>RPA Facilitator Hub</h1>
+    <p class="sub">Ginger Gentile · 3 builders · Tuesdays 10am COT · Starts 2026-06-16</p>
+  </header>
+
+  <div class="zone-banner">Cohort-specific <span class="badge">Edit per cohort</span></div>
+
+  <h2>Live tools</h2>
+  <div class="grid">
+    <a class="card primary" href="https://alexsalinsky.github.io/build-room-visuals/rpa-kickoff.html" target="_blank">
+      <div class="title">RPA Kickoff Deck</div>
+      <div class="meta">Per-cohort deck with their adoption pie + fears baked in (slides 5 + 6).</div>
+    </a>
+    <a class="card" href="https://docs.google.com/spreadsheets/d/1wDa_uV7TRYSvfqSCcHAELxvD2WXdVmKmB7NB2GRfulk/edit" target="_blank">
+      <div class="title">Cohort Tracker (Sheet)</div>
+      <div class="meta">Roster, fluency level, pre-work, attendance, projects.</div>
+    </a>
+    <a class="card" href="https://www.skool.com/the-build-room-3309/classroom" target="_blank">
+      <div class="title">Skool Classroom</div>
+      <div class="meta">Welcome post, pre-work, share-backs, async.</div>
+    </a>
+    <a class="card" href="TBD" target="_blank">
+      <div class="title">Zoom (recurring)</div>
+      <div class="meta">Cameras on, host privileges, recording on.</div>
+    </a>
+  </div>
+
+  <h2>Cohort references</h2>
+  <div class="ref-grid">
+    <a class="ref-card" href="https://alexsalinsky.github.io/build-room-visuals/rpa-adoption-pie.html" target="_blank">
+      <strong>Adoption Pie</strong>
+      Standalone pie page (same data as deck slide 5).
+    </a>
+    <a class="ref-card" href="https://alexsalinsky.github.io/build-room-visuals/rpa-fears.html" target="_blank">
+      <strong>Fears</strong>
+      Standalone fears page (same quotes as deck slide 6).
+    </a>
+</div>
+
+  <div class="zone-banner generic">Generic — same across all cohorts <span class="badge">Curriculum library</span></div>
+
+  <h2>Session flow</h2>
+
+  <div class="session-block s-now">
+    <h3>Session 1 — Kickoff + first build</h3>
+    <div class="when">90 min · Week 1</div>
+    <div class="flow">
+      <ol>
+        <li>Be Human check-in (5)</li>
+        <li>Kickoff deck — promise, pie, fears, agreements (15)</li>
+        <li>Lesson 1 · Inside the Robot (10)</li>
+        <li>Dream Big, Build Small (8)</li>
+        <li>Lesson 2 · Plan the Problem (Input · Output · When) (8)</li>
+        <li>Choose your project (12)</li>
+        <li>First build sprint (22)</li>
+        <li>Share-back, 60 sec each (5)</li>
+        <li>Close + homework (5)</li>
+      </ol>
+    </div>
+    <div class="links">
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/inside-the-robot.html" target="_blank">Inside the Robot</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/dream-big-build-small.html" target="_blank">Dream Big, Build Small</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/plan-the-problem.html" target="_blank">Plan the Problem</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/how-to-prompt.html" target="_blank">How to Prompt</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/ai-lies.html" target="_blank">Handling AI Lies</a>
+    </div>
+  </div>
+
+  <div class="session-block">
+    <h3>Session 2 — Team Tech</h3>
+    <div class="when">90 min · Week 2</div>
+    <div class="flow">
+      Make Claude document itself as participants build. Centerpiece: portable markdown rule-pack participants drop into their own Claude config.
+    </div>
+    <div class="links">
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/claude-starter-pack.html" target="_blank">Claude Starter Pack</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/where-your-build-lives.html" target="_blank">Where Your Build Lives</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/connector-vs-api.html" target="_blank">Connector vs API</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/api-key-generic.html" target="_blank">API Key Flow</a>
+    </div>
+  </div>
+
+  <div class="session-block">
+    <h3>Session 3 — Build sprint</h3>
+    <div class="when">90 min · Week 3</div>
+    <div class="flow">
+      Focused build time. Working pairs, share-back, problem-of-the-week resolution.
+    </div>
+    <div class="links">
+      <span class="pill tbd">Curriculum TBD</span>
+    </div>
+  </div>
+
+  <div class="session-block">
+    <h3>Session 4 — Demo Day</h3>
+    <div class="when">90 min · Week 4</div>
+    <div class="flow">
+      Each participant demos. Most Business Value + Coolest Build votes. 1-month follow-up scheduled live.
+    </div>
+    <div class="links">
+      <span class="pill tbd">Demo Day template TBD</span>
+    </div>
+  </div>
+
+  <h2>Visual library + community</h2>
+  <div class="grid-3">
+    <a class="card" href="https://alexsalinsky.github.io/build-room-visuals/" target="_blank">
+      <div class="title">Visual library</div>
+      <div class="meta">All click-through lessons. Foundations, How-to, Rule Packs, Setup, Cohort Kickoffs.</div>
+    </a>
+    <a class="card" href="https://www.skool.com/the-build-room-3309" target="_blank">
+      <div class="title">Skool community</div>
+      <div class="meta">The Build Room main group. All cohorts live in here as private classrooms.</div>
+    </a>
+    <a class="card" href="https://github.com/alexsalinsky/build-room-visuals" target="_blank">
+      <div class="title">GitHub repo (source)</div>
+      <div class="meta">Templates, tokens.css, deck-template.html.</div>
+    </a>
+  </div>
+
+<footer>
+    Alex Salinsky · The Build Room · RPA Cohort
+  </footer>
+</div>
+</body>
+</html>
