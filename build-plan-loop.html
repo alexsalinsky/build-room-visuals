@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Build Plan Loop · The Build Room</title>
+<link rel="stylesheet" href="_template/tokens.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    background: var(--br-bg, #fafafa);
+    color: var(--br-text, #1a1a1a);
+    font-family: var(--br-font, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif);
+    overflow: hidden;
+  }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px 16px 96px; gap: 14px; }
+  .slide-wrap { flex: 1; max-height: 82vh; width: 100%; max-width: 1100px; display: flex; align-items: center; justify-content: center; padding: 24px; position: relative; }
+  .slide { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; position: relative; }
+  .slide.center { align-items: center; text-align: center; }
+
+  .section-chip { position: absolute; top: 0; left: 0; font-size: 12px; font-weight: 700; color: #666; letter-spacing: 2px; text-transform: uppercase; }
+  .slide.center .section-chip { left: 50%; transform: translateX(-50%); }
+
+  h1 { font-size: 64px; font-weight: 800; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 18px; }
+  h2 { font-size: 38px; font-weight: 700; line-height: 1.15; margin-bottom: 18px; letter-spacing: -0.5px; }
+  h3 { font-size: 22px; font-weight: 600; margin-bottom: 8px; color: #333; }
+  p  { font-size: 20px; line-height: 1.55; color: #333; margin-bottom: 12px; }
+  p.lead { font-size: 26px; color: #1a1a1a; }
+  p.dim { color: #666; }
+
+  ul, ol { padding-left: 0; list-style: none; }
+  li { font-size: 19px; line-height: 1.55; color: #333; margin-bottom: 10px; padding-left: 28px; position: relative; }
+  li::before { content: ""; position: absolute; left: 0; top: 11px; width: 14px; height: 2px; background: #1a1a1a; }
+  ol { counter-reset: step; }
+  ol li::before { content: counter(step); counter-increment: step; background: none; top: 0; width: auto; height: auto; font-weight: 700; color: #1a1a1a; font-size: 16px; left: 0; }
+  ol li { padding-left: 32px; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 18px; }
+  .card-block { border: 2px solid #1a1a1a; border-radius: 12px; padding: 22px 24px; background: #fff; }
+  .card-block h3 { font-size: 18px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #1a1a1a; margin-bottom: 12px; }
+  .card-block p { font-size: 17px; margin-bottom: 0; }
+
+  .note { font-size: 16px; color: #666; font-style: italic; margin-top: 12px; }
+
+  .pill { display: inline-block; background: #fde68a; color: #92400e; padding: 4px 12px; border-radius: 12px; font-size: 13px; font-weight: 700; letter-spacing: 1px; margin-bottom: 16px; }
+
+  .quote { border-left: 3px solid #1a1a1a; padding-left: 18px; font-size: 22px; line-height: 1.5; color: #1a1a1a; margin-bottom: 12px; font-weight: 500; }
+  .quote .who { display: block; font-size: 14px; color: #666; font-weight: 400; margin-top: 6px; font-style: italic; }
+
+  /* loop diagram styles */
+  .loop-svg { width: 100%; max-width: 900px; height: auto; }
+  .loop-node { fill: #fff; stroke: #1a1a1a; stroke-width: 2.5; }
+  .loop-node.finale { fill: #1a1a1a; }
+  .loop-label { font-size: 18px; font-weight: 700; fill: #1a1a1a; }
+  .loop-label-white { font-size: 18px; font-weight: 700; fill: #fff; }
+  .loop-sub { font-size: 13px; fill: #666; }
+  .loop-arrow { fill: none; stroke: #1a1a1a; stroke-width: 2; }
+  .loop-arrow.dashed { stroke-dasharray: 6 5; }
+
+  /* HUD navigation - floating glassy */
+  .hud { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 18px; align-items: center; font-size: 14px; color: #555; background: rgba(255,255,255,0.78); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 10px 18px; border-radius: 999px; border: 1.5px solid rgba(26,26,26,0.15); z-index: 1000; }
+  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 6px 16px; border-radius: 999px; cursor: pointer; font-size: 14px; font-weight: 500; touch-action: manipulation; z-index: 1001; position: relative; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 11px; color: #555; }
+
+  /* Brand footer */
+  .br-footer { position: fixed; bottom: 8px; left: 14px; font-size: 11px; color: #888; letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="slide-wrap" id="slideWrap"></div>
+</div>
+<div class="hud">
+  <div class="controls">
+    <button id="prev">← Prev</button>
+    <button id="next">Next →</button>
+  </div>
+  <div><strong id="counter">1</strong> / <span id="total">12</span></div>
+</div>
+<div class="hint">← → arrow keys, swipe on mobile</div>
+<div class="br-footer">Alex Salinsky · The Build Room</div>
+
+<script>
+const slides = [
+
+  // ---- 1. TITLE ----
+  {
+    html: `<div class="slide center">
+      <span class="pill">A Build Room Foundations Lesson</span>
+      <h1>The Build Plan Loop</h1>
+      <p class="lead" style="color:#666;font-weight:400;margin-top:6px">Demonstrate. Refine. Then build.</p>
+    </div>`
+  },
+
+  // ---- 2. THE TRAP ----
+  {
+    html: `<div class="slide">
+      <div class="section-chip">The trap</div>
+      <h2 style="margin-top:30px">Most people start in one of two wrong places.</h2>
+      <div class="grid-2">
+        <div class="card-block">
+          <h3>Trap 1: Write the spec first</h3>
+          <p>You sit down to define every column, every rule, every edge case. You stall. The thing in your head was never that organized in the first place.</p>
+        </div>
+        <div class="card-block">
+          <h3>Trap 2: Ask the AI to build it</h3>
+          <p>You say "build me a tool that does X" and the AI builds something. It works. It's just not how YOU actually do the job. So you don't use it.</p>
+        </div>
+      </div>
+      <p class="note">Both skip the step that makes the build actually fit you.</p>
+    </div>`
+  },
+
+  // ---- 3. THE PRINCIPLE ----
+  {
+    html: `<div class="slide center">
+      <div class="section-chip">The principle</div>
+      <h2 style="margin-top:30px;max-width:900px">Before you automate, demonstrate.</h2>
+      <p class="lead" style="max-width:820px;margin-top:18px;color:#444">The refined demonstration IS the build plan. You don't write it. You produce it by doing the work in front of the AI and correcting it until it gets the work right.</p>
+    </div>`
+  },
+
+  // ---- 4. THE LOOP ----
+  {
+    html: `<div class="slide">
+      <div class="section-chip">The loop</div>
+      <h2 style="margin-top:24px;text-align:center;margin-bottom:20px">Five steps. The middle three are a loop.</h2>
+      <div style="display:flex;justify-content:center;align-items:center">
+      <svg class="loop-svg" viewBox="0 0 900 360" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a1a1a"/>
+          </marker>
+        </defs>
+        <!-- 5 nodes in a row, but middle 3 loop above -->
+        <rect x="20" y="140" width="150" height="80" rx="10" class="loop-node"/>
+        <text x="95" y="172" text-anchor="middle" class="loop-label">1. Name + Demo</text>
+        <text x="95" y="195" text-anchor="middle" class="loop-sub">goal, then show</text>
+
+        <rect x="210" y="140" width="150" height="80" rx="10" class="loop-node"/>
+        <text x="285" y="172" text-anchor="middle" class="loop-label">2. Plan</text>
+        <text x="285" y="195" text-anchor="middle" class="loop-sub">talk it through</text>
+
+        <rect x="400" y="140" width="170" height="80" rx="10" class="loop-node"/>
+        <text x="485" y="172" text-anchor="middle" class="loop-label">3. AI demos back</text>
+        <text x="485" y="195" text-anchor="middle" class="loop-sub">show me your version</text>
+
+        <rect x="610" y="140" width="150" height="80" rx="10" class="loop-node"/>
+        <text x="685" y="172" text-anchor="middle" class="loop-label">4. Refine</text>
+        <text x="685" y="195" text-anchor="middle" class="loop-sub">correct the gaps</text>
+
+        <rect x="780" y="140" width="100" height="80" rx="10" class="loop-node finale"/>
+        <text x="830" y="167" text-anchor="middle" class="loop-label-white">5. Build</text>
+        <text x="830" y="190" text-anchor="middle" style="font-size:13px;fill:#bbb">plan ready</text>
+
+        <!-- forward arrows -->
+        <path d="M 170 180 L 205 180" class="loop-arrow" marker-end="url(#ar)"/>
+        <path d="M 360 180 L 395 180" class="loop-arrow" marker-end="url(#ar)"/>
+        <path d="M 570 180 L 605 180" class="loop-arrow" marker-end="url(#ar)"/>
+        <path d="M 760 180 L 775 180" class="loop-arrow" marker-end="url(#ar)"/>
+
+        <!-- loop-back arrow from refine back to AI demos back -->
+        <path d="M 685 140 Q 685 70 580 70 Q 485 70 485 140" class="loop-arrow dashed" marker-end="url(#ar)"/>
+        <text x="585" y="58" text-anchor="middle" class="loop-sub" style="font-size:13px;font-style:italic">repeat until the demo matches reality</text>
+
+        <!-- bottom labels -->
+        <text x="190" y="260" text-anchor="middle" class="loop-sub" style="font-size:14px">YOU do the work</text>
+        <text x="485" y="260" text-anchor="middle" class="loop-sub" style="font-size:14px">THE LOOP</text>
+        <text x="830" y="260" text-anchor="middle" class="loop-sub" style="font-size:14px">CODE MODE</text>
+      </svg>
+      </div>
+    </div>`
+  },
+
+  // ---- 5. STEP 1: NAME IT, THEN DEMO ----
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Step 1</div>
+      <h2 style="margin-top:30px">Name what you're building. Then demonstrate.</h2>
+      <p>Two moves. The first one anchors everything. The second one teaches.</p>
+      <div class="card-block" style="margin-top:14px;background:#fafafa">
+        <h3>Sounds like this</h3>
+        <p style="font-size:18px;color:#1a1a1a;margin-bottom:0"><strong>"I want to build a tool that compares media notices to client profiles and pulls out the ones that score high for relevancy. Before we build it, I want to teach you how I think about it. Let's practice with some examples."</strong></p>
+      </div>
+      <p style="margin-top:18px">That's the whole frame. The goal up front gives the AI a destination. The "let me teach you first" tells the AI not to start building. You stay in driver's seat.</p>
+    </div>`
+  },
+
+  // ---- 5b. STEP 1, PART TWO: HOW TO DEMONSTRATE ----
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Step 1 · how to demonstrate</div>
+      <h2 style="margin-top:30px">Use real examples. The mess matters.</h2>
+      <div class="grid-2" style="margin-top:18px">
+        <div class="card-block">
+          <h3>If it's a process</h3>
+          <p>Record your screen as you do it once. Talk through what you're doing and why. Tools like Trupeer, Scribe, or Guidde turn the recording into a step-by-step doc.</p>
+        </div>
+        <div class="card-block">
+          <h3>If it's a judgment call</h3>
+          <p>Show 10 real examples. Sort them by hand the way you would. Say one sentence about why each one landed where it did.</p>
+        </div>
+      </div>
+      <p class="note">If you can't demonstrate it, you can't automate it. That's a useful failure.</p>
+    </div>`
+  },
+
+  // ---- 6. STEP 2: PLAN ----
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Step 2</div>
+      <h2 style="margin-top:30px">Plan together.</h2>
+      <p>Open a conversation with Claude. Not "build me X." Three things to put on the table:</p>
+      <ol style="margin-top:14px">
+        <li><strong>Here's what I do.</strong> The demonstration from step 1.</li>
+        <li><strong>Here's why.</strong> The judgment behind the choices. The part that only lives in your head.</li>
+        <li><strong>Here's what's hard.</strong> The edge cases, the things that go wrong, the rules you break sometimes.</li>
+      </ol>
+      <p class="note">If you skip step 2 and jump straight to asking the AI to do it, you'll get back something that fits a generic version of your job. Not yours.</p>
+    </div>`
+  },
+
+  // ---- 7. STEP 3: AI DEMONSTRATES BACK ----
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Step 3</div>
+      <h2 style="margin-top:30px">Ask the AI to demonstrate back.</h2>
+      <p>Not code. Not yet. A demonstration. A walkthrough. A sample output.</p>
+      <div class="card-block" style="margin-top:18px">
+        <p style="font-size:19px;color:#1a1a1a;margin-bottom:0">"Based on what I just told you, show me your version. Don't build anything. Describe what you'd do, in the same shape as my demonstration, on one of my real examples."</p>
+      </div>
+      <p style="margin-top:18px">Now you can see what the AI actually heard. Almost always, that's different from what you said.</p>
+    </div>`
+  },
+
+  // ---- 8. STEP 4: REFINE ----
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Step 4</div>
+      <h2 style="margin-top:30px">Refine.</h2>
+      <p>Read the AI's demonstration next to yours. Score the gap.</p>
+      <ul style="margin-top:14px">
+        <li>What did it get right?</li>
+        <li>What did it miss?</li>
+        <li>What did it weight wrong?</li>
+        <li>What rule of yours does it not know about yet?</li>
+      </ul>
+      <p style="margin-top:14px">Correct it in plain language. Then ask it to demonstrate again. Loop until its demo lands close to yours.</p>
+      <p class="note">This loop is where the build plan is actually born. Not in a doc you wrote up front. In the corrections you keep making.</p>
+    </div>`
+  },
+
+  // ---- 9. STEP 5: HAND IT OFF ----
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Step 5</div>
+      <h2 style="margin-top:30px">The refined demo is the build plan.</h2>
+      <p>When the AI's demonstration matches how you actually do the work, you have a spec. You didn't write it. You produced it.</p>
+      <div class="card-block" style="margin-top:18px;background:#1a1a1a;color:#fff;border-color:#1a1a1a">
+        <h3 style="color:#fde68a">Now switch to code mode</h3>
+        <p style="color:#fff;font-size:18px">Hand the conversation to Claude Code. Say: "Here's the demonstration we agreed on. Build the tool that does this." That's your prompt.</p>
+      </div>
+      <p class="note" style="margin-top:14px">The tool you build now actually fits the work. Because the AI already proved it understands the work.</p>
+    </div>`
+  },
+
+  // ---- 10. WHY THIS WORKS ----
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Why this works</div>
+      <h2 style="margin-top:30px">Three things stay true.</h2>
+      <div class="grid-2" style="margin-top:14px">
+        <div class="card-block">
+          <h3>You stay the expert</h3>
+          <p>The AI is the apprentice learning your work. Not the other way around.</p>
+        </div>
+        <div class="card-block">
+          <h3>The gaps become visible</h3>
+          <p>Bad assumptions show up in the AI's demo, where you can fix them. Not in the built tool, where they're expensive.</p>
+        </div>
+      </div>
+      <div class="card-block" style="margin-top:18px;max-width:520px;margin-left:auto;margin-right:auto">
+        <h3>The build doesn't drift</h3>
+        <p>The thing that gets built matches the thing you agreed on. No surprise interpretations.</p>
+      </div>
+    </div>`
+  },
+
+  // ---- 11. TRY IT NOW ----
+  {
+    html: `<div class="slide center">
+      <div class="section-chip">Now</div>
+      <h2 style="margin-top:30px">Try it on the smallest thing you can find.</h2>
+      <p class="lead" style="max-width:780px;margin-top:18px;color:#444">Pick one repetitive task. Ten minutes. Demonstrate. Plan. Ask Claude to show its version. Correct it once. See how much closer it gets.</p>
+      <p style="margin-top:24px;font-size:17px;color:#666">Bring what you got to the next session.</p>
+    </div>`
+  }
+
+];
+
+let i = 0;
+const wrap = document.getElementById("slideWrap");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = slides.length;
+
+function render() {
+  wrap.innerHTML = slides[i].html;
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === slides.length - 1;
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < slides.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") next.click();
+  if (e.key === "ArrowLeft") prev.click();
+});
+
+// touch swipe
+let touchStartX = null;
+document.addEventListener("touchstart", (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+document.addEventListener("touchend", (e) => {
+  if (touchStartX === null) return;
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) {
+    if (dx < 0) next.click(); else prev.click();
+  }
+  touchStartX = null;
+}, { passive: true });
+
+render();
+</script>
+</body>
+</html>
