@@ -2,149 +2,155 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>The Build Room — Visual Library</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Room Resources — The Build Room</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
-  .page { max-width: 1100px; margin: 0 auto; padding: 56px 32px 96px; }
+  .page { max-width: 1000px; margin: 0 auto; padding: 56px 28px 96px; }
   header { margin-bottom: 36px; }
-  h1 { font-size: 48px; font-weight: 800; letter-spacing: -1.2px; margin-bottom: 12px; }
-  .sub { font-size: 19px; color: #666; max-width: 680px; line-height: 1.5; }
-  h2 { font-size: 18px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin: 36px 0 14px; padding-bottom: 8px; border-bottom: 1.5px solid #ddd; }
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
-  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+  .chip { display: inline-block; font-size: 11px; font-weight: 700; color: #888; letter-spacing: 1.6px; text-transform: uppercase; margin-bottom: 16px; }
+  h1 { font-size: 48px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.05; margin-bottom: 14px; }
+  .sub { font-size: 19px; color: #555; line-height: 1.5; max-width: 720px; }
+  h2 { font-size: 16px; font-weight: 700; color: #888; letter-spacing: 1.6px; text-transform: uppercase; margin: 40px 0 14px; padding-bottom: 8px; border-bottom: 1.5px solid #ddd; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
   .card { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 20px 22px; text-decoration: none; color: #1a1a1a; display: block; transition: all 0.15s ease; }
   .card:hover { background: #1a1a1a; color: #fff; transform: translateY(-2px); }
   .card:hover .meta { color: #bbb; }
-  .card .title { font-size: 18px; font-weight: 700; line-height: 1.25; margin-bottom: 5px; }
-  .card .meta { font-size: 13px; color: #666; line-height: 1.45; }
+  .card[data-status="soon"] { opacity: 0.7; cursor: default; }
+  .card[data-status="soon"]:hover { background: #fff; color: #1a1a1a; transform: none; }
   .card .status { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; border: 1.5px solid #1a1a1a; }
-  .card[data-status="live"]     .status { background: #16a34a; color: #fff; border-color: #16a34a; }
-  .card[data-status="draft"]    .status { background: #fde68a; color: #92400e; border-color: #92400e; }
-  .card[data-status="archived"] .status { background: #fafafa; color: #888; border-color: #bbb; }
-  .card:hover .status { filter: none; }
-  footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 13px; color: #888; text-align: center; }
+  .card[data-status="live"] .status { background: #16a34a; color: #fff; border-color: #16a34a; }
+  .card[data-status="soon"] .status { background: #fde68a; color: #92400e; border-color: #92400e; }
+  .card .title { font-size: 19px; font-weight: 700; line-height: 1.25; margin-bottom: 5px; }
+  .card .meta { font-size: 14px; color: #666; line-height: 1.45; }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 13px; color: #888; text-align: center; }
 </style>
 </head>
 <body>
 <div class="page">
+
   <header>
-    <h1>The Build Room</h1>
-    <p class="sub">Visual library. Click-through lessons for thinking about AI, prompting, building, and shipping.</p>
+    <div class="chip">The Build Room</div>
+    <h1>Build Room Resources</h1>
+    <p class="sub">Everything you need to start, the day you start. Bookmark this page. Open the cohort with the tech stack confirmed, the assessment taken, and the community joined.</p>
   </header>
 
-  <h2>Facilitator Hubs</h2>
+  <h2>Before Kickoff</h2>
   <div class="grid">
-    <a class="card" data-status="live" href="rpa-hub.html">
-      <div class="status">Live</div>
-      <div class="title">RPA Facilitator Hub</div>
-      <div class="meta">One page: deck, tracker, Skool, session flow, full visual library.</div>
-    </a>
-  </div>
 
-  <h2>Cohort Resources</h2>
-  <div class="grid">
-    <a class="card" data-status="live" href="build-room-resources.html">
-      <div class="status">Live</div>
-      <div class="title">Build Room Resources (Index)</div>
-      <div class="meta">Bookmark page for cohort participants. Tech stack, assessment, Skool, foundations.</div>
-    </a>
     <a class="card" data-status="live" href="minimum-tech-stack.html">
       <div class="status">Live</div>
       <div class="title">Minimum Tech Stack</div>
       <div class="meta">Pick one: ChatGPT Plus or Claude Pro / Max. The floor for the cohort.</div>
     </a>
-  </div>
 
-  <h2>Cohort Kickoffs</h2>
-  <div class="grid">
-    <a class="card" data-status="live" href="kickoff-deck.html">
+    <a class="card" data-status="live" href="https://docs.google.com/forms/d/e/1FAIpQLSfPAy7jEekZgRFlZ1GpjWacfZ3z-ybpwRGP73frMoQ6IaZ-JQ/viewform?usp=pp_url&entry.534543081=Humans+V+Robots&entry.1686970719=2026-jun-humans-v-robots-kickoff&entry.121910716=Pre" target="_blank" rel="noopener">
       <div class="status">Live</div>
-      <div class="title">Kickoff Deck (generic template)</div>
-      <div class="meta">Template. Clone per cohort and bake in their pie + fears on slides 5 + 6.</div>
+      <div class="title">AI Fluency Assessment</div>
+      <div class="meta">Five minutes. Five dimensions. Personalized report on where you are and what to build first.</div>
     </a>
-    <a class="card" data-status="live" href="rpa-kickoff.html">
+
+    <a class="card" data-status="live" href="https://www.skool.com/the-build-room-3309" target="_blank" rel="noopener">
       <div class="status">Live</div>
-      <div class="title">RPA Kickoff</div>
-      <div class="meta">Per-cohort version with RPA adoption pie + fears baked in.</div>
+      <div class="title">Skool Community</div>
+      <div class="meta">The Build Room community. Lessons, peer discussion, async support between sessions.</div>
     </a>
+
+    <a class="card" data-status="soon" href="#">
+      <div class="status">Coming</div>
+      <div class="title">Claude Starter Pack</div>
+      <div class="meta">First 30 minutes with Claude Code: install, first prompt, first commit. Drop-in to your project.</div>
+    </a>
+
   </div>
 
   <h2>Foundations</h2>
   <div class="grid">
+
     <a class="card" data-status="live" href="inside-the-robot.html">
       <div class="status">Live</div>
       <div class="title">Inside the Robot</div>
       <div class="meta">How LLMs, context, integrations, and products fit together.</div>
     </a>
+
     <a class="card" data-status="live" href="dream-big-build-small.html">
       <div class="status">Live</div>
       <div class="title">Dream Big, Build Small</div>
-      <div class="meta">Backwards design. Dream → MVP → First Brick.</div>
+      <div class="meta">Backwards design. Dream to MVP to First Brick.</div>
     </a>
+
     <a class="card" data-status="live" href="plan-the-problem.html">
       <div class="status">Live</div>
       <div class="title">Plan the Problem</div>
       <div class="meta">Input · Output · When framework.</div>
     </a>
+
+    <a class="card" data-status="live" href="where-your-build-lives.html">
+      <div class="status">Live</div>
+      <div class="title">Where Your Build Lives</div>
+      <div class="meta">Inside Claude · Outside Claude · Hybrid. Pick where your tool lives.</div>
+    </a>
+
   </div>
 
-  <h2>How-to</h2>
+  <h2>How To</h2>
   <div class="grid">
+
     <a class="card" data-status="live" href="how-to-prompt.html">
       <div class="status">Live</div>
       <div class="title">How to Prompt</div>
       <div class="meta">Plan first, build second. The reflect-back move.</div>
     </a>
+
     <a class="card" data-status="live" href="ai-lies.html">
       <div class="status">Live</div>
       <div class="title">Handling AI Lies</div>
       <div class="meta">Seven patterns of fabrication and how to catch them.</div>
     </a>
+
     <a class="card" data-status="live" href="api-key-generic.html">
       <div class="status">Live</div>
       <div class="title">API Key Flow</div>
       <div class="meta">How to find and use any API key.</div>
     </a>
-  </div>
 
-  <h2>Rule Packs</h2>
-  <div class="grid">
     <a class="card" data-status="live" href="llm-builder-bps.html">
       <div class="status">Live</div>
       <div class="title">LLM Builder Best Practices</div>
       <div class="meta">One file. Drop into your CLAUDE.md or AGENTS.md. Your AI build tool documents your project as you build.</div>
     </a>
+
   </div>
 
   <h2>Setup</h2>
   <div class="grid">
+
     <a class="card" data-status="live" href="claude-code-setup.html">
       <div class="status">Live</div>
       <div class="title">Claude Code Setup</div>
-      <div class="meta">4 steps. Install GitHub Desktop. Quit Claude fully. Reopen.</div>
+      <div class="meta">Four steps. Install GitHub Desktop. Quit Claude fully. Reopen.</div>
     </a>
+
     <a class="card" data-status="live" href="github-60s.html">
       <div class="status">Live</div>
       <div class="title">GitHub in 60 Seconds</div>
       <div class="meta">Mental model. No deep tech required.</div>
     </a>
+
     <a class="card" data-status="live" href="connector-vs-api.html">
       <div class="status">Live</div>
       <div class="title">Connector vs API</div>
       <div class="meta">When to use which. Trade-offs.</div>
     </a>
-    <a class="card" data-status="live" href="where-your-build-lives.html">
-      <div class="status">Live</div>
-      <div class="title">Where Your Build Lives</div>
-      <div class="meta">Inside Claude · Outside Claude · Hybrid.</div>
-    </a>
+
   </div>
 
   <footer>
     Alex Salinsky · The Build Room
   </footer>
+
 </div>
 </body>
 </html>
