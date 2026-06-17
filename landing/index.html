@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Build Room — Learn AI. Build Robots. Stay Human.</title>
+<meta name="description" content="A 4-week cohort where teams build real AI workflows together. Join the next free webinar or arrange a private cohort for your team.">
+<meta property="og:title" content="The Build Room — Learn AI. Build Robots. Stay Human.">
+<meta property="og:description" content="A 4-week cohort where teams build real AI workflows together.">
+<meta property="og:type" content="website">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.5; }
+  body { overflow-x: hidden; }
+  a { color: inherit; }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav.top { padding: 22px 0; display: flex; justify-content: space-between; align-items: center; }
+  nav.top .brand { font-weight: 800; font-size: 19px; letter-spacing: -0.3px; }
+  nav.top .links { display: flex; gap: 22px; font-size: 14px; font-weight: 600; }
+  nav.top .links a { text-decoration: none; color: #555; }
+  nav.top .links a:hover { color: #1a1a1a; }
+  @media (max-width: 640px) { nav.top .links { display: none; } }
+
+  /* Hero */
+  .hero { padding: 40px 0 56px; }
+  .eyebrow { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #888; border: 1.5px solid #ddd; padding: 5px 12px; border-radius: 20px; margin-bottom: 22px; }
+  h1.hero-h { font-size: clamp(40px, 7vw, 76px); font-weight: 800; line-height: 1.02; letter-spacing: -2px; margin-bottom: 22px; }
+  h1.hero-h .accent { color: #16a34a; }
+  .hero-sub { font-size: clamp(18px, 2.2vw, 22px); color: #444; max-width: 680px; line-height: 1.5; margin-bottom: 32px; }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 14px; }
+  .btn { display: inline-block; padding: 16px 26px; border-radius: 10px; font-weight: 700; font-size: 16px; text-decoration: none; border: 2px solid #1a1a1a; transition: all 0.15s ease; cursor: pointer; line-height: 1; }
+  .btn.primary { background: #1a1a1a; color: #fff; }
+  .btn.primary:hover { background: #16a34a; border-color: #16a34a; transform: translateY(-1px); }
+  .btn.secondary { background: transparent; color: #1a1a1a; }
+  .btn.secondary:hover { background: #1a1a1a; color: #fff; transform: translateY(-1px); }
+  .cta-note { font-size: 13px; color: #888; margin-top: 6px; }
+
+  /* Video */
+  .video-section { padding: 16px 0 64px; }
+  .video-frame { position: relative; border: 2.5px solid #1a1a1a; border-radius: 14px; overflow: hidden; background: #1a1a1a; aspect-ratio: 16 / 9; box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+  .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-caption { font-size: 14px; color: #666; text-align: center; margin-top: 14px; font-style: italic; }
+
+  /* Sections */
+  section.block { padding: 64px 0; border-top: 1px solid #ececec; }
+  .section-chip { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 14px; }
+  h2.section-h { font-size: clamp(30px, 4.5vw, 46px); font-weight: 800; letter-spacing: -1.2px; line-height: 1.1; margin-bottom: 18px; max-width: 760px; }
+  .section-lead { font-size: 19px; color: #444; max-width: 680px; margin-bottom: 36px; line-height: 1.55; }
+
+  /* What you get */
+  .gift-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 820px) { .gift-grid { grid-template-columns: 1fr; } }
+  .gift { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 14px; padding: 26px 24px; position: relative; }
+  .gift .num { font-size: 12px; font-weight: 800; color: #16a34a; letter-spacing: 2px; margin-bottom: 10px; }
+  .gift .gift-title { font-size: 20px; font-weight: 800; line-height: 1.2; margin-bottom: 10px; letter-spacing: -0.3px; }
+  .gift p { font-size: 15px; color: #555; line-height: 1.5; }
+
+  /* Proof */
+  .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 40px; }
+  @media (max-width: 820px) { .proof-grid { grid-template-columns: repeat(2, 1fr); } }
+  .stat { background: #1a1a1a; color: #fff; border-radius: 12px; padding: 24px 20px; }
+  .stat .num { font-size: 38px; font-weight: 800; letter-spacing: -1.5px; line-height: 1; margin-bottom: 8px; }
+  .stat .num .unit { font-size: 22px; font-weight: 700; color: #16a34a; }
+  .stat .label { font-size: 13px; color: #bbb; line-height: 1.4; }
+
+  .quote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 820px) { .quote-grid { grid-template-columns: 1fr; } }
+  .quote { background: #fff; border-left: 4px solid #16a34a; border-radius: 4px 12px 12px 4px; padding: 22px 26px; box-shadow: 0 2px 0 rgba(0,0,0,0.04); }
+  .quote .q { font-size: 18px; color: #1a1a1a; line-height: 1.5; margin-bottom: 12px; font-weight: 500; }
+  .quote .who { font-size: 13px; color: #888; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* For who */
+  .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 820px) { .who-grid { grid-template-columns: 1fr; } }
+  .who-card { padding: 22px 24px; border: 2px solid #ececec; border-radius: 12px; background: #fff; }
+  .who-card strong { display: block; font-size: 17px; margin-bottom: 6px; }
+  .who-card p { font-size: 15px; color: #555; line-height: 1.5; }
+
+  /* Format strip */
+  .format-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 820px) { .format-strip { grid-template-columns: repeat(2, 1fr); } }
+  .fitem { padding: 22px 20px; border: 2px solid #1a1a1a; border-radius: 12px; text-align: center; background: #fff; }
+  .fitem .big { font-size: 32px; font-weight: 800; letter-spacing: -1px; line-height: 1; margin-bottom: 6px; }
+  .fitem .lbl { font-size: 13px; color: #666; font-weight: 600; }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 36px; align-items: start; }
+  @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-photo { aspect-ratio: 1; border-radius: 14px; background: linear-gradient(135deg, #1a1a1a 0%, #16a34a 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 88px; font-weight: 800; letter-spacing: -3px; }
+  .about-body p { font-size: 17px; color: #333; line-height: 1.6; margin-bottom: 14px; }
+  .about-body a { color: #16a34a; font-weight: 600; }
+
+  /* Final CTA */
+  .final { background: #1a1a1a; color: #fff; border-radius: 18px; padding: 56px 40px; text-align: center; margin: 32px 0 64px; }
+  .final h2 { font-size: clamp(28px, 5vw, 44px); font-weight: 800; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
+  .final p { font-size: 18px; color: #ccc; max-width: 560px; margin: 0 auto 28px; line-height: 1.5; }
+  .final .cta-row { justify-content: center; }
+  .final .btn.primary { background: #16a34a; border-color: #16a34a; color: #fff; }
+  .final .btn.primary:hover { background: #fff; color: #1a1a1a; border-color: #fff; }
+  .final .btn.secondary { background: transparent; color: #fff; border-color: #fff; }
+  .final .btn.secondary:hover { background: #fff; color: #1a1a1a; }
+
+  /* Footer */
+  footer { padding: 32px 0 56px; text-align: center; font-size: 14px; color: #888; border-top: 1px solid #ececec; }
+
+  /* Modal */
+  .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 1000; }
+  .modal-backdrop.open { display: flex; }
+  .modal { background: #fff; border-radius: 16px; padding: 36px 32px; max-width: 460px; width: 100%; border: 2.5px solid #1a1a1a; position: relative; }
+  .modal h3 { font-size: 26px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .modal p { font-size: 15px; color: #555; margin-bottom: 22px; line-height: 1.5; }
+  .modal label { display: block; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+  .modal input { width: 100%; padding: 14px 16px; border: 2px solid #1a1a1a; border-radius: 10px; font-size: 16px; font-family: inherit; margin-bottom: 14px; }
+  .modal input:focus { outline: none; border-color: #16a34a; }
+  .modal .btn { width: 100%; text-align: center; }
+  .modal .close { position: absolute; top: 14px; right: 16px; background: none; border: 0; font-size: 28px; color: #888; cursor: pointer; line-height: 1; }
+  .modal .close:hover { color: #1a1a1a; }
+  .modal-thanks { display: none; text-align: center; }
+  .modal-thanks.show { display: block; }
+  .modal-thanks .check { font-size: 56px; color: #16a34a; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="top">
+    <div class="brand">The Build Room</div>
+    <div class="links">
+      <a href="#what">What you get</a>
+      <a href="#proof">Proof</a>
+      <a href="#about">About Alex</a>
+      <a href="../">Visual library</a>
+    </div>
+  </nav>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">A 4-week AI building cohort</span>
+    <h1 class="hero-h">Learn AI.<br>Build Robots.<br><span class="accent">Stay Human.</span></h1>
+    <p class="hero-sub">A 4-week cohort where small teams ship one real AI workflow, with coaching and peers building alongside you. Four sessions. Four hours of accountable build time. One thing in your hands at the end.</p>
+    <div class="cta-row">
+      <button class="btn primary" onclick="openModal()">Join the next free webinar</button>
+      <a class="btn secondary" href="mailto:alexsalinsky@gmail.com?subject=Private%20Build%20Room%20cohort%20for%20our%20team&body=Hi%20Alex%2C%20we'd%20like%20to%20talk%20about%20running%20a%20private%20Build%20Room%20cohort%20for%20our%20team.">Arrange a private cohort</a>
+    </div>
+    <p class="cta-note">Next session date: TBA. Drop your email and we'll send the invite.</p>
+  </div>
+</header>
+
+<section class="video-section">
+  <div class="wrap">
+    <div class="video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/fOsAPj_3et8?rel=0" title="The Build Room kickoff webinar" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <p class="video-caption">The full kickoff webinar. The room, the format, the philosophy, in about an hour.</p>
+  </div>
+</section>
+
+<section class="block" id="what">
+  <div class="wrap">
+    <div class="section-chip">What you get on the webinar</div>
+    <h2 class="section-h">Show up live. Leave with three things you can use this week.</h2>
+    <p class="section-lead">Even if you don't join the cohort, the webinar itself gives you something. Three gifts, no upsell required.</p>
+    <div class="gift-grid">
+      <div class="gift">
+        <div class="num">GIFT 01</div>
+        <div class="gift-title">Access to the Build Room Skool community</div>
+        <p>Free. Public lessons, working visuals, and the same starter stack the cohorts use.</p>
+      </div>
+      <div class="gift">
+        <div class="num">GIFT 02</div>
+        <div class="gift-title">Free AI Fluency Assessment</div>
+        <p>Five-dimension rubric across Use, Judgment, Build, Connect, and Spread. See where your team is now and where to grow next.</p>
+      </div>
+      <div class="gift">
+        <div class="num">GIFT 03</div>
+        <div class="gift-title">Starter Stack advice</div>
+        <p>One concrete recommendation: the smallest AI setup that actually does work for your role, not a list of 40 tools.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="proof">
+  <div class="wrap">
+    <div class="section-chip">Why it works</div>
+    <h2 class="section-h">Small rooms. Real builds. People who finish.</h2>
+    <p class="section-lead">The Build Room runs the opposite playbook from a webinar funnel. Small cohorts, peer accountability, and a deliverable that exists in the world by the end of week four.</p>
+
+    <div class="proof-grid">
+      <div class="stat">
+        <div class="num">4<span class="unit">wk</span></div>
+        <div class="label">One session per week, plus async support and build time between</div>
+      </div>
+      <div class="stat">
+        <div class="num">3<span class="unit">x</span></div>
+        <div class="label">Cohorts shipped so far: DBALP, RPA, and Friends &amp; Family</div>
+      </div>
+      <div class="stat">
+        <div class="num">1<span class="unit">/team</span></div>
+        <div class="label">Real AI workflow each participant ships by Demo Day</div>
+      </div>
+      <div class="stat">
+        <div class="num">0</div>
+        <div class="label">Generic tool walkthroughs. Frameworks for thinking, not tool memorization</div>
+      </div>
+    </div>
+
+    <div class="quote-grid">
+      <div class="quote">
+        <p class="q">"The format forces a build. Not a watch-list, not a notes page. By session two, every person in the room had something working they didn't have before."</p>
+        <div class="who">DBALP cohort, session 2 retro</div>
+      </div>
+      <div class="quote">
+        <p class="q">"Learn frameworks for thinking about AI. Build something real, with help along the way. Stay human through community and ritual."</p>
+        <div class="who">The Build Room thesis</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-chip">Who it's for</div>
+    <h2 class="section-h">Built for operators, leaders, and small teams who are tired of watching from the sideline.</h2>
+    <div class="who-grid">
+      <div class="who-card">
+        <strong>Department heads and team leads</strong>
+        <p>You're responsible for getting your people to actually use AI well. You want a structured way in.</p>
+      </div>
+      <div class="who-card">
+        <strong>Founders and operators</strong>
+        <p>You're running a small company and you want one real AI workflow live this month, not someday.</p>
+      </div>
+      <div class="who-card">
+        <strong>Coaches, facilitators, and consultants</strong>
+        <p>You want to model AI fluency for clients without becoming a tool reseller.</p>
+      </div>
+      <div class="who-card">
+        <strong>Curious builders</strong>
+        <p>You've taken courses. You've watched videos. Nothing shipped. You're done with that.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-chip">Format</div>
+    <h2 class="section-h">Four weeks. One session per week. Build time baked in.</h2>
+    <div class="format-strip">
+      <div class="fitem"><div class="big">S1</div><div class="lbl">Frame the problem, pick the build</div></div>
+      <div class="fitem"><div class="big">S2</div><div class="lbl">Team tech. Make Claude document itself</div></div>
+      <div class="fitem"><div class="big">S3</div><div class="lbl">Ship the first working version</div></div>
+      <div class="fitem"><div class="big">S4</div><div class="lbl">Demo Day. Show what you built</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="about">
+  <div class="wrap">
+    <div class="section-chip">About the host</div>
+    <h2 class="section-h">Alex Salinsky</h2>
+    <div class="about-grid">
+      <div class="about-photo">AS</div>
+      <div class="about-body">
+        <p>Alex runs riseCOO, an operations and leadership development practice (legal entity En Blazes LLC). He's spent the last decade helping teams turn messy ideas into running systems, most recently with AI.</p>
+        <p>The Build Room is the cohort arm of that work. He writes about AI fluency, measurement, and team adoption on his <a href="https://www.linkedin.com/in/alexsalinsky/recent-activity/newsletter/" target="_blank" rel="noopener">LinkedIn newsletter</a>, hosts AI Buildathons at conferences, and runs private cohorts for teams that want to move faster than a webinar will get them.</p>
+        <p>If you want a deeper look at how he thinks about getting teams to actually use AI, start with <a href="https://www.linkedin.com/pulse/how-get-your-team-actually-use-ai-alex-salinsky-rmmhe" target="_blank" rel="noopener">How to Get Your Team to Actually Use AI</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="final">
+    <h2>Pick a door. Both are open.</h2>
+    <p>Come to the next free webinar, or skip the line and have us run a private cohort for your team.</p>
+    <div class="cta-row">
+      <button class="btn primary" onclick="openModal()">Join the next free webinar</button>
+      <a class="btn secondary" href="mailto:alexsalinsky@gmail.com?subject=Private%20Build%20Room%20cohort%20for%20our%20team&body=Hi%20Alex%2C%20we'd%20like%20to%20talk%20about%20running%20a%20private%20Build%20Room%20cohort%20for%20our%20team.">Arrange a private cohort</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Alex Salinsky · The Build Room
+</footer>
+
+<div class="modal-backdrop" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="close" onclick="closeModal()" aria-label="Close">&times;</button>
+    <div class="modal-form" id="modal-form">
+      <h3>Get the next webinar invite</h3>
+      <p>Next session date is TBA. Drop your email and we'll send the invite as soon as it's locked.</p>
+      <form onsubmit="submitForm(event)" action="mailto:alexsalinsky@gmail.com" method="post" enctype="text/plain">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required placeholder="Your name">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required placeholder="you@company.com">
+        <button class="btn primary" type="submit">Notify me</button>
+      </form>
+    </div>
+    <div class="modal-thanks" id="modal-thanks">
+      <div class="check">&#10003;</div>
+      <h3>You're on the list.</h3>
+      <p>We'll email you when the next webinar date is set. In the meantime, take a look at the <a href="../" style="color:#16a34a;font-weight:600;">visual library</a>.</p>
+      <button class="btn secondary" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal() {
+    document.getElementById('modal').classList.add('open');
+    document.getElementById('modal-form').style.display = 'block';
+    document.getElementById('modal-thanks').classList.remove('show');
+    setTimeout(function(){ var el = document.getElementById('name'); if (el) el.focus(); }, 80);
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+  }
+  function submitForm(e) {
+    e.preventDefault();
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var subject = encodeURIComponent('Build Room webinar signup: ' + name);
+    var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nPlease notify me when the next webinar date is set.');
+    window.location.href = 'mailto:alexsalinsky@gmail.com?subject=' + subject + '&body=' + body;
+    document.getElementById('modal-form').style.display = 'none';
+    document.getElementById('modal-thanks').classList.add('show');
+  }
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+</script>
+
+</body>
+</html>
