@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<!--
+  The Build Room: Friends & Family Cohort, June 2026
+  Single-use landing page. Goes stale after Jun 25, 2026.
+  Single conversion target: Stripe link.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Build Room: Friends & Family Cohort, June 2026</title>
+<link rel="stylesheet" href="_template/tokens.css">
+<style>
+  :root {
+    --br-text:        #1a1a1a;
+    --br-bg:          #fafafa;
+    --br-card-bg:     #ffffff;
+    --br-gray-1:      #444;
+    --br-gray-2:      #555;
+    --br-gray-3:      #666;
+    --br-gray-4:      #888;
+    --br-gray-5:      #999;
+    --br-rule:        #ddd;
+    --br-rule-soft:   #eee;
+    --br-amber-bg:    #fde68a;
+    --br-amber-fg:    #92400e;
+    --br-font:        -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+    --br-h1:          68px;
+    --br-h1-small:    48px;
+    --br-h2:          36px;
+    --br-h3:          22px;
+    --br-body:        20px;
+    --br-lead:        26px;
+    --br-meta:        14px;
+    --br-space-1:     8px;
+    --br-space-2:     14px;
+    --br-space-3:     18px;
+    --br-space-4:     24px;
+    --br-space-5:     32px;
+    --br-space-6:     48px;
+    --br-border:      2.5px solid var(--br-text);
+    --br-border-thin: 1.5px solid var(--br-text);
+    --br-radius-sm:   6px;
+    --br-radius-md:   10px;
+    --br-radius-lg:   12px;
+    --br-radius-xl:   14px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--br-bg);
+    color: var(--br-text);
+    font-family: var(--br-font);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section {
+    padding: 80px 0;
+    border-bottom: 1.5px solid var(--br-rule-soft);
+  }
+  .section:last-of-type { border-bottom: 0; }
+
+  .section-chip {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--br-gray-5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-size: var(--br-h1);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 28px;
+  }
+  h2 {
+    font-size: var(--br-h2);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: var(--br-space-4);
+  }
+  h3 {
+    font-size: var(--br-h3);
+    font-weight: 700;
+    margin-bottom: var(--br-space-2);
+    color: var(--br-text);
+  }
+  p {
+    font-size: var(--br-body);
+    line-height: 1.55;
+    color: #333;
+    margin-bottom: var(--br-space-2);
+  }
+  p.lead {
+    font-size: var(--br-lead);
+    color: var(--br-text);
+  }
+  ul { padding-left: 22px; margin-bottom: var(--br-space-3); }
+  ul li {
+    font-size: var(--br-body);
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 96px 0 80px;
+    text-align: center;
+  }
+  .hero h1 { margin: 0 auto 24px; max-width: 900px; }
+
+  .thesis-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 36px 0 28px;
+  }
+  .thesis-stack .word {
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1;
+  }
+
+  .sub-hero {
+    font-size: 22px;
+    color: var(--br-gray-2);
+    max-width: 640px;
+    margin: 0 auto 36px;
+    line-height: 1.45;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--br-card-bg);
+    color: var(--br-text);
+    border: var(--br-border-thin);
+    padding: 16px 32px;
+    border-radius: var(--br-radius-sm);
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .btn:hover {
+    background: var(--br-text);
+    color: #fff;
+  }
+  .btn-primary {
+    background: var(--br-text);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: var(--br-card-bg);
+    color: var(--br-text);
+  }
+
+  /* What it is */
+  .what-it-is ul {
+    max-width: 720px;
+    margin: 0 0 0 22px;
+  }
+
+  /* Cohort cards */
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 8px;
+  }
+  .card {
+    background: var(--br-card-bg);
+    border: var(--br-border);
+    border-radius: var(--br-radius-lg);
+    padding: 32px 28px;
+  }
+  .card .day {
+    font-size: 13px;
+    color: var(--br-gray-4);
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .card .kickoff {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .card .time {
+    font-size: 18px;
+    color: var(--br-gray-2);
+    margin-bottom: 22px;
+  }
+  .card .venue-label {
+    font-size: 13px;
+    color: var(--br-gray-4);
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .card .venue-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .card .venue-addr {
+    font-size: 15px;
+    color: var(--br-gray-2);
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+  .card .caption {
+    font-size: 14px;
+    color: var(--br-gray-3);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .cards-note {
+    font-size: 18px;
+    color: var(--br-gray-2);
+    text-align: center;
+    margin-top: 28px;
+  }
+
+  /* Pricing */
+  .price-callout {
+    background: var(--br-card-bg);
+    border: var(--br-border);
+    border-radius: var(--br-radius-lg);
+    padding: 36px 32px;
+    text-align: center;
+    max-width: 540px;
+    margin: 0 0 24px;
+  }
+  .price-callout .amount {
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .price-callout .label {
+    font-size: 14px;
+    color: var(--br-gray-4);
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .price-body {
+    max-width: 720px;
+    margin-bottom: 28px;
+  }
+  .doubling {
+    background: var(--br-amber-bg);
+    color: var(--br-amber-fg);
+    border-radius: var(--br-radius-lg);
+    padding: 28px 32px;
+    max-width: 720px;
+  }
+  .doubling h3 {
+    color: var(--br-amber-fg);
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .doubling p {
+    color: var(--br-amber-fg);
+    font-size: 18px;
+    margin-bottom: 0;
+  }
+
+  /* Closing CTA */
+  .closing {
+    text-align: center;
+    padding: 96px 0;
+  }
+  .closing h2 { margin-bottom: 28px; }
+  .closing .fine {
+    font-size: 15px;
+    color: var(--br-gray-3);
+    margin-top: 20px;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 36px 24px 48px;
+    border-top: 1.5px solid var(--br-rule-soft);
+  }
+  footer .credit {
+    font-size: 14px;
+    color: var(--br-gray-3);
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  footer .stamp {
+    font-size: 12px;
+    color: var(--br-gray-4);
+  }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    h1 { font-size: var(--br-h1-small); }
+    h2 { font-size: 28px; }
+    .thesis-stack .word { font-size: 40px; }
+    .sub-hero { font-size: 18px; }
+    .section { padding: 56px 0; }
+    .hero { padding: 64px 0 48px; }
+    .closing { padding: 64px 0; }
+    .price-callout .amount { font-size: 44px; }
+  }
+  @media (max-width: 700px) {
+    .cards { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 420px) {
+    .wrap { padding: 0 18px; }
+    h1 { font-size: 36px; letter-spacing: -1px; }
+    .thesis-stack .word { font-size: 32px; }
+    .btn { padding: 14px 24px; font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>The Build Room: Friends &amp; Family Cohort, June 2026</h1>
+    <div class="thesis-stack">
+      <div class="word">Learn AI.</div>
+      <div class="word">Build Robots.</div>
+      <div class="word">Stay Human.</div>
+    </div>
+    <p class="sub-hero">A 4-week cohort. One session per week. You ship something real.</p>
+    <a class="btn btn-primary" href="https://buy.stripe.com/7sYeVd5081qe1nZ2BV0x20b" target="_blank" rel="noopener">Reserve your spot</a>
+  </div>
+</header>
+
+<section class="section what-it-is">
+  <div class="wrap">
+    <div class="section-chip">The Cohort</div>
+    <h2>What it is</h2>
+    <ul>
+      <li>4 weeks, 1 session per week, ~1 hour of build time per session</li>
+      <li>Learn AI fundamentals, design thinking, collaboration, and shipping</li>
+      <li>Async support between sessions</li>
+      <li>You leave with a working tool and a peer group</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-chip">Pick Your Time</div>
+    <h2>Two cohort options</h2>
+    <div class="cards">
+
+      <div class="card">
+        <div class="day">Monday Cohort</div>
+        <div class="kickoff">Kickoff: Mon Jun 22</div>
+        <div class="time">9am COT, on Zoom</div>
+        <div class="venue-label">Optional in person</div>
+        <div class="venue-name">Naturalia Cafe</div>
+        <div class="venue-addr">Cq. 3 #70-39, Laureles, Medellín</div>
+        <div class="caption">Online for everyone. In-person is a bonus, not a requirement.</div>
+      </div>
+
+      <div class="card">
+        <div class="day">Thursday Cohort</div>
+        <div class="kickoff">Kickoff: Thu Jun 25</div>
+        <div class="time">3pm COT, on Zoom</div>
+        <div class="venue-label">Optional in person</div>
+        <div class="venue-name">Lotus Rooftop by Alien</div>
+        <div class="venue-addr">Cl. 39d #74-36, Medellín</div>
+        <div class="caption">Online for everyone. In-person is a bonus, not a requirement.</div>
+      </div>
+
+    </div>
+    <p class="cards-note">Doing both works too. Show up to either or both each week.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-chip">What It Costs</div>
+    <h2>Donation-based pricing</h2>
+    <div class="price-callout">
+      <div class="amount">$100</div>
+      <div class="label">Suggested Contribution</div>
+    </div>
+    <p class="price-body">Suggested contribution is $100. Pay more if you want, pay less if you need to. One link covers any amount.</p>
+
+    <div class="doubling">
+      <h3>The doubling promise.</h3>
+      <p>If the cohort changes your life, come back and double whatever you paid. That's the only ask.</p>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>Ready to build?</h2>
+    <a class="btn btn-primary" href="https://buy.stripe.com/7sYeVd5081qe1nZ2BV0x20b" target="_blank" rel="noopener">Reserve your spot</a>
+    <p class="fine">One link covers both cohorts and any contribution amount.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="credit">Alex Salinsky · The Build Room</div>
+  <div class="stamp">Cohort kicks off the week of Jun 22, 2026.</div>
+</footer>
+
+</body>
+</html>
