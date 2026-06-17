@@ -156,13 +156,13 @@
   .faq-q { font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; letter-spacing: -0.2px; }
   .faq-a { font-size: 16px; color: #555; line-height: 1.6; }
 
-  /* Chant strip */
-  .chant { display: grid; grid-template-columns: 1fr 1.2fr; gap: 28px; align-items: center; margin: 32px 0 0; padding: 24px; background: #fafafa; border: 2px solid #ececec; border-radius: 16px; }
-  @media (max-width: 720px) { .chant { grid-template-columns: 1fr; } }
+  /* Chant strip (portrait phone video) */
+  .chant { display: grid; grid-template-columns: 1fr 280px; gap: 36px; align-items: center; margin: 32px 0 0; padding: 32px; background: #fafafa; border: 2px solid #ececec; border-radius: 16px; }
+  @media (max-width: 720px) { .chant { grid-template-columns: 1fr; justify-items: center; } .chant .chant-copy { text-align: center; } }
   .chant .chant-copy .label { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #16a34a; margin-bottom: 10px; }
-  .chant .chant-copy h3 { font-size: clamp(22px, 3vw, 30px); font-weight: 800; line-height: 1.15; letter-spacing: -0.6px; margin-bottom: 8px; }
+  .chant .chant-copy h3 { font-size: clamp(22px, 3vw, 32px); font-weight: 800; line-height: 1.15; letter-spacing: -0.6px; margin-bottom: 8px; }
   .chant .chant-copy p { font-size: 15px; color: #555; line-height: 1.5; }
-  .chant .chant-video-wrap { aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; background: #000; box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+  .chant .chant-video-wrap { width: 280px; aspect-ratio: 9 / 16; border-radius: 22px; overflow: hidden; background: #000; box-shadow: 0 12px 32px rgba(0,0,0,0.18); border: 3px solid #1a1a1a; }
   .chant video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   /* DCMex proof video */
