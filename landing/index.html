@@ -31,12 +31,12 @@
   h1.hero-h .accent { color: #16a34a; }
   .hero-sub { font-size: clamp(18px, 2.2vw, 22px); color: #444; max-width: 680px; line-height: 1.5; margin-bottom: 32px; }
 
-  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 14px; }
-  .btn { display: inline-block; padding: 16px 26px; border-radius: 10px; font-weight: 700; font-size: 16px; text-decoration: none; border: 2px solid #1a1a1a; transition: all 0.15s ease; cursor: pointer; line-height: 1; }
+  .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-bottom: 14px; }
+  .btn { display: inline-block; padding: 16px 26px; border-radius: 10px; font-weight: 700; font-size: 16px; text-decoration: none; border: 2px solid #1a1a1a; transition: all 0.15s ease; cursor: pointer; line-height: 1; font-family: inherit; }
   .btn.primary { background: #1a1a1a; color: #fff; }
   .btn.primary:hover { background: #16a34a; border-color: #16a34a; transform: translateY(-1px); }
-  .btn.secondary { background: transparent; color: #1a1a1a; }
-  .btn.secondary:hover { background: #1a1a1a; color: #fff; transform: translateY(-1px); }
+  .cta-secondary { font-size: 14px; color: #555; text-decoration: none; border-bottom: 1.5px solid #bbb; padding-bottom: 2px; font-weight: 600; transition: all 0.15s ease; }
+  .cta-secondary:hover { color: #1a1a1a; border-bottom-color: #1a1a1a; }
   .cta-note { font-size: 13px; color: #888; margin-top: 6px; }
 
   /* Video */
@@ -101,8 +101,8 @@
   .final .cta-row { justify-content: center; }
   .final .btn.primary { background: #16a34a; border-color: #16a34a; color: #fff; }
   .final .btn.primary:hover { background: #fff; color: #1a1a1a; border-color: #fff; }
-  .final .btn.secondary { background: transparent; color: #fff; border-color: #fff; }
-  .final .btn.secondary:hover { background: #fff; color: #1a1a1a; }
+  .final .cta-secondary { color: #bbb; border-bottom-color: #555; }
+  .final .cta-secondary:hover { color: #fff; border-bottom-color: #fff; }
 
   /* Footer */
   footer { padding: 32px 0 56px; text-align: center; font-size: 14px; color: #888; border-top: 1px solid #ececec; }
@@ -145,7 +145,7 @@
     <p class="hero-sub">A 4-week cohort where small teams ship one real AI workflow, with coaching and peers building alongside you. Four sessions. Four hours of accountable build time. One thing in your hands at the end.</p>
     <div class="cta-row">
       <button class="btn primary" onclick="openModal()">Join the next free webinar</button>
-      <a class="btn secondary" href="mailto:alexsalinsky@gmail.com?subject=Private%20Build%20Room%20cohort%20for%20our%20team&body=Hi%20Alex%2C%20we'd%20like%20to%20talk%20about%20running%20a%20private%20Build%20Room%20cohort%20for%20our%20team.">Arrange a private cohort</a>
+      <a class="cta-secondary" href="mailto:alexsalinsky@gmail.com?subject=Private%20Build%20Room%20cohort%20for%20our%20team&body=Hi%20Alex%2C%20we'd%20like%20to%20talk%20about%20running%20a%20private%20Build%20Room%20cohort%20for%20our%20team.">Or arrange a private cohort for your team &rsaquo;</a>
     </div>
     <p class="cta-note">Next session date: TBA. Drop your email and we'll send the invite.</p>
   </div>
@@ -212,11 +212,19 @@
 
     <div class="quote-grid">
       <div class="quote">
-        <p class="q">"The format forces a build. Not a watch-list, not a notes page. By session two, every person in the room had something working they didn't have before."</p>
-        <div class="who">DBALP cohort, session 2 retro</div>
+        <p class="q">"I built an app to keep track of my cash. I'm on purpose. I'm on track. I'm on point. Everything's rocking thanks to AI and thanks to you guys. That short little session was amazing."</p>
+        <div class="who">Ruben, past cohort participant</div>
       </div>
       <div class="quote">
-        <p class="q">"Learn frameworks for thinking about AI. Build something real, with help along the way. Stay human through community and ritual."</p>
+        <p class="q">"I basically built a whole replacement for GoHighLevel that manages my whole online business. Things that used to take me 20 hours, I can do in 20 minutes now."</p>
+        <div class="who">Patrick, past cohort participant</div>
+      </div>
+      <div class="quote">
+        <p class="q">"I want you to have BC and AC. Before cohort and after cohort. Look back on the cohort and go, that changed this aspect of my life and now I know how to tackle anything."</p>
+        <div class="who">Alex, kickoff webinar</div>
+      </div>
+      <div class="quote">
+        <p class="q">"AI is the tool. You are the builder. Most people let the robot drive. That's not you. Use your discernment. Stay on team human."</p>
         <div class="who">The Build Room thesis</div>
       </div>
     </div>
@@ -263,14 +271,14 @@
 
 <section class="block" id="about">
   <div class="wrap">
-    <div class="section-chip">About the host</div>
-    <h2 class="section-h">Alex Salinsky</h2>
+    <div class="section-chip">About the hosts</div>
+    <h2 class="section-h">Alex Salinsky &amp; Thierry Muller</h2>
     <div class="about-grid">
       <div class="about-photo">AS</div>
       <div class="about-body">
-        <p>Alex runs riseCOO, an operations and leadership development practice (legal entity En Blazes LLC). He's spent the last decade helping teams turn messy ideas into running systems, most recently with AI.</p>
-        <p>The Build Room is the cohort arm of that work. He writes about AI fluency, measurement, and team adoption on his <a href="https://www.linkedin.com/in/alexsalinsky/recent-activity/newsletter/" target="_blank" rel="noopener">LinkedIn newsletter</a>, hosts AI Buildathons at conferences, and runs private cohorts for teams that want to move faster than a webinar will get them.</p>
-        <p>If you want a deeper look at how he thinks about getting teams to actually use AI, start with <a href="https://www.linkedin.com/pulse/how-get-your-team-actually-use-ai-alex-salinsky-rmmhe" target="_blank" rel="noopener">How to Get Your Team to Actually Use AI</a>.</p>
+        <p><strong>Alex Salinsky</strong> runs riseCOO, an operations and leadership development practice (legal entity En Blazes LLC). He's spent the last decade helping teams turn messy ideas into running systems, most recently with AI. The Build Room is the cohort arm of that work.</p>
+        <p>He writes about AI fluency, measurement, and team adoption on his <a href="https://www.linkedin.com/in/alexsalinsky/recent-activity/newsletter/" target="_blank" rel="noopener">LinkedIn newsletter</a>, hosts AI Buildathons at conferences, and runs private cohorts for teams that want to move faster than a webinar will get them. Start with <a href="https://www.linkedin.com/pulse/how-get-your-team-actually-use-ai-alex-salinsky-rmmhe" target="_blank" rel="noopener">How to Get Your Team to Actually Use AI</a>.</p>
+        <p><strong>Thierry Muller</strong> co-hosts the cohort and runs the accountability spine. He's spent the last year building 21-day Focus Tribe cohorts, where the work is making sure people finish what they start. In Build Room sessions, that means keeping the group on the milestones they declared, not the shiny objects they got distracted by.</p>
       </div>
     </div>
   </div>
@@ -282,7 +290,7 @@
     <p>Come to the next free webinar, or skip the line and have us run a private cohort for your team.</p>
     <div class="cta-row">
       <button class="btn primary" onclick="openModal()">Join the next free webinar</button>
-      <a class="btn secondary" href="mailto:alexsalinsky@gmail.com?subject=Private%20Build%20Room%20cohort%20for%20our%20team&body=Hi%20Alex%2C%20we'd%20like%20to%20talk%20about%20running%20a%20private%20Build%20Room%20cohort%20for%20our%20team.">Arrange a private cohort</a>
+      <a class="cta-secondary" href="mailto:alexsalinsky@gmail.com?subject=Private%20Build%20Room%20cohort%20for%20our%20team&body=Hi%20Alex%2C%20we'd%20like%20to%20talk%20about%20running%20a%20private%20Build%20Room%20cohort%20for%20our%20team.">Or arrange a private cohort for your team &rsaquo;</a>
     </div>
   </div>
 </div>
