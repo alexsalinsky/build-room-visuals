@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Facilitator Hub — Friends & Family</title>
+<!--
+  Friends & Family cohort facilitator hub.
+  Mon Jun 22 → Mon Jul 13 (Mon cohort) AND Thu Jun 25 → Thu Jul 16 (Thu cohort).
+  Same cohort under two days. Shared Skool, WhatsApp, deck.
+  Sessions are 2 hours, start on the hour.
+-->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 40px 28px 80px; }
+  header { margin-bottom: 28px; }
+  h1 { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .sub { font-size: 17px; color: #666; }
+  .cohort-pill { display: inline-block; background: #1a1a1a; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 1px; margin-bottom: 14px; }
+
+  h2 { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin: 32px 0 12px; padding-bottom: 6px; border-bottom: 1.5px solid #ddd; }
+
+  .zone-banner { background: #1a1a1a; color: #fff; padding: 10px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin: 32px 0 14px; display: flex; align-items: center; gap: 12px; }
+  .zone-banner.generic { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; }
+  .zone-banner .badge { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 8px; border-radius: 10px; background: rgba(255,255,255,0.18); }
+  .zone-banner.generic .badge { background: #1a1a1a; color: #fff; }
+
+  .glance { background: #fff; border: 2px solid #1a1a1a; border-radius: 10px; padding: 18px 20px; margin-bottom: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 720px) { .glance { grid-template-columns: 1fr; } }
+  .glance .item .label { font-size: 11px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+  .glance .item .val { font-size: 18px; font-weight: 800; line-height: 1.25; }
+  .glance .item .hint { font-size: 12px; color: #666; margin-top: 2px; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 12px; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  @media (max-width: 720px) { .grid-3 { grid-template-columns: 1fr; } }
+
+  .card { background: #fff; border: 2px solid #1a1a1a; border-radius: 10px; padding: 16px 18px; text-decoration: none; color: #1a1a1a; display: block; transition: all 0.15s; }
+  .card:hover { background: #1a1a1a; color: #fff; }
+  .card:hover .meta { color: #aaa; }
+  .card .title { font-size: 16px; font-weight: 700; line-height: 1.25; margin-bottom: 3px; }
+  .card .meta { font-size: 12px; color: #666; line-height: 1.4; }
+  .card.primary { background: #1a1a1a; color: #fff; }
+  .card.primary .meta { color: #aaa; }
+  .card.primary:hover { background: #444; }
+
+  .ref-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  @media (max-width: 720px) { .ref-grid { grid-template-columns: 1fr; } }
+  .ref-card { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 8px; padding: 10px 14px; text-decoration: none; color: #1a1a1a; font-size: 13px; transition: all 0.15s; }
+  .ref-card:hover { background: #1a1a1a; color: #fff; }
+  .ref-card strong { display: block; font-size: 14px; margin-bottom: 2px; }
+
+  .venue-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (max-width: 720px) { .venue-grid { grid-template-columns: 1fr; } }
+  .venue { background: #fff; border: 1.5px solid #ddd; border-radius: 10px; padding: 14px 16px; }
+  .venue .day { font-size: 11px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+  .venue .name { font-size: 16px; font-weight: 800; margin-bottom: 2px; }
+  .venue .addr { font-size: 13px; color: #555; line-height: 1.4; }
+  .venue .opt { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; background: #fde68a; color: #92400e; padding: 2px 8px; border-radius: 10px; margin-top: 6px; }
+
+  .session-block { background: #fff; border: 1.5px solid #ddd; border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; }
+  .session-block.s-now { border: 2.5px solid #1a1a1a; background: #fafafa; }
+  .session-block h3 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+  .session-block .when { font-size: 12px; color: #888; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+  .session-block .flow { font-size: 13px; color: #444; line-height: 1.55; margin-bottom: 10px; }
+  .session-block .flow ol { padding-left: 22px; }
+  .session-block .flow li { padding: 2px 0; }
+  .session-block .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .session-block .pill { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 16px; padding: 4px 12px; font-size: 12px; text-decoration: none; color: #1a1a1a; }
+  .session-block .pill:hover { background: #1a1a1a; color: #fff; }
+  .session-block .pill.tbd { border-style: dashed; color: #888; }
+
+  footer { margin-top: 36px; font-size: 12px; color: #888; text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="cohort-pill">FRIENDS &amp; FAMILY COHORT · FACILITATOR HUB</div>
+    <h1>F&amp;F Facilitator Hub</h1>
+    <p class="sub">Mon Jun 22 → Mon Jul 13 · Thu Jun 25 → Thu Jul 16 · 2-hour sessions, on the hour. One cohort, two days. Shared deck, Skool, WhatsApp.</p>
+  </header>
+
+  <div class="glance">
+    <div class="item">
+      <div class="label">Current session</div>
+      <div class="val">Session 1 — Kickoff</div>
+      <div class="hint">Mon Jun 22 + Thu Jun 25</div>
+    </div>
+    <div class="item">
+      <div class="label">Next session</div>
+      <div class="val">Session 2</div>
+      <div class="hint">Mon Jun 29 + Thu Jul 2</div>
+    </div>
+    <div class="item">
+      <div class="label">Session length</div>
+      <div class="val">2 hours</div>
+      <div class="hint">Starts on the hour</div>
+    </div>
+  </div>
+
+  <div class="zone-banner">Cohort-specific <span class="badge">F&amp;F</span></div>
+
+  <h2>Live tools</h2>
+  <div class="grid">
+    <a class="card primary" href="https://alexsalinsky.github.io/build-room-visuals/facilitator/ff-mon-kickoff.html" target="_blank">
+      <div class="title">F&amp;F Kickoff Deck</div>
+      <div class="meta">Same deck used both Mon and Thu cohorts.</div>
+    </a>
+    <a class="card" href="https://docs.google.com/spreadsheets/d/1dzAa4UPFjtDZW4aUhSQbvcKrrhaGbcChGis_YztJ20k/edit" target="_blank">
+      <div class="title">Project Ledger (Sheet)</div>
+      <div class="meta">Per-builder Dream → MVP → First Brick. Live-fill in Session 1.</div>
+    </a>
+    <a class="card" href="https://docs.google.com/document/d/1Xcvv9VhuM1I7-lORT0kUviWzaiB0j-UJV8eZYIQKza4/edit" target="_blank">
+      <div class="title">Pre-Work Checklist</div>
+      <div class="meta">Share with builders before Session 1. Tools, accounts, expectations.</div>
+    </a>
+    <a class="card" href="https://www.skool.com/the-build-room-3309" target="_blank">
+      <div class="title">Skool Community</div>
+      <div class="meta">Shared classroom for both Mon and Thu cohorts.</div>
+    </a>
+    <a class="card" href="https://docs.google.com/spreadsheets/d/1TNHaTtmnHQ0We6ivABwH4b7JjaAW7RoXCx3m9XQ2juI/edit" target="_blank">
+      <div class="title">F&amp;F Roster (admin)</div>
+      <div class="meta">Mon vs Thu assignment, contact info, attendance tracker.</div>
+    </a>
+    <a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSfPAy7jEekZgRFlZ1GpjWacfZ3z-ybpwRGP73frMoQ6IaZ-JQ/viewform?usp=pp_url&amp;entry.534543081=Humans+V+Robots&amp;entry.1686970719=2026-jun-humans-v-robots-kickoff&amp;entry.121910716=Pre" target="_blank">
+      <div class="title">AI Fluency Assessment</div>
+      <div class="meta">For builders who haven't taken it. Under 15 minutes.</div>
+    </a>
+  </div>
+
+  <h2>Roster snapshot</h2>
+  <div class="ref-grid">
+    <a class="ref-card" href="https://docs.google.com/spreadsheets/d/1TNHaTtmnHQ0We6ivABwH4b7JjaAW7RoXCx3m9XQ2juI/edit" target="_blank">
+      <strong>Live count</strong>
+      Pull from the Roster sheet at session start. Confirm Mon vs Thu split before opening Zoom.
+    </a>
+    <a class="ref-card" href="../../brain/the-build-room/cohorts/2026-jun-friends-family/skool-homepage-pinned-post.md" target="_blank">
+      <strong>Cohort context</strong>
+      Skool homepage pinned post + cohort framing.
+    </a>
+    <a class="ref-card" href="../../brain/the-build-room/tools/wins-from-transcript-protocol.md" target="_blank">
+      <strong>Wins protocol</strong>
+      Post-session ritual. Run after every session.
+    </a>
+  </div>
+
+  <h2>Venues</h2>
+  <div class="venue-grid">
+    <div class="venue">
+      <div class="day">Mon cohort</div>
+      <div class="name">Naturalia Cafe Laureles</div>
+      <div class="addr">Cq. 3 #70-39, Medellín</div>
+      <div class="opt">In-person OPTIONAL · Zoom is official</div>
+    </div>
+    <div class="venue">
+      <div class="day">Thu cohort</div>
+      <div class="name">Lotus Rooftop by Alien</div>
+      <div class="addr">Cl. 39d #74-36, Medellín</div>
+      <div class="opt">In-person OPTIONAL · Zoom is official</div>
+    </div>
+  </div>
+
+  <div class="zone-banner generic">Generic — same across all cohorts <span class="badge">Curriculum library</span></div>
+
+  <h2>Session arc</h2>
+
+  <div class="session-block s-now">
+    <h3>Session 1 — Kickoff + Ledger live-fill</h3>
+    <div class="when">120 min · Week 1 · Mon Jun 22 + Thu Jun 25</div>
+    <div class="flow">
+      Set the cohort up. Live-fill the ledger with each builder's Dream → MVP → First Brick. Land a Session 1 build goal per person.
+      <ol style="margin-top:10px;padding-left:22px">
+        <li>Be Human check-in</li>
+        <li>Kickoff deck — promise, agreements, the loop</li>
+        <li>Ledger live-fill, per builder</li>
+        <li>Set First Brick + Session 1 goal each</li>
+        <li>First build sprint</li>
+        <li>Share-back + close</li>
+      </ol>
+    </div>
+    <div class="links">
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/facilitator/ff-mon-kickoff.html" target="_blank">Kickoff Deck</a>
+      <a class="pill" href="https://docs.google.com/spreadsheets/d/1dzAa4UPFjtDZW4aUhSQbvcKrrhaGbcChGis_YztJ20k/edit" target="_blank">Ledger</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/dream-big-build-small.html" target="_blank">Dream Big, Build Small</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/plan-the-problem.html" target="_blank">Plan the Problem</a>
+    </div>
+  </div>
+
+  <div class="session-block">
+    <h3>Session 2 — Refine + work the projects</h3>
+    <div class="when">120 min · Week 2 · Mon Jun 29 + Thu Jul 2</div>
+    <div class="flow">
+      Refine each builder's project. Work with Claude / Codex on each in turn. Set Session 2 build goals.
+    </div>
+    <div class="links">
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/build-plan-loop.html" target="_blank">Build Plan Loop</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/claude-starter-pack.html" target="_blank">Claude Starter Pack</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/where-your-build-lives.html" target="_blank">Where Your Build Lives</a>
+    </div>
+  </div>
+
+  <div class="session-block">
+    <h3>Session 3 — Build sprint</h3>
+    <div class="when">120 min · Week 3 · Mon Jul 6 + Thu Jul 9</div>
+    <div class="flow">
+      Continued build time. Working pairs, share-back, problem-of-the-week resolution. Set Session 3 build goals heading into Demo Day.
+    </div>
+    <div class="links">
+      <span class="pill tbd">Curriculum TBD</span>
+    </div>
+  </div>
+
+  <div class="session-block">
+    <h3>Session 4 — Demo Day</h3>
+    <div class="when">120 min · Week 4 · Mon Jul 13 + Thu Jul 16</div>
+    <div class="flow">
+      Each builder demos. Most Business Value + Coolest Build votes. 1-month follow-up scheduled live.
+    </div>
+    <div class="links">
+      <span class="pill tbd">Demo Day template TBD</span>
+    </div>
+  </div>
+
+  <h2>Standing protocols</h2>
+  <div class="ref-grid">
+    <a class="ref-card" href="../../brain/the-build-room/tools/wins-from-transcript-protocol.md" target="_blank">
+      <strong>Wins from transcript</strong>
+      Run after every session. Mine the recording for wins, post to Skool.
+    </a>
+    <a class="ref-card" href="../../brain/the-build-room/PRESENTATION-PATTERN.md" target="_blank">
+      <strong>Post-session writeup</strong>
+      Standard writeup pattern. Voice + structure rules.
+    </a>
+    <a class="ref-card" href="https://docs.google.com/spreadsheets/d/1dzAa4UPFjtDZW4aUhSQbvcKrrhaGbcChGis_YztJ20k/edit" target="_blank">
+      <strong>Ledger live-fill</strong>
+      Update each builder's row in-session, not after. Visible to the room.
+    </a>
+  </div>
+
+  <h2>Visual library + community</h2>
+  <div class="grid-3">
+    <a class="card" href="https://alexsalinsky.github.io/build-room-visuals/" target="_blank">
+      <div class="title">Visual library</div>
+      <div class="meta">All click-through lessons. Foundations, How-to, Rule Packs, Setup, Cohort Kickoffs.</div>
+    </a>
+    <a class="card" href="https://www.skool.com/the-build-room-3309" target="_blank">
+      <div class="title">Skool community</div>
+      <div class="meta">The Build Room main group. All cohorts live in here as private classrooms.</div>
+    </a>
+    <a class="card" href="https://github.com/alexsalinsky/build-room-visuals" target="_blank">
+      <div class="title">GitHub repo (source)</div>
+      <div class="meta">Templates, tokens.css, deck-template.html.</div>
+    </a>
+  </div>
+
+  <footer>
+    Alex Salinsky · The Build Room
+  </footer>
+</div>
+</body>
+</html>
