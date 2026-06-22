@@ -143,36 +143,37 @@ const slides = [
     </div>`
   },
 
-  // 5. Where you are right now (directional, pooled across both cohort days)
+  // 5. Where you are right now (real distribution from first 8 of 24 cohort members)
   {
     html: `<div class="slide">
       <div class="section-chip">Mission Enrollment</div>
-      <h2 style="margin-top:20px;text-align:center">Where you are right now</h2>
-      <p style="font-size:18px;color:#555;margin:0 auto 22px;max-width:760px;text-align:center">Four levels of working with AI. This room spans the middle two.</p>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1000px;margin:0 auto">
-        <div style="background:#fff;border:1.5px solid #e5e5e5;border-radius:12px;padding:18px 16px;opacity:0.55">
-          <div style="width:14px;height:14px;border-radius:3px;background:#ef4444;margin-bottom:10px"></div>
-          <div style="font-size:18px;font-weight:800;margin-bottom:6px">Exploring</div>
-          <div style="font-size:13px;color:#666;line-height:1.45">Haven't started yet</div>
-        </div>
-        <div style="background:#fff;border:2.5px solid #1a1a1a;border-radius:12px;padding:18px 16px;box-shadow:0 4px 14px rgba(0,0,0,0.06)">
-          <div style="width:14px;height:14px;border-radius:3px;background:#f59e0b;margin-bottom:10px"></div>
-          <div style="font-size:13px;color:#888;letter-spacing:1.5px;font-weight:700;margin-bottom:4px">MOST OF YOU</div>
-          <div style="font-size:18px;font-weight:800;margin-bottom:6px">Adopting</div>
-          <div style="font-size:13px;color:#444;line-height:1.45">Using AI for tasks, building prompt habits</div>
-        </div>
-        <div style="background:#fff;border:2.5px solid #1a1a1a;border-radius:12px;padding:18px 16px;box-shadow:0 4px 14px rgba(0,0,0,0.06)">
-          <div style="width:14px;height:14px;border-radius:3px;background:#84cc16;margin-bottom:10px"></div>
-          <div style="font-size:13px;color:#888;letter-spacing:1.5px;font-weight:700;margin-bottom:4px">SOME OF YOU</div>
-          <div style="font-size:18px;font-weight:800;margin-bottom:6px">Operating</div>
-          <div style="font-size:13px;color:#444;line-height:1.45">AI woven into the role, shipping things others use</div>
-        </div>
-        <div style="background:#fff;border:1.5px solid #e5e5e5;border-radius:12px;padding:18px 16px;opacity:0.55">
-          <div style="width:14px;height:14px;border-radius:3px;background:#16a34a;margin-bottom:10px"></div>
-          <div style="font-size:18px;font-weight:800;margin-bottom:6px">Multiplying</div>
-          <div style="font-size:13px;color:#666;line-height:1.45">Shape how your team works with AI</div>
+      <h2 style="margin-top:10px;text-align:center">Where you are right now</h2>
+      <p style="font-size:18px;color:#555;margin:0 auto 14px;max-width:780px;text-align:center">Four levels of working with AI. Half this room is already Operating. A quarter is just starting.</p>
+      <div style="display:flex;align-items:center;justify-content:center;gap:48px;margin-top:6px;flex-wrap:wrap">
+        <svg width="320" height="320" viewBox="0 0 320 320" style="flex-shrink:0">
+          <!-- Exploring 25% (2/8): -90 to 0 deg -->
+          <path d="M 160,160 L 160,40 A 120,120 0 0 1 280,160 Z" fill="#ef4444" stroke="#fff" stroke-width="2"/>
+          <!-- Adopting 25% (2/8): 0 to 90 deg -->
+          <path d="M 160,160 L 280,160 A 120,120 0 0 1 160,280 Z" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
+          <!-- Operating 50% (4/8): 90 to 270 deg -->
+          <path d="M 160,160 L 160,280 A 120,120 0 1 1 160,40 Z" fill="#84cc16" stroke="#fff" stroke-width="2"/>
+          <!-- Multiplying 0% (0/8): no segment -->
+          <!-- Segment labels -->
+          <text x="225" y="100" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">Exploring</text>
+          <text x="225" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">25%</text>
+          <text x="225" y="220" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">Adopting</text>
+          <text x="225" y="238" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">25%</text>
+          <text x="95" y="160" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">Operating</text>
+          <text x="95" y="180" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">50%</text>
+        </svg>
+        <div style="display:flex;flex-direction:column;gap:10px;min-width:240px">
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:14px;height:14px;border-radius:3px;background:#ef4444;display:inline-block"></span><span style="font-size:16px;font-weight:700">Exploring</span><span style="font-size:14px;color:#666">2 of 8</span></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:14px;height:14px;border-radius:3px;background:#f59e0b;display:inline-block"></span><span style="font-size:16px;font-weight:700">Adopting</span><span style="font-size:14px;color:#666">2 of 8</span></div>
+          <div style="display:flex;align-items:center;gap:10px"><span style="width:14px;height:14px;border-radius:3px;background:#84cc16;display:inline-block"></span><span style="font-size:16px;font-weight:700">Operating</span><span style="font-size:14px;color:#666">4 of 8</span></div>
+          <div style="display:flex;align-items:center;gap:10px;opacity:0.55"><span style="width:14px;height:14px;border-radius:3px;background:#16a34a;display:inline-block"></span><span style="font-size:16px;font-weight:700">Multiplying</span><span style="font-size:14px;color:#666">0 of 8</span></div>
         </div>
       </div>
+      <p style="font-size:13px;color:#888;text-align:center;margin-top:18px;max-width:760px;margin-left:auto;margin-right:auto;line-height:1.4">Where the first 8 of 24 cohort members landed on the AI Fluency Assessment. Pie updates as more responses come in.</p>
     </div>`
   },
 
