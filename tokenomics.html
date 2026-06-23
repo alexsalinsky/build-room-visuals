@@ -115,6 +115,14 @@
   .close-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
   .close-pills .pill { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 20px; padding: 7px 16px; font-size: 13px; color: #1a1a1a; font-weight: 600; }
 
+  /* Token-definition demo */
+  .token-demo { background: #fff; border: 2px solid #1a1a1a; border-radius: 12px; padding: 20px 24px; margin: 18px 0; }
+  .demo-label { font-size: 13px; color: #666; letter-spacing: 0.5px; margin-bottom: 12px; font-style: italic; }
+  .demo-tokens { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 14px; }
+  .demo-tokens .tok { background: #fde68a; border: 1px solid #92400e; color: #1a1a1a; padding: 6px 10px; border-radius: 6px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 15px; font-weight: 600; white-space: pre; }
+  .demo-count { font-size: 14px; color: #666; padding-top: 12px; border-top: 1px dashed #ddd; }
+  .demo-count strong { color: #1a1a1a; font-size: 16px; }
+
   .br-footer { font-size: 11px; color: #888; letter-spacing: 0.5px; }
 
   @media (max-width: 900px) {
@@ -140,8 +148,31 @@
       </div>
     </div>
 
-    <!-- ========= SCENE 2: THE WALL ========= -->
+    <!-- ========= SCENE 2: WHAT IS A TOKEN ========= -->
     <div class="scene" data-scene="2">
+      <div class="eyebrow">First, the unit</div>
+      <h1 class="scene-title">What's a <span class="accent">token?</span></h1>
+      <p class="lead">The model doesn't read English. It reads <strong>tokens</strong> — word-pieces, roughly four characters or three-quarters of a word each. Everything you type gets broken into tokens. Everything the model writes back is more tokens.</p>
+
+      <div class="token-demo">
+        <div class="demo-label">"Tokenomics is efficiency"</div>
+        <div class="demo-tokens">
+          <span class="tok">Token</span><span class="tok">omics</span><span class="tok"> is</span><span class="tok"> effi</span><span class="tok">ciency</span>
+        </div>
+        <div class="demo-count"><strong>5 tokens</strong> for 24 characters. Roughly the standard ratio.</div>
+      </div>
+
+      <ul style="font-size:16px; color:#333; line-height:1.8; margin: 8px 0 12px 28px;">
+        <li><strong>~4 characters</strong> or <strong>~¾ of a word</strong> per token. Rule of thumb.</li>
+        <li>Every word in your prompt costs tokens. Every word the model writes costs tokens.</li>
+        <li>The model can only hold a <strong>maximum number of tokens at once.</strong> That ceiling is the <em>context window</em>.</li>
+      </ul>
+
+      <blockquote>Tokens are the meter. They measure how much work you're asking the system to do, and <strong>they're what runs out when you hit the wall.</strong></blockquote>
+    </div>
+
+    <!-- ========= SCENE 3: THE WALL ========= -->
+    <div class="scene" data-scene="3">
       <div class="eyebrow">Why this matters</div>
       <h1 class="scene-title">The hard ceiling.</h1>
       <p class="lead">The first reason to care about tokens isn't money. It's <strong>the wall.</strong> If you're not efficient, you hit the limit and can't develop anymore. Paying more pushes the wall back. It doesn't remove it. <strong>Context keeps growing.</strong></p>
@@ -206,11 +237,11 @@
       <blockquote>This is the Build Room ethics frame. <strong>Don't burn what you don't have to.</strong> It's the same discipline whether you call it efficiency, ethics, or just good engineering.</blockquote>
     </div>
 
-    <!-- ========= SCENE 5: THE THREE KNOBS ========= -->
-    <div class="scene" data-scene="5">
-      <div class="eyebrow">How to be efficient</div>
+    <!-- ========= SCENE 6: FROM TOKENS TO EFFICIENCY IN GENERAL ========= -->
+    <div class="scene" data-scene="6">
+      <div class="eyebrow">Zooming out: from tokens to efficiency in general</div>
       <h1 class="scene-title">Three knobs you can turn.</h1>
-      <p class="lead">You don't need to optimize anything until you ship. But you DO need to know what dials exist, so you can reach for them when scale hits.</p>
+      <p class="lead">Tokens are the meter. But the meter measures something deeper: <strong>how much work you're asking the system to do.</strong> These three dials let you do more work with fewer tokens, and <strong>the same dials extrapolate to building efficient systems in general</strong> — not just AI-shaped ones.</p>
 
       <div class="knobs">
         <div class="knob">
@@ -337,7 +368,7 @@
   </div>
 
   <div class="hud">
-    <div><strong id="counter">1</strong> / 10</div>
+    <div><strong id="counter">1</strong> / <span id="total">1</span></div>
     <div class="controls">
       <button id="prev" onclick="go(-1)" disabled>← Prev</button>
       <button id="next" onclick="go(1)">Next →</button>
@@ -351,6 +382,7 @@
 
 <script>
   const scenes = document.querySelectorAll('.scene');
+  document.getElementById('total').textContent = scenes.length;
   let cur = 0;
   function go(dir) {
     scenes[cur].classList.remove('active');
