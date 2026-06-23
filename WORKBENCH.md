@@ -1,5 +1,23 @@
 # build-room-visuals workbench
 
+## 2026-06-23 - Credentials hygiene deck v2: fix tokens 404 + file-structure reframe
+
+V2 pass on `credentials-hygiene-deck.html`. Real bugs on the live deck plus a content reframe.
+
+Formatting bugs found and fixed:
+- **Root cause of every "looks broken" symptom**: `_template/tokens.css` 404'd on GitHub Pages because Jekyll ignores underscore-prefixed dirs by default. Every `var(--br-*)` resolved to empty, so h1 fell back to 16px, `.floor` dark pill rendered transparent, etc. Inlined the tokens directly into the deck (matches the template's stated "portable if served outside the repo" intent).
+- Em dash in `<title>` swapped for middle dot.
+- Worked-example scene was overflowing the viewport (h2 colliding with section chip, bottom of `src/main.py` block cut off). Compacted code-block font and added explicit `margin-top` to clear the chip.
+- Slide-wrap top padding bumped from 20px to 40px so chip + heading have breathing room across all 9 slides.
+
+Reframe (the load-bearing ask): credential hygiene is a file-structure story. Built a reusable `tree()` function that renders the same project tree across multiple scenes with mode-based highlighting: yellow highlight on `.env` in "The Pattern", yellow on `.gitignore` in "Hide it from GitHub", strikethrough + dim on `.env` in "What git sees", **red danger background + 'PUSHED TO GITHUB' note on `.env` in the leak scene**, clean ok-green annotations in the close. Tree uses real monospace branch chars (├── │ └──), distinguishable from prose.
+
+Also added a new scene 4: side-by-side `git status` before/after, with red `.env` showing as untracked on the "without" side and green `.gitignore` showing as untracked on the "with" side. The dimmed-out tree sits below to reinforce.
+
+[DECISION] Deck went from 8 → 9 scenes (added the git-status before/after). Static reference page untouched per scope.
+
+Verified all 9 scenes locally before pushing. Commit `e133cd2`. Live URL same: https://alexsalinsky.github.io/build-room-visuals/credentials-hygiene-deck.html.
+
 ## 2026-06-23 - Credentials hygiene: ported static page to teach-from deck
 
 Shipped `credentials-hygiene-deck.html` as a Build Room style 8-scene click-through deck mirroring the static `credentials-hygiene.html` content. Scenes: title + floor rule, the .env pattern, .gitignore (order matters), edit-it-yourself (why keys leak into transcripts), Do/Don't grid, leak rotation (with the 3 provider links and rotation order warn box), worked example (3 files at root + Python loader), close. Used the standard deck scaffold (tokens.css, glassy floating HUD, swipe + arrow + click nav, 96px bottom padding on slide-wrap). No black-box treatment, no em dashes, no audience-participation prompts. Footer middle dot. Thesis line omitted (didn't land naturally in a setup deck).
