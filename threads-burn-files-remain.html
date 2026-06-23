@@ -195,8 +195,57 @@
       <text x="620" y="559" class="label-b">where you left off. So do you. So does a teammate.</text>
     </svg>
 
-    <!-- =========== SCENE 5: the thread breaks =========== -->
+    <!-- =========== SCENE 5: why .md (and why CLAUDE.md) =========== -->
     <svg class="scene" data-scene="5" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <text x="550" y="44" text-anchor="middle" class="head-xl">Why <tspan style="font-family:ui-monospace,Menlo,monospace; fill:#92400e">.md</tspan> ? Why <tspan style="font-family:ui-monospace,Menlo,monospace; fill:#92400e">CLAUDE.md</tspan> ?</text>
+      <text x="550" y="72" text-anchor="middle" class="label-sm">The format matters as much as the existence.</text>
+
+      <!-- Four reasons in a 2x2 grid -->
+      <!-- Top-left: machine-first -->
+      <rect x="60" y="110" width="490" height="240" rx="12" class="box"/>
+      <text x="80" y="148" class="head-md">1. Machine-first format</text>
+      <line x1="80" y1="162" x2="530" y2="162" class="line-thin"/>
+      <text x="80" y="194" class="label-b">Plain text. No rendering tax. No tags.</text>
+      <text x="80" y="218" class="label-b">LLMs are trained on tons of markdown.</text>
+      <text x="80" y="242" class="label-b">Lighter than .docx, lighter than HTML.</text>
+      <text x="80" y="266" class="label-b">The model reads it directly, fast and cheap.</text>
+      <text x="80" y="306" class="label-sm" style="font-style:italic">It's the right shape for AI to consume.</text>
+
+      <!-- Top-right: human-readable -->
+      <rect x="570" y="110" width="490" height="240" rx="12" class="box"/>
+      <text x="590" y="148" class="head-md">2. Still human-readable</text>
+      <line x1="590" y1="162" x2="1040" y2="162" class="line-thin"/>
+      <text x="590" y="194" class="label-b">Any text editor opens it. Forever.</text>
+      <text x="590" y="218" class="label-b">A teammate can read it without tools.</text>
+      <text x="590" y="242" class="label-b">You in three months can read it.</text>
+      <text x="590" y="266" class="label-b">Anyone in 2040 can read it.</text>
+      <text x="590" y="306" class="label-sm" style="font-style:italic">Format won't rot. Files won't go obsolete.</text>
+
+      <!-- Bottom-left: CLAUDE.md is a convention -->
+      <rect x="60" y="370" width="490" height="240" rx="12" class="highlight" opacity="0.4"/>
+      <rect x="60" y="370" width="490" height="240" rx="12" fill="none" stroke="#92400e" stroke-width="2.5"/>
+      <text x="80" y="408" class="head-md">3. <tspan style="font-family:ui-monospace,Menlo,monospace">CLAUDE.md</tspan> is a known convention</text>
+      <line x1="80" y1="422" x2="530" y2="422" class="line-thin"/>
+      <text x="80" y="454" class="label-b">Claude Code looks for it on startup.</text>
+      <text x="80" y="478" class="label-b">Codex looks for <tspan class="mono">AGENTS.md</tspan>. Gemini, <tspan class="mono">GEMINI.md</tspan>.</text>
+      <text x="80" y="502" class="label-b">Drop one at the project root.</text>
+      <text x="80" y="526" class="label-b">The AI reads it every session, no prompt needed.</text>
+      <text x="80" y="566" class="label-sm" style="font-style:italic">Persistent system context, free of charge.</text>
+
+      <!-- Bottom-right: compressed prior reasoning -->
+      <rect x="570" y="370" width="490" height="240" rx="12" class="box"/>
+      <text x="590" y="408" class="head-md">4. Compressed prior reasoning</text>
+      <line x1="590" y1="422" x2="1040" y2="422" class="line-thin"/>
+      <text x="590" y="454" class="label-b">Bullets. Headings. Tables. The shape</text>
+      <text x="590" y="478" class="label-b">your brain already uses to think.</text>
+      <text x="590" y="502" class="label-b">The file isn't documentation.</text>
+      <text x="590" y="526" class="label-b">It's the thinking you did <tspan style="font-weight:700">once</tspan>,</text>
+      <text x="590" y="550" class="label-b">stored cheap, referenced forever.</text>
+      <text x="590" y="586" class="label-sm" style="font-style:italic">Write the rule once. Stop re-teaching.</text>
+    </svg>
+
+    <!-- =========== SCENE 6: the thread breaks =========== -->
+    <svg class="scene" data-scene="6" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
       <text x="550" y="44" text-anchor="middle" class="head-xl">The thread breaks. The files stay.</text>
       <text x="550" y="72" text-anchor="middle" class="label-sm">Codex confused. You hit a wall. Doesn't matter. Build keeps going.</text>
 
@@ -236,8 +285,8 @@
       <text x="560" y="495" class="label-b">The project is in the files.</text>
     </svg>
 
-    <!-- =========== SCENE 6: fresh thread, paste PROJECT.md =========== -->
-    <svg class="scene" data-scene="6" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+    <!-- =========== SCENE 7: fresh thread, paste PROJECT.md =========== -->
+    <svg class="scene" data-scene="7" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
       <text x="550" y="44" text-anchor="middle" class="head-xl">Fresh thread. Same project.</text>
       <text x="550" y="72" text-anchor="middle" class="label-sm">Open a new Codex thread. First message: paste PROJECT.md. Done.</text>
 
@@ -269,8 +318,8 @@
       <text x="550" y="620" text-anchor="middle" class="label-sm" style="font-style:italic">Same project. Different conversation. Zero re-explaining.</text>
     </svg>
 
-    <!-- =========== SCENE 7: finale =========== -->
-    <svg class="scene" data-scene="7" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+    <!-- =========== SCENE 8: finale =========== -->
+    <svg class="scene" data-scene="8" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
       <rect x="40" y="100" width="1020" height="520" rx="16" class="box-finale"/>
 
       <text x="550" y="200" text-anchor="middle" class="label-h-white" style="font-size:34px;font-weight:800">The thread is the conversation.</text>
@@ -305,6 +354,7 @@ const captions = [
   "Most people picture building as a conversation. That's only half of it.",
   "Underneath the chat, real files are appearing on your computer. That's what your build actually is.",
   "Four of those files keep the project alive between sessions. The rule-pack tells Codex to write them without being asked.",
+  "And the format matters. Markdown is machine-first, human-readable, plays nice with the conventions every AI tool already follows.",
   "When the thread breaks, when Codex gets confused, when you have to start over: the files are still there.",
   "Open a fresh thread. Paste PROJECT.md as the first message. The new conversation picks up exactly where the old one stopped.",
   "The thread is the conversation. The files are the project. Build accordingly."
