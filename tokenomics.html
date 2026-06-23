@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tokenomics · The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px 24px 20px; gap: 14px; }
+  .frame-wrap { flex: 1; max-height: 84vh; width: 100%; max-width: 1180px; display: flex; align-items: center; justify-content: center; }
+
+  .scene { display: none; width: 100%; max-width: 1100px; }
+  .scene.active { display: block; }
+
+  /* HUD + controls */
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 13px; color: #666; }
+  .hud strong { color: #1a1a1a; font-size: 15px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 7px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
+
+  /* Shared typography */
+  .eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: 11px; font-weight: 700; color: #888; margin-bottom: 10px; }
+  h1.scene-title { font-size: 48px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.05; margin-bottom: 12px; }
+  h1.scene-title .accent { background: #fde68a; padding: 0 8px; }
+  .lead { font-size: 18px; color: #444; line-height: 1.55; margin-bottom: 22px; max-width: 880px; }
+  .lead strong { color: #1a1a1a; }
+
+  blockquote { border-left: 3px solid #1a1a1a; padding: 10px 20px; background: #fffbe6; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 19px; color: #1a1a1a; font-weight: 500; }
+  blockquote strong { background: #fde68a; padding: 0 4px; }
+
+  /* Scene 1 (title) */
+  .title-hero { text-align: center; padding: 20px 0; }
+  .title-hero .eyebrow { color: #666; margin-bottom: 18px; }
+  .title-hero h1 { font-size: 110px; font-weight: 900; letter-spacing: -4px; margin-bottom: 18px; line-height: 1; }
+  .title-hero h1 .accent { background: #fde68a; padding: 0 14px; }
+  .title-hero .sub { font-size: 28px; font-weight: 600; color: #444; max-width: 720px; margin: 0 auto; line-height: 1.35; }
+  .title-hero .tag { display: inline-block; margin-top: 26px; font-size: 13px; color: #666; border: 1.5px solid #ccc; border-radius: 20px; padding: 6px 16px; letter-spacing: 1px; }
+
+  /* The Wall scene */
+  .wall-row { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: center; }
+  .wall-figure { background: #1a1a1a; border-radius: 14px; padding: 26px; color: #fafafa; }
+  .wall-figure .lab { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #fde68a; font-weight: 700; }
+  .wall-figure h3 { font-size: 24px; margin: 6px 0 16px; }
+  .wall-bar { height: 14px; background: #333; border-radius: 7px; overflow: hidden; margin: 8px 0 6px; }
+  .wall-bar .fill { display: block; height: 100%; background: linear-gradient(90deg, #fde68a, #f59e0b); }
+  .wall-msg { background: #2a2a2a; border-radius: 8px; padding: 12px 14px; margin-top: 14px; font-size: 14px; color: #ddd; }
+  .wall-msg strong { color: #fde68a; }
+
+  /* Scale comparison */
+  .scale-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 18px 0; }
+  .scale-card { background: #fff; border: 2px solid #1a1a1a; border-radius: 12px; padding: 22px 24px; }
+  .scale-card.personal { background: #f5f9ff; }
+  .scale-card.product  { background: #fff5f5; }
+  .scale-card .badge { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #666; margin-bottom: 8px; }
+  .scale-card h3 { font-size: 26px; letter-spacing: -0.5px; margin-bottom: 10px; }
+  .scale-card .nums { font-size: 14px; color: #444; line-height: 1.7; }
+  .scale-card .verdict { margin-top: 14px; padding-top: 12px; border-top: 1px solid #ddd; font-size: 15px; font-weight: 700; }
+  .scale-card.personal .verdict { color: #1e4480; }
+  .scale-card.product  .verdict  { color: #963838; }
+
+  /* Ethics chain */
+  .chain { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 24px 0; align-items: center; }
+  .chain .node { background: #fff; border: 2px solid #1a1a1a; border-radius: 10px; padding: 14px 12px; text-align: center; font-size: 13px; font-weight: 600; }
+  .chain .arrow { text-align: center; font-size: 22px; color: #888; }
+  .chain .node .ic { font-size: 26px; display: block; margin-bottom: 4px; }
+
+  /* Knob cards */
+  .knobs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0; }
+  .knob { background: #fff; border: 2px solid #1a1a1a; border-radius: 12px; padding: 18px 20px; }
+  .knob .num { display: inline-block; background: #1a1a1a; color: #fde68a; font-weight: 800; font-size: 11px; padding: 3px 9px; border-radius: 12px; margin-bottom: 10px; letter-spacing: 1px; }
+  .knob h4 { font-size: 18px; margin-bottom: 8px; line-height: 1.25; }
+  .knob p { font-size: 14px; color: #444; line-height: 1.55; }
+
+  /* Right-model ladder */
+  .ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+  .rung { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 10px; padding: 16px 18px; }
+  .rung .size { font-size: 28px; font-weight: 800; letter-spacing: -1px; }
+  .rung .label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; font-weight: 700; margin-bottom: 4px; }
+  .rung .tasks { font-size: 13px; color: #444; margin-top: 8px; line-height: 1.55; }
+  .rung.s1 .size { color: #1e4480; }
+  .rung.s2 .size { color: #b45309; }
+  .rung.s3 .size { color: #963838; }
+
+  /* LLM-builds-once swap */
+  .swap { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 14px; align-items: center; margin: 18px 0; }
+  .swap .arrow { text-align: center; font-size: 32px; font-weight: 800; color: #1a1a1a; }
+  .swap-card { background: #fff; border: 2px solid #1a1a1a; border-radius: 10px; padding: 18px 20px; }
+  .swap-card.before { background: #fff5f5; }
+  .swap-card.after  { background: #f4fbf4; }
+  .swap-card .lab { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+  .swap-card.before .lab { color: #963838; }
+  .swap-card.after  .lab { color: #1a4a1a; }
+  .swap-card h4 { font-size: 18px; margin-bottom: 8px; }
+  .swap-card p { font-size: 14px; color: #444; line-height: 1.55; }
+
+  /* Threads tieback */
+  .tieback { background: #1a1a1a; color: #fafafa; border-radius: 12px; padding: 22px 28px; margin: 16px 0; }
+  .tieback .lab { color: #fde68a; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; }
+  .tieback p { font-size: 16px; line-height: 1.6; }
+  .tieback a { color: #fde68a; }
+
+  /* Private LLM panel */
+  .private { background: #f6f0ff; border: 2px solid #5b21b6; border-radius: 12px; padding: 22px 26px; margin: 18px 0; }
+  .private .lab { color: #5b21b6; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+  .private h3 { font-size: 22px; margin-bottom: 10px; }
+  .private p { font-size: 15px; color: #333; line-height: 1.6; margin-bottom: 8px; }
+  .private .small { font-size: 13px; color: #5b21b6; font-weight: 600; margin-top: 12px; }
+
+  /* Close */
+  .close-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .close-pills .pill { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 20px; padding: 7px 16px; font-size: 13px; color: #1a1a1a; font-weight: 600; }
+
+  .br-footer { font-size: 11px; color: #888; letter-spacing: 0.5px; }
+
+  @media (max-width: 900px) {
+    .wall-row, .scale-grid, .knobs, .ladder, .swap, .chain { grid-template-columns: 1fr; }
+    .swap .arrow { transform: rotate(90deg); }
+    h1.scene-title { font-size: 32px; }
+    .title-hero h1 { font-size: 64px; }
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <div class="frame-wrap" id="frame">
+
+    <!-- ========= SCENE 1: TITLE ========= -->
+    <div class="scene active" data-scene="1">
+      <div class="title-hero">
+        <div class="eyebrow">Build Room · S3 lesson · ~8 min</div>
+        <h1><span class="accent">Tokenomics</span></h1>
+        <div class="sub">Efficiency and ethics are the same thing.</div>
+        <div class="tag">A mental model for getting more out of LLMs without burning your limits, your wallet, or the planet.</div>
+      </div>
+    </div>
+
+    <!-- ========= SCENE 2: THE WALL ========= -->
+    <div class="scene" data-scene="2">
+      <div class="eyebrow">Why this matters</div>
+      <h1 class="scene-title">The hard ceiling.</h1>
+      <p class="lead">The first reason to care about tokens isn't money. It's <strong>the wall.</strong> If you're not efficient, you hit the token limit and just can't develop anymore. Paying more pushes the wall back. It doesn't remove it. <strong>Context keeps growing.</strong></p>
+
+      <div class="wall-row">
+        <div class="wall-figure">
+          <div class="lab">Mid-build</div>
+          <h3>Usage limit reached</h3>
+          <div style="font-size:13px; color:#aaa; margin-bottom:6px;">Daily allowance</div>
+          <div class="wall-bar"><span class="fill" style="width:100%"></span></div>
+          <div style="font-size:12px; color:#aaa;">100% used. Resets in 4h 18m.</div>
+          <div class="wall-msg">
+            <strong>You've hit your limit.</strong><br>
+            Continue with a smaller model or wait for reset. Upgrade for more.
+          </div>
+        </div>
+        <div>
+          <p class="lead" style="margin:0;">The wall always exists. The number isn't the point. <strong>Efficiency is the point.</strong></p>
+          <p style="font-size:15px; color:#666; margin-top:14px;">Every message re-reads the full thread from scratch. A 100k-token thread costs 100k tokens before you type a word. That's how you hit the wall faster than you expected.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========= SCENE 3: PERSONAL vs PRODUCT SCALE ========= -->
+    <div class="scene" data-scene="3">
+      <div class="eyebrow">When efficiency starts mattering</div>
+      <h1 class="scene-title">For yourself? Don't bother. <span class="accent">For users?</span> Bother.</h1>
+      <p class="lead">If you're running a job 10 times a month for yourself, <strong>30 cents a run does not matter.</strong> Don't optimize. Build it.</p>
+
+      <div class="scale-grid">
+        <div class="scale-card personal">
+          <div class="badge">Personal scale</div>
+          <h3>You. Ten runs a month.</h3>
+          <div class="nums">30¢ per run · $3/month total<br>It's coffee money. Move on.<br><br>Build the thing. Get the output. Don't waste a day shaving pennies.</div>
+          <div class="verdict">Verdict: don't optimize.</div>
+        </div>
+        <div class="scale-card product">
+          <div class="badge">Publisher scale</div>
+          <h3>1,000 users. Daily.</h3>
+          <div class="nums">30¢/run × 30,000 runs/month = <strong>$9,000/month</strong><br>Same code. 10× cheaper version: <strong>$900/month.</strong><br><br>Plus the slowdown: bloated context means slower responses for everyone.</div>
+          <div class="verdict">Verdict: efficiency is the product.</div>
+        </div>
+      </div>
+
+      <blockquote>At scale, every wasted token is wasted processing time, wasted server time, wasted energy. <strong>And it slows down your results.</strong></blockquote>
+    </div>
+
+    <!-- ========= SCENE 4: ETHICS IS EFFICIENCY ========= -->
+    <div class="scene" data-scene="4">
+      <div class="eyebrow">The reframe</div>
+      <h1 class="scene-title">Ethics IS efficiency.</h1>
+      <p class="lead">Every token isn't free. Tokens are compute, compute is power, power is heat. Heat means cooling. Cooling means water. <strong>Wasted tokens have a real-world footprint.</strong></p>
+
+      <div class="chain">
+        <div class="node"><span class="ic">🔤</span>Wasted tokens</div>
+        <div class="arrow">→</div>
+        <div class="node"><span class="ic">⚡</span>Wasted compute</div>
+        <div class="arrow">→</div>
+        <div class="node"><span class="ic">💧</span>Wasted water + power</div>
+      </div>
+
+      <blockquote>This is the Build Room ethics frame. <strong>Don't burn what you don't have to.</strong> It's the same discipline whether you call it efficiency, ethics, or just good engineering.</blockquote>
+    </div>
+
+    <!-- ========= SCENE 5: THE THREE KNOBS ========= -->
+    <div class="scene" data-scene="5">
+      <div class="eyebrow">How to be efficient</div>
+      <h1 class="scene-title">Three knobs you can turn.</h1>
+      <p class="lead">You don't need to optimize anything until you ship. But you DO need to know what dials exist, so you can reach for them when scale hits.</p>
+
+      <div class="knobs">
+        <div class="knob">
+          <span class="num">KNOB 1</span>
+          <h4>Right model for the job</h4>
+          <p>Match the model size to the task. Small task, small model. Don't reach for the biggest hammer to drive a tack.</p>
+        </div>
+        <div class="knob">
+          <span class="num">KNOB 2</span>
+          <h4>From "LLM-built" to "LLM-builds-once"</h4>
+          <p>The biggest win. Use the LLM to figure out the logic. Then have the LLM write code that runs <em>without</em> calling an LLM next time.</p>
+        </div>
+        <div class="knob">
+          <span class="num">KNOB 3</span>
+          <h4>Manage threads + context</h4>
+          <p>Don't ship the whole world into context every run. Chunk it. Burn threads when they bloat. Brief replaces archive.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========= SCENE 6: KNOB 1 — RIGHT MODEL ========= -->
+    <div class="scene" data-scene="6">
+      <div class="eyebrow">Knob 1</div>
+      <h1 class="scene-title">Right model. Right job.</h1>
+      <p class="lead">Bigger models think harder. They also cost more, take longer, and burn more. <strong>If a small model can do the job, use the small model.</strong></p>
+
+      <div class="ladder">
+        <div class="rung s1">
+          <div class="label">Small / cheap / fast</div>
+          <div class="size">Haiku</div>
+          <div class="tasks">Sorting, classifying, tagging, simple Q&amp;A, structured extraction, "is this X or Y?"</div>
+        </div>
+        <div class="rung s2">
+          <div class="label">Mid / balanced</div>
+          <div class="size">Sonnet</div>
+          <div class="tasks">Writing, summarizing, code edits, planning, most conversational work.</div>
+        </div>
+        <div class="rung s3">
+          <div class="label">Large / heavy</div>
+          <div class="size">Opus</div>
+          <div class="tasks">Hard reasoning, complex architecture, multi-step agent work, anything that fails on smaller models.</div>
+        </div>
+      </div>
+
+      <blockquote>Default to mid. Drop down for repetitive sorting jobs. Reach up only when the smaller model fails. <strong>"Big model on everything" is the most expensive bad habit in AI.</strong></blockquote>
+    </div>
+
+    <!-- ========= SCENE 7: KNOB 2 — LLM-BUILDS-ONCE ========= -->
+    <div class="scene" data-scene="7">
+      <div class="eyebrow">Knob 2 · The biggest knob</div>
+      <h1 class="scene-title">Let the LLM write the loop. <span class="accent">Then exit the loop.</span></h1>
+      <p class="lead">Most builds don't need an LLM in the loop forever. The LLM is the <strong>architect.</strong> Once you understand how something works, it becomes plain code that runs without paying for tokens at all.</p>
+
+      <div class="swap">
+        <div class="swap-card before">
+          <div class="lab">Phase 1 · build it WITH the LLM</div>
+          <h4>LLM is in the loop on every run</h4>
+          <p>You're figuring it out. The LLM helps you think, drafts the logic, tries options. Every run costs tokens. That's fine. You're learning the shape.</p>
+        </div>
+        <div class="arrow">→</div>
+        <div class="swap-card after">
+          <div class="lab">Phase 2 · ship it WITHOUT the LLM</div>
+          <h4>LLM wrote a script that runs deterministic</h4>
+          <p>The logic is locked. The LLM wrote you a function, a cron job, a script. It runs by itself. Zero tokens. Instant. Free.</p>
+        </div>
+      </div>
+
+      <blockquote>Build Room rule: <strong>if a task is repeating, the LLM's job is to write the thing that does the task, not to keep doing the task.</strong></blockquote>
+    </div>
+
+    <!-- ========= SCENE 8: KNOB 3 — THREADS + CONTEXT ========= -->
+    <div class="scene" data-scene="8">
+      <div class="eyebrow">Knob 3</div>
+      <h1 class="scene-title">Don't ship the world. <span class="accent">Ship the brief.</span></h1>
+      <p class="lead">Every message in an LLM thread re-reads the entire thread. A bloated thread is wasted tokens on every exchange. <strong>Briefs and project files solve this.</strong></p>
+
+      <ul style="font-size:16px; color:#333; line-height:1.8; margin: 14px 0 14px 28px;">
+        <li><strong>Burn threads when they bloat.</strong> Start fresh. Paste a one-page brief instead of scrolling back.</li>
+        <li><strong>Project briefs over full repos.</strong> Point Claude at <code>PROJECT.md</code>, not 200 source files. Same knowledge, fraction of the tokens.</li>
+        <li><strong>Machine-first formats.</strong> Markdown over rich text. APIs over screenshots. Every UI an LLM has to navigate is tokens spent on overhead, not work.</li>
+      </ul>
+
+      <div class="tieback">
+        <div class="lab">Already covered in S2</div>
+        <p><strong>This is "threads burn, files remain"</strong> read at the cost level. The discipline you learned in S2 isn't just about not losing context. It's also <strong>the cheapest single thing you can do</strong> to keep your tokens going to work, not overhead.</p>
+      </div>
+    </div>
+
+    <!-- ========= SCENE 9: PRIVATE LLM ========= -->
+    <div class="scene" data-scene="9">
+      <div class="eyebrow">A separate concern</div>
+      <h1 class="scene-title">When the data shouldn't leave.</h1>
+      <p class="lead">Efficiency-as-ethics is about waste. There's a different ethical question that lives next to it: <strong>some data shouldn't go through a public model at all.</strong></p>
+
+      <div class="private">
+        <div class="lab">When you reach for a private LLM</div>
+        <h3>Sensitive data, regulated industries, client confidentiality</h3>
+        <p>Health records. Legal discovery. Financial documents you're not the owner of. Proprietary code under NDA. Anything where the question "did the data owner agree to this being read by a public LLM?" is "no" or "I don't know."</p>
+        <p>Options: self-hosted models (Llama / Mistral on your own server), enterprise LLM contracts with no-training guarantees, on-prem deployments. Slower, more setup, sometimes less capable. But the data stays where it belongs.</p>
+        <div class="small">Sometimes the right answer is "use no LLM at all for this part." That's also valid.</div>
+      </div>
+
+      <blockquote>This is one slide because for most Build Room projects, it doesn't apply. <strong>But when it applies, it's the whole game.</strong></blockquote>
+    </div>
+
+    <!-- ========= SCENE 10: CLOSE ========= -->
+    <div class="scene" data-scene="10">
+      <div class="eyebrow">The mindset shift</div>
+      <h1 class="scene-title">At publisher tier, <span class="accent">every token has a cost.</span></h1>
+      <p class="lead">Personal scale: build it however. <strong>Publisher scale:</strong> every token is money, time, electricity, water. Tokenomics isn't optimization theater. <strong>It's the discipline of not wasting what you don't have to.</strong></p>
+
+      <div class="close-pills">
+        <div class="pill">Hard ceiling exists</div>
+        <div class="pill">Ethics = environmental cost</div>
+        <div class="pill">Right model for the job</div>
+        <div class="pill">LLM-builds-once</div>
+        <div class="pill">Burn threads · ship briefs</div>
+        <div class="pill">Private LLM when needed</div>
+      </div>
+
+      <blockquote style="margin-top:22px; font-size: 22px;">Build for the next user, not the thousandth. <strong>But know which dials exist.</strong></blockquote>
+    </div>
+
+  </div>
+
+  <div class="hud">
+    <div><strong id="counter">1</strong> / 10</div>
+    <div class="controls">
+      <button id="prev" onclick="go(-1)" disabled>← Prev</button>
+      <button id="next" onclick="go(1)">Next →</button>
+    </div>
+    <div class="br-footer">Alex Salinsky · The Build Room</div>
+  </div>
+
+</div>
+
+<div class="hint">← → arrow keys</div>
+
+<script>
+  const scenes = document.querySelectorAll('.scene');
+  let cur = 0;
+  function go(dir) {
+    scenes[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(scenes.length - 1, cur + dir));
+    scenes[cur].classList.add('active');
+    document.getElementById('counter').textContent = (cur + 1);
+    document.getElementById('prev').disabled = cur === 0;
+    document.getElementById('next').disabled = cur === scenes.length - 1;
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+  });
+</script>
+
+</body>
+</html>
