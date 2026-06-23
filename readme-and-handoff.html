@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>README + handoff · The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; line-height: 1.55; }
+  .page { max-width: 1240px; margin: 0 auto; padding: 40px 28px 90px; }
+
+  .eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 700; color: #666; margin-bottom: 12px; }
+  h1 { font-size: 44px; font-weight: 800; letter-spacing: -1.2px; margin: 0 0 10px; padding-bottom: 18px; border-bottom: 2px solid #1a1a1a; }
+  h1 .sub { display: block; font-size: 22px; font-weight: 500; color: #555; margin-top: 6px; letter-spacing: -0.3px; }
+  h2 { font-size: 26px; font-weight: 700; margin: 36px 0 14px; letter-spacing: -0.3px; padding-top: 10px; border-top: 1px solid #ddd; }
+  h3 { font-size: 18px; font-weight: 700; margin: 22px 0 8px; }
+
+  p { font-size: 16px; margin-bottom: 12px; color: #333; }
+  ul, ol { margin: 8px 0 16px 0; padding-left: 28px; }
+  li { margin-bottom: 6px; font-size: 16px; color: #333; }
+
+  strong { color: #1a1a1a; font-weight: 700; }
+  code { background: #f0f0f0; color: #1a1a1a; padding: 2px 6px; border-radius: 4px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; }
+
+  blockquote { border-left: 3px solid #1a1a1a; padding: 8px 18px; background: #fffbe6; border-radius: 0 8px 8px 0; margin: 18px 0; font-size: 17px; color: #1a1a1a; }
+  blockquote strong { background: #fde68a; padding: 0 4px; }
+
+  hr { border: none; border-top: 1px solid #ddd; margin: 32px 0; }
+
+  /* The 5-min test panel */
+  .test { background: #1a1a1a; color: #fafafa; border-radius: 12px; padding: 26px 30px; margin: 22px 0; }
+  .test h3 { color: #fde68a; margin-top: 0; font-size: 20px; text-transform: uppercase; letter-spacing: 1.5px; }
+  .test .timer { font-size: 56px; font-weight: 800; letter-spacing: -2px; color: #fde68a; margin: 8px 0 4px; }
+  .test .timer .unit { font-size: 22px; color: #fafafa; opacity: 0.7; margin-left: 6px; letter-spacing: 0; }
+  .test p { color: #fafafa; font-size: 16px; }
+
+  /* Field list */
+  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+  .field { background: #fff; border: 2px solid #1a1a1a; border-radius: 10px; padding: 16px 18px; }
+  .field .num { display: inline-block; background: #1a1a1a; color: #fde68a; font-weight: 800; font-size: 12px; padding: 2px 8px; border-radius: 12px; margin-right: 8px; letter-spacing: 1px; }
+  .field h3 { display: inline; font-size: 16px; }
+  .field .why { color: #555; font-size: 14px; margin-top: 8px; }
+  .field code { display: block; margin-top: 8px; padding: 8px 10px; background: #f6f6f6; font-size: 12px; border-radius: 6px; }
+
+  /* Sample README block */
+  .sample { background: #1a1a1a; color: #fafafa; border-radius: 10px; padding: 22px 26px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; line-height: 1.65; margin: 16px 0; overflow-x: auto; }
+  .sample .h { color: #fde68a; font-weight: 700; }
+  .sample .dim { color: #888; }
+
+  .pattern { background: #f4fbf4; border: 1px solid #c5e0c5; border-radius: 10px; padding: 18px 22px; margin: 16px 0; }
+  .pattern strong { color: #1a4a1a; }
+
+  .br-footer { position: fixed; bottom: 8px; left: 14px; font-size: 11px; color: #888; letter-spacing: 0.5px; }
+
+  @media (max-width: 720px) {
+    .page { padding: 24px 16px 90px; }
+    h1 { font-size: 32px; }
+    h1 .sub { font-size: 17px; }
+    .fields { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="eyebrow">Build Room · S3 lesson · 10 min</div>
+<h1>README + handoff<span class="sub">The README is the demo before the demo.</span></h1>
+
+<p>You've built a thing. It runs on your machine. You know which file to edit, which command to run, where the API key lives. <strong>None of that is in your project yet.</strong> It's only in your head.</p>
+
+<p>A publisher writes it down. Not because someone is reading it. Because <strong>future you, three weeks from now, won't remember either.</strong></p>
+
+<div class="test">
+  <h3>The handoff test</h3>
+  <div class="timer">5<span class="unit">minutes</span></div>
+  <p>Can a teammate clone your project, read your README, and get it running in five minutes — without asking you a question?</p>
+  <p style="margin-top:14px; opacity: 0.85;">Yes = you shipped a publisher-grade artifact. No = you built a thing that only works when you're in the room.</p>
+</div>
+
+<h2>The 7 fields a Build Room README needs</h2>
+
+<p>Not more. Not less. Each one earns its line.</p>
+
+<div class="fields">
+
+  <div class="field">
+    <span class="num">1</span><h3>One-line description</h3>
+    <p class="why">What this thing does, in 15 words or fewer. No background, no story. Just the job.</p>
+    <code># Pull last month's PayPal payments and flag overdue clients.</code>
+  </div>
+
+  <div class="field">
+    <span class="num">2</span><h3>Run it</h3>
+    <p class="why">The exact command. Not "how to run." The command itself, copy-pasteable.</p>
+    <code>npm run report</code>
+  </div>
+
+  <div class="field">
+    <span class="num">3</span><h3>What you need first</h3>
+    <p class="why">Deps, accounts, env vars. Anything the command depends on that isn't in the repo.</p>
+    <code>Node 20+ · PayPal sandbox key · .env file (see .env.example)</code>
+  </div>
+
+  <div class="field">
+    <span class="num">4</span><h3>Where the secrets live</h3>
+    <p class="why">Name the env vars. Show .env.example. Say where the real values come from. Do NOT paste real keys.</p>
+    <code>PAYPAL_API_KEY in .env (get from PayPal dashboard → Apps → MyApp)</code>
+  </div>
+
+  <div class="field">
+    <span class="num">5</span><h3>What it produces</h3>
+    <p class="why">Where the output goes. A file? A Slack message? A row in a sheet? Name it.</p>
+    <code>Writes ./out/overdue-YYYY-MM-DD.csv</code>
+  </div>
+
+  <div class="field">
+    <span class="num">6</span><h3>Known limitations</h3>
+    <p class="why">The honest list. Things you'd warn a teammate about. Two or three lines.</p>
+    <code>- Only handles USD<br>- Skips refunds &gt; 90 days old<br>- One PayPal account at a time</code>
+  </div>
+
+  <div class="field">
+    <span class="num">7</span><h3>When it breaks</h3>
+    <p class="why">The first thing to check. The error message you've seen twice. The fix you keep forgetting.</p>
+    <code>If 401: regenerate the PayPal key, it expires every 30 days.</code>
+  </div>
+
+</div>
+
+<h2>Sample README, end to end</h2>
+
+<div class="sample">
+<span class="h"># Overdue Client Pinger</span>
+
+<span class="dim">Pulls last month's PayPal payments and flags clients who haven't paid this month.</span>
+
+<span class="h">## Run it</span>
+<span class="dim">```</span>
+npm install
+cp .env.example .env  <span class="dim"># fill in PAYPAL_API_KEY</span>
+npm run report
+<span class="dim">```</span>
+
+<span class="h">## What you need</span>
+- Node 20+
+- PayPal sandbox or live API key
+- Stripe account is optional (Stripe fallback only)
+
+<span class="h">## Secrets</span>
+- <span class="dim">PAYPAL_API_KEY</span> in .env (get from PayPal dashboard → Apps → MyApp)
+- <span class="dim">NEVER</span> commit .env. .gitignore already excludes it.
+
+<span class="h">## Output</span>
+Writes <span class="dim">./out/overdue-YYYY-MM-DD.csv</span>. Columns: client, last_paid, days_overdue, email.
+
+<span class="h">## Known limits</span>
+- USD only
+- Skips refunds &gt; 90 days
+- One PayPal account at a time
+
+<span class="h">## When it breaks</span>
+- <span class="dim">401</span>: PayPal key expired, regenerate in dashboard
+- <span class="dim">empty CSV</span>: month boundary, check the date arg
+</div>
+
+<h2>The pattern: write it WITH Claude, not after</h2>
+
+<div class="pattern">
+<p><strong>The bad pattern:</strong> finish the build, then sit down to write the README. You forget half the gotchas. The README is generic. The handoff test fails.</p>
+<p style="margin-top:10px;"><strong>The Build Room pattern:</strong> when you start the build, ask the AI to draft the README first. Each time you add a thing that needs setup, ask the AI to update the README at the same time. By the time the build is done, the README is done.</p>
+<p style="margin-top:10px;">Prompt to keep handy:</p>
+<code style="display:block; margin-top:8px; padding: 10px 12px; font-size:13px; background:#fff; border:1px solid #c5e0c5;">"Look at what changed in this session. Update the README so a new teammate could run this in 5 min without asking me anything. Keep the 7-section structure."</code>
+</div>
+
+<h2>Demo Day connection</h2>
+
+<p>S4 is one week away. Your README is the script for the first 30 seconds of your demo:</p>
+
+<ul>
+  <li><strong>"Here's what it does"</strong> — your one-line description</li>
+  <li><strong>"Here's how to run it"</strong> — your run-it command, shown live</li>
+  <li><strong>"Here's what it produces"</strong> — show the output file or message</li>
+</ul>
+
+<p>If you can't open your README and pull those three lines without rewriting them, the demo is the wrong shape too.</p>
+
+<blockquote>The README is the demo before the demo. <strong>Write it now, demo it later.</strong></blockquote>
+
+</div>
+<div class="br-footer">Alex Salinsky · The Build Room</div>
+</body>
+</html>
