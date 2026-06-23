@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proof Library — The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  .page { max-width: 1200px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  header { margin-bottom: 28px; }
+  .cohort-pill { display: inline-block; background: #1a1a1a; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 1px; margin-bottom: 14px; }
+  h1 { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .sub { font-size: 17px; color: #666; max-width: 720px; }
+  @media (max-width: 640px) { h1 { font-size: 30px; } .sub { font-size: 15px; } }
+
+  .controls { margin: 28px 0 18px; }
+  .search-row { margin-bottom: 14px; }
+  .search-row input { width: 100%; padding: 12px 14px; font-size: 15px; border: 2px solid #1a1a1a; border-radius: 8px; background: #fff; font-family: inherit; }
+  .search-row input:focus { outline: none; box-shadow: 0 0 0 3px rgba(26,26,26,0.12); }
+
+  .filter-row { display: flex; flex-direction: column; gap: 10px; }
+  .filter-group { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .filter-label { font-size: 11px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; min-width: 72px; }
+  .chip { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 16px; padding: 5px 12px; font-size: 12px; cursor: pointer; user-select: none; transition: all 0.12s; font-family: inherit; }
+  .chip:hover { background: #f0f0f0; }
+  .chip.active { background: #1a1a1a; color: #fff; }
+
+  .stats { margin: 14px 0 22px; font-size: 13px; color: #666; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+  @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
+
+  .card { background: #fff; border: 2px solid #1a1a1a; border-radius: 10px; padding: 16px 18px; cursor: pointer; transition: all 0.12s; display: flex; flex-direction: column; gap: 10px; text-align: left; font-family: inherit; color: #1a1a1a; }
+  .card:hover { background: #1a1a1a; color: #fff; }
+  .card:hover .card-meta, .card:hover .card-excerpt, .card:hover .card-source { color: #ccc; }
+  .card:hover .badge { background: #fff; color: #1a1a1a; border-color: #fff; }
+  .card:hover .pill-status { background: rgba(255,255,255,0.18); color: #fff; }
+
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .card-title { font-size: 16px; font-weight: 700; line-height: 1.3; }
+  .card-meta { display: flex; flex-wrap: wrap; gap: 6px; font-size: 11px; color: #888; letter-spacing: 0.5px; align-items: center; }
+  .badge { display: inline-block; background: #1a1a1a; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border: 1.5px solid #1a1a1a; }
+  .badge.type { background: #fff; color: #1a1a1a; }
+  .pill-status { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; background: #eee; color: #555; }
+  .pill-status.raw { background: #fde68a; color: #92400e; }
+  .pill-status.cleared-for-public { background: #dcfce7; color: #166534; }
+  .pill-status.live { background: #dbeafe; color: #1e40af; }
+  .pill-status.featured { background: #1a1a1a; color: #fff; }
+  .pill-status.redacted { background: #fee2e2; color: #991b1b; }
+
+  .card-excerpt { font-size: 14px; line-height: 1.5; color: #444; font-style: italic; }
+  .card-source { font-size: 12px; color: #888; margin-top: auto; }
+
+  .empty { text-align: center; padding: 60px 20px; color: #888; font-size: 15px; }
+
+  .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 100; padding: 20px; overflow-y: auto; }
+  .modal-bg.open { display: flex; align-items: flex-start; justify-content: center; }
+  .modal { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; max-width: 720px; width: 100%; padding: 28px 28px 24px; margin-top: 40px; position: relative; }
+  @media (max-width: 640px) { .modal { padding: 22px 18px; margin-top: 20px; } }
+  .modal-close { position: absolute; top: 12px; right: 14px; background: none; border: none; font-size: 28px; cursor: pointer; line-height: 1; color: #888; font-family: inherit; }
+  .modal-close:hover { color: #1a1a1a; }
+  .modal h2 { font-size: 24px; font-weight: 800; line-height: 1.25; margin-bottom: 10px; padding-right: 24px; }
+  .modal-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+  .modal-quote { font-size: 17px; line-height: 1.6; color: #1a1a1a; padding: 18px 20px; background: #fafafa; border-left: 4px solid #1a1a1a; border-radius: 4px; margin-bottom: 18px; white-space: pre-wrap; }
+  .modal-fields { display: grid; grid-template-columns: 140px 1fr; gap: 6px 16px; font-size: 13px; margin-bottom: 18px; }
+  .modal-fields dt { color: #888; font-weight: 600; }
+  .modal-fields dd { color: #1a1a1a; word-break: break-word; }
+  .modal-fields a { color: #1a1a1a; }
+  .modal-fields .tag { display: inline-block; background: #f0f0f0; padding: 2px 8px; border-radius: 8px; margin-right: 4px; margin-bottom: 4px; font-size: 11px; }
+  .copy-btn { background: #1a1a1a; color: #fff; border: none; padding: 10px 18px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; }
+  .copy-btn:hover { background: #444; }
+  .copy-btn.copied { background: #166534; }
+  .modal-notes { font-size: 13px; color: #666; padding: 12px 14px; background: #fef9e7; border-radius: 6px; border-left: 3px solid #f59e0b; margin-top: 14px; }
+
+  footer { margin-top: 56px; font-size: 12px; color: #888; text-align: center; padding-top: 24px; border-top: 1px solid #ddd; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="cohort-pill">THE BUILD ROOM · PROOF LIBRARY</div>
+    <h1>Proof Library</h1>
+    <p class="sub">Every clip, win, testimonial, lesson, and published asset The Build Room has shipped. Data layer for content-generation. Honest gaps over fabricated entries.</p>
+  </header>
+
+  <div class="controls">
+    <div class="search-row">
+      <input type="search" id="search" placeholder="Search title, quote, attribution, tags..." autocomplete="off">
+    </div>
+    <div class="filter-row">
+      <div class="filter-group">
+        <span class="filter-label">Type</span>
+        <div id="type-filters"></div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Cohort</span>
+        <div id="cohort-filters"></div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Status</span>
+        <div id="status-filters"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats" id="stats">Loading...</div>
+
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" style="display:none">No entries match these filters. Try widening.</div>
+
+  <div class="modal-bg" id="modal-bg" role="dialog" aria-modal="true">
+    <div class="modal" id="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <footer>Alex Salinsky &middot; The Build Room</footer>
+</div>
+
+<script>
+  const TYPES = ['clip', 'win', 'testimonial', 'lesson', 'screenshot', 'published', 'quote'];
+  const COHORTS = ['rpa', 'dbalp', 'ff-mon', 'ff-thu', 'nc17', 'dcmex', 'cross-cohort', 'none'];
+  const STATUSES = ['raw', 'cleared-for-public', 'live', 'featured', 'redacted'];
+
+  const COHORT_LABELS = {
+    'rpa': 'RPA',
+    'dbalp': 'DBALP',
+    'ff-mon': 'F&F Mon',
+    'ff-thu': 'F&F Thu',
+    'nc17': 'NC17',
+    'dcmex': 'DCMex',
+    'cross-cohort': 'Cross-cohort',
+    'none': 'None'
+  };
+
+  const state = {
+    entries: [],
+    type: null,
+    cohort: null,
+    status: null,
+    search: ''
+  };
+
+  function el(tag, attrs, children) {
+    const e = document.createElement(tag);
+    if (attrs) {
+      for (const k in attrs) {
+        if (k === 'className') e.className = attrs[k];
+        else if (k === 'onclick') e.onclick = attrs[k];
+        else e.setAttribute(k, attrs[k]);
+      }
+    }
+    if (children) {
+      (Array.isArray(children) ? children : [children]).forEach(c => {
+        if (c == null) return;
+        e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+      });
+    }
+    return e;
+  }
+
+  function buildFilters(containerId, options, key, labelMap) {
+    const container = document.getElementById(containerId);
+    container.style.display = 'flex';
+    container.style.flexWrap = 'wrap';
+    container.style.gap = '6px';
+    const allChip = el('button', { className: 'chip active', type: 'button' }, 'All');
+    allChip.onclick = () => setFilter(key, null);
+    container.appendChild(allChip);
+    options.forEach(opt => {
+      const chip = el('button', { className: 'chip', type: 'button' }, labelMap ? labelMap[opt] || opt : opt);
+      chip.onclick = () => setFilter(key, opt);
+      chip.dataset.value = opt;
+      container.appendChild(chip);
+    });
+  }
+
+  function setFilter(key, value) {
+    state[key] = value;
+    syncChips();
+    render();
+  }
+
+  function syncChips() {
+    [['type-filters', 'type'], ['cohort-filters', 'cohort'], ['status-filters', 'status']].forEach(([id, key]) => {
+      const container = document.getElementById(id);
+      Array.from(container.children).forEach(chip => {
+        const isAll = !chip.dataset.value;
+        const active = isAll ? state[key] === null : chip.dataset.value === state[key];
+        chip.classList.toggle('active', active);
+      });
+    });
+  }
+
+  function matchesFilters(entry) {
+    if (state.type && entry.type !== state.type) return false;
+    if (state.cohort && entry.cohort !== state.cohort) return false;
+    if (state.status && entry.status !== state.status) return false;
+    if (state.search) {
+      const q = state.search.toLowerCase();
+      const hay = [entry.title, entry.quote, entry.attribution, (entry.tags || []).join(' '), entry.notes || '']
+        .filter(Boolean).join(' ').toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  }
+
+  function excerpt(text, max) {
+    if (!text) return '';
+    if (text.length <= max) return text;
+    return text.slice(0, max).trim() + '…';
+  }
+
+  function renderCard(entry) {
+    const card = el('button', { className: 'card', type: 'button' });
+    card.onclick = () => openModal(entry);
+
+    const top = el('div', { className: 'card-top' });
+    top.appendChild(el('div', { className: 'card-title' }, entry.title));
+    card.appendChild(top);
+
+    const meta = el('div', { className: 'card-meta' });
+    meta.appendChild(el('span', { className: 'badge type' }, entry.type));
+    meta.appendChild(el('span', { className: 'badge' }, COHORT_LABELS[entry.cohort] || entry.cohort));
+    meta.appendChild(el('span', { className: 'pill-status ' + entry.status }, entry.status));
+    card.appendChild(meta);
+
+    if (entry.quote) {
+      card.appendChild(el('div', { className: 'card-excerpt' }, '"' + excerpt(entry.quote, 160) + '"'));
+    }
+
+    if (entry.attribution || entry.timestamp) {
+      const src = [entry.attribution, entry.timestamp].filter(Boolean).join(' · ');
+      card.appendChild(el('div', { className: 'card-source' }, src));
+    }
+
+    return card;
+  }
+
+  function openModal(entry) {
+    const content = document.getElementById('modal-content');
+    content.innerHTML = '';
+
+    content.appendChild(el('h2', null, entry.title));
+
+    const meta = el('div', { className: 'modal-meta' });
+    meta.appendChild(el('span', { className: 'badge type' }, entry.type));
+    meta.appendChild(el('span', { className: 'badge' }, COHORT_LABELS[entry.cohort] || entry.cohort));
+    meta.appendChild(el('span', { className: 'pill-status ' + entry.status }, entry.status));
+    content.appendChild(meta);
+
+    if (entry.quote) {
+      content.appendChild(el('div', { className: 'modal-quote' }, entry.quote));
+      const copyBtn = el('button', { className: 'copy-btn', type: 'button' }, 'Copy quote');
+      copyBtn.onclick = () => {
+        navigator.clipboard.writeText(entry.quote).then(() => {
+          copyBtn.textContent = 'Copied';
+          copyBtn.classList.add('copied');
+          setTimeout(() => { copyBtn.textContent = 'Copy quote'; copyBtn.classList.remove('copied'); }, 1800);
+        });
+      };
+      content.appendChild(copyBtn);
+    }
+
+    const dl = el('dl', { className: 'modal-fields' });
+    const addField = (label, valueEl) => {
+      dl.appendChild(el('dt', null, label));
+      dl.appendChild(el('dd', null, valueEl));
+    };
+
+    if (entry.attribution) addField('Attribution', entry.attribution);
+    if (entry.timestamp) addField('Timestamp', entry.timestamp);
+    if (entry.date_captured) addField('Captured', entry.date_captured);
+    if (entry.date_cleared) addField('Cleared', entry.date_cleared);
+
+    if (entry.source_url) {
+      const link = el('a', { href: entry.source_url, target: '_blank', rel: 'noopener' }, entry.source_url);
+      addField('Source', link);
+    } else {
+      addField('Source', el('em', null, 'null (raw, unverified)'));
+    }
+
+    if (entry.media_url) {
+      const link = el('a', { href: entry.media_url, target: '_blank', rel: 'noopener' }, entry.media_url);
+      addField('Media', link);
+    } else {
+      addField('Media', el('em', null, 'not uploaded'));
+    }
+
+    if (entry.tags && entry.tags.length) {
+      const tagWrap = el('div', null);
+      entry.tags.forEach(t => tagWrap.appendChild(el('span', { className: 'tag' }, t)));
+      addField('Tags', tagWrap);
+    }
+
+    addField('ID', el('code', null, entry.id));
+    content.appendChild(dl);
+
+    if (entry.notes) {
+      content.appendChild(el('div', { className: 'modal-notes' }, entry.notes));
+    }
+
+    document.getElementById('modal-bg').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal-bg').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function render() {
+    const grid = document.getElementById('grid');
+    const empty = document.getElementById('empty');
+    const stats = document.getElementById('stats');
+    grid.innerHTML = '';
+
+    const filtered = state.entries.filter(matchesFilters);
+    const total = state.entries.length;
+
+    stats.textContent = filtered.length === total
+      ? `${total} entries`
+      : `${filtered.length} of ${total} entries`;
+
+    if (!filtered.length) {
+      empty.style.display = 'block';
+    } else {
+      empty.style.display = 'none';
+      filtered.forEach(entry => grid.appendChild(renderCard(entry)));
+    }
+  }
+
+  function init() {
+    buildFilters('type-filters', TYPES, 'type');
+    buildFilters('cohort-filters', COHORTS, 'cohort', COHORT_LABELS);
+    buildFilters('status-filters', STATUSES, 'status');
+
+    document.getElementById('search').addEventListener('input', e => {
+      state.search = e.target.value.trim();
+      render();
+    });
+
+    document.getElementById('modal-close').onclick = closeModal;
+    document.getElementById('modal-bg').onclick = closeModal;
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    fetch('proof-library.json?v=' + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        state.entries = (data.entries || []).slice().sort((a, b) => {
+          const order = { featured: 0, live: 1, 'cleared-for-public': 2, raw: 3, redacted: 4 };
+          const sa = order[a.status] ?? 5;
+          const sb = order[b.status] ?? 5;
+          if (sa !== sb) return sa - sb;
+          return (b.date_captured || '').localeCompare(a.date_captured || '');
+        });
+        render();
+      })
+      .catch(err => {
+        document.getElementById('stats').textContent = 'Could not load proof-library.json: ' + err.message;
+      });
+  }
+
+  init();
+</script>
+</body>
+</html>
