@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Same brain, different hands · The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; line-height: 1.55; }
+  .page { max-width: 1240px; margin: 0 auto; padding: 40px 28px 90px; }
+
+  .eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 700; color: #666; margin-bottom: 12px; }
+  h1 { font-size: 44px; font-weight: 800; letter-spacing: -1.2px; margin: 0 0 10px; padding-bottom: 18px; border-bottom: 2px solid #1a1a1a; }
+  h1 .sub { display: block; font-size: 22px; font-weight: 500; color: #555; margin-top: 6px; letter-spacing: -0.3px; }
+  h2 { font-size: 26px; font-weight: 700; margin: 36px 0 14px; letter-spacing: -0.3px; padding-top: 10px; border-top: 1px solid #ddd; }
+  h3 { font-size: 18px; font-weight: 700; margin: 22px 0 8px; }
+
+  p { font-size: 16px; margin-bottom: 12px; color: #333; }
+  ul, ol { margin: 8px 0 16px 0; padding-left: 28px; }
+  li { margin-bottom: 6px; font-size: 16px; color: #333; }
+
+  strong { color: #1a1a1a; font-weight: 700; }
+  code { background: #f0f0f0; color: #1a1a1a; padding: 2px 6px; border-radius: 4px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; }
+
+  blockquote { border-left: 3px solid #1a1a1a; padding: 8px 18px; background: #fffbe6; border-radius: 0 8px 8px 0; margin: 18px 0; font-size: 17px; color: #1a1a1a; }
+  blockquote strong { background: #fde68a; padding: 0 4px; }
+
+  hr { border: none; border-top: 1px solid #ddd; margin: 32px 0; }
+
+  /* Three-tier card grid */
+  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin: 22px 0 8px; }
+  .tier { background: #fff; border: 2px solid #1a1a1a; border-radius: 12px; padding: 22px 22px 24px; display: flex; flex-direction: column; position: relative; }
+  .tier .num { position: absolute; top: -14px; left: 18px; background: #1a1a1a; color: #fde68a; font-weight: 800; font-size: 13px; letter-spacing: 1.5px; padding: 4px 12px; border-radius: 20px; }
+  .tier h3 { margin: 4px 0 4px; font-size: 22px; letter-spacing: -0.4px; }
+  .tier .verb { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #666; margin-bottom: 14px; }
+  .tier .row { padding: 10px 0; border-top: 1px solid #eee; font-size: 14px; }
+  .tier .row:first-of-type { border-top: none; padding-top: 0; }
+  .tier .row .k { font-weight: 700; color: #1a1a1a; display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 3px; }
+  .tier .row .v { color: #333; }
+  .tier .tools { margin-top: auto; padding-top: 14px; border-top: 1px dashed #ccc; font-size: 13px; color: #555; }
+  .tier .tools strong { color: #1a1a1a; }
+
+  .tier.t1 { background: #f5f9ff; }
+  .tier.t2 { background: #fffaf0; }
+  .tier.t3 { background: #f4fbf4; }
+
+  /* Decision strip */
+  .decision { background: #1a1a1a; color: #fafafa; border-radius: 12px; padding: 26px 30px; margin: 28px 0; }
+  .decision h3 { color: #fde68a; margin-top: 0; font-size: 20px; text-transform: uppercase; letter-spacing: 1.5px; }
+  .decision .rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 14px; }
+  .decision .rule { background: rgba(255,255,255,0.06); border-left: 3px solid #fde68a; padding: 12px 14px; border-radius: 0 8px 8px 0; }
+  .decision .rule .q { display: block; color: #fde68a; font-size: 13px; font-weight: 700; margin-bottom: 4px; letter-spacing: 0.3px; }
+  .decision .rule .a { color: #fafafa; font-size: 15px; }
+
+  /* Inside-the-robot tieback */
+  .robot { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 20px 24px; margin: 18px 0; }
+  .robot .chain { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 14px; background: #fafafa; padding: 12px 14px; border-radius: 6px; margin-top: 10px; color: #333; }
+  .robot .chain .dim { color: #aaa; }
+  .robot .chain .lit { color: #1a1a1a; font-weight: 700; background: #fde68a; padding: 1px 5px; border-radius: 3px; }
+
+  .br-footer { position: fixed; bottom: 8px; left: 14px; font-size: 11px; color: #888; letter-spacing: 0.5px; }
+
+  @media (max-width: 900px) {
+    .tiers, .decision .rules { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 720px) {
+    .page { padding: 24px 16px 90px; }
+    h1 { font-size: 32px; }
+    h1 .sub { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="eyebrow">Build Room · Tools reference</div>
+<h1>Same brain, different hands<span class="sub">Claude chat. Cowork. Claude Code. Codex. What's the actual difference?</span></h1>
+
+<p>You keep hearing four product names and trying to pick the "best" one. That's the wrong question. They're <strong>the same model wearing different gloves.</strong> The real question is:</p>
+
+<blockquote><strong>What surface is the AI allowed to act on?</strong></blockquote>
+
+<p>Three tiers, increasing capability. Pick the lowest tier that touches what you actually need to change.</p>
+
+<div class="tiers">
+
+  <div class="tier t1">
+    <span class="num">TIER 1</span>
+    <h3>Talk</h3>
+    <div class="verb">AI you <em>use</em></div>
+    <div class="row"><span class="k">What it sees</span><span class="v">Only what you paste into the chat</span></div>
+    <div class="row"><span class="k">What it can change</span><span class="v">Nothing on your computer</span></div>
+    <div class="row"><span class="k">Where output lives</span><span class="v">In the conversation. You copy-paste to apply.</span></div>
+    <div class="tools"><strong>Examples:</strong> claude.ai chat, ChatGPT, Gemini chat, Perplexity</div>
+  </div>
+
+  <div class="tier t2">
+    <span class="num">TIER 2</span>
+    <h3>Touch your files</h3>
+    <div class="verb">AI that <em>edits</em></div>
+    <div class="row"><span class="k">What it sees</span><span class="v">A folder or doc you point it at</span></div>
+    <div class="row"><span class="k">What it can change</span><span class="v">Reads and writes files in that surface</span></div>
+    <div class="row"><span class="k">Where output lives</span><span class="v">Files on your disk or in your Drive update directly</span></div>
+    <div class="tools"><strong>Examples:</strong> Claude Desktop with Cowork mode, ChatGPT with file access, Notebook-style docs</div>
+  </div>
+
+  <div class="tier t3">
+    <span class="num">TIER 3</span>
+    <h3>Build and run</h3>
+    <div class="verb">AI you <em>build with</em></div>
+    <div class="row"><span class="k">What it sees</span><span class="v">A whole project, your terminal, the internet</span></div>
+    <div class="row"><span class="k">What it can change</span><span class="v">Edits files, runs commands, installs packages, starts servers</span></div>
+    <div class="row"><span class="k">Where output lives</span><span class="v">A working product that exists outside the chat</span></div>
+    <div class="tools"><strong>Examples:</strong> Claude Code (CLI), Codex (CLI), Cursor, agent frameworks</div>
+  </div>
+
+</div>
+
+<div class="decision">
+  <h3>Which tier should I open right now?</h3>
+  <div class="rules">
+    <div class="rule">
+      <span class="q">I want to think out loud, brainstorm, or learn</span>
+      <span class="a">Tier 1 (chat). Pasting back and forth is fine here.</span>
+    </div>
+    <div class="rule">
+      <span class="q">I want a real document or set of docs updated</span>
+      <span class="a">Tier 2 (Cowork or equivalent). Point it at the folder.</span>
+    </div>
+    <div class="rule">
+      <span class="q">I want a tool that runs by itself when I'm not there</span>
+      <span class="a">Tier 3 (Claude Code or Codex). Live in the terminal.</span>
+    </div>
+  </div>
+</div>
+
+<h2>How this lines up with "inside the robot"</h2>
+<div class="robot">
+  <p>From S1, the AI build stack:</p>
+  <div class="chain"><span class="lit">chatbox</span> <span class="dim">→</span> <span class="lit">LLM</span> <span class="dim">→</span> context <span class="dim">→</span> integrations <span class="dim">→</span> product</div>
+  <p style="margin-top:14px;"><strong>Tier 1</strong> lights up the first two boxes. You give context by typing.</p>
+  <div class="chain"><span class="lit">chatbox</span> <span class="dim">→</span> <span class="lit">LLM</span> <span class="dim">→</span> <span class="lit">context</span> <span class="dim">→</span> integrations <span class="dim">→</span> product</div>
+  <p style="margin-top:14px;"><strong>Tier 2</strong> adds context. The AI reads your files and writes them back.</p>
+  <div class="chain"><span class="lit">chatbox</span> <span class="dim">→</span> <span class="lit">LLM</span> <span class="dim">→</span> <span class="lit">context</span> <span class="dim">→</span> <span class="lit">integrations</span> <span class="dim">→</span> <span class="lit">product</span></div>
+  <p style="margin-top:14px;"><strong>Tier 3</strong> lights the whole chain. Now there's a <strong>product that exists outside the system</strong>.</p>
+</div>
+
+<h2>What changes between tiers</h2>
+<ul>
+  <li><strong>The model is the same.</strong> Claude Sonnet 4.X powers claude.ai, Cowork, and Claude Code. The "intelligence" doesn't get smarter at tier 3.</li>
+  <li><strong>The surface gets bigger.</strong> Tier 1 sees one message. Tier 2 sees a folder. Tier 3 sees your whole machine and the internet.</li>
+  <li><strong>The risk gets bigger.</strong> Tier 1 can waste your time. Tier 3 can delete a file. Use planning mode and confirm before destructive moves.</li>
+  <li><strong>The cost gets bigger.</strong> Same-priced per-token, but tier 3 reads more context per task. Budget accordingly.</li>
+</ul>
+
+<h2>Two things you do NOT need to pick between</h2>
+<ul>
+  <li><strong>Claude vs ChatGPT vs Gemini.</strong> Same tier, slightly different models. Pick one, get fluent. Switching later is cheap.</li>
+  <li><strong>Claude Code vs Codex.</strong> Same tier (3). Same job. Try both for a week, keep the one whose vibe you like.</li>
+</ul>
+
+<h2>What you DO need to pick between</h2>
+<p>Tier 1 vs Tier 2 vs Tier 3 for the thing in front of you right now. That's the whole question.</p>
+
+<blockquote>If the answer is "I want it to make a thing that keeps running" — you're at <strong>Tier 3</strong>. Open the terminal.</blockquote>
+
+</div>
+<div class="br-footer">Alex Salinsky · The Build Room</div>
+</body>
+</html>
