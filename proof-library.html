@@ -27,7 +27,25 @@
   .chip:hover { background: #f0f0f0; }
   .chip.active { background: #1a1a1a; color: #fff; }
 
-  .stats { margin: 14px 0 22px; font-size: 13px; color: #666; }
+  .stats-row { display: flex; justify-content: space-between; align-items: center; margin: 14px 0 22px; gap: 12px; flex-wrap: wrap; }
+  .stats { font-size: 13px; color: #666; }
+  .view-toggle { display: inline-flex; border: 1.5px solid #1a1a1a; border-radius: 6px; overflow: hidden; }
+  .view-toggle button { background: #fff; color: #1a1a1a; border: none; padding: 6px 14px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; font-family: inherit; }
+  .view-toggle button.active { background: #1a1a1a; color: #fff; }
+
+  .table-wrap { overflow-x: auto; border: 1.5px solid #1a1a1a; border-radius: 10px; }
+  table.proof-table { width: 100%; border-collapse: collapse; font-size: 13px; background: #fff; }
+  table.proof-table th { text-align: left; padding: 10px 12px; background: #1a1a1a; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; position: sticky; top: 0; z-index: 1; cursor: pointer; user-select: none; white-space: nowrap; }
+  table.proof-table th:hover { background: #333; }
+  table.proof-table th .sort-arrow { font-size: 9px; margin-left: 4px; opacity: 0.6; }
+  table.proof-table td { padding: 10px 12px; border-top: 1px solid #eee; vertical-align: top; }
+  table.proof-table tbody tr { cursor: pointer; transition: background 0.1s; }
+  table.proof-table tbody tr:hover { background: #fafafa; }
+  table.proof-table .t-title { font-weight: 700; min-width: 200px; }
+  table.proof-table .t-excerpt { color: #666; font-style: italic; max-width: 360px; }
+  table.proof-table .t-tags { font-size: 11px; color: #888; }
+  table.proof-table .t-attr { white-space: nowrap; }
+  @media (max-width: 720px) { table.proof-table .t-excerpt, table.proof-table .t-tags { display: none; } }
 
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
   @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
@@ -105,9 +123,33 @@
     </div>
   </div>
 
-  <div class="stats" id="stats">Loading...</div>
+  <div class="stats-row">
+    <div class="stats" id="stats">Loading...</div>
+    <div class="view-toggle" role="group" aria-label="View mode">
+      <button id="view-cards" class="active" type="button">Cards</button>
+      <button id="view-table" type="button">Table</button>
+    </div>
+  </div>
 
   <div class="grid" id="grid"></div>
+  <div class="table-wrap" id="table-wrap" style="display:none">
+    <table class="proof-table" id="table">
+      <thead>
+        <tr>
+          <th data-sort="title">Title <span class="sort-arrow"></span></th>
+          <th data-sort="type">Type <span class="sort-arrow"></span></th>
+          <th data-sort="cohort">Cohort <span class="sort-arrow"></span></th>
+          <th data-sort="status">Status <span class="sort-arrow"></span></th>
+          <th data-sort="attribution">Attribution <span class="sort-arrow"></span></th>
+          <th data-sort="timestamp">Timestamp <span class="sort-arrow"></span></th>
+          <th>Quote</th>
+          <th>Tags</th>
+          <th data-sort="date_captured">Captured <span class="sort-arrow"></span></th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
   <div class="empty" id="empty" style="display:none">No entries match these filters. Try widening.</div>
 
   <div class="modal-bg" id="modal-bg" role="dialog" aria-modal="true">
@@ -141,7 +183,10 @@
     type: null,
     cohort: null,
     status: null,
-    search: ''
+    search: '',
+    view: 'cards',
+    sortKey: null,
+    sortDir: 'asc'
   };
 
   function el(tag, attrs, children) {
@@ -312,25 +357,82 @@
     document.body.style.overflow = '';
   }
 
+  function sortEntries(arr) {
+    if (!state.sortKey) return arr;
+    const key = state.sortKey;
+    const dir = state.sortDir === 'asc' ? 1 : -1;
+    return arr.slice().sort((a, b) => {
+      const av = (a[key] || '').toString().toLowerCase();
+      const bv = (b[key] || '').toString().toLowerCase();
+      if (av < bv) return -1 * dir;
+      if (av > bv) return 1 * dir;
+      return 0;
+    });
+  }
+
+  function renderTableRow(entry) {
+    const tr = document.createElement('tr');
+    tr.onclick = () => openModal(entry);
+    const cells = [
+      ['t-title', entry.title],
+      ['', entry.type],
+      ['', COHORT_LABELS[entry.cohort] || entry.cohort],
+      ['', entry.status],
+      ['t-attr', entry.attribution || ''],
+      ['t-attr', entry.timestamp || ''],
+      ['t-excerpt', entry.quote ? '"' + excerpt(entry.quote, 140) + '"' : ''],
+      ['t-tags', (entry.tags || []).join(', ')],
+      ['t-attr', entry.date_captured || '']
+    ];
+    cells.forEach(([cls, val]) => {
+      const td = document.createElement('td');
+      if (cls) td.className = cls;
+      td.textContent = val;
+      tr.appendChild(td);
+    });
+    return tr;
+  }
+
   function render() {
     const grid = document.getElementById('grid');
+    const tableWrap = document.getElementById('table-wrap');
+    const tableBody = document.getElementById('table-body');
     const empty = document.getElementById('empty');
     const stats = document.getElementById('stats');
-    grid.innerHTML = '';
 
     const filtered = state.entries.filter(matchesFilters);
+    const sorted = state.view === 'table' ? sortEntries(filtered) : filtered;
     const total = state.entries.length;
 
     stats.textContent = filtered.length === total
       ? `${total} entries`
       : `${filtered.length} of ${total} entries`;
 
-    if (!filtered.length) {
-      empty.style.display = 'block';
+    grid.innerHTML = '';
+    tableBody.innerHTML = '';
+
+    if (state.view === 'cards') {
+      grid.style.display = '';
+      tableWrap.style.display = 'none';
+      sorted.forEach(entry => grid.appendChild(renderCard(entry)));
     } else {
-      empty.style.display = 'none';
-      filtered.forEach(entry => grid.appendChild(renderCard(entry)));
+      grid.style.display = 'none';
+      tableWrap.style.display = '';
+      sorted.forEach(entry => tableBody.appendChild(renderTableRow(entry)));
     }
+
+    // sort arrows
+    document.querySelectorAll('th[data-sort]').forEach(th => {
+      const arrow = th.querySelector('.sort-arrow');
+      if (!arrow) return;
+      if (th.dataset.sort === state.sortKey) {
+        arrow.textContent = state.sortDir === 'asc' ? '▲' : '▼';
+      } else {
+        arrow.textContent = '';
+      }
+    });
+
+    empty.style.display = filtered.length ? 'none' : 'block';
   }
 
   function init() {
@@ -346,6 +448,32 @@
     document.getElementById('modal-close').onclick = closeModal;
     document.getElementById('modal-bg').onclick = closeModal;
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    document.getElementById('view-cards').onclick = () => {
+      state.view = 'cards';
+      document.getElementById('view-cards').classList.add('active');
+      document.getElementById('view-table').classList.remove('active');
+      render();
+    };
+    document.getElementById('view-table').onclick = () => {
+      state.view = 'table';
+      document.getElementById('view-table').classList.add('active');
+      document.getElementById('view-cards').classList.remove('active');
+      render();
+    };
+
+    document.querySelectorAll('th[data-sort]').forEach(th => {
+      th.onclick = () => {
+        const key = th.dataset.sort;
+        if (state.sortKey === key) {
+          state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
+        } else {
+          state.sortKey = key;
+          state.sortDir = 'asc';
+        }
+        render();
+      };
+    });
 
     fetch('proof-library.json?v=' + Date.now())
       .then(r => r.json())
