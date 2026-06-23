@@ -144,23 +144,23 @@
     <div class="scene" data-scene="2">
       <div class="eyebrow">Why this matters</div>
       <h1 class="scene-title">The hard ceiling.</h1>
-      <p class="lead">The first reason to care about tokens isn't money. It's <strong>the wall.</strong> If you're not efficient, you hit the token limit and just can't develop anymore. Paying more pushes the wall back. It doesn't remove it. <strong>Context keeps growing.</strong></p>
+      <p class="lead">The first reason to care about tokens isn't money. It's <strong>the wall.</strong> If you're not efficient, you hit the limit and can't develop anymore. Paying more pushes the wall back. It doesn't remove it. <strong>Context keeps growing.</strong></p>
 
       <div class="wall-row">
         <div class="wall-figure">
           <div class="lab">Mid-build</div>
           <h3>Usage limit reached</h3>
-          <div style="font-size:13px; color:#aaa; margin-bottom:6px;">Daily allowance</div>
+          <div style="font-size:13px; color:#aaa; margin-bottom:6px;">Allowance for this window</div>
           <div class="wall-bar"><span class="fill" style="width:100%"></span></div>
-          <div style="font-size:12px; color:#aaa;">100% used. Resets in 4h 18m.</div>
+          <div style="font-size:12px; color:#aaa;">100% used. Resets later today.</div>
           <div class="wall-msg">
             <strong>You've hit your limit.</strong><br>
             Continue with a smaller model or wait for reset. Upgrade for more.
           </div>
         </div>
         <div>
-          <p class="lead" style="margin:0;">The wall always exists. The number isn't the point. <strong>Efficiency is the point.</strong></p>
-          <p style="font-size:15px; color:#666; margin-top:14px;">Every message re-reads the full thread from scratch. A 100k-token thread costs 100k tokens before you type a word. That's how you hit the wall faster than you expected.</p>
+          <p class="lead" style="margin:0;">The wall always exists. <strong>The number on it isn't the point. Efficiency is.</strong></p>
+          <p style="font-size:15px; color:#666; margin-top:14px;">Every message re-reads the full thread from scratch. A big thread costs that many tokens <em>before you type a word</em>. That's how you hit the wall sooner than you expected.</p>
         </div>
       </div>
     </div>
@@ -169,24 +169,24 @@
     <div class="scene" data-scene="3">
       <div class="eyebrow">When efficiency starts mattering</div>
       <h1 class="scene-title">For yourself? Don't bother. <span class="accent">For users?</span> Bother.</h1>
-      <p class="lead">If you're running a job 10 times a month for yourself, <strong>30 cents a run does not matter.</strong> Don't optimize. Build it.</p>
+      <p class="lead">Same code, two very different cost surfaces. The math turns once <strong>someone other than you</strong> is running the thing.</p>
 
       <div class="scale-grid">
         <div class="scale-card personal">
           <div class="badge">Personal scale</div>
-          <h3>You. Ten runs a month.</h3>
-          <div class="nums">30¢ per run · $3/month total<br>It's coffee money. Move on.<br><br>Build the thing. Get the output. Don't waste a day shaving pennies.</div>
+          <h3>You. A handful of runs.</h3>
+          <div class="nums"><strong>(per-run cost) × (small N)</strong><br>= a number that doesn't move your life<br><br>Build it. Get the output. Don't burn a day shaving pennies off the version that runs ten times a month for you.</div>
           <div class="verdict">Verdict: don't optimize.</div>
         </div>
         <div class="scale-card product">
           <div class="badge">Publisher scale</div>
-          <h3>1,000 users. Daily.</h3>
-          <div class="nums">30¢/run × 30,000 runs/month = <strong>$9,000/month</strong><br>Same code. 10× cheaper version: <strong>$900/month.</strong><br><br>Plus the slowdown: bloated context means slower responses for everyone.</div>
-          <div class="verdict">Verdict: efficiency is the product.</div>
+          <h3>Many users. Often.</h3>
+          <div class="nums"><strong>(per-run cost) × (big N)</strong><br>= a number that determines whether the thing survives<br><br>Plus the slowdown: bloated context = slower responses for everyone, all the time.</div>
+          <div class="verdict">Verdict: efficiency IS the product.</div>
         </div>
       </div>
 
-      <blockquote>At scale, every wasted token is wasted processing time, wasted server time, wasted energy. <strong>And it slows down your results.</strong></blockquote>
+      <blockquote>The principle: <strong>small × small stays small.</strong> Small × big gets big fast. The dial flips the moment N grows.</blockquote>
     </div>
 
     <!-- ========= SCENE 4: ETHICS IS EFFICIENCY ========= -->
@@ -234,28 +234,28 @@
     <!-- ========= SCENE 6: KNOB 1 — RIGHT MODEL ========= -->
     <div class="scene" data-scene="6">
       <div class="eyebrow">Knob 1</div>
-      <h1 class="scene-title">Right model. Right job.</h1>
-      <p class="lead">Bigger models think harder. They also cost more, take longer, and burn more. <strong>If a small model can do the job, use the small model.</strong></p>
+      <h1 class="scene-title">Match the model to the job.</h1>
+      <p class="lead">Every model provider sells a ladder: light / mid / heavy. The brand names rotate. The ladder doesn't. <strong>Pick the smallest rung that gets the job done.</strong></p>
 
       <div class="ladder">
         <div class="rung s1">
-          <div class="label">Small / cheap / fast</div>
-          <div class="size">Haiku</div>
-          <div class="tasks">Sorting, classifying, tagging, simple Q&amp;A, structured extraction, "is this X or Y?"</div>
+          <div class="label">Light · fast · cheap</div>
+          <div class="size">Sorter</div>
+          <div class="tasks">"Is this A or B?" Classifying, tagging, extracting fields, routing, simple Q&amp;A. Verb-shaped jobs an intern could do.</div>
         </div>
         <div class="rung s2">
-          <div class="label">Mid / balanced</div>
-          <div class="size">Sonnet</div>
-          <div class="tasks">Writing, summarizing, code edits, planning, most conversational work.</div>
+          <div class="label">Balanced · default</div>
+          <div class="size">Worker</div>
+          <div class="tasks">Writing, summarizing, code edits, planning. The middle of the road. Default here unless something needs less or more.</div>
         </div>
         <div class="rung s3">
-          <div class="label">Large / heavy</div>
-          <div class="size">Opus</div>
-          <div class="tasks">Hard reasoning, complex architecture, multi-step agent work, anything that fails on smaller models.</div>
+          <div class="label">Heavy · slow · expensive</div>
+          <div class="size">Reasoner</div>
+          <div class="tasks">Hard architecture, multi-step agent work, things that genuinely fail on the smaller rungs. Reach up only when needed.</div>
         </div>
       </div>
 
-      <blockquote>Default to mid. Drop down for repetitive sorting jobs. Reach up only when the smaller model fails. <strong>"Big model on everything" is the most expensive bad habit in AI.</strong></blockquote>
+      <blockquote>The rule: <strong>default to the middle rung. Drop down for repetitive jobs. Reach up only when the smaller rung fails.</strong> "Biggest model on everything" is the most expensive bad habit in AI.</blockquote>
     </div>
 
     <!-- ========= SCENE 7: KNOB 2 — LLM-BUILDS-ONCE ========= -->
@@ -289,7 +289,7 @@
 
       <ul style="font-size:16px; color:#333; line-height:1.8; margin: 14px 0 14px 28px;">
         <li><strong>Burn threads when they bloat.</strong> Start fresh. Paste a one-page brief instead of scrolling back.</li>
-        <li><strong>Project briefs over full repos.</strong> Point Claude at <code>PROJECT.md</code>, not 200 source files. Same knowledge, fraction of the tokens.</li>
+        <li><strong>Project briefs over full repos.</strong> Point the LLM at a brief file, not every source file. Same knowledge, fraction of the tokens.</li>
         <li><strong>Machine-first formats.</strong> Markdown over rich text. APIs over screenshots. Every UI an LLM has to navigate is tokens spent on overhead, not work.</li>
       </ul>
 
