@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Explorer to Operator — Take the Wheel</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 16px; }
+  .slide-wrap { flex: 1; max-height: 88vh; width: 100%; max-width: 1100px; display: flex; align-items: center; justify-content: center; padding: 32px 32px 96px; }
+  .slide { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; position: relative; }
+  .slide.center { align-items: center; text-align: center; }
+
+  .section-chip { position: absolute; top: 0; left: 0; font-size: 12px; font-weight: 700; color: #999; letter-spacing: 2px; text-transform: uppercase; }
+  .slide.center .section-chip { left: 50%; transform: translateX(-50%); }
+
+  h1 { font-size: 72px; font-weight: 800; line-height: 1.02; letter-spacing: -1.8px; margin-bottom: 18px; }
+  h1.small { font-size: 56px; }
+  h2 { font-size: 44px; font-weight: 700; line-height: 1.12; margin-bottom: 22px; letter-spacing: -0.6px; }
+  h3 { font-size: 24px; font-weight: 600; margin-bottom: 14px; color: #444; letter-spacing: -0.2px; }
+  p { font-size: 22px; line-height: 1.55; color: #333; margin-bottom: 14px; }
+  p.lead { font-size: 28px; color: #1a1a1a; max-width: 880px; }
+  p.huge { font-size: 38px; font-weight: 700; line-height: 1.25; max-width: 900px; }
+  .sub { font-size: 20px; color: #666; font-weight: 400; margin-top: 14px; }
+  .kicker { font-size: 14px; font-weight: 700; color: #999; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 14px; }
+
+  ul { list-style: none; padding: 0; }
+  ul li { font-size: 22px; line-height: 1.6; color: #333; padding-left: 28px; position: relative; margin-bottom: 10px; }
+  ul li::before { content: "\2192"; position: absolute; left: 0; color: #1a1a1a; font-weight: 700; }
+
+  .creds { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 36px; max-width: 820px; margin: 16px auto 0; text-align: left; }
+  .creds .item { padding: 14px 18px; border-left: 3px solid #1a1a1a; }
+  .creds .item .n { font-size: 32px; font-weight: 800; letter-spacing: -1px; display: block; }
+  .creds .item .l { font-size: 16px; color: #555; }
+
+  .levels { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 14px; margin: 24px 0; width: 100%; max-width: 1000px; }
+  .level { border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 22px 18px; background: #fff; text-align: left; }
+  .level .num { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 1.5px; }
+  .level .name { font-size: 26px; font-weight: 800; margin: 8px 0 10px; letter-spacing: -0.5px; }
+  .level .def { font-size: 15px; line-height: 1.45; color: #444; }
+  .level.focus { background: #1a1a1a; color: #fff; }
+  .level.focus .num { color: #999; }
+  .level.focus .def { color: #ddd; }
+
+  .q-card { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 14px; padding: 34px 38px; max-width: 880px; width: 100%; }
+  .q-card .q-num { font-size: 14px; font-weight: 700; color: #888; letter-spacing: 2px; }
+  .q-card h2 { font-size: 38px; margin: 8px 0 24px; }
+  .q-card .choices { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .q-card .choice { display: flex; gap: 14px; align-items: baseline; padding: 12px 16px; background: #fafafa; border-radius: 8px; }
+  .q-card .choice .n { font-size: 22px; font-weight: 800; color: #1a1a1a; min-width: 28px; }
+  .q-card .choice .t { font-size: 18px; color: #333; line-height: 1.45; }
+
+  .pie-wrap { display: flex; gap: 50px; align-items: center; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
+  .pie {
+    width: 320px; height: 320px; border-radius: 50%;
+    background: conic-gradient(
+      #ef4444 0% 35%,
+      #f59e0b 35% 80%,
+      #84cc16 80% 95%,
+      #16a34a 95% 100%
+    );
+    box-shadow: 0 6px 30px rgba(0,0,0,0.12);
+  }
+  .pie-legend { display: flex; flex-direction: column; gap: 14px; text-align: left; }
+  .legend-row { display: flex; align-items: center; gap: 14px; font-size: 19px; }
+  .legend-swatch { width: 24px; height: 24px; border-radius: 4px; }
+  .legend-row .lbl { font-weight: 700; min-width: 110px; }
+  .legend-row .pct { color: #666; }
+
+  .story { max-width: 880px; text-align: left; font-size: 22px; line-height: 1.55; }
+  .story .turn { background: #fff; border-left: 4px solid #1a1a1a; padding: 16px 22px; margin: 14px 0; font-size: 20px; }
+  .story .turn .who { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 6px; }
+
+  .rule-block { background: #1a1a1a; color: #fff; padding: 30px 36px; border-radius: 14px; max-width: 820px; }
+  .rule-block .small { font-size: 14px; color: #999; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
+  .rule-block .big { font-size: 30px; line-height: 1.3; font-weight: 700; }
+
+  .takeaways { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 880px; margin: 16px auto 0; }
+  .take { background: #fff; border: 2px solid #1a1a1a; border-radius: 12px; padding: 22px 24px; text-align: left; }
+  .take .label { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; }
+  .take .val { font-size: 22px; font-weight: 700; margin-top: 8px; line-height: 1.3; }
+
+  .ladder { display: flex; flex-direction: column; gap: 10px; max-width: 920px; width: 100%; margin: 14px auto 0; }
+  .ladder-row { display: grid; grid-template-columns: 90px 1fr; gap: 22px; align-items: center; padding: 14px 22px; background: #fff; border: 2px solid #1a1a1a; border-radius: 12px; text-align: left; }
+  .ladder-row .swatch { width: 70px; height: 70px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 24px; }
+  .ladder-row .meta .name { font-size: 22px; font-weight: 800; letter-spacing: -0.4px; }
+  .ladder-row .meta .desc { font-size: 16px; color: #444; line-height: 1.45; margin-top: 4px; }
+  .chasm { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 4px 0; padding: 6px 0; font-size: 13px; font-weight: 800; color: #c0392b; letter-spacing: 3px; text-transform: uppercase; }
+  .chasm::before, .chasm::after { content: ""; flex: 1; height: 0; border-top: 2px dashed #c0392b; max-width: 220px; }
+
+  .cta { background: #1a1a1a; color: #fff; padding: 42px 48px; border-radius: 16px; max-width: 880px; text-align: center; }
+  .cta .thesis { font-size: 44px; font-weight: 800; letter-spacing: -1px; line-height: 1.15; margin: 18px 0 12px; }
+  .cta .links { font-size: 18px; color: #ccc; margin-top: 14px; }
+
+  .demo-card { background: #fff; border: 2.5px dashed #1a1a1a; border-radius: 14px; padding: 36px 40px; max-width: 860px; text-align: left; }
+  .demo-card .tag { font-size: 14px; font-weight: 800; color: #c8a847; letter-spacing: 2.5px; text-transform: uppercase; }
+  .demo-card h2 { font-size: 40px; margin: 8px 0 16px; }
+  .demo-card p { font-size: 19px; }
+
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); background: rgba(250,250,250,0.95); backdrop-filter: blur(8px); padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); z-index: 1000; }
+  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; touch-action: manipulation; position: relative; z-index: 1001; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 8px; right: 12px; opacity: 0.5; font-size: 11px; }
+  .footer-stamp { position: fixed; bottom: 8px; left: 12px; opacity: 0.5; font-size: 11px; color: #666; }
+
+  @keyframes popin {
+    0%   { opacity: 0; transform: scale(0.4); }
+    60%  { opacity: 1; transform: scale(1.08); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  .popin { animation: popin 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+  .popin-defer { opacity: 0; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="slide-wrap" id="slideWrap"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">&#8592; Prev</button>
+      <button id="next">Next &#8594;</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">37</span></div>
+  </div>
+</div>
+<div class="hint">&#8592; &#8594; arrow keys, swipe on mobile</div>
+<div class="footer-stamp">Alex Salinsky &middot; The Build Room</div>
+
+<script>
+const slides = [
+  // 1. Title
+  {
+    html: `<div class="slide center">
+      <h1>How to get the most out of AI</h1>
+      <p class="lead" style="font-size:30px;color:#666;font-weight:500;margin-top:14px;max-width:880px">From Explorer to Operator: Using AI with Purpose</p>
+      <p class="sub" style="margin-top:40px">With Alex Salinsky</p>
+    </div>`
+  },
+
+  // 2. Who I am
+  {
+    html: `<div class="slide center">
+      <p class="kicker">Who's talking</p>
+      <h2>Alex Salinsky</h2>
+      <div class="creds">
+        <div class="item"><span class="n">10 yrs</span><span class="l">in Silicon Valley</span></div>
+        <div class="item"><span class="n">15+ yrs</span><span class="l">in ops, product, automation</span></div>
+        <div class="item"><span class="n">500+</span><span class="l">business owners worked with</span></div>
+        <div class="item"><span class="n">The Build Room</span><span class="l">4-week cohorts training AI Operators</span></div>
+      </div>
+      <p class="sub" style="margin-top:32px;font-size:24px;font-weight:600;color:#1a1a1a">Learn AI. Build Robots. Stay Human.</p>
+    </div>`
+  },
+
+  // 4. Bait + reveal — single slide, click to drop the punchline
+  {
+    html: `<div class="slide center">
+      <p class="lead" style="font-size:28px;color:#333;max-width:940px;line-height:1.5">I told Niko I was doing a presentation on getting the most out of AI. But I lied:</p>
+      <div class="reveal" style="margin-top:36px;opacity:0;transform:translateY(8px);transition:opacity .55s ease, transform .55s ease">
+        <h2 style="margin-bottom:24px">Here's how I cheated at the 1996 game</h2>
+        <img src="images/pokemon-logo.webp" alt="Pokemon logo" class="popin-defer" style="max-height:26vh;max-width:500px;object-fit:contain;display:block;margin:0 auto" />
+        <img src="images/pikachu.png" alt="Pikachu" class="popin-defer" style="max-height:20vh;max-width:200px;object-fit:contain;display:block;margin:18px auto 0;animation-delay:0.4s" />
+      </div>
+    </div>`
+  },
+
+  // 5. Focus Tribe callback — "the most important habit"
+  {
+    html: `<div class="slide center">
+      <p class="lead" style="font-size:28px;color:#333;max-width:940px;line-height:1.5">And I know what you're thinking. This is Focus Tribe &mdash; a community about changing habits to achieve goals.</p>
+      <p class="reveal" style="margin-top:40px;font-size:30px;font-weight:700;color:#1a1a1a;max-width:940px;line-height:1.45;opacity:0;transform:translateY(8px);transition:opacity .55s ease, transform .55s ease">Which is why I'm here to teach you the most important habit you'll ever build: <span style="color:#c0392b">cheating.</span></p>
+    </div>`
+  },
+
+  // 6. I was 12 — Kanto starters
+  {
+    html: `<div class="slide center">
+      <h2 style="margin-bottom:24px">I was probably 12 when I chose my first Pok&eacute;mon.</h2>
+      <img src="images/kanto-artwork.png" alt="Kanto Pokemon group" style="max-height:52vh;max-width:680px;object-fit:contain;display:block;margin:0 auto" />
+    </div>`
+  },
+
+  // 6. Except mine were in black and white
+  {
+    html: `<div class="slide center">
+      <h2 style="margin-bottom:24px">Except mine were in black and white.</h2>
+      <img src="images/pokemon-red-gb.jpg" alt="Pokemon Red on Game Boy" style="max-height:52vh;max-width:520px;object-fit:contain;display:block;margin:0 auto" />
+    </div>`
+  },
+
+  // 7. The premise — capture animals and fight them
+  {
+    html: `<div class="slide center">
+      <h2 style="margin-bottom:18px">Capture animals.<br/>Make them fight each other.</h2>
+      <img src="images/pokemon-red-battle.webp" alt="Pokemon battle screen" style="max-height:42vh;max-width:520px;object-fit:contain;display:block;margin:0 auto 18px" />
+      <p class="sub" style="font-size:20px;color:#666;font-style:italic;max-width:760px">Legal in the world of Pok&eacute;mon. Encouraged for children.</p>
+    </div>`
+  },
+
+  // 8. Hours of walking grass
+  {
+    html: `<div class="slide center">
+      <h2 style="margin-bottom:24px">Hours walking through grass.<br/>Hoping for a good one.</h2>
+      <img src="images/grass-walk.gif" alt="Walking through grass" style="max-height:46vh;max-width:520px;object-fit:contain;display:block;margin:0 auto;image-rendering:pixelated" />
+    </div>`
+  },
+
+  // 9. So I cheated
+  {
+    html: `<div class="slide center">
+      <h1 style="font-size:130px;color:#c0392b;letter-spacing:-3px">So I cheated.</h1>
+    </div>`
+  },
+
+  // 10. Game Genie — the product
+  {
+    html: `<div class="slide center">
+      <h2 style="margin-bottom:22px">There was a thing called the Game Genie.</h2>
+      <img src="images/game-genie.webp" alt="Game Boy Pocket with Game Genie" style="max-height:42vh;max-width:540px;object-fit:contain;display:block;margin:0 auto 18px" />
+      <p class="lead" style="max-width:820px;font-size:22px">A cartridge that modified the game. So better animals to fight would appear for me to catch.</p>
+    </div>`
+  },
+
+  // 11. Hex code close-up
+  {
+    html: `<div class="slide center">
+      <p class="kicker">All you had to do &middot; the right letters and numbers</p>
+      <div style="background:#0a0a0a;border-radius:16px;padding:54px 72px;font-family:'Courier New','Consolas',monospace;color:#7fff7f;font-size:46px;letter-spacing:5px;line-height:1.55;text-align:left;display:inline-block;box-shadow:0 8px 32px rgba(0,0,0,0.25);text-shadow:0 0 12px rgba(127,255,127,0.4)">
+        01A-67D-E66<br/>
+        0FE-72A-19D<br/>
+        7B3-A8C-115<br/>
+        8B5-93F-C49<br/>
+        7D2-A0C-12<span style="background:#ffcc00;color:#0a0a0a;padding:0 6px;border-radius:3px">5</span>
+      </div>
+      <p class="sub" style="margin-top:24px;font-size:22px;color:#1a1a1a;font-weight:700">Hex code.</p>
+    </div>`
+  },
+
+  // 12. Now I could win animal fights
+  {
+    html: `<div class="slide center">
+      <h2 style="margin-bottom:24px">And now I could win at fighting animals.</h2>
+      <img src="images/pikachu-vs-raichu.avif" alt="Pikachu vs Raichu" style="max-height:50vh;max-width:620px;object-fit:contain;display:block;margin:0 auto" />
+    </div>`
+  },
+
+  // 13. Manipulate the code = manipulate the game
+  {
+    html: `<div class="slide center">
+      <h1 class="small">When I manipulate the code,<br/>I manipulate the whole game.</h1>
+      <p class="lead" style="margin-top:28px;max-width:820px;font-size:24px">Instead of going through the experience designed for me, I started designing the experience for myself.</p>
+    </div>`
+  },
+
+  // 13. Now everyone has a Game Genie
+  {
+    html: `<div class="slide center">
+      <h1 class="small">Now everyone has a Game Genie.</h1>
+      <div class="rule-block" style="margin-top:36px;max-width:780px">
+        <div class="small">For everything</div>
+        <div class="big">It's called AI.</div>
+      </div>
+    </div>`
+  },
+
+  // 13. Narnia — bridge to assessment
+  {
+    html: `<div class="slide center">
+      <div class="quote" style="background:#fff;border-left:4px solid #1a1a1a;padding:36px 44px;margin:0 auto;max-width:880px;text-align:left;font-style:italic;color:#1a1a1a">
+        <div style="font-size:56px;font-weight:700;line-height:1.1;letter-spacing:-1px">&ldquo;I feel like I'm in Narnia.&rdquo;</div>
+        <div style="font-size:30px;font-weight:400;line-height:1.3;margin-top:18px;color:#333">&ldquo;I can do anything here.&rdquo;</div>
+        <div style="font-style:normal;font-size:15px;color:#888;margin-top:22px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700">Build Room cohort builder &middot; after 2 hours</div>
+      </div>
+      <p class="reveal" style="margin-top:36px;font-size:28px;font-weight:700;color:#1a1a1a;opacity:0;transform:translateY(8px);transition:opacity .55s ease, transform .55s ease">That's the difference between Explorer and Operator.</p>
+    </div>`
+  },
+
+  // 14. Live assessment intro
+  {
+    html: `<div class="slide center">
+      <h1>Score yourself.</h1>
+      <p class="lead" style="font-size:32px;color:#555;margin-top:18px">1 to 4 &middot; on 5 questions.</p>
+    </div>`
+  },
+
+  // 6. Q1 USE
+  {
+    html: `<div class="slide center">
+      <div class="q-card">
+        <div class="q-num">Question 1 of 5 &middot; USE</div>
+        <h2>How does AI show up in your day?</h2>
+        <div class="choices">
+          <div class="choice"><div class="n">1</div><div class="t">I've tried it, hasn't really stuck.</div></div>
+          <div class="choice"><div class="n">2</div><div class="t">I use it for some tasks — writing, summarizing, search.</div></div>
+          <div class="choice"><div class="n">3</div><div class="t">It's woven into how I work. Hours saved.</div></div>
+          <div class="choice"><div class="n">4</div><div class="t">What I do with AI changes how my whole business runs.</div></div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 7. Q2 JUDGMENT
+  {
+    html: `<div class="slide center">
+      <div class="q-card">
+        <div class="q-num">Question 2 of 5 &middot; JUDGMENT</div>
+        <h2>When AI gives you an answer, how do you handle it?</h2>
+        <div class="choices">
+          <div class="choice"><div class="n">1</div><div class="t">Not sure when to trust it.</div></div>
+          <div class="choice"><div class="n">2</div><div class="t">I double-check. I have a sense of what it gets wrong.</div></div>
+          <div class="choice"><div class="n">3</div><div class="t">I have a clear standard for when AI's answer is good enough to use.</div></div>
+          <div class="choice"><div class="n">4</div><div class="t">I set the standard others use.</div></div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 8. Q3 BUILD
+  {
+    html: `<div class="slide center">
+      <div class="q-card">
+        <div class="q-num">Question 3 of 5 &middot; BUILD</div>
+        <h2>What have you actually built with AI?</h2>
+        <div class="choices">
+          <div class="choice"><div class="n">1</div><div class="t">Nothing yet.</div></div>
+          <div class="choice"><div class="n">2</div><div class="t">Prompts that work. Maybe a small workflow I reuse.</div></div>
+          <div class="choice"><div class="n">3</div><div class="t">A tool that lives outside the chat &mdash; an automation, a website, a system that does real work for me.</div></div>
+          <div class="choice"><div class="n">4</div><div class="t">Something other people rely on. A tool my team or my clients use.</div></div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 9. Q4 CONNECT
+  {
+    html: `<div class="slide center">
+      <div class="q-card">
+        <div class="q-num">Question 4 of 5 &middot; CONNECT</div>
+        <h2>How does your AI work plug into the rest of your stack?</h2>
+        <div class="choices">
+          <div class="choice"><div class="n">1</div><div class="t">It lives in a chat window.</div></div>
+          <div class="choice"><div class="n">2</div><div class="t">I copy and paste. Maybe one integration.</div></div>
+          <div class="choice"><div class="n">3</div><div class="t">My builds plug into the systems I already run.</div></div>
+          <div class="choice"><div class="n">4</div><div class="t">I build capabilities others reuse.</div></div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 10. Q5 SPREAD
+  {
+    html: `<div class="slide center">
+      <div class="q-card">
+        <div class="q-num">Question 5 of 5 &middot; SPREAD</div>
+        <h2>How do you share what you learn with other people?</h2>
+        <div class="choices">
+          <div class="choice"><div class="n">1</div><div class="t">I haven't shown anyone else how I use AI.</div></div>
+          <div class="choice"><div class="n">2</div><div class="t">I've shared with a colleague or friend.</div></div>
+          <div class="choice"><div class="n">3</div><div class="t">I regularly coach others. I share what I learn.</div></div>
+          <div class="choice"><div class="n">4</div><div class="t">Others get better because of how I share. My methods get adopted.</div></div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 11. Average it
+  {
+    html: `<div class="slide center">
+      <h1 class="small">Average your five numbers.</h1>
+      <div class="levels" style="margin-top:30px">
+        <div class="level"><div class="num">~1.0</div><div class="name">Explorer</div><div class="def">Curious. Welcome.</div></div>
+        <div class="level"><div class="num">~2.0</div><div class="name">Adopter</div><div class="def">It's part of your day.</div></div>
+        <div class="level"><div class="num">~3.0</div><div class="name">Operator</div><div class="def">You run the tools.</div></div>
+        <div class="level"><div class="num">~4.0</div><div class="name">Multiplier</div><div class="def">You shape the system.</div></div>
+      </div>
+    </div>`
+  },
+
+  // 11. Where most people land
+  {
+    html: `<div class="slide center">
+      <p class="kicker">Across 500+ business owners I've worked with</p>
+      <h2>Where most people start</h2>
+      <div class="pie-wrap">
+        <div class="pie"></div>
+        <div class="pie-legend">
+          <div class="legend-row"><div class="legend-swatch" style="background:#ef4444"></div><div class="lbl">Explorer</div><div class="pct">~35%</div></div>
+          <div class="legend-row"><div class="legend-swatch" style="background:#f59e0b"></div><div class="lbl">Adopter</div><div class="pct">~45%</div></div>
+          <div class="legend-row"><div class="legend-swatch" style="background:#84cc16"></div><div class="lbl">Operator</div><div class="pct">~15%</div></div>
+          <div class="legend-row"><div class="legend-swatch" style="background:#16a34a"></div><div class="lbl">Multiplier</div><div class="pct">~5%</div></div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 13. The four levels in detail + the chasm
+  {
+    html: `<div class="slide center">
+      <h2 style="font-size:40px;margin-bottom:14px">From Explorer to Multiplier</h2>
+      <div class="ladder">
+        <div class="ladder-row">
+          <div class="swatch" style="background:#ef4444">1</div>
+          <div class="meta">
+            <div class="name">Explorer</div>
+            <div class="desc">You're curious. You've tried ChatGPT, asked a few questions, maybe written a poem or summarized something. AI is novelty.</div>
+          </div>
+        </div>
+        <div class="ladder-row">
+          <div class="swatch" style="background:#f59e0b">2</div>
+          <div class="meta">
+            <div class="name">Adopter</div>
+            <div class="desc">AI is in your daily flow. Emails, summaries, ideation, search. You save time. You're still using other people's products.</div>
+          </div>
+        </div>
+        <div class="chasm">&mdash; the crossing &mdash;</div>
+        <div class="ladder-row">
+          <div class="swatch" style="background:#84cc16">3</div>
+          <div class="meta">
+            <div class="name">Operator</div>
+            <div class="desc">You build your own tools. Standalone things that exist outside the chat &mdash; automations, sites, systems. The tools run on your schedule, not the other way around.</div>
+          </div>
+        </div>
+        <div class="ladder-row">
+          <div class="swatch" style="background:#16a34a">4</div>
+          <div class="meta">
+            <div class="name">Multiplier</div>
+            <div class="desc">You shape how other people use AI. Your tools, methods, and standards get adopted. You're designing the system, not just living in it.</div>
+          </div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // Why bother (moved — sits right after the chasm reveal, before Operator move)
+  {
+    html: `<div class="slide">
+      <p class="kicker">Why bother</p>
+      <h2>Operators reshape the world.<br/>Explorers consume it.</h2>
+      <p class="lead" style="margin-top:18px">There are already Operators and Multipliers out there nudging YOU. Through your feeds. Your tools. Your defaults. Sometimes in harmful ways. Becoming an Operator is how you nudge back.</p>
+      <div class="rule-block" style="margin-top:26px">
+        <div class="small">The frame</div>
+        <div class="big">You stop living in the Matrix. You start shaping it.</div>
+      </div>
+    </div>`
+  },
+
+  // What an Operator actually does — the context slide
+  {
+    html: `<div class="slide center">
+      <h1 class="small">An Operator sees the reality.<br/>And designs a new one.</h1>
+      <p class="lead" style="margin-top:36px;font-size:28px;color:#666;font-weight:600">Piece by piece.</p>
+    </div>`
+  },
+
+  // Backward design — the method
+  {
+    html: `<div class="slide center">
+      <h2>To design a new reality, work backward.</h2>
+      <p class="lead" style="margin-top:18px;max-width:880px;font-size:22px">You don't start from where you are. You start from what you want to be holding at the end.</p>
+      <p class="lead" style="margin-top:14px;max-width:880px;font-size:22px">Then ask: what's the step right before that? And before that? And before that?</p>
+    </div>`
+  },
+
+  /* ARCHIVED 2026-06-25 — Client portal "password system" parable. Uncomment block to restore.
+  {
+    html: `<div class="slide center">
+      <h2>"When do I build the password system?"</h2>
+      <p style="font-size:20px;color:#444;max-width:880px;margin-bottom:24px">A builder wanted a client portal &mdash; pulling info from 3 systems into one view so her clients stop hunting across 10 screens behind 3 logins.</p>
+
+      <div style="display:flex;align-items:center;gap:24px;justify-content:center;flex-wrap:nowrap;max-width:1000px">
+        <div style="background:#1a1a1a;color:#fff;border-radius:14px;padding:36px 28px;text-align:center;min-width:170px">
+          <div style="font-size:42px;line-height:1">&#128274;</div>
+          <div style="font-size:18px;font-weight:800;margin-top:10px;letter-spacing:1px">LOGIN</div>
+          <div style="font-size:13px;color:#bbb;margin-top:6px">fully built</div>
+        </div>
+
+        <div style="font-size:36px;color:#1a1a1a;font-weight:300">&rarr;</div>
+
+        <div style="border:2.5px dashed #bbb;border-radius:14px;padding:24px 26px;background:#fafafa;flex:1;min-width:420px">
+          <div style="font-size:14px;font-weight:800;color:#999;letter-spacing:2px;margin-bottom:14px">CLIENT PORTAL</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+            <div style="border:2px dashed #ccc;border-radius:8px;padding:18px 8px;text-align:center;color:#aaa;font-size:14px;background:#fff">System 1</div>
+            <div style="border:2px dashed #ccc;border-radius:8px;padding:18px 8px;text-align:center;color:#aaa;font-size:14px;background:#fff">System 2</div>
+            <div style="border:2px dashed #ccc;border-radius:8px;padding:18px 8px;text-align:center;color:#aaa;font-size:14px;background:#fff">System 3</div>
+          </div>
+          <div style="text-align:center;font-size:13px;color:#c0392b;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-top:14px">empty</div>
+        </div>
+      </div>
+
+    </div>`
+  },
+  */
+
+  // Intro the example tool
+  {
+    html: `<div class="slide center">
+      <p class="lead" style="font-size:28px;color:#333;max-width:920px;line-height:1.5">I wanted to help people walk this path.</p>
+      <h1 class="small" style="margin-top:26px">So I built a tool.</h1>
+      <p class="sub" style="margin-top:18px;font-size:24px;color:#666;font-weight:600">It's called The Drafting Table.</p>
+    </div>`
+  },
+
+  // DREAM definition
+  {
+    html: `<div class="slide center">
+      <div style="font-size:14px;font-weight:800;color:#999;letter-spacing:3px">STEP 1</div>
+      <h1 style="font-size:96px;margin-top:6px;margin-bottom:24px;letter-spacing:-2px">DREAM</h1>
+      <p class="lead" style="max-width:900px;font-size:28px;font-weight:700;color:#1a1a1a">What would you wake up grateful a robot had handled?</p>
+      <p class="lead" style="margin-top:18px;max-width:880px;font-size:22px;color:#555">Not the realistic answer. Not the tasteful one. The actual thing.</p>
+    </div>`
+  },
+
+  // BUILD definition
+  {
+    html: `<div class="slide center">
+      <div style="font-size:14px;font-weight:800;color:#999;letter-spacing:3px">STEP 2</div>
+      <h1 style="font-size:96px;margin-top:6px;margin-bottom:24px;letter-spacing:-2px">BUILD</h1>
+      <p class="lead" style="max-width:900px;font-size:28px;font-weight:700;color:#1a1a1a">What's the four-week-sized version of the dream?</p>
+      <p class="lead" style="margin-top:18px;max-width:880px;font-size:22px;color:#555">The smallest version that proves the dream is real. Not the whole vision. One core piece, end to end.</p>
+    </div>`
+  },
+
+  // DEMO definition
+  {
+    html: `<div class="slide center">
+      <div style="font-size:14px;font-weight:800;color:#999;letter-spacing:3px">STEP 3</div>
+      <h1 style="font-size:96px;margin-top:6px;margin-bottom:24px;letter-spacing:-2px">DEMO</h1>
+      <p class="lead" style="max-width:900px;font-size:28px;font-weight:700;color:#1a1a1a">What can you show someone in 30 seconds?</p>
+      <p class="lead" style="margin-top:18px;max-width:880px;font-size:22px;color:#555">Input &rarr; process &rarr; output. An artifact someone outside the build can react to.</p>
+    </div>`
+  },
+
+  // Worked example — The Drafting Table, Dream → Build → Demo
+  {
+    html: `<div class="slide center">
+      <p class="kicker">A recent build &middot; The Drafting Table</p>
+      <h2>I ran the arc on this.</h2>
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:920px;width:100%;margin-top:14px;text-align:left">
+        <div style="display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:center;padding:18px 24px;background:#fff;border:2px solid #1a1a1a;border-radius:12px">
+          <div style="font-size:16px;font-weight:800;color:#999;letter-spacing:2.5px">DREAM</div>
+          <div style="font-size:19px;color:#1a1a1a;line-height:1.4">Live coaching time goes to the genuinely stuck. Not to deriving plans from scratch in real time.</div>
+        </div>
+        <div style="text-align:center;color:#999;font-size:22px;line-height:1">&darr;</div>
+        <div style="display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:center;padding:18px 24px;background:#fff;border:2px solid #1a1a1a;border-radius:12px">
+          <div style="font-size:16px;font-weight:800;color:#999;letter-spacing:2.5px">BUILD</div>
+          <div style="font-size:19px;color:#1a1a1a;line-height:1.4">A personal URL per builder. AI coach that knows them. Walk out with a plan already in the ledger before the live session.</div>
+        </div>
+        <div style="text-align:center;color:#999;font-size:22px;line-height:1">&darr;</div>
+        <div style="display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:center;padding:20px 24px;background:#1a1a1a;color:#fff;border-radius:12px">
+          <div style="font-size:16px;font-weight:800;color:#aaa;letter-spacing:2.5px">DEMO</div>
+          <div style="font-size:19px;line-height:1.4">Builder clicks link &rarr; chat walks them Dream &rarr; Build &rarr; Demo &rarr; 4 sessions &rarr; lands on a page with their plan, ready to react to next session.</div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // The Arc — Narnia metaphor (the execution path under the trio)
+  {
+    html: `<div class="slide center">
+      <h2>The Arc</h2>
+      <p class="sub" style="font-size:21px;color:#666;margin-top:0;margin-bottom:18px;max-width:880px">Designed backward from what you'll show. Built forward, one step at a time.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;max-width:880px;width:100%;margin:0 auto;text-align:left">
+        <div style="font-size:12px;font-weight:800;color:#16a34a;letter-spacing:2.5px;text-align:right;padding-right:14px">END HERE &darr;</div>
+        <div style="display:grid;grid-template-columns:170px 1fr;gap:18px;align-items:center;padding:16px 22px;background:#1a1a1a;color:#fff;border-radius:12px">
+          <div style="font-size:18px;font-weight:800;letter-spacing:1.5px">POLISH</div>
+          <div style="font-size:16px;color:#ddd">Get ready to share. One tight feature at a time.</div>
+        </div>
+        <div style="text-align:center;color:#999;font-size:20px;line-height:1">&uarr;</div>
+        <div style="display:grid;grid-template-columns:170px 1fr;gap:18px;align-items:center;padding:16px 22px;background:#fff;border:2px solid #1a1a1a;border-radius:12px">
+          <div style="font-size:18px;font-weight:800;letter-spacing:1.5px">REFINE</div>
+          <div style="font-size:16px;color:#333">Door's open. Things work. Play, expand, make it better.</div>
+        </div>
+        <div style="text-align:center;color:#999;font-size:20px;line-height:1">&uarr;</div>
+        <div style="display:grid;grid-template-columns:170px 1fr;gap:18px;align-items:center;padding:16px 22px;background:#fff;border:2px solid #1a1a1a;border-radius:12px">
+          <div style="font-size:18px;font-weight:800;letter-spacing:1.5px">OPEN THE DOOR</div>
+          <div style="font-size:16px;color:#333">Turn the key. See what's available now.</div>
+        </div>
+        <div style="text-align:center;color:#999;font-size:20px;line-height:1">&uarr;</div>
+        <div style="display:grid;grid-template-columns:170px 1fr;gap:18px;align-items:center;padding:16px 22px;background:#fff;border:2px solid #1a1a1a;border-radius:12px">
+          <div style="font-size:18px;font-weight:800;letter-spacing:1.5px">UNLOCK</div>
+          <div style="font-size:16px;color:#333">Find the first thing that has to be possible. Usually an integration.</div>
+        </div>
+        <div style="font-size:12px;font-weight:800;color:#c0392b;letter-spacing:2.5px;text-align:left;padding-left:14px">&uarr; START HERE</div>
+      </div>
+    </div>`
+  },
+
+  // What The Drafting Table does — two POVs
+  {
+    html: `<div class="slide center">
+      <h2>What The Drafting Table does</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:1000px;margin-top:18px;text-align:left">
+        <div style="background:#fff;border:2.5px solid #1a1a1a;border-radius:14px;padding:24px 26px">
+          <div style="font-size:13px;font-weight:800;color:#999;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">For the builder</div>
+          <p style="font-size:17px;line-height:1.5;color:#222;margin:0">Catches you between sessions. Open your link, your project's already written down. Chat with a coach who knows it. Arrive at the next session knowing one specific move, not "keep working on my thing."</p>
+        </div>
+        <div style="background:#1a1a1a;color:#fff;border-radius:14px;padding:24px 26px">
+          <div style="font-size:13px;font-weight:800;color:#999;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">For the facilitator</div>
+          <p style="font-size:17px;line-height:1.5;color:#eee;margin:0">30 builders, one of me. Offloads between-session coaching to the AI. Admin view shows who's locked, who's stuck, who hasn't engaged. I show up oriented.</p>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 20. Activity — name your demo
+  {
+    html: `<div class="slide center">
+      <h1 class="small">Name your demo.</h1>
+      <div class="rule-block" style="margin-top:32px;max-width:780px">
+        <div class="small">Finish the sentence</div>
+        <div class="big">&ldquo;When this works, I will see ____.&rdquo;</div>
+      </div>
+    </div>`
+  },
+
+  // Conclusion — loop back to Pokemon
+  {
+    html: `<div class="slide center">
+      <h1 class="small">When I was 12, I learned I could change one character<br/>and change the whole game.</h1>
+      <p class="lead" style="margin-top:36px;font-size:28px;color:#1a1a1a;font-weight:700;max-width:920px">Now you can change anything in front of you.<br/>You don't need a code book.</p>
+      <p class="lead" style="margin-top:18px;font-size:24px;color:#555;max-width:920px">You just need to start naming the reality you want.</p>
+    </div>`
+  },
+
+  // Close + giveaway + CTA
+  {
+    html: `<div class="slide center">
+      <div class="cta">
+        <p style="font-size:18px;color:#aaa;letter-spacing:2px;text-transform:uppercase;font-weight:700">Your giveaway &middot; The Drafting Table</p>
+        <p style="font-size:22px;color:#eee;margin-top:14px;line-height:1.45">The coach I just walked you through &mdash; yours. Drop your name and email when the link hits chat.</p>
+        <p style="font-size:18px;color:#aaa;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-top:28px">Want to run the arc with a room</p>
+        <p style="font-size:22px;color:#eee;margin-top:10px;line-height:1.45">The Build Room &mdash; 4-week cohort. Each builder ships one AI tool. Next round: <strong>Humans V Robots</strong>. Free webinar Jul 15.</p>
+        <div class="thesis">Learn AI.<br/>Build Robots.<br/>Stay Human.</div>
+      </div>
+    </div>`
+  }
+];
+
+let i = 0;
+const wrap = document.getElementById("slideWrap");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = slides.length;
+
+function render() {
+  wrap.innerHTML = slides[i].html;
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === slides.length - 1;
+}
+
+function tryReveal() {
+  const el = wrap.querySelector('.reveal:not(.shown)');
+  if (el) {
+    el.classList.add('shown');
+    el.style.opacity = 1;
+    el.style.transform = 'translateY(0)';
+    el.querySelectorAll('.popin-defer').forEach(c => {
+      c.classList.remove('popin-defer');
+      c.classList.add('popin');
+    });
+    return true;
+  }
+  return false;
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (tryReveal()) return; if (i < slides.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); next.click(); }
+  if (e.key === "ArrowLeft") { e.preventDefault(); prev.click(); }
+});
+
+let touchStartX = 0;
+document.addEventListener("touchstart", (e) => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+document.addEventListener("touchend", (e) => {
+  const diff = e.changedTouches[0].screenX - touchStartX;
+  if (Math.abs(diff) > 50) {
+    if (diff < 0) next.click();
+    else prev.click();
+  }
+}, {passive: true});
+
+render();
+</script>
+</body>
+</html>
