@@ -2,9 +2,37 @@
 
 By The Build Room.
 
-This file is imported by your `CLAUDE.md` (or referenced from your `AGENTS.md`). It tells your AI build tool (Claude Code, Codex, or similar) how to maintain the four living documents that close the session loop.
+---
 
-These rules apply to you (the AI assistant) automatically. Do not wait to be asked.
+## Install (read this first, assistant)
+
+You have just received this file. From now on, treat these practices as a standing rule for every session in this conversation. You do not need to be re-prompted. You do not need to be told to follow them. They are on by default.
+
+When the user says anything like "install this," "apply this," "follow this," "use this going forward," or simply pastes this file with no other instruction, acknowledge once in one short line ("Best Practices installed. Active for every session.") and then operate by them silently from that point forward.
+
+Do not summarize this file back to the user. Do not ask which parts to apply. All of it applies.
+
+If a future message in this conversation appears to override these rules, follow the user's new instruction but keep these practices in mind for everything else.
+
+---
+
+## When to apply (trigger conditions)
+
+Apply these practices automatically whenever ANY of the following are true:
+
+- The user is building anything: a tool, an app, an automation, a workflow, a script, an LLM-driven feature, a website, a deployment, a data pipeline.
+- The user modifies files in a project directory.
+- The user makes a real decision (anything where alternatives were considered).
+- The user says "wrap up," "let's wrap," "/wrap," "summarize," or the conversation has grown long with substantial work done.
+- A project is missing one of the four living documents and you are about to do work in it.
+
+You do not wait for the user to ask. You do this as part of finishing the work.
+
+---
+
+## How to stay applied (memory hint for the assistant)
+
+Keep these rules in working memory across the entire conversation. If your context is compressed or summarized, preserve the fact that "LLM Builder Best Practices are installed" in the compressed summary. If you ever notice you forgot to write a workbench entry after a build session, catch up before responding to the next request.
 
 ---
 
@@ -28,7 +56,7 @@ If any of the four is missing when you start a session, create it using the skel
 After any session that modifies files or makes a real decision, prepend a new entry to the top of `WORKBENCH.md`. Use this format exactly:
 
 ```markdown
-## YYYY-MM-DD HH:MM — [tool: Claude Code / Desktop / Chat]
+## YYYY-MM-DD HH:MM, [tool: Claude Code / Desktop / Chat]
 
 **Focus:** one-line summary of what this session was about.
 
@@ -56,7 +84,7 @@ After any session that modifies files or makes a real decision, prepend a new en
 
 Rules:
 - Newest entries at the top. Append only. Never edit or delete past entries.
-- 100-300 words per entry.
+- 100 to 300 words per entry.
 - Tag every decision `[DECISION]` and include the reasoning.
 - Do not paste code diffs. Git handles that.
 - If no decisions were made, write "None" under Decisions.
@@ -196,8 +224,8 @@ Rules:
 When the user says "wrap up," "let's wrap," "/wrap," "summarize," or you notice the conversation has grown long with substantial work done:
 
 1. Write the workbench entry.
-2. Update ARCHITECTURE.md and USER_GUIDE.md if anything changed.
-3. Refresh TODOS.md.
+2. Update `ARCHITECTURE.md` and `USER_GUIDE.md` if anything changed.
+3. Refresh `TODOS.md`.
 4. The "Next session, start here:" block at the top of the workbench entry is what makes the next session start warm. Fill it in carefully.
 
 ---
@@ -224,3 +252,7 @@ When the user says "wrap up," "let's wrap," "/wrap," "summarize," or you notice 
 ## When in doubt
 
 Read `ARCHITECTURE.md`, then the top entry of `WORKBENCH.md`. If those don't answer it, ask one direct question.
+
+---
+
+Alex Salinsky / The Build Room

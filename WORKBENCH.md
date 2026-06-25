@@ -1,5 +1,26 @@
 # build-room-visuals workbench
 
+## 2026-06-24 - LLM Builder BPs page rewrite: one path + skill-style MD
+
+Rewrote `llm-builder-bps.html` and `llm-builder-bps/llm-builder-bps.md` so the resource has ONE clear use path and the MD teaches the LLM to apply the practices automatically (like Alex's `wrap` skill).
+
+**What changed:**
+- Killed Path A / Path B / Codex paths entirely. Replaced with single 3-step path: download MD, drop into LLM, tell it to install.
+- HTML now leads with "How to use it" steps + prominent download button. Preview of the four-doc system stays as "what you're installing." Why-it-works kept.
+- MD now opens with an "Install" block addressed to the assistant ("Best Practices installed. Active for every session."), then a "When to apply" trigger list (any build work, file modifications, decisions, wrap phrases), then a "How to stay applied" memory hint for context compression.
+- Updated card description on `build-room-resources.html` + `index.html` to match the new "drop into your LLM and tell it to install" framing.
+
+**Decisions:**
+- [DECISION] Removed Path A/B/Codex entirely instead of light-editing. Alex was explicit: one path only, no "you could also" options. Optionality was the problem.
+- [DECISION] MD opens addressed to the assistant, not the human. Matches the wrap-skill pattern Alex referenced. Human reads the HTML; the MD talks to the LLM.
+
+**Still open:**
+- None. Ship-ready.
+
+**Files touched:** llm-builder-bps.html, llm-builder-bps/llm-builder-bps.md, build-room-resources.html, index.html, WORKBENCH.md
+
+---
+
 ## 2026-06-23 - Credentials hygiene deck v2: fix tokens 404 + file-structure reframe
 
 V2 pass on `credentials-hygiene-deck.html`. Real bugs on the live deck plus a content reframe.
