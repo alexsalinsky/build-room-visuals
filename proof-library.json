@@ -1,7 +1,7 @@
 {
   "$schema_doc": "proof-library-schema.md",
   "version": 1,
-  "last_updated": "2026-06-23",
+  "last_updated": "2026-06-25",
   "entries": [
     {
       "id": "linkedin-how-to-get-your-team-to-actually-use-ai",
@@ -14,7 +14,10 @@
       "quote": "Three pillars: Define, Measure, Facilitate. Sustained behavior change is the real goal.",
       "attribution": "Alex Salinsky",
       "timestamp": null,
-      "tags": ["framework", "cohort-promise"],
+      "tags": [
+        "framework",
+        "cohort-promise"
+      ],
       "status": "live",
       "date_captured": "2026-06-23",
       "date_cleared": "2026-06-01",
@@ -31,7 +34,10 @@
       "quote": "Existential / ethical lens on AI. Uses social media algorithms as the cautionary frame for AI's societal impact. Pairs with the Stay Human thread of The Build Room.",
       "attribution": "Alex Salinsky",
       "timestamp": null,
-      "tags": ["thesis", "vision"],
+      "tags": [
+        "thesis",
+        "vision"
+      ],
       "status": "live",
       "date_captured": "2026-06-23",
       "date_cleared": "2026-04-21",
@@ -48,13 +54,14 @@
       "quote": "Operations / leadership angle. Opens with a $3M case study on inefficient meeting structures.",
       "attribution": "Alex Salinsky",
       "timestamp": null,
-      "tags": ["framework"],
+      "tags": [
+        "framework"
+      ],
       "status": "live",
       "date_captured": "2026-06-23",
       "date_cleared": "2026-03-23",
       "notes": "LinkedIn Newsletter edition. Useful pair with AI fluency reading list."
     },
-
     {
       "id": "nc17-thesis-line",
       "type": "clip",
@@ -66,7 +73,10 @@
       "quote": "I like to say learn AI, build robots and stay human. And stay human is a big part of the build cohort that we're working together.",
       "attribution": "Alex Salinsky",
       "timestamp": "00:30:19",
-      "tags": ["thesis", "featured"],
+      "tags": [
+        "thesis",
+        "featured"
+      ],
       "status": "featured",
       "date_captured": "2026-06-23",
       "date_cleared": "2026-06-18",
@@ -83,7 +93,10 @@
       "quote": "My hope is that in your mind there's BC and AC, before cruise and after cruise in your AI journey, and that a few months after the cruise you point back and you say, that was a turning point for me in my AI journey. I built something. I connected with people and now my life is kind of changed for it.",
       "attribution": "Alex Salinsky",
       "timestamp": "00:46:13",
-      "tags": ["vision", "cohort-promise"],
+      "tags": [
+        "vision",
+        "cohort-promise"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -100,7 +113,10 @@
       "quote": "I'm finding that the people who are in that operator multiplier category are some of the most isolated people because no one's up on their level yet. So for us to get you together, I think it's going to be really valuable.",
       "attribution": "Alex Salinsky",
       "timestamp": "00:53:29",
-      "tags": ["objection-handling", "vision"],
+      "tags": [
+        "objection-handling",
+        "vision"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -117,7 +133,11 @@
       "quote": "I'm here in Medellin Colombia and the community around me, I feel like I'm losing some of my more ambitious friends to AI. 'Alex, I'm so revved up on AI. I've built so much. It's transformed my company, but I haven't been to the gym. I haven't hung out with my friends. I haven't called my mom.' Do it with us. Do it with family. Do it with community.",
       "attribution": "Alex Salinsky",
       "timestamp": "00:31:05",
-      "tags": ["thesis", "story", "featured"],
+      "tags": [
+        "thesis",
+        "story",
+        "featured"
+      ],
       "status": "featured",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -134,7 +154,9 @@
       "quote": "I rate AI use and fluency on four levels. So it's explore — that's basically I play with, I chat with the bot. Adopter — it's coming into my everyday. But we move into operator and multiplier. Operators are people who are building tools already. And then there's even another level called multiplier, which is what I do impacts other people.",
       "attribution": "Alex Salinsky",
       "timestamp": "00:52:55",
-      "tags": ["framework"],
+      "tags": [
+        "framework"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -151,7 +173,9 @@
       "quote": "I'm really excited for the build sessions especially because this is where we put our hands on the keyboard and get things done. That's the most important thing.",
       "attribution": "Alex Salinsky",
       "timestamp": "00:29:47",
-      "tags": ["cohort-promise"],
+      "tags": [
+        "cohort-promise"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -168,13 +192,15 @@
       "quote": "For those of you who are beginning and you've kind of been using ChatGPT like Google or your friend and therapist, cool. We're going to move you to a place where you're building a tool for the first time. We're going to have you surrounded by coaches and friends.",
       "attribution": "Alex Salinsky",
       "timestamp": "00:30:43",
-      "tags": ["cohort-promise", "objection-handling"],
+      "tags": [
+        "cohort-promise",
+        "objection-handling"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
       "notes": "Sells the on-ramp for beginners."
     },
-
     {
       "id": "nc17-everyone-leaves-with-something-built",
       "type": "clip",
@@ -186,7 +212,9 @@
       "quote": "It's our goal to have everyone produce a tool while they're on the boat made from AI. / Everyone can leave the ship with something that they created, something new.",
       "attribution": "Alex Salinsky + Dori",
       "timestamp": "00:12:00",
-      "tags": ["cohort-promise"],
+      "tags": [
+        "cohort-promise"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -203,7 +231,10 @@
       "quote": "Kunard used to be one of the main competitors of the Titanic company. When we are going on the ship we're really going back in time, pretty much following exactly the Titanic route. That has been a bucket list item for many people.",
       "attribution": "Johannes (Nomad Cruise)",
       "timestamp": "00:07:39",
-      "tags": ["story", "vision"],
+      "tags": [
+        "story",
+        "vision"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -220,7 +251,10 @@
       "quote": "Ed Sheeran had a temporary studio created on the Queen Mary 2 to record part of an album. The album was called Divide.",
       "attribution": "Alex Salinsky + Johannes",
       "timestamp": "00:50:37",
-      "tags": ["story", "humor"],
+      "tags": [
+        "story",
+        "humor"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -237,7 +271,10 @@
       "quote": "Arrival in New York in the morning. Early arrival past the Statue of Liberty. That's also something really really unique.",
       "attribution": "Johannes (Nomad Cruise)",
       "timestamp": "00:29:04",
-      "tags": ["story", "vision"],
+      "tags": [
+        "story",
+        "vision"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -254,7 +291,10 @@
       "quote": "The sea days are absolutely my favorite. No ports, no excursions, no distraction whatsoever. We're all going to be let's say stuck on this boat but in the best way possible. It's like 150 people, so it's a small a little bit smaller group.",
       "attribution": "Johannes (Nomad Cruise)",
       "timestamp": "00:49:33",
-      "tags": ["cohort-promise", "framework"],
+      "tags": [
+        "cohort-promise",
+        "framework"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -271,7 +311,9 @@
       "quote": "These two tracks are going to run parallel. So everyone is going to find whatever their level is. So no one needs to sit on sessions that might not be as interesting or might be a little bit too high level for them.",
       "attribution": "Dori",
       "timestamp": "00:10:59",
-      "tags": ["objection-handling"],
+      "tags": [
+        "objection-handling"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -288,7 +330,10 @@
       "quote": "If we are not using this, a lot of us who are doing this right now and who are not going into this, we're not going to be able to have certain jobs anymore. So either we learn how to use these tools, or we might not be able to run this kind of lifestyle anymore.",
       "attribution": "Johannes (Nomad Cruise)",
       "timestamp": "00:20:18",
-      "tags": ["urgency", "vision"],
+      "tags": [
+        "urgency",
+        "vision"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -305,7 +350,9 @@
       "quote": "Those of you who have not booked this yet, it's really important to get on board now. There are very very limited spots. This will sell out still within the next month or so.",
       "attribution": "Johannes (Nomad Cruise)",
       "timestamp": "00:14:21",
-      "tags": ["urgency"],
+      "tags": [
+        "urgency"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -322,7 +369,9 @@
       "quote": "You don't really feel like being on a cruise ship. You more feel like in a vintage five-star hotel.",
       "attribution": "Johannes (Nomad Cruise)",
       "timestamp": "00:51:50",
-      "tags": ["objection-handling"],
+      "tags": [
+        "objection-handling"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -339,7 +388,9 @@
       "quote": "This last year has been a year of facilitating AI workshops. So taking people from whatever level of AI fluency and practice they're at and moving up, moving them up a level. And it's our goal to have everyone produce a tool while they're on the boat made from AI.",
       "attribution": "Alex Salinsky",
       "timestamp": "00:04:12",
-      "tags": ["cohort-promise"],
+      "tags": [
+        "cohort-promise"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -356,7 +407,10 @@
       "quote": "We can continue to do facilitated AI build sessions. So you come off the cruise, you've built a tool and then you come work with us and you refine it, you expand it, maybe you publish it, maybe you start advertising and bringing new people into it. Maybe it's your new business.",
       "attribution": "Alex Salinsky",
       "timestamp": "00:46:01",
-      "tags": ["cohort-promise", "vision"],
+      "tags": [
+        "cohort-promise",
+        "vision"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -373,7 +427,10 @@
       "quote": "Are you a person who's trying to get your brand voice, there's a track for that. If you're a person who's trying to get your internal operations of your business together, there's a track for that. If you're a person who's trying to build personal development tools, there's a track for that.",
       "attribution": "Alex Salinsky",
       "timestamp": "00:32:07",
-      "tags": ["framework", "objection-handling"],
+      "tags": [
+        "framework",
+        "objection-handling"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -390,7 +447,9 @@
       "quote": "We're going to have ways for the people who are in that operator multiplier level who are already so advanced for them to confer because you guys need to trade notes.",
       "attribution": "Alex Salinsky",
       "timestamp": "00:53:40",
-      "tags": ["cohort-promise"],
+      "tags": [
+        "cohort-promise"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -407,7 +466,9 @@
       "quote": "This ocean liner has been operating since the 1920s. A lot of stars, they didn't take the plane, they were just taking this. There was Charlie Chaplin and Liz Taylor and a lot of politicians. You really get this feeling that it is something quite unique.",
       "attribution": "Johannes (Nomad Cruise)",
       "timestamp": "00:51:20",
-      "tags": ["story"],
+      "tags": [
+        "story"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -424,7 +485,10 @@
       "quote": "We recommend not to join everything. Just really accept the FOMO. There's no need to be everywhere. Take it easy, take it on your own pace, because otherwise it can be quite overwhelming.",
       "attribution": "Johannes (Nomad Cruise)",
       "timestamp": "01:01:17",
-      "tags": ["thesis", "framework"],
+      "tags": [
+        "thesis",
+        "framework"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -441,7 +505,9 @@
       "quote": "The roommate turned into my bestie. I was just hanging out with my very first roommate here, Virginia. This is just such a special bond and a special friendship that creates when you are sharing a cabin.",
       "attribution": "Johannes (Nomad Cruise)",
       "timestamp": "00:57:01",
-      "tags": ["story"],
+      "tags": [
+        "story"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -458,7 +524,10 @@
       "quote": "Instead of pitching up and talking about yourself, you can pitch your friends. It was super super popular. People loved it.",
       "attribution": "Dori",
       "timestamp": "00:26:50",
-      "tags": ["story", "framework"],
+      "tags": [
+        "story",
+        "framework"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -475,7 +544,10 @@
       "quote": "Every place in Playa Carmen is about a 10-minute walk from the beach, and tacos, tacos, tacos for me. Tacos for lunch, tacos for dinner. They're like 20 pesos, about a dollar and a half.",
       "attribution": "Alex Salinsky",
       "timestamp": "01:08:45",
-      "tags": ["humor", "story"],
+      "tags": [
+        "humor",
+        "story"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -492,7 +564,10 @@
       "quote": "There are these beautiful natural jungle lakes basically that have opened up from underground channels and the water is a mineral water. Some people in that area believe it's a sort of a healing water as well.",
       "attribution": "Alex Salinsky",
       "timestamp": "01:08:23",
-      "tags": ["story", "vision"],
+      "tags": [
+        "story",
+        "vision"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -509,7 +584,10 @@
       "quote": "Sometimes you just need to have this one little tip that can really move you forward. Someone shared a tool with me yesterday that I never heard of before. It basically saves me five hours, six hours easily of time.",
       "attribution": "Johannes (Nomad Cruise)",
       "timestamp": "00:05:31",
-      "tags": ["peer-teaching", "story"],
+      "tags": [
+        "peer-teaching",
+        "story"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -526,7 +604,9 @@
       "quote": "We're all going to be, let's say, stuck on this boat but in the best way possible.",
       "attribution": "Johannes (Nomad Cruise)",
       "timestamp": "00:49:43",
-      "tags": ["humor"],
+      "tags": [
+        "humor"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -543,13 +623,14 @@
       "quote": "Dori, what time is it where you are? / Don't even ask. It's 1am. Past 1am. / Alex: Just past noon. Almost lunchtime. / Johannes: Here it's just past 7pm in Barcelona. So we are really all over the world.",
       "attribution": "Alex Salinsky + Johannes + Dori",
       "timestamp": "01:12:31",
-      "tags": ["story"],
+      "tags": [
+        "story"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
       "notes": "Lived-in proof of the nomad lifestyle the cruise sells. Consideration: three-speaker clip, harder to cut clean."
     },
-
     {
       "id": "dbalp-s2-burn-the-thread-theme",
       "type": "lesson",
@@ -561,13 +642,16 @@
       "quote": "The first hour is the hardest. You're not a week in, you're an hour in. And when Claude gets anchored to a broken precedent, you have permission to burn the thread and start fresh.",
       "attribution": "Alex Salinsky",
       "timestamp": null,
-      "tags": ["framework", "thesis", "recovery"],
+      "tags": [
+        "framework",
+        "thesis",
+        "recovery"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
       "notes": "Theme of DBALP S2. Captured in the recap intro. Consideration: overlaps with the standalone 'burn the thread' lesson entry but adds the 'first hour is the hardest' framing — keep both, they serve different uses."
     },
-
     {
       "id": "ff-mon-ruben-on-purpose-on-track",
       "type": "testimonial",
@@ -579,13 +663,14 @@
       "quote": "I'm on purpose. I'm on track.",
       "attribution": "Ruben (F&F kickoff webinar attendee)",
       "timestamp": null,
-      "tags": ["testimonial"],
+      "tags": [
+        "testimonial"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
       "notes": "Permission NOT yet asked. Sat unused for months because no one asked. Named explicitly in CUSTOMER-JOURNEY.md as the canonical example of the testimonial-form [GAP]. Action: build the testimonial form, then ask Ruben."
     },
-
     {
       "id": "dbalp-s3-kate-missive-sidebar-live",
       "type": "win",
@@ -597,7 +682,12 @@
       "quote": "Your sidebar is live. Public. Today. DA. UVPM. Outlet. Reporter. Email. Beats. Macro URL. All of it in one panel, inside Missive. You wired Monday into the same flow during the session. Save to Monday Fox Hollow works. Bryce said it out loud: this is the thing we hired a developer for, for two months. You built it in three sessions.",
       "attribution": "Kate (DBALP cohort)",
       "timestamp": null,
-      "tags": ["live-demo", "mid-session-extension", "breakthrough", "featured"],
+      "tags": [
+        "live-demo",
+        "mid-session-extension",
+        "breakthrough",
+        "featured"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -614,7 +704,11 @@
       "quote": "Remember when we hired that developer for two months.",
       "attribution": "Bryce North (DBALP cohort owner)",
       "timestamp": "01:51:00",
-      "tags": ["story", "humor", "live-demo"],
+      "tags": [
+        "story",
+        "humor",
+        "live-demo"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -631,7 +725,11 @@
       "quote": "You went from 'I want to never answer a sales email again' to a working CRM that drafts responses, updates itself, and uses cats and sad dogs in the breakup emails. That's not a prototype. That's in production.",
       "attribution": "Bryce North (DBALP cohort owner)",
       "timestamp": null,
-      "tags": ["breakthrough", "humor", "live-demo"],
+      "tags": [
+        "breakthrough",
+        "humor",
+        "live-demo"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -648,7 +746,10 @@
       "quote": "My main goal is to give something the CMs can use, that they feel confident pulls the insights and the analytics in a way they can talk about on the call.",
       "attribution": "Auds (DBALP cohort)",
       "timestamp": null,
-      "tags": ["scope-lock", "framework"],
+      "tags": [
+        "scope-lock",
+        "framework"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -665,7 +766,10 @@
       "quote": "You stopped fighting make.com. You walked back to the meat of the problem. You built a Claude project where you say 'draft this' and out comes the LinkedIn post, the IG caption, and a voice check. Then you went one further: you're adding an instruction to test the output against the voice automatically.",
       "attribution": "Ehdina (DBALP cohort)",
       "timestamp": null,
-      "tags": ["pivot", "breakthrough"],
+      "tags": [
+        "pivot",
+        "breakthrough"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -682,7 +786,10 @@
       "quote": "You pivoted from scraping the platform to working with the CSV export. Faster. Cleaner. Then you sat with Bryce and built the temporary pipeline: PRVault → email → Slack → CM → Pitchy. Manual for now, automated later. The discipline of doing the smallest version first is the whole game.",
       "attribution": "Marley (DBALP cohort)",
       "timestamp": null,
-      "tags": ["pivot", "first-brick"],
+      "tags": [
+        "pivot",
+        "first-brick"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -699,7 +806,10 @@
       "quote": "You consolidated 10-15 lists per campaign into ONE list. That's not a feature. That's a change in how the team works. Your backend is the most ambitious build in this cohort.",
       "attribution": "Kandice (DBALP cohort)",
       "timestamp": null,
-      "tags": ["breakthrough", "scope-lock"],
+      "tags": [
+        "breakthrough",
+        "scope-lock"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -716,13 +826,15 @@
       "quote": "You hit a Monday API wall and you didn't quit. You came back, paired with Auds, and pivoted to a dashboard you're now refining.",
       "attribution": "Chanel (DBALP cohort)",
       "timestamp": null,
-      "tags": ["recovery", "pivot"],
+      "tags": [
+        "recovery",
+        "pivot"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
       "notes": null
     },
-
     {
       "id": "dbalp-s2-kate-tell-me-the-rules",
       "type": "win",
@@ -734,7 +846,10 @@
       "quote": "Tell me the rules that you're learning from me.",
       "attribution": "Kate (DBALP cohort)",
       "timestamp": null,
-      "tags": ["peer-teaching", "framework"],
+      "tags": [
+        "peer-teaching",
+        "framework"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -751,7 +866,10 @@
       "quote": "I feel better now.",
       "attribution": "Chanel (DBALP cohort)",
       "timestamp": null,
-      "tags": ["recovery", "framework"],
+      "tags": [
+        "recovery",
+        "framework"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -768,7 +886,10 @@
       "quote": "Shared a live working dashboard at share-out. First visible fragment of where this whole cohort is heading.",
       "attribution": "Auds (DBALP cohort)",
       "timestamp": null,
-      "tags": ["live-demo", "first-brick"],
+      "tags": [
+        "live-demo",
+        "first-brick"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -785,7 +906,10 @@
       "quote": "Discovered CSV export works cleaner than screenshots. Surfaced real gaps in the existing reporting template while building.",
       "attribution": "Marley (DBALP cohort)",
       "timestamp": null,
-      "tags": ["pivot", "first-brick"],
+      "tags": [
+        "pivot",
+        "first-brick"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -802,7 +926,10 @@
       "quote": "Scenarios configured and running. Strong autonomous progress with minimal support needed.",
       "attribution": "Ehdina (DBALP cohort)",
       "timestamp": null,
-      "tags": ["tooling", "pivot"],
+      "tags": [
+        "tooling",
+        "pivot"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -819,7 +946,9 @@
       "quote": "Showed up sick and still got unblocked. MongoDB access established via Bryce.",
       "attribution": "Kandice (DBALP cohort)",
       "timestamp": null,
-      "tags": ["recovery"],
+      "tags": [
+        "recovery"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -836,13 +965,15 @@
       "quote": "Provided API keys, MongoDB access, and Pitchy templates live so other builders could keep moving.",
       "attribution": "Bryce North (DBALP cohort owner)",
       "timestamp": null,
-      "tags": ["peer-teaching", "live-demo"],
+      "tags": [
+        "peer-teaching",
+        "live-demo"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
       "notes": "Owner-buyer in the room building AND co-facilitating. Story for org-buyer marketing."
     },
-
     {
       "id": "rpa-s2-david-zoom-downloader-overshipped",
       "type": "win",
@@ -854,7 +985,10 @@
       "quote": "You showed up with a working tool already built. Clicking a button on your machine downloads the audio, transcript, and video for any Zoom session you point it at. That's not S2 work, that's bonus.",
       "attribution": "David (RPA cohort)",
       "timestamp": null,
-      "tags": ["breakthrough", "first-brick"],
+      "tags": [
+        "breakthrough",
+        "first-brick"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -871,7 +1005,10 @@
       "quote": "Best moment of the session was your idea to anonymize transcripts before sending them through the LLM. Strip the client names, replace with 'client,' then evaluate. Cleaner privacy story, same coaching signal. Stealing that for the whole cohort.",
       "attribution": "David (RPA cohort)",
       "timestamp": "00:43:36",
-      "tags": ["peer-teaching", "framework"],
+      "tags": [
+        "peer-teaching",
+        "framework"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -888,7 +1025,10 @@
       "quote": "Can we do it personalized for them?",
       "attribution": "Maho (RPA cohort)",
       "timestamp": null,
-      "tags": ["scope-lock", "breakthrough"],
+      "tags": [
+        "scope-lock",
+        "breakthrough"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -905,7 +1045,10 @@
       "quote": "Pivot for S2: connect Codex to Google Drive, point it at the onboarding resources folder, get it to answer 'how do I log into Kajabi?' with the real link. The laptop situation set you back on GHL, but your project doesn't actually need GHL right now.",
       "attribution": "Cata (RPA cohort)",
       "timestamp": null,
-      "tags": ["pivot", "recovery"],
+      "tags": [
+        "pivot",
+        "recovery"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -922,7 +1065,10 @@
       "quote": "You made a real call this session. Skip Google Drive, integrate Slack instead. Team writes a title, Codex drafts the post in RPA voice, it lands in Slack for human review before publishing.",
       "attribution": "Muhammad Zohaib (RPA cohort)",
       "timestamp": null,
-      "tags": ["scope-lock", "pivot"],
+      "tags": [
+        "scope-lock",
+        "pivot"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -939,13 +1085,15 @@
       "quote": "You picked up a real project mid-session. Find a webinar transcript, return the timestamps where good clips live. That's hard and useful.",
       "attribution": "Jessica (RPA cohort)",
       "timestamp": null,
-      "tags": ["breakthrough", "tooling"],
+      "tags": [
+        "breakthrough",
+        "tooling"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
       "notes": "Jessica is also Build Room coach + facilitator. Pairs with Maho on Zoom credentials."
     },
-
     {
       "id": "rpa-s1-majo-codex-ghl-connected",
       "type": "win",
@@ -957,7 +1105,10 @@
       "quote": "Connected Codex to GoHighLevel and pulled real client data. First brick laid.",
       "attribution": "Majo (RPA cohort)",
       "timestamp": null,
-      "tags": ["first-brick", "tooling"],
+      "tags": [
+        "first-brick",
+        "tooling"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -974,7 +1125,10 @@
       "quote": "Codex connected to GHL. Bonus: while exploring, it diagnosed a calendar sync bug on Alicia's account, a real problem the team was already living with.",
       "attribution": "Cata (RPA cohort)",
       "timestamp": null,
-      "tags": ["breakthrough", "first-brick"],
+      "tags": [
+        "breakthrough",
+        "first-brick"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -991,7 +1145,10 @@
       "quote": "Connected Codex to Zoom via the marketplace, fought through API scopes (calendar + meetings + recording), and pulled down a test recording by end of session.",
       "attribution": "David (RPA cohort)",
       "timestamp": null,
-      "tags": ["first-brick", "tooling"],
+      "tags": [
+        "first-brick",
+        "tooling"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -1008,13 +1165,14 @@
       "quote": "Scope locked. MVP is voice-training on RPA's existing content so it doesn't sound like generic AI.",
       "attribution": "Muhammad Zohaib (RPA cohort)",
       "timestamp": null,
-      "tags": ["scope-lock"],
+      "tags": [
+        "scope-lock"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
       "notes": null
     },
-
     {
       "id": "ff-mon-s1-bernie-paypal-first-brick",
       "type": "win",
@@ -1026,7 +1184,11 @@
       "quote": "Probably checking into, I hate doing billing, so I'd love to pull data from PayPal.",
       "attribution": "Bernie Holmstock (F&F Mon cohort)",
       "timestamp": "00:49:50",
-      "tags": ["first-brick", "scope-lock", "featured"],
+      "tags": [
+        "first-brick",
+        "scope-lock",
+        "featured"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -1043,7 +1205,10 @@
       "quote": "I want a full force marketing team so I never have to hire someone like this again.",
       "attribution": "Armin Shafee (F&F Mon cohort)",
       "timestamp": "00:53:18",
-      "tags": ["vision", "first-brick"],
+      "tags": [
+        "vision",
+        "first-brick"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -1060,7 +1225,10 @@
       "quote": "Finance is about the most controlled thing in the world. Would you shy away from that because of the interconnects and security and all that?",
       "attribution": "Steve Ward (F&F Mon cohort)",
       "timestamp": "01:00:34",
-      "tags": ["scope-lock", "pivot"],
+      "tags": [
+        "scope-lock",
+        "pivot"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -1077,7 +1245,11 @@
       "quote": "Plan in ChatGPT, request a markdown document instead of a prompt, save the markdown to a folder, open with VS Code, point Codex at the folder. I can generate more markdowns that carry more context across different chats.",
       "attribution": "Álvaro José Castaño Mendoza (F&F Mon cohort)",
       "timestamp": "00:43:35",
-      "tags": ["peer-teaching", "framework", "tooling"],
+      "tags": [
+        "peer-teaching",
+        "framework",
+        "tooling"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -1094,7 +1266,10 @@
       "quote": "When to use things like chat versus code to be able to maximize usage.",
       "attribution": "Jordan Carroll (F&F Mon cohort)",
       "timestamp": "00:22:00",
-      "tags": ["framework", "peer-teaching"],
+      "tags": [
+        "framework",
+        "peer-teaching"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -1111,7 +1286,10 @@
       "quote": "How you would include the, what people sometimes reverse like AI brains, like if you have it linked to Notion or Google Drive or OneDrive, so that it kind of collects the data that it can pull from.",
       "attribution": "Alejandro Hierro (F&F Mon cohort)",
       "timestamp": "00:23:24",
-      "tags": ["scope-lock", "first-brick"],
+      "tags": [
+        "scope-lock",
+        "first-brick"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -1128,7 +1306,11 @@
       "quote": "I just talk before executing. I would do a couple of iterations of developing the idea with text and then only then implement. Or you can also split your files into separate sections.",
       "attribution": "Thierry Muller (F&F Mon cohort coach)",
       "timestamp": "00:29:06",
-      "tags": ["peer-teaching", "framework", "tooling"],
+      "tags": [
+        "peer-teaching",
+        "framework",
+        "tooling"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -1145,7 +1327,11 @@
       "quote": "I usually start by saying, hey, I have these project ideas that we're going to execute in Codex, but you are helping me to plan it.",
       "attribution": "Jessica Tovar Benalcázar (F&F Mon cohort coach)",
       "timestamp": "00:41:31",
-      "tags": ["peer-teaching", "framework", "tooling"],
+      "tags": [
+        "peer-teaching",
+        "framework",
+        "tooling"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -1162,7 +1348,9 @@
       "quote": "I can open Claude Code, it's just not hooking up with GitHub.",
       "attribution": "Jeremy Allen (F&F Mon cohort)",
       "timestamp": "00:36:00",
-      "tags": ["recovery"],
+      "tags": [
+        "recovery"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -1179,13 +1367,15 @@
       "quote": "An automation for video generation, calendar timelines, interview cuts, talking dogs, lip-sync, image generation.",
       "attribution": "Ludger Putz (F&F Mon cohort)",
       "timestamp": "00:30:50",
-      "tags": ["vision", "scope-lock"],
+      "tags": [
+        "vision",
+        "scope-lock"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
       "notes": "Full ambition visible to the room. Narrowing is the next conversation."
     },
-
     {
       "id": "cross-cohort-burn-the-thread",
       "type": "lesson",
@@ -1197,7 +1387,10 @@
       "quote": "When Claude gets anchored to a broken precedent, you have permission to burn the thread and start fresh.",
       "attribution": "Alex Salinsky",
       "timestamp": null,
-      "tags": ["framework", "recovery"],
+      "tags": [
+        "framework",
+        "recovery"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -1214,7 +1407,9 @@
       "quote": "Build the meat, wrap with logistics later.",
       "attribution": "Alex Salinsky",
       "timestamp": null,
-      "tags": ["framework"],
+      "tags": [
+        "framework"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -1231,7 +1426,10 @@
       "quote": "Don't try to build the cathedral. Get one real API integration working, then push from there.",
       "attribution": "Alex Salinsky",
       "timestamp": null,
-      "tags": ["framework", "first-brick"],
+      "tags": [
+        "framework",
+        "first-brick"
+      ],
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
@@ -1248,11 +1446,409 @@
       "quote": "Threads burn. Files remain.",
       "attribution": "Alex Salinsky",
       "timestamp": null,
-      "tags": ["framework", "thesis"],
+      "tags": [
+        "framework",
+        "thesis"
+      ],
       "status": "live",
       "date_captured": "2026-06-23",
       "date_cleared": "2026-06-23",
       "notes": "Theme of RPA S2 per s2-wins-post. Already live as a standalone visual in build-room-visuals."
+    },
+    {
+      "id": "dbalp-s3-kate-missive-live-public",
+      "type": "win",
+      "cohort": "dbalp",
+      "title": "Kate shipped the Missive sidebar live and public",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/s3-wins-post-2026-06-23.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I am pretty done on the tool. ... I made it public today, earlier today.",
+      "attribution": "Kate (DBALP cohort)",
+      "timestamp": "00:32:10",
+      "tags": [
+        "breakthrough",
+        "live-demo",
+        "tooling"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-23",
+      "date_cleared": null,
+      "notes": "DA + UVPM + outlet + reporter + email + beats + macro URL in one Missive sidebar panel by S3. Cohort leader."
+    },
+    {
+      "id": "dbalp-s3-kate-mid-session-extension",
+      "type": "clip",
+      "cohort": "dbalp",
+      "title": "Kate ships peer-suggested feature mid-session, room applauds",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/2026-06-23-s3-transcript.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Bryce: could you connect Monday to this, Kate, and pull more conversations? Kate at 01:51: I created like this opportunity overview ... this button is working, like save the Monday Fox Hollow form. Bryce: remember when we hired that developer for like two months to do this for us? Yeah, Bryce, this is that, this is like that too.",
+      "attribution": "Kate + Bryce (DBALP cohort)",
+      "timestamp": "00:34:20 idea then 01:51:00 working button then 01:52:43 developer callback",
+      "tags": [
+        "mid-session-extension",
+        "live-demo",
+        "recognition",
+        "breakthrough"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-23",
+      "date_cleared": null,
+      "notes": "Marketing-clip candidate. Three-beat moment: peer drops idea, builder ships inside session, CEO does the ROI callback. New CUSTOMER-JOURNEY touchpoint pattern lifted from this. Needs permission ask before public use."
+    },
+    {
+      "id": "dbalp-s3-bryce-sales-loop-done",
+      "type": "win",
+      "cohort": "dbalp",
+      "title": "Bryce sales auto-responder is in production",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/s3-wins-post-2026-06-23.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I put the sales agent kind of to all my inboxes and all my calendars ... helps me draft up responses to leads coming in, whether they are new leads or sales proposals or people who have ghosted me. I built a lot of playbooks on how to respond, when to respond, the cadence, what to send. ... pretty much that is finished.",
+      "attribution": "Bryce (DBALP cohort, CEO)",
+      "timestamp": "00:48:00",
+      "tags": [
+        "breakthrough",
+        "tooling",
+        "cohort-promise"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-23",
+      "date_cleared": null,
+      "notes": "Original cohort promise was Never answer another sales email ever again. Delivered by S3."
+    },
+    {
+      "id": "dbalp-s3-bryce-humanizer-cats",
+      "type": "quote",
+      "cohort": "dbalp",
+      "title": "Bryce on humanizing breakup emails with confused cats and sad dogs",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/2026-06-23-s3-transcript.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Instead of sending breakup emails, which is the thing to do after no one responds, I am just sitting on hats now ... and cats doing stuff, which works, honestly works so well. It just breaks the frame a little bit more. So like that confused cat and a sad dog. ... So it is like getting rid of the standard sales practices, what everyone does and adding a little humor.",
+      "attribution": "Bryce (DBALP cohort, CEO)",
+      "timestamp": "00:50:30",
+      "tags": [
+        "humor",
+        "story",
+        "framework"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-23",
+      "date_cleared": null,
+      "notes": "Concrete Stay Human moment from a builder. Strong landing-page candidate for Learn AI. Build Robots. Stay Human. Needs permission."
+    },
+    {
+      "id": "dbalp-s3-ehdina-claude-project-pivot",
+      "type": "win",
+      "cohort": "dbalp",
+      "title": "Ehdina dropped make.com, built a Claude project that drafts post + caption + voice check",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/s3-wins-post-2026-06-23.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I created a new cloud project, but it already runs everything ... I was too focused on the automation when I can literally manually upload the transcript or whatever asset. So we have to pivot to actually just creating the actual post and captions. ... I just have to say draft this and it would give me the link post, the IG caption and the voice check.",
+      "attribution": "Ehdina (DBALP cohort)",
+      "timestamp": "01:20:00",
+      "tags": [
+        "pivot",
+        "breakthrough",
+        "first-brick"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-23",
+      "date_cleared": null,
+      "notes": "Live pivot in S3 from automation chasing to building the meat. Then self-identified next refinement (voice self-check)."
+    },
+    {
+      "id": "dbalp-s3-kandice-fifteen-to-one",
+      "type": "win",
+      "cohort": "dbalp",
+      "title": "Kandice reporter tool consolidates 10-15 lists per campaign into 1",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/s3-wins-post-2026-06-23.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Normally for the campaigns, we will upload like 10 to 15 lists per client per campaign. ... but this way we will only have to upload one list for the campaign because it will have everything.",
+      "attribution": "Kandice (DBALP cohort)",
+      "timestamp": "01:25:30",
+      "tags": [
+        "breakthrough",
+        "vision",
+        "tooling"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-23",
+      "date_cleared": null,
+      "notes": "Most ambitious backend in cohort. Builder undersold to peers (I got nothing to show yet) even after stating this consolidation out loud. The story IS the consolidation."
+    },
+    {
+      "id": "dbalp-s3-chanel-monday-recovery",
+      "type": "quote",
+      "cohort": "dbalp",
+      "title": "Chanel on the platform-limitation burn",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/2026-06-23-s3-transcript.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "He used to do this to me. I remember spending two days on something, and then at the very end, it was like, oh, yeah, this platform does not support it.",
+      "attribution": "Chanel (DBALP cohort)",
+      "timestamp": "00:41:00",
+      "tags": [
+        "objection-handling",
+        "recovery",
+        "story"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-23",
+      "date_cleared": null,
+      "notes": "Honest cohort emotion. Useful proof that pivot pain is normal, not a Build Room failure. Followed by Alex framing AI tools can help us break out of the frame."
+    },
+    {
+      "id": "dbalp-s3-auds-cm-tool-vision",
+      "type": "quote",
+      "cohort": "dbalp",
+      "title": "Auds names her user out loud, the CM on a client call",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/2026-06-23-s3-transcript.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "My main goal is to try to give something that the CMs will be able to share with their clients. Even if it looks a little messy, I am less concerned about that. I really just want them to feel confident that it pulls the insights and the analytics in a way that they can then talk about on the call.",
+      "attribution": "Auds (DBALP cohort)",
+      "timestamp": "01:55:00",
+      "tags": [
+        "vision",
+        "cohort-promise"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-23",
+      "date_cleared": null,
+      "notes": "Best user-story articulation of the DBALP cohort. Useful for tools with a user, not toys framing."
+    },
+    {
+      "id": "cross-cohort-build-the-meat",
+      "type": "lesson",
+      "cohort": "cross-cohort",
+      "title": "Build the meat first. Wrap with logistics later.",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/2026-06-23-s3-transcript.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "When I am prototyping, I want to work on the meatiest thing first. ... She said, well, I want it to be password protected. And I said, let us do that later because we know how to do that. Because if you make a password system and there is no dashboard inside, we made the password system for nothing. So we make the dashboard first. We make the core of the thing first, and then we wrap the things around it as needed.",
+      "attribution": "Alex Salinsky",
+      "timestamp": "00:29:43",
+      "tags": [
+        "framework",
+        "first-brick"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-23",
+      "date_cleared": null,
+      "notes": "Surfaced live in DBALP S3 to redirect Ehdina off make.com integration and toward output quality. Same shape applied with Marley (work the CSV core, do not wait on PRVault fix). Promote to a named curriculum heuristic."
+    },
+    {
+      "id": "dbalp-s3-bryce-developer-callback",
+      "type": "quote",
+      "cohort": "dbalp",
+      "title": "Bryce: remember when we hired that developer for two months to do this for us? This is that.",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/2026-06-23-s3-transcript.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Remember when we hired that developer for like two months to do this for us? Yeah, Bryce, this is that, this is like that too.",
+      "attribution": "Bryce (DBALP cohort, CEO) about Kate Missive sidebar",
+      "timestamp": "01:52:43",
+      "tags": [
+        "recognition",
+        "cohort-promise",
+        "objection-handling"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-23",
+      "date_cleared": null,
+      "notes": "CEO ROI callback, in-cohort, unprompted. Useful for org-buyer landing copy. Same moment as dbalp-s3-kate-mid-session-extension; isolated as a quote for reuse. Needs permission."
+    },
+    {
+      "id": "ff-thu-s1-ruben-debt-sequencer-locked",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Ruben locked MVP + 2-hour completion window on call one",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/thu-s1-wins-post-2026-06-25.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I'm going be taking sample financial data... write out code that calculates the sequence of payments day by day until debt is zero. I'm going finish doing it in two hours.",
+      "attribution": "Ruben Rosado (F&F Humans V Robots Thu cohort)",
+      "timestamp": "00:39:46",
+      "tags": [
+        "first-brick",
+        "came-ready",
+        "confidentiality-requested"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-25",
+      "date_cleared": null,
+      "notes": "Deep IP. Confidentiality requested + agreed on call. Do NOT clip externally without explicit Ruben permission. Fathom: https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu"
+    },
+    {
+      "id": "ff-thu-s1-cece-first-zoom-since-covid",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Cece's first Zoom since COVID → working ChatGPT photo-rating system in one session",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/thu-s1-wins-post-2026-06-25.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "It just happened so fast. It was pretty awesome.",
+      "attribution": "Cece Bedolla (F&F Humans V Robots Thu cohort)",
+      "timestamp": "01:56:09",
+      "tags": [
+        "breakthrough",
+        "first-time-builder",
+        "recovery"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-25",
+      "date_cleared": null,
+      "notes": "Speaker mis-attributed to Dominika in Fathom transcript; content matches Cece's photo-curator project from earlier in call. TODO: cut clip from https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu around 01:56."
+    },
+    {
+      "id": "ff-thu-s1-anthony-stayed-after",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Anthony stayed after formal close to keep narrowing scope on Google Ads alert agent",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/thu-s1-wins-post-2026-06-25.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "So I'm going to try to, because I have my two screens, that's why I stayed at home.",
+      "attribution": "Anthony Clery (F&F Humans V Robots Thu cohort)",
+      "timestamp": "02:01:44",
+      "tags": [
+        "mid-session-extension",
+        "scope-narrowing",
+        "peer-coaching"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-25",
+      "date_cleared": null,
+      "notes": "Builder-driven extension. Pattern worth surfacing in future cohort norms. Fathom: https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu"
+    },
+    {
+      "id": "ff-thu-s1-marie-tedious-task-named",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Marie named the tedious task that IS the first brick",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/thu-s1-wins-post-2026-06-25.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Just the time spent scrolling, searching, trying to identify if it's worth it or not.",
+      "attribution": "Marie (F&F Humans V Robots Thu cohort)",
+      "timestamp": "00:50:31",
+      "tags": [
+        "first-brick",
+        "pain-point-named"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-25",
+      "date_cleared": null,
+      "notes": "Job-board scraper for video editing roles. Fathom: https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu"
+    },
+    {
+      "id": "ff-thu-s1-zach-alignment-audit-shipped",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Zach shipped a self-tested coaching assessment form inside the build hour",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/thu-s1-wins-post-2026-06-25.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I built the whole report. I built all the questions. I went through it myself, and it was powerful.",
+      "attribution": "Zach Cohen (F&F Humans V Robots Thu cohort)",
+      "timestamp": "01:32:12",
+      "tags": [
+        "live-demo",
+        "first-brick",
+        "rubric-first"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-25",
+      "date_cleared": null,
+      "notes": "Lead-magnet coaching assessment. From concept to filled-out form in ~40 minutes. Fathom: https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu"
+    },
+    {
+      "id": "ff-thu-s1-sam-audio-app-live-demo",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Sam built + demoed a working audio web app with live filter controls in under one hour",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/thu-s1-wins-post-2026-06-25.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Less than one hour, dude.",
+      "attribution": "Samuel Botero (F&F Humans V Robots Thu cohort)",
+      "timestamp": "02:00:24",
+      "tags": [
+        "live-demo",
+        "first-brick",
+        "breakthrough"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-25",
+      "date_cleared": null,
+      "notes": "Strong demo asset candidate. Low-pass filter audibly transformed the playback live. TODO: cut clip from https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu around 01:58:55-02:00:36 (~90s)."
+    },
+    {
+      "id": "ff-thu-s1-andrew-newbie-to-set-up",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Andrew went from 'super newbie' to 'set up with a good idea' in one session",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/thu-s1-wins-post-2026-06-25.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I'm all set up now and I've got a good idea.",
+      "attribution": "Andrew Topping (F&F Humans V Robots Thu cohort)",
+      "timestamp": "02:01:17",
+      "tags": [
+        "first-time-builder",
+        "recovery"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-25",
+      "date_cleared": null,
+      "notes": "Asked for the small-group breakout on call one. Right S1 outcome for a true beginner. Fathom: https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu"
+    },
+    {
+      "id": "ff-thu-s1-dominika-multiplier-energy",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Dominika ran her own build AND helped Andrew get unstuck",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/thu-s1-wins-post-2026-06-25.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "She's still here, she's just helping me with my computer.",
+      "attribution": "Andrew Topping describing Dominika (F&F Humans V Robots Thu cohort)",
+      "timestamp": "01:04:06",
+      "tags": [
+        "peer-teaching",
+        "multiplier"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-25",
+      "date_cleared": null,
+      "notes": "Multiplier behavior on session one — cohort needs more of this. Fathom: https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu"
+    },
+    {
+      "id": "ff-thu-s1-table-reveal-clip",
+      "type": "clip",
+      "cohort": "ff-thu",
+      "title": "Hybrid table reveal — Alex shows the in-person Zoom remotes the in-person table at session open",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/thu-s1-fathom-transcript-2026-06-25.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "we've got a table now, Jess, you want to show... Ruben's going to show it up. Well, this is, there we go.",
+      "attribution": "Alex Salinsky (F&F Humans V Robots Thu cohort)",
+      "timestamp": "00:00:59",
+      "tags": [
+        "hybrid",
+        "cold-open",
+        "table-reveal"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-25",
+      "date_cleared": null,
+      "notes": "Suggested clip span 00:00:59 → 00:02:30 (~90s). Sets up hybrid format AND the 'Cece first Zoom since COVID' line that follows at 00:02:27. TODO: cut from https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu"
     }
   ]
 }
