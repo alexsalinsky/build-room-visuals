@@ -1,5 +1,23 @@
 # build-room-visuals workbench
 
+## 2026-06-25 - F&F Thu hub fixes before S1 kickoff
+
+Pre-S1 audit-driven pass on `facilitator/ff-hub.html`. Same hub serves Mon + Thu cohorts; Thu S1 starts 15:00 COT today and hub was pointing builders at Mon ledger.
+
+**What changed:**
+- Two ledger cards now (Mon `1dzAa...` + Thu `1r5JG...`), labeled per cohort. Same split in S1 pills and Standing protocols.
+- Live tools: added Build Room: Next Move paste-prompt, Meet Your Project paste-prompt, Credentials Hygiene deck, LLM Builder Best Practices.
+- Header: Mon line (09:00 COT Zoom) + Thu line (Thu Jun 25, 15:00 COT, Lotus Rooftop, Medellín) above the glance grid.
+- S1: backward-design frame box (Dream → Prototype → Demo, reverse-design S4→S3→S2→S1).
+- Standing protocols: pay-tab reminder (Thierry $50, Jess 100K COP, Trello 6a3ae3647411e7d5f2aa537a), `/build-room-debrief` skill reminder, Justin Gary guest flag.
+- Stripped all em dashes (15 instances → 0).
+
+**Decisions:** none new, fixes against prior decisions.
+
+**Files touched:** facilitator/ff-hub.html, WORKBENCH.md
+
+---
+
 ## 2026-06-24 - LLM Builder BPs page: add "What is this?" before install
 
 Follow-up pass on `llm-builder-bps.html`. Previous rewrite cut the "what / why" framing in the push to make the install path crystal clear. People landed on the page learning HOW to install without knowing WHAT they were installing.
