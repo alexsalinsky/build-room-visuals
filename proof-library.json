@@ -1833,22 +1833,23 @@
       "id": "ff-thu-s1-table-reveal-clip",
       "type": "clip",
       "cohort": "ff-thu",
-      "title": "Hybrid table reveal — Alex shows the in-person Zoom remotes the in-person table at session open",
+      "title": "Ruben pans the camera to show the in-person table at session open (hybrid reveal)",
       "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/thu-s1-fathom-transcript-2026-06-25.md",
-      "media_url": null,
+      "media_url": "clips/ff-thu-s1/ff-thu-s1-table-reveal.mp4",
       "thumbnail": null,
-      "quote": "we've got a table now, Jess, you want to show... Ruben's going to show it up. Well, this is, there we go.",
-      "attribution": "Alex Salinsky (F&F Humans V Robots Thu cohort)",
+      "quote": "we've got a table now, Jess, you want to show... Ruben's going to show it up.",
+      "attribution": "Ruben Rosado (F&F Humans V Robots Thu cohort)",
       "timestamp": "00:00:59",
       "tags": [
         "hybrid",
         "cold-open",
-        "table-reveal"
+        "table-reveal",
+        "peer-camera-op"
       ],
       "status": "raw",
       "date_captured": "2026-06-25",
       "date_cleared": null,
-      "notes": "Suggested clip span 00:00:59 → 00:02:30 (~90s). Sets up hybrid format AND the 'Cece first Zoom since COVID' line that follows at 00:02:27. TODO: cut from https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu"
+      "notes": "Clip cut and saved at build-room-visuals/clips/ff-thu-s1/ff-thu-s1-table-reveal.mp4 (91s, 16MB). Source span 00:00:59 → 00:02:30 of Fathom 158434606. Ruben is the camera operator panning the table; Alex narrates. Tail includes Cece's 'first Zoom since COVID' line at 00:02:27."
     }
   ]
 }
