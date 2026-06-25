@@ -1,5 +1,21 @@
 # build-room-visuals workbench
 
+## 2026-06-24 - LLM Builder BPs page: add "What is this?" before install
+
+Follow-up pass on `llm-builder-bps.html`. Previous rewrite cut the "what / why" framing in the push to make the install path crystal clear. People landed on the page learning HOW to install without knowing WHAT they were installing.
+
+**What changed:**
+- Added new "What is this?" section ABOVE the install steps. One-sentence definition (standing rules for LLM-driven build sessions: file structure, doc discipline, decision logging, wrap rituals). 2-line "why it matters" (builds get messy, stacks drift, next Monday your AI has no context).
+- Moved the four-doc preview up from "What's inside the file" (after install) to the new "What is this?" block (before install). Same content, better placement.
+- Install steps still ONE path, button still prominent.
+
+**Decisions:**
+- [DECISION] Placed What/Why BEFORE install steps, not after. Install is the action; context is the prerequisite for taking that action.
+
+**Files touched:** llm-builder-bps.html, WORKBENCH.md
+
+---
+
 ## 2026-06-24 - LLM Builder BPs page rewrite: one path + skill-style MD
 
 Rewrote `llm-builder-bps.html` and `llm-builder-bps/llm-builder-bps.md` so the resource has ONE clear use path and the MD teaches the LLM to apply the practices automatically (like Alex's `wrap` skill).
