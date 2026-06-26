@@ -1850,6 +1850,28 @@
       "date_captured": "2026-06-25",
       "date_cleared": null,
       "notes": "Clip cut and saved at build-room-visuals/clips/ff-thu-s1/ff-thu-s1-table-reveal.mp4 (91s, 16MB). Source span 00:00:59 → 00:02:30 of Fathom 158434606. Ruben is the camera operator panning the table; Alex narrates. Tail includes Cece's 'first Zoom since COVID' line at 00:02:27."
+    },
+    {
+      "id": "ff-thu-s1-ruben-table-9s-retreat-proof",
+      "type": "clip",
+      "cohort": "ff-thu",
+      "title": "Ruben panning the in-person table — 9s retreat-proof cut",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/thu-s1-fathom-transcript-2026-06-25.md",
+      "media_url": "clips/ff-thu-s1/ff-thu-s1-ruben-table-9s.mp4",
+      "thumbnail": null,
+      "quote": null,
+      "attribution": "Ruben Rosado (F&F Humans V Robots Thu cohort)",
+      "timestamp": "00:01:51",
+      "tags": [
+        "retreat-proof",
+        "hybrid",
+        "fun-in-the-room",
+        "in-person"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-25",
+      "date_cleared": null,
+      "notes": "9-second cut from the 91s table-reveal clip (source span 52s-61s). Tile-cropped from Fathom gallery view, upscaled to 720p. Sent to F&F WhatsApp 2026-06-25 as a retreat tease. Pair with retreat-launch copy when that lands."
     }
   ]
 }
