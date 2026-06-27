@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Build Room — 50/50</title>
+<style>
+  :root{
+    --br-text:#1a1a1a;
+    --br-bg:#fafafa;
+    --br-card:#ffffff;
+    --br-gray-3:#666;
+    --br-gray-4:#888;
+    --br-rule:#eee;
+    /* Playful, non-stereotyped split: amber + lime from the token palette */
+    --br-women:#f59e0b;
+    --br-men:#84cc16;
+    --br-highlight-bg:#fde68a;
+    --br-highlight-fg:#92400e;
+  }
+  *{box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",sans-serif;background:var(--br-bg);color:var(--br-text);margin:0;padding:32px 16px}
+  .wrap{max-width:1000px;margin:0 auto}
+  .card{background:var(--br-card);border:2.5px solid var(--br-text);border-radius:14px;padding:40px 32px}
+  .headline{font-size:clamp(96px,22vw,200px);font-weight:900;letter-spacing:-6px;line-height:0.95;text-align:center;margin:8px 0 4px}
+  .subhead{font-size:clamp(18px,2.4vw,22px);color:var(--br-gray-3);text-align:center;max-width:560px;margin:0 auto 28px;line-height:1.4}
+  .main-pie{display:block;margin:8px auto 4px;width:100%;max-width:360px;height:auto}
+  .main-legend{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin:14px 0 28px}
+  .leg{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:600}
+  .sw{width:18px;height:18px;border-radius:4px}
+  .total{text-align:center;font-size:15px;color:var(--br-gray-4);margin:-6px 0 24px;letter-spacing:0.5px;text-transform:uppercase}
+  .divider{border:0;border-top:1.5px solid var(--br-rule);margin:28px 0}
+  .small-title{font-size:14px;color:var(--br-gray-4);text-align:center;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:18px}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media (max-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+  .mini{text-align:center;padding:12px 8px;border:1.5px solid var(--br-rule);border-radius:10px}
+  .mini svg{width:100%;max-width:120px;height:auto;margin:0 auto 8px;display:block}
+  .mini .name{font-size:15px;font-weight:700;margin-bottom:2px}
+  .mini .split{font-size:13px;color:var(--br-gray-3)}
+  .highlight{background:var(--br-highlight-bg);color:var(--br-highlight-fg);border-radius:12px;padding:18px 22px;text-align:center;font-size:clamp(17px,2.2vw,20px);font-weight:700;margin-top:28px}
+  .highlight .big{font-size:1.2em;font-weight:900}
+  .footer{text-align:center;font-size:13px;color:var(--br-gray-4);margin-top:22px}
+</style></head><body>
+<div class="wrap">
+  <div class="card">
+
+    <div class="headline">50/50</div>
+    <div class="subhead">Women and men, evenly split across four Build Room cohorts.</div>
+
+    <!-- Main donut: 40 builders, 20/20 -->
+    <svg class="main-pie" viewBox="0 0 200 200" aria-label="50 percent women, 50 percent men">
+      <!-- Left half: women (amber) -->
+      <path d="M 100,10 A 90,90 0 0,0 100,190 L 100,100 Z" fill="var(--br-women)"/>
+      <!-- Right half: men (lime) -->
+      <path d="M 100,10 A 90,90 0 0,1 100,190 L 100,100 Z" fill="var(--br-men)"/>
+      <!-- Donut hole -->
+      <circle cx="100" cy="100" r="48" fill="#ffffff"/>
+      <text x="100" y="95" text-anchor="middle" font-size="22" font-weight="800" fill="var(--br-text)">40</text>
+      <text x="100" y="116" text-anchor="middle" font-size="11" font-weight="600" fill="var(--br-gray-3)" style="letter-spacing:1px">BUILDERS</text>
+    </svg>
+
+    <div class="main-legend">
+      <div class="leg"><span class="sw" style="background:var(--br-women)"></span>20 women</div>
+      <div class="leg"><span class="sw" style="background:var(--br-men)"></span>20 men</div>
+    </div>
+    <div class="total">Paid builders, coaches excluded</div>
+
+    <hr class="divider">
+
+    <div class="small-title">By cohort</div>
+    <div class="grid">
+
+      <!-- F&F Mon: 7W / 11M of 18 -->
+      <div class="mini">
+        <svg viewBox="0 0 100 100" aria-label="F and F Monday: 7 women, 11 men">
+          <!-- Women slice: 7/18 = 140 degrees, starting at top -->
+          <!-- end point: cx + r*sin(140), cy - r*cos(140) -->
+          <path d="M 50,5 A 45,45 0 0,1 78.93,84.47 L 50,50 Z" fill="var(--br-women)"/>
+          <path d="M 78.93,84.47 A 45,45 0 1,1 50,5 L 50,50 Z" fill="var(--br-men)"/>
+        </svg>
+        <div class="name">F&amp;F Mon</div>
+        <div class="split">7W / 11M · 18</div>
+      </div>
+
+      <!-- F&F Thu: 3W / 6M of 9 -->
+      <div class="mini">
+        <svg viewBox="0 0 100 100" aria-label="F and F Thursday: 3 women, 6 men">
+          <!-- 3/9 = 120 degrees -->
+          <path d="M 50,5 A 45,45 0 0,1 88.97,72.5 L 50,50 Z" fill="var(--br-women)"/>
+          <path d="M 88.97,72.5 A 45,45 0 1,1 50,5 L 50,50 Z" fill="var(--br-men)"/>
+        </svg>
+        <div class="name">F&amp;F Thu</div>
+        <div class="split">3W / 6M · 9</div>
+      </div>
+
+      <!-- RPA: 2W / 2M of 4 -->
+      <div class="mini">
+        <svg viewBox="0 0 100 100" aria-label="RPA: 2 women, 2 men">
+          <!-- 2/4 = 180 degrees -->
+          <path d="M 50,5 A 45,45 0 0,1 50,95 L 50,50 Z" fill="var(--br-women)"/>
+          <path d="M 50,95 A 45,45 0 0,1 50,5 L 50,50 Z" fill="var(--br-men)"/>
+        </svg>
+        <div class="name">RPA</div>
+        <div class="split">2W / 2M · 4</div>
+      </div>
+
+      <!-- DBALP: 8W / 1M of 9 -->
+      <div class="mini">
+        <svg viewBox="0 0 100 100" aria-label="DBALP: 8 women, 1 man">
+          <!-- 8/9 = 320 degrees -->
+          <!-- end: 50 + 45*sin(320), 50 - 45*cos(320) = 50 - 28.93, 50 - 34.47 = 21.07, 15.53 -->
+          <path d="M 50,5 A 45,45 0 1,1 21.07,15.53 L 50,50 Z" fill="var(--br-women)"/>
+          <path d="M 21.07,15.53 A 45,45 0 0,1 50,5 L 50,50 Z" fill="var(--br-men)"/>
+        </svg>
+        <div class="name">DBALP</div>
+        <div class="split">8W / 1M · 9</div>
+      </div>
+
+    </div>
+
+    <div class="highlight">
+      <span class="big">DBALP runs 89% women.</span><br>
+      Eight of nine builders.
+    </div>
+
+  </div>
+  <div class="footer">Alex Salinsky / The Build Room</div>
+</div>
+</body></html>
