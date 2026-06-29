@@ -53,10 +53,6 @@
   .setup th, .setup td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #eee; vertical-align: top; }
   .setup th { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #888; font-weight: 700; }
   .setup th:first-child, .setup td:first-child { font-family: ui-monospace, "SF Mono", Menlo, monospace; white-space: nowrap; font-weight: 700; }
-  .prompt-box { background: #1a1a1a; color: #f0f0f0; border-radius: 8px; padding: 18px 20px; margin: 14px 0 4px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; line-height: 1.55; white-space: pre-wrap; overflow-x: auto; }
-  .copy-btn { display: inline-block; background: #fff; color: #1a1a1a; border: 2px solid #1a1a1a; border-radius: 6px; padding: 8px 14px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.15s; }
-  .copy-btn:hover { background: #1a1a1a; color: #fff; }
-
   .why { background: #fff; border: 1.5px dashed #888; border-radius: 10px; padding: 18px 22px; margin: 18px 0; }
   .why ul { list-style: none; padding: 0; }
   .why li { padding: 6px 0; font-size: 16px; color: #333; }
@@ -77,9 +73,9 @@
   <h2>What this is</h2>
   <p>Builds get messy fast. Decisions get lost. Stacks drift. Next Monday you reopen the project and your AI has no idea what it built. These rules keep your project legible to you, to other LLMs, and to your future self.</p>
 
-  <h2>First-time workspace setup (run once)</h2>
+  <h2>First-time workspace bootstrap (auto-runs on install)</h2>
   <div class="setup">
-    <p>Before any project, set up ONE master "work" folder on your computer. Every project lives inside it as a subfolder. At the ROOT of that master folder, three shared files protect you and save you from copying API keys around.</p>
+    <p>The first time you install the file, your LLM also sets up your master "work" folder: ONE folder on your computer that holds every project as a subfolder. At the ROOT of that folder, three shared files get created:</p>
     <table>
       <tr><th>File</th><th>Purpose</th></tr>
       <tr><td>.gitignore</td><td>Tells git which files to never upload to GitHub. Protects secrets, junk, dependency folders.</td></tr>
@@ -87,34 +83,7 @@
       <tr><td>.env.example</td><td>The safe, shareable version. Lists key names with placeholder values. Safe to commit.</td></tr>
     </table>
     <p><strong>Why one shared <code>.env</code> at the root:</strong> put your API keys in once, every project below reads them. No copying keys between projects. Add a new key once, every project gets it.</p>
-    <p>Paste this into your LLM the first time you set up your master work folder:</p>
-    <div class="prompt-box" id="setup-prompt">I'm new to coding. I want to set up ONE master folder on my computer that holds every future project as a subfolder. I want a single .env file at the TOP of that folder that every project inside can share, so I never have to copy API keys between projects.
-
-Please do the following:
-
-1. Confirm location. Ask me what folder I want to use as my master "work" folder. Confirm the full path before creating anything. Everything below goes at the ROOT of that folder, NOT inside a subproject.
-
-2. Create .gitignore at the root. Include sections with short plain-English comments:
-   - Secrets: .env, .env.local, *.key, *.pem, credentials.json, token.json
-   - OS junk: .DS_Store, Thumbs.db
-   - Editor folders: .vscode/, .idea/
-   - Dependency folders: node_modules/, venv/, __pycache__/
-   - Logs: *.log
-   - Build output: dist/, build/
-
-3. Create .env at the root. Empty except for a comment header: "# Master secrets file. Shared across every project in this folder. NEVER commit or share this file."
-
-4. Create .env.example at the root. Comment header explaining: "This file shows which keys exist. Copy this to .env and fill in real values." Include one example line: OPENAI_API_KEY=your_key_here
-
-5. Explain to me, plainly:
-   - Why I have ONE .env at the root instead of one per project
-   - How a project inside this folder reads the root .env
-   - What to do when I add a new API key later (real value to root .env, placeholder name to root .env.example)
-   - The golden rule: if a file holds a real secret, it belongs in .gitignore. If it's a template showing key names only, it does not.
-
-6. Do NOT run any git commands. Just create the three files at the root and explain.</div>
-    <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('setup-prompt').innerText).then(()=>{this.innerText='Copied';setTimeout(()=>this.innerText='Copy prompt',1500)})">Copy prompt</button>
-    <p style="font-size: 14px; color: #666; margin-top: 14px;">Run this once. Every new project you start inside the folder inherits the shared <code>.env</code> automatically.</p>
+    <p style="font-size: 14px; color: #666; margin-top: 14px;">No second paste needed. The instructions are baked into the .md file. On install your LLM will ask you what folder is your master work folder, then create the three files.</p>
   </div>
 
   <h2>The four documents your AI maintains</h2>

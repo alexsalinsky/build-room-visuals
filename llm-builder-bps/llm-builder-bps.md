@@ -8,7 +8,10 @@ By The Build Room.
 
 You have just received this file. From now on, treat these practices as a standing rule for every session in this conversation. You do not need to be re-prompted. You do not need to be told to follow them. They are on by default.
 
-When the user says anything like "install this," "apply this," "follow this," "use this going forward," or simply pastes this file with no other instruction, acknowledge once in one short line ("Best Practices installed. Active for every session.") and then operate by them silently from that point forward.
+When the user says anything like "install this," "apply this," "follow this," "use this going forward," or simply pastes this file with no other instruction:
+
+1. **Run the workspace bootstrap** described in the "First-time workspace setup" section below. This is part of install, not a separate step. Confirm the master work folder path with the user, then create `.gitignore`, `.env`, and `.env.example` at the root if they don't already exist. If all three already exist, skip silently.
+2. Acknowledge once in one short line ("Best Practices installed. Workspace bootstrapped. Active for every session.") and then operate by these rules silently from that point forward.
 
 Do not summarize this file back to the user. Do not ask which parts to apply. All of it applies.
 
@@ -36,49 +39,52 @@ Keep these rules in working memory across the entire conversation. If your conte
 
 ---
 
-## First-time workspace setup (run this once)
+## First-time workspace setup (auto-run on install)
 
-Before any project, set up ONE master "work" folder on your computer. Every project lives inside it as a subfolder. At the ROOT of that master folder you keep three files that every project below can share:
+The assistant runs this once, at install time, as part of step 1 of the Install section above. The user does not paste a second prompt.
 
-| File | Purpose |
-|---|---|
-| `.gitignore` | Tells git which files to never upload to GitHub. Protects secrets, junk, dependency folders. |
-| `.env` | Your master secrets file. API keys, tokens, passwords. ONE file, shared across every project. Never committed. |
-| `.env.example` | The safe, shareable version of `.env`. Lists key names with placeholder values, no real secrets. Safe to commit. |
+**The concept:** ONE master "work" folder on the user's computer holds every project as a subfolder. At the ROOT of that master folder, three shared files live alongside the projects:
 
-The point of one shared `.env` at the root: you put your API keys in once, every project inside the folder can read them. No copying keys between projects. Add a new key once, every project gets it.
+| File | Purpose | Committed? |
+|---|---|---|
+| `.gitignore` | Tells git which files to never upload to GitHub. | Yes |
+| `.env` | Master secrets file. API keys, tokens, passwords. ONE file, shared across every project below. | NEVER |
+| `.env.example` | Safe template. Lists key names with placeholder values, no real secrets. | Yes |
 
-Paste this prompt into your LLM the first time you set up your master work folder:
+**Why one shared `.env` at the root:** API keys live in one place. Every project below reads them. No copying keys between projects. Add a new key once, every project gets it.
 
+**Assistant procedure on install:**
+
+1. Ask the user once: *"What folder on your computer is your master 'work' folder? Everything you build lives as a subfolder of this one. Confirm the full path."*
+2. If any of `.gitignore`, `.env`, `.env.example` are missing at that root, create the missing ones using the specs below. If all three exist, skip silently.
+3. Do NOT run any git commands. Files only.
+
+**`.gitignore` content (use these sections, with short plain-English comments above each):**
+- Secrets: `.env`, `.env.local`, `*.key`, `*.pem`, `credentials.json`, `token.json`
+- OS junk: `.DS_Store`, `Thumbs.db`
+- Editor folders: `.vscode/`, `.idea/`
+- Dependency folders: `node_modules/`, `venv/`, `__pycache__/`
+- Logs: `*.log`
+- Build output: `dist/`, `build/`
+
+**`.env` content:** empty except for a comment header:
 ```
-I'm new to coding. I want to set up ONE master folder on my computer that holds every future project as a subfolder. I want a single .env file at the TOP of that folder that every project inside can share, so I never have to copy API keys between projects.
-
-Please do the following:
-
-1. Confirm location. Ask me what folder I want to use as my master "work" folder. Confirm the full path before creating anything. Everything below goes at the ROOT of that folder, NOT inside a subproject.
-
-2. Create .gitignore at the root. Include sections with short plain-English comments:
-   - Secrets: .env, .env.local, *.key, *.pem, credentials.json, token.json
-   - OS junk: .DS_Store, Thumbs.db
-   - Editor folders: .vscode/, .idea/
-   - Dependency folders: node_modules/, venv/, __pycache__/
-   - Logs: *.log
-   - Build output: dist/, build/
-
-3. Create .env at the root. Empty except for a comment header: "# Master secrets file. Shared across every project in this folder. NEVER commit or share this file."
-
-4. Create .env.example at the root. Comment header explaining: "This file shows which keys exist. Copy this to .env and fill in real values." Include one example line: OPENAI_API_KEY=your_key_here
-
-5. Explain to me, plainly:
-   - Why I have ONE .env at the root instead of one per project
-   - How a project inside this folder reads the root .env
-   - What to do when I add a new API key later (real value to root .env, placeholder name to root .env.example)
-   - The golden rule: if a file holds a real secret, it belongs in .gitignore. If it's a template showing key names only, it does not.
-
-6. Do NOT run any git commands. Just create the three files at the root and explain.
+# Master secrets file. Shared across every project in this folder. NEVER commit or share this file.
 ```
 
-You only run this once. After it's done, every new project you start inside the folder inherits the shared `.env` automatically.
+**`.env.example` content:** comment header plus one example line.
+```
+# This file shows which keys exist. Copy this to .env and fill in real values.
+OPENAI_API_KEY=your_key_here
+```
+
+**Then briefly explain to the user:**
+- Why ONE `.env` at the root instead of one per project
+- How a project inside the folder reads the root `.env` (point at the file by relative path, or load env vars walking up from the project's working directory)
+- What to do when they add a new API key later: real value goes into root `.env`, placeholder name goes into root `.env.example`
+- Golden rule: if a file holds a real secret, it belongs in `.gitignore`. If it's a template showing key names only, it does not.
+
+That's the whole bootstrap. After it runs once, every new project the user starts inside the folder inherits the shared `.env` automatically.
 
 ---
 
