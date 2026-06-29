@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bot Setup Standards · The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; line-height: 1.5; }
+  .page { max-width: 880px; margin: 0 auto; padding: 56px 32px 96px; }
+
+  header { margin-bottom: 44px; }
+  .eyebrow { display: inline-block; background: #1a1a1a; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 18px; }
+  h1 { font-size: 54px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 14px; }
+  .sub { font-size: 21px; color: #555; max-width: 720px; line-height: 1.45; }
+
+  h2 { font-size: 16px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin: 48px 0 18px; padding-bottom: 8px; border-bottom: 1.5px solid #ddd; }
+  h3 { font-size: 22px; font-weight: 700; margin: 26px 0 10px; }
+  p  { font-size: 17px; color: #333; margin-bottom: 14px; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; background: #f0f0f0; padding: 1px 6px; border-radius: 3px; }
+
+  /* The three-step TL;DR row */
+  .tldr { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 14px 0 8px; }
+  @media (max-width: 640px) { .tldr { grid-template-columns: 1fr; } }
+  .tldr .step { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 16px 18px; }
+  .tldr .step .num { display: inline-block; background: #1a1a1a; color: #fff; width: 26px; height: 26px; border-radius: 50%; text-align: center; line-height: 26px; font-weight: 800; font-size: 13px; margin-bottom: 8px; }
+  .tldr .step .t { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .tldr .step .m { font-size: 14px; color: #666; line-height: 1.4; }
+
+  /* Copy-paste code block with copy button */
+  .codeblock { position: relative; background: #1e1e1e; color: #e5e7eb; border-radius: 10px; margin: 12px 0; overflow: hidden; }
+  .codeblock pre { padding: 16px 18px; overflow-x: auto; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13.5px; line-height: 1.55; }
+  .codeblock .copy-btn { position: absolute; top: 8px; right: 8px; background: #2d2d2d; color: #e5e7eb; border: 1px solid #444; border-radius: 6px; padding: 5px 11px; font-size: 12px; cursor: pointer; font-weight: 600; font-family: inherit; }
+  .codeblock .copy-btn:hover { background: #1a1a1a; color: #fff; border-color: #fff; }
+  .codeblock .copy-btn.copied { background: #16a34a; color: #fff; border-color: #16a34a; }
+  .codeblock .c { color: #6b9955; }
+  .codeblock .k { color: #9cdcfe; }
+  .codeblock .v { color: #ce9178; }
+
+  /* Four-doc grid (rule-pack) */
+  .four-docs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 18px 0; }
+  @media (max-width: 640px) { .four-docs { grid-template-columns: 1fr; } }
+  .doc-card { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 16px 20px; }
+  .doc-card .name { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13.5px; font-weight: 700; color: #1a1a1a; background: #f0f0f0; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+  .doc-card .title { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .doc-card .meta { font-size: 14px; color: #666; line-height: 1.45; }
+
+  /* Download button row */
+  .downloads { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 18px 0; }
+  .dl { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 10px; padding: 14px 20px; text-decoration: none; color: #1a1a1a; font-size: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: all 0.15s; font-weight: 700; }
+  .dl:hover { background: #1a1a1a; color: #fff; }
+  .dl .filename { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; }
+  .dl .arrow { font-size: 18px; color: #999; }
+  .dl:hover .arrow { color: #fff; }
+
+  /* Wire-it-up steps */
+  .wire { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 20px 24px; margin: 12px 0; }
+  .wire ol { list-style: none; padding: 0; counter-reset: w; }
+  .wire li { counter-increment: w; padding: 12px 0 12px 48px; position: relative; font-size: 16px; color: #1a1a1a; border-bottom: 1px solid #eee; }
+  .wire li:last-child { border-bottom: 0; padding-bottom: 4px; }
+  .wire li:first-child { padding-top: 4px; }
+  .wire li::before { content: counter(w); position: absolute; left: 0; top: 10px; width: 30px; height: 30px; background: #1a1a1a; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; }
+  .wire li:first-child::before { top: 0; }
+  .wire li .hint { display: block; font-size: 14px; color: #666; margin-top: 4px; }
+
+  .warn { background: #fef3c7; border-left: 4px solid #b45309; padding: 12px 16px; font-size: 15px; line-height: 1.5; color: #1a1a1a; border-radius: 4px; margin: 14px 0; }
+  .warn strong { color: #b45309; }
+
+  .nav-pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; }
+  .nav-pills a { background: #fff; border: 1.5px solid #1a1a1a; color: #1a1a1a; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; text-decoration: none; }
+  .nav-pills a:hover { background: #1a1a1a; color: #fff; }
+
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 13px; color: #888; text-align: center; }
+  footer a { color: #555; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="eyebrow">BY THE BUILD ROOM</div>
+    <h1>Bot Setup Standards</h1>
+    <p class="sub">The four things your coding tool should have configured before you build anything serious. <code>.gitignore</code>, <code>.env</code>, the rule-pack, and how to wire it in. One pass. Then you forget about it and ship.</p>
+    <div class="nav-pills">
+      <a href="#gitignore">.gitignore</a>
+      <a href="#env">.env</a>
+      <a href="#rulepack">Rule-pack</a>
+      <a href="#wire">Wire it in</a>
+    </div>
+  </header>
+
+  <h2>TL;DR</h2>
+  <div class="tldr">
+    <div class="step">
+      <div class="num">1</div>
+      <div class="t">Create <code>.gitignore</code></div>
+      <div class="m">First file in any new project. <code>.env</code> goes on line one.</div>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <div class="t">Create <code>.env</code></div>
+      <div class="m">Your keys live here. Never committed. Hand-edited, not pasted into chat.</div>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <div class="t">Drop the rule-pack</div>
+      <div class="m">Six markdown files that make your tool document itself as it builds.</div>
+    </div>
+  </div>
+
+  <p>Use your favorite tool, default to Codex if you don't have one. The discipline transfers anywhere: Claude Code, Cursor, ChatGPT desktop, Codex CLI.</p>
+
+  <h2 id="gitignore">1. <code>.gitignore</code></h2>
+  <p>The first file you create in every new project. It tells Git what to skip when you commit. Without it, your secrets, your build artifacts, and your operating system's invisible files all end up on GitHub.</p>
+
+  <p>Paste this as your starter:</p>
+  <div class="codeblock">
+    <button class="copy-btn" data-target="gi">Copy</button>
+<pre id="gi"><span class="c"># Secrets, never commit</span>
+.env
+.env.local
+.env.*.local
+
+<span class="c"># Dependencies</span>
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+<span class="c"># Build output</span>
+dist/
+build/
+.next/
+out/
+
+<span class="c"># Editor + OS junk</span>
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+<span class="c"># Logs</span>
+*.log
+npm-debug.log*
+</pre>
+  </div>
+
+  <p>The first three lines are the load-bearing ones. The rest just keeps your repo clean. Add lines as you discover new things to ignore. Never remove the secrets block.</p>
+
+  <h2 id="env">2. <code>.env</code> + credentials hygiene</h2>
+  <p>Plain text file at the project root. Every API key, token, and secret lives here, one per line. Your scripts read keys from this file. Your AI tool reads keys from this file. Change a key once, in one place.</p>
+
+  <div class="codeblock">
+    <button class="copy-btn" data-target="env">Copy</button>
+<pre id="env"><span class="c"># Format: no quotes, no spaces around =, one per line</span>
+<span class="k">OPENAI_API_KEY</span>=<span class="v">sk-proj-XXXXXXXXXXXXXXXXXXXXXXXX</span>
+<span class="k">ANTHROPIC_API_KEY</span>=<span class="v">sk-ant-XXXXXXXXXXXXXXXXXXXXXXXX</span>
+<span class="k">GITHUB_TOKEN</span>=<span class="v">ghp_XXXXXXXXXXXXXXXXXXXXXXXX</span>
+</pre>
+  </div>
+
+  <h3>Ship a <code>.env.example</code> alongside it</h3>
+  <p>Same keys, no values. This is the one you DO commit. It tells anyone who clones your project which variables they need to fill in.</p>
+  <div class="codeblock">
+    <button class="copy-btn" data-target="envex">Copy</button>
+<pre id="envex"><span class="c"># Copy this file to .env and fill in real values</span>
+<span class="k">OPENAI_API_KEY</span>=
+<span class="k">ANTHROPIC_API_KEY</span>=
+<span class="k">GITHUB_TOKEN</span>=
+</pre>
+  </div>
+
+  <h3>The rules</h3>
+  <ul style="font-size:16px;color:#333;padding-left:22px;margin-bottom:14px">
+    <li style="margin:6px 0">Edit <code>.env</code> in a text editor by hand. Never paste a key into a chat thread.</li>
+    <li style="margin:6px 0">Reference keys by name when you talk to your tool: <em>"The key is in .env as OPENAI_API_KEY, read it from there."</em></li>
+    <li style="margin:6px 0">If you ever leak a key, rotate it at the provider. Deleting the commit is not enough, bots see public repos in minutes.</li>
+    <li style="margin:6px 0">One <code>.env</code> per project, at the project root. Not in a subfolder, not in your home directory.</li>
+  </ul>
+
+  <div class="warn"><strong>Order matters.</strong> Create <code>.gitignore</code> first. Then create <code>.env</code>. Then add keys. If you create <code>.env</code> first and forget to ignore it, the first <code>git add .</code> stages your keys.</div>
+
+  <p>Full credentials walkthrough with rotation links: <a href="https://alexsalinsky.github.io/build-room-visuals/credentials-hygiene-deck.html" target="_blank">Credentials Hygiene deck</a>.</p>
+
+  <h2 id="rulepack">3. The rule-pack</h2>
+  <p>Six markdown files you drop into your tool's config. They make your AI document itself as it builds, keep decisions out of chat threads, and let next Monday's session start warm instead of cold.</p>
+
+  <p>This is the same stack Alex's own workspace runs on. Distilled into something you can install in two minutes.</p>
+
+  <div class="four-docs">
+    <div class="doc-card">
+      <span class="name">WORKBENCH.md</span>
+      <div class="title">What just happened</div>
+      <div class="meta">Per-session log. 100-300 words. Newest at top. Decisions tagged with reasoning.</div>
+    </div>
+    <div class="doc-card">
+      <span class="name">ARCHITECTURE.md</span>
+      <div class="title">How the thing is built</div>
+      <div class="meta">Stack, file map, data flow, key decisions. Updated when the stack changes.</div>
+    </div>
+    <div class="doc-card">
+      <span class="name">USER_GUIDE.md</span>
+      <div class="title">What the user gets</div>
+      <div class="meta">Plain language. What it does, how to use it, settings. Updated on any user-facing change.</div>
+    </div>
+    <div class="doc-card">
+      <span class="name">TODOS.md</span>
+      <div class="title">What's next</div>
+      <div class="meta">Next / Soon / Someday. One line per item. No priorities, no labels, no dates.</div>
+    </div>
+  </div>
+
+  <p>The pack also installs a <strong>handoff template</strong> (for cold-start session transfer) and a <strong>wrap protocol</strong> (fires automatically when you end a session). Plus honesty rules: no inventing file paths, no false success claims, no em dashes.</p>
+
+  <h2 id="wire">4. Wire it in</h2>
+  <p>One file. Drop it into your tool once. It runs by these rules silently from that point on.</p>
+
+  <div class="downloads">
+    <a class="dl" href="https://raw.githubusercontent.com/alexsalinsky/build-room-visuals/main/llm-builder-bps/llm-builder-bps.md" download="llm-builder-bps.md" target="_blank">
+      <span class="filename">llm-builder-bps.md</span>
+      <span class="arrow">&darr;</span>
+    </a>
+  </div>
+
+  <div class="wire">
+    <ol>
+      <li>
+        Download <code>llm-builder-bps.md</code> above.
+        <span class="hint">One file. That's the whole rule-pack.</span>
+      </li>
+      <li>
+        Open your project folder in your coding tool.
+        <span class="hint">Codex, Claude Code, Cursor, anything that reads project files.</span>
+      </li>
+      <li>
+        Drop the file in the project root and tell your tool to install it.
+        <span class="hint">In Codex or Claude Code: paste the contents into chat and say <em>"Install this. Apply to every session going forward."</em> The tool stores it as project memory (Codex: <code>AGENTS.md</code>; Claude: <code>CLAUDE.md</code>).</span>
+      </li>
+      <li>
+        Verify by asking: <em>"What rules are you operating by?"</em>
+        <span class="hint">It should list the four docs, the wrap protocol, and the honesty rules. If it doesn't, paste again.</span>
+      </li>
+    </ol>
+  </div>
+
+  <p>From here on, the tool maintains the four documents as you build. You'll see <code>WORKBENCH.md</code>, <code>ARCHITECTURE.md</code>, <code>USER_GUIDE.md</code>, and <code>TODOS.md</code> appear in your project folder. When you end a session, the wrap protocol fires and your log gets a fresh entry.</p>
+
+  <h2>The whole setup in one glance</h2>
+  <div class="codeblock">
+    <button class="copy-btn" data-target="tree">Copy</button>
+<pre id="tree">my-project/
+├── .gitignore          <span class="c"># created first, hides .env</span>
+├── .env                <span class="c"># your keys, never committed</span>
+├── .env.example        <span class="c"># template, safe to commit</span>
+├── AGENTS.md           <span class="c"># (Codex) installed rule-pack</span>
+├── CLAUDE.md           <span class="c"># (Claude Code) installed rule-pack</span>
+├── WORKBENCH.md        <span class="c"># tool maintains this</span>
+├── ARCHITECTURE.md     <span class="c"># tool maintains this</span>
+├── USER_GUIDE.md       <span class="c"># tool maintains this</span>
+├── TODOS.md            <span class="c"># tool maintains this</span>
+├── README.md
+└── src/
+    └── main.py
+</pre>
+  </div>
+
+  <p>That's the standard. Same shape in every Build Room project. Pick it up, set it up once, build with confidence.</p>
+
+  <footer>
+    Alex Salinsky &middot; The Build Room
+  </footer>
+</div>
+
+<script>
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.getAttribute('data-target');
+    const el = document.getElementById(id);
+    if (!el) return;
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.textContent;
+      btn.textContent = 'Copied';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+    });
+  });
+});
+</script>
+</body>
+</html>
