@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <style>
+    .title { font-size: 24px; fill: #1a1a1a; font-weight: 700; letter-spacing: 2px; }
+    .th { fill: #2d4a3e; }
+    .th-text { fill: #ffffff; font-size: 13px; font-weight: 700; letter-spacing: 1px; }
+    .row-a { fill: #ffffff; stroke: #e3dccd; }
+    .row-b { fill: #faf6ee; stroke: #e3dccd; }
+    .total-row { fill: #f3ece1; stroke: #2d4a3e; stroke-width: 2; }
+    .cell-lbl { font-size: 14px; fill: #1a1a1a; }
+    .cell-val { font-size: 16px; fill: #1a1a1a; font-weight: 700; }
+    .total-val { font-size: 18px; fill: #2d4a3e; font-weight: 800; }
+    .callout { fill: #ffffff; stroke: #d4a574; stroke-width: 2; }
+    .callout-title { font-size: 11px; fill: #8a5a1f; font-weight: 700; letter-spacing: 1px; }
+    .callout-body { font-size: 12px; fill: #1a1a1a; }
+    .sub { font-size: 11px; fill: #666; }
+    .section { font-size: 14px; fill: #2d4a3e; font-weight: 700; letter-spacing: 1px; }
+    .footnote { font-size: 11px; fill: #777; font-style: italic; }
+  </style>
+
+  <text x="550" y="44" class="title" text-anchor="middle">FINANCIAL MODEL</text>
+
+  <!-- Table -->
+  <g transform="translate(40, 80)">
+    <!-- Header -->
+    <rect x="0" y="0" width="280" height="50" class="th" rx="4"/>
+    <rect x="285" y="0" width="220" height="50" class="th" rx="4"/>
+    <rect x="510" y="0" width="220" height="50" class="th" rx="4"/>
+    <rect x="735" y="0" width="220" height="50" class="th" rx="4"/>
+    <text x="140" y="30" class="th-text" text-anchor="middle">REVENUE LINE</text>
+    <text x="395" y="22" class="th-text" text-anchor="middle">ACTUAL</text>
+    <text x="395" y="38" font-size="10" fill="#f3ece1" text-anchor="middle">this month</text>
+    <text x="620" y="22" class="th-text" text-anchor="middle">FASE 1</text>
+    <text x="620" y="38" font-size="10" fill="#f3ece1" text-anchor="middle">6 months out</text>
+    <text x="845" y="22" class="th-text" text-anchor="middle">FASE 2</text>
+    <text x="845" y="38" font-size="10" fill="#f3ece1" text-anchor="middle">1 year out</text>
+
+    <!-- Row 1: Cohort -->
+    <rect x="0" y="60" width="280" height="60" class="row-a" rx="4"/>
+    <rect x="285" y="60" width="220" height="60" class="row-a" rx="4"/>
+    <rect x="510" y="60" width="220" height="60" class="row-a" rx="4"/>
+    <rect x="735" y="60" width="220" height="60" class="row-a" rx="4"/>
+    <text x="20" y="95" class="cell-lbl" font-weight="600">Cohort</text>
+    <text x="395" y="98" class="cell-val" text-anchor="middle">$7.5K</text>
+    <text x="620" y="98" class="cell-val" text-anchor="middle">$16K</text>
+    <text x="845" y="98" class="cell-val" text-anchor="middle">$32K</text>
+
+    <!-- Row 2: Retreat -->
+    <rect x="0" y="125" width="280" height="60" class="row-b" rx="4"/>
+    <rect x="285" y="125" width="220" height="60" class="row-b" rx="4"/>
+    <rect x="510" y="125" width="220" height="60" class="row-b" rx="4"/>
+    <rect x="735" y="125" width="220" height="60" class="row-b" rx="4"/>
+    <text x="20" y="156" class="cell-lbl" font-weight="600">Retreat</text>
+    <text x="20" y="173" class="sub">10-person minimum</text>
+    <text x="395" y="163" class="sub" text-anchor="middle" font-style="italic">in design</text>
+    <text x="620" y="163" class="cell-val" text-anchor="middle">$20K</text>
+    <text x="845" y="163" class="cell-val" text-anchor="middle">$60K</text>
+
+    <!-- Total row -->
+    <rect x="0" y="195" width="280" height="60" class="total-row" rx="4"/>
+    <rect x="285" y="195" width="220" height="60" class="total-row" rx="4"/>
+    <rect x="510" y="195" width="220" height="60" class="total-row" rx="4"/>
+    <rect x="735" y="195" width="220" height="60" class="total-row" rx="4"/>
+    <text x="20" y="232" class="cell-lbl" font-weight="800">TOTAL</text>
+    <text x="395" y="233" class="total-val" text-anchor="middle">$7.5K</text>
+    <text x="620" y="233" class="total-val" text-anchor="middle">$36K</text>
+    <text x="845" y="233" class="total-val" text-anchor="middle">$92K</text>
+  </g>
+
+  <!-- Growth bets -->
+  <g transform="translate(40, 380)">
+    <text x="0" y="0" class="section">ADDITIONAL GROWTH BETS</text>
+    <line x1="0" y1="10" x2="280" y2="10" stroke="#d4a574" stroke-width="2"/>
+
+    <rect x="0" y="25" width="295" height="60" class="callout" rx="6"/>
+    <text x="15" y="48" class="callout-title">MEMBRESÍA</text>
+    <text x="15" y="68" class="callout-body">Membership product · recurring revenue</text>
+
+    <rect x="310" y="25" width="295" height="60" class="callout" rx="6"/>
+    <text x="325" y="48" class="callout-title">TAILANDIA RETREAT</text>
+    <text x="325" y="68" class="callout-body">Thailand · Nov 16-20</text>
+
+    <rect x="0" y="100" width="295" height="60" class="callout" rx="6"/>
+    <text x="15" y="123" class="callout-title">SEO</text>
+    <text x="15" y="143" class="callout-body">organic search funnel</text>
+
+    <rect x="310" y="100" width="295" height="60" class="callout" rx="6"/>
+    <text x="325" y="123" class="callout-title">WAITLIST</text>
+    <text x="325" y="143" class="callout-body">lead capture between launches</text>
+  </g>
+
+  <!-- Channels callout right -->
+  <g transform="translate(680, 380)">
+    <rect x="0" y="0" width="380" height="190" fill="#2d4a3e" rx="8"/>
+    <text x="20" y="32" font-size="13" fill="#d4a574" font-weight="700" letter-spacing="1.5">CHANNELS</text>
+    <line x1="20" y1="42" x2="120" y2="42" stroke="#d4a574" stroke-width="2"/>
+
+    <text x="20" y="72" font-size="11" fill="#d4a574" font-weight="700" letter-spacing="1">INDIVIDUAL</text>
+    <text x="20" y="94" font-size="13" fill="#ffffff">WhatsApp · MailChimp</text>
+
+    <text x="20" y="128" font-size="11" fill="#d4a574" font-weight="700" letter-spacing="1">GROUP</text>
+    <text x="20" y="150" font-size="13" fill="#ffffff">Skool · Facebook</text>
+
+    <text x="20" y="178" font-size="10" fill="#a8c0b3" font-style="italic">split by reach pattern</text>
+  </g>
+
+  <!-- Footnote -->
+  <text x="40" y="685" class="footnote">PDC retreat: 1 Cancún (Agoda) booking constraint — Oct 12-16.</text>
+
+  <text x="1060" y="708" font-size="10" fill="#999" text-anchor="end">Alex Salinsky / The Build Room</text>
+</svg>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" preserveAspectRatio="xMidYMid meet" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <style>
+    .title { font-size: 24px; fill: #1a1a1a; font-weight: 700; letter-spacing: 2px; }
+    .row { fill: #ffffff; stroke: #e3dccd; stroke-width: 1; }
+    .row:hover { fill: #f9f5ec; }
+    .chk { fill: #ffffff; stroke: #2d4a3e; stroke-width: 2; }
+    .num { font-size: 13px; fill: #d4a574; font-weight: 700; }
+    .lbl { font-size: 16px; fill: #1a1a1a; font-weight: 600; }
+    .sub { font-size: 12px; fill: #666; }
+  </style>
+
+  <text x="400" y="50" class="title" text-anchor="middle">NEXT STEPS</text>
+  <line x1="320" y1="62" x2="480" y2="62" stroke="#d4a574" stroke-width="3"/>
+
+  <g transform="translate(80, 100)">
+    <!-- Row 1 -->
+    <rect x="0" y="0" width="640" height="70" class="row" rx="6"/>
+    <rect x="20" y="20" width="30" height="30" class="chk" rx="4"/>
+    <text x="70" y="28" class="num">01</text>
+    <text x="70" y="48" class="lbl">Clean IG</text>
+    <text x="160" y="48" class="sub">audit existing Build Room Instagram</text>
+
+    <!-- Row 2 -->
+    <rect x="0" y="85" width="640" height="70" class="row" rx="6"/>
+    <rect x="20" y="105" width="30" height="30" class="chk" rx="4"/>
+    <text x="70" y="113" class="num">02</text>
+    <text x="70" y="133" class="lbl">Create new IG with access</text>
+    <text x="295" y="133" class="sub">so Jess can post</text>
+
+    <!-- Row 3 -->
+    <rect x="0" y="170" width="640" height="70" class="row" rx="6"/>
+    <rect x="20" y="190" width="30" height="30" class="chk" rx="4"/>
+    <text x="70" y="198" class="num">03</text>
+    <text x="70" y="218" class="lbl">First WhatsApp post</text>
+    <text x="245" y="218" class="sub">for July 15 webinar</text>
+
+    <!-- Row 4 -->
+    <rect x="0" y="255" width="640" height="70" class="row" rx="6"/>
+    <rect x="20" y="275" width="30" height="30" class="chk" rx="4"/>
+    <text x="70" y="283" class="num">04</text>
+    <text x="70" y="303" class="lbl">Send Build Room landing pages</text>
+    <text x="335" y="303" class="sub">to Jess</text>
+
+    <!-- Row 5 -->
+    <rect x="0" y="340" width="640" height="70" class="row" rx="6"/>
+    <rect x="20" y="360" width="30" height="30" class="chk" rx="4"/>
+    <text x="70" y="368" class="num">05</text>
+    <text x="70" y="388" class="lbl">Tone of voice</text>
+    <text x="190" y="388" class="sub">analyze from existing posts</text>
+  </g>
+
+  <text x="720" y="548" font-size="10" fill="#999" text-anchor="end">Alex Salinsky / The Build Room</text>
+</svg>
