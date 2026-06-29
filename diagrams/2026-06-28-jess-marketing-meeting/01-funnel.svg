@@ -1,101 +1,126 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 760" preserveAspectRatio="xMidYMid meet" font-family="Inter, system-ui, -apple-system, sans-serif">
-  <style>
-    .box { fill: #ffffff; stroke: #2d4a3e; stroke-width: 2; }
-    .box-accent { fill: #2d4a3e; stroke: #2d4a3e; stroke-width: 2; }
-    .box-soft { fill: #f3ece1; stroke: #2d4a3e; stroke-width: 2; }
-    .lbl { font-size: 14px; fill: #1a1a1a; }
-    .lbl-sub { font-size: 11px; fill: #555; }
-    .lbl-white { font-size: 16px; fill: #ffffff; font-weight: 600; }
-    .title { font-size: 22px; fill: #1a1a1a; font-weight: 700; letter-spacing: 2px; }
-    .note { font-size: 10px; fill: #777; font-style: italic; }
-    .arrow { stroke: #2d4a3e; stroke-width: 1.8; fill: none; }
-  </style>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 920" preserveAspectRatio="xMidYMid meet" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
   <defs>
-    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 z" fill="#2d4a3e"/>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a1a1a"/>
     </marker>
+    <marker id="arrow-dashed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#888"/>
+    </marker>
+    <marker id="arrow-upsell" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2d4a3e"/>
+    </marker>
+    <style>
+      .title { font-size: 26px; font-weight: 700; fill: #1a1a1a; }
+      .subtitle { font-size: 14px; fill: #555; }
+      .box-source { fill: #fdf6ed; stroke: #d4a574; stroke-width: 2; }
+      .box-anchor { fill: #fff4e8; stroke: #e87f3a; stroke-width: 2.5; }
+      .box-product { fill: #f0f5ee; stroke: #5b8c5a; stroke-width: 2; }
+      .box-membership { fill: #f4eef8; stroke: #9d6cb5; stroke-width: 2; }
+      .box-tbd { fill: #ffffff; stroke: #888; stroke-width: 1.5; stroke-dasharray: 5,3; }
+      .box-label { font-size: 15px; font-weight: 700; fill: #1a1a1a; text-anchor: middle; }
+      .box-sub { font-size: 11px; fill: #555; text-anchor: middle; font-style: italic; }
+      .row-label { font-size: 12px; font-weight: 700; fill: #888; letter-spacing: 1.5px; }
+      .arrow-label { font-size: 11px; fill: #555; text-anchor: middle; font-style: italic; }
+      .arrow-label-emphasis { font-size: 11px; fill: #2d4a3e; text-anchor: middle; font-weight: 600; }
+      .footer { font-size: 11px; fill: #888; text-anchor: middle; }
+      .arrow-line { stroke: #1a1a1a; stroke-width: 1.8; fill: none; }
+      .arrow-dashed { stroke: #888; stroke-width: 1.5; fill: none; stroke-dasharray: 6,3; }
+      .arrow-upsell { stroke: #2d4a3e; stroke-width: 1.5; fill: none; stroke-dasharray: 4,3; }
+      .note-text { font-size: 11px; fill: #555; }
+    </style>
   </defs>
 
-  <!-- Email/Newsletter left lane -->
-  <rect x="20" y="60" width="120" height="640" class="box-soft" rx="8"/>
-  <text x="80" y="370" class="lbl" text-anchor="middle" transform="rotate(-90 80 370)" font-weight="600">Email / Newsletter</text>
-  <text x="80" y="395" class="lbl-sub" text-anchor="middle" transform="rotate(-90 80 395)">cross-funnel lane</text>
+  <rect width="1280" height="920" fill="#ffffff"/>
 
-  <!-- Source row -->
-  <g>
-    <rect x="170" y="60" width="180" height="80" class="box" rx="8"/>
-    <text x="260" y="92" class="lbl" text-anchor="middle" font-weight="600">Other people's</text>
-    <text x="260" y="110" class="lbl" text-anchor="middle" font-weight="600">audiences</text>
-    <text x="260" y="128" class="lbl-sub" text-anchor="middle">warm intros, partner lists</text>
-  </g>
-  <g>
-    <rect x="370" y="60" width="180" height="80" class="box" rx="8"/>
-    <text x="460" y="92" class="lbl" text-anchor="middle" font-weight="600">Our accounts</text>
-    <text x="460" y="110" class="lbl-sub" text-anchor="middle">Alex + Build Room</text>
-    <text x="460" y="126" class="lbl-sub" text-anchor="middle">IG · LinkedIn · Skool · email</text>
-  </g>
-  <g>
-    <rect x="570" y="60" width="180" height="80" class="box" rx="8"/>
-    <text x="660" y="92" class="lbl" text-anchor="middle" font-weight="600">Affiliates /</text>
-    <text x="660" y="110" class="lbl" text-anchor="middle" font-weight="600">Influencers</text>
-  </g>
-  <g>
-    <rect x="770" y="60" width="180" height="80" class="box" rx="8"/>
-    <text x="860" y="100" class="lbl" text-anchor="middle" font-weight="600">Ads</text>
-    <text x="860" y="120" class="lbl-sub" text-anchor="middle">paid acquisition</text>
-  </g>
+  <text x="640" y="40" class="title" text-anchor="middle">The Build Room Funnel</text>
+  <text x="640" y="62" class="subtitle" text-anchor="middle">Sources feed channels feed products. Three products live at the same level. Membership is the alumni layer downstream.</text>
 
-  <!-- Arrows sources -> webinar -->
-  <path d="M260,140 C260,200 500,200 500,240" class="arrow" marker-end="url(#ar)"/>
-  <path d="M460,140 L500,240" class="arrow" marker-end="url(#ar)"/>
-  <path d="M660,140 C660,200 500,200 500,240" class="arrow" marker-end="url(#ar)"/>
-  <path d="M860,140 C860,200 500,200 500,240" class="arrow" marker-end="url(#ar)"/>
-  <path d="M140,200 C300,200 400,220 460,245" class="arrow" marker-end="url(#ar)"/>
+  <text x="60" y="115" class="row-label">SOURCES</text>
 
-  <!-- Webinar -->
-  <rect x="370" y="245" width="260" height="80" class="box-accent" rx="10"/>
-  <text x="500" y="280" class="lbl-white" text-anchor="middle">WEBINAR</text>
-  <text x="500" y="302" font-size="12" fill="#f3ece1" text-anchor="middle">centerpiece conversion event</text>
+  <rect x="100" y="130" width="200" height="70" rx="8" class="box-source"/>
+  <text x="200" y="160" class="box-label">Other People's</text>
+  <text x="200" y="178" class="box-label">Audiences</text>
+  <text x="200" y="194" class="box-sub">partner lists, intros</text>
 
-  <!-- Webinar -> CC, DC -->
-  <path d="M440,325 L320,400" class="arrow" marker-end="url(#ar)"/>
-  <path d="M560,325 L680,400" class="arrow" marker-end="url(#ar)"/>
+  <rect x="340" y="130" width="200" height="70" rx="8" class="box-source"/>
+  <text x="440" y="160" class="box-label">Our Accounts</text>
+  <text x="440" y="178" class="box-sub">IG, LinkedIn, Alex's</text>
+  <text x="440" y="192" class="box-sub">personal network</text>
 
-  <!-- CC -->
-  <rect x="200" y="405" width="240" height="90" class="box" rx="8"/>
-  <text x="320" y="435" class="lbl" text-anchor="middle" font-weight="700" font-size="18">CC</text>
-  <text x="320" y="458" class="lbl" text-anchor="middle">Cohort</text>
-  <text x="320" y="478" class="lbl-sub" text-anchor="middle">4-week core program</text>
+  <rect x="580" y="130" width="170" height="70" rx="8" class="box-source"/>
+  <text x="665" y="170" class="box-label">Ads</text>
+  <text x="665" y="188" class="box-sub">retreats only</text>
 
-  <!-- DC -->
-  <rect x="560" y="405" width="240" height="90" class="box" rx="8"/>
-  <text x="680" y="435" class="lbl" text-anchor="middle" font-weight="700" font-size="18">DC</text>
-  <text x="680" y="458" class="lbl" text-anchor="middle">Day Cohort</text>
-  <text x="680" y="478" class="lbl-sub" text-anchor="middle">shorter / intensive format</text>
+  <rect x="790" y="130" width="240" height="70" rx="8" class="box-source"/>
+  <text x="910" y="160" class="box-label">Community /</text>
+  <text x="910" y="178" class="box-label">Newsletter</text>
+  <text x="910" y="194" class="box-sub">free Skool, email list, alumni</text>
 
-  <!-- arrows to retreat -->
-  <path d="M320,495 L450,560" class="arrow" marker-end="url(#ar)"/>
-  <path d="M680,495 L550,560" class="arrow" marker-end="url(#ar)"/>
+  <path d="M 300 165 L 340 165" class="arrow-line" marker-end="url(#arrow)"/>
 
-  <!-- Retreat -->
-  <rect x="370" y="565" width="260" height="70" class="box-accent" rx="10"/>
-  <text x="500" y="595" class="lbl-white" text-anchor="middle">RETREAT</text>
-  <text x="500" y="615" font-size="12" fill="#f3ece1" text-anchor="middle">PDC · Chiang Mai · future</text>
+  <text x="60" y="305" class="row-label">CHANNEL</text>
 
-  <!-- arrow to membership -->
-  <path d="M500,635 L500,665" class="arrow" marker-end="url(#ar)"/>
+  <rect x="500" y="320" width="280" height="90" rx="10" class="box-anchor"/>
+  <text x="640" y="358" class="box-label" font-size="20">WEBINAR</text>
+  <text x="640" y="378" class="box-sub">aka Kickoff Session — live, with pitch + Stripe link</text>
+  <text x="640" y="395" class="box-sub">central conversion event</text>
 
-  <!-- Membership -->
-  <rect x="340" y="670" width="320" height="55" class="box-soft" rx="8"/>
-  <text x="500" y="695" class="lbl" text-anchor="middle" font-weight="600">Membership / Alumni</text>
-  <text x="500" y="712" class="lbl-sub" text-anchor="middle">recurring revenue · community continuity</text>
+  <path d="M 440 200 L 440 250 L 580 250 L 580 320" class="arrow-line" marker-end="url(#arrow)"/>
+  <path d="M 665 200 L 665 320" class="arrow-line" marker-end="url(#arrow)"/>
+  <path d="M 910 200 L 910 250 L 740 250 L 740 320" class="arrow-line" marker-end="url(#arrow)"/>
 
-  <!-- Title -->
-  <text x="500" y="752" class="title" text-anchor="middle">FUNNEL</text>
+  <text x="60" y="525" class="row-label">PRODUCTS (same level)</text>
 
-  <!-- Footnote -->
-  <text x="160" y="746" class="note">* CC/DC initials ambiguous from source; labeled best-guess (Cohort / Day Cohort)</text>
+  <rect x="120" y="540" width="240" height="100" rx="10" class="box-product"/>
+  <text x="240" y="572" class="box-label" font-size="18">CC</text>
+  <text x="240" y="592" class="box-label">Closed Cohort</text>
+  <text x="240" y="610" class="box-sub">private / booked</text>
+  <text x="240" y="624" class="box-sub">teams, orgs</text>
 
-  <!-- author footer -->
-  <text x="980" y="752" font-size="10" fill="#999" text-anchor="end">Alex Salinsky / The Build Room</text>
+  <rect x="520" y="540" width="240" height="100" rx="10" class="box-product"/>
+  <text x="640" y="572" class="box-label" font-size="18">OC</text>
+  <text x="640" y="592" class="box-label">Open Cohort</text>
+  <text x="640" y="610" class="box-sub">individuals join</text>
+  <text x="640" y="624" class="box-sub">monthly cadence</text>
+
+  <rect x="920" y="540" width="240" height="100" rx="10" class="box-product"/>
+  <text x="1040" y="585" class="box-label" font-size="18">RETREAT</text>
+  <text x="1040" y="610" class="box-sub">5-day immersive</text>
+  <text x="1040" y="624" class="box-sub">PDC, Chiang Mai</text>
+
+  <path d="M 640 410 L 640 540" class="arrow-line" marker-end="url(#arrow)"/>
+  <path d="M 780 380 C 880 380, 1040 440, 1040 540" class="arrow-line" marker-end="url(#arrow)"/>
+
+  <path d="M 750 165 C 1100 165, 1190 340, 1160 540" class="arrow-dashed" marker-end="url(#arrow-dashed)"/>
+  <text x="1180" y="365" class="arrow-label" text-anchor="end">ads → retreat (direct)</text>
+
+  <path d="M 870 200 C 800 240, 400 400, 240 540" class="arrow-dashed" marker-end="url(#arrow-dashed)"/>
+  <text x="380" y="430" class="arrow-label" text-anchor="middle">community / newsletter</text>
+  <text x="380" y="444" class="arrow-label" text-anchor="middle">feeds all three products</text>
+
+  <path d="M 950 200 C 1100 280, 1100 440, 1080 540" class="arrow-dashed" marker-end="url(#arrow-dashed)"/>
+
+  <rect x="120" y="450" width="240" height="60" rx="6" class="box-tbd"/>
+  <text x="240" y="472" class="note-text" text-anchor="middle" font-weight="700" fill="#888">CC path = TBD</text>
+  <text x="240" y="488" class="note-text" text-anchor="middle">Webinar probably won't sell this.</text>
+  <text x="240" y="502" class="note-text" text-anchor="middle">Likely: LPI London, conferences,</text>
+  <text x="240" y="515" class="note-text" text-anchor="middle" font-style="italic">direct outreach. Figure out as we go.</text>
+
+  <path d="M 360 600 C 600 700, 800 700, 920 600" class="arrow-upsell" marker-end="url(#arrow-upsell)"/>
+  <text x="640" y="730" class="arrow-label-emphasis">cohorts can upsell into retreats</text>
+
+  <path d="M 760 605 C 840 640, 880 640, 920 605" class="arrow-upsell" marker-end="url(#arrow-upsell)"/>
+
+  <text x="60" y="800" class="row-label">ALUMNI LAYER</text>
+
+  <rect x="480" y="815" width="320" height="70" rx="10" class="box-membership"/>
+  <text x="640" y="848" class="box-label" font-size="17">MEMBERSHIP / ALUMNI</text>
+  <text x="640" y="868" class="box-sub">gated · format + price TBD by Feb 2027</text>
+
+  <path d="M 240 640 C 240 750, 480 800, 540 815" class="arrow-line" marker-end="url(#arrow)"/>
+  <path d="M 640 640 L 640 815" class="arrow-line" marker-end="url(#arrow)"/>
+  <path d="M 1040 640 C 1040 750, 800 800, 740 815" class="arrow-line" marker-end="url(#arrow)"/>
+
+  <text x="640" y="908" class="footer">Alex Salinsky / The Build Room · marketing-sprint-v1.md</text>
 </svg>
