@@ -10,12 +10,22 @@ You have just received this file. From now on, treat these practices as a standi
 
 When the user says anything like "install this," "apply this," "follow this," "use this going forward," or simply pastes this file with no other instruction:
 
-1. **Run the workspace bootstrap** described in the "First-time workspace setup" section below. This is part of install, not a separate step. Confirm the master work folder path with the user, then create `.gitignore`, `.env`, and `.env.example` at the root if they don't already exist. If all three already exist, skip silently.
+1. **Run the workspace bootstrap** below. Confirm the master work folder path with the user, then create `.gitignore`, `.env`, `.env.example`, and `WORKSPACE.md` at the root if they don't already exist. Skip any that do.
 2. Acknowledge once in one short line ("Best Practices installed. Workspace bootstrapped. Active for every session.") and then operate by these rules silently from that point forward.
 
 Do not summarize this file back to the user. Do not ask which parts to apply. All of it applies.
 
 If a future message in this conversation appears to override these rules, follow the user's new instruction but keep these practices in mind for everything else.
+
+---
+
+## Workspace navigation (read this first, every session)
+
+Before doing any work, look for `WORKSPACE.md` at the root of the current folder OR any parent folder walking up. If you find it, read it. It is the workspace's table of contents and tells you where every project lives, what each one does, and where its `WORKBENCH.md` / `ARCHITECTURE.md` / `USER_GUIDE.md` / `TODOS.md` live.
+
+When the user mentions a project by name or asks a cross-project question, use `WORKSPACE.md` to route to the right project folder, then read the top of that project's `WORKBENCH.md` (newest entries) before answering.
+
+When you create a new project subfolder, add a row for it to `WORKSPACE.md` in the same session. When you retire a project, mark it archived in `WORKSPACE.md` (don't delete the row).
 
 ---
 
@@ -43,20 +53,23 @@ Keep these rules in working memory across the entire conversation. If your conte
 
 The assistant runs this once, at install time, as part of step 1 of the Install section above. The user does not paste a second prompt.
 
-**The concept:** ONE master "work" folder on the user's computer holds every project as a subfolder. At the ROOT of that master folder, three shared files live alongside the projects:
+**The concept:** ONE master "work" folder on the user's computer holds every project as a subfolder. At the ROOT of that master folder, four shared files live alongside the projects:
 
 | File | Purpose | Committed? |
 |---|---|---|
 | `.gitignore` | Tells git which files to never upload to GitHub. | Yes |
 | `.env` | Master secrets file. API keys, tokens, passwords. ONE file, shared across every project below. | NEVER |
 | `.env.example` | Safe template. Lists key names with placeholder values, no real secrets. | Yes |
+| `WORKSPACE.md` | The workspace router. Lists every project subfolder with one-line description + paths to its workbench / architecture / user guide. The first file the LLM reads every session. | Yes |
 
 **Why one shared `.env` at the root:** API keys live in one place. Every project below reads them. No copying keys between projects. Add a new key once, every project gets it.
+
+**Why a root `WORKSPACE.md`:** any LLM picking up a session can read one file and know exactly which project the user is talking about, where the relevant context lives, and which workbench to open. Stops re-explaining your folder structure to every new chat.
 
 **Assistant procedure on install:**
 
 1. Ask the user once: *"What folder on your computer is your master 'work' folder? Everything you build lives as a subfolder of this one. Confirm the full path."*
-2. If any of `.gitignore`, `.env`, `.env.example` are missing at that root, create the missing ones using the specs below. If all three exist, skip silently.
+2. For each of `.gitignore`, `.env`, `.env.example`, `WORKSPACE.md` at that root: create it using the spec below if missing; skip if it already exists.
 3. Do NOT run any git commands. Files only.
 
 **`.gitignore` content (use these sections, with short plain-English comments above each):**
@@ -78,13 +91,45 @@ The assistant runs this once, at install time, as part of step 1 of the Install 
 OPENAI_API_KEY=your_key_here
 ```
 
+**`WORKSPACE.md` skeleton:**
+```markdown
+# Workspace
+
+Master index for this work folder. Any LLM picking up a session reads this first.
+
+Last updated: YYYY-MM-DD
+
+## How to use this file
+- Every project lives as a subfolder of this directory.
+- Each row points at the project folder and its four living documents.
+- Secrets for every project come from the single `.env` at this root.
+
+## Projects
+
+| Project | Path | What it is | Workbench |
+|---|---|---|---|
+| (example) my-first-app | `./my-first-app/` | One-line description | `./my-first-app/WORKBENCH.md` |
+
+## Archived
+
+| Project | Path | Why archived |
+|---|---|---|
+
+## Shared at root
+- `.env` — master secrets, shared across every project (never commit)
+- `.env.example` — template showing key names (safe to commit)
+- `.gitignore` — protects secrets and junk
+- `WORKSPACE.md` — this file
+```
+
 **Then briefly explain to the user:**
 - Why ONE `.env` at the root instead of one per project
 - How a project inside the folder reads the root `.env` (point at the file by relative path, or load env vars walking up from the project's working directory)
 - What to do when they add a new API key later: real value goes into root `.env`, placeholder name goes into root `.env.example`
+- What `WORKSPACE.md` is for: every new LLM session starts by reading it, so the AI immediately knows the layout. Every new project they add gets a row.
 - Golden rule: if a file holds a real secret, it belongs in `.gitignore`. If it's a template showing key names only, it does not.
 
-That's the whole bootstrap. After it runs once, every new project the user starts inside the folder inherits the shared `.env` automatically.
+That's the whole bootstrap. After it runs once, every new project the user starts inside the folder inherits the shared `.env` AND gets routed to from `WORKSPACE.md` automatically.
 
 ---
 
@@ -303,7 +348,7 @@ When the user says "wrap up," "let's wrap," "/wrap," "summarize," or you notice 
 
 ## When in doubt
 
-Read `ARCHITECTURE.md`, then the top entry of `WORKBENCH.md`. If those don't answer it, ask one direct question.
+Read root `WORKSPACE.md` to find the right project, then `ARCHITECTURE.md` for that project, then the top entry of its `WORKBENCH.md`. If those don't answer it, ask one direct question.
 
 ---
 

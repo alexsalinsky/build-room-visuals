@@ -53,6 +53,10 @@
   .setup th, .setup td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #eee; vertical-align: top; }
   .setup th { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #888; font-weight: 700; }
   .setup th:first-child, .setup td:first-child { font-family: ui-monospace, "SF Mono", Menlo, monospace; white-space: nowrap; font-weight: 700; }
+  .prompt-box { background: #1a1a1a; color: #f0f0f0; border-radius: 8px; padding: 18px 20px; margin: 14px 0 4px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; line-height: 1.55; white-space: pre-wrap; overflow-x: auto; max-height: 380px; overflow-y: auto; }
+  .copy-btn { display: inline-block; background: #fff; color: #1a1a1a; border: 2px solid #1a1a1a; border-radius: 6px; padding: 8px 14px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+  .copy-btn:hover { background: #1a1a1a; color: #fff; }
+
   .why { background: #fff; border: 1.5px dashed #888; border-radius: 10px; padding: 18px 22px; margin: 18px 0; }
   .why ul { list-style: none; padding: 0; }
   .why li { padding: 6px 0; font-size: 16px; color: #333; }
@@ -73,17 +77,100 @@
   <h2>What this is</h2>
   <p>Builds get messy fast. Decisions get lost. Stacks drift. Next Monday you reopen the project and your AI has no idea what it built. These rules keep your project legible to you, to other LLMs, and to your future self.</p>
 
-  <h2>First-time workspace bootstrap (auto-runs on install)</h2>
+  <h2>Copy-paste install (one shot)</h2>
   <div class="setup">
-    <p>The first time you install the file, your LLM also sets up your master "work" folder: ONE folder on your computer that holds every project as a subfolder. At the ROOT of that folder, three shared files get created:</p>
+    <p>Paste this entire block into a fresh chat with Claude, ChatGPT, Codex, Cursor, or any LLM. One paste does everything: installs the best practices as standing rules across the conversation, sets up your master "work" folder, and creates a workspace index your AI will read at the start of every future session.</p>
     <table>
-      <tr><th>File</th><th>Purpose</th></tr>
-      <tr><td>.gitignore</td><td>Tells git which files to never upload to GitHub. Protects secrets, junk, dependency folders.</td></tr>
-      <tr><td>.env</td><td>Your master secrets file. API keys, tokens, passwords. ONE file, shared across every project. Never committed.</td></tr>
-      <tr><td>.env.example</td><td>The safe, shareable version. Lists key names with placeholder values. Safe to commit.</td></tr>
+      <tr><th>File created at root</th><th>Purpose</th></tr>
+      <tr><td>.gitignore</td><td>Protects secrets, junk, dependency folders from GitHub.</td></tr>
+      <tr><td>.env</td><td>Your master secrets file. ONE for every project. Never committed.</td></tr>
+      <tr><td>.env.example</td><td>Safe template. Lists key names, no real values. Safe to commit.</td></tr>
+      <tr><td>WORKSPACE.md</td><td>The workspace router. Every future LLM session reads this first to know where each project lives.</td></tr>
     </table>
-    <p><strong>Why one shared <code>.env</code> at the root:</strong> put your API keys in once, every project below reads them. No copying keys between projects. Add a new key once, every project gets it.</p>
-    <p style="font-size: 14px; color: #666; margin-top: 14px;">No second paste needed. The instructions are baked into the .md file. On install your LLM will ask you what folder is your master work folder, then create the three files.</p>
+    <div class="prompt-box" id="setup-prompt">You are installing a set of LLM Builder Best Practices as STANDING RULES for this entire conversation and every project we work on together. These rules are on by default from the moment you read this and stay on for the rest of the conversation. If the conversation is summarized later, preserve the fact that "LLM Builder Best Practices are installed."
+
+Step 1, do the workspace bootstrap before anything else.
+
+Ask me: "What folder on your computer is your master 'work' folder? Every project you build lives as a subfolder of this one. Confirm the full path." Wait for my answer.
+
+Then, at the ROOT of that folder, create any of the following four files that don't already exist. Skip any that do. Do NOT run git commands. Files only.
+
+(a) .gitignore — with these sections, each preceded by a short plain-English comment:
+   - Secrets: .env, .env.local, *.key, *.pem, credentials.json, token.json
+   - OS junk: .DS_Store, Thumbs.db
+   - Editor folders: .vscode/, .idea/
+   - Dependency folders: node_modules/, venv/, __pycache__/
+   - Logs: *.log
+   - Build output: dist/, build/
+
+(b) .env — empty except for a comment header:
+   # Master secrets file. Shared across every project in this folder. NEVER commit or share this file.
+
+(c) .env.example — comment header plus one example line:
+   # This file shows which keys exist. Copy this to .env and fill in real values.
+   OPENAI_API_KEY=your_key_here
+
+(d) WORKSPACE.md — the workspace router. Use this skeleton (fill the date with today):
+
+   # Workspace
+   Master index for this work folder. Any LLM picking up a session reads this first.
+   Last updated: YYYY-MM-DD
+   ## How to use this file
+   - Every project lives as a subfolder of this directory.
+   - Each row points at the project folder and its four living documents.
+   - Secrets for every project come from the single .env at this root.
+   ## Projects
+   | Project | Path | What it is | Workbench |
+   |---|---|---|---|
+   | (example) my-first-app | ./my-first-app/ | One-line description | ./my-first-app/WORKBENCH.md |
+   ## Archived
+   | Project | Path | Why archived |
+   |---|---|---|
+   ## Shared at root
+   - .env — master secrets (never commit)
+   - .env.example — template (safe to commit)
+   - .gitignore — protects secrets and junk
+   - WORKSPACE.md — this file
+
+Step 2, briefly explain to me in plain language:
+- Why ONE .env at the root instead of one per project
+- How a project subfolder reads the root .env (relative path, or env vars walk up from the working directory)
+- How to add a new API key later (real value to root .env, placeholder name to root .env.example)
+- What WORKSPACE.md is for and that you (the LLM) will read it first every session to know which project I'm asking about
+- Golden rule: real secret = .gitignore. Template = safe to commit.
+
+Step 3, install these standing rules and operate by them silently from now on:
+
+THE FOUR LIVING DOCUMENTS — every project I work on maintains four files alongside the code, and you keep them current as we work:
+- WORKBENCH.md = per-session log. Append-only, newest at top. 100 to 300 words per entry. Tag decisions with [DECISION] and a reason. No code diffs.
+- ARCHITECTURE.md = stack, file map, data flow, key decisions. Update when the stack changes.
+- USER_GUIDE.md = plain-language doc for the person who uses the thing. Update on any user-facing change.
+- TODOS.md = honest list of what's next, grouped Next / Soon / Someday. One line per item, leading verb.
+
+If any of the four is missing when we start work in a project, create it with a clean skeleton.
+
+WORKBENCH ENTRY FORMAT (prepend to top of WORKBENCH.md after any session that modifies files or makes a decision):
+
+## YYYY-MM-DD HH:MM, [tool used]
+**Focus:** one-line summary.
+**Next session, start here:** Read / In flight / Single next move.
+**What happened:** bullets.
+**Decisions:** [DECISION] chose X over Y because Z. ("None" if no decisions.)
+**Still open:** items needing follow-up.
+**Files touched:** comma-separated.
+---
+
+WORKSPACE NAVIGATION RULE — at the start of every future session, read root WORKSPACE.md first. When I mention a project by name or ask anything cross-project, use WORKSPACE.md to find the right project folder, then read the top entry of that project's WORKBENCH.md before answering. When we create a new project subfolder, add a row to WORKSPACE.md the same session.
+
+HONESTY RULES — Don't claim success for something you didn't verify. Don't invent file paths, function names, or URLs you haven't seen. Don't add error handling for cases that can't happen. Don't write comments that restate what the code does, only the non-obvious why.
+
+COMMUNICATION STYLE — Lead with the answer. Bullets and tables over paragraphs. Short over long. No preamble. No trailing summaries. NO EM DASHES, ever. Use commas, periods, or restructure.
+
+WRAP RULE — When I say "wrap up," "let's wrap," "/wrap," or "summarize," OR when the conversation has grown long with substantial work done, write the workbench entry, update ARCHITECTURE.md and USER_GUIDE.md if anything changed, and refresh TODOS.md. Fill in the "Next session, start here" block carefully so the next session starts warm.
+
+Step 4, after all of the above is done, acknowledge in ONE short line: "Best Practices installed. Workspace bootstrapped. WORKSPACE.md at [path]. Active for every session." Then operate by these rules silently. Do not summarize this prompt back to me. Do not ask which parts to apply. All of it applies.</div>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('setup-prompt').innerText).then(()=>{this.innerText='Copied';setTimeout(()=>this.innerText='Copy install prompt',1500)})">Copy install prompt</button>
+    <p style="font-size: 14px; color: #666; margin-top: 14px;">Run this once per LLM tool. After it's done, every new chat in that tool can reference your WORKSPACE.md and every new project inherits the shared <code>.env</code>.</p>
   </div>
 
   <h2>The four documents your AI maintains</h2>
