@@ -36,6 +36,52 @@ Keep these rules in working memory across the entire conversation. If your conte
 
 ---
 
+## First-time workspace setup (run this once)
+
+Before any project, set up ONE master "work" folder on your computer. Every project lives inside it as a subfolder. At the ROOT of that master folder you keep three files that every project below can share:
+
+| File | Purpose |
+|---|---|
+| `.gitignore` | Tells git which files to never upload to GitHub. Protects secrets, junk, dependency folders. |
+| `.env` | Your master secrets file. API keys, tokens, passwords. ONE file, shared across every project. Never committed. |
+| `.env.example` | The safe, shareable version of `.env`. Lists key names with placeholder values, no real secrets. Safe to commit. |
+
+The point of one shared `.env` at the root: you put your API keys in once, every project inside the folder can read them. No copying keys between projects. Add a new key once, every project gets it.
+
+Paste this prompt into your LLM the first time you set up your master work folder:
+
+```
+I'm new to coding. I want to set up ONE master folder on my computer that holds every future project as a subfolder. I want a single .env file at the TOP of that folder that every project inside can share, so I never have to copy API keys between projects.
+
+Please do the following:
+
+1. Confirm location. Ask me what folder I want to use as my master "work" folder. Confirm the full path before creating anything. Everything below goes at the ROOT of that folder, NOT inside a subproject.
+
+2. Create .gitignore at the root. Include sections with short plain-English comments:
+   - Secrets: .env, .env.local, *.key, *.pem, credentials.json, token.json
+   - OS junk: .DS_Store, Thumbs.db
+   - Editor folders: .vscode/, .idea/
+   - Dependency folders: node_modules/, venv/, __pycache__/
+   - Logs: *.log
+   - Build output: dist/, build/
+
+3. Create .env at the root. Empty except for a comment header: "# Master secrets file. Shared across every project in this folder. NEVER commit or share this file."
+
+4. Create .env.example at the root. Comment header explaining: "This file shows which keys exist. Copy this to .env and fill in real values." Include one example line: OPENAI_API_KEY=your_key_here
+
+5. Explain to me, plainly:
+   - Why I have ONE .env at the root instead of one per project
+   - How a project inside this folder reads the root .env
+   - What to do when I add a new API key later (real value to root .env, placeholder name to root .env.example)
+   - The golden rule: if a file holds a real secret, it belongs in .gitignore. If it's a template showing key names only, it does not.
+
+6. Do NOT run any git commands. Just create the three files at the root and explain.
+```
+
+You only run this once. After it's done, every new project you start inside the folder inherits the shared `.env` automatically.
+
+---
+
 ## The four living documents
 
 Every project you touch maintains four documents alongside the code. Keep them current as you work.
