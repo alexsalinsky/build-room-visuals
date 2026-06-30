@@ -1,7 +1,7 @@
 {
   "$schema_doc": "proof-library-schema.md",
   "version": 1,
-  "last_updated": "2026-06-25",
+  "last_updated": "2026-06-30",
   "entries": [
     {
       "id": "linkedin-how-to-get-your-team-to-actually-use-ai",
@@ -1872,6 +1872,141 @@
       "date_captured": "2026-06-25",
       "date_cleared": null,
       "notes": "9-second cut from the 91s table-reveal clip (source span 52s-61s). Tile-cropped from Fathom gallery view, upscaled to 720p. Sent to F&F WhatsApp 2026-06-25 as a retreat tease. Pair with retreat-launch copy when that lands."
+    },
+    {
+      "id": "rpa-s3-maho-cloudflare-live-dashboard",
+      "type": "win",
+      "cohort": "ginger-rpa",
+      "title": "Maho shipped a live GHL client portal to Cloudflare during the session",
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s3-wins-post-2026-06-30.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "It's working great.",
+      "attribution": "Maria Jose Urrea Carvajal (Maho) (RPA cohort)",
+      "timestamp": "01:28:09",
+      "tags": [
+        "cloudflare",
+        "deploy",
+        "ghl",
+        "dashboard",
+        "ship"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-30",
+      "date_cleared": null,
+      "notes": "Live public URL serving real GHL client data per coach. TODO: cut clip from https://fathom.video/share/9orBP9D-K1nCkVN7oRy9gHta5y-_zyZs around 01:28:09 - 01:30:00. Permission check with Maho before public share. Most concrete deploy moment in the cohort so far."
+    },
+    {
+      "id": "rpa-s3-cata-it-can-run-actions",
+      "type": "quote",
+      "cohort": "ginger-rpa",
+      "title": "Cata names the server abstraction in her own words",
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s3-fathom-transcript-2026-06-30.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "It can run actions.",
+      "attribution": "Catalina Zapata (Cata) (RPA cohort)",
+      "timestamp": "01:24:26",
+      "tags": [
+        "fluency",
+        "aha-moment",
+        "non-engineer",
+        "infrastructure"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-30",
+      "date_cleared": null,
+      "notes": "Spontaneous live moment during Cloudflare explanation. Cata is the operations team member, not a developer. The phrase captures the conceptual jump from 'file storage' to 'runs scripts.' TODO: cut clip from Fathom 01:23:36 - 01:24:35. Permission check with Cata."
+    },
+    {
+      "id": "rpa-s3-david-html-eval-interface",
+      "type": "win",
+      "cohort": "ginger-rpa",
+      "title": "David ships a web-based HTML interface for one-click transcript evaluation",
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s3-wins-post-2026-06-30.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "It's running incredibly fast.",
+      "attribution": "David Wang (RPA cohort)",
+      "timestamp": "01:45:14",
+      "tags": [
+        "ship",
+        "html",
+        "interface",
+        "coach-evaluation"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-30",
+      "date_cleared": null,
+      "notes": "Local-running HTML browser app. Upload transcript, get full eval report back sub-minute. Cloudflare publish prompt staged but not yet deployed. TODO: cut clip from Fathom 01:45:14 - 01:46:00. Strong demo-ready candidate even if it stays local."
+    },
+    {
+      "id": "rpa-s3-jessica-clip-library-v2-live",
+      "type": "win",
+      "cohort": "ginger-rpa",
+      "title": "Jessica ships clip-library v2 with filters live + Cloudflare deploy in flight",
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s3-wins-post-2026-06-30.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Version number two is starting to look.",
+      "attribution": "Jessica Tatiana Tovar Benalcazar (RPA cohort)",
+      "timestamp": "00:52:04",
+      "tags": [
+        "ship",
+        "filters",
+        "clip-library",
+        "cloudflare",
+        "coach-as-builder"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-30",
+      "date_cleared": null,
+      "notes": "Filterable webinar clip library (lesson, meditation, story, reframe, question), 7d/30d windows working. Cloudflare publish prompt pasted at 01:49:17, deploy in flight at session close. TODO: confirm deploy completed; cut clip from 00:52:04 - 00:55:14."
+    },
+    {
+      "id": "rpa-s3-jessica-david-skill-instead-of-chat",
+      "type": "lesson",
+      "cohort": "ginger-rpa",
+      "title": "Player-coach moment: Jessica + David turn a permission-loop bug into a one-question skill",
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s3-facilitator-recap-2026-06-30.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "He just upload the file, it asks one question, and it gets the report to him right away.",
+      "attribution": "Jessica Tatiana Tovar Benalcazar describing David Wang's build (RPA cohort)",
+      "timestamp": "01:32:01",
+      "tags": [
+        "pair-build",
+        "skill",
+        "files-vs-threads",
+        "player-coach"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-30",
+      "date_cleared": null,
+      "notes": "Cleanest 'files remain, threads burn' payoff seen in cohort so far. David's eval tool went from 'permission-permission-permission' chat loop to a single skill that runs end-to-end. Worth using as a case study on F&F cohorts. TODO: cut clip from Fathom 01:31:57 - 01:32:30."
+    },
+    {
+      "id": "rpa-s3-cloudflare-as-cohort-standard",
+      "type": "lesson",
+      "cohort": "ginger-rpa",
+      "title": "Cloudflare emerges as cohort-wide deploy default in one session",
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s3-facilitator-recap-2026-06-30.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "It's very easy to make things go up on Cloudflare and for free.",
+      "attribution": "Maria Jose Urrea Carvajal (Maho) (RPA cohort)",
+      "timestamp": "01:49:37",
+      "tags": [
+        "cloudflare",
+        "deploy",
+        "cohort-pattern",
+        "free-tier",
+        "publisher-identity"
+      ],
+      "status": "raw",
+      "date_captured": "2026-06-30",
+      "date_cleared": null,
+      "notes": "Three of four builders shipped or queued a Cloudflare deploy during S3 (Maho live, Jessica in flight, Cata queued; David staged for later). Free tier + built-in LLM + workers + schedulers. Worth promoting to a standing recommendation for any Build Room cohort where builders need a 'becomes a publisher' moment. Replaces ad-hoc hosting choices."
     }
   ]
 }
