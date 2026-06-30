@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Want to publish your work online? Free. — The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #fafafa;
+    color: #1a1a1a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+    line-height: 1.5;
+  }
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px 64px;
+  }
+  .eyebrow {
+    font-size: 14px;
+    font-weight: 600;
+    color: #999;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.2px;
+    margin-bottom: 28px;
+  }
+  h1 .free {
+    background: #fde68a;
+    padding: 2px 14px;
+    border-radius: 8px;
+  }
+  .proof {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 22px 26px;
+    border-radius: 12px;
+    margin-bottom: 28px;
+  }
+  .proof .big {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .proof .sub {
+    font-size: 16px;
+    color: #d1d5db;
+  }
+  .caveat {
+    border-left: 4px solid #1a1a1a;
+    padding: 14px 18px;
+    background: #fff;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 36px;
+    font-size: 17px;
+    color: #444;
+  }
+  .caveat strong { color: #1a1a1a; }
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+  }
+  .lede {
+    font-size: 22px;
+    line-height: 1.4;
+    margin-bottom: 32px;
+    color: #1a1a1a;
+  }
+  .lede strong { font-weight: 700; }
+
+  /* Hero step sequence */
+  .steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 32px 0 44px;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 20px;
+    align-items: center;
+    background: #fff;
+    border: 2.5px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .step .num {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 26px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step .text {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .step .text .meta {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    font-weight: 400;
+    margin-top: 4px;
+  }
+  .step.highlight {
+    background: #fde68a;
+    border-color: #92400e;
+  }
+
+  .bonus {
+    background: #f4ede0;
+    border: 2px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin: 32px 0;
+  }
+  .bonus .tag {
+    display: inline-block;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  .bonus p { font-size: 17px; margin-bottom: 8px; }
+  .bonus p:last-child { margin-bottom: 0; }
+
+  .close {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 40px 0 28px;
+    letter-spacing: -0.3px;
+  }
+
+  .cta {
+    display: block;
+    background: #1a1a1a;
+    color: #fff;
+    text-decoration: none;
+    padding: 22px 28px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    transition: transform 0.1s ease;
+  }
+  .cta:hover { transform: translateY(-2px); }
+  .cta .url {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #d1d5db;
+    margin-top: 6px;
+    font-family: "SF Mono", Consolas, monospace;
+  }
+
+  .thesis {
+    text-align: center;
+    margin-top: 36px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #444;
+    letter-spacing: 0.02em;
+  }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1.5px solid #ddd;
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 32px 18px 48px; }
+    h1 { font-size: 36px; }
+    .lede { font-size: 19px; }
+    .step { grid-template-columns: 56px 1fr; gap: 14px; padding: 18px; }
+    .step .num { width: 44px; height: 44px; font-size: 20px; }
+    .step .text { font-size: 17px; }
+    .proof .big { font-size: 22px; }
+    .close { font-size: 20px; }
+    .cta { font-size: 17px; padding: 18px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="eyebrow">The Build Room</div>
+  <h1>Want to publish your work online? <span class="free">Free.</span></h1>
+
+  <div class="proof">
+    <div class="big">4 projects online in 20 minutes.</div>
+    <div class="sub">Today's cohort call did it together. For free.</div>
+  </div>
+
+  <div class="caveat">
+    If you already have a solution, great. Skip this. If you're stuck on <strong>"where do I put this so other people can use it,"</strong> read on.
+  </div>
+
+  <h2>The simple path</h2>
+  <p class="lede"><strong>Cloudflare</strong> is the cleanest, fastest, free way to get your robot's work online.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="num">1</div>
+      <div class="text">
+        Sign up for a Cloudflare account
+        <span class="meta">Free tier. Email and password. That's it.</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <div class="text">
+        Create an API key
+        <span class="meta">Inside Cloudflare, under My Profile, API Tokens.</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <div class="text">
+        Give the API key to your robot
+        <span class="meta">Codex, Claude Code, whatever you're using. Drop it in your .env file.</span>
+      </div>
+    </div>
+    <div class="step highlight">
+      <div class="num">4</div>
+      <div class="text">
+        Tell your robot to publish to Cloudflare using the credentials
+        <span class="meta">Your robot handles the rest. You get a live URL.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bonus">
+    <span class="tag">Bonus</span>
+    <p>Cloudflare has its own LLM service built in (<strong>Workers AI</strong>). Your robot can call AI directly through Cloudflare.</p>
+    <p>No separate API token hookup. No new payment method.</p>
+  </div>
+
+  <p class="close">Fastest, easiest, cleanest way to get something online and working.</p>
+
+  <a class="cta" href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">
+    Sign up for Cloudflare
+    <span class="url">dash.cloudflare.com/sign-up</span>
+  </a>
+
+  <p class="thesis">Learn AI. Build Robots. Stay Human.</p>
+
+  <footer>
+    Alex Salinsky · The Build Room
+  </footer>
+</div>
+</body>
+</html>
