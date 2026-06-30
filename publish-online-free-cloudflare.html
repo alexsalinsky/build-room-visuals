@@ -161,6 +161,54 @@
     line-height: 1.5;
     margin-top: 8px;
   }
+
+  /* Copy-paste prompt block */
+  .prompt-block {
+    position: relative;
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 10px;
+    padding: 18px 20px 18px 20px;
+    margin-top: 12px;
+    font-family: "SF Mono", Consolas, monospace;
+    font-size: 13.5px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  .prompt-block .copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #fde68a;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.1s ease;
+  }
+  .prompt-block .copy-btn:hover { background: #fcd34d; }
+  .prompt-block .copy-btn.copied { background: #84cc16; color: #1a1a1a; }
+  .prompt-block .token-slot {
+    background: #fde68a;
+    color: #1a1a1a;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .prompt-warn {
+    font-size: 14px;
+    color: #444;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+  .prompt-warn strong { color: #1a1a1a; }
   @media (max-width: 600px) {
     .details { margin-left: 0; }
   }
@@ -382,17 +430,55 @@
     <div class="step highlight">
       <div class="num">4</div>
       <div class="text">
-        Tell your robot to publish
-        <span class="meta">It uses the credential. You get a live URL.</span>
+        Copy this. Paste into your robot.
+        <span class="meta">Codex, Claude Code, whichever you use. The prompt does the rest.</span>
       </div>
     </div>
     <div class="details">
-      <p>Something like:</p>
-      <span class="prompt">Publish this project to Cloudflare using my CLOUDFLARE_API_TOKEN. Give me the live URL.</span>
-      <p style="margin-top:10px">Your robot handles the rest. The URL it returns ends in <code>.pages.dev</code> and is yours to share with anyone.</p>
+      <p class="prompt-warn">Replace the <strong>X's</strong> with the token you just copied. Don't share this prompt publicly with your real token in it.</p>
+      <div class="prompt-block" id="robotPrompt"><button class="copy-btn" type="button" onclick="copyRobotPrompt(this)">Copy</button><span id="promptBody">This is a Cloudflare token to publish: <span class="token-slot">XXXXXXXXXXXXXXXXXXXXXXXX</span>
+
+Please save this token to a safe place that you can find and remember.
+
+Then show me a plan to publish my project to Cloudflare, sharing the appropriate credentials and using Workers and Cloudflare's LLM where appropriate.
+
+Be ready to deploy when I approve your plan.
+
+Be sure to tell me where to find or how to run my project when all is done.</span></div>
+      <p style="margin-top:12px">Your robot returns a plan. Approve it. It deploys. You get a live URL ending in <code>.pages.dev</code>.</p>
     </div>
 
   </div>
+
+  <script>
+    function copyRobotPrompt(btn) {
+      var text = document.getElementById('promptBody').innerText;
+      var done = function () {
+        var original = btn.textContent;
+        btn.textContent = 'Copied';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () { fallback(); });
+      } else {
+        fallback();
+      }
+      function fallback() {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+    }
+  </script>
 
   <div class="bonus">
     <span class="tag">Bonus</span>
