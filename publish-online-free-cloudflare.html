@@ -285,51 +285,39 @@
     <div class="step">
       <div class="num">2</div>
       <div class="text">
-        <a href="https://dash.cloudflare.com/profile/api-tokens" target="_blank" rel="noopener">Create an API token</a>
-        <span class="meta">dash.cloudflare.com/profile/api-tokens</span>
+        <a href="https://dash.cloudflare.com" target="_blank" rel="noopener">Open the Cloudflare dashboard</a>
+        <span class="meta">dash.cloudflare.com</span>
       </div>
-    </div>
-    <div class="details">
-      <ul>
-        <li>Click <strong>"Create Token"</strong></li>
-        <li>Use the <strong>"Edit Cloudflare Workers"</strong> template</li>
-        <li><strong>Account Resources:</strong> Include &rarr; your account name (only one option)</li>
-        <li><strong>Zone Resources:</strong> Include &rarr; All zones</li>
-        <li><strong>Client IP Address Filtering:</strong> Leave blank</li>
-        <li><strong>TTL (Start / End date):</strong> Leave blank (no expiry)</li>
-        <li>Click "Continue to summary" &rarr; "Create Token"</li>
-        <li>Copy the token shown <strong>ONCE</strong> (it's never displayed again)</li>
-      </ul>
     </div>
 
     <div class="step">
       <div class="num">3</div>
       <div class="text">
-        Give the API token to your robot
-        <span class="meta">Codex, Claude Code, whatever you're using.</span>
+        Create a Pages project and upload your folder
+        <span class="meta">No CLI. No API token. Just drag and drop.</span>
       </div>
     </div>
     <div class="details">
       <ul>
-        <li>Save the token as <code>CLOUDFLARE_API_TOKEN</code> in the project folder's <code>.env</code> file. Your robot reads it automatically.</li>
-        <li>Grab your <strong>Account ID</strong> from the right side of <a href="https://dash.cloudflare.com" target="_blank" rel="noopener">dash.cloudflare.com</a> (32-char hex).</li>
-        <li>Save it as <code>CLOUDFLARE_ACCOUNT_ID</code> in the same <code>.env</code> file.</li>
+        <li>In the left sidebar, click <strong>"Workers &amp; Pages"</strong></li>
+        <li>Click <strong>"Create"</strong>, then the <strong>"Pages"</strong> tab, then <strong>"Upload assets"</strong></li>
+        <li>Give your project a name (this becomes part of your URL)</li>
+        <li>Drag your project folder (or a zip of it) into the upload area</li>
       </ul>
     </div>
 
     <div class="step highlight">
       <div class="num">4</div>
       <div class="text">
-        Tell your robot to publish to Cloudflare
-        <span class="meta">Your robot handles the rest. You get a live URL.</span>
+        Click Deploy
+        <span class="meta">You get a live URL. That's it.</span>
       </div>
     </div>
     <div class="details">
       <ul>
-        <li>Paste this prompt:
-          <span class="prompt">Deploy this to Cloudflare. Install Wrangler if it's not here, use the token in .env, and report the live URL.</span>
-        </li>
-        <li>Your robot runs <code>wrangler deploy</code> or <code>wrangler pages deploy</code>. You don't need to install or learn anything yourself.</li>
+        <li>Cloudflare gives you a live URL ending in <code>.pages.dev</code></li>
+        <li>Share that URL with anyone, anywhere</li>
+        <li>To update later: open the same project, click <strong>"Create deployment"</strong>, upload the new version</li>
       </ul>
     </div>
   </div>
