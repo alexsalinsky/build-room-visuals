@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Session Opener — The Build Room</title>
+<!--
+  Reusable 3-slide session opener for every Build Room cohort session.
+  Standing frame, used at the top of every session.
+
+  Slide 1: Agenda (EDIT THIS PER SESSION)
+  Slide 2: Agreements (standing - do not edit)
+  Slide 3: Three principles (standing - verbatim, do not edit)
+
+  Facilitator: open this first thing every session. Update slide 1 only.
+-->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 28px 90px; gap: 24px; }
+  .slide { display: none; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 980px; flex: 1; }
+  .slide.active { display: flex; }
+
+  .eyebrow { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; }
+  h1 { font-size: 56px; font-weight: 800; letter-spacing: -1px; line-height: 1.1; text-align: center; margin-bottom: 14px; }
+  h1.thesis { font-size: 72px; line-height: 1.15; }
+  .sub { font-size: 20px; color: #666; text-align: center; margin-bottom: 30px; }
+
+  .agenda-list { list-style: none; width: 100%; max-width: 720px; font-size: 22px; line-height: 1.55; }
+  .agenda-list li { padding: 10px 0; border-bottom: 1.5px solid #ddd; display: flex; gap: 14px; }
+  .agenda-list li:last-child { border-bottom: none; }
+  .agenda-list .n { font-weight: 700; color: #1a1a1a; min-width: 28px; }
+
+  .agreements { width: 100%; max-width: 820px; }
+  .agreement { padding: 14px 18px; border: 1.5px solid #1a1a1a; border-radius: 10px; margin-bottom: 10px; background: #fff; }
+  .agreement strong { display: block; font-size: 18px; margin-bottom: 4px; }
+  .agreement span { font-size: 15px; color: #444; line-height: 1.5; }
+
+  .thesis-block { text-align: center; }
+  .thesis-block .three { display: flex; gap: 28px; justify-content: center; margin-top: 32px; flex-wrap: wrap; }
+  .thesis-block .pill { border: 2.5px solid #1a1a1a; border-radius: 14px; padding: 22px 30px; font-size: 22px; font-weight: 700; background: #fff; min-width: 200px; }
+
+  .hud { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; gap: 22px; align-items: center; font-size: 14px; color: #666; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border: 1.5px solid #1a1a1a; border-radius: 999px; padding: 8px 18px; }
+  .hud strong { color: #1a1a1a; font-size: 15px; }
+  .controls { display: flex; gap: 8px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+
+  footer { position: fixed; bottom: 6px; right: 16px; font-size: 11px; color: #999; }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- ============================================================== -->
+  <!-- SLIDE 1 — AGENDA                                                -->
+  <!-- Replace with session-specific agenda before session starts      -->
+  <!-- ============================================================== -->
+  <section class="slide active" data-slide="1">
+    <div class="eyebrow">Slide 1 of 3</div>
+    <h1>Today's Agenda</h1>
+    <p class="sub">Session agenda goes here</p>
+    <ol class="agenda-list">
+      <li><span class="n">1.</span><span>Replace this with item 1</span></li>
+      <li><span class="n">2.</span><span>Replace this with item 2</span></li>
+      <li><span class="n">3.</span><span>Replace this with item 3</span></li>
+      <li><span class="n">4.</span><span>Replace this with item 4</span></li>
+    </ol>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- SLIDE 2 — AGREEMENTS (standing)                                 -->
+  <!-- Source: brain/the-build-room/cohort-agreements.md               -->
+  <!-- ============================================================== -->
+  <section class="slide" data-slide="2">
+    <div class="eyebrow">Slide 2 of 3</div>
+    <h1>Our Agreements</h1>
+    <div class="agreements">
+      <div class="agreement">
+        <strong>Presence</strong>
+        <span>Cameras on. No other work during the session. If you can't be present, don't be here.</span>
+      </div>
+      <div class="agreement">
+        <strong>Teamwork</strong>
+        <span>Pair up. Build toward each other. Champions help. What's shared here stays here.</span>
+      </div>
+      <div class="agreement">
+        <strong>Possibility</strong>
+        <span>Bring a real problem. Permission to ship janky. One small project, finished.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- SLIDE 3 — THREE PRINCIPLES (standing, verbatim)                 -->
+  <!-- ============================================================== -->
+  <section class="slide" data-slide="3">
+    <div class="eyebrow">Slide 3 of 3</div>
+    <div class="thesis-block">
+      <h1 class="thesis">Learn AI.<br/>Build Robots.<br/>Stay Human.</h1>
+      <div class="three">
+        <div class="pill">Learn AI</div>
+        <div class="pill">Build Robots</div>
+        <div class="pill">Stay Human</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="hud">
+  <div class="controls">
+    <button id="prev">&larr; Prev</button>
+    <button id="next">Next &rarr;</button>
+  </div>
+  <div><strong id="counter">1</strong> / 3</div>
+</div>
+<footer>Alex Salinsky &middot; The Build Room</footer>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const counter = document.getElementById('counter');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
+let i = 0;
+
+function render() {
+  slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === slides.length - 1;
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < slides.length - 1) { i++; render(); } };
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ') next.click();
+  if (e.key === 'ArrowLeft') prev.click();
+});
+
+render();
+</script>
+</body>
+</html>
