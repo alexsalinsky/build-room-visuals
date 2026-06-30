@@ -78,12 +78,12 @@
   }
   .lede strong { font-weight: 700; }
 
-  /* Hero step sequence */
+  /* Step sequence */
   .steps {
     display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
-    margin: 32px 0 44px;
+    margin: 32px 0 28px;
   }
   .step {
     display: grid;
@@ -132,7 +132,7 @@
   .step .text a:hover { background: #fde68a; }
 
   .details {
-    margin: -4px 0 28px 92px;
+    margin: -4px 0 12px 92px;
     padding: 14px 18px;
     background: #fff;
     border-left: 3px solid #1a1a1a;
@@ -140,16 +140,8 @@
     font-size: 15px;
     color: #333;
   }
-  .details ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .details li {
-    padding: 4px 0;
-    line-height: 1.45;
-  }
-  .details li + li { border-top: 1px dashed #e5e5e5; padding-top: 6px; margin-top: 2px; }
+  .details p { margin-bottom: 8px; }
+  .details p:last-child { margin-bottom: 0; }
   .details code {
     background: #f4ede0;
     padding: 1px 6px;
@@ -162,15 +154,62 @@
     display: block;
     background: #1a1a1a;
     color: #fff;
-    padding: 10px 14px;
+    padding: 12px 14px;
     border-radius: 6px;
     font-family: "SF Mono", Consolas, monospace;
     font-size: 13px;
     line-height: 1.5;
-    margin-top: 6px;
+    margin-top: 8px;
   }
   @media (max-width: 600px) {
     .details { margin-left: 0; }
+  }
+
+  /* Token settings table */
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 4px;
+    background: #fff;
+    font-size: 14px;
+  }
+  .token-table th, .token-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: top;
+  }
+  .token-table th {
+    background: #1a1a1a;
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+  .token-table td:first-child {
+    font-weight: 700;
+    color: #1a1a1a;
+    width: 38%;
+  }
+  .token-table tr:last-child td { border-bottom: none; }
+  .walkthrough {
+    background: #f4ede0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  .walkthrough a {
+    color: #1a1a1a;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+  .finish {
+    font-size: 14px;
+    color: #444;
+    margin-top: 10px;
+    line-height: 1.55;
   }
 
   .bonus {
@@ -178,7 +217,7 @@
     border: 2px solid #1a1a1a;
     border-radius: 12px;
     padding: 24px 26px;
-    margin: 32px 0;
+    margin: 36px 0 28px;
   }
   .bonus .tag {
     display: inline-block;
@@ -252,6 +291,8 @@
     .proof .big { font-size: 22px; }
     .close { font-size: 20px; }
     .cta { font-size: 17px; padding: 18px 20px; }
+    .token-table th, .token-table td { padding: 8px 10px; font-size: 13px; }
+    .token-table td:first-child { width: 42%; }
   }
 </style>
 </head>
@@ -262,83 +303,116 @@
   <h1>Want to publish your work online? <span class="free">Free.</span></h1>
 
   <div class="proof">
-    <div class="big">4 projects online in 20 minutes.</div>
+    <div class="big">4 projects online in about 20 minutes.</div>
     <div class="sub">Today's cohort call did it together. For free.</div>
   </div>
 
   <div class="caveat">
-    If you already have a solution, great. Skip this. If you're stuck on <strong>"where do I put this so other people can use it,"</strong> read on.
+    We're learning that <strong>Cloudflare</strong> is a simple, fast route. If you already have a solution, great. This is for if you don't.
   </div>
 
-  <h2>The simple path</h2>
-  <p class="lede"><strong>Cloudflare</strong> is the cleanest, fastest, free way to get your robot's work online.</p>
+  <h2>Four steps</h2>
+  <p class="lede">It's very easy to sign up and get things running for free.</p>
 
   <div class="steps">
+
     <div class="step">
       <div class="num">1</div>
       <div class="text">
         <a href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">Sign up for a Cloudflare account</a>
-        <span class="meta">Free tier. No credit card. Skip "add a website", you don't need DNS for this.</span>
+        <span class="meta">Free tier. No credit card needed.</span>
       </div>
     </div>
 
     <div class="step">
       <div class="num">2</div>
       <div class="text">
-        <a href="https://dash.cloudflare.com" target="_blank" rel="noopener">Open the Cloudflare dashboard</a>
-        <span class="meta">dash.cloudflare.com</span>
+        Create an API token
+        <span class="meta">One token, copied once, used everywhere.</span>
       </div>
+    </div>
+    <div class="details">
+      <p class="walkthrough">
+        Go to <a href="https://dash.cloudflare.com/profile/api-tokens" target="_blank" rel="noopener">dash.cloudflare.com/profile/api-tokens</a> &rarr; <strong>Create Token</strong> &rarr; pick the <strong>"Edit Cloudflare Workers"</strong> template.
+      </p>
+      <table class="token-table">
+        <thead>
+          <tr><th>Field</th><th>Pick</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Permissions</td>
+            <td>Leave as the template gives them (Account: Workers Scripts Edit, Workers KV Storage Edit, Workers Tail Read, and the rest). Don't add or remove anything.</td>
+          </tr>
+          <tr>
+            <td>Account Resources</td>
+            <td><strong>Include</strong> &rarr; your Cloudflare account name (only one option).</td>
+          </tr>
+          <tr>
+            <td>Zone Resources</td>
+            <td><strong>Include</strong> &rarr; <strong>All zones</strong>. Covers you if you ever attach a custom domain. Doesn't matter for the free <code>*.pages.dev</code> URL.</td>
+          </tr>
+          <tr>
+            <td>Client IP Address Filtering</td>
+            <td>Leave blank. Don't restrict by IP. You'll move between coffee shops, home, office.</td>
+          </tr>
+          <tr>
+            <td>TTL (Start / End date)</td>
+            <td>Leave blank. Token never expires until you manually rotate it.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="finish">
+        Click <strong>Continue to summary</strong> &rarr; <strong>Create Token</strong>. Copy the token shown. It's only displayed once.
+      </p>
     </div>
 
     <div class="step">
       <div class="num">3</div>
       <div class="text">
-        Create a Pages project and upload your folder
-        <span class="meta">No CLI. No API token. Just drag and drop.</span>
+        Give the token to your robot
+        <span class="meta">Save it as <code style="background:#f4ede0;padding:1px 6px;border-radius:4px;font-family:'SF Mono',Consolas,monospace;font-size:13px">CLOUDFLARE_API_TOKEN</code>. Codex and Claude Code read it automatically.</span>
       </div>
     </div>
     <div class="details">
-      <ul>
-        <li>In the left sidebar, click <strong>"Workers &amp; Pages"</strong></li>
-        <li>Click <strong>"Create"</strong>, then the <strong>"Pages"</strong> tab, then <strong>"Upload assets"</strong></li>
-        <li>Give your project a name (this becomes part of your URL)</li>
-        <li>Drag your project folder (or a zip of it) into the upload area</li>
-      </ul>
+      <p>Put it in your shell environment, your project's <code>.env</code> file, or wherever your robot looks for secrets.</p>
+      <p>Variable name: <code>CLOUDFLARE_API_TOKEN</code>. Value: the token you just copied.</p>
     </div>
 
     <div class="step highlight">
       <div class="num">4</div>
       <div class="text">
-        Click Deploy
-        <span class="meta">You get a live URL. That's it.</span>
+        Tell your robot to publish
+        <span class="meta">It uses the credential. You get a live URL.</span>
       </div>
     </div>
     <div class="details">
-      <ul>
-        <li>Cloudflare gives you a live URL ending in <code>.pages.dev</code></li>
-        <li>Share that URL with anyone, anywhere</li>
-        <li>To update later: open the same project, click <strong>"Create deployment"</strong>, upload the new version</li>
-      </ul>
+      <p>Something like:</p>
+      <span class="prompt">Publish this project to Cloudflare using my CLOUDFLARE_API_TOKEN. Give me the live URL.</span>
+      <p style="margin-top:10px">Your robot handles the rest. The URL it returns ends in <code>.pages.dev</code> and is yours to share with anyone.</p>
     </div>
+
   </div>
 
   <div class="bonus">
     <span class="tag">Bonus</span>
-    <p>Cloudflare has its own LLM service built in (<strong>Workers AI</strong>). Your robot can call AI directly through Cloudflare.</p>
-    <p>No separate API token hookup. No new payment method.</p>
+    <p>Cloudflare has its own LLM service built in (<strong>Workers AI</strong>). Your robot can do AI things without hooking up additional API tokens for OpenAI or Anthropic.</p>
+    <p>One signup. One credential. AI included.</p>
   </div>
 
-  <p class="close">Fastest, easiest, cleanest way to get something online and working.</p>
+  <p class="close">Sign up, make a token, hand it to the robot, ship.</p>
 
   <a class="cta" href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">
     Sign up for Cloudflare
     <span class="url">dash.cloudflare.com/sign-up</span>
   </a>
 
+  <!-- AFFILIATE: Alex to fill if/when a Cloudflare affiliate is set up. Replace the CTA href above + sign-up step link. -->
+
   <p class="thesis">Learn AI. Build Robots. Stay Human.</p>
 
   <footer>
-    Alex Salinsky · The Build Room
+    Alex Salinsky &middot; The Build Room
   </footer>
 </div>
 </body>
