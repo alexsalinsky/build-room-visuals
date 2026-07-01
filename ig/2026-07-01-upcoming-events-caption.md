@@ -18,17 +18,17 @@ That's what's coming at The Build Room between July and November.
 
 Here's the shape of it:
 
-Jul 15 — Kickoff Session. Live. Free. One hour. See the product, meet the room, leave with the one thing you'll build.
+Jul 15. Kickoff Session. Live. Free. One hour. See the product, meet the room, leave with the one thing you'll build.
 
-Late July — the next Cohort starts. Four weeks. One session a week. You ship one working workflow, end to end.
+Late July. The next Cohort starts. Four weeks. One session a week. You ship one working workflow, end to end.
 
-Oct 12 to 16 — Builder Retreat in Playa del Carmen. Beach. Builders. Five days. You leave with something in production.
+Oct 12 to 16. Builder Retreat in Playa del Carmen. Beach. Builders. Five days. You leave with something in production.
 
-Oct 22 to 25 — DCBKK in Bangkok. On the ground. Coffee, walks, Build Room conversations on the side.
+Oct 22 to 25. DCBKK in Bangkok. On the ground. Coffee, walks, Build Room conversations on the side.
 
-Nov 9 to 13 — CMSEO in Chiang Mai. Same story. On the ground for the retreat lead-in.
+Nov 9 to 13. CMSEO in Chiang Mai. Same story. On the ground for the retreat lead-in.
 
-Nov 14 to 18 — Chiang Mai Builder Retreat. Sequel to Playa. Same product, different jungle.
+Nov 14 to 18. Chiang Mai Builder Retreat. Sequel to Playa. Same product, different jungle.
 
 One next step: RSVP for the July 15 Kickoff Session. Link in bio.
 
