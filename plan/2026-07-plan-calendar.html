@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Room Plan · Jul 2-29 · Calendar</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  .page { max-width: 1400px; margin: 0 auto; padding: 40px 28px 80px; }
+  header { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; }
+  .cohort-pill { display: inline-block; background: #1a1a1a; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 1px; margin-bottom: 14px; }
+  h1 { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .sub { font-size: 15px; color: #666; }
+  .meta-line { font-size: 12px; color: #888; margin-top: 6px; }
+  .meta-line a { color: #1a1a1a; }
+  .nav-link { display: inline-block; background: #fff; border: 2px solid #1a1a1a; padding: 10px 18px; border-radius: 8px; text-decoration: none; color: #1a1a1a; font-weight: 700; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+  .nav-link:hover { background: #1a1a1a; color: #fff; }
+
+  h2 { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 1.5px solid #ddd; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; background: #fff; border: 1.5px solid #ddd; border-radius: 20px; padding: 6px 12px; font-size: 12px; font-weight: 600; }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 3px; border: 1.5px solid rgba(0,0,0,0.35); }
+
+  .weeks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 1000px) { .weeks { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .weeks { grid-template-columns: 1fr; } }
+
+  .week { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+  .week-head { background: #1a1a1a; color: #fff; padding: 12px 14px; }
+  .week-head .num { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #aaa; }
+  .week-head .title { font-size: 15px; font-weight: 800; line-height: 1.25; margin-top: 3px; }
+  .week-head .range { font-size: 11px; color: #ccc; letter-spacing: 0.5px; margin-top: 4px; }
+
+  .day { border-top: 1px solid #eee; padding: 8px 10px 10px; }
+  .day.weekend { background: #f4f4f4; }
+  .day-head-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .day-name { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: #888; text-transform: uppercase; }
+  .day-num { font-size: 12px; font-weight: 700; color: #1a1a1a; }
+  .day-badges { display: flex; gap: 4px; }
+  .deadline-badge { display: inline-block; background: #d62828; color: #fff; font-size: 9px; font-weight: 700; letter-spacing: 0.5px; padding: 2px 6px; border-radius: 10px; text-transform: uppercase; }
+
+  .blocks-in-day { display: flex; flex-direction: column; gap: 4px; }
+  .day-card { display: block; padding: 5px 7px; border-radius: 4px; color: #fff; font-size: 11px; font-weight: 600; line-height: 1.25; border: 1.5px solid rgba(0,0,0,0.4); }
+  .day-card.half { border-style: dashed; }
+  .day-card.blocked { border-style: dotted; }
+  .day-card .num { font-size: 9px; opacity: 0.8; font-weight: 800; letter-spacing: 0.5px; margin-right: 3px; }
+  .day-card .tag { font-size: 8px; font-weight: 700; padding: 1px 3px; background: rgba(0,0,0,0.35); border-radius: 3px; margin-left: 3px; }
+
+  .day-empty { font-size: 10px; color: #bbb; font-style: italic; padding: 3px 0; }
+
+  .day-count { font-size: 9px; color: #999; margin-top: 4px; letter-spacing: 0.5px; }
+
+  /* Workstream colors (same as gantt) */
+  .ws-cohort    { background: #2b6cb0; }
+  .ws-marketing { background: #b7791f; }
+  .ws-pdc       { background: #6b46c1; }
+  .ws-dbalp     { background: #c05621; }
+  .ws-ledger    { background: #2f855a; }
+  .ws-reactive  { background: #718096; }
+
+  footer { margin-top: 36px; font-size: 12px; color: #888; text-align: center; }
+
+  @media print {
+    body { background: #fff; }
+    .nav-link { display: none; }
+    .weeks { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div>
+      <div class="cohort-pill">BUILD ROOM PLAN · JUL 2-29 · CALENDAR</div>
+      <h1>Four-Week Block Plan</h1>
+      <p class="sub">Execution view. Blocks by day. Jul 2 to Jul 29, 2026.</p>
+      <p class="meta-line">Last updated: 2026-07-01 · Source: <a href="../../brain/the-build-room/plans/2026-07-02-4week-block-plan.md">plan doc</a></p>
+    </div>
+    <a class="nav-link" href="2026-07-plan-gantt.html">Gantt view &rarr;</a>
+  </header>
+
+  <h2>Legend</h2>
+  <div class="legend">
+    <div class="legend-item"><span class="legend-swatch ws-cohort"></span> Cohort delivery</div>
+    <div class="legend-item"><span class="legend-swatch ws-marketing"></span> Marketing sprint</div>
+    <div class="legend-item"><span class="legend-swatch ws-pdc"></span> PDC retreat</div>
+    <div class="legend-item"><span class="legend-swatch ws-dbalp"></span> DBALP wrap</div>
+    <div class="legend-item"><span class="legend-swatch ws-ledger"></span> Ledger + cohort #5 prep</div>
+    <div class="legend-item"><span class="legend-swatch ws-reactive"></span> Reactive / slack</div>
+    <div class="legend-item" style="border-color:#d62828; color:#d62828;">Hard deadline badge</div>
+  </div>
+
+  <div class="weeks" id="weeks"></div>
+
+  <footer>
+    Alex Salinsky · The Build Room
+  </footer>
+</div>
+
+<script>
+const DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const DOW_ORDER = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+const weeksMeta = [
+  { num: 1, title: 'Delivery + 7-day SLA items', range: 'Jul 2 - Jul 8', start: [7,2] },
+  { num: 2, title: 'F&F Thu S3, Mon Demo, launch commit', range: 'Jul 9 - Jul 15', start: [7,9] },
+  { num: 3, title: 'F&F Thu Demo + post-cohort marketing + Chiang Mai prep', range: 'Jul 16 - Jul 22', start: [7,16] },
+  { num: 4, title: 'Standardization + cohort #5 prep + retreat marketing', range: 'Jul 23 - Jul 29', start: [7,23] },
+];
+
+// Blocks keyed by (mm,dd)
+const blocks = [
+  {n:1,  row:'cohort',    m:7,d:2,  title:'F&F Thu S2 prep'},
+  {n:2,  row:'cohort',    m:7,d:2,  title:'F&F Thu S2 delivery'},
+  {n:3,  row:'cohort',    m:7,d:3,  title:'F&F Thu S2 debrief'},
+  {n:4,  row:'cohort',    m:7,d:3,  title:'Muhammad DM', half:true},
+  {n:5,  row:'dbalp',     m:7,d:3,  title:'Bryce testimonial kickoff'},
+  {n:6,  row:'cohort',    m:7,d:4,  title:'F&F Mon S3 prep + ledger walk'},
+  {n:7,  row:'cohort',    m:7,d:4,  title:'RPA S4 reschedule decision', blocked:true},
+  {n:8,  row:'cohort',    m:7,d:5,  title:'F&F Mon S3 final prep'},
+  {n:9,  row:'cohort',    m:7,d:6,  title:'F&F Mon S3 delivery'},
+  {n:10, row:'cohort',    m:7,d:6,  title:'F&F Mon S3 debrief'},
+  {n:11, row:'cohort',    m:7,d:7,  title:'RPA S4 delivery', blocked:true},
+  {n:12, row:'cohort',    m:7,d:7,  title:'RPA S4 debrief + close'},
+  {n:13, row:'reactive',  m:7,d:8,  title:'Reactive buffer'},
+
+  {n:14, row:'cohort',    m:7,d:9,  title:'F&F Thu S3 prep + ledger'},
+  {n:15, row:'cohort',    m:7,d:9,  title:'F&F Thu S3 delivery'},
+  {n:16, row:'cohort',    m:7,d:10, title:'F&F Thu S3 debrief'},
+  {n:17, row:'marketing', m:7,d:10, title:'Kickoff Session deck + logistics'},
+  {n:18, row:'cohort',    m:7,d:11, title:'F&F Mon S4 Demo Day prep'},
+  {n:19, row:'marketing', m:7,d:11, title:'Kickoff marketing push'},
+  {n:20, row:'marketing', m:7,d:12, title:'Application gate build'},
+  {n:21, row:'dbalp',     m:7,d:12, title:'Bryce testimonial capture', blocked:true},
+  {n:22, row:'cohort',    m:7,d:13, title:'F&F Mon S4 Demo Day'},
+  {n:23, row:'cohort',    m:7,d:13, title:'F&F Mon S4 debrief + close'},
+  {n:24, row:'marketing', m:7,d:14, title:'Kickoff dress rehearsal'},
+  {n:25, row:'marketing', m:7,d:15, title:'Kickoff Session delivery'},
+  {n:26, row:'marketing', m:7,d:15, title:'Kickoff follow-up', half:true},
+
+  {n:27, row:'cohort',    m:7,d:16, title:'F&F Thu S4 Demo Day prep'},
+  {n:28, row:'cohort',    m:7,d:16, title:'F&F Thu S4 delivery'},
+  {n:29, row:'cohort',    m:7,d:17, title:'F&F Thu S4 debrief + close'},
+  {n:30, row:'marketing', m:7,d:17, title:'Post-cohort follow-up sends', blocked:true},
+  {n:31, row:'marketing', m:7,d:18, title:'Case-study one-pagers'},
+  {n:32, row:'marketing', m:7,d:18, title:'Permission asks (proof-library)'},
+  {n:33, row:'marketing', m:7,d:19, title:'LinkedIn article publish', blocked:true},
+  {n:34, row:'marketing', m:7,d:20, title:'Chiang Mai marketing launch'},
+  {n:35, row:'pdc',       m:7,d:20, title:'PDC pre-marketing + Fiesta Inn R2', blocked:true},
+  {n:36, row:'ledger',    m:7,d:21, title:'Ledger schema std (Pt 1)'},
+  {n:37, row:'cohort',    m:7,d:21, title:'TSLS design + prep'},
+  {n:38, row:'cohort',    m:7,d:22, title:'TSLS delivery'},
+  {n:39, row:'reactive',  m:7,d:22, title:'Post-TSLS + reactive', half:true},
+
+  {n:40, row:'ledger',    m:7,d:23, title:'Ledger schema std (Pt 2)'},
+  {n:41, row:'cohort',    m:7,d:23, title:'Cohort #5 roster + Drafting Table', blocked:true},
+  {n:42, row:'cohort',    m:7,d:24, title:'Cohort #5 S1 prep'},
+  {n:43, row:'marketing', m:7,d:24, title:'Chiang Mai marketing wave 1'},
+  {n:44, row:'marketing', m:7,d:25, title:'PDC Kickoff Session 1 design'},
+  {n:45, row:'ledger',    m:7,d:25, title:'GTD Denmark RSVP decision', blocked:true},
+  {n:46, row:'marketing', m:7,d:27, title:'Kickoff-to-cohort retro'},
+  {n:47, row:'reactive',  m:7,d:27, title:'Contractor pay reconciliation', half:true},
+  {n:48, row:'marketing', m:7,d:28, title:'Expert-panel action triage'},
+  {n:49, row:'cohort',    m:7,d:28, title:'Cohort #5 S1 final logistics'},
+  {n:50, row:'cohort',    m:7,d:29, title:'Cohort #5 S1 delivery', blocked:true},
+  {n:51, row:'cohort',    m:7,d:29, title:'Cohort #5 S1 debrief'},
+  {n:52, row:'reactive',  m:7,d:29, title:'Reactive buffer'},
+];
+
+const wsColor = { cohort:'ws-cohort', marketing:'ws-marketing', pdc:'ws-pdc', dbalp:'ws-dbalp', ledger:'ws-ledger', reactive:'ws-reactive' };
+
+const deadlines = {
+  '7-3': 'Muhammad DM',
+  '7-4': 'RPA decision',
+  '7-6': 'F&F Mon S3',
+  '7-7': 'RPA S4 + Bryce SLA',
+  '7-15': 'Kickoff',
+  '7-29': 'Cohort #5 floor',
+};
+
+const container = document.getElementById('weeks');
+
+weeksMeta.forEach(week => {
+  const wDiv = document.createElement('div');
+  wDiv.className = 'week';
+  wDiv.innerHTML = `<div class="week-head">
+    <div class="num">WEEK ${week.num}</div>
+    <div class="title">${week.title}</div>
+    <div class="range">${week.range}</div>
+  </div>`;
+
+  for (let i = 0; i < 7; i++) {
+    const dObj = new Date(2026, week.start[0]-1, week.start[1] + i);
+    const dow = dObj.getDay();
+    const isWknd = (dow === 0 || dow === 6);
+    const mm = dObj.getMonth()+1;
+    const dd = dObj.getDate();
+    const key = `${mm}-${dd}`;
+    const dayBlocks = blocks.filter(b => b.m === mm && b.d === dd);
+
+    const dl = deadlines[key];
+    const badgeHtml = dl ? `<span class="deadline-badge">${dl}</span>` : '';
+
+    // Count block-equivalents (half = 0.5)
+    let count = 0;
+    dayBlocks.forEach(b => count += (b.half ? 0.5 : 1));
+
+    const dayDiv = document.createElement('div');
+    dayDiv.className = 'day' + (isWknd ? ' weekend' : '');
+    let inner = `<div class="day-head-row">
+      <div><span class="day-name">${DOW[dow]}</span> <span class="day-num">Jul ${dd}</span></div>
+      <div class="day-badges">${badgeHtml}</div>
+    </div>`;
+    inner += `<div class="blocks-in-day">`;
+    if (dayBlocks.length === 0) {
+      inner += `<div class="day-empty">no blocks</div>`;
+    } else {
+      dayBlocks.forEach(b => {
+        const tags = (b.half ? '<span class="tag">H</span>' : '') + (b.blocked ? '<span class="tag">BLK</span>' : '');
+        const cls = wsColor[b.row] + (b.half ? ' half' : '') + (b.blocked ? ' blocked' : '');
+        inner += `<span class="day-card ${cls}"><span class="num">B${b.n}</span>${b.title}${tags}</span>`;
+      });
+    }
+    inner += `</div>`;
+    if (dayBlocks.length > 0) {
+      inner += `<div class="day-count">${count} block${count === 1 ? '' : 's'}</div>`;
+    }
+    dayDiv.innerHTML = inner;
+    wDiv.appendChild(dayDiv);
+  }
+
+  container.appendChild(wDiv);
+});
+</script>
+</body>
+</html>

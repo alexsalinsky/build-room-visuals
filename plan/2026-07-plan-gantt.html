@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Room Plan · Jul 2-29 · Gantt</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  .page { max-width: 1400px; margin: 0 auto; padding: 40px 28px 80px; }
+  header { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; }
+  .cohort-pill { display: inline-block; background: #1a1a1a; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 1px; margin-bottom: 14px; }
+  h1 { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .sub { font-size: 15px; color: #666; }
+  .meta-line { font-size: 12px; color: #888; margin-top: 6px; }
+  .meta-line a { color: #1a1a1a; }
+  .nav-link { display: inline-block; background: #fff; border: 2px solid #1a1a1a; padding: 10px 18px; border-radius: 8px; text-decoration: none; color: #1a1a1a; font-weight: 700; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+  .nav-link:hover { background: #1a1a1a; color: #fff; }
+
+  h2 { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 1.5px solid #ddd; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; background: #fff; border: 1.5px solid #ddd; border-radius: 20px; padding: 6px 12px; font-size: 12px; font-weight: 600; }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 3px; border: 1.5px solid rgba(0,0,0,0.35); }
+
+  /* Gantt grid */
+  .gantt-wrap { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 10px; overflow: hidden; }
+  .gantt { display: grid; grid-template-columns: 180px repeat(28, minmax(38px, 1fr)); font-size: 11px; position: relative; }
+  .gantt .row-head { grid-column: 1; padding: 10px 12px; background: #f4f4f4; border-right: 2px solid #1a1a1a; border-bottom: 1px solid #ddd; font-weight: 700; font-size: 12px; display: flex; align-items: center; line-height: 1.25; }
+  .gantt .day-head { padding: 6px 4px; text-align: center; border-bottom: 2px solid #1a1a1a; border-right: 1px solid #eee; font-weight: 600; font-size: 10px; color: #444; background: #fafafa; line-height: 1.2; }
+  .gantt .day-head.weekend { background: #ececec; }
+  .gantt .day-head .dow { font-size: 9px; color: #888; letter-spacing: 1px; text-transform: uppercase; }
+  .gantt .day-head .dnum { font-size: 13px; font-weight: 800; }
+  .gantt .day-head .week-tag { font-size: 9px; color: #aaa; letter-spacing: 1px; }
+
+  .gantt .row { display: contents; }
+  .gantt .cell { border-right: 1px solid #eee; border-bottom: 1px solid #eee; min-height: 62px; position: relative; background: #fff; }
+  .gantt .cell.weekend { background: #f2f2f2; }
+
+  .bar { position: absolute; top: 6px; left: 3px; right: 3px; padding: 6px 6px 5px; border-radius: 5px; color: #fff; font-size: 10.5px; line-height: 1.2; font-weight: 600; border: 1.5px solid rgba(0,0,0,0.4); cursor: default; overflow: hidden; }
+  .bar.stack-1 { top: 6px; }
+  .bar.stack-2 { top: 34px; }
+  .bar .bnum { font-size: 9px; font-weight: 800; opacity: 0.85; letter-spacing: 0.5px; }
+  .bar .btitle { font-weight: 700; font-size: 10.5px; }
+  .bar .btag { display: inline-block; font-size: 8px; font-weight: 700; padding: 1px 4px; background: rgba(0,0,0,0.35); border-radius: 3px; margin-left: 3px; letter-spacing: 0.5px; }
+  .bar.half { border-style: dashed; opacity: 0.9; }
+  .bar.blocked { border-style: dotted; }
+
+  .bar[data-tip]:hover::after { content: attr(data-tip); position: absolute; z-index: 20; bottom: calc(100% + 6px); left: 0; background: #1a1a1a; color: #fff; padding: 8px 10px; border-radius: 6px; font-size: 11px; font-weight: 500; width: 260px; line-height: 1.35; white-space: normal; box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
+
+  /* Deadline pins */
+  .deadline { position: absolute; top: 0; bottom: 0; width: 0; border-left: 2px dashed #d62828; z-index: 5; pointer-events: none; }
+  .deadline::before { content: ""; position: absolute; top: -6px; left: -6px; width: 10px; height: 10px; background: #d62828; border-radius: 50%; border: 2px solid #fff; }
+  .deadline-list { margin-top: 14px; padding: 12px 16px; background: #fff; border: 1.5px solid #ddd; border-left: 4px solid #d62828; border-radius: 6px; font-size: 12px; color: #444; }
+  .deadline-list strong { color: #d62828; letter-spacing: 0.5px; }
+  .deadline-list ul { list-style: none; padding: 0; margin: 6px 0 0; display: flex; flex-wrap: wrap; gap: 12px; }
+  .deadline-list li { padding: 2px 0; }
+
+  /* Workstream colors */
+  .ws-cohort  { background: #2b6cb0; } /* deep blue */
+  .ws-marketing { background: #b7791f; } /* amber */
+  .ws-pdc     { background: #6b46c1; } /* purple */
+  .ws-dbalp   { background: #c05621; } /* burnt orange */
+  .ws-ledger  { background: #2f855a; } /* green */
+  .ws-reactive { background: #718096; } /* slate */
+
+  .scroll-hint { display: none; }
+
+  @media (max-width: 900px) {
+    .gantt { grid-template-columns: 130px repeat(28, minmax(46px, 1fr)); font-size: 10px; }
+    .gantt .row-head { padding: 8px 8px; font-size: 11px; }
+    .scroll-hint { display: block; font-size: 11px; color: #888; margin-bottom: 8px; }
+    .gantt-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  }
+
+  footer { margin-top: 36px; font-size: 12px; color: #888; text-align: center; }
+
+  @media print {
+    body { background: #fff; }
+    .nav-link { display: none; }
+    .gantt-wrap { border-color: #000; }
+    .bar[data-tip]:hover::after { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div>
+      <div class="cohort-pill">BUILD ROOM PLAN · JUL 2-29 · GANTT</div>
+      <h1>Four-Week Block Plan</h1>
+      <p class="sub">Strategy view. 50 blocks across 6 workstreams. Jul 2 to Jul 29, 2026.</p>
+      <p class="meta-line">Last updated: 2026-07-01 · Source: <a href="../../brain/the-build-room/plans/2026-07-02-4week-block-plan.md">plan doc</a></p>
+    </div>
+    <a class="nav-link" href="2026-07-plan-calendar.html">Calendar view &rarr;</a>
+  </header>
+
+  <h2>Legend</h2>
+  <div class="legend">
+    <div class="legend-item"><span class="legend-swatch ws-cohort"></span> Cohort delivery</div>
+    <div class="legend-item"><span class="legend-swatch ws-marketing"></span> Marketing sprint</div>
+    <div class="legend-item"><span class="legend-swatch ws-pdc"></span> PDC retreat</div>
+    <div class="legend-item"><span class="legend-swatch ws-dbalp"></span> DBALP wrap</div>
+    <div class="legend-item"><span class="legend-swatch ws-ledger"></span> Ledger + cohort #5 prep</div>
+    <div class="legend-item"><span class="legend-swatch ws-reactive"></span> Reactive / slack</div>
+    <div class="legend-item" style="border-color:#d62828; color:#d62828;"><span style="width:14px; height:0; border-top:2px dashed #d62828; display:inline-block;"></span> Hard deadline</div>
+  </div>
+
+  <p class="scroll-hint">Scroll horizontally to see all 28 days &rarr;</p>
+
+  <div class="gantt-scroll">
+  <div class="gantt-wrap">
+  <div class="gantt" id="gantt"></div>
+  </div>
+  </div>
+
+  <div class="deadline-list">
+    <strong>Hard deadlines</strong>
+    <ul>
+      <li>Jul 3 · Muhammad DM</li>
+      <li>Jul 4 · RPA S4 reschedule decision</li>
+      <li>Jul 6 · F&amp;F Mon S3</li>
+      <li>Jul 7 · RPA S4 + Bryce 7-day SLA</li>
+      <li>Jul 15 · Kickoff Session + marketing sprint commit</li>
+      <li>Jul 29 · Cohort #5 prep floor</li>
+    </ul>
+  </div>
+
+  <footer>
+    Alex Salinsky · The Build Room
+  </footer>
+</div>
+
+<script>
+// Day 0 = Jul 2 (Thu). 28 days through Jul 29 (Wed).
+const START = new Date('2026-07-02T00:00:00');
+const DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+function dayIndex(mm, dd) {
+  const d = new Date(2026, mm-1, dd);
+  return Math.round((d - START) / (1000*60*60*24));
+}
+
+// Workstreams (rows)
+const rows = [
+  { key: 'cohort',    label: 'Cohort delivery',           color: 'ws-cohort' },
+  { key: 'marketing', label: 'Marketing sprint',          color: 'ws-marketing' },
+  { key: 'pdc',       label: 'PDC retreat',               color: 'ws-pdc' },
+  { key: 'dbalp',     label: 'DBALP wrap',                color: 'ws-dbalp' },
+  { key: 'ledger',    label: 'Ledger + cohort #5 prep',   color: 'ws-ledger' },
+  { key: 'reactive',  label: 'Reactive / slack',          color: 'ws-reactive' },
+];
+
+// Blocks: {n, row, day (index or [start,end]), title, tip, half?, blocked?}
+const blocks = [
+  // Week 1
+  {n:1,  row:'cohort',    day:dayIndex(7,2),  title:'F&F Thu S2 prep',            tip:'Outcome: Zoom + Drafting Table URLs verified, reminders sent, Stu+Andrea onboarding note surfaced. Driver: session 15:00 today.'},
+  {n:2,  row:'cohort',    day:dayIndex(7,2),  title:'F&F Thu S2 delivery',        tip:'Outcome: session facilitated, per-breakout Fathom started, contractor pay logged. Driver: session live.'},
+  {n:3,  row:'cohort',    day:dayIndex(7,3),  title:'F&F Thu S2 debrief',         tip:'Outcome: 7 debrief artifacts shipped. Driver: wins post decays fast. Depends on: Fathom recording.'},
+  {n:4,  row:'cohort',    day:dayIndex(7,3),  title:'Muhammad DM',                half:true, tip:'45-min half. Outcome: personal DM sent asking status + S4 plan. Driver: Fri Jul 3 latest window.'},
+  {n:5,  row:'dbalp',     day:dayIndex(7,3),  title:'Bryce testimonial kickoff',  tip:'Outcome: personalized WhatsApp+email with 3 asks (video, Clutch, LinkedIn rec). Driver: 7-day SLA closes Jul 7.'},
+  {n:6,  row:'cohort',    day:dayIndex(7,4),  title:'F&F Mon S3 prep + ledger walk', tip:'Outcome: per-builder S3 Proposals locked (19 builders, top 8 focus). Driver: Mon Jul 6 09:00.'},
+  {n:7,  row:'cohort',    day:dayIndex(7,4),  title:'RPA S4 reschedule decision', blocked:true, tip:'Blocked-until: Alex hears from Ginger on visa timing. Outcome: reschedule vs proceed vs recording-only.'},
+  {n:8,  row:'cohort',    day:dayIndex(7,5),  title:'F&F Mon S3 final prep',      tip:'Outcome: agenda finalized per S3 "Lock the Demo" frame, 3 mid-cohort share slots pre-nominated, reminders sent.'},
+  {n:9,  row:'cohort',    day:dayIndex(7,6),  title:'F&F Mon S3 delivery',        tip:'Outcome: session run, mid-cohort share block validated live, contractor pay logged. Driver: session.'},
+  {n:10, row:'cohort',    day:dayIndex(7,6),  title:'F&F Mon S3 debrief',         tip:'Outcome: 7 artifacts shipped. Driver: momentum + wins post. Depends on: Fathom.'},
+  {n:11, row:'cohort',    day:dayIndex(7,7),  title:'RPA S4 delivery',            blocked:true, tip:'Blocked-until: Block 7 outcome. Outcome: Demo Day run per DBALP two-award ritual, personal reports drafted.'},
+  {n:12, row:'cohort',    day:dayIndex(7,7),  title:'RPA S4 debrief + close',     tip:'Outcome: 7 artifacts + first-cohort-close checklist (bundle draft, Ginger wrap, Jessica coach handoff). Driver: cohort ends.'},
+  {n:13, row:'reactive',  day:dayIndex(7,8),  title:'Reactive buffer',            tip:'Cohort delivery surprises buffer. If unused: pull forward Block 14 (marketing sprint prep).'},
+
+  // Week 2
+  {n:14, row:'cohort',    day:dayIndex(7,9),  title:'F&F Thu S3 prep + ledger',   tip:'Outcome: Thu S3 Proposals locked, "Lock the Demo" frame, mid-cohort share slots pre-nominated. Driver: Jul 9 15:00.'},
+  {n:15, row:'cohort',    day:dayIndex(7,9),  title:'F&F Thu S3 delivery',        tip:'Driver: session.'},
+  {n:16, row:'cohort',    day:dayIndex(7,10), title:'F&F Thu S3 debrief',         tip:'Outcome: 7 artifacts. Depends on: Fathom.'},
+  {n:17, row:'marketing', day:dayIndex(7,10), title:'Kickoff Session deck + logistics', tip:'Outcome: deck built from generic kickoff template + F&F info-session lessons; Zoom + Skool scheduled. Driver: Jul 15 launch commit.'},
+  {n:18, row:'cohort',    day:dayIndex(7,11), title:'F&F Mon S4 Demo Day prep',   tip:'Outcome: agenda locked per DBALP S4 template (two-award peer-vote), demo order surfaced, ceremony script drafted. Driver: Jul 13 09:00.'},
+  {n:19, row:'marketing', day:dayIndex(7,11), title:'Kickoff Session marketing push', tip:'Outcome: WhatsApp broadcast, IG, LinkedIn cross-post, 10-15 warm DMs from Alex network. Driver: Jul 15 4 days out.'},
+  {n:20, row:'marketing', day:dayIndex(7,12), title:'Application gate build',     tip:'Outcome: 3-5 question Tally form live, gates Stripe link on Kickoff Session page. 2hr build. Driver: expert-panel top move; test on this launch.'},
+  {n:21, row:'dbalp',     day:dayIndex(7,12), title:'Bryce testimonial capture',  blocked:true, tip:'Blocked-until: Bryce response from Block 5. Outcome: video or Clutch review or LinkedIn rec captured. Driver: recoverable 7-day window.'},
+  {n:22, row:'cohort',    day:dayIndex(7,13), title:'F&F Mon S4 Demo Day delivery', tip:'Driver: session.'},
+  {n:23, row:'cohort',    day:dayIndex(7,13), title:'F&F Mon S4 debrief + close', tip:'Outcome: 7 artifacts + post-cohort follow-up bundle drafted per DBALP pattern, Alex review gate flagged. Driver: cohort ends.'},
+  {n:24, row:'marketing', day:dayIndex(7,14), title:'Kickoff dress rehearsal',    tip:'Outcome: deck walked, Zoom tested, Skool + WhatsApp final reminder scheduled, Stripe link tested. Driver: Jul 15.'},
+  {n:25, row:'marketing', day:dayIndex(7,15), title:'Kickoff Session delivery',   tip:'Outcome: session run, attendee count logged, Stripe link once, application form links surfaced. Driver: launch commit.'},
+  {n:26, row:'marketing', day:dayIndex(7,15), title:'Kickoff follow-up',          half:true, tip:'45-min half-block reactive. Outcome: within-24h personal replies to applications / DMs. Driver: warm conversion window.'},
+
+  // Week 3
+  {n:27, row:'cohort',    day:dayIndex(7,16), title:'F&F Thu S4 Demo Day prep',   tip:'Outcome: agenda locked per DBALP template, ceremony script, roster verified. Driver: Jul 16 15:00.'},
+  {n:28, row:'cohort',    day:dayIndex(7,16), title:'F&F Thu S4 delivery',        tip:'Driver: session.'},
+  {n:29, row:'cohort',    day:dayIndex(7,17), title:'F&F Thu S4 debrief + close', tip:'Outcome: 7 artifacts + post-cohort bundle draft, Alex review gate. Driver: momentum.'},
+  {n:30, row:'marketing', day:dayIndex(7,17), title:'Post-cohort follow-up sends', blocked:true, tip:'Blocked-until: Alex review gate cleared per cohort. Outcome: DBALP + F&F Mon + F&F Thu bundles personalized + sent. Highest marketing leverage.'},
+  {n:31, row:'marketing', day:dayIndex(7,18), title:'Case-study one-pagers',      tip:'Outcome: 2 case-study docs drafted (Bryce/pitchypr.com live + F&F winner), draft-status pending permission. Depends on: proof-library entries.'},
+  {n:32, row:'marketing', day:dayIndex(7,18), title:'Permission asks (proof-library)', tip:'Outcome: personal DMs to Kate, Kandice, Chanel, F&F winners to promote raw entries to cleared-for-public. Driver: LinkedIn article needs cleared quotes.'},
+  {n:33, row:'marketing', day:dayIndex(7,19), title:'LinkedIn "Build with AI" publish', blocked:true, tip:'Blocked-until: Block 32 permissions. Outcome: article shipped with cleared quotes (or generic pattern), Kickoff Session CTA embedded.'},
+  {n:34, row:'marketing', day:dayIndex(7,20), title:'Chiang Mai marketing launch', tip:'Outcome: pre-marketing kick per sprint sec 5 (venue folder, pricing tier, CMSEO organizer outreach draft). Driver: mid-July launch commit.'},
+  {n:35, row:'pdc',       day:dayIndex(7,20), title:'PDC pre-marketing + Fiesta Inn R2', blocked:true, tip:'Blocked-until: Alex sends drafted Fiesta Inn reply. Outcome: venue photo request to Sthephany, dietary form drafted, Fiesta Inn Round 2 message sent.'},
+  {n:36, row:'ledger',    day:dayIndex(7,21), title:'Ledger schema standardization (Pt 1)', tip:'Outcome: canonical blank ledger template nominated + created; DBALP + F&F Thu ledgers verified as full-schema; checklist step 8 updated. Driver: cohort #5 spin-up late July.'},
+  {n:37, row:'cohort',    day:dayIndex(7,21), title:'TSLS design + prep',         tip:'Outcome: TSLS agenda drafted (real session, delivers first win to late buyers), Skool + Zoom scheduled. Depends on: Kickoff Session paid count from Block 25.'},
+  {n:38, row:'cohort',    day:dayIndex(7,22), title:'TSLS delivery',              tip:'Outcome: session run, late buyers onboarded, first-win moment captured. Driver: launch engine step 4.'},
+  {n:39, row:'reactive',  day:dayIndex(7,22), title:'Post-TSLS + reactive',       half:true, tip:'45-min half-block reactive buffer.'},
+
+  // Week 4
+  {n:40, row:'ledger',    day:dayIndex(7,23), title:'Ledger schema standardization (Pt 2)', tip:'Outcome: RPA + F&F Mon ledgers migrated to canonical schema, Apps Script COHORT_MAP updated, Drafting Table /c/<slug> verified on EC2. Depends on: Block 36.'},
+  {n:41, row:'cohort',    day:dayIndex(7,23), title:'Cohort #5 roster + Drafting Table', blocked:true, tip:'Blocked-until: Kickoff + TSLS paid list. Outcome: buyers moved from Stripe to ledger, HMAC tokens generated, cohort hub HTML created.'},
+  {n:42, row:'cohort',    day:dayIndex(7,24), title:'Cohort #5 S1 prep',          tip:'Outcome: pre-work Skool + WhatsApp + email sent (Meet Your Project + tech setup + fluency intake), S1 agenda per generic template.'},
+  {n:43, row:'marketing', day:dayIndex(7,24), title:'Chiang Mai marketing wave 1', tip:'Outcome: first IG + LinkedIn + Skool posts drafted for Aug 15 pre-marketing, CMSEO speaker pitch sent (Trello dPj6EHvc). Driver: Aug 15 needs 3-wk lead.'},
+  {n:44, row:'marketing', day:dayIndex(7,25), title:'PDC Kickoff Session 1 design', tip:'Outcome: deck outline + "why I built this retreat" framing, tier 1 pricing confirmed, alumni code BUILDROOM15 activated on Stripe. Driver: Aug 15 kickoff.'},
+  {n:45, row:'ledger',    day:dayIndex(7,25), title:'GTD Denmark RSVP decision',  blocked:true, tip:'Blocked-until: Alex decision. Outcome: GO/NO-GO, application submitted if GO, MDE&rarr;CPH booked if GO, calendar reconciled. Driver: end-July deadline.'},
+  {n:46, row:'marketing', day:dayIndex(7,27), title:'Kickoff-to-cohort retro',    tip:'Outcome: marketing-tracker updated (attendees, buyers, tier, source, conversion), 1-hr Alex + Jess retro logged, v1.1 engine tweaks captured. Driver: sprint sec 12 step 6.'},
+  {n:47, row:'reactive',  day:dayIndex(7,27), title:'Contractor pay reconciliation', half:true, tip:'45-min half. Outcome: Thierry sessions counted + PayPal sent, Jess sessions counted + COP sent, Trello card updated.'},
+  {n:48, row:'marketing', day:dayIndex(7,28), title:'Expert-panel action triage', tip:'Outcome: 3 of 5 flagged assets moved to Trello with owners + deadlines (Fluency Scorecard Oct 1, guarantee stack v0, Perell essay #1). Depends on: application gate shipped Block 20.'},
+  {n:49, row:'cohort',    day:dayIndex(7,28), title:'Cohort #5 S1 final logistics', tip:'Outcome: final headcount, breakout assignments, facilitator brief (Thierry or Jess), Zoom + Drafting Table + hub verified.'},
+  {n:50, row:'cohort',    day:dayIndex(7,29), title:'Cohort #5 S1 delivery',      blocked:true, tip:'Blocked-until: cohort #5 date confirmed at TSLS. Outcome: session run per generic S1 template + mid-cohort share block spec.'},
+  {n:51, row:'cohort',    day:dayIndex(7,29), title:'Cohort #5 S1 debrief',       tip:'Outcome: 7 artifacts. Depends on: Fathom.'},
+  {n:52, row:'reactive',  day:dayIndex(7,29), title:'Reactive buffer',            tip:'Week 4 reactive buffer + any cohort delivery surprise.'},
+];
+
+// Deadlines (day index)
+const deadlines = [
+  {day:dayIndex(7,3),  label:'Muhammad DM'},
+  {day:dayIndex(7,4),  label:'RPA S4 reschedule'},
+  {day:dayIndex(7,6),  label:'F&F Mon S3'},
+  {day:dayIndex(7,7),  label:'RPA S4 + Bryce SLA'},
+  {day:dayIndex(7,15), label:'Kickoff Session'},
+  {day:dayIndex(7,29), label:'Cohort #5 prep floor'},
+];
+
+const grid = document.getElementById('gantt');
+
+// Header row
+const corner = document.createElement('div');
+corner.className = 'row-head';
+corner.style.borderBottom = '2px solid #1a1a1a';
+corner.textContent = 'Workstream';
+grid.appendChild(corner);
+
+for (let i = 0; i < 28; i++) {
+  const d = new Date(START); d.setDate(d.getDate() + i);
+  const dow = d.getDay();
+  const isWknd = (dow === 0 || dow === 6);
+  const cell = document.createElement('div');
+  cell.className = 'day-head' + (isWknd ? ' weekend' : '');
+  const weekNum = Math.floor(i / 7) + 1;
+  cell.innerHTML = `<div class="dow">${DOW[dow]}</div><div class="dnum">${d.getDate()}</div><div class="week-tag">W${weekNum}</div>`;
+  grid.appendChild(cell);
+}
+
+// Rows
+rows.forEach((row, ridx) => {
+  const head = document.createElement('div');
+  head.className = 'row-head';
+  head.innerHTML = `<span style="display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:8px; background: var(--dummy);" class="legend-swatch ${row.color}"></span> ${row.label}`;
+  // fix inline swatch
+  head.innerHTML = `<span class="legend-swatch ${row.color}" style="margin-right:8px;"></span>${row.label}`;
+  grid.appendChild(head);
+
+  for (let i = 0; i < 28; i++) {
+    const d = new Date(START); d.setDate(d.getDate() + i);
+    const isWknd = (d.getDay() === 0 || d.getDay() === 6);
+    const cell = document.createElement('div');
+    cell.className = 'cell' + (isWknd ? ' weekend' : '');
+    cell.dataset.row = row.key;
+    cell.dataset.day = i;
+    grid.appendChild(cell);
+  }
+});
+
+// Track stacking per (row, day)
+const stackMap = {};
+
+function placeBar(block) {
+  const cell = grid.querySelector(`.cell[data-row="${block.row}"][data-day="${block.day}"]`);
+  if (!cell) return;
+  const key = `${block.row}-${block.day}`;
+  const stack = stackMap[key] || 0;
+  stackMap[key] = stack + 1;
+
+  const rowDef = rows.find(r => r.key === block.row);
+  const bar = document.createElement('div');
+  bar.className = `bar ${rowDef.color} stack-${stack + 1}` + (block.half ? ' half' : '') + (block.blocked ? ' blocked' : '');
+  bar.setAttribute('data-tip', block.tip || '');
+  const tagHtml = (block.half ? '<span class="btag">H</span>' : '') + (block.blocked ? '<span class="btag">BLK</span>' : '');
+  bar.innerHTML = `<span class="bnum">B${block.n}</span> <span class="btitle">${block.title}</span>${tagHtml}`;
+  cell.appendChild(bar);
+}
+
+blocks.forEach(placeBar);
+
+// Deadline pins: overlay across gantt-wrap
+const wrap = document.querySelector('.gantt-wrap');
+const gwrapWidth = () => wrap.getBoundingClientRect().width;
+function drawDeadlines() {
+  wrap.querySelectorAll('.deadline').forEach(el => el.remove());
+  const style = getComputedStyle(grid);
+  const cols = style.gridTemplateColumns.split(' ');
+  const headW = parseFloat(cols[0]);
+  const dayW = (gwrapWidth() - headW) / 28;
+  deadlines.forEach(dl => {
+    const pin = document.createElement('div');
+    pin.className = 'deadline';
+    pin.style.left = (headW + dl.day * dayW + dayW / 2) + 'px';
+    pin.title = dl.label;
+    wrap.appendChild(pin);
+  });
+}
+drawDeadlines();
+window.addEventListener('resize', drawDeadlines);
+</script>
+</body>
+</html>
