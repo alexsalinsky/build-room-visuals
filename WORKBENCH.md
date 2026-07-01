@@ -2,6 +2,22 @@
 
 ## 2026-06-30 -- [Tool: Claude Code]
 
+**Focus:** Rewrite `minimum-tech-stack.html` to match the standing "simpler builder pre-work" rule: two branches, no comparison table.
+
+**What happened:**
+- Replaced the old ChatGPT-Plus-vs-Claude-Pro comparison page with a two-branch decision: (A) if you already use an AI coding tool, use it; (B) if not, install Codex.
+- On-page title changed to "Pick Your AI Coding Tool"; filename kept as `minimum-tech-stack.html` to preserve existing Skool and hub links.
+- Branch B includes verified install commands from `github.com/openai/codex` for Mac/Linux and Windows PowerShell, plus `brew install --cask codex` fallback.
+- Both branches converge on `bot-setup-standards.html` as the shared next step.
+- Preserved brand style (mono footer, black chip header, card treatment, mobile-first).
+
+**Decisions:**
+- [DECISION] Kept filename `minimum-tech-stack.html`. Retitling on-page only avoids breaking existing Skool posts, hub pages, and share links that already point to this URL.
+
+---
+
+## 2026-06-30 -- [Tool: Claude Code]
+
 **Focus:** Tiny follow-up to `ab08452` — surface date_captured as a labeled column in the Proof Library table view.
 
 **What happened:**

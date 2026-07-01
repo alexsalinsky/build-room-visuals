@@ -3,32 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Minimum Tech Stack — The Build Room</title>
+<title>Pick Your AI Coding Tool · The Build Room</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; line-height: 1.5; }
   .page { max-width: 880px; margin: 0 auto; padding: 56px 28px 96px; }
-  header { margin-bottom: 28px; }
+  header { margin-bottom: 32px; }
   .chip { display: inline-block; font-size: 11px; font-weight: 700; color: #888; letter-spacing: 1.6px; text-transform: uppercase; margin-bottom: 16px; }
   h1 { font-size: 44px; font-weight: 800; letter-spacing: -1.1px; line-height: 1.1; margin-bottom: 14px; }
   .sub { font-size: 19px; color: #555; line-height: 1.5; max-width: 680px; }
-  .floor { background: #1a1a1a; color: #fafafa; padding: 24px 26px; border-radius: 12px; font-size: 20px; line-height: 1.5; margin: 32px 0 36px; font-weight: 500; }
-  .floor strong { font-weight: 800; }
-  h2 { font-size: 14px; font-weight: 700; color: #888; letter-spacing: 1.6px; text-transform: uppercase; margin: 40px 0 14px; padding-bottom: 8px; border-bottom: 1.5px solid #ddd; }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
-  .card { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 22px 24px; }
-  .card .name { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
-  .card .price { font-size: 14px; color: #666; font-weight: 600; margin-bottom: 16px; }
-  .card ul { list-style: none; padding: 0; margin: 0 0 16px; }
-  .card li { font-size: 15px; line-height: 1.55; color: #333; padding-left: 18px; position: relative; margin-bottom: 6px; }
-  .card li::before { content: "•"; position: absolute; left: 4px; color: #1a1a1a; font-weight: 700; }
-  .card a.btn { display: inline-block; font-size: 14px; font-weight: 600; color: #1a1a1a; text-decoration: none; border: 1.5px solid #1a1a1a; padding: 8px 16px; border-radius: 6px; transition: all 0.15s ease; }
-  .card a.btn:hover { background: #1a1a1a; color: #fff; }
-  .why { font-size: 16px; line-height: 1.65; color: #333; }
-  .why p { margin-bottom: 12px; }
-  .why strong { font-weight: 700; color: #1a1a1a; }
-  .note { background: #fff; border-left: 4px solid #f59e0b; padding: 16px 18px; font-size: 14px; line-height: 1.55; color: #555; border-radius: 4px; margin-top: 16px; }
+  .question { background: #1a1a1a; color: #fafafa; padding: 24px 26px; border-radius: 12px; font-size: 22px; line-height: 1.4; margin: 32px 0 36px; font-weight: 700; }
+  h2 { font-size: 14px; font-weight: 700; color: #888; letter-spacing: 1.6px; text-transform: uppercase; margin: 44px 0 14px; padding-bottom: 8px; border-bottom: 1.5px solid #ddd; }
+  .branch { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 26px 28px; margin-bottom: 20px; }
+  .branch .tag { display: inline-block; background: #1a1a1a; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 1.3px; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+  .branch h3 { font-size: 24px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.3px; }
+  .branch p { font-size: 16px; color: #333; line-height: 1.6; margin-bottom: 12px; }
+  .branch p:last-child { margin-bottom: 0; }
+  .branch strong { font-weight: 700; color: #1a1a1a; }
+  .branch a { color: #1a1a1a; text-decoration: underline; }
+  .branch code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; background: #f0f0f0; padding: 1px 6px; border-radius: 3px; }
+  .tools { font-size: 15px; color: #555; margin-top: 4px; }
+  .install-steps { list-style: none; padding: 0; margin: 14px 0 4px; counter-reset: step; }
+  .install-steps li { counter-increment: step; padding: 10px 0 10px 42px; position: relative; font-size: 16px; color: #1a1a1a; border-bottom: 1px solid #eee; }
+  .install-steps li:last-child { border-bottom: 0; }
+  .install-steps li::before { content: counter(step); position: absolute; left: 0; top: 8px; width: 28px; height: 28px; background: #1a1a1a; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; }
+  .codeblock { background: #1e1e1e; color: #e5e7eb; border-radius: 8px; margin: 8px 0 4px; padding: 12px 16px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13.5px; overflow-x: auto; }
+  .next { background: #f0f7f0; border: 2px solid #16a34a; border-radius: 12px; padding: 22px 26px; margin-top: 24px; }
+  .next h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+  .next p { font-size: 16px; color: #333; line-height: 1.55; margin-bottom: 10px; }
+  .next a { color: #1a1a1a; font-weight: 700; }
   footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 13px; color: #888; text-align: center; }
 </style>
 </head>
@@ -36,59 +39,48 @@
 <div class="page">
 
   <header>
-    <div class="chip">The Build Room · Setup</div>
-    <h1>Minimum Tech Stack</h1>
-    <p class="sub">The smallest, cheapest setup that lets you actually build in the cohort. One subscription. Pick the one you'll use.</p>
+    <div class="chip">The Build Room · Pre-work</div>
+    <h1>Pick Your AI Coding Tool</h1>
+    <p class="sub">One decision. Two branches. No comparison table, no rankings. Pick your path and move on.</p>
   </header>
 
-  <div class="floor">
-    Pick one. <strong>ChatGPT Plus</strong> (includes Codex) <strong>OR Claude Pro / Max</strong> (includes Claude Code). That's the floor.
+  <div class="question">
+    Do you already use an AI coding tool?
   </div>
 
-  <h2>The Two Options</h2>
-
-  <div class="grid">
-
-    <div class="card">
-      <div class="name">ChatGPT Plus</div>
-      <div class="price">$20 / month · OpenAI</div>
-      <ul>
-        <li>Full ChatGPT (GPT-5 and beyond)</li>
-        <li>Codex CLI for building from the terminal</li>
-        <li>File uploads, image generation, voice</li>
-        <li>Custom GPTs and Projects</li>
-      </ul>
-      <a class="btn" href="https://chatgpt.com/pricing" target="_blank" rel="noopener">See pricing</a>
-    </div>
-
-    <div class="card">
-      <div class="name">Claude Pro or Max</div>
-      <div class="price">Pro $20 / month · Max from $100 · Anthropic</div>
-      <ul>
-        <li>Full Claude.ai (Sonnet, Opus)</li>
-        <li>Claude Code for building from the terminal</li>
-        <li>File uploads, Projects, MCP connectors</li>
-        <li>Max tiers give you the heavy-use ceiling</li>
-      </ul>
-      <a class="btn" href="https://www.anthropic.com/pricing" target="_blank" rel="noopener">See pricing</a>
-    </div>
-
+  <h2>Branch A</h2>
+  <div class="branch">
+    <span class="tag">YES, I ALREADY USE ONE</span>
+    <h3>Use what you have.</h3>
+    <p>If you already open <strong>Claude Code, Codex, Cursor, Aider</strong>, or any similar AI coding tool most days, that's your tool for the cohort. No switching. No new install. The discipline we teach transfers to whatever you already run.</p>
+    <p class="tools">Qualifies: Claude Code, Codex CLI, Cursor, Aider, Windsurf, Zed AI, GitHub Copilot in your editor, or anything comparable you already work in.</p>
   </div>
 
-  <h2>Why Just One</h2>
-  <div class="why">
-    <p>Each $20 subscription gives you <strong>both the chat product and a build tool</strong> wired to the same account, same model, no extra setup. You don't need both. You need the one you'll actually open every day.</p>
-    <p>If you already pay for one, that's the answer. If you've never used either, ChatGPT is the easier on-ramp; Claude is the stronger builder. Either floor gets you through the 4 weeks.</p>
+  <h2>Branch B</h2>
+  <div class="branch">
+    <span class="tag">NO, NOT YET</span>
+    <h3>Install Codex.</h3>
+    <p>Lowest-friction install for people who aren't already in an AI coding tool. Runs in your terminal, signs in with your ChatGPT account, works on Mac, Linux, and Windows.</p>
+    <ol class="install-steps">
+      <li>Open your terminal.</li>
+      <li>
+        Paste and run the install command for your OS:
+        <div class="codeblock"># Mac or Linux
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+
+# Windows (PowerShell)
+powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"</div>
+      </li>
+      <li>Run <code>codex</code> and sign in with your ChatGPT account.</li>
+    </ol>
+    <p style="margin-top:14px">Official install page: <a href="https://github.com/openai/codex" target="_blank" rel="noopener">github.com/openai/codex</a>. If <code>curl</code> fails on Mac, <code>brew install --cask codex</code> also works.</p>
   </div>
 
-  <h2>Optional Add-ons</h2>
-  <div class="why">
-    <p><strong>GitHub.</strong> Free. Where code and docs live if your build needs to outlive a single chat. Sign up at <a href="https://github.com">github.com</a>.</p>
-    <p><strong>A small server.</strong> About $10 / month on DigitalOcean or Hostinger. Only needed if your build has to run while you sleep (a scheduled job, a small site, a bot).</p>
-  </div>
-
-  <div class="note">
-    No affiliate links here. Neither OpenAI nor Anthropic runs a consumer affiliate program, so these are plain marketing pages. Click through, subscribe, come back to the cohort.
+  <h2>Both branches converge here</h2>
+  <div class="next">
+    <h3>Next: set up your bot standards.</h3>
+    <p>Whichever tool you picked, the next step is the same. Drop in the four-file rule-pack so your tool documents itself as it builds, keeps decisions out of chat threads, and starts each session warm instead of cold.</p>
+    <p><a href="https://alexsalinsky.github.io/build-room-visuals/bot-setup-standards.html">Bot Setup Standards &rarr;</a></p>
   </div>
 
   <footer>
