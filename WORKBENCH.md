@@ -1,5 +1,42 @@
 # build-room-visuals workbench
 
+## 2026-06-30 -- [Tool: Claude Code]
+
+**Focus:** Tiny follow-up to `ab08452` — surface date_captured as a labeled column in the Proof Library table view.
+
+**What happened:**
+- Renamed the existing table header for `date_captured` from "Captured" to "Date added" in `proof-library.html`. Column, sort handler, arrow indicator, and row value were already wired from the prior commit; only the label was off.
+- Card view untouched.
+
+**Decisions:**
+- [DECISION] Rename in place rather than adding a new column — `date_captured` was already the sortable column, just labeled ambiguously. Matches the card view's "Added: " prefix and the sort-select's "Date added" wording.
+
+---
+
+## 2026-06-29 -- [Tool: Claude Code]
+
+**Focus:** Add a beginner-friendly, copy-paste workspace bootstrap to the LLM Builder Best Practices file + page, anchored on a new top-level `WORKSPACE.md` router concept.
+
+**What happened:**
+- Extended `llm-builder-bps/llm-builder-bps.md` with three new sections: Install behavior now triggers a workspace bootstrap, Workspace Navigation rule (read root `WORKSPACE.md` first every session), First-time workspace setup spec (now creates 4 files: `.gitignore`, `.env`, `.env.example`, `WORKSPACE.md`).
+- "When in doubt" rule re-routed to start at root `WORKSPACE.md`.
+- Iterated `llm-builder-bps.html`: added section + styled table, swapped between "auto-runs on install" framing and "self-contained copy-paste prompt" framing twice based on feedback.
+- Final HTML ships a single fat dark prompt-box with copy button bundling install + bootstrap + WORKSPACE.md skeleton + four-doc rules + workbench format + honesty + comms + wrap rules.
+- Three commits to alexsalinsky/build-room-visuals main: `2eb6883`, `8871d37`, `c9fc080`. All pushed.
+
+**Decisions:**
+- [DECISION] Named the router `WORKSPACE.md` (tool-agnostic) instead of `CLAUDE.md` (Claude-only) so the BP file stays portable across Cursor/ChatGPT/Codex/Claude Code.
+- [DECISION] Kept the copy-paste prompt on the HTML page (reversed earlier "fold into install" decision) after Alex confirmed copy-paste is the more useful UX for cohort newcomers.
+- [DECISION] Bootstrap creates 4 files at root, not 3 — added `WORKSPACE.md` so any future LLM session has a single entry point to find the right project.
+
+**Still open:**
+- WORKSPACE.md concept is not yet tested with a real new cohort member. Worth grilling on first user.
+- Build Room landing/index may want a link to the new BP page if not already linked.
+
+**Key files:** `llm-builder-bps/llm-builder-bps.md`, `llm-builder-bps.html`
+
+---
+
 ## 2026-06-25 - F&F Thu hub fixes before S1 kickoff
 
 Pre-S1 audit-driven pass on `facilitator/ff-hub.html`. Same hub serves Mon + Thu cohorts; Thu S1 starts 15:00 COT today and hub was pointing builders at Mon ledger.
