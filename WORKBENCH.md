@@ -1,5 +1,24 @@
 # build-room-visuals workbench
 
+## 2026-07-01 -- [Tool: Claude Code]
+
+**Focus:** Ship IG carousel announcing upcoming Build Room events (Jul-Nov 2026) for @the.build.room.
+
+**What happened:**
+- Built `ig/2026-07-01-upcoming-events-carousel.html`: 9 slides, 1080x1350, brand palette (sand + forest with sage/tangerine/grape/blueberry accents per event type), print-friendly, html-to-image export button.
+- Slides: Intro / Jul 15 Kickoff Session / Late July Cohort / Oct 12-16 PDC Retreat / Oct 22-25 DCBKK on-the-ground / Nov 9-13 CMSEO on-the-ground / Nov 14-18 Chiang Mai Retreat / CTA / Thesis close (verbatim).
+- Wrote paired caption + hashtag block at `ig/2026-07-01-upcoming-events-caption.md`. Alex voice: short sentences, fragments, direct 2nd person, no em dashes, no "drop a comment" prompts.
+- Verified dates from `INDEX.md`, `marketing-sprint-v1.md`, `DECISIONS.md`, `jess-pack`. Dropped NC17, London, DCMex from the deck (not Build Room products or not yet public).
+
+**Decisions:**
+- [DECISION] Treated DCBKK and CMSEO as "on the ground" not "speaking" -- speaker slots are pitched, not confirmed, per source docs. Avoids overclaiming.
+- [DECISION] Kept the two Chiang Mai retreat concepts as ONE event (Nov 14-18) per marketing-sprint-v1 section 5 + DECISIONS 2026-06-28. Older Nov 16-20 date in memory is stale.
+- [DECISION] Skool URL used as CTA anchor on Slide 8 since no confirmed public Luma URL for Jul 15 was in sources; caption notes Alex to update link-in-bio to Kickoff RSVP.
+
+**Next up:** Alex uploads to @the.build.room; swap link-in-bio to Kickoff RSVP once URL locked.
+
+---
+
 ## 2026-06-30 -- [Tool: Claude Code]
 
 **Focus:** Rewrite `minimum-tech-stack.html` to match the standing "simpler builder pre-work" rule: two branches, no comparison table.
