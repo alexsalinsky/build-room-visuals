@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proof Library — The Build Room</title>
+<title>Proof Library · The Build Room</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
@@ -29,6 +29,10 @@
 
   .stats-row { display: flex; justify-content: space-between; align-items: center; margin: 14px 0 22px; gap: 12px; flex-wrap: wrap; }
   .stats { font-size: 13px; color: #666; }
+  .stats-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .sort-control { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #666; }
+  .sort-control select { border: 1.5px solid #1a1a1a; border-radius: 6px; padding: 5px 8px; font-size: 12px; background: #fff; font-family: inherit; cursor: pointer; }
+  .sort-control label { font-size: 11px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; }
   .view-toggle { display: inline-flex; border: 1.5px solid #1a1a1a; border-radius: 6px; overflow: hidden; }
   .view-toggle button { background: #fff; color: #1a1a1a; border: none; padding: 6px 14px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; font-family: inherit; }
   .view-toggle button.active { background: #1a1a1a; color: #fff; }
@@ -70,6 +74,8 @@
 
   .card-excerpt { font-size: 14px; line-height: 1.5; color: #444; font-style: italic; }
   .card-source { font-size: 12px; color: #888; margin-top: auto; }
+  .card-added { font-size: 11px; color: #999; letter-spacing: 0.3px; }
+  .card:hover .card-added { color: #bbb; }
 
   .empty { text-align: center; padding: 60px 20px; color: #888; font-size: 15px; }
 
@@ -125,9 +131,21 @@
 
   <div class="stats-row">
     <div class="stats" id="stats">Loading...</div>
+    <div class="stats-right">
+    <div class="sort-control">
+      <label for="sort-select">Sort</label>
+      <select id="sort-select">
+        <option value="default">Featured first</option>
+        <option value="date_captured-desc" selected>Date added (newest)</option>
+        <option value="date_captured-asc">Date added (oldest)</option>
+        <option value="title-asc">Title (A-Z)</option>
+        <option value="title-desc">Title (Z-A)</option>
+      </select>
+    </div>
     <div class="view-toggle" role="group" aria-label="View mode">
       <button id="view-cards" class="active" type="button">Cards</button>
       <button id="view-table" type="button">Table</button>
+    </div>
     </div>
   </div>
 
@@ -185,8 +203,9 @@
     status: null,
     search: '',
     view: 'cards',
-    sortKey: null,
-    sortDir: 'asc'
+    sortKey: 'date_captured',
+    sortDir: 'desc',
+    sortMode: 'date_captured-desc'
   };
 
   function el(tag, attrs, children) {
@@ -282,6 +301,10 @@
       card.appendChild(el('div', { className: 'card-source' }, src));
     }
 
+    if (entry.date_captured) {
+      card.appendChild(el('div', { className: 'card-added' }, 'Added: ' + entry.date_captured));
+    }
+
     return card;
   }
 
@@ -358,7 +381,15 @@
   }
 
   function sortEntries(arr) {
-    if (!state.sortKey) return arr;
+    if (state.sortMode === 'default' || !state.sortKey) {
+      const order = { featured: 0, live: 1, 'cleared-for-public': 2, raw: 3, redacted: 4 };
+      return arr.slice().sort((a, b) => {
+        const sa = order[a.status] ?? 5;
+        const sb = order[b.status] ?? 5;
+        if (sa !== sb) return sa - sb;
+        return (b.date_captured || '').localeCompare(a.date_captured || '');
+      });
+    }
     const key = state.sortKey;
     const dir = state.sortDir === 'asc' ? 1 : -1;
     return arr.slice().sort((a, b) => {
@@ -401,7 +432,7 @@
     const stats = document.getElementById('stats');
 
     const filtered = state.entries.filter(matchesFilters);
-    const sorted = state.view === 'table' ? sortEntries(filtered) : filtered;
+    const sorted = sortEntries(filtered);
     const total = state.entries.length;
 
     stats.textContent = filtered.length === total
@@ -465,26 +496,37 @@
     document.querySelectorAll('th[data-sort]').forEach(th => {
       th.onclick = () => {
         const key = th.dataset.sort;
-        if (state.sortKey === key) {
+        if (state.sortKey === key && state.sortMode !== 'default') {
           state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
         } else {
           state.sortKey = key;
           state.sortDir = 'asc';
         }
+        state.sortMode = key + '-' + state.sortDir;
+        const sel = document.getElementById('sort-select');
+        const match = Array.from(sel.options).find(o => o.value === state.sortMode);
+        sel.value = match ? state.sortMode : '';
         render();
       };
+    });
+
+    document.getElementById('sort-select').addEventListener('change', e => {
+      const val = e.target.value;
+      state.sortMode = val;
+      if (val === 'default') {
+        state.sortKey = null;
+      } else {
+        const idx = val.lastIndexOf('-');
+        state.sortKey = val.slice(0, idx);
+        state.sortDir = val.slice(idx + 1);
+      }
+      render();
     });
 
     fetch('proof-library.json?v=' + Date.now())
       .then(r => r.json())
       .then(data => {
-        state.entries = (data.entries || []).slice().sort((a, b) => {
-          const order = { featured: 0, live: 1, 'cleared-for-public': 2, raw: 3, redacted: 4 };
-          const sa = order[a.status] ?? 5;
-          const sb = order[b.status] ?? 5;
-          if (sa !== sb) return sa - sb;
-          return (b.date_captured || '').localeCompare(a.date_captured || '');
-        });
+        state.entries = (data.entries || []).slice();
         render();
       })
       .catch(err => {

@@ -1,6 +1,6 @@
 # Proof Library — Schema
 
-Last updated: 2026-06-23
+Last updated: 2026-06-30
 
 Single source of truth for the structure of `proof-library.json`. The static page at `proof-library.html` reads this JSON client-side. Anything that writes to the JSON (skills, workers, manual edits) MUST conform to the entry shape below.
 
@@ -26,7 +26,7 @@ Each entry is a JSON object with these fields. Required unless marked optional.
 | `timestamp` | string OR null | yes | `HH:MM:SS` or `MM:SS` in the source transcript or video. Null if not applicable. |
 | `tags` | array of strings | yes | Free-form. Examples: `first-brick`, `thesis`, `breakthrough`, `pivot`, `peer-teaching`, `live-demo`, `mid-session-extension`, `recovery`. Empty array allowed. |
 | `status` | enum | yes | One of: `raw`, `cleared-for-public`, `live`, `featured`, `redacted`. Default is `raw`. See lifecycle below. |
-| `date_captured` | string (YYYY-MM-DD) | yes | Date this entry was added to the library. |
+| `date_captured` | string (YYYY-MM-DD) | yes | Date this entry was added to the library. Shown on each card as "Added: YYYY-MM-DD" and available as a sort option in the UI (default sort is Date added, newest first). |
 | `date_cleared` | string OR null | yes | Date status moved past `raw`. Null until that happens. |
 | `notes` | string | optional | Internal-use free-form. TODO markers, permission asks pending, sensitivity flags. |
 
