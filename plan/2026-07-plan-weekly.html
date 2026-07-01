@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Room Plan · Jul 2-29 · Weekly Buckets</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  .page { max-width: 1400px; margin: 0 auto; padding: 40px 28px 80px; }
+  header { margin-bottom: 20px; }
+  .cohort-pill { display: inline-block; background: #1a1a1a; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 1px; margin-bottom: 14px; }
+  h1 { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .sub { font-size: 15px; color: #666; }
+  .meta-line { font-size: 12px; color: #888; margin-top: 6px; }
+  .meta-line a { color: #1a1a1a; }
+
+  .nav-bar { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 28px; }
+  .nav-link { display: inline-block; background: #fff; border: 2px solid #1a1a1a; padding: 8px 14px; border-radius: 8px; text-decoration: none; color: #1a1a1a; font-weight: 700; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .nav-link.active { background: #1a1a1a; color: #fff; }
+  .nav-link:hover { background: #1a1a1a; color: #fff; }
+  .nav-link.ref { border-color: #999; color: #666; font-weight: 600; }
+
+  h2 { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 1.5px solid #ddd; }
+
+  .week-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .week-card { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+  .week-header { padding: 16px 20px; background: #1a1a1a; color: #fff; }
+  .week-header .wtag { font-size: 11px; font-weight: 800; letter-spacing: 2px; opacity: 0.7; }
+  .week-header .wdates { font-size: 13px; font-weight: 700; margin-top: 2px; opacity: 0.85; }
+  .week-header .wtheme { font-size: 15px; font-weight: 700; margin-top: 8px; line-height: 1.35; }
+
+  .milestones { padding: 12px 20px; background: #fff8e1; border-bottom: 1.5px solid #f5d76e; font-size: 12px; }
+  .milestones strong { color: #7b5c00; letter-spacing: 0.5px; }
+  .milestones ul { list-style: none; padding: 0; margin: 6px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .milestones li { padding: 3px 8px; background: #fff; border: 1px solid #f5d76e; border-radius: 12px; font-size: 11px; font-weight: 600; color: #5a4400; }
+
+  .lane { padding: 12px 20px; border-bottom: 1px solid #eee; }
+  .lane:last-child { border-bottom: none; }
+  .lane-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; cursor: pointer; user-select: none; }
+  .lane-swatch { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+  .lane-name { font-weight: 700; font-size: 13px; flex: 1; }
+  .lane-blocks { font-size: 11px; font-weight: 800; color: #555; background: #f0f0f0; padding: 3px 8px; border-radius: 10px; letter-spacing: 0.5px; }
+  .lane-blocks.zero { color: #aaa; background: #f7f7f7; }
+  .lane-caret { font-size: 12px; color: #888; }
+  .lane.collapsed .lane-caret { transform: rotate(-90deg); }
+  .lane-body { font-size: 12.5px; line-height: 1.45; color: #333; }
+  .lane.collapsed .lane-body { display: none; }
+  .lane-body ul { list-style: none; padding: 0; margin: 0; }
+  .lane-body li { padding: 4px 0 4px 16px; position: relative; }
+  .lane-body li::before { content: ""; position: absolute; left: 4px; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: #bbb; }
+  .lane-body li.blocked { color: #b3641a; }
+  .lane-body li.blocked::before { background: #d68a3a; }
+  .lane-body .blocktag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #b3641a; margin-left: 6px; }
+
+  /* Theme colors */
+  .theme-curriculum { background: #2b6cb0; }
+  .theme-marketing  { background: #b7791f; }
+  .theme-retreat    { background: #6b46c1; }
+  .theme-travel     { background: #0f766e; }
+  .theme-ops        { background: #2f855a; }
+  .theme-review     { background: #4a5568; }
+  .theme-grab       { background: #8a94a6; }
+  .theme-focus      { background: #d62828; }
+
+  .allocation-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin: 4px 20px 0; background: #f0f0f0; }
+  .allocation-bar > div { height: 100%; }
+
+  .budget-line { padding: 8px 20px 14px; font-size: 11px; color: #666; display: flex; justify-content: space-between; align-items: center; }
+  .budget-line .total { font-weight: 800; color: #1a1a1a; letter-spacing: 0.5px; }
+
+  footer { margin-top: 36px; font-size: 12px; color: #888; text-align: center; }
+
+  @media (max-width: 1000px) {
+    .week-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+  }
+
+  @media print {
+    body { background: #fff; }
+    .nav-bar { display: none; }
+    .week-card { break-inside: avoid; page-break-inside: avoid; }
+    .lane.collapsed .lane-body { display: block !important; }
+    .lane-caret { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="cohort-pill">BUILD ROOM PLAN · JUL 2-29 · ALTITUDE 2 · WEEKLY</div>
+    <h1>Weekly Bucket View</h1>
+    <p class="sub">Daily working surface. 6 themed buckets per week, rolling to-do lists, block allocation, grab-bag lane.</p>
+    <p class="meta-line">Last updated: 2026-07-01 · Source: <a href="../../brain/the-build-room/plans/2026-07-02-4week-plan-multi-altitude.md">multi-altitude plan doc</a></p>
+  </header>
+
+  <div class="nav-bar">
+    <a class="nav-link" href="2026-07-plan-map.html">Altitude 1 · Map</a>
+    <a class="nav-link active" href="2026-07-plan-weekly.html">Altitude 2 · Weekly</a>
+    <a class="nav-link" href="2026-07-plan-block.html">Altitude 3 · Block</a>
+    <a class="nav-link ref" href="2026-07-plan-gantt.html">Reference · Linear gantt</a>
+    <a class="nav-link ref" href="2026-07-plan-calendar.html">Reference · Linear calendar</a>
+  </div>
+
+  <div class="week-grid">
+
+    <!-- WEEK 1 -->
+    <div class="week-card">
+      <div class="week-header">
+        <div class="wtag">Week 1</div>
+        <div class="wdates">Jul 2 - Jul 8</div>
+        <div class="wtheme">Delivery + 7-day SLAs. Three sessions land. Bryce testimonial clock. Muhammad DM window.</div>
+      </div>
+      <div class="allocation-bar">
+        <div class="theme-curriculum" style="flex: 7"></div>
+        <div class="theme-marketing"   style="flex: 2"></div>
+        <div class="theme-ops"         style="flex: 1"></div>
+        <div class="theme-review"      style="flex: 1"></div>
+        <div class="theme-grab"        style="flex: 1"></div>
+        <div class="theme-focus"       style="flex: 1"></div>
+      </div>
+      <div class="budget-line"><span>Budget: 13 blocks (~20 hrs)</span><span class="total">13 / 13</span></div>
+
+      <div class="milestones">
+        <strong>MILESTONES LANDING</strong>
+        <ul><li>F&amp;F Thu S2 delivered</li><li>F&amp;F Mon S3 delivered</li><li>RPA cohort closed</li><li>Muhammad DM sent</li><li>Bryce testimonial kickoff</li></ul>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-curriculum"></div><div class="lane-name">Curriculum + Delivery</div><div class="lane-blocks">7 blocks</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>F&amp;F Thu S2 final prep — Zoom + Drafting Table URLs, Skool/WhatsApp reminders, Stu + Andrea onboarding note to Thierry</li>
+          <li>F&amp;F Thu S2 delivery (Jul 2, 15:00)</li>
+          <li>F&amp;F Thu S2 debrief — <code>build-room-debrief</code> skill, 7 artifacts</li>
+          <li>F&amp;F Mon S3 prep + ledger walk (Mode A) — 19 builders, top 8, flag Lina/Angie/Marie catch-up</li>
+          <li>F&amp;F Mon S3 final prep — S3 "Lock the Demo" frame + 3 mid-cohort share slots pre-nominated</li>
+          <li>F&amp;F Mon S3 delivery (Jul 6, 09:00) + debrief</li>
+          <li class="blocked">RPA S4 reschedule decision + logistics <span class="blocktag">blocked · Ginger visa</span></li>
+          <li class="blocked">RPA S4 delivery (Jul 7, 10:00) <span class="blocktag">blocked · reschedule outcome</span></li>
+          <li>RPA S4 debrief + cohort close-out — post-cohort bundle draft + Ginger cohort-wrap + Jessica coach handoff</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-marketing"></div><div class="lane-name">Marketing + Proof</div><div class="lane-blocks">2 blocks</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Bryce testimonial capture kickoff — WhatsApp + email, 3 asks (video / Clutch / LinkedIn recommendation), Calendly attached</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-retreat"></div><div class="lane-name">Retreat Logistics</div><div class="lane-blocks zero">0 blocks</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul><li style="color:#aaa">Deferred to Week 3.</li></ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-travel"></div><div class="lane-name">Travel Planning</div><div class="lane-blocks zero">0 blocks</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul><li style="color:#aaa">Deferred.</li></ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-ops"></div><div class="lane-name">Ops + Ledger + Money</div><div class="lane-blocks">1 block</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Contractor pay logged per session — Thierry $50 x3, Jess 100k COP x3</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-review"></div><div class="lane-name">Weekly Review + Planning</div><div class="lane-blocks">1 block</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Sunday scrum (Sun Jul 5 or 6) — lock Week 2 buckets</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-grab"></div><div class="lane-name">Grab-bag</div><div class="lane-blocks">1 block</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Muhammad DM (RPA absent, window closes Fri Jul 3, ~15 min)</li>
+          <li>Spillover from delivery days</li>
+          <li>Ad-hoc DMs / comms</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-focus"></div><div class="lane-name">Focus block</div><div class="lane-blocks">1 slot</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Reserved: RPA reschedule call with Ginger OR Bryce testimonial shoot if he responds fast</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- WEEK 2 -->
+    <div class="week-card">
+      <div class="week-header">
+        <div class="wtag">Week 2</div>
+        <div class="wdates">Jul 9 - Jul 15</div>
+        <div class="wtheme">Kickoff Session launch commit. Busiest week. Two deliveries + the Jul 15 event.</div>
+      </div>
+      <div class="allocation-bar">
+        <div class="theme-curriculum" style="flex: 5"></div>
+        <div class="theme-marketing"   style="flex: 5"></div>
+        <div class="theme-ops"         style="flex: 1"></div>
+        <div class="theme-review"      style="flex: 1"></div>
+        <div class="theme-grab"        style="flex: 1"></div>
+      </div>
+      <div class="budget-line"><span>Budget: 13 blocks (~20 hrs)</span><span class="total">13 / 13</span></div>
+
+      <div class="milestones">
+        <strong>MILESTONES LANDING</strong>
+        <ul><li>F&amp;F Thu S3 delivered</li><li>F&amp;F Mon S4 Demo Day + closed</li><li>Kickoff Session delivered</li><li>Application gate live</li></ul>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-curriculum"></div><div class="lane-name">Curriculum + Delivery</div><div class="lane-blocks">5 blocks</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>F&amp;F Thu S3 prep + ledger walk — Proposals locked, Lock the Demo, mid-cohort share slots</li>
+          <li>F&amp;F Thu S3 delivery (Jul 9, 15:00) + debrief</li>
+          <li>F&amp;F Mon S4 Demo Day prep — DBALP template, two-award peer-vote, CEO-first, non-skippable queue, ceremony script</li>
+          <li>F&amp;F Mon S4 Demo Day delivery (Jul 13, 09:00)</li>
+          <li>F&amp;F Mon S4 debrief + cohort close-out — 7 artifacts + post-cohort bundle draft, Alex review gate</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-marketing"></div><div class="lane-name">Marketing + Proof</div><div class="lane-blocks">5 blocks</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Kickoff Session deck build (Jul 15) — generic template + F&amp;F info-session lessons, thesis verbatim, no black-box, no "drop in chat"</li>
+          <li>Kickoff Session marketing push — WhatsApp broadcast, IG, LinkedIn cross-post, 10-15 warm DMs</li>
+          <li>Application gate build (Wes Kao rec) — 3-5 question Tally form gating Stripe link</li>
+          <li class="blocked">Bryce testimonial shoot / capture (recovery window) <span class="blocktag">blocked · Bryce response</span></li>
+          <li>Kickoff Session dress rehearsal + final logistics — deck walk, Zoom test, reminders, Stripe test</li>
+          <li>Kickoff Session delivery (Jul 15) + capture — attendee count, Stripe link once, application links</li>
+          <li>Kickoff Session follow-up (within 24h) — personal replies to applications + DMs</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-retreat"></div><div class="lane-name">Retreat Logistics</div><div class="lane-blocks zero">0 blocks</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul><li style="color:#aaa">Kicks Week 3.</li></ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-travel"></div><div class="lane-name">Travel Planning</div><div class="lane-blocks zero">0 blocks</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul><li style="color:#aaa">Deferred.</li></ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-ops"></div><div class="lane-name">Ops + Ledger + Money</div><div class="lane-blocks">1 block</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Contractor pay logged per session</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-review"></div><div class="lane-name">Weekly Review + Planning</div><div class="lane-blocks">1 block</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Sunday scrum (Sun Jul 12) — Kickoff week execution plan</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-grab"></div><div class="lane-name">Grab-bag</div><div class="lane-blocks">1 block</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Jess IG cross-post decision (parked deadline Jul 10)</li>
+          <li>Comms spillover</li>
+          <li>Any post-cohort-close builder DMs</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- WEEK 3 -->
+    <div class="week-card">
+      <div class="week-header">
+        <div class="wtag">Week 3</div>
+        <div class="wdates">Jul 16 - Jul 22</div>
+        <div class="wtheme">Post-cohort proof + retreat marketing kickoff. Case studies, LinkedIn article, Chiang Mai + PDC pre-marketing, TSLS.</div>
+      </div>
+      <div class="allocation-bar">
+        <div class="theme-curriculum" style="flex: 4"></div>
+        <div class="theme-marketing"   style="flex: 4"></div>
+        <div class="theme-retreat"     style="flex: 2"></div>
+        <div class="theme-ops"         style="flex: 1"></div>
+        <div class="theme-review"      style="flex: 1"></div>
+        <div class="theme-grab"        style="flex: 1"></div>
+      </div>
+      <div class="budget-line"><span>Budget: 13 blocks (~20 hrs)</span><span class="total">13 / 13</span></div>
+
+      <div class="milestones">
+        <strong>MILESTONES LANDING</strong>
+        <ul><li>F&amp;F Thu S4 Demo + closed</li><li>Post-cohort bundles sent</li><li>LinkedIn article published</li><li>Chiang Mai launch commit</li><li>PDC pre-marketing kicked</li><li>TSLS delivered</li><li>Ledger schema Part 1</li></ul>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-curriculum"></div><div class="lane-name">Curriculum + Delivery</div><div class="lane-blocks">4 blocks</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>F&amp;F Thu S4 Demo Day prep — DBALP template, ceremony script, roster verified</li>
+          <li>F&amp;F Thu S4 delivery (Jul 16, 15:00) + debrief + close-out</li>
+          <li>TSLS design + prep — agenda template per marketing-sprint sec 2a, Skool announcement, Zoom scheduled</li>
+          <li>TSLS delivery (~Jul 22)</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-marketing"></div><div class="lane-name">Marketing + Proof</div><div class="lane-blocks">4 blocks</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li class="blocked">Post-cohort follow-up bundles send (DBALP + F&amp;F Mon + F&amp;F Thu) — personalized per builder <span class="blocktag">blocked · Alex review gate</span></li>
+          <li>Case-study one-pagers — DBALP Bryce/pitchypr.com live + F&amp;F winning builder (draft-status pending permission)</li>
+          <li>Permission asks for raw-status proof-library entries — Kate coolest AI, Kandice 35hr/mo, Chanel, F&amp;F winners</li>
+          <li>LinkedIn "Build with AI" article publish — Kickoff Session CTA embedded</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-retreat"></div><div class="lane-name">Retreat Logistics</div><div class="lane-blocks">2 blocks</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Chiang Mai marketing sprint launch — venue research folder, pricing tier confirmed, CMSEO organizer outreach draft</li>
+          <li class="blocked">PDC pre-marketing kick + Fiesta Inn Round 2 — venue photos, dietary form, Fiesta Inn Round 2 message <span class="blocktag">blocked · Alex sends Fiesta Inn reply</span></li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-travel"></div><div class="lane-name">Travel Planning</div><div class="lane-blocks zero">0 blocks</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul><li style="color:#aaa">Denmark decision moves to Week 4.</li></ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-ops"></div><div class="lane-name">Ops + Ledger + Money</div><div class="lane-blocks">1 block</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Cohort ledger schema standardization Part 1 — canonical template, DBALP + F&amp;F Thu verified full-schema, NEW-COHORT-CHECKLIST step 8 updated</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-review"></div><div class="lane-name">Weekly Review + Planning</div><div class="lane-blocks">1 block</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Sunday scrum (Sun Jul 19) — retreat launch + Cohort #5 spin-up prep</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-grab"></div><div class="lane-name">Grab-bag</div><div class="lane-blocks">1 block</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Post-TSLS follow-up</li>
+          <li>Comms spillover</li>
+          <li>Reactive buffer</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- WEEK 4 -->
+    <div class="week-card">
+      <div class="week-header">
+        <div class="wtag">Week 4</div>
+        <div class="wdates">Jul 23 - Jul 29</div>
+        <div class="wtheme">Standardize + spin up Cohort #5. Ledger schema locked. Roster + Drafting Table live. S1 delivered.</div>
+      </div>
+      <div class="allocation-bar">
+        <div class="theme-curriculum" style="flex: 4"></div>
+        <div class="theme-marketing"   style="flex: 1"></div>
+        <div class="theme-retreat"     style="flex: 3"></div>
+        <div class="theme-travel"      style="flex: 1"></div>
+        <div class="theme-ops"         style="flex: 2"></div>
+        <div class="theme-review"      style="flex: 1"></div>
+        <div class="theme-grab"        style="flex: 1"></div>
+      </div>
+      <div class="budget-line"><span>Budget: 13 blocks (~20 hrs)</span><span class="total">13 / 13</span></div>
+
+      <div class="milestones">
+        <strong>MILESTONES LANDING</strong>
+        <ul><li>Ledger schema standardized (all cohorts)</li><li>Cohort #5 spun up</li><li>CMSEO speaker pitch sent</li><li>GTD Denmark GO/NO-GO</li><li>July launch retro</li><li>Expert-panel Q3 assets triaged</li><li>Cohort #5 S1 delivered</li></ul>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-curriculum"></div><div class="lane-name">Curriculum + Delivery</div><div class="lane-blocks">4 blocks</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Cohort #5 S1 prep — pre-work Skool + WhatsApp + email (Meet Your Project, tech setup, fluency intake), S1 agenda per generic template</li>
+          <li>Cohort #5 S1 final logistics — final headcount, breakouts, facilitator brief, Zoom + Drafting Table + hub verified</li>
+          <li class="blocked">Cohort #5 S1 delivery (~Jul 29) <span class="blocktag">blocked · date confirmed at TSLS</span></li>
+          <li>Cohort #5 S1 debrief — 7 artifacts</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-marketing"></div><div class="lane-name">Marketing + Proof</div><div class="lane-blocks">1 block</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Kickoff-to-cohort funnel retro — marketing-tracker updated (attendees, buyers, tier, source, conversion), 1-hr Alex + Jess retro, v1.1 engine tweaks captured</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-retreat"></div><div class="lane-name">Retreat Logistics</div><div class="lane-blocks">3 blocks</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Chiang Mai marketing wave 1 assets — first IG + LinkedIn + Skool posts drafted for Aug 15 window, CMSEO speaker pitch personalized + sent (Trello dPj6EHvc)</li>
+          <li>PDC retreat Kickoff Session 1 design (~Aug 15) — deck outline + "why I built this retreat" framing, tier 1 pricing, alumni discount BUILDROOM15 activated on Stripe</li>
+          <li>Expert-panel action queue triage — AI Fluency Scorecard target Oct 1, written guarantee stack v0, Perell bi-weekly essay #1</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-travel"></div><div class="lane-name">Travel Planning</div><div class="lane-blocks">1 block</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li class="blocked">GTD Denmark RSVP decision — GO/NO-GO, application submitted if GO, MDE→CPH flight booked, calendar reconciled <span class="blocktag">blocked · Alex decision</span></li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-ops"></div><div class="lane-name">Ops + Ledger + Money</div><div class="lane-blocks">2 blocks</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Cohort ledger schema standardization Part 2 — RPA + F&amp;F Mon migrated, Apps Script COHORT_MAP + Drafting Table config for cohort #5</li>
+          <li>Cohort #5 roster + Drafting Table setup — paid buyers from Stripe to ledger, per-builder HMAC tokens + emails, cohort hub HTML created</li>
+          <li>Contractor pay reconciliation July — Thierry PayPal, Jess COP, Trello card <code>6a3ae3647411e7d5f2aa537a</code> updated</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-review"></div><div class="lane-name">Weekly Review + Planning</div><div class="lane-blocks">1 block</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Sunday scrum (Sun Jul 26) — retro + August plan</li>
+        </ul></div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head"><div class="lane-swatch theme-grab"></div><div class="lane-name">Grab-bag</div><div class="lane-blocks">1 block</div><div class="lane-caret">▾</div></div>
+        <div class="lane-body"><ul>
+          <li>Reactive buffer</li>
+          <li>Spillover</li>
+          <li>Any cohort delivery surprises</li>
+        </ul></div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>Alex Salinsky · The Build Room</footer>
+</div>
+
+<script>
+// Lane collapse toggle
+document.querySelectorAll('.lane-head').forEach(h => {
+  h.addEventListener('click', () => h.parentElement.classList.toggle('collapsed'));
+});
+</script>
+</body>
+</html>

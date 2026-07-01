@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Room Plan · Jul 2-29 · Tactical Block</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  .page { max-width: 1000px; margin: 0 auto; padding: 40px 28px 80px; }
+  header { margin-bottom: 20px; }
+  .cohort-pill { display: inline-block; background: #1a1a1a; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 1px; margin-bottom: 14px; }
+  h1 { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .sub { font-size: 15px; color: #666; }
+  .meta-line { font-size: 12px; color: #888; margin-top: 6px; }
+  .meta-line a { color: #1a1a1a; }
+
+  .nav-bar { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 28px; }
+  .nav-link { display: inline-block; background: #fff; border: 2px solid #1a1a1a; padding: 8px 14px; border-radius: 8px; text-decoration: none; color: #1a1a1a; font-weight: 700; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .nav-link.active { background: #1a1a1a; color: #fff; }
+  .nav-link:hover { background: #1a1a1a; color: #fff; }
+  .nav-link.ref { border-color: #999; color: #666; font-weight: 600; }
+
+  h2 { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin: 32px 0 14px; padding-bottom: 6px; border-bottom: 1.5px solid #ddd; }
+
+  .block-card { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 12px; overflow: hidden; margin-bottom: 22px; }
+  .block-head { padding: 18px 22px; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; border-bottom: 1.5px solid #eee; }
+  .block-head.tpl { background: #f4f4f4; }
+  .block-head .lhs .btime { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+  .block-head .lhs .bmeta { font-size: 12px; color: #666; font-weight: 600; letter-spacing: 0.5px; }
+  .block-head .rhs { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+  .theme-tag { display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 800; color: #fff; letter-spacing: 1px; text-transform: uppercase; }
+  .shape-tag { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; background: #fff; border: 1.5px solid #333; color: #333; }
+  .shape-tag.focus { border-color: #d62828; color: #d62828; }
+
+  .block-body { padding: 18px 22px; }
+  .block-body h3 { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #888; margin-bottom: 10px; font-weight: 800; }
+  .task-list { list-style: none; padding: 0; margin: 0 0 18px; }
+  .task-list li { padding: 8px 0; border-bottom: 1px dashed #eee; display: grid; grid-template-columns: 60px 1fr; gap: 14px; align-items: baseline; font-size: 13.5px; line-height: 1.4; }
+  .task-list li:last-child { border-bottom: none; }
+  .task-list .dur { font-size: 11px; font-weight: 800; color: #b7791f; background: #fff7e6; padding: 3px 8px; border-radius: 10px; text-align: center; letter-spacing: 0.5px; }
+  .task-list .task { color: #1a1a1a; }
+  .task-list .task .outcome { display: block; font-size: 12px; color: #666; font-weight: 500; margin-top: 2px; }
+
+  .done-line { padding: 12px 16px; background: #ebf5ec; border: 1.5px solid #2f855a; border-radius: 8px; font-size: 13.5px; color: #1a3a1e; }
+  .done-line strong { color: #2f855a; letter-spacing: 0.5px; }
+  .blocked-line { margin-top: 10px; padding: 10px 14px; background: #fff5eb; border-left: 4px solid #b3641a; border-radius: 4px; font-size: 12.5px; color: #6a3d0e; }
+  .blocked-line strong { color: #b3641a; letter-spacing: 0.5px; }
+
+  .theme-curriculum { background: #2b6cb0; }
+  .theme-marketing  { background: #b7791f; }
+  .theme-retreat    { background: #6b46c1; }
+  .theme-travel     { background: #0f766e; }
+  .theme-ops        { background: #2f855a; }
+  .theme-review     { background: #4a5568; }
+  .theme-grab       { background: #8a94a6; }
+
+  .template-note { padding: 14px 18px; background: #fff8e1; border: 1.5px solid #f5d76e; border-radius: 8px; font-size: 12.5px; color: #5a4400; margin-bottom: 22px; line-height: 1.5; }
+  .template-note strong { color: #7b5c00; letter-spacing: 0.5px; }
+
+  .rules { background: #fff; border: 1.5px solid #ddd; border-radius: 8px; padding: 16px 20px; font-size: 13px; color: #333; margin-top: 20px; }
+  .rules ul { padding-left: 20px; }
+  .rules li { padding: 3px 0; }
+
+  footer { margin-top: 36px; font-size: 12px; color: #888; text-align: center; }
+
+  @media print {
+    body { background: #fff; }
+    .nav-bar { display: none; }
+    .block-card { break-inside: avoid; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="cohort-pill">BUILD ROOM PLAN · JUL 2-29 · ALTITUDE 3 · BLOCK</div>
+    <h1>Tactical Block View</h1>
+    <p class="sub">When you open a specific 90-min block: theme, task list, durations, definition of done.</p>
+    <p class="meta-line">Last updated: 2026-07-01 · Source: <a href="../../brain/the-build-room/plans/2026-07-02-4week-plan-multi-altitude.md">multi-altitude plan doc</a></p>
+  </header>
+
+  <div class="nav-bar">
+    <a class="nav-link" href="2026-07-plan-map.html">Altitude 1 · Map</a>
+    <a class="nav-link" href="2026-07-plan-weekly.html">Altitude 2 · Weekly</a>
+    <a class="nav-link active" href="2026-07-plan-block.html">Altitude 3 · Block</a>
+    <a class="nav-link ref" href="2026-07-plan-gantt.html">Reference · Linear gantt</a>
+    <a class="nav-link ref" href="2026-07-plan-calendar.html">Reference · Linear calendar</a>
+  </div>
+
+  <div class="template-note">
+    <strong>HOW TO USE THIS</strong><br>
+    Open a block. Pick 1-6 tasks from the theme's rolling to-do list (Altitude 2). Sum to ~90 min. Write one sentence for "done." Execute. Cross off. If you don't finish, tasks roll to the next block of that theme, not to another theme.
+  </div>
+
+  <h2>Block template</h2>
+  <div class="block-card">
+    <div class="block-head tpl">
+      <div class="lhs">
+        <div class="btime">[Day + time]</div>
+        <div class="bmeta">90 MIN · [BUCKET or FOCUS]</div>
+      </div>
+      <div class="rhs">
+        <span class="theme-tag" style="background:#888;">[Theme]</span>
+        <span class="shape-tag">[Shape]</span>
+      </div>
+    </div>
+    <div class="block-body">
+      <h3>Tasks (max 6 bucket / 1 focus)</h3>
+      <ul class="task-list">
+        <li><span class="dur">30 min</span><span class="task">[Task name] <span class="outcome">One sentence outcome.</span></span></li>
+        <li><span class="dur">15 min</span><span class="task">[Task name] <span class="outcome">One sentence outcome.</span></span></li>
+        <li><span class="dur">15 min</span><span class="task">[Task name] <span class="outcome">One sentence outcome.</span></span></li>
+        <li><span class="dur">30 min</span><span class="task">[Task name] <span class="outcome">One sentence outcome.</span></span></li>
+      </ul>
+      <div class="done-line"><strong>DONE =</strong> [What the block produces, one sentence.]</div>
+    </div>
+  </div>
+
+  <h2>Filled example · Wed Jul 15 AM (focus block, Kickoff Session prep)</h2>
+  <div class="block-card">
+    <div class="block-head">
+      <div class="lhs">
+        <div class="btime">Wed Jul 15 · 09:00-10:30 COT</div>
+        <div class="bmeta">90 MIN · KICKOFF DAY</div>
+      </div>
+      <div class="rhs">
+        <span class="theme-tag theme-marketing">Marketing + Proof</span>
+        <span class="shape-tag focus">Focus</span>
+      </div>
+    </div>
+    <div class="block-body">
+      <h3>Tasks</h3>
+      <ul class="task-list">
+        <li><span class="dur">30 min</span><span class="task">Walk the deck end-to-end <span class="outcome">Every slide has intent. Thesis verbatim. No black-box. No "drop in chat."</span></span></li>
+        <li><span class="dur">10 min</span><span class="task">Test Zoom room + screen share <span class="outcome">No surprises at go-time.</span></span></li>
+        <li><span class="dur">10 min</span><span class="task">Test Stripe link end-to-end <span class="outcome">Price + application gate fires correctly.</span></span></li>
+        <li><span class="dur">15 min</span><span class="task">Schedule final Skool + WhatsApp reminders (T-2h and T-15min) <span class="outcome">Both queued.</span></span></li>
+        <li><span class="dur">10 min</span><span class="task">Confirm application form links (Kickoff deck slide + Skool post) <span class="outcome">Live and tested.</span></span></li>
+        <li><span class="dur">15 min</span><span class="task">Buffer / pacing check <span class="outcome">Dry-run timing.</span></span></li>
+      </ul>
+      <div class="done-line"><strong>DONE =</strong> Kickoff Session ready to run at 11:00 COT. Zero unknowns.</div>
+    </div>
+  </div>
+
+  <h2>Filled example · Thu Jul 2 AM (bucket block, S2 final prep)</h2>
+  <div class="block-card">
+    <div class="block-head">
+      <div class="lhs">
+        <div class="btime">Thu Jul 2 · 09:00-10:30 COT</div>
+        <div class="bmeta">90 MIN · S2 SESSION DAY</div>
+      </div>
+      <div class="rhs">
+        <span class="theme-tag theme-curriculum">Curriculum + Delivery</span>
+        <span class="shape-tag">Bucket</span>
+      </div>
+    </div>
+    <div class="block-body">
+      <h3>Tasks</h3>
+      <ul class="task-list">
+        <li><span class="dur">10 min</span><span class="task">Verify Zoom link + Drafting Table <code>/c/ff-thu</code> URLs <span class="outcome">Both live and tested.</span></span></li>
+        <li><span class="dur">10 min</span><span class="task">Send Skool reminder post <span class="outcome">Pinned in cohort space.</span></span></li>
+        <li><span class="dur">10 min</span><span class="task">Send WhatsApp broadcast to Thu cohort <span class="outcome">Sent.</span></span></li>
+        <li><span class="dur">20 min</span><span class="task">Thierry brief · Stu + Andrea onboarding catch-up note <span class="outcome">Thierry has it before session.</span></span></li>
+        <li><span class="dur">20 min</span><span class="task">Walk S2 agenda + mid-cohort share block slot picks <span class="outcome">Agenda locked.</span></span></li>
+        <li><span class="dur">20 min</span><span class="task">Buffer / open comms check <span class="outcome">Any last DMs answered.</span></span></li>
+      </ul>
+      <div class="done-line"><strong>DONE =</strong> Walk into S2 at 15:00 with zero prep debt.</div>
+    </div>
+  </div>
+
+  <h2>Rules for filling a block</h2>
+  <div class="rules">
+    <ul>
+      <li><strong>Bucket blocks</strong> hold 3-6 tasks from one theme's rolling list. Sum to ~90 min.</li>
+      <li><strong>Focus blocks</strong> hold 1 task. When a single thing earns the whole 90 min, give it the whole 90 min.</li>
+      <li>Every task carries a duration estimate (5 / 10 / 15 / 30 / 45 / 60 min) and a one-sentence outcome.</li>
+      <li>"Done" is written before starting. If it's fuzzy, the block is fuzzy.</li>
+      <li>Blocked tasks stay in the rolling list, not the block. Add them when their dependency clears.</li>
+      <li>Undone tasks roll to the next block of the same theme, not another theme.</li>
+      <li>Grab-bag is the only theme where miscellaneous belongs.</li>
+    </ul>
+  </div>
+
+  <footer>Alex Salinsky · The Build Room</footer>
+</div>
+</body>
+</html>

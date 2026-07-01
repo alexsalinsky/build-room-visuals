@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Room Plan · Jul 2-29 · Zoom-Out Map</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  .page { max-width: 1400px; margin: 0 auto; padding: 40px 28px 80px; }
+  header { margin-bottom: 24px; }
+  .cohort-pill { display: inline-block; background: #1a1a1a; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 1px; margin-bottom: 14px; }
+  h1 { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .sub { font-size: 15px; color: #666; }
+  .meta-line { font-size: 12px; color: #888; margin-top: 6px; }
+  .meta-line a { color: #1a1a1a; }
+
+  .nav-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+  .nav-link { display: inline-block; background: #fff; border: 2px solid #1a1a1a; padding: 8px 14px; border-radius: 8px; text-decoration: none; color: #1a1a1a; font-weight: 700; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .nav-link.active { background: #1a1a1a; color: #fff; }
+  .nav-link:hover { background: #1a1a1a; color: #fff; }
+  .nav-link.ref { border-color: #999; color: #666; font-weight: 600; }
+
+  h2 { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin: 32px 0 14px; padding-bottom: 6px; border-bottom: 1.5px solid #ddd; }
+
+  .weeks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 26px; }
+  .week-card { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 10px; padding: 16px 16px 18px; }
+  .week-card .wtag { font-size: 10px; font-weight: 800; letter-spacing: 1.5px; color: #888; text-transform: uppercase; margin-bottom: 4px; }
+  .week-card .wdates { font-size: 12px; color: #444; font-weight: 700; margin-bottom: 10px; }
+  .week-card .wtheme { font-size: 13.5px; font-weight: 700; line-height: 1.35; color: #1a1a1a; }
+
+  .timeline-wrap { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 10px; padding: 22px 18px 26px; overflow-x: auto; }
+  .timeline { position: relative; min-width: 900px; padding-top: 90px; padding-bottom: 20px; }
+  .timeline-axis { position: relative; height: 2px; background: #1a1a1a; margin-bottom: 6px; }
+  .day-tick { position: absolute; top: -3px; width: 1px; height: 8px; background: #bbb; }
+  .day-label { position: absolute; top: 8px; transform: translateX(-50%); font-size: 10px; color: #888; font-weight: 600; }
+  .day-label.weekend { color: #ccc; }
+  .day-label.monday { color: #1a1a1a; font-weight: 800; }
+
+  .week-band { position: absolute; top: -10px; height: 22px; border-radius: 4px; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #555; padding: 4px 8px; background: #f0f0f0; border: 1px solid #ddd; text-align: center; }
+
+  .pin { position: absolute; transform: translateX(-50%); }
+  .pin .stem { width: 2px; background: currentColor; margin: 0 auto; }
+  .pin .head { padding: 4px 8px; border-radius: 6px; background: #fff; border: 2px solid currentColor; font-size: 10.5px; font-weight: 700; white-space: nowrap; color: #1a1a1a; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+  .pin.locked .head { background: currentColor; color: #fff; }
+  .pin .head .pdate { display: block; font-size: 9px; letter-spacing: 1px; opacity: 0.75; font-weight: 800; }
+
+  .pin.type-delivery { color: #2b6cb0; }
+  .pin.type-kickoff  { color: #b7791f; }
+  .pin.type-deadline { color: #d62828; }
+  .pin.type-retreat  { color: #6b46c1; }
+  .pin.type-ops      { color: #2f855a; }
+  .pin.type-tsls     { color: #0f766e; }
+
+  .pin.above { top: 0; }
+  .pin.above .stem { height: calc(90px - 40px); }
+  .pin.above .head { margin-top: 0; }
+
+  .pin.below { top: 92px; }
+  .pin.below .head { margin-bottom: 4px; }
+  .pin.below .stem { height: 30px; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 26px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; background: #fff; border: 1.5px solid #ddd; border-radius: 20px; padding: 6px 12px; font-size: 12px; font-weight: 600; }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 4px; border: 2px solid currentColor; background: #fff; }
+  .legend-swatch.solid { background: currentColor; }
+  .legend-item.type-delivery { color: #2b6cb0; }
+  .legend-item.type-kickoff  { color: #b7791f; }
+  .legend-item.type-deadline { color: #d62828; }
+  .legend-item.type-retreat  { color: #6b46c1; }
+  .legend-item.type-ops      { color: #2f855a; }
+  .legend-item.type-tsls     { color: #0f766e; }
+  .legend-item span:last-child { color: #333; }
+
+  .deadline-list { margin-top: 20px; padding: 14px 18px; background: #fff; border: 1.5px solid #ddd; border-left: 4px solid #d62828; border-radius: 6px; font-size: 12.5px; color: #333; }
+  .deadline-list strong { color: #d62828; letter-spacing: 0.5px; }
+  .deadline-list ul { list-style: none; padding: 0; margin: 8px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px; }
+  .deadline-list li { padding: 4px 0; }
+  .deadline-list li b { color: #d62828; }
+
+  footer { margin-top: 36px; font-size: 12px; color: #888; text-align: center; }
+
+  @media (max-width: 900px) {
+    h1 { font-size: 26px; }
+    .weeks { grid-template-columns: 1fr 1fr; }
+    .timeline { min-width: 720px; }
+  }
+  @media (max-width: 600px) {
+    .weeks { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    body { background: #fff; }
+    .nav-bar { display: none; }
+    .timeline-wrap { border-color: #000; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="cohort-pill">BUILD ROOM PLAN · JUL 2-29 · ALTITUDE 1 · MAP</div>
+    <h1>Zoom-Out Map</h1>
+    <p class="sub">What's coming. Milestones, fixed events, and week themes at a glance.</p>
+    <p class="meta-line">Last updated: 2026-07-01 · Source: <a href="../../brain/the-build-room/plans/2026-07-02-4week-plan-multi-altitude.md">multi-altitude plan doc</a></p>
+  </header>
+
+  <div class="nav-bar">
+    <a class="nav-link active" href="2026-07-plan-map.html">Altitude 1 · Map</a>
+    <a class="nav-link" href="2026-07-plan-weekly.html">Altitude 2 · Weekly</a>
+    <a class="nav-link" href="2026-07-plan-block.html">Altitude 3 · Block</a>
+    <a class="nav-link ref" href="2026-07-plan-gantt.html">Reference · Linear gantt</a>
+    <a class="nav-link ref" href="2026-07-plan-calendar.html">Reference · Linear calendar</a>
+  </div>
+
+  <h2>Weekly themes</h2>
+  <div class="weeks">
+    <div class="week-card">
+      <div class="wtag">Week 1</div>
+      <div class="wdates">Jul 2 - Jul 8</div>
+      <div class="wtheme">Delivery + 7-day SLAs. Three sessions land. Bryce testimonial clock. Muhammad DM window.</div>
+    </div>
+    <div class="week-card">
+      <div class="wtag">Week 2</div>
+      <div class="wdates">Jul 9 - Jul 15</div>
+      <div class="wtheme">Kickoff Session launch commit. Busiest week. Two deliveries + the Jul 15 event.</div>
+    </div>
+    <div class="week-card">
+      <div class="wtag">Week 3</div>
+      <div class="wdates">Jul 16 - Jul 22</div>
+      <div class="wtheme">Post-cohort proof + retreat marketing kickoff. Case studies, article, Chiang Mai + PDC pre-marketing, TSLS.</div>
+    </div>
+    <div class="week-card">
+      <div class="wtag">Week 4</div>
+      <div class="wdates">Jul 23 - Jul 29</div>
+      <div class="wtheme">Standardize + spin up Cohort #5. Ledger schema locked. Roster live. S1 delivered.</div>
+    </div>
+  </div>
+
+  <h2>Legend</h2>
+  <div class="legend">
+    <div class="legend-item type-delivery"><span class="legend-swatch solid"></span><span>Cohort delivery (locked)</span></div>
+    <div class="legend-item type-kickoff"><span class="legend-swatch solid"></span><span>Kickoff Session (locked)</span></div>
+    <div class="legend-item type-tsls"><span class="legend-swatch"></span><span>TSLS / Cohort #5 S1</span></div>
+    <div class="legend-item type-deadline"><span class="legend-swatch"></span><span>Hard deadline</span></div>
+    <div class="legend-item type-retreat"><span class="legend-swatch"></span><span>Retreat marketing milestone</span></div>
+    <div class="legend-item type-ops"><span class="legend-swatch"></span><span>Ops milestone</span></div>
+  </div>
+
+  <h2>Timeline · Jul 2 - Jul 29</h2>
+  <div class="timeline-wrap">
+    <div class="timeline" id="timeline">
+      <!-- Week bands -->
+      <div class="week-band" style="left: 0%; width: 25%;">Week 1 · Delivery + SLAs</div>
+      <div class="week-band" style="left: 25%; width: 25%;">Week 2 · Kickoff launch</div>
+      <div class="week-band" style="left: 50%; width: 25%;">Week 3 · Proof + retreat kick</div>
+      <div class="week-band" style="left: 75%; width: 25%;">Week 4 · Standardize + #5</div>
+
+      <div class="timeline-axis" id="axis"></div>
+
+      <!-- Pins above (fixed events) -->
+      <div class="pin type-delivery locked above" style="left: 1.79%;"><div class="head"><span class="pdate">THU JUL 2</span>F&amp;F Thu S2</div><div class="stem"></div></div>
+      <div class="pin type-delivery locked above" style="left: 16.07%;"><div class="head"><span class="pdate">MON JUL 6</span>F&amp;F Mon S3</div><div class="stem"></div></div>
+      <div class="pin type-delivery locked above" style="left: 19.64%;"><div class="head"><span class="pdate">TUE JUL 7</span>RPA S4 Demo</div><div class="stem"></div></div>
+      <div class="pin type-delivery locked above" style="left: 26.79%;"><div class="head"><span class="pdate">THU JUL 9</span>F&amp;F Thu S3</div><div class="stem"></div></div>
+      <div class="pin type-delivery locked above" style="left: 41.07%;"><div class="head"><span class="pdate">MON JUL 13</span>F&amp;F Mon S4 Demo</div><div class="stem"></div></div>
+      <div class="pin type-kickoff locked above" style="left: 48.21%;"><div class="head"><span class="pdate">TUE JUL 15</span>KICKOFF SESSION</div><div class="stem"></div></div>
+      <div class="pin type-delivery locked above" style="left: 51.79%;"><div class="head"><span class="pdate">THU JUL 16</span>F&amp;F Thu S4 Demo</div><div class="stem"></div></div>
+      <div class="pin type-tsls above" style="left: 73.21%;"><div class="head"><span class="pdate">~WED JUL 22</span>TSLS</div><div class="stem"></div></div>
+      <div class="pin type-tsls above" style="left: 96.43%;"><div class="head"><span class="pdate">~TUE-WED JUL 28-29</span>Cohort #5 S1</div><div class="stem"></div></div>
+
+      <!-- Pins below (deadlines + milestones) -->
+      <div class="pin type-deadline below" style="left: 5.36%;"><div class="stem"></div><div class="head"><span class="pdate">FRI JUL 3</span>Muhammad DM closes</div></div>
+      <div class="pin type-deadline below" style="left: 8.93%;"><div class="stem"></div><div class="head"><span class="pdate">FRI JUL 4</span>RPA reschedule GO/NO-GO</div></div>
+      <div class="pin type-deadline below" style="left: 19.64%;"><div class="stem"></div><div class="head"><span class="pdate">MON JUL 7</span>Bryce testimonial SLA</div></div>
+      <div class="pin type-deadline below" style="left: 30.36%;"><div class="stem"></div><div class="head"><span class="pdate">FRI JUL 10</span>IG cross-post decision</div></div>
+      <div class="pin type-retreat below" style="left: 66.07%;"><div class="stem"></div><div class="head"><span class="pdate">MON JUL 20</span>Chiang Mai launch commit</div></div>
+      <div class="pin type-ops below" style="left: 94.64%;"><div class="stem"></div><div class="head"><span class="pdate">TUE JUL 28</span>Ledger schema locked</div></div>
+      <div class="pin type-deadline below" style="left: 98.21%;"><div class="stem"></div><div class="head"><span class="pdate">END JUL</span>GTD Denmark GO/NO-GO</div></div>
+    </div>
+  </div>
+
+  <div class="deadline-list">
+    <strong>HARD DEADLINES</strong>
+    <ul>
+      <li><b>Fri Jul 3</b> — Muhammad DM window closes</li>
+      <li><b>Fri Jul 4</b> — RPA S4 reschedule GO/NO-GO</li>
+      <li><b>Mon Jul 7</b> — Bryce 7-day testimonial SLA</li>
+      <li><b>Fri Jul 10</b> — Decision #5 IG cross-post mechanism</li>
+      <li><b>Tue Jul 15</b> — Kickoff Session (launch commit)</li>
+      <li><b>Mon Jul 20</b> — Chiang Mai marketing launch commit</li>
+      <li><b>Tue Jul 28</b> — Ledger schema standardization done</li>
+      <li><b>End Jul</b> — GTD Denmark RSVP GO/NO-GO</li>
+    </ul>
+  </div>
+
+  <footer>Alex Salinsky · The Build Room</footer>
+</div>
+
+<script>
+// Build the day-tick axis Jul 2 - Jul 29 (28 days)
+(function(){
+  const axis = document.getElementById('axis');
+  const days = [];
+  const start = new Date(2026, 6, 2); // Jul 2
+  for (let i = 0; i < 28; i++) {
+    const d = new Date(start.getTime()); d.setDate(start.getDate() + i);
+    days.push(d);
+  }
+  const dow = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  days.forEach((d, i) => {
+    const pct = (i / 27) * 100;
+    const tick = document.createElement('div');
+    tick.className = 'day-tick';
+    tick.style.left = pct + '%';
+    axis.appendChild(tick);
+    const label = document.createElement('div');
+    const wd = d.getDay();
+    label.className = 'day-label' + (wd === 0 || wd === 6 ? ' weekend' : '') + (wd === 1 ? ' monday' : '');
+    label.style.left = pct + '%';
+    label.textContent = d.getDate();
+    axis.appendChild(label);
+  });
+})();
+</script>
+</body>
+</html>
