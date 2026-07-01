@@ -2,6 +2,10 @@
 
 ## 2026-07-01 -- [Tool: Claude Code]
 
+**Focus:** session-opener.html cleanup — removed the three redundant "Learn AI / Build Robots / Stay Human" pill boxes on slide 1 (duplicated the big headline verbatim) and their orphaned `.three` + `.pill` CSS. Committed + pushed to main.
+
+## 2026-07-01 -- [Tool: Claude Code]
+
 **Focus:** Ship IG carousel announcing upcoming Build Room events (Jul-Nov 2026) for @the.build.room.
 
 **What happened:**
