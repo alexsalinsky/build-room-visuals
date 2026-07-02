@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wins Wall · The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  .page { max-width: 1400px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  header { margin-bottom: 22px; }
+  .cohort-pill { display: inline-block; background: #1a1a1a; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 1px; margin-bottom: 14px; }
+  h1 { font-size: 44px; font-weight: 800; letter-spacing: -1px; margin-bottom: 6px; }
+  .sub { font-size: 18px; color: #666; max-width: 720px; line-height: 1.4; }
+  .sub strong { color: #1a1a1a; font-weight: 700; }
+  @media (max-width: 640px) { h1 { font-size: 30px; } .sub { font-size: 15px; } }
+
+  .controls { margin: 26px 0 14px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+  .filter-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .filter-label { font-size: 11px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin-right: 4px; }
+  .chip { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 16px; padding: 5px 12px; font-size: 12px; cursor: pointer; user-select: none; transition: all 0.12s; font-family: inherit; }
+  .chip:hover { background: #f0f0f0; }
+  .chip.active { background: #1a1a1a; color: #fff; }
+  .actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .btn { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 6px 14px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; font-family: inherit; border-radius: 6px; }
+  .btn:hover { background: #1a1a1a; color: #fff; }
+  .stats { font-size: 13px; color: #666; margin: 8px 0 18px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
+
+  .card {
+    border: 2px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 20px 18px 16px;
+    cursor: pointer;
+    transition: transform 0.12s, box-shadow 0.12s;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+    font-family: inherit;
+    color: #1a1a1a;
+    min-height: 200px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+  .card-tag {
+    position: absolute;
+    top: 0; right: 0;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    border-bottom-left-radius: 8px;
+  }
+  .card-headline { font-size: 20px; font-weight: 800; line-height: 1.22; margin-top: 12px; letter-spacing: -0.3px; }
+  .card-quote { font-size: 13px; line-height: 1.45; color: #444; font-style: italic; border-left: 3px solid rgba(26,26,26,0.35); padding-left: 10px; }
+  .card-byline { font-size: 12px; font-weight: 700; color: #1a1a1a; letter-spacing: 0.4px; margin-top: auto; padding-top: 8px; }
+
+  /* Cohort palettes - subtle tinted backgrounds, black type + border stay constant */
+  .card.c-dbalp    { background: #fef3e0; }
+  .card.c-dbalp .card-tag    { background: #d97706; }
+  .card.c-rpa      { background: #e0f2fe; }
+  .card.c-rpa .card-tag      { background: #0369a1; }
+  .card.c-ff-mon   { background: #f0fdf4; }
+  .card.c-ff-mon .card-tag   { background: #15803d; }
+  .card.c-ff-thu   { background: #fce7f3; }
+  .card.c-ff-thu .card-tag   { background: #be185d; }
+  .card.c-other    { background: #f5f5f5; }
+  .card.c-other .card-tag    { background: #52525b; }
+
+  .empty { text-align: center; padding: 60px 20px; color: #888; font-size: 15px; grid-column: 1 / -1; }
+
+  .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 100; padding: 20px; overflow-y: auto; }
+  .modal-bg.open { display: flex; align-items: flex-start; justify-content: center; }
+  .modal { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; max-width: 640px; width: 100%; padding: 30px 28px 26px; margin-top: 40px; position: relative; }
+  @media (max-width: 640px) { .modal { padding: 22px 18px; margin-top: 20px; } }
+  .modal-close { position: absolute; top: 12px; right: 14px; background: none; border: none; font-size: 30px; cursor: pointer; line-height: 1; color: #888; font-family: inherit; }
+  .modal-close:hover { color: #1a1a1a; }
+  .modal h2 { font-size: 26px; font-weight: 800; line-height: 1.2; margin-bottom: 14px; padding-right: 30px; letter-spacing: -0.3px; }
+  .modal-quote { font-size: 16px; line-height: 1.55; color: #1a1a1a; padding: 16px 20px; background: #fafafa; border-left: 4px solid #1a1a1a; border-radius: 4px; margin-bottom: 16px; white-space: pre-wrap; font-style: italic; }
+  .modal-byline { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; letter-spacing: 0.3px; }
+  .modal-context { font-size: 13px; color: #666; }
+
+  .cta-band {
+    margin-top: 44px;
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 14px;
+    padding: 28px 26px;
+    text-align: center;
+  }
+  .cta-band .thesis { font-size: 22px; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .cta-band .cta-copy { font-size: 15px; color: #ccc; margin-bottom: 14px; }
+  .cta-band a { display: inline-block; background: #fff; color: #1a1a1a; padding: 12px 22px; border-radius: 8px; font-size: 15px; font-weight: 700; text-decoration: none; letter-spacing: 0.5px; }
+  .cta-band a:hover { background: #f0f0f0; }
+
+  footer { margin-top: 28px; font-size: 12px; color: #888; text-align: center; padding-top: 20px; }
+
+  @media print {
+    .controls, .cta-band a, .modal-bg { display: none !important; }
+    .card { break-inside: avoid; box-shadow: none; }
+    .grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="cohort-pill">THE BUILD ROOM · WINS WALL</div>
+    <h1>Wins Wall: what Build Room builders shipped.</h1>
+    <p class="sub">This is what happens in <strong>4 weeks</strong>.</p>
+  </header>
+
+  <div class="controls">
+    <div class="filter-row">
+      <span class="filter-label">Cohort</span>
+      <div id="cohort-filters" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="shuffle-btn" type="button">Shuffle</button>
+      <button class="btn" id="newest-btn" type="button">Newest first</button>
+    </div>
+  </div>
+
+  <div class="stats" id="stats">Loading...</div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="cta-band">
+    <div class="thesis">Learn AI. Build Robots. Stay Human.</div>
+    <div class="cta-copy">Want to build something like this?</div>
+    <a href="https://luma.com/rnmkpxoc" target="_blank" rel="noopener">Kickoff Session, Jul 15</a>
+  </div>
+
+  <footer>Alex Salinsky / The Build Room</footer>
+
+  <div class="modal-bg" id="modal-bg" role="dialog" aria-modal="true">
+    <div class="modal" id="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Cohort display normalization
+  // ginger-rpa is a data-side label for the same RPA cohort; treat it as rpa for display.
+  const COHORT_LABELS = {
+    'dbalp':   'DBALP',
+    'rpa':     'RPA',
+    'ff-mon':  'F&F Mon',
+    'ff-thu':  'F&F Thu'
+  };
+  const COHORT_ORDER = ['dbalp', 'rpa', 'ff-mon', 'ff-thu'];
+
+  function normalizeCohort(c) {
+    if (c === 'ginger-rpa') return 'rpa';
+    return c;
+  }
+
+  // Extract the first name from an attribution like "Kate Sarmiento (DBALP cohort)" or "Maria Jose Urrea Carvajal (Maho) (RPA cohort)"
+  function firstName(attribution) {
+    if (!attribution) return '';
+    // Prefer a nickname in parens if the pattern is "Full Name (Nick) (cohort)"
+    const nickMatch = attribution.match(/\(([^)]+)\)\s*\(/);
+    if (nickMatch) return nickMatch[1].trim();
+    // Otherwise strip "(cohort ...)" and take first word
+    const stripped = attribution.replace(/\([^)]*\)/g, '').trim();
+    return stripped.split(/\s+/)[0] || attribution;
+  }
+
+  // Should this quote be shown as an inline pull quote on the card?
+  // Only short, complete-feeling lines land. Skip long descriptions.
+  function pullQuote(entry) {
+    const q = entry.quote;
+    if (!q) return null;
+    const clean = q.trim();
+    if (clean.length > 110) return null;
+    // Skip meta descriptions that start with a verb like "Discovered" or "Provided" or "Shared" -- those read like recap not builder voice
+    if (/^(Discovered|Provided|Shared|Showed|Scenarios|Connected)/.test(clean)) return null;
+    return clean;
+  }
+
+  // Filter to buildable-thing entries only.
+  // Skip pure moments/questions where no artifact is named.
+  function isBuildableWin(entry) {
+    if (entry.type !== 'win') return false;
+    const t = (entry.title || '');
+    const q = (entry.quote || '');
+    const combined = (t + ' ' + q).toLowerCase();
+    const buildNouns = /(sidebar|crm|dashboard|tool|pipeline|form|mvp|prototype|report|scraper|downloader|generator|assessment|agent|automation|integration|template|voice|deploy|cloudflare|ghl|portal|content engine|api|clip[- ]?(database|library)|interface|app|system|workflow|codex|zoom|missive|monday|slack|drive|notion|calendar|coaching|photo|audio|shipped|built|consolidated|connected|ships|demo day|demos|wins|pipeline|list|responder|questions|company|hosted|deployed|opportunity)/;
+    if (!buildNouns.test(combined)) return false;
+    if (/\?$/.test(t)) return false;
+    return true;
+  }
+
+  const state = {
+    entries: [],
+    filtered: [],
+    cohort: null,
+    sortMode: 'newest',   // 'newest' or 'shuffle'
+    shuffleSeed: Date.now()
+  };
+
+  const skippedLog = [];
+
+  function el(tag, attrs, children) {
+    const e = document.createElement(tag);
+    if (attrs) for (const k in attrs) {
+      if (k === 'className') e.className = attrs[k];
+      else if (k === 'onclick') e.onclick = attrs[k];
+      else e.setAttribute(k, attrs[k]);
+    }
+    if (children) (Array.isArray(children) ? children : [children]).forEach(c => {
+      if (c == null) return;
+      e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+    });
+    return e;
+  }
+
+  function seededShuffle(arr, seed) {
+    let s = seed;
+    const rand = () => {
+      s = (s * 9301 + 49297) % 233280;
+      return s / 233280;
+    };
+    const out = arr.slice();
+    for (let i = out.length - 1; i > 0; i--) {
+      const j = Math.floor(rand() * (i + 1));
+      [out[i], out[j]] = [out[j], out[i]];
+    }
+    return out;
+  }
+
+  function buildCohortFilters() {
+    const container = document.getElementById('cohort-filters');
+    const allChip = el('button', { className: 'chip active', type: 'button' }, 'All');
+    allChip.onclick = () => setCohort(null);
+    container.appendChild(allChip);
+    COHORT_ORDER.forEach(key => {
+      const chip = el('button', { className: 'chip', type: 'button' }, COHORT_LABELS[key]);
+      chip.dataset.value = key;
+      chip.onclick = () => setCohort(key);
+      container.appendChild(chip);
+    });
+  }
+
+  function setCohort(value) {
+    state.cohort = value;
+    document.querySelectorAll('#cohort-filters .chip').forEach(c => {
+      const isAll = !c.dataset.value;
+      c.classList.toggle('active', isAll ? value === null : c.dataset.value === value);
+    });
+    render();
+  }
+
+  function orderedEntries() {
+    const filtered = state.entries.filter(e => {
+      if (!state.cohort) return true;
+      return normalizeCohort(e.cohort) === state.cohort;
+    });
+    if (state.sortMode === 'shuffle') {
+      return seededShuffle(filtered, state.shuffleSeed);
+    }
+    // Newest first by date_captured
+    return filtered.slice().sort((a, b) =>
+      (b.date_captured || '').localeCompare(a.date_captured || '')
+    );
+  }
+
+  function renderCard(entry) {
+    const cohortKey = normalizeCohort(entry.cohort);
+    const cohortClass = COHORT_LABELS[cohortKey] ? 'c-' + cohortKey : 'c-other';
+    const cohortLabel = COHORT_LABELS[cohortKey] || cohortKey.toUpperCase();
+
+    const card = el('button', { className: 'card ' + cohortClass, type: 'button' });
+    card.onclick = () => openModal(entry);
+
+    card.appendChild(el('span', { className: 'card-tag' }, cohortLabel));
+    card.appendChild(el('div', { className: 'card-headline' }, entry.title));
+
+    const pq = pullQuote(entry);
+    if (pq) {
+      card.appendChild(el('div', { className: 'card-quote' }, '"' + pq + '"'));
+    }
+
+    const byline = firstName(entry.attribution) + ', ' + cohortLabel;
+    card.appendChild(el('div', { className: 'card-byline' }, byline));
+
+    return card;
+  }
+
+  function openModal(entry) {
+    const content = document.getElementById('modal-content');
+    content.innerHTML = '';
+    const cohortKey = normalizeCohort(entry.cohort);
+    const cohortLabel = COHORT_LABELS[cohortKey] || cohortKey.toUpperCase();
+
+    content.appendChild(el('h2', null, entry.title));
+    content.appendChild(el('div', { className: 'modal-byline' },
+      firstName(entry.attribution) + ' · ' + cohortLabel));
+
+    if (entry.quote) {
+      content.appendChild(el('div', { className: 'modal-quote' }, entry.quote));
+    }
+
+    if (entry.notes) {
+      content.appendChild(el('div', { className: 'modal-context' }, entry.notes));
+    }
+
+    document.getElementById('modal-bg').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal-bg').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function render() {
+    const grid = document.getElementById('grid');
+    const stats = document.getElementById('stats');
+    grid.innerHTML = '';
+    const list = orderedEntries();
+    const total = state.entries.length;
+    stats.textContent = state.cohort
+      ? list.length + ' of ' + total + ' builds'
+      : total + ' builds shipped across ' + COHORT_ORDER.length + ' cohorts';
+    if (!list.length) {
+      grid.appendChild(el('div', { className: 'empty' },
+        'Nothing yet in this filter. More builds shipping every week.'));
+      return;
+    }
+    list.forEach(entry => grid.appendChild(renderCard(entry)));
+  }
+
+  function init() {
+    buildCohortFilters();
+
+    document.getElementById('shuffle-btn').onclick = () => {
+      state.sortMode = 'shuffle';
+      state.shuffleSeed = Date.now();
+      render();
+    };
+    document.getElementById('newest-btn').onclick = () => {
+      state.sortMode = 'newest';
+      render();
+    };
+
+    document.getElementById('modal-close').onclick = closeModal;
+    document.getElementById('modal-bg').onclick = closeModal;
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    fetch('proof-library.json?v=' + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        const all = (data.entries || []);
+        state.entries = all.filter(e => {
+          if (isBuildableWin(e)) return true;
+          if (e.type === 'win') skippedLog.push({ id: e.id, reason: 'no build noun in title/quote' });
+          return false;
+        });
+        if (skippedLog.length) {
+          console.info('[wins-wall] skipped', skippedLog.length, 'win entries:', skippedLog);
+        }
+        render();
+      })
+      .catch(err => {
+        document.getElementById('stats').textContent = 'Could not load proof-library.json: ' + err.message;
+      });
+  }
+
+  init();
+
+  /*
+   * Skipped-entry log (for future maintainers):
+   *
+   * The isBuildableWin() filter surfaces only wins that name a shipped artifact.
+   * Wins where the title is a bare question, a feelings moment, or a scope-lock
+   * event with no artifact named yet get filtered out and logged to the console.
+   *
+   * To pull a skipped entry onto the wall: update its `title` in
+   * proof-library.json so it names the thing that got built. E.g.:
+   *   "Kate: tell me the rules that you're learning from me"
+   *     -> "Kate: reverse-engineered prompt rules from a live session"
+   *
+   * Open DevTools console on this page to see the current skip list.
+   */
+</script>
+</body>
+</html>
