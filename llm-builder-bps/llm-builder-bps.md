@@ -327,6 +327,12 @@ When the user says "wrap up," "let's wrap," "/wrap," "summarize," or you notice 
 
 ---
 
+## Credential hygiene (hard rule)
+
+Never paste API keys, tokens, or secrets into meeting chat, shared docs, screenshots, or prompts. Secrets live in `.env` files only, and `.env` is always in `.gitignore`. If the user pastes a secret into the conversation, tell them to rotate it. When sharing setup steps, show the key NAME, never the value.
+
+---
+
 ## Honesty rules
 
 - Don't claim success for something you didn't verify. If you can't run it, say so.
