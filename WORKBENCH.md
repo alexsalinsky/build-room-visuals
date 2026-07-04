@@ -1,5 +1,96 @@
 # build-room-visuals workbench
 
+## 2026-07-04 -- [Tool: Claude Code] (build-room.html SHIPPED)
+
+**Focus:** Close out the landing page: redesign, final copy, deploy live.
+
+**What happened:**
+- `build-room.html` redesigned after Alex rejected the first flat look; final direction is "workshop heat" (charcoal/amber/cream). Pushed to main, live at https://alexsalinsky.github.io/build-room-visuals/build-room.html.
+- CONFIG filled in: Luma https://luma.com/rnmkpxoc + real Stripe payment link. No more placeholder fallbacks.
+
+**Decisions:**
+- [DECISION] Standalone page here in build-room-visuals (not Luma-only, not folded into the Build Day site): owned destination for all channels, evergreen after July 15.
+- [DECISION] Stripe CTA = USD $350. Pricing copy: "The cohort is $450. Reserve your seat now and lock in the $350 Kickoff price."
+
+**Still open for Alex before July 15:** promote raw proof entries to cleared-for-public so the proof rail fills out; Stage 11 testimonial form so the testimonials rail isn't empty.
+
+Spec: brain/the-build-room/specs/2026-07-04-build-room-landing-page-design.md · Plan: my-work/plans/2026-07-04-build-room-landing-page.md
+
+---
+
+## 2026-07-04 -- [Tool: Claude Code] (Jul 10 + Jul 14 accent cards, LinkedIn scheduling)
+
+**Focus:** Render the two missing accent cards plus the framed Wins Wall image, schedule the Jul 10 and Jul 14 LinkedIn posts via Late.
+
+**What happened:**
+- Built three exports per the visual-direction spec, rendered via `exports/render-2026-07-04-cards.js` (copied from events/render.js pattern, 2x scale): `2026-07-10-brand-card.png` (1200x1200, sky tint, giant Georgia "35"), `2026-07-14-countdown-card.png` (1200x1200, amber tint, Georgia "15", dark band with white luma chip), `2026-07-14-wins-wall-framed.png` (1200x1200, Wins Wall screenshot in ink-border paper frame). Source HTML next to each PNG.
+- Wins Wall screenshot served locally (wins-wall.html fetches proof-library.json, blocked over file://), clipped to skip the page's own pill so the frame pill isn't duplicated.
+- Scheduled two LinkedIn posts via Late API, captions verbatim: Jul 10 9:00am Bogota (post 6a49259fded834bc384fe04c, photo-33 + 35-card) and Jul 14 9:00am Bogota (post 6a4925a263e32c5fb851d636, photo-10 + countdown card + framed wall). Both verified via GET. Queue files logged and moved to scheduled/.
+
+**Decisions:**
+- [DECISION] Card sizes 1200x1200 (spec silent; square carries well as image 2+ on LinkedIn, task default).
+- [DECISION] Fixed "Maho" to "Majo" in proof-library.json display text (9 spots, id slugs untouched, standing spelling correction), committed and pushed (064ea29) so the live wall matches the screenshot.
+
+**Next up:** Kandice/Kate permission check before Jul 10 for the named-clip upgrade path.
+
+---
+
+## 2026-07-04 -- [Tool: Claude Code] (build-room.html landing page)
+
+**Focus:** New static landing page `build-room.html`, the public front door for the July cohort launch.
+
+**What happened:**
+- Built in 3 commits (6a7873d scaffold, 062038b copy, e9c1b20 proof rendering). Sections: hero, proof-point, how-it-works, proof-wall, testimonials, vocabulary, who-pricing, final-cta. Design tokens reused from wins-wall.html exactly (system stack, #fafafa/#1a1a1a, 2px-border cards, cohort tints).
+- 4-value CONFIG block at top of head (kickoff date, Luma URL, Stripe URL, cohort start) for per-launch edits.
+- Proof sections render client-side from proof-library.json, filtered to PUBLIC_STATUSES only (6 entries today). Fetch failure hides all three proof sections; static sections stand alone. Zero qualifying testimonials hides that section entirely.
+- Verified with Playwright at 1280 + 390: CTAs above the fold on mobile, Ruben raw entry absent, no console errors, fetch-abort path clean.
+
+**Decisions:**
+- [DECISION] STRIPE_URL is "PLACEHOLDER", so the reserve button falls back to Skool with "Join the community, seat reservation opens shortly". Same guard exists for Luma. No dead links regardless of config state.
+- [DECISION] Price shows literal `[PRICE - Alex confirms at copy review]` pending Alex's call.
+- [DECISION] Proof-point picks first featured win, else first featured (today: nc17-thesis-line clip).
+
+**Next up:** Alex confirms price + Stripe payment link, edit CONFIG, push to GitHub Pages.
+
+---
+
+## 2026-07-04 -- [Tool: Claude Code] (events graphic + visual direction)
+
+**Focus:** All-upcoming-events graphic (2 exports) + July visual direction doc.
+
+**What happened:**
+- Built `events/upcoming-events-ig.html` (1080x1350) and `events/upcoming-events-linkedin.html` (1200x627), rendered to PNG at 2x via `events/render.js` (local Playwright; MCP browser was locked). Look reused from wins-wall/proof-library: #fafafa paper, ink borders, pastel tints, Georgia serif accent.
+- Events included: Jul 15 Kickoff (free, no time printed, luma.com/rnmkpxoc), Jul-Aug cohort, Sep 30 Boston AI Week (Build Hour + dinner), Oct 12-16 PDC retreat, Nov 16-20 Chiang Mai retreat. Learning Live Sep 16-17 as a dashed "on the road" strip.
+- Wrote `brain/the-build-room/marketing/2026-07-04-visual-direction.md`: palette/type/image-treatment rules + upgraded per-post visual specs for all 10 July queue files (queue files themselves not edited).
+
+**Decisions:**
+- [DECISION] Excluded DCBKK (Oct 22-25) from the public graphic: members-only DC conference Alex attends for private retreat pre-sales, not a joinable Build Room event.
+- [DECISION] Learning Live listed as "on the road" not hosted, since the speaker slot is unconfirmed.
+
+**Next up:** Alex reviews both PNGs; if approved, schedule via content engine and apply the direction doc specs to the Jul 10/14 built cards.
+
+---
+
+## 2026-07-04 -- [Tool: Claude Code]
+
+**Focus:** Claude Design integration + first IG thesis asset shipped via the HTML-to-screenshot pattern.
+
+**What happened:**
+- Connected the `claude-design` MCP server (user scope, auto-auth on CLI >= 2.1.201). Details in memory `reference_claude_design_mcp.md`.
+- Ran /design-sync against this repo: NOT syncable as-is (static HTML, no compiled React components). No changes made by the sync.
+- Built `social/ig-thesis-post.html` (1080x1350). First flat version got "doesn't look that cool"; produced 3 variants (amber flood / poster stack / stacked bands). Alex picked A: full amber-bg canvas, 190px black type, "Stay Human." in tilted black block, black chip header, footer with handle + four adoption-dot outlines. Promoted A to canonical, deleted B/C drafts.
+- Rendering via `social/render.js` (local Playwright at 2x, same pattern as events/render.js).
+- Proof-library lookup confirmed the thesis line is a featured entry (`nc17-thesis-line`), so it's honest to publish.
+
+**Decisions:**
+- [DECISION] Skipped building a React component library just to satisfy /design-sync -- Alex wants working assets, not a brand system. Revisit only if Claude Design proves sticky.
+- [DECISION] Social assets pattern going forward: fixed-dimension HTML on tokens.css, node render.js to PNG at 2x. Repeatable without any design tooling.
+- [DECISION] Alex's visual preference: bold/loud beats clean/minimal for IG. Amber-flood treatment won over quieter layouts.
+
+**Next up:** Alex posts `social/ig-thesis-post.png` to @the.build.room.
+
+---
+
 ## 2026-07-01 -- [Tool: Claude Code]
 
 **Focus:** session-opener.html cleanup — removed the three redundant "Learn AI / Build Robots / Stay Human" pill boxes on slide 1 (duplicated the big headline verbatim) and their orphaned `.three` + `.pill` CSS. Committed + pushed to main.
