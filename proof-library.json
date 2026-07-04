@@ -1012,18 +1012,18 @@
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
-      "notes": "Promoted cohort-wide as Foundations module for S3. Applies to David's eval tool, Jessica's clip search, Maho's portal."
+      "notes": "Promoted cohort-wide as Foundations module for S3. Applies to David's eval tool, Jessica's clip search, Majo's portal."
     },
     {
       "id": "rpa-s2-maho-personalized-question",
       "type": "win",
       "cohort": "rpa",
-      "title": "Maho: can we do it personalized for them?",
+      "title": "Majo: can we do it personalized for them?",
       "source_url": "brain/the-build-room/cohorts/ginger-rpa/s2-wins-post-2026-06-23.md",
       "media_url": null,
       "thumbnail": null,
       "quote": "Can we do it personalized for them?",
-      "attribution": "Maho (RPA cohort)",
+      "attribution": "Majo (RPA cohort)",
       "timestamp": null,
       "tags": [
         "scope-lock",
@@ -1092,7 +1092,7 @@
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
-      "notes": "Jessica is also Build Room coach + facilitator. Pairs with Maho on Zoom credentials."
+      "notes": "Jessica is also Build Room coach + facilitator. Pairs with Majo on Zoom credentials."
     },
     {
       "id": "rpa-s1-majo-codex-ghl-connected",
@@ -1877,12 +1877,12 @@
       "id": "rpa-s3-maho-cloudflare-live-dashboard",
       "type": "win",
       "cohort": "ginger-rpa",
-      "title": "Maho shipped a live GHL client portal to Cloudflare during the session",
+      "title": "Majo shipped a live GHL client portal to Cloudflare during the session",
       "source_url": "brain/the-build-room/cohorts/ginger-rpa/s3-wins-post-2026-06-30.md",
       "media_url": null,
       "thumbnail": null,
       "quote": "It's working great.",
-      "attribution": "Maria Jose Urrea Carvajal (Maho) (RPA cohort)",
+      "attribution": "Maria Jose Urrea Carvajal (Majo) (RPA cohort)",
       "timestamp": "01:28:09",
       "tags": [
         "cloudflare",
@@ -1894,7 +1894,7 @@
       "status": "raw",
       "date_captured": "2026-06-30",
       "date_cleared": null,
-      "notes": "Live public URL serving real GHL client data per coach. TODO: cut clip from https://fathom.video/share/9orBP9D-K1nCkVN7oRy9gHta5y-_zyZs around 01:28:09 - 01:30:00. Permission check with Maho before public share. Most concrete deploy moment in the cohort so far."
+      "notes": "Live public URL serving real GHL client data per coach. TODO: cut clip from https://fathom.video/share/9orBP9D-K1nCkVN7oRy9gHta5y-_zyZs around 01:28:09 - 01:30:00. Permission check with Majo before public share. Most concrete deploy moment in the cohort so far."
     },
     {
       "id": "rpa-s3-cata-it-can-run-actions",
@@ -1994,7 +1994,7 @@
       "media_url": null,
       "thumbnail": null,
       "quote": "It's very easy to make things go up on Cloudflare and for free.",
-      "attribution": "Maria Jose Urrea Carvajal (Maho) (RPA cohort)",
+      "attribution": "Maria Jose Urrea Carvajal (Majo) (RPA cohort)",
       "timestamp": "01:49:37",
       "tags": [
         "cloudflare",
@@ -2006,7 +2006,7 @@
       "status": "raw",
       "date_captured": "2026-06-30",
       "date_cleared": null,
-      "notes": "Three of four builders shipped or queued a Cloudflare deploy during S3 (Maho live, Jessica in flight, Cata queued; David staged for later). Free tier + built-in LLM + workers + schedulers. Worth promoting to a standing recommendation for any Build Room cohort where builders need a 'becomes a publisher' moment. Replaces ad-hoc hosting choices."
+      "notes": "Three of four builders shipped or queued a Cloudflare deploy during S3 (Majo live, Jessica in flight, Cata queued; David staged for later). Free tier + built-in LLM + workers + schedulers. Worth promoting to a standing recommendation for any Build Room cohort where builders need a 'becomes a publisher' moment. Replaces ad-hoc hosting choices."
     },
     {
       "id": "dbalp-s4-kate-coolest-ai-win",
