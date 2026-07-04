@@ -333,6 +333,120 @@ const PUBLIC_STATUSES = ["cleared-for-public", "live", "featured"];
     document.getElementById('community-link').href = SKOOL_URL;
     document.getElementById('wall-more-link').href = WINS_WALL_URL;
   })();
+
+  // ── Proof rendering from proof-library.json ──────────────────
+  const COHORT_LABELS = { 'dbalp': 'DBALP', 'rpa': 'RPA', 'ff-mon': 'F&F Mon', 'ff-thu': 'F&F Thu' };
+
+  function normalizeCohort(c) {
+    if (c === 'ginger-rpa') return 'rpa';
+    return c;
+  }
+
+  function cohortClass(entry) {
+    const key = normalizeCohort(entry.cohort);
+    return COHORT_LABELS[key] ? 'c-' + key : 'c-other';
+  }
+
+  function cohortLabel(entry) {
+    const key = normalizeCohort(entry.cohort);
+    return COHORT_LABELS[key] || 'Build Room';
+  }
+
+  function el(tag, attrs, children) {
+    const e = document.createElement(tag);
+    if (attrs) for (const k in attrs) {
+      if (k === 'className') e.className = attrs[k];
+      else e.setAttribute(k, attrs[k]);
+    }
+    if (children) (Array.isArray(children) ? children : [children]).forEach(c => {
+      if (c == null) return;
+      e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+    });
+    return e;
+  }
+
+  function byline(entry) {
+    const who = entry.attribution || 'The Build Room';
+    return who + ' · ' + cohortLabel(entry);
+  }
+
+  // Track which entry got the proof-point slot so the wall can skip it.
+  let proofPointId = null;
+
+  function renderProofPoint(pub) {
+    const section = document.getElementById('proof-point');
+    // First featured win, else first featured, else first entry.
+    const pick =
+      pub.find(e => e.status === 'featured' && e.type === 'win') ||
+      pub.find(e => e.status === 'featured') ||
+      pub[0];
+    if (!pick) { section.style.display = 'none'; return; }
+    proofPointId = pick.id;
+
+    const card = el('div', { className: 'proof-point-card' });
+    card.appendChild(el('span', { className: 'card-tag' }, cohortLabel(pick)));
+    if (pick.thumbnail) {
+      card.appendChild(el('img', { className: 'pp-thumb', src: pick.thumbnail, alt: pick.title }));
+    }
+    card.appendChild(el('div', { className: 'pp-headline' }, pick.title));
+    if (pick.quote) {
+      card.appendChild(el('div', { className: 'pp-quote' }, '“' + pick.quote + '”'));
+    }
+    card.appendChild(el('div', { className: 'pp-byline' }, byline(pick)));
+    section.appendChild(card);
+  }
+
+  function renderProofWall(pub) {
+    const section = document.getElementById('proof-wall');
+    const grid = document.getElementById('wall-grid');
+    const list = pub.filter(e => e.id !== proofPointId).slice(0, 12);
+    if (!list.length) { section.style.display = 'none'; return; }
+    if (list.length < 3) grid.classList.add('wide');
+
+    list.forEach(entry => {
+      const card = el('div', { className: 'card ' + cohortClass(entry) });
+      card.appendChild(el('span', { className: 'card-tag' }, cohortLabel(entry)));
+      card.appendChild(el('div', { className: 'card-headline' }, entry.title));
+      if (entry.quote) {
+        const q = entry.quote.length > 160 ? entry.quote.slice(0, 157).trimEnd() + '…' : entry.quote;
+        card.appendChild(el('div', { className: 'card-quote' }, '“' + q + '”'));
+      }
+      card.appendChild(el('div', { className: 'card-byline' }, byline(entry)));
+      grid.appendChild(card);
+    });
+  }
+
+  function renderTestimonials(pub) {
+    const section = document.getElementById('testimonials');
+    const list = pub.filter(e => e.type === 'testimonial');
+    if (!list.length) { section.style.display = 'none'; return; }
+    const grid = document.getElementById('testimonial-grid');
+    list.forEach(entry => {
+      const card = el('div', { className: 'card ' + cohortClass(entry) });
+      card.appendChild(el('span', { className: 'card-tag' }, cohortLabel(entry)));
+      if (entry.quote) {
+        card.appendChild(el('div', { className: 'card-headline' }, '“' + entry.quote + '”'));
+      } else {
+        card.appendChild(el('div', { className: 'card-headline' }, entry.title));
+      }
+      card.appendChild(el('div', { className: 'card-byline' }, byline(entry)));
+      grid.appendChild(card);
+    });
+  }
+
+  fetch('proof-library.json?v=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      const pub = data.entries.filter(e => PUBLIC_STATUSES.includes(e.status));
+      renderProofPoint(pub);
+      renderProofWall(pub);
+      renderTestimonials(pub);
+    })
+    .catch(() => {
+      // Page must never show a broken state. Intentionally also hides proof-point.
+      ['proof-point','proof-wall','testimonials'].forEach(id =>
+        document.getElementById(id).style.display = 'none');
+    });
 </script>
 </body>
 </html>
