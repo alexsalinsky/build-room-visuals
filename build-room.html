@@ -20,15 +20,155 @@ const PUBLIC_STATUSES = ["cleared-for-public", "live", "featured"];
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
-  .page { max-width: 1100px; margin: 0 auto; padding: 48px 24px 80px; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
 
   section { margin-bottom: 88px; }
-  @media (max-width: 640px) { section { margin-bottom: 60px; } }
+  @media (max-width: 640px) { section { margin-bottom: 56px; } }
 
   .kicker { font-size: 12px; font-weight: 700; color: #888; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
   h2 { font-size: 32px; font-weight: 800; letter-spacing: -0.6px; margin-bottom: 8px; }
   .section-sub { font-size: 16px; color: #666; line-height: 1.5; max-width: 640px; }
-  @media (max-width: 640px) { h2 { font-size: 24px; } }
+  @media (max-width: 640px) { h2 { font-size: 24px; } .section-sub { font-size: 14px; } }
+
+  /* ── Hero ─────────────────────────────────────────────────── */
+  #hero { padding-top: 12px; margin-bottom: 56px; }
+  .cohort-pill { display: inline-block; background: #1a1a1a; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 1px; margin-bottom: 20px; }
+  #hero h1 { font-size: 58px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.06; margin-bottom: 18px; max-width: 800px; }
+  #hero h1 .accent-ai     { box-shadow: inset 0 -0.28em 0 #fef3e0; }
+  #hero h1 .accent-robots { box-shadow: inset 0 -0.28em 0 #e0f2fe; }
+  #hero h1 .accent-human  { box-shadow: inset 0 -0.28em 0 #f0fdf4; }
+  .hero-sub { font-size: 20px; color: #444; line-height: 1.45; max-width: 620px; margin-bottom: 28px; }
+  @media (max-width: 640px) {
+    #hero h1 { font-size: 36px; letter-spacing: -1px; }
+    .hero-sub { font-size: 16px; margin-bottom: 20px; }
+  }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn-primary, .btn-secondary {
+    display: inline-block; text-decoration: none; font-family: inherit; font-weight: 700;
+    font-size: 15px; letter-spacing: 0.3px; padding: 14px 24px; border-radius: 10px;
+    border: 2px solid #1a1a1a; transition: transform 0.12s, box-shadow 0.12s, background 0.12s, color 0.12s;
+  }
+  .btn-primary { background: #1a1a1a; color: #fff; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+  .btn-secondary { background: #fff; color: #1a1a1a; }
+  .btn-secondary:hover { background: #1a1a1a; color: #fff; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+  @media (max-width: 640px) {
+    .cta-row { flex-direction: column; align-items: stretch; }
+    .btn-primary, .btn-secondary { text-align: center; font-size: 14px; padding: 13px 18px; }
+  }
+
+  /* ── Proof point (big featured card under hero) ───────────── */
+  #proof-point { margin-bottom: 72px; }
+  .proof-point-card {
+    border: 2px solid #1a1a1a; border-radius: 14px; background: #fff;
+    padding: 30px 30px 24px; position: relative; overflow: hidden; max-width: 800px;
+  }
+  .proof-point-card .card-tag { position: absolute; top: 0; right: 0; background: #1a1a1a; color: #fff; padding: 5px 12px; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; border-bottom-left-radius: 8px; }
+  .proof-point-card .pp-headline { font-size: 26px; font-weight: 800; letter-spacing: -0.4px; line-height: 1.2; margin-bottom: 14px; padding-right: 40px; }
+  .proof-point-card .pp-quote { font-size: 17px; line-height: 1.55; color: #333; font-style: italic; border-left: 4px solid #1a1a1a; padding-left: 16px; margin-bottom: 14px; }
+  .proof-point-card .pp-byline { font-size: 13px; font-weight: 700; letter-spacing: 0.4px; }
+  .proof-point-card .pp-thumb { width: 100%; border-radius: 8px; border: 1.5px solid #1a1a1a; margin-bottom: 16px; display: block; }
+  @media (max-width: 640px) {
+    .proof-point-card { padding: 22px 18px 18px; }
+    .proof-point-card .pp-headline { font-size: 20px; }
+    .proof-point-card .pp-quote { font-size: 15px; }
+  }
+
+  /* ── How it works ─────────────────────────────────────────── */
+  .arc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
+  @media (max-width: 760px) { .arc-grid { grid-template-columns: 1fr; } }
+  .arc-card {
+    border: 2px solid #1a1a1a; border-radius: 12px; padding: 22px 20px 18px;
+    position: relative; overflow: hidden; min-height: 170px;
+    display: flex; flex-direction: column; gap: 10px;
+    transition: transform 0.12s, box-shadow 0.12s;
+  }
+  .arc-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+  .arc-card .card-tag { position: absolute; top: 0; right: 0; color: #fff; padding: 4px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; border-bottom-left-radius: 8px; }
+  .arc-card h3 { font-size: 21px; font-weight: 800; letter-spacing: -0.3px; margin-top: 10px; }
+  .arc-card p { font-size: 14px; line-height: 1.5; color: #444; }
+  .arc-card.c-dbalp  { background: #fef3e0; } .arc-card.c-dbalp .card-tag  { background: #d97706; }
+  .arc-card.c-rpa    { background: #e0f2fe; } .arc-card.c-rpa .card-tag    { background: #0369a1; }
+  .arc-card.c-ff-mon { background: #f0fdf4; } .arc-card.c-ff-mon .card-tag { background: #15803d; }
+  .arc-note { margin-top: 18px; font-size: 15px; font-weight: 700; }
+  .arc-note span { background: #fce7f3; padding: 2px 8px; border-radius: 6px; }
+
+  /* ── Proof wall ───────────────────────────────────────────── */
+  .wall-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-top: 24px; }
+  .wall-grid.wide { grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); }
+  @media (max-width: 480px) { .wall-grid, .wall-grid.wide { grid-template-columns: 1fr; } }
+  .card {
+    border: 2px solid #1a1a1a; border-radius: 12px; padding: 20px 18px 16px;
+    transition: transform 0.12s, box-shadow 0.12s;
+    display: flex; flex-direction: column; gap: 12px; text-align: left;
+    color: #1a1a1a; min-height: 200px; position: relative; overflow: hidden;
+    background: #fff; text-decoration: none;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+  .card-tag { position: absolute; top: 0; right: 0; background: #1a1a1a; color: #fff; padding: 4px 10px; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; border-bottom-left-radius: 8px; }
+  .card-headline { font-size: 20px; font-weight: 800; line-height: 1.22; margin-top: 12px; letter-spacing: -0.3px; }
+  .card-quote { font-size: 13px; line-height: 1.45; color: #444; font-style: italic; border-left: 3px solid rgba(26,26,26,0.35); padding-left: 10px; }
+  .card-byline { font-size: 12px; font-weight: 700; color: #1a1a1a; letter-spacing: 0.4px; margin-top: auto; padding-top: 8px; }
+
+  /* Cohort palettes - subtle tinted backgrounds, black type + border stay constant */
+  .card.c-dbalp    { background: #fef3e0; } .card.c-dbalp .card-tag    { background: #d97706; }
+  .card.c-rpa      { background: #e0f2fe; } .card.c-rpa .card-tag      { background: #0369a1; }
+  .card.c-ff-mon   { background: #f0fdf4; } .card.c-ff-mon .card-tag   { background: #15803d; }
+  .card.c-ff-thu   { background: #fce7f3; } .card.c-ff-thu .card-tag   { background: #be185d; }
+  .card.c-other    { background: #f5f5f5; } .card.c-other .card-tag    { background: #52525b; }
+
+  .wall-more { margin-top: 20px; font-size: 15px; }
+  .wall-more a { color: #1a1a1a; font-weight: 700; text-decoration: none; border-bottom: 2px solid #1a1a1a; padding-bottom: 1px; }
+  .wall-more a:hover { background: #fef3e0; }
+
+  /* ── Testimonials ─────────────────────────────────────────── */
+  .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; margin-top: 24px; }
+
+  /* ── Vocabulary ───────────────────────────────────────────── */
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; margin-top: 24px; }
+  @media (max-width: 480px) { .vocab-grid { grid-template-columns: 1fr; } }
+  .vocab-tile {
+    border: 2px solid #1a1a1a; border-radius: 12px; padding: 18px 18px 16px;
+    transition: transform 0.12s, box-shadow 0.12s;
+  }
+  .vocab-tile:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+  .vocab-tile .term { font-size: 17px; font-weight: 800; letter-spacing: -0.2px; margin-bottom: 6px; }
+  .vocab-tile .def { font-size: 14px; line-height: 1.45; color: #444; }
+  .vocab-tile.c-dbalp  { background: #fef3e0; }
+  .vocab-tile.c-rpa    { background: #e0f2fe; }
+  .vocab-tile.c-ff-mon { background: #f0fdf4; }
+  .vocab-tile.c-ff-thu { background: #fce7f3; }
+  .vocab-tile.c-other  { background: #f5f5f5; }
+
+  /* ── Who + pricing ────────────────────────────────────────── */
+  .who-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; margin-top: 24px; align-items: stretch; }
+  @media (max-width: 760px) { .who-grid { grid-template-columns: 1fr; } }
+  .who-card, .price-card { border: 2px solid #1a1a1a; border-radius: 12px; padding: 26px 24px; background: #fff; }
+  .who-card h3, .price-card h3 { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #888; margin-bottom: 12px; }
+  .who-card p { font-size: 16px; line-height: 1.55; color: #333; }
+  .who-card p + p { margin-top: 12px; }
+  .price-card { background: #1a1a1a; color: #fff; display: flex; flex-direction: column; }
+  .price-card h3 { color: #aaa; }
+  .price-value { font-size: 24px; font-weight: 800; letter-spacing: -0.3px; line-height: 1.25; margin-bottom: 12px; }
+  .price-note { font-size: 14px; color: #ccc; line-height: 1.5; margin-top: auto; }
+
+  /* ── Final CTA band ───────────────────────────────────────── */
+  .cta-band {
+    background: #1a1a1a; color: #fff; border-radius: 14px;
+    padding: 44px 30px 38px; text-align: center;
+  }
+  .cta-band .thesis { font-size: 30px; font-weight: 800; letter-spacing: -0.4px; margin-bottom: 10px; }
+  .cta-band .cta-copy { font-size: 16px; color: #ccc; margin-bottom: 22px; }
+  .cta-band .cta-row { justify-content: center; }
+  .cta-band .btn-primary { background: #fff; color: #1a1a1a; border-color: #fff; }
+  .cta-band .btn-primary:hover { box-shadow: 0 8px 24px rgba(255,255,255,0.15); }
+  .cta-band .btn-secondary { background: transparent; color: #fff; border-color: #fff; }
+  .cta-band .btn-secondary:hover { background: #fff; color: #1a1a1a; }
+  .cta-band .community-line { margin-top: 20px; font-size: 14px; color: #ccc; }
+  .cta-band .community-line a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .cta-band .community-line a:hover { color: #fef3e0; }
+  @media (max-width: 640px) { .cta-band .thesis { font-size: 22px; } .cta-band { padding: 32px 20px 28px; } }
 
   footer { margin-top: 40px; font-size: 12px; color: #888; text-align: center; padding-top: 24px; border-top: 1.5px solid #e5e5e5; }
 </style>
@@ -36,24 +176,163 @@ const PUBLIC_STATUSES = ["cleared-for-public", "live", "featured"];
 <body>
 <div class="page">
 
-  <section id="hero"></section>
+  <!-- ── HERO ─────────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="cohort-pill">THE BUILD ROOM</div>
+    <h1>Learn <span class="accent-ai">AI</span>. Build <span class="accent-robots">Robots</span>. Stay <span class="accent-human">Human</span>.</h1>
+    <p class="hero-sub">A 4-week live cohort where you build a working AI robot for your real work, and actually use it.</p>
+    <div class="cta-row">
+      <a class="btn-primary cta-luma" href="#">Register for the July 15 Kickoff Session</a>
+      <a class="btn-secondary cta-stripe" href="#">Ready now? Reserve your seat</a>
+    </div>
+  </section>
 
+  <!-- ── PROOF POINT (rendered from proof-library.json) ───────── -->
   <section id="proof-point"></section>
 
-  <section id="how-it-works"></section>
+  <!-- ── HOW IT WORKS ─────────────────────────────────────────── -->
+  <section id="how-it-works">
+    <div class="kicker">The Arc</div>
+    <h2>How it works</h2>
+    <p class="section-sub">You come in with real work. You leave with a robot that does part of it.</p>
+    <div class="arc-grid">
+      <div class="arc-card c-dbalp">
+        <span class="card-tag">Week 1</span>
+        <h3>Kickoff</h3>
+        <p>Meet your project and run your first build sprint. You'll have something working before the first session ends.</p>
+      </div>
+      <div class="arc-card c-rpa">
+        <span class="card-tag">Weeks 2&ndash;3</span>
+        <h3>Build sprints</h3>
+        <p>Weekly 2-hour live sessions with coaching in the room. You ship every week, not at the end.</p>
+      </div>
+      <div class="arc-card c-ff-mon">
+        <span class="card-tag">Week 4</span>
+        <h3>Demo Day</h3>
+        <p>You demo what you built, live, in front of the room. Your robot, doing your work.</p>
+      </div>
+    </div>
+    <p class="arc-note">Next cohort starts <span id="cohort-start"></span>.</p>
+  </section>
 
-  <section id="proof-wall"></section>
+  <!-- ── PROOF WALL (rendered from proof-library.json) ────────── -->
+  <section id="proof-wall">
+    <div class="kicker">Proof</div>
+    <h2>What comes out of the room</h2>
+    <p class="section-sub">Real builds and real moments from live cohort sessions. Nothing staged.</p>
+    <div class="wall-grid" id="wall-grid"></div>
+    <p class="wall-more"><a id="wall-more-link" href="#">See all the wins &rarr;</a></p>
+  </section>
 
-  <section id="testimonials"></section>
+  <!-- ── TESTIMONIALS (rendered; hidden when none qualify) ────── -->
+  <section id="testimonials">
+    <div class="kicker">Builders</div>
+    <h2>What builders say</h2>
+    <div class="testimonial-grid" id="testimonial-grid"></div>
+  </section>
 
-  <section id="vocabulary"></section>
+  <!-- ── VOCABULARY ───────────────────────────────────────────── -->
+  <section id="vocabulary">
+    <div class="kicker">Vocabulary</div>
+    <h2>How we talk in the room</h2>
+    <div class="vocab-grid">
+      <div class="vocab-tile c-dbalp">
+        <div class="term">Threads burn, files remain.</div>
+        <div class="def">Chat disappears; what you build into files compounds.</div>
+      </div>
+      <div class="vocab-tile c-rpa">
+        <div class="term">First brick.</div>
+        <div class="def">The smallest piece of your dream robot you can ship today.</div>
+      </div>
+      <div class="vocab-tile c-ff-mon">
+        <div class="term">Publisher identity.</div>
+        <div class="def">By week 3 you're not learning AI, you're shipping on the internet.</div>
+      </div>
+      <div class="vocab-tile c-ff-thu">
+        <div class="term">Demo Day.</div>
+        <div class="def">Week 4. Everyone demos. No slides, real robots.</div>
+      </div>
+      <div class="vocab-tile c-other">
+        <div class="term">Be Human check-in.</div>
+        <div class="def">Every session opens with people, not tech.</div>
+      </div>
+    </div>
+  </section>
 
-  <section id="who-pricing"></section>
+  <!-- ── WHO + PRICING ────────────────────────────────────────── -->
+  <section id="who-pricing">
+    <div class="kicker">Fit</div>
+    <h2>Who it's for</h2>
+    <div class="who-grid">
+      <div class="who-card">
+        <h3>You, if</h3>
+        <p>You're a professional who wants to build with AI, not just chat with it. You've got real work that a robot could take off your plate, and you'd rather ship one than read another newsletter about it.</p>
+        <p>No coding background needed. You bring the work you already know inside and out; the room brings the build skills.</p>
+      </div>
+      <div class="price-card">
+        <h3>Cohort price</h3>
+        <div class="price-value">[PRICE - Alex confirms at copy review]</div>
+        <p class="price-note">Four weeks, live 2-hour sessions, coaching in the room while you build.</p>
+      </div>
+    </div>
+  </section>
 
-  <section id="final-cta"></section>
+  <!-- ── FINAL CTA ────────────────────────────────────────────── -->
+  <section id="final-cta">
+    <div class="cta-band">
+      <div class="thesis">Learn AI. Build Robots. Stay Human.</div>
+      <div class="cta-copy">Come to the kickoff, meet the room, and decide from there.</div>
+      <div class="cta-row">
+        <a class="btn-primary cta-luma" href="#">Register for the July 15 Kickoff Session</a>
+        <a class="btn-secondary cta-stripe" href="#">Ready now? Reserve your seat</a>
+      </div>
+      <p class="community-line">Not ready yet? <a id="community-link" href="#" target="_blank" rel="noopener">Join the free community</a></p>
+    </div>
+  </section>
 
   <footer>Alex Salinsky / The Build Room</footer>
 
 </div>
+
+<script>
+  // ── Static wiring from CONFIG (hrefs, dates, placeholder guard) ──
+  (function wireCtas() {
+    const shortDate = CONFIG.KICKOFF_DATE_HUMAN.replace(/^[A-Za-z]+,\s*/, '');
+    const lumaOk = CONFIG.LUMA_URL && CONFIG.LUMA_URL !== 'PLACEHOLDER';
+    const stripeOk = CONFIG.STRIPE_URL && CONFIG.STRIPE_URL !== 'PLACEHOLDER';
+
+    document.querySelectorAll('.cta-luma').forEach(a => {
+      if (lumaOk) {
+        a.href = CONFIG.LUMA_URL;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = 'Register for the ' + shortDate + ' Kickoff Session';
+      } else {
+        a.href = SKOOL_URL;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = 'Join the community, kickoff registration opens shortly';
+      }
+    });
+
+    document.querySelectorAll('.cta-stripe').forEach(a => {
+      if (stripeOk) {
+        a.href = CONFIG.STRIPE_URL;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = 'Ready now? Reserve your seat';
+      } else {
+        a.href = SKOOL_URL;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = 'Join the community, seat reservation opens shortly';
+      }
+    });
+
+    document.getElementById('cohort-start').textContent = CONFIG.COHORT_START_HUMAN;
+    document.getElementById('community-link').href = SKOOL_URL;
+    document.getElementById('wall-more-link').href = WINS_WALL_URL;
+  })();
+</script>
 </body>
 </html>
