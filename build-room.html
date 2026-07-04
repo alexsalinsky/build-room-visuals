@@ -182,8 +182,8 @@ const PUBLIC_STATUSES = ["cleared-for-public", "live", "featured"];
     <h1>Learn <span class="accent-ai">AI</span>. Build <span class="accent-robots">Robots</span>. Stay <span class="accent-human">Human</span>.</h1>
     <p class="hero-sub">A 4-week live cohort where you build a working AI robot for your real work, and actually use it.</p>
     <div class="cta-row">
-      <a class="btn-primary cta-luma" href="#">Register for the July 15 Kickoff Session</a>
-      <a class="btn-secondary cta-stripe" href="#">Ready now? Reserve your seat</a>
+      <a class="btn-primary cta-luma" href="https://www.skool.com/the-build-room-3309">Register for the Kickoff Session</a>
+      <a class="btn-secondary cta-stripe" href="https://www.skool.com/the-build-room-3309">Ready now? Reserve your seat</a>
     </div>
   </section>
 
@@ -202,7 +202,7 @@ const PUBLIC_STATUSES = ["cleared-for-public", "live", "featured"];
         <p>Meet your project and run your first build sprint. You'll have something working before the first session ends.</p>
       </div>
       <div class="arc-card c-rpa">
-        <span class="card-tag">Weeks 2&ndash;3</span>
+        <span class="card-tag">Weeks 2-3</span>
         <h3>Build sprints</h3>
         <p>Weekly 2-hour live sessions with coaching in the room. You ship every week, not at the end.</p>
       </div>
@@ -221,7 +221,7 @@ const PUBLIC_STATUSES = ["cleared-for-public", "live", "featured"];
     <h2>What comes out of the room</h2>
     <p class="section-sub">Real builds and real moments from live cohort sessions. Nothing staged.</p>
     <div class="wall-grid" id="wall-grid"></div>
-    <p class="wall-more"><a id="wall-more-link" href="#">See all the wins &rarr;</a></p>
+    <p class="wall-more"><a id="wall-more-link" href="wins-wall.html">See all the wins &rarr;</a></p>
   </section>
 
   <!-- ── TESTIMONIALS (rendered; hidden when none qualify) ────── -->
@@ -283,10 +283,10 @@ const PUBLIC_STATUSES = ["cleared-for-public", "live", "featured"];
       <div class="thesis">Learn AI. Build Robots. Stay Human.</div>
       <div class="cta-copy">Come to the kickoff, meet the room, and decide from there.</div>
       <div class="cta-row">
-        <a class="btn-primary cta-luma" href="#">Register for the July 15 Kickoff Session</a>
-        <a class="btn-secondary cta-stripe" href="#">Ready now? Reserve your seat</a>
+        <a class="btn-primary cta-luma" href="https://www.skool.com/the-build-room-3309">Register for the Kickoff Session</a>
+        <a class="btn-secondary cta-stripe" href="https://www.skool.com/the-build-room-3309">Ready now? Reserve your seat</a>
       </div>
-      <p class="community-line">Not ready yet? <a id="community-link" href="#" target="_blank" rel="noopener">Join the free community</a></p>
+      <p class="community-line">Not ready yet? <a id="community-link" href="https://www.skool.com/the-build-room-3309" target="_blank" rel="noopener">Join the free community</a></p>
     </div>
   </section>
 
@@ -365,6 +365,12 @@ const PUBLIC_STATUSES = ["cleared-for-public", "live", "featured"];
     return e;
   }
 
+  // Strip any quotation marks the source text already carries so wrapping
+  // in curly quotes never doubles up.
+  function cleanQuote(q) {
+    return q.trim().replace(/^["'“”‘’]+/, '').replace(/["'“”‘’]+$/, '');
+  }
+
   function byline(entry) {
     const who = entry.attribution || 'The Build Room';
     return who + ' · ' + cohortLabel(entry);
@@ -390,7 +396,7 @@ const PUBLIC_STATUSES = ["cleared-for-public", "live", "featured"];
     }
     card.appendChild(el('div', { className: 'pp-headline' }, pick.title));
     if (pick.quote) {
-      card.appendChild(el('div', { className: 'pp-quote' }, '“' + pick.quote + '”'));
+      card.appendChild(el('div', { className: 'pp-quote' }, '“' + cleanQuote(pick.quote) + '”'));
     }
     card.appendChild(el('div', { className: 'pp-byline' }, byline(pick)));
     section.appendChild(card);
@@ -408,7 +414,8 @@ const PUBLIC_STATUSES = ["cleared-for-public", "live", "featured"];
       card.appendChild(el('span', { className: 'card-tag' }, cohortLabel(entry)));
       card.appendChild(el('div', { className: 'card-headline' }, entry.title));
       if (entry.quote) {
-        const q = entry.quote.length > 160 ? entry.quote.slice(0, 157).trimEnd() + '…' : entry.quote;
+        const clean = cleanQuote(entry.quote);
+        const q = clean.length > 160 ? clean.slice(0, 157).trimEnd() + '…' : clean;
         card.appendChild(el('div', { className: 'card-quote' }, '“' + q + '”'));
       }
       card.appendChild(el('div', { className: 'card-byline' }, byline(entry)));
@@ -425,7 +432,7 @@ const PUBLIC_STATUSES = ["cleared-for-public", "live", "featured"];
       const card = el('div', { className: 'card ' + cohortClass(entry) });
       card.appendChild(el('span', { className: 'card-tag' }, cohortLabel(entry)));
       if (entry.quote) {
-        card.appendChild(el('div', { className: 'card-headline' }, '“' + entry.quote + '”'));
+        card.appendChild(el('div', { className: 'card-headline' }, '“' + cleanQuote(entry.quote) + '”'));
       } else {
         card.appendChild(el('div', { className: 'card-headline' }, entry.title));
       }
