@@ -1,5 +1,24 @@
 # build-room-visuals workbench
 
+## 2026-07-06 -- [Tool: Claude Code] (landing page final review + proof data hotfix)
+
+**Focus:** Final whole-implementation review of the live landing page, hotfix what it found.
+
+**What happened:**
+- Final reviewer pass on live build-room.html: ship-worthy. Verified thesis verbatim, footer, Skool -3309 URL, 2-hour session copy, no webinar embed, XSS-safe rendering (createTextNode), rel=noopener on external links, status-allowlist filtering correct (raw/redacted never render).
+- Hotfix shipped (4d463b5): two LinkedIn `published` entries in proof-library.json had internal note text in their `quote` fields, rendering on the live wall as if quoted from Alex. Quotes nulled (cards render title-only), note text preserved in `notes` fields.
+
+**Decisions:**
+- [DECISION] Null the leaked quote fields instead of writing replacement quotes, because fabricating public quotes attributed to Alex violates the no-fabrication rule; title-only cards are honest and the renderer already null-guards.
+
+**Still open:**
+- Proof-point hero card is the thesis clip (redundant with hero) until a raw `win` entry gets promoted to cleared-for-public
+- Section numbering visibly skips 03 while testimonials rail is empty; self-corrects when a permissioned testimonial lands
+
+**Key files:** proof-library.json
+
+---
+
 ## 2026-07-04 -- [Tool: Claude Code] (build-room.html SHIPPED)
 
 **Focus:** Close out the landing page: redesign, final copy, deploy live.
