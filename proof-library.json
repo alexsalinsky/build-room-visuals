@@ -666,10 +666,10 @@
       "tags": [
         "testimonial"
       ],
-      "status": "raw",
+      "status": "cleared-for-public",
       "date_captured": "2026-06-23",
       "date_cleared": null,
-      "notes": "Permission NOT yet asked. Sat unused for months because no one asked. Named explicitly in CUSTOMER-JOURNEY.md as the canonical example of the testimonial-form [GAP]. Action: build the testimonial form, then ask Ruben."
+      "notes": "Permission NOT yet asked. Sat unused for months because no one asked. Named explicitly in CUSTOMER-JOURNEY.md as the canonical example of the testimonial-form [GAP]. Action: build the testimonial form, then ask Ruben. Permission granted 2026-07-06 (Alex confirmed directly with the builder; cleared for the Jul 15 kickoff Luma page and general public use)."
     },
     {
       "id": "dbalp-s3-kate-missive-sidebar-live",
@@ -688,10 +688,10 @@
         "breakthrough",
         "featured"
       ],
-      "status": "raw",
+      "status": "cleared-for-public",
       "date_captured": "2026-06-23",
       "date_cleared": null,
-      "notes": "FEATURED candidate for marketing once permission asked. Mid-session continuous extension pattern (Bryce asked, Kate shipped same session, room applauded). TODO: ask Kate for permission to use as marketing asset; pull video clip from S3 Fathom https://fathom.video/share/niM3mdCCwSSFEhbyJyMjfMaAxQgNM32A."
+      "notes": "FEATURED candidate for marketing once permission asked. Mid-session continuous extension pattern (Bryce asked, Kate shipped same session, room applauded). TODO: ask Kate for permission to use as marketing asset; pull video clip from S3 Fathom https://fathom.video/share/niM3mdCCwSSFEhbyJyMjfMaAxQgNM32A. Permission granted 2026-07-06 (Alex confirmed directly with the builder; cleared for the Jul 15 kickoff Luma page and general public use)."
     },
     {
       "id": "dbalp-s3-bryce-callback-developer-two-months",
@@ -1471,10 +1471,10 @@
         "live-demo",
         "tooling"
       ],
-      "status": "raw",
+      "status": "cleared-for-public",
       "date_captured": "2026-06-23",
       "date_cleared": null,
-      "notes": "DA + UVPM + outlet + reporter + email + beats + macro URL in one Missive sidebar panel by S3. Cohort leader."
+      "notes": "DA + UVPM + outlet + reporter + email + beats + macro URL in one Missive sidebar panel by S3. Cohort leader. Permission granted 2026-07-06 (Alex confirmed directly with the builder; cleared for the Jul 15 kickoff Luma page and general public use)."
     },
     {
       "id": "dbalp-s3-kate-mid-session-extension",
@@ -1701,10 +1701,10 @@
         "first-time-builder",
         "recovery"
       ],
-      "status": "raw",
+      "status": "cleared-for-public",
       "date_captured": "2026-06-25",
       "date_cleared": null,
-      "notes": "Speaker mis-attributed to Dominika in Fathom transcript; content matches Cece's photo-curator project from earlier in call. TODO: cut clip from https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu around 01:56."
+      "notes": "Speaker mis-attributed to Dominika in Fathom transcript; content matches Cece's photo-curator project from earlier in call. TODO: cut clip from https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu around 01:56. Permission granted 2026-07-06 (Alex confirmed directly with the builder; cleared for the Jul 15 kickoff Luma page and general public use)."
     },
     {
       "id": "ff-thu-s1-anthony-stayed-after",
@@ -2287,10 +2287,10 @@
         "post-call",
         "permission-needed"
       ],
-      "status": "raw",
+      "status": "cleared-for-public",
       "date_captured": "2026-06-30",
       "date_cleared": null,
-      "notes": "TODO: cut clip from https://fathom.video/share/iZEF3S_4HZHVDsxa-2Q-WfKSi8bE7JxM. GOLD. CEO peer-naming the cohort most unlikely shipper. About 10s. Cut 01:53:40 to 01:54:00. PERMISSION REQUIRED before any external use; Bryce offered testimonials broadly at 01:54:00 so this should be easy to clear."
+      "notes": "TODO: cut clip from https://fathom.video/share/iZEF3S_4HZHVDsxa-2Q-WfKSi8bE7JxM. GOLD. CEO peer-naming the cohort most unlikely shipper. About 10s. Cut 01:53:40 to 01:54:00. PERMISSION REQUIRED before any external use; Bryce offered testimonials broadly at 01:54:00 so this should be easy to clear. Permission granted 2026-07-06 (Alex confirmed directly with the builder; cleared for the Jul 15 kickoff Luma page and general public use)."
     },
     {
       "id": "dbalp-s4-bryce-testimonial-offer-open",
@@ -2332,10 +2332,10 @@
         "cohort-outcome",
         "permission-needed"
       ],
-      "status": "raw",
+      "status": "cleared-for-public",
       "date_captured": "2026-06-30",
       "date_cleared": null,
-      "notes": "TODO: cut clip from https://fathom.video/share/iZEF3S_4HZHVDsxa-2Q-WfKSi8bE7JxM. About 15s. Cut 01:51:39 to 01:51:55. Strongest peer-to-peer cohort outcome testimonial. Permission required."
+      "notes": "TODO: cut clip from https://fathom.video/share/iZEF3S_4HZHVDsxa-2Q-WfKSi8bE7JxM. About 15s. Cut 01:51:39 to 01:51:55. Strongest peer-to-peer cohort outcome testimonial. Permission required. Permission granted 2026-07-06 (Alex confirmed directly with the builder; cleared for the Jul 15 kickoff Luma page and general public use)."
     },
     {
       "id": "dbalp-s4-marley-on-cohort-thanks",
