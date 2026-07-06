@@ -2471,6 +2471,166 @@
       "date_captured": "2026-06-30",
       "date_cleared": null,
       "notes": "Auds was queued as number 2 but Chanel cut in due to outside fire; Auds never came back to the queue and never demo'd as a result. Standing fix: explicit return to the skipped builder after the next demo, not later. Visible queue (chat or shared doc)."
+    },
+    {
+      "type": "win",
+      "cohort": "ff-mon",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-06",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-mon-2026-07-06.md",
+      "id": "ff-mon-s3-jordan-tool-suite-demo",
+      "title": "Jordan demoed a full tool suite live on three different hosts",
+      "quote": "\"I probably spend 30 hours a week on this stuff.\"",
+      "attribution": "Jordan (F&F Mon cohort)",
+      "timestamp": "00:16:48",
+      "tags": [
+        "live-demo",
+        "breakthrough"
+      ],
+      "notes": "Suite: daily assistant that texts him, finance tool, Medellin wellness market dashboard, WhatsApp moving-sale tool. TODO: cut clip from Fathom recording 160956302."
+    },
+    {
+      "type": "win",
+      "cohort": "ff-mon",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-06",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-mon-2026-07-06.md",
+      "id": "ff-mon-s3-sarah-pdf-pipeline-applause",
+      "title": "Sarah ran her German bureaucracy PDF pipeline end to end and got room applause",
+      "quote": "\"I did that last week. This is what the email looks like.\"",
+      "attribution": "Sarah (F&F Mon cohort)",
+      "timestamp": "00:23:42",
+      "tags": [
+        "live-demo",
+        "breakthrough",
+        "recognition"
+      ],
+      "notes": "Drop a PDF: translated, summarized, filed in Drive, emailed with action items. Applause at 00:25:09. TODO: cut clip from Fathom recording 160956302."
+    },
+    {
+      "type": "win",
+      "cohort": "ff-mon",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-06",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-mon-2026-07-06.md",
+      "id": "ff-mon-s3-bernie-bernieos-roi",
+      "title": "Bernie quantified BernieOS ROI: ~2 hours saved per client per week across 20 clients",
+      "quote": "\"Two hours per client per week... 20 clients.\"",
+      "attribution": "Bernie (F&F Mon cohort)",
+      "timestamp": "00:28:16",
+      "tags": [
+        "breakthrough",
+        "story"
+      ],
+      "notes": "Client SEO Workspace, now BernieOS. Live demo button failed at 00:27:29; still landed the ROI math. TODO: cut clip from Fathom recording 160956302."
+    },
+    {
+      "type": "win",
+      "cohort": "ff-mon",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-06",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-mon-2026-07-06.md",
+      "id": "ff-mon-s3-dine-mari-riverside-clickup",
+      "title": "Dine-Mari got her Riverside to ClickUp hop working on real recordings",
+      "quote": "\"Takes two hours from manual work that I don't have to do at all.\"",
+      "attribution": "Dine-Mari (F&F Mon cohort)",
+      "timestamp": "02:33:27",
+      "tags": [
+        "first-brick",
+        "breakthrough"
+      ],
+      "notes": "One form, ten seconds, editing tasks land in ClickUp pre-templated. Quote from post-session 1:1 on same Zoom."
+    },
+    {
+      "type": "win",
+      "cohort": "ff-mon",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-06",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-mon-2026-07-06.md",
+      "id": "ff-mon-s3-steve-cloudflare-hosted",
+      "title": "Steve has his Google Ads reporting project running fully inside Cloudflare",
+      "quote": "\"Mine's all completely inside of Cloudflare.\"",
+      "attribution": "Steve (F&F Mon cohort)",
+      "timestamp": "01:19:54",
+      "tags": [
+        "tooling",
+        "lesson"
+      ],
+      "notes": "Also surfaced the lesson: ad platforms guard data hard, and hard to build means hard to copy."
+    },
+    {
+      "type": "win",
+      "cohort": "ff-mon",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-06",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-mon-2026-07-06.md",
+      "id": "ff-mon-s3-alvaro-app-in-cloud",
+      "title": "Alvaro answered the publish question with \"already there,\" app live in the cloud",
+      "quote": "\"I also have my app in the cloud.\"",
+      "attribution": "Alvaro (F&F Mon cohort)",
+      "timestamp": "00:29:24",
+      "tags": [
+        "first-brick"
+      ],
+      "notes": "Deploy done; edit-transaction screen is the remaining demo piece."
+    },
+    {
+      "type": "win",
+      "cohort": "ff-mon",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-06",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-mon-2026-07-06.md",
+      "id": "ff-mon-s3-greg-scope-cut",
+      "title": "Greg cut a twelve-advisor vision down to one or two advisors that ship",
+      "quote": null,
+      "attribution": "Greg (F&F Mon cohort)",
+      "timestamp": "01:17:28",
+      "tags": [
+        "scope-lock",
+        "pivot"
+      ],
+      "notes": "Joined late, coached by Alex in workshop room. Scope cut cited in the \"optimize for the moment\" close at 01:58:12."
+    },
+    {
+      "type": "win",
+      "cohort": "ff-mon",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-06",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-mon-2026-07-06.md",
+      "id": "ff-mon-s3-alejandro-token-fix-live",
+      "title": "Alejandro wired his Cloudflare token live with Alex and got unblocked",
+      "quote": "\"It did, but I got stuck.\"",
+      "attribution": "Alejandro (F&F Mon cohort)",
+      "timestamp": "01:13:51",
+      "tags": [
+        "recovery",
+        "live-demo"
+      ],
+      "notes": "Token fixed live during build hour; straight into a working room."
     }
   ]
 }
