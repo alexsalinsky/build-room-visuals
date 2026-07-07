@@ -2631,6 +2631,193 @@
         "live-demo"
       ],
       "notes": "Token fixed live during build hour; straight into a working room."
+    },
+    {
+      "type": "win",
+      "cohort": "rpa",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-07",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s4-wins-post-2026-07-07.md",
+      "id": "rpa-s4-david-coaching-evaluator-demo",
+      "title": "David demoed the Coaching Session Evaluator on Demo Day, the tool a vendor quoted $20,000 for",
+      "quote": null,
+      "attribution": "David Wang (RPA cohort)",
+      "timestamp": "01:27:32",
+      "tags": [
+        "demo-day",
+        "shipped",
+        "roi"
+      ],
+      "notes": "Dual AI/rule-based evaluator, de-identifies clients before AI. TODO: cut clip from https://fathom.video/calls/735881251 (01:27:32-01:37:30)"
+    },
+    {
+      "type": "win",
+      "cohort": "rpa",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-07",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s4-wins-post-2026-07-07.md",
+      "id": "rpa-s4-maria-dashboard-impossible",
+      "title": "Maria shipped the client/coach dashboard the org had called impossible for two years",
+      "quote": null,
+      "attribution": "Maria (Majo) (RPA cohort)",
+      "timestamp": "01:37:43",
+      "tags": [
+        "demo-day",
+        "shipped",
+        "cloudflare"
+      ],
+      "notes": "Live on Cloudflare. TODO: cut clip from https://fathom.video/calls/735881251 (01:37:43-01:46:37)"
+    },
+    {
+      "type": "win",
+      "cohort": "rpa",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-07",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s4-wins-post-2026-07-07.md",
+      "id": "rpa-s4-cata-rpa-wiki",
+      "title": "Cata demoed the RPA Wiki, one searchable home for content scattered across Drive, Slack and GHL",
+      "quote": null,
+      "attribution": "Cata (Catalina Zapata) (RPA cohort)",
+      "timestamp": "01:53:42",
+      "tags": [
+        "demo-day",
+        "shipped"
+      ],
+      "notes": "AI assistant page live but Q&A blocked on token upgrade at demo time. TODO: cut clip from https://fathom.video/calls/735881251 (01:53:42-02:00:20)"
+    },
+    {
+      "type": "win",
+      "cohort": "rpa",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-07",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s4-wins-post-2026-07-07.md",
+      "id": "rpa-s4-muhammad-support-system",
+      "title": "Muhammad demoed the RPA support system: client chatbot + internal dashboard answering from live GHL data",
+      "quote": null,
+      "attribution": "Muhammad (RPA cohort)",
+      "timestamp": "02:00:23",
+      "tags": [
+        "demo-day",
+        "shipped",
+        "ghl"
+      ],
+      "notes": "TODO: cut clip from https://fathom.video/calls/735881251 (02:00:23-02:02:00)"
+    },
+    {
+      "type": "win",
+      "cohort": "rpa",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-07",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s4-wins-post-2026-07-07.md",
+      "id": "rpa-s4-jess-two-bonus-tools",
+      "title": "Jess demoed two bonus tools (clip library + transcript search) live on Cloudflare with a team handoff doc",
+      "quote": "\"These two tools are online\"",
+      "attribution": "Jess (coach, RPA cohort)",
+      "timestamp": "01:46:37",
+      "tags": [
+        "demo-day",
+        "shipped",
+        "bonus-product"
+      ],
+      "notes": "Positioned as a bonus product; handoff doc for Ginger's team exists. TODO: cut clip from https://fathom.video/calls/735881251 (01:46:37-01:52:36)"
+    },
+    {
+      "type": "quote",
+      "cohort": "rpa",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-07",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s4-demo-timestamps-2026-07-07.md",
+      "id": "rpa-s4-ginger-20k-quote",
+      "title": "Ginger: someone quoted her $20,000 six months ago for what David built in the cohort",
+      "quote": "\"So David, what you did, someone six months ago quoted me $20,000 to make that.\"",
+      "attribution": "Ginger Gentile (RPA owner)",
+      "timestamp": "02:02:00",
+      "tags": [
+        "owner-testimonial",
+        "roi",
+        "demo-day"
+      ],
+      "notes": "Closing praise round. TODO: cut clip from https://fathom.video/calls/735881251 (02:02:00-02:08:36)"
+    },
+    {
+      "type": "quote",
+      "cohort": "rpa",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-07",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s4-demo-timestamps-2026-07-07.md",
+      "id": "rpa-s4-ginger-youre-a-coder",
+      "title": "Ginger on Maria's dashboard: an impossible task done, \"You're a coder\"",
+      "quote": "\"Maria did an impossible task. I got tired of people saying we can't do a dashboard. It's impossible. And Maria, you figured it out. So congratulations. You're a coder.\"",
+      "attribution": "Ginger Gentile (RPA owner)",
+      "timestamp": "02:02:00",
+      "tags": [
+        "owner-testimonial",
+        "identity-shift",
+        "demo-day"
+      ],
+      "notes": "TODO: cut clip from https://fathom.video/calls/735881251 (02:02:00-02:08:36)"
+    },
+    {
+      "type": "quote",
+      "cohort": "rpa",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-07",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s4-demo-timestamps-2026-07-07.md",
+      "id": "rpa-s4-ginger-revolutionize-coaches",
+      "title": "Ginger on David's evaluator: it will revolutionize everything for our coaches",
+      "quote": "\"This is amazing. It's going to revolutionize everything for our coaches.\"",
+      "attribution": "Ginger Gentile (RPA owner)",
+      "timestamp": "01:35:14",
+      "tags": [
+        "owner-testimonial",
+        "demo-day"
+      ],
+      "notes": "Mid-demo reaction. TODO: cut clip from https://fathom.video/calls/735881251"
+    },
+    {
+      "type": "quote",
+      "cohort": "rpa",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-07",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s4-demo-timestamps-2026-07-07.md",
+      "id": "rpa-s4-ginger-skys-the-limit",
+      "title": "Ginger closing Demo Day: \"the sky's the limit. We can do anything.\"",
+      "quote": "\"I love how everyone says the sky's the limit. We can do anything.\"",
+      "attribution": "Ginger Gentile (RPA owner)",
+      "timestamp": "02:08:08",
+      "tags": [
+        "owner-testimonial",
+        "demo-day",
+        "closing"
+      ],
+      "notes": "TODO: cut clip from https://fathom.video/calls/735881251"
     }
   ]
 }
