@@ -2818,6 +2818,130 @@
         "closing"
       ],
       "notes": "TODO: cut clip from https://fathom.video/calls/735881251"
+    },
+    {
+      "type": "lesson",
+      "cohort": "rpa",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-07",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s4-facilitator-recap-2026-07-07.md",
+      "id": "rpa-s4-lesson-token-check-at-s3",
+      "title": "Check token budgets at S3, not S4: two builders ran dry on Demo Day",
+      "quote": null,
+      "attribution": "RPA cohort (cross-cohort heuristic)",
+      "timestamp": "00:39:24",
+      "tags": [
+        "cohort-design",
+        "tokens",
+        "demo-day"
+      ],
+      "notes": "Maria hit 0% and Cata's wiki assistant couldn't answer at her own demo; both one plan-upgrade away. Standing S3 agenda item: check every builder's plan/usage, get upgrades approved before Demo Day week."
+    },
+    {
+      "type": "lesson",
+      "cohort": "rpa",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-07",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s4-facilitator-recap-2026-07-07.md",
+      "id": "rpa-s4-lesson-demo-dry-run-24h",
+      "title": "Demo dry-run rule: every builder proves one end-to-end interaction works 24h before Demo Day",
+      "quote": null,
+      "attribution": "RPA cohort (cross-cohort heuristic)",
+      "timestamp": "01:55:38",
+      "tags": [
+        "cohort-design",
+        "demo-day"
+      ],
+      "notes": "Cata handled a non-working demo gracefully but a working 60-second interaction was one token top-up away. Triage broken demos the day before, on tokens that exist."
+    },
+    {
+      "type": "lesson",
+      "cohort": "rpa",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-07",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s4-facilitator-recap-2026-07-07.md",
+      "id": "rpa-s4-lesson-new-skill-new-name",
+      "title": "New skill = new name, plus disk hygiene: two preventable builder losses",
+      "quote": "\"When you start a new skill, you have to call it a new skill\"",
+      "attribution": "David Wang (RPA cohort)",
+      "timestamp": "00:00:25",
+      "tags": [
+        "pre-work",
+        "codex",
+        "tooling"
+      ],
+      "notes": "David lost a week to Codex overwriting his prior build, then a 56GB .codex directory filled his disk and forced a Demo Day reboot. Both preventable with two lines in the builder rule-pack MD pre-work."
+    },
+    {
+      "type": "lesson",
+      "cohort": "rpa",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-07",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s4-facilitator-recap-2026-07-07.md",
+      "id": "rpa-s4-lesson-owner-praise-round",
+      "title": "Owner closing praise round: brief the sponsor to close Demo Day naming each builder's win",
+      "quote": null,
+      "attribution": "RPA cohort (designed ritual)",
+      "timestamp": "02:02:00",
+      "tags": [
+        "cohort-design",
+        "demo-day",
+        "sponsor"
+      ],
+      "notes": "Ginger's unprompted per-builder congratulations (02:02:00-02:08:36) produced the best owner-testimonial footage to date. Repeatable: make it a designed ritual. TODO: cut clip from https://fathom.video/calls/735881251"
+    },
+    {
+      "type": "lesson",
+      "cohort": "rpa",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-07",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s4-facilitator-recap-2026-07-07.md",
+      "id": "rpa-s4-lesson-owner-arrives-for-demos",
+      "title": "Owner arriving only for demos keeps the room pressure-free and the celebration peak high",
+      "quote": null,
+      "attribution": "RPA cohort (cohort-design heuristic)",
+      "timestamp": "01:25:00",
+      "tags": [
+        "cohort-design",
+        "demo-day",
+        "sponsor"
+      ],
+      "notes": "First 85 minutes were pressure-free co-working; Ginger walked in exactly when there was something to celebrate. Schedule the sponsor's Demo Day arrival at the demo block, not the top of the session."
+    },
+    {
+      "type": "lesson",
+      "cohort": "rpa",
+      "media_url": null,
+      "thumbnail": null,
+      "status": "raw",
+      "date_captured": "2026-07-07",
+      "date_cleared": null,
+      "source_url": "brain/the-build-room/cohorts/ginger-rpa/s4-facilitator-recap-2026-07-07.md",
+      "id": "rpa-s4-lesson-live-spontaneous-build",
+      "title": "Live spontaneous build as teaching: sketch to working 3D dress prototype in under 10 minutes",
+      "quote": "\"I'm just imagining everything I can do with it.\"",
+      "attribution": "Maria (Majo) (RPA cohort)",
+      "timestamp": "01:12:06",
+      "tags": [
+        "teaching-moment",
+        "live-demo"
+      ],
+      "notes": "Alex turned Maria's clothing-mockup question into a working 3D prototype from a sketch mid-session; strongest new-possibility energy of the session. TODO: cut clip from https://fathom.video/calls/735881251"
     }
   ]
 }
