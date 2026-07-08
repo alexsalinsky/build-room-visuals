@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kickoff Session · July 15 — The Build Room</title>
+<!--
+  Kickoff Session deck, July 15 2026, 5pm America/Bogota. Live event, ~60 min.
+  Sells from proof (3 completed cohorts) instead of promise.
+  Visual language: workshop heat / editorial paper per marketing/2026-07-04-visual-direction.md.
+  Video placeholders: swap the .clip-slot inner content for a <video> tag once the cut lands.
+-->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px; gap: 14px; }
+  .slide-wrap { flex: 1; max-height: 84vh; width: 100%; max-width: 1100px; display: flex; align-items: center; justify-content: center; padding: 20px; position: relative; }
+  .slide { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; position: relative; }
+  .slide.center { align-items: center; text-align: center; }
+
+  .section-chip { position: absolute; top: 0; left: 0; font-size: 11px; font-weight: 700; color: #999; letter-spacing: 2px; text-transform: uppercase; }
+  .slide.center .section-chip { left: 50%; transform: translateX(-50%); }
+
+  h1 { font-size: 56px; font-weight: 800; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 16px; }
+  h1.huge { font-size: 72px; }
+  h1.mega { font-size: 96px; }
+  h2 { font-size: 34px; font-weight: 700; line-height: 1.15; margin-bottom: 22px; letter-spacing: -0.5px; }
+  p { font-size: 19px; line-height: 1.55; color: #333; margin-bottom: 14px; }
+  p.lead { font-size: 23px; color: #1a1a1a; }
+  .sub { font-size: 18px; color: #666; font-weight: 400; margin-top: 14px; }
+  .serif { font-family: Georgia, "Times New Roman", serif; font-style: italic; }
+
+  ul { list-style: none; padding: 0; }
+  ul li { font-size: 19px; line-height: 1.6; color: #333; padding-left: 28px; position: relative; margin-bottom: 8px; }
+  ul li::before { content: "→"; position: absolute; left: 0; color: #1a1a1a; font-weight: 700; }
+
+  .three-stack { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 22px 0; }
+  .three-stack .word { font-size: 64px; font-weight: 800; letter-spacing: -2px; line-height: 1; }
+
+  /* Proof build slide: info left, media right */
+  .build-slide { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; max-width: 980px; margin: 30px auto 0; }
+  @media (max-width: 720px) { .build-slide { grid-template-columns: 1fr; gap: 18px; } }
+  .build-info .who { font-size: 12px; color: #15803d; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 4px; text-transform: uppercase; }
+  .build-info .name { font-size: 38px; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; line-height: 1.1; }
+  .build-info .desc { font-size: 17px; color: #444; line-height: 1.55; }
+
+  .ownerquote { border-left: 4px solid #1a1a1a; padding: 14px 20px; background: #f0fdf4; border-radius: 0 10px 10px 0; margin-top: 16px; }
+  .ownerquote .q { font-family: Georgia, serif; font-style: italic; font-size: 18px; line-height: 1.45; color: #1a1a1a; }
+  .ownerquote .a { font-size: 13px; font-weight: 700; color: #15803d; margin-top: 8px; letter-spacing: 0.5px; }
+
+  /* Video clip slot: real <video> when the cut exists, styled placeholder otherwise */
+  .clip-slot { border: 2px solid #1a1a1a; border-radius: 12px; overflow: hidden; background: #fff; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 24px; }
+  .clip-slot video { width: 100%; max-height: 420px; display: block; }
+  .clip-slot .pill { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 999px; border: 1.5px solid #1a1a1a; }
+  .clip-slot .pill.queued { background: #fef3e0; color: #d97706; border-color: #d97706; }
+  .clip-slot .pill.cut { background: #f0fdf4; color: #15803d; border-color: #15803d; }
+  .clip-slot .clip-title { font-size: 16px; font-weight: 700; text-align: center; }
+  .clip-slot .clip-note { font-size: 13px; color: #888; text-align: center; font-style: italic; }
+
+  .bignum { font-family: Georgia, serif; font-size: 110px; font-weight: 400; letter-spacing: -2px; line-height: 1; }
+
+  .arc { display: flex; gap: 12px; margin: 22px 0; justify-content: center; }
+  .arc-step { flex: 1; max-width: 210px; border: 2.5px solid #1a1a1a; border-radius: 10px; padding: 16px 12px; background: #fff; }
+  .arc-step .num { font-size: 12px; font-weight: 700; color: #666; letter-spacing: 1.5px; }
+  .arc-step .title { font-size: 15px; font-weight: 700; margin-top: 6px; line-height: 1.25; }
+  .arc-step .real { font-size: 12px; color: #666; margin-top: 8px; line-height: 1.4; }
+  .arc-step.finale { background: #e0f2fe; }
+  @media (max-width: 720px) { .arc { flex-direction: column; } .arc-step { max-width: none; } }
+
+  .agenda-list { display: flex; flex-direction: column; gap: 10px; max-width: 580px; margin: 24px auto 0; }
+  .agenda-item { display: flex; align-items: center; gap: 16px; padding: 13px 22px; background: #fff; border: 2px solid #1a1a1a; border-radius: 10px; }
+  .agenda-item .num { font-size: 14px; font-weight: 800; color: #888; min-width: 28px; letter-spacing: 1px; }
+  .agenda-item .label { font-size: 19px; font-weight: 700; }
+  .agenda-item .side { font-size: 14px; color: #666; margin-left: auto; }
+
+  /* Testimonial grid */
+  .tgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 940px; margin: 24px auto 0; }
+  @media (max-width: 720px) { .tgrid { grid-template-columns: 1fr; } }
+  .tcard { background: #fff; border: 2px solid #1a1a1a; border-radius: 12px; padding: 22px 24px; }
+  .tcard .q { font-family: Georgia, serif; font-style: italic; font-size: 19px; line-height: 1.45; }
+  .tcard .a { font-size: 13px; font-weight: 700; margin-top: 12px; letter-spacing: 0.5px; color: #555; }
+  .tcard.green { background: #f0fdf4; }
+  .tcard.sky { background: #e0f2fe; }
+  .tcard.amber { background: #fef3e0; }
+
+  /* Wins wall mini-grid */
+  .wins-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; max-width: 960px; margin: 22px auto 0; }
+  @media (max-width: 720px) { .wins-grid { grid-template-columns: 1fr; } }
+  .win-card { background: #fff; border: 2px solid #1a1a1a; border-radius: 10px; padding: 14px 16px; }
+  .win-card strong { display: block; font-size: 15px; margin-bottom: 4px; }
+  .win-card span { font-size: 13px; color: #666; line-height: 1.4; }
+
+  /* Cohort options */
+  .cohort-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; max-width: 960px; margin: 26px auto 0; }
+  @media (max-width: 720px) { .cohort-grid { grid-template-columns: 1fr; } }
+  .cohort-card { border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 26px 22px; background: #fff; text-align: center; }
+  .cohort-card .tag { font-size: 11px; letter-spacing: 2px; font-weight: 800; margin-bottom: 10px; display: inline-block; padding: 4px 12px; border-radius: 999px; }
+  .cohort-card .title { font-size: 22px; font-weight: 800; line-height: 1.2; margin-bottom: 10px; }
+  .cohort-card .d { font-size: 14px; color: #555; line-height: 1.5; }
+  .cohort-card.committed { background: #e0f2fe; }
+  .cohort-card.committed .tag { background: #0369a1; color: #fff; }
+  .cohort-card.forming .tag { background: #fef3e0; color: #d97706; border: 1.5px solid #d97706; }
+
+  /* Retreat slides */
+  .retreat-card { border: 2.5px solid #1a1a1a; border-radius: 14px; padding: 34px 38px; max-width: 860px; margin: 26px auto 0; }
+  .retreat-card.pink { background: #fce7f3; }
+  .retreat-card.violet { background: #ede9fe; }
+  .retreat-card .place { font-size: 38px; font-weight: 800; letter-spacing: -1px; margin-bottom: 6px; }
+  .retreat-card .dates { font-family: Georgia, serif; font-style: italic; font-size: 24px; margin-bottom: 16px; }
+  .retreat-card ul li { font-size: 17px; }
+  .retreat-card .price-line { margin-top: 18px; font-size: 17px; font-weight: 700; }
+  .retreat-card .price-line .chip { display: inline-block; background: #fff; border: 2px solid #1a1a1a; border-radius: 999px; padding: 6px 16px; margin-left: 8px; }
+
+  /* Offer */
+  .offer-card { border: 3px solid #d97706; background: #fef3e0; border-radius: 16px; padding: 36px 42px; max-width: 780px; text-align: center; margin-top: 10px; }
+  .offer-card .tag { font-size: 12px; color: #d97706; letter-spacing: 2px; font-weight: 800; margin-bottom: 14px; }
+  .offer-card .prices { display: flex; gap: 36px; justify-content: center; align-items: baseline; margin-bottom: 14px; flex-wrap: wrap; }
+  .offer-card .now { font-family: Georgia, serif; font-size: 84px; line-height: 1; }
+  .offer-card .later { font-size: 26px; color: #888; text-decoration: line-through; }
+  .offer-card .cond { font-size: 17px; color: #1a1a1a; line-height: 1.5; }
+
+  .price-pill { display: inline-block; background: #fff; border: 2.5px solid #1a1a1a; color: #1a1a1a; padding: 10px 22px; border-radius: 26px; font-size: 18px; font-weight: 700; margin-top: 22px; }
+
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); background: rgba(250,250,250,0.95); backdrop-filter: blur(8px); padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); z-index: 1000; }
+  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; touch-action: manipulation; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 8px; right: 12px; opacity: 0.5; font-size: 11px; }
+
+  footer.brand { position: fixed; bottom: 8px; left: 16px; font-size: 11px; color: #999; }
+
+  .pie-block { display: grid; grid-template-columns: 1fr 1.2fr; gap: 24px; align-items: center; max-width: 920px; margin: 12px auto 0; }
+  @media (max-width: 720px) { .pie-block { grid-template-columns: 1fr; } }
+  .pie-block svg { width: 100%; max-width: 300px; height: auto; display: block; margin: 0 auto; }
+  .pie-legend-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .pie-legend-row .sw { width: 22px; height: 22px; border-radius: 4px; flex-shrink: 0; }
+  .pie-legend-row .lb { flex: 1; font-size: 15px; }
+  .pie-legend-row .lb strong { font-weight: 700; }
+  .pie-legend-row .lb .d { color: #777; font-size: 12px; }
+
+  @media (max-width: 720px) {
+    h1 { font-size: 38px; }
+    h1.huge { font-size: 46px; }
+    h1.mega { font-size: 60px; }
+    h2 { font-size: 24px; }
+    p, ul li { font-size: 16px; }
+    .three-stack .word { font-size: 40px; }
+    .build-info .name { font-size: 28px; }
+    .offer-card .now { font-size: 56px; }
+    .bignum { font-size: 70px; }
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="slide-wrap" id="slideWrap"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">← Prev</button>
+      <button id="next">Next →</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total"></span></div>
+  </div>
+</div>
+<div class="hint">← → arrow keys, swipe on mobile</div>
+<footer class="brand">Alex Salinsky · The Build Room</footer>
+
+<script>
+const slides = [
+
+  // 1. Title
+  {
+    html: `<div class="slide center">
+      <h1 class="huge">The Build Room</h1>
+      <p class="lead" style="font-size:24px;color:#666;font-weight:400;margin-top:10px">Kickoff Session</p>
+      <p class="sub" style="margin-top:30px;font-size:18px;color:#888;font-weight:600">July <span class="serif" style="font-size:26px;color:#1a1a1a">15</span>, 2026</p>
+    </div>`
+  },
+
+  // 2. Hi
+  {
+    html: `<div class="slide center">
+      <h1 class="mega" style="margin:0">Hi 👋</h1>
+    </div>`
+  },
+
+  // 3. Thesis (verbatim)
+  {
+    html: `<div class="slide center">
+      <div class="section-chip">The Mission</div>
+      <div class="three-stack" style="margin-top:6px">
+        <div class="word">Learn AI.</div>
+        <div class="word">Build Robots.</div>
+        <div class="word serif" style="font-weight:400">Stay Human.</div>
+      </div>
+      <p class="sub" style="font-size:22px;color:#1a1a1a;margin-top:14px;font-weight:700">We're in this together.</p>
+    </div>`
+  },
+
+  // 4. Host
+  {
+    html: `<div class="slide center">
+      <div class="section-chip">Your Host</div>
+      <h2 style="margin-top:20px;font-size:42px">Alex Salinsky</h2>
+      <p class="lead" style="max-width:720px;margin-top:16px">I run The Build Room. Three cohorts have finished. Tonight you'll see what the people in them actually built.</p>
+    </div>`
+  },
+
+  // 5. Where teams actually start (real adoption pie, kept from prior deck)
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Where People Actually Start</div>
+      <h2 style="margin-top:20px;text-align:center">A real cohort's AI fluency snapshot</h2>
+      <p style="font-size:16px;color:#666;text-align:center;margin-bottom:18px">From a corporate team we worked with. This is where most people start, and it's fine.</p>
+      <div class="pie-block">
+        <div>
+          <svg viewBox="0 0 400 400">
+            <path d="M 200,200 L 200,70 A 130,130 0 0,1 224.4,72.4 Z" fill="#ef4444" stroke="#fafafa" stroke-width="3"/>
+            <path d="M 200,200 L 224.4,72.4 A 130,130 0 1,1 151.8,320.8 Z" fill="#d97706" stroke="#fafafa" stroke-width="3"/>
+            <path d="M 200,200 L 151.8,320.8 A 130,130 0 0,1 145.3,82.1 Z" fill="#84cc16" stroke="#fafafa" stroke-width="3"/>
+            <path d="M 200,200 L 145.3,82.1 A 130,130 0 0,1 200,70 Z" fill="#15803d" stroke="#fafafa" stroke-width="3"/>
+            <text x="270" y="260" font-size="13" font-weight="700" fill="#1a1a1a" text-anchor="middle">most are</text>
+            <text x="270" y="278" font-size="13" font-weight="700" fill="#1a1a1a" text-anchor="middle">here</text>
+          </svg>
+        </div>
+        <div>
+          <div class="pie-legend-row"><div class="sw" style="background:#ef4444"></div><div class="lb"><strong>Exploring</strong> · 3%<div class="d">haven't started yet</div></div></div>
+          <div class="pie-legend-row"><div class="sw" style="background:#d97706"></div><div class="lb"><strong>Adopting</strong> · 53%<div class="d">use AI for tasks, reusable prompts</div></div></div>
+          <div class="pie-legend-row"><div class="sw" style="background:#84cc16"></div><div class="lb"><strong>Operating</strong> · 37%<div class="d">AI woven in, shipping things others use</div></div></div>
+          <div class="pie-legend-row"><div class="sw" style="background:#15803d"></div><div class="lb"><strong>Multiplying</strong> · 7%<div class="d">shape how the team works with AI</div></div></div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 6. Proof bridge
+  {
+    html: `<div class="slide center">
+      <div class="section-chip">Since Then</div>
+      <div style="display:flex;gap:40px;align-items:baseline;justify-content:center;flex-wrap:wrap;margin-top:10px">
+        <div><div class="bignum">3</div><p style="font-size:17px;font-weight:700;margin-top:8px">cohorts completed</p></div>
+        <div><div class="bignum">40+</div><p style="font-size:17px;font-weight:700;margin-top:8px">real wins on the wall</p></div>
+      </div>
+      <p class="lead" style="margin-top:26px;max-width:720px">Everything you're about to see was built by a working professional, most of them non-technical, in four weeks.</p>
+    </div>`
+  },
+
+  // 7. Real build 1: David's evaluator + $20K
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Real Builds · 1 of 4</div>
+      <div class="build-slide">
+        <div class="build-info">
+          <div class="who">David · Coaching Company Cohort</div>
+          <div class="name">Coaching Session Evaluator</div>
+          <div class="desc">Upload a coaching call transcript, get a full evaluation report back in under a minute. De-identifies clients before anything touches AI. Demoed on Demo Day, week 4.</div>
+          <div class="ownerquote">
+            <div class="q">"So David, what you did, someone six months ago quoted me <span style="font-weight:700">$20,000</span> to make that."</div>
+            <div class="a">GINGER, THE COMPANY'S OWNER, ON THE DEMO DAY CALL</div>
+          </div>
+        </div>
+        <div class="clip-slot" data-clip="rpa-s4-praise-round">
+          <span class="pill queued">CLIP QUEUED</span>
+          <div class="clip-title">Demo Day praise round, on video</div>
+          <div class="clip-note">Fathom 735881251 · 02:02:00 to 02:08:36 · swap this box for the video when the cut lands</div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 8. Real build 2: Maria's dashboard
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Real Builds · 2 of 4</div>
+      <div class="build-slide">
+        <div class="build-info">
+          <div class="who">Maria · Coaching Company Cohort</div>
+          <div class="name">The "Impossible" Dashboard</div>
+          <div class="desc">A client and coach dashboard her organization had called impossible for two years. She shipped it live to the web during the cohort. It's running now.</div>
+          <div class="ownerquote">
+            <div class="q">"Maria did an impossible task. I got tired of people saying we can't do a dashboard. And Maria, you figured it out. Congratulations. <span style="font-weight:700">You're a coder.</span>"</div>
+            <div class="a">GINGER, OWNER, DEMO DAY</div>
+          </div>
+        </div>
+        <div class="clip-slot" data-clip="rpa-s4-maria-demo">
+          <span class="pill queued">CLIP QUEUED</span>
+          <div class="clip-title">Maria's live dashboard demo</div>
+          <div class="clip-note">Fathom 735881251 · 01:37:43 to 01:46:37 · swap for video when cut</div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 9. Real build 3: Kate's Missive sidebar
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Real Builds · 3 of 4</div>
+      <div class="build-slide">
+        <div class="build-info">
+          <div class="who">Kate · PR Agency Cohort</div>
+          <div class="name">The Missive Sidebar</div>
+          <div class="desc">Every data point her PR team needs, in one panel inside their email tool. Live and public by session 3. Her agency had paid a developer for two months and gotten nowhere on the same problem.</div>
+          <div class="ownerquote">
+            <div class="q">"The most tech-illiterate person on this team is Kate, and she came out with something pretty awesome."</div>
+            <div class="a">BRYCE, AGENCY CEO, AFTER DEMO DAY</div>
+          </div>
+        </div>
+        <div class="clip-slot" data-clip="dbalp-s3-kate-live">
+          <span class="pill queued">CLIP QUEUED</span>
+          <div class="clip-title">Kate ships it mid-session, room applauds</div>
+          <div class="clip-note">Text quote stands on its own if the clip isn't ready</div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 10. Real build 4: the owners build too
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Real Builds · 4 of 4</div>
+      <h2 style="margin-top:30px;text-align:center">The owners build too</h2>
+      <div class="build-slide" style="margin-top:16px">
+        <div class="build-info">
+          <div class="who">Bryce · PR Agency CEO</div>
+          <div class="name">Sales Auto-Responder</div>
+          <div class="desc">His cohort goal was "never answer another sales email again." By week 3 it was in production: drafts responses to every lead, runs his playbooks, updates itself. He also shipped a 9-step PR campaign pipeline, live on the web, by Demo Day.</div>
+        </div>
+        <div class="build-info">
+          <div class="who">Jess · Cohort Coach</div>
+          <div class="name">Clip Library + Transcript Search</div>
+          <div class="desc">Two internal tools, both live on the web, with a handoff doc so the client's team runs them without her. Built alongside coaching the room.</div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 11. More wins (volume)
+  {
+    html: `<div class="slide">
+      <div class="section-chip">And More</div>
+      <h2 style="margin-top:30px;text-align:center">First-session wins, from people who'd never built</h2>
+      <div class="wins-grid">
+        <div class="win-card"><strong>Bernie's client workspace</strong><span>Saves ~2 hours per client per week, across 20 clients</span></div>
+        <div class="win-card"><strong>Sam's audio app</strong><span>Working demo with live audio filtering. "Less than one hour, dude."</span></div>
+        <div class="win-card"><strong>Cece's photo-rating system</strong><span>First Zoom call since COVID. Left with a working tool. "It just happened so fast."</span></div>
+        <div class="win-card"><strong>Kandice's campaign reporter</strong><span>"That's like 35 hours of work saved" every month</span></div>
+        <div class="win-card"><strong>Chanel's daily dashboard</strong><span>Client dashboard + automated email process + call recaps</span></div>
+        <div class="win-card"><strong>Muhammad's support system</strong><span>Client chatbot + internal dashboard on live company data</span></div>
+      </div>
+      <p style="text-align:center;font-size:15px;color:#666;margin-top:16px">The full Wins Wall is public: alexsalinsky.github.io/build-room-visuals/wins-wall.html</p>
+    </div>`
+  },
+
+  // 12. Testimonials: the people who paid
+  {
+    html: `<div class="slide">
+      <div class="section-chip">In Their Words</div>
+      <h2 style="margin-top:30px;text-align:center">The owners who paid for it</h2>
+      <div class="tgrid">
+        <div class="tcard green">
+          <div class="q">"This is amazing. It's going to revolutionize everything for our coaches."</div>
+          <div class="a">GINGER · OWNER, COACHING COMPANY</div>
+        </div>
+        <div class="tcard green">
+          <div class="q">"I love how everyone says the sky's the limit. We can do anything."</div>
+          <div class="a">GINGER · CLOSING DEMO DAY</div>
+        </div>
+        <div class="tcard sky">
+          <div class="q">"Remember when we hired that developer for two months to do this for us? This is that."</div>
+          <div class="a">BRYCE · CEO, PR AGENCY, MID-SESSION</div>
+        </div>
+        <div class="tcard sky">
+          <div class="q">"He put a lot of work into this. Everything that came out of here is really, really awesome."</div>
+          <div class="a">KANDICE · PR AGENCY COHORT</div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 13. Testimonials: the builders
+  {
+    html: `<div class="slide">
+      <div class="section-chip">In Their Words</div>
+      <h2 style="margin-top:30px;text-align:center">The people who built</h2>
+      <div class="tgrid">
+        <div class="tcard amber">
+          <div class="q">"I learned that it is really possible to do this because I am not really a techie person. You just learn how to play around it."</div>
+          <div class="a">KATE · WON "COOLEST AI TOOL" AT DEMO DAY</div>
+        </div>
+        <div class="tcard amber">
+          <div class="q">"I'm on purpose. I'm on track."</div>
+          <div class="a">RUBEN · BUILDER, JUNE COHORT</div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 14. Alum guest
+  {
+    html: `<div class="slide center">
+      <div class="section-chip">Live Guest</div>
+      <h2 style="margin-top:20px;font-size:42px">Meet a builder</h2>
+      <p class="lead" style="max-width:740px;margin-top:10px">A cohort alum, live, unscripted. Three questions:</p>
+      <ul style="max-width:620px;text-align:left;margin-top:20px">
+        <li>What problem did you walk in with?</li>
+        <li>What did you build?</li>
+        <li>What's different now?</li>
+      </ul>
+    </div>`
+  },
+
+  // 15. The 4-week arc
+  {
+    html: `<div class="slide">
+      <div class="section-chip">The Program</div>
+      <h2 style="margin-top:30px;text-align:center">4 weeks. 2-hour sessions. Build with peers.</h2>
+      <div class="arc">
+        <div class="arc-step"><div class="num">SESSION 1</div><div class="title">Start the build</div><div class="real">David pulled his first Zoom recording via API in session 1</div></div>
+        <div class="arc-step"><div class="num">SESSION 2</div><div class="title">Learn + build</div><div class="real">Kate: "Tell me the rules that you're learning from me"</div></div>
+        <div class="arc-step"><div class="num">SESSION 3</div><div class="title">Refine + ship</div><div class="real">Three builders pushed tools live to the web in one session</div></div>
+        <div class="arc-step finale"><div class="num">SESSION 4</div><div class="title">Demo Day</div><div class="real">Every builder demos. Awards. Owners watch.</div></div>
+      </div>
+      <p style="text-align:center;font-size:20px;color:#1a1a1a;font-weight:700;margin-top:10px">Community. Commitment. Accountability.</p>
+    </div>`
+  },
+
+  // 16. What every session looks like
+  {
+    html: `<div class="slide center">
+      <div class="section-chip">A Session</div>
+      <h2 style="margin-top:20px">What every session looks like</h2>
+      <div class="agenda-list">
+        <div class="agenda-item"><div class="num">01</div><div class="label">Be Human</div><div class="side">check in, land</div></div>
+        <div class="agenda-item"><div class="num">02</div><div class="label">Learn</div><div class="side">one lesson, live demo</div></div>
+        <div class="agenda-item"><div class="num">03</div><div class="label">Build</div><div class="side">60 minutes, your project, coached</div></div>
+        <div class="agenda-item"><div class="num">04</div><div class="label">Share</div><div class="side">show what you made</div></div>
+        <div class="agenda-item"><div class="num">05</div><div class="label">Close</div><div class="side">next step, named</div></div>
+      </div>
+    </div>`
+  },
+
+  // 17. What you walk away with (proof-backed)
+  {
+    html: `<div class="slide center">
+      <div class="section-chip">By the End</div>
+      <h2 style="margin-top:20px">What you walk away with</h2>
+      <ul style="max-width:720px;text-align:left;margin-top:20px">
+        <li><strong>A working tool you demoed</strong> · like Kate's sidebar, Maria's dashboard, David's evaluator</li>
+        <li><strong>A tool that lives in files, not a chat window</strong> · you keep it, extend it, publish it</li>
+        <li><strong>The confidence of having done it</strong> · "I'm not really a techie person" is where Kate started</li>
+        <li><strong>A room that watched you build it</strong> · alumni community stays open after</li>
+      </ul>
+    </div>`
+  },
+
+  // 18. Next cohorts
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Next Cohorts</div>
+      <h2 style="margin-top:30px;text-align:center">Where you can build</h2>
+      <div class="cohort-grid">
+        <div class="cohort-card committed">
+          <span class="tag">ENROLLING NOW</span>
+          <div class="title">Mixed Professionals Cohort</div>
+          <div class="d">4 weeks · one 2-hour session per week · online. Consultants, coaches, operators, founders. Starts late July.</div>
+        </div>
+        <div class="cohort-card forming">
+          <span class="tag">FORMING ON DEMAND</span>
+          <div class="title">Women's Cohort</div>
+          <div class="d">Same 4-week arc. Fires when the room fills. Tell us your preference at registration.</div>
+        </div>
+        <div class="cohort-card forming">
+          <span class="tag">FORMING ON DEMAND</span>
+          <div class="title">Cohorte en Español</div>
+          <div class="d">El mismo programa, en español. Se abre cuando se llena el grupo. Indica tu preferencia al registrarte.</div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 19. Retreat: PDC
+  {
+    html: `<div class="slide">
+      <div class="section-chip">The Ladder Up · In Person</div>
+      <div class="retreat-card pink">
+        <div class="place">Playa del Carmen, Mexico</div>
+        <div class="dates">October 12 to 16 · five days</div>
+        <ul>
+          <li>Everything a 4-week cohort does, compressed into one week, in person</li>
+          <li>Arrive with a problem, leave with a working build you already demoed</li>
+          <li>Small room, facilitator at your elbow, afternoons designed for being human</li>
+        </ul>
+        <div class="price-line">Founding Builder tier<span class="chip">$2,750 · until July 31</span></div>
+      </div>
+    </div>`
+  },
+
+  // 20. Retreat: Chiang Mai
+  {
+    html: `<div class="slide">
+      <div class="section-chip">The Ladder Up · In Person</div>
+      <div class="retreat-card violet">
+        <div class="place">Chiang Mai, Thailand</div>
+        <div class="dates">November 16 to 20 · five days</div>
+        <ul>
+          <li>The same five-day build immersion, on the other side of the world</li>
+          <li>Built for founders, operators, and cohort alumni ready to ship the bigger thing</li>
+          <li>Details and pricing announced soon. Say the word tonight and you're on the list.</li>
+        </ul>
+      </div>
+    </div>`
+  },
+
+  // 21. The offer
+  {
+    html: `<div class="slide center">
+      <div class="section-chip">Tonight Only</div>
+      <div class="offer-card">
+        <div class="tag">KICKOFF SESSION PRICE</div>
+        <div class="prices">
+          <div class="now">$350</div>
+          <div class="later">$450</div>
+        </div>
+        <div class="cond">Full 4-week cohort. $350 if you sign up tonight, $450 after. The payment link is in the chat, and you'll have it in your inbox before you sleep. Pick your cohort preference at checkout.</div>
+      </div>
+    </div>`
+  },
+
+  // 22. Stay Human close
+  {
+    html: `<div class="slide center">
+      <p style="font-size:52px;line-height:1.15;font-weight:800;letter-spacing:-1.5px">Learn AI.<br/>Build Robots.<br/><span class="serif" style="font-weight:400">Stay Human.</span></p>
+      <p class="sub" style="margin-top:24px;font-size:22px;color:#1a1a1a;font-weight:700">We're in this together.</p>
+      <div class="price-pill">$350 tonight · $450 after</div>
+    </div>`
+  }
+];
+
+let i = 0;
+const wrap = document.getElementById("slideWrap");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = slides.length;
+
+function render() {
+  wrap.innerHTML = slides[i].html;
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === slides.length - 1;
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < slides.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); next.click(); }
+  if (e.key === "ArrowLeft") { e.preventDefault(); prev.click(); }
+});
+
+let touchStartX = 0;
+document.addEventListener("touchstart", (e) => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+document.addEventListener("touchend", (e) => {
+  const diff = e.changedTouches[0].screenX - touchStartX;
+  if (Math.abs(diff) > 50) { if (diff < 0) next.click(); else prev.click(); }
+}, {passive: true});
+
+render();
+</script>
+</body>
+</html>
