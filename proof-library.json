@@ -2942,6 +2942,296 @@
         "live-demo"
       ],
       "notes": "Alex turned Maria's clothing-mockup question into a working 3D prototype from a sketch mid-session; strongest new-possibility energy of the session. TODO: cut clip from https://fathom.video/calls/735881251"
+    },
+    {
+      "id": "ff-thu-s3-marie-job-platform-live",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Marie's personalized job platform deployed to the cloud, phone-accessible",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-thu-2026-07-09.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I didn't want to spend so much time looking for jobs that don't lead to anything.",
+      "attribution": "Marie (F&F Thu cohort)",
+      "timestamp": "02:17:39",
+      "tags": [
+        "deployed",
+        "demo",
+        "own-problem-solved"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-09",
+      "date_cleared": null,
+      "notes": "48h posting filter, budget criteria, good-lead/bad-lead feedback loop. Closes her S1 'time spent scrolling' pain point. TODO: cut clip from https://fathom.video/calls/741597977"
+    },
+    {
+      "id": "ff-thu-s3-angie-event-kit-generator",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Angie's event kit generator: one hour of event prep down to one minute",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-thu-2026-07-09.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I have this in one minute, and before I spend one hour doing this.",
+      "attribution": "Angie (F&F Thu cohort)",
+      "timestamp": "02:21:38",
+      "tags": [
+        "demo",
+        "time-saved",
+        "before-after"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-09",
+      "date_cleared": null,
+      "notes": "One input produces flyer + Luma copy in English and Spanish + WhatsApp message + reminders. Phone-accessible. TODO: cut clip from https://fathom.video/calls/741597977"
+    },
+    {
+      "id": "ff-thu-s3-stu-lotus-marketing-engine",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Stu built a marketing campaign engine for Lotus from zero experience: three campaigns in 30 minutes",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-thu-2026-07-09.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I kind of came into this with like zero experience. And if a guy like me can get this far in this short of time, then in a couple weeks or a month or two, I'm going to be off to the races.",
+      "attribution": "Stu (F&F Thu cohort)",
+      "timestamp": "02:23:00",
+      "tags": [
+        "demo",
+        "zero-to-builder",
+        "business-owner"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-09",
+      "date_cleared": null,
+      "notes": "Pulled photos from the Lotus website + Instagram, generated three distinct campaigns (Una Noche en Laureles, three reasons, saxophone night). Cohort was sitting inside Lotus during the demo. TODO: cut clip from https://fathom.video/calls/741597977"
+    },
+    {
+      "id": "ff-thu-s3-zach-project-one-done",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Zach finished the Alignment Audit with a week to spare and started project two",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-thu-2026-07-09.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I'm done. I'm on to another project.",
+      "attribution": "Zach (F&F Thu cohort)",
+      "timestamp": "01:11:36",
+      "tags": [
+        "finished",
+        "momentum"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-09",
+      "date_cleared": null,
+      "notes": "Alignment Audit v1 declared done; sending Alex the newest version; possible two demos at Demo Day."
+    },
+    {
+      "id": "ff-thu-s3-andrew-clip-pipeline-infra",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Andrew's coaching-call clip pipeline stood up: Fathom connected, first clip cut, dashboard updating",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-thu-2026-07-09.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Yeah, no, I got some infrastructure set up for sure.",
+      "attribution": "Andrew (F&F Thu cohort)",
+      "timestamp": "01:41:54",
+      "tags": [
+        "infrastructure",
+        "persistence"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-09",
+      "date_cleared": null,
+      "notes": "Built through a two-computer setup (Mac too old for the Fathom app). Next: run it on a real coaching call. From red-flag newbie at S1 to standing pipeline at S3."
+    },
+    {
+      "id": "ff-thu-s3-dominika-magician",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Dominika building daily: new feature shipped this session",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-thu-2026-07-09.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I'm on it, like, every day, all the time. I feel like I'm a magician building things.",
+      "attribution": "Dominika (F&F Thu cohort)",
+      "timestamp": "01:48:12",
+      "tags": [
+        "daily-habit",
+        "identity-shift"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-09",
+      "date_cleared": null,
+      "notes": "Added a new feature this session; flagged a video-render freeze and kept rolling. Strong identity-shift quote. TODO: cut clip from https://fathom.video/calls/741597977"
+    },
+    {
+      "id": "ff-thu-s3-ludger-unblocked",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Ludger unblocked with a concrete next test and the next project already queued",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-thu-2026-07-09.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Now I have the next task to test. I've got the way now.",
+      "attribution": "Ludger (F&F Thu cohort)",
+      "timestamp": "02:27:04",
+      "tags": [
+        "unblocked",
+        "momentum"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-09",
+      "date_cleared": null,
+      "notes": "Coach Thierry found him the tool. 'When I fix that one, I've got immediately the next project running.' Recovered after losing session time to a dropped connection."
+    },
+    {
+      "id": "ff-thu-s3-sam-debug-like-builder",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Sam turned a full Claude crash into a model-selection strategy and kept building",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-wins-post-thu-2026-07-09.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": null,
+      "attribution": "Sam (F&F Thu cohort)",
+      "timestamp": "01:46:21",
+      "tags": [
+        "debugging",
+        "resilience",
+        "model-selection"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-09",
+      "date_cleared": null,
+      "notes": "Claude froze his machine mid-prompt on Opus high effort; he restarted, diagnosed the setting, took away 'stay on Opus for building, watch the effort dial.' Also pinned down the Cloudflare edit-then-republish loop before deploying."
+    },
+    {
+      "id": "ff-thu-s3-lesson-stuck-sound-ritual",
+      "type": "lesson",
+      "cohort": "ff-thu",
+      "title": "The stuck-sound exercise: voice the frustration before the build hour",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-facilitator-recap-thu-2026-07-09.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Sometimes this is hard and annoying and difficult. Sometimes it feels like we're never going to get it.",
+      "attribution": "Alex (F&F Thu cohort, S3)",
+      "timestamp": "00:33:03",
+      "tags": [
+        "ritual",
+        "stay-human",
+        "facilitation"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-09",
+      "date_cleared": null,
+      "notes": "Week 3 is when the ambition-vs-build-state gap stings most. Alex had Andrew, then the room, make the sound of being stuck, then named it all valid. Cheap, fast, disarms the ickiness before coaching. Keep as a designed S3 ritual. TODO: cut clip from https://fathom.video/calls/741597977"
+    },
+    {
+      "id": "ff-thu-s3-lesson-publish-plain-language",
+      "type": "lesson",
+      "cohort": "ff-thu",
+      "title": "Teaching publishing in plain language: a server is a computer in someone else's building, everything is a file",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-facilitator-recap-thu-2026-07-09.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "A server is just a computer. You have a computer, it's just in someone else's building.",
+      "attribution": "Alex (F&F Thu cohort, S3)",
+      "timestamp": "00:39:31",
+      "tags": [
+        "teaching-moment",
+        "publishing",
+        "plain-language"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-09",
+      "date_cleared": null,
+      "notes": "8-minute Cloudflare lesson: server, files, token as robot-friendly password, ending in a paste-ready prompt. Landed: two builders independently asked the right next question (the edit-then-republish loop)."
+    },
+    {
+      "id": "ff-thu-s3-lesson-coach-voiceover-demos",
+      "type": "lesson",
+      "cohort": "ff-thu",
+      "title": "Coach voice-over scaffold turns builder shares into proof-shaped stories",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-facilitator-recap-thu-2026-07-09.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "What was the problem you were trying to solve? And then what's the thing you created to solve it?",
+      "attribution": "Facilitator team (F&F Thu cohort, S3)",
+      "timestamp": "02:17:35",
+      "tags": [
+        "facilitation",
+        "demo-prep",
+        "proof-capture"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-09",
+      "date_cleared": null,
+      "notes": "Prompting problem, build, benefit, is-it-live during share-outs produced three clean demo narratives (Marie, Angie, Stu) and doubles as Demo Day rehearsal. Reuse as the fallback scaffold for nervous demoers."
+    },
+    {
+      "id": "ff-thu-s3-lesson-breakout-invisibility-4th",
+      "type": "lesson",
+      "cohort": "ff-thu",
+      "title": "Breakout invisibility recurred a fourth time: ~48 minutes of coaching left no record going into Demo Day week",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-facilitator-recap-thu-2026-07-09.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": null,
+      "attribution": "Facilitator team (F&F Thu cohort, S3)",
+      "timestamp": null,
+      "tags": [
+        "failure-mode",
+        "breakouts",
+        "recording"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-09",
+      "date_cleared": null,
+      "notes": "Jess's and Thierry's rooms unrecorded again; Ruben and Andrea left zero build evidence. Standing fix (coach starts own recording in breakout) still not executed. Non-negotiable for S4 Demo Day: both demo rooms must record."
+    },
+    {
+      "id": "ff-thu-s3-lesson-demo-format-4x4",
+      "type": "lesson",
+      "cohort": "ff-thu",
+      "title": "Demo Day format: four things in four minutes, framed as progress not perfection",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-facilitator-recap-thu-2026-07-09.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "It's not about being done and perfect. It's about I was here when I started the cohort and now I'm here.",
+      "attribution": "Alex (F&F Thu cohort, S3)",
+      "timestamp": "02:30:18",
+      "tags": [
+        "demo-day",
+        "format",
+        "framing"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-09",
+      "date_cleared": null,
+      "notes": "Problem / how I solved it / what I might do next / what I learned from the cohort. Timer practiced live by Jess. Format also going to the cohort WhatsApp. TODO: cut clip from https://fathom.video/calls/741597977"
+    },
+    {
+      "id": "ff-thu-s3-lesson-venue-as-proof",
+      "type": "lesson",
+      "cohort": "ff-thu",
+      "title": "Host the session inside a builder's business and let them demo the tool built FOR that business",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s3-facilitator-recap-thu-2026-07-09.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "We're actually sitting inside of Lotus right now, looking at the beautiful view.",
+      "attribution": "Alex (F&F Thu cohort, S3)",
+      "timestamp": "02:25:13",
+      "tags": [
+        "venue",
+        "hybrid",
+        "proof-context"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-09",
+      "date_cleared": null,
+      "notes": "S3 ran at Lotus (Stu's venue, Laureles); Stu demoed the Lotus marketing engine in the room it markets. Strongest demo context of the cohort. Worth designing for: rotate hybrid sessions through builder-owned venues."
     }
   ]
 }
