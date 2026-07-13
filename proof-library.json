@@ -1,7 +1,7 @@
 {
   "$schema_doc": "proof-library-schema.md",
   "version": 1,
-  "last_updated": "2026-06-30",
+  "last_updated": "2026-07-13",
   "entries": [
     {
       "id": "linkedin-how-to-get-your-team-to-actually-use-ai",
@@ -2183,7 +2183,7 @@
       "cohort": "dbalp",
       "title": "Clip: Kandice names 35 hours saved per month live on Demo Day",
       "source_url": "brain/the-build-room/cohorts/bryce-dbalp/s4-fathom-transcript-2026-06-30.md",
-      "media_url": null,
+      "media_url": "brain/the-build-room/recordings/clips/dbalp-s4/kandice-35-hours-saved-tight-clean.mp4",
       "thumbnail": null,
       "quote": "It is going to save me basically six hours per campaign. And right now I am doing six campaigns a month. So that is like 35 hours of work saved, essentially.",
       "attribution": "Kandice Vincent (DBALP cohort)",
@@ -2195,10 +2195,10 @@
         "vertical-reel",
         "demo"
       ],
-      "status": "raw",
+      "status": "cleared-for-public",
       "date_captured": "2026-06-30",
-      "date_cleared": null,
-      "notes": "TODO: cut clip from https://fathom.video/share/iZEF3S_4HZHVDsxa-2Q-WfKSi8bE7JxM. Best hard-ROI clip from the cohort. About 10s of usable quote. Cut 01:37:33 to 01:37:50."
+      "date_cleared": "2026-07-13",
+      "notes": "Clip cut 2026-07-13. Clean cuts archived: kandice-35-hours-saved-clean.mp4 (full) and -tight-clean.mp4 (dead air \"So... Yeah\" spliced out). Featured as clip 2 in highlights reel v4 (clips/highlights-reel-v1/). Cleared under Alex's blanket clearance for all call clips (2026-07)."
     },
     {
       "id": "dbalp-s4-chanel-prompt-sharing-clip",
@@ -2739,7 +2739,7 @@
     {
       "type": "quote",
       "cohort": "rpa",
-      "media_url": null,
+      "media_url": "brain/the-build-room/recordings/clips/rpa-s4/ginger-20k-quote-clean.mp4",
       "thumbnail": null,
       "status": "cleared-for-public",
       "date_captured": "2026-07-07",
@@ -2755,12 +2755,12 @@
         "roi",
         "demo-day"
       ],
-      "notes": "Permission granted (Alex confirmed verbally with Ginger/Bryce and team, 2026-07-08); cleared for July revenue campaign public use. Closing praise round. Clip cut (internal): brain/the-build-room/recordings/clips/rpa-s4/07-ginger-praise-round.mp4.video/calls/735881251 (02:02:00-02:08:36) Permission granted by Ginger 2026-07-08 via Alex (name + quote OK in Build Room marketing)."
+      "notes": "Permission granted (Alex confirmed verbally with Ginger/Bryce and team, 2026-07-08); cleared for July revenue campaign public use. Closing praise round. Clip cut (internal): brain/the-build-room/recordings/clips/rpa-s4/07-ginger-praise-round.mp4.video/calls/735881251 (02:02:00-02:08:36) Permission granted by Ginger 2026-07-08 via Alex (name + quote OK in Build Room marketing). Clean cut archived 2026-07-13; featured as clip 1 in highlights reel v4 (clips/highlights-reel-v1/)."
     },
     {
       "type": "quote",
       "cohort": "rpa",
-      "media_url": null,
+      "media_url": "brain/the-build-room/recordings/clips/rpa-s4/ginger-youre-a-coder-clean.mp4",
       "thumbnail": null,
       "status": "cleared-for-public",
       "date_captured": "2026-07-07",
@@ -2776,7 +2776,7 @@
         "identity-shift",
         "demo-day"
       ],
-      "notes": "Permission granted (Alex confirmed verbally with Ginger/Bryce and team, 2026-07-08); cleared for July revenue campaign public use. Clip cut (internal): brain/the-build-room/recordings/clips/rpa-s4/07-ginger-praise-round.mp4.video/calls/735881251 (02:02:00-02:08:36) Permission granted by Ginger 2026-07-08 via Alex (name + quote OK in Build Room marketing)."
+      "notes": "Permission granted (Alex confirmed verbally with Ginger/Bryce and team, 2026-07-08); cleared for July revenue campaign public use. Clip cut (internal): brain/the-build-room/recordings/clips/rpa-s4/07-ginger-praise-round.mp4.video/calls/735881251 (02:02:00-02:08:36) Permission granted by Ginger 2026-07-08 via Alex (name + quote OK in Build Room marketing). Clean cut archived 2026-07-13; featured as clip 3 in highlights reel v4 (clips/highlights-reel-v1/)."
     },
     {
       "type": "quote",
@@ -3232,6 +3232,399 @@
       "date_captured": "2026-07-09",
       "date_cleared": null,
       "notes": "S3 ran at Lotus (Stu's venue, Laureles); Stu demoed the Lotus marketing engine in the room it markets. Strongest demo context of the cohort. Worth designing for: rotate hybrid sessions through builder-owned venues."
+    },
+    {
+      "id": "ff-thu-s3-stu-off-to-the-races-clip",
+      "type": "clip",
+      "cohort": "ff-thu",
+      "title": "Clip: Stu, zero experience, off to the races with Lotus Rooftop",
+      "source_url": "brain/the-build-room/recordings/ff-thu-s3-2026-07-09.mp4 (8621.6s-8638.0s)",
+      "media_url": "brain/the-build-room/recordings/clips/ff-thu-s3/stu-off-to-the-races-clean.mp4",
+      "thumbnail": null,
+      "quote": "I came into this with like zero experience... I'm going to be off to the races.",
+      "attribution": "Stu Gildred (Lotus Rooftop, F&F Thu cohort)",
+      "timestamp": "02:23:41",
+      "tags": [
+        "builder-testimonial",
+        "identity-shift",
+        "vertical-reel",
+        "demo"
+      ],
+      "status": "cleared-for-public",
+      "date_captured": "2026-07-09",
+      "date_cleared": "2026-07-13",
+      "notes": "Featured as clip 4 in highlights reel v4 (clips/highlights-reel-v1/). Cleared under Alex's blanket clearance for all call clips (2026-07)."
+    },
+    {
+      "id": "ff-thu-s2-alex-abre-la-puerta-clip",
+      "type": "clip",
+      "cohort": "ff-thu",
+      "title": "Clip: Alex's closer, the first two hours are the hardest, then abre la puerta",
+      "source_url": "brain/the-build-room/recordings/ff-thu-s2-2026-07-02.mp4 (7071.0s-7088.1s)",
+      "media_url": "brain/the-build-room/recordings/clips/ff-thu-s2/alex-door-opens-clean.mp4",
+      "thumbnail": null,
+      "quote": "The first two hours are the hardest, most frustrating two hours... and then you have a win, abre la puerta, the door opens.",
+      "attribution": "Alex Salinsky (The Build Room)",
+      "timestamp": "01:57:51",
+      "tags": [
+        "coach-voice",
+        "door-metaphor",
+        "supercut-candidate"
+      ],
+      "status": "cleared-for-public",
+      "date_captured": "2026-07-02",
+      "date_cleared": "2026-07-13",
+      "notes": "Cut for highlights reel v3 but dropped from v4 (Alex chose to remove himself). Captioned renders exist (05-alex-door-916/169.mp4 in clips/highlights-reel-v1/). Prime candidate for door-metaphor supercut with Narnia retelling + Mon S3/Thu S1 door lines."
+    },
+    {
+      "id": "ff-mon-s4-bernie-bernieos-demo",
+      "type": "win",
+      "cohort": "ff-mon",
+      "title": "Bernie: BernieOS demo, 40-60 hrs/month down to 10, voted the tool everyone most wants",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "We've gone down to 20 minutes instead of 2-3 hours... now I can do 80 clients instead of 20.",
+      "attribution": "Bernie (F&F Mon cohort)",
+      "timestamp": "01:18:13",
+      "tags": [
+        "demo-day",
+        "live-demo",
+        "time-saved",
+        "award-winner",
+        "case-study-candidate"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "Raising prices too [01:18:50]. TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s4-laura-rep-dashboard",
+      "type": "win",
+      "cohort": "ff-mon",
+      "title": "Laura: personalized sales rep dashboard + live market map, voted most interesting use of AI",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I really learned how to communicate properly in a more strategic way... everything just started getting faster.",
+      "attribution": "Laura (F&F Mon cohort)",
+      "timestamp": "02:01:19",
+      "tags": [
+        "demo-day",
+        "live-demo",
+        "award-winner",
+        "multiplier",
+        "client-portal"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "Jess: she had more built than she showed. Post-call she offered Spanish testimonial videos. TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s4-jordan-findmealplans",
+      "type": "win",
+      "cohort": "ff-mon",
+      "title": "Jordan: FindMealPlans.com live, 19 cities, self-verifying AI agent, voted most likely to change the world",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I had this idea six years ago, but without AI, I wouldn't have been able to build it... 519 impressions and seven clicks in a week.",
+      "attribution": "Jordan (F&F Mon cohort)",
+      "timestamp": "01:30:26",
+      "tags": [
+        "demo-day",
+        "live-demo",
+        "award-winner",
+        "seo",
+        "shipped-public"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s4-dine-mari-pipeline",
+      "type": "win",
+      "cohort": "ff-mon",
+      "title": "Dine-Mari: Riverside to ClickUp to Timeliner pipeline live, 10 seconds per task",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I create or paste in the link, literally 10 seconds... you just need to start.",
+      "attribution": "Dine-Mari (F&F Mon cohort)",
+      "timestamp": "01:11:06",
+      "tags": [
+        "demo-day",
+        "live-demo",
+        "automation",
+        "agency-ops"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s4-sarah-doc-watcher",
+      "type": "win",
+      "cohort": "ff-mon",
+      "title": "Sarah: German document watcher runs itself, translation + action items by email",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "It was so much manual work before... now it just happens.",
+      "attribution": "Sarah (F&F Mon cohort)",
+      "timestamp": "01:39:19",
+      "tags": [
+        "demo-day",
+        "live-demo",
+        "automation",
+        "set-and-forget"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s4-jeremy-ch-pipeline",
+      "type": "win",
+      "cohort": "ff-mon",
+      "title": "Jeremy: CH Pipeline finds Swiss companies needing English coaching, drafts the outreach",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "It sends me Telegram messages twice a week... on Friday it holds me to account and says, how did you do?",
+      "attribution": "Jeremy (F&F Mon cohort)",
+      "timestamp": "01:26:41",
+      "tags": [
+        "demo-day",
+        "live-demo",
+        "lead-gen",
+        "accountability"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s4-angie-event-os",
+      "type": "win",
+      "cohort": "ff-mon",
+      "title": "Angie: event OS generates flyers, Luma and WhatsApp copy in one minute instead of an hour",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "El que quiere, puede. If you want to do something, you can do it.",
+      "attribution": "Angie (F&F Mon cohort)",
+      "timestamp": "01:21:24",
+      "tags": [
+        "demo-day",
+        "live-demo",
+        "bilingual",
+        "time-saved"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s4-alejandro-kaya",
+      "type": "win",
+      "cohort": "ff-mon",
+      "title": "Alejandro: Kaya, passphrase-gated psychedelic integration guide, live intake demo",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "AI gets very testy when you're right at the fringe of privacy and safety issues... I was literally arguing with the AI to make it do what I want to do.",
+      "attribution": "Alejandro (F&F Mon cohort)",
+      "timestamp": "01:45:31",
+      "tags": [
+        "demo-day",
+        "live-demo",
+        "ai-safety",
+        "coaching-agent"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s4-steve-charter-dashboard",
+      "type": "win",
+      "cohort": "ff-mon",
+      "title": "Steve: 10 years of sailing charter ops consolidated into one dashboard",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Think bigger, think more creatively outside the box... more integrated solutions, not just little spot tools.",
+      "attribution": "Steve (F&F Mon cohort)",
+      "timestamp": "01:52:19",
+      "tags": [
+        "demo-day",
+        "live-demo",
+        "consolidation",
+        "peer-inspiration"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "Credited Bernie's demo as inspiration [01:50:49]. TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s4-greg-council",
+      "type": "win",
+      "cohort": "ff-mon",
+      "title": "Greg: Council of Twelve framework, chief of staff ported to Claude Code",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I can keep iterating and it's like, oh, it could do this... so needing to just pare things down.",
+      "attribution": "Greg (F&F Mon cohort)",
+      "timestamp": "01:55:00",
+      "tags": [
+        "demo-day",
+        "vision",
+        "simplification"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s4-armin-ghl-funnel",
+      "type": "win",
+      "cohort": "ff-mon",
+      "title": "Armin: complete GHL lead magnet funnel, 11 copy iterations on a 5-year brand brain",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "It takes a lot of training and iteration and a lot of practice for it to get it right.",
+      "attribution": "Armin (F&F Mon cohort)",
+      "timestamp": "02:06:34",
+      "tags": [
+        "demo-day",
+        "live-demo",
+        "funnel",
+        "brand-voice"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s4-lesson-merged-demo-room",
+      "type": "lesson",
+      "cohort": "ff-mon",
+      "title": "Lesson: scrap the two-room demo split when builders want to witness each other",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "People would prefer to see the demos of everybody else rather than us split... you'd prefer to see the full group.",
+      "attribution": "Alex Salinsky (The Build Room)",
+      "timestamp": "00:58:31",
+      "tags": [
+        "demo-day",
+        "format",
+        "facilitation",
+        "live-adaptation"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "11 demos fit in one room in ~65 min. Cross-references and award votes only possible because everyone saw everything. TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s4-lesson-award-voting-ritual",
+      "type": "lesson",
+      "cohort": "ff-mon",
+      "title": "Lesson: three-award chat vote (tool I want / most interesting AI / change the world) is a zero-prep Demo Day closer",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I actually have nothing for you for this, except the honor of saying that you're the one.",
+      "attribution": "Alex Salinsky (The Build Room)",
+      "timestamp": "01:07:56",
+      "tags": [
+        "demo-day",
+        "ritual",
+        "celebration"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "Winners: Bernie, Laura, Jordan. Needs a designated teller; vote counting got chaotic. TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s4-lesson-bot-fleet-partial",
+      "type": "lesson",
+      "cohort": "ff-mon",
+      "title": "Lesson: Recall.ai breakout bot fleet does not survive live format changes; 3 of 4 bots died early",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": null,
+      "attribution": "Alex Salinsky (The Build Room)",
+      "timestamp": null,
+      "tags": [
+        "infrastructure",
+        "recording",
+        "breakout-rooms"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "Bots 4/1/3 ended 9:19/9:25/9:37am COT of an 11:17am session; only Bot 2 lasted. Demos moved back to main room so Fathom saved the day. Fix: one bot pinned to main room as redundancy, treat breakout bots as partial by default, keep local-recording fallback. TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s4-lesson-screen-share-preflight",
+      "type": "lesson",
+      "cohort": "ff-mon",
+      "title": "Lesson: pre-demo screen share check in the coaching room would have saved Alvaro's slot",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": null,
+      "attribution": "Alex Salinsky (The Build Room)",
+      "timestamp": "01:47:41",
+      "tags": [
+        "demo-day",
+        "tech-check",
+        "facilitation"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "Alvaro's share black-screened unrecoverably; deferred to Thu Jul 16. 5-second share test during work hour becomes standard. TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s4-lesson-spanish-demand",
+      "type": "lesson",
+      "cohort": "ff-mon",
+      "title": "Lesson: Spanish-language cohort demand surfaced organically at Demo Day close",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-mon-2026-07-13.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Even in the group that we were, everybody speaks Spanish, even asking if the demo could be in Spanish.",
+      "attribution": "Laura (F&F Mon cohort)",
+      "timestamp": "02:14:20",
+      "tags": [
+        "market-signal",
+        "spanish",
+        "expansion"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-13",
+      "date_cleared": null,
+      "notes": "Laura post-close: Spanish webinar, 400,000 COP Colombia price validated, 33% referral offer, her mom joining next cohort. TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
     }
   ]
 }
