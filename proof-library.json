@@ -1691,7 +1691,7 @@
       "cohort": "ff-thu",
       "title": "Cece's first Zoom since COVID → working ChatGPT photo-rating system in one session",
       "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/thu-s1-wins-post-2026-06-25.md",
-      "media_url": null,
+      "media_url": "brain/the-build-room/recordings/clips/ff-thu-s1/cece-happened-so-fast-tight-clean.mp4",
       "thumbnail": null,
       "quote": "It just happened so fast. It was pretty awesome.",
       "attribution": "Cece Bedolla (F&F Humans V Robots Thu cohort)",
@@ -1704,7 +1704,7 @@
       "status": "cleared-for-public",
       "date_captured": "2026-06-25",
       "date_cleared": null,
-      "notes": "Speaker mis-attributed to Dominika in Fathom transcript; content matches Cece's photo-curator project from earlier in call. TODO: cut clip from https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu around 01:56. Permission granted 2026-07-06 (Alex confirmed directly with the builder; cleared for the Jul 15 kickoff Luma page and general public use)."
+      "notes": "Speaker mis-attributed to Dominika in Fathom transcript; content matches Cece's photo-curator project from earlier in call. TODO: cut clip from https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu around 01:56. Permission granted 2026-07-06 (Alex confirmed directly with the builder; cleared for the Jul 15 kickoff Luma page and general public use). Clips cut 2026-07-13: cece-first-app-full-clean.mp4 (49s full answer, starts \"Well, I got started on the idea for the app\") and cece-happened-so-fast-tight-clean.mp4 (22s, \"it immediately just jumped into action... it happened so fast, it was pretty awesome\"). Actual recording time 01:55:02, Fathom timestamp drifted ~75s. Video is gallery view; Cece is top-left tile, needs punch-in crop for reel use."
     },
     {
       "id": "ff-thu-s1-anthony-stayed-after",
@@ -3274,7 +3274,7 @@
       "status": "cleared-for-public",
       "date_captured": "2026-07-02",
       "date_cleared": "2026-07-13",
-      "notes": "Cut for highlights reel v3 but dropped from v4 (Alex chose to remove himself). Captioned renders exist (05-alex-door-916/169.mp4 in clips/highlights-reel-v1/). Prime candidate for door-metaphor supercut with Narnia retelling + Mon S3/Thu S1 door lines."
+      "notes": "Cut for highlights reel v3 but dropped from v4 (Alex chose to remove himself). Captioned renders exist (05-alex-door-916/169.mp4 in clips/highlights-reel-v1/). Prime candidate for door-metaphor supercut with Narnia retelling + Mon S3/Thu S1 door lines. Used in build-room-door-supercut-916-tall.mp4 (2026-07-15, clips/highlights-reel-v1/)."
     },
     {
       "id": "ff-mon-s4-bernie-bernieos-demo",
@@ -3625,6 +3625,253 @@
       "date_captured": "2026-07-13",
       "date_cleared": null,
       "notes": "Laura post-close: Spanish webinar, 400,000 COP Colombia price validated, 33% referral offer, her mom joining next cohort. TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+    },
+    {
+      "id": "ff-mon-s3-alex-opened-the-door-clip",
+      "type": "clip",
+      "cohort": "ff-mon",
+      "title": "Clip: Alex looking around the room, people have really opened the door here",
+      "source_url": "brain/the-build-room/recordings/ff-mon-s3-2026-07-06.mp4 (7527.0s-7572.1s)",
+      "media_url": "brain/the-build-room/recordings/clips/ff-mon-s3/alex-opened-the-door-tight-clean.mp4",
+      "thumbnail": null,
+      "quote": "People have really opened the door here... Now you've created a thing. Everyone in this room has created a thing.",
+      "attribution": "Alex Salinsky (The Build Room)",
+      "timestamp": "02:05:27",
+      "tags": [
+        "coach-voice",
+        "door-metaphor",
+        "supercut-candidate",
+        "identity-shift"
+      ],
+      "status": "cleared-for-public",
+      "date_captured": "2026-07-06",
+      "date_cleared": "2026-07-13",
+      "notes": "Cuts archived 2026-07-13: alex-opened-the-door-clean.mp4 (45s full riff through 'block out these two hours a week') and -tight-clean.mp4 (21s). Gallery view; Alex is top-left tile (speaker-highlighted), needs punch-in crop. Cleared under Alex's blanket clearance for all call clips (2026-07). Reel splice archived 2026-07-15: alex-opened-the-door-reel-clean.mp4 (14.8s, garbled mid-sentence removed). Used as segment 3 of build-room-door-supercut-916-tall.mp4."
+    },
+    {
+      "id": "ff-mon-s3-dinemari-new-door-opened-clip",
+      "type": "clip",
+      "cohort": "ff-mon",
+      "title": "Clip: Dine-Mari, scared of code, then a new door opened and I can actually build these things",
+      "source_url": "brain/the-build-room/recordings/ff-mon-s3-2026-07-06.mp4 (9880.9s-9912.1s)",
+      "media_url": "brain/the-build-room/recordings/clips/ff-mon-s3/dinemari-new-door-opened-tight-clean.mp4",
+      "thumbnail": null,
+      "quote": "As soon as we started the cohort, it was like a new door opened. And I can actually build these things. And it's plain English... it builds the system for you.",
+      "attribution": "Dine-Mari (F&F Mon cohort)",
+      "timestamp": "02:44:41",
+      "tags": [
+        "builder-testimonial",
+        "door-metaphor",
+        "supercut-candidate",
+        "identity-shift",
+        "b-roll"
+      ],
+      "status": "cleared-for-public",
+      "date_captured": "2026-07-06",
+      "date_cleared": "2026-07-13",
+      "notes": "Cuts archived 2026-07-13: dinemari-new-door-opened-clean.mp4 (31s, includes 'whole cohort has been a lightbulb' + 'scared of code' setup) and -tight-clean.mp4 (15s). Visual is her live app screen share with her webcam tile top-right: built-in B-roll, she says 'new door opened' over the thing she built. Say-do gap: she says 'scared of code' about herself (her own win words, OK per no-putdown rule since self-described positively framed). Cleared under blanket clip clearance (2026-07). Used in build-room-door-supercut-916-tall.mp4 (2026-07-15, clips/highlights-reel-v1/)."
+    },
+    {
+      "id": "cross-cohort-highlights-reel-v4",
+      "type": "clip",
+      "cohort": "cross-cohort",
+      "title": "MASTER: Build Room highlights reel v4 (Ginger $20K, Kandice 35 hrs, Ginger coder, Stu races)",
+      "source_url": "clips/highlights-reel-v1/shotlist.md",
+      "media_url": "clips/highlights-reel-v1/build-room-highlights-v4-916-tall.mp4",
+      "thumbnail": null,
+      "quote": null,
+      "attribution": "The Build Room (multi-cohort)",
+      "timestamp": null,
+      "tags": [
+        "owner-testimonial",
+        "builder-testimonial",
+        "hard-roi",
+        "identity-shift",
+        "social-media",
+        "ads",
+        "website",
+        "branding",
+        "master-video",
+        "ready-to-post"
+      ],
+      "status": "cleared-for-public",
+      "date_captured": "2026-07-13",
+      "date_cleared": "2026-07-13",
+      "notes": "Finished 53.1s vertical master (1080x1920, tall layout, IG word-pop captions), Alex's keeper. Variants in same folder: -v4-916 (letterboxed vertical) and -v4-169 (1920x1080 for LinkedIn/YouTube). Every constituent clip individually cleared and archived in recordings/clips/. Available for social, ads, website embeds, branding. Full edit spec: shotlist.md."
+    },
+    {
+      "id": "cross-cohort-door-supercut-v1",
+      "type": "clip",
+      "cohort": "cross-cohort",
+      "title": "MASTER: Door-metaphor supercut (abre la puerta / Dine-Mari new door / everyone has created a thing)",
+      "source_url": "clips/highlights-reel-v1/shotlist.md",
+      "media_url": "clips/highlights-reel-v1/build-room-door-supercut-916-tall.mp4",
+      "thumbnail": null,
+      "quote": null,
+      "attribution": "The Build Room (F&F Mon + Thu cohorts)",
+      "timestamp": null,
+      "tags": [
+        "door-metaphor",
+        "coach-voice",
+        "builder-testimonial",
+        "identity-shift",
+        "social-media",
+        "ads",
+        "website",
+        "branding",
+        "master-video",
+        "ready-to-post"
+      ],
+      "status": "cleared-for-public",
+      "date_captured": "2026-07-15",
+      "date_cleared": "2026-07-15",
+      "notes": "Finished 51.0s vertical master (1080x1920, tall layout, IG word-pop captions). Structure: Alex sets the metaphor, Dine-Mari proves it, Alex closes room-wide, thesis end card. Brand-story asset: this IS the door narrative for the Build Room. Available for social, ads, website, branding. Narnia retelling clip archived separately as standalone candidate."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "00:03:44",
+      "status": "raw",
+      "date_captured": "2026-07-15",
+      "date_cleared": null,
+      "id": "dbalp-postcohort-bryce-35-hours-human-resource",
+      "type": "quote",
+      "cohort": "dbalp",
+      "title": "Bryce restates the ROI: she saved 35 hours, that is a human resource",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/call-debrief-bryce-2026-07-15.md",
+      "quote": "She saved 35 hours. That's a human resource.",
+      "attribution": "Bryce North (DBALP cohort owner)",
+      "tags": [
+        "owner-testimonial",
+        "roi",
+        "time-saved",
+        "featured"
+      ],
+      "notes": "Two weeks post-cohort, unprompted confirmation of the Kandice 35 hrs/week save (6 hrs/client x 6 new clients). Alex framed on-call: 4 more teammates adopting at that rate = a human month back, Bryce agreed. Complements dbalp-s4-kandice-thirty-five-hours-clip (her own words). Bryce agreed on the same call to a Clutch review and a video testimonial on request, so written consent path is open. TODO: cut clip from https://fathom.video/share/PQzjkZa2NHmKeuBees-AxXWniq59zmLS around 03:44."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "00:03:09",
+      "status": "raw",
+      "date_captured": "2026-07-15",
+      "date_cleared": null,
+      "id": "dbalp-postcohort-team-kept-building",
+      "type": "win",
+      "cohort": "dbalp",
+      "title": "Two weeks after the cohort ended, the team is still building on its own",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/call-debrief-bryce-2026-07-15.md",
+      "quote": "Chanel and Candice are going back and forth and sharing scripts and prompts and everything. Then I just took everything everyone built and I just, like, built it so it's working... everything my team pretty much built, I literally just finished on the weekend.",
+      "attribution": "Bryce North (DBALP cohort owner)",
+      "tags": [
+        "post-cohort-adoption",
+        "stickiness",
+        "case-study"
+      ],
+      "notes": "The anti \"training does not stick\" proof: peer-to-peer prompt sharing plus the owner shipping the whole tool library to production over a weekend. Strong case-study spine for the DBALP writeup. TODO: cut clip from https://fathom.video/share/PQzjkZa2NHmKeuBees-AxXWniq59zmLS around 03:09."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "00:02:47",
+      "status": "raw",
+      "date_captured": "2026-07-15",
+      "date_cleared": null,
+      "id": "dbalp-postcohort-bryce-team-happy",
+      "type": "quote",
+      "cohort": "dbalp",
+      "title": "Bryce two weeks out: team happy, using AI daily, no other feedback",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/call-debrief-bryce-2026-07-15.md",
+      "quote": "Yeah, it went really well... my team's happy and excited. A lot of people understand AI a lot more. And Candice really loved it.",
+      "attribution": "Bryce North (DBALP cohort owner)",
+      "tags": [
+        "owner-testimonial",
+        "satisfaction"
+      ],
+      "notes": "He also closed the feedback loop with \"I don't think I have any other feedback, man, for kind of what you're doing\" [00:05:30]. Candidate seed for the Clutch review Bryce committed to on this call. TODO: cut clip from https://fathom.video/share/PQzjkZa2NHmKeuBees-AxXWniq59zmLS around 02:47."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "00:05:49",
+      "status": "raw",
+      "date_captured": "2026-07-15",
+      "date_cleared": null,
+      "id": "dbalp-postcohort-team-built-incredible-things",
+      "type": "quote",
+      "cohort": "dbalp",
+      "title": "Bryce: my other team members have built some really incredible things",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/call-debrief-bryce-2026-07-15.md",
+      "quote": "It's fixed all my issues and built stuff quite quickly... My other team members have built some really incredible things. Like they used it for their own dashboard.",
+      "attribution": "Bryce North (DBALP cohort owner)",
+      "tags": [
+        "owner-testimonial",
+        "builder-outcomes"
+      ],
+      "notes": "Bryce praising the tooling (\"Fable is pretty awesome\") plus team dashboard builds beyond the cohort scope. TODO: cut clip from https://fathom.video/share/PQzjkZa2NHmKeuBees-AxXWniq59zmLS around 05:49."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "00:05:39",
+      "status": "raw",
+      "date_captured": "2026-07-15",
+      "date_cleared": null,
+      "id": "dbalp-postcohort-lesson-prompt-to-result-demo",
+      "type": "lesson",
+      "cohort": "cross-cohort",
+      "title": "Open with a live prompt-to-result demo; the biggest hurdle is \"what can AI do and how do I prompt it\"",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/call-debrief-bryce-2026-07-15.md",
+      "quote": "I think the biggest hurdle is just what can AI do and how do we prompt it and get it to, like, ask the right questions I need and get it to debug along the way.",
+      "attribution": "Bryce North (DBALP cohort owner)",
+      "tags": [
+        "curriculum",
+        "onboarding",
+        "session-design"
+      ],
+      "notes": "Client-confirmed curriculum fix: show \"I prompt, I want a thing, I say a thing, I get the thing\" before asking beginners to build. Pairs with the Codex-over-Claude-Code onboarding switch (also confirmed by Bryce on this call: setup prep was the friction point, [00:04:35]). Alex's example demo: custom Fathom-transcript analysis vs generic AI summaries."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "00:25:39",
+      "status": "raw",
+      "date_captured": "2026-07-15",
+      "date_cleared": null,
+      "id": "dbalp-postcohort-lesson-training-ceiling-build-and-own",
+      "type": "lesson",
+      "cohort": "cross-cohort",
+      "title": "Training has a ceiling; audit, build the fix, retain the IP, productize, resell",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/call-debrief-bryce-2026-07-15.md",
+      "quote": "Training is great. It's hard to scale. Cause you are the person... what if instead of telling them what to do, you hold their hand and get them to do it, or do it.",
+      "attribution": "Bryce North (DBALP cohort owner)",
+      "tags": [
+        "business-model",
+        "strategy",
+        "internal-only"
+      ],
+      "notes": "INTERNAL strategy, not public proof. Bryce's full playbook: low-cost audit -> options A (DIY) / B (we build it, majority pick) / C (refund, nobody takes it) -> custom-build with IP retention -> productize -> resell to next coach. Plus $5K/mo AI Ops retainer he would personally buy \"next year for sure\". Coaches market: \"none of them have a funnel, not even one.\""
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "00:26:36",
+      "status": "raw",
+      "date_captured": "2026-07-15",
+      "date_cleared": null,
+      "id": "dbalp-postcohort-lesson-time-is-the-adoption-blocker",
+      "type": "lesson",
+      "cohort": "cross-cohort",
+      "title": "Team time, not skepticism, is the real adoption blocker",
+      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/call-debrief-bryce-2026-07-15.md",
+      "quote": "We know it's super valuable. The big roadblock is people's time.",
+      "attribution": "Bryce North (DBALP cohort owner)",
+      "tags": [
+        "adoption",
+        "failure-mode",
+        "offer-design"
+      ],
+      "notes": "Marley wanted to do it but \"I don't got time for this stuff\" [00:05:16]. Design implication: build-for-them and hold-their-hand offers beat tell-them-what-to-do training for busy teams. Motivates the done-with-you / done-for-you tiers."
     }
   ]
 }
