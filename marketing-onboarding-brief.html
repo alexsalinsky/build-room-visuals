@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Build Room · Marketing Onboarding Brief</title>
+<style>
+  :root {
+    --charcoal: #1e1c1a;
+    --charcoal-2: #2a2723;
+    --amber: #e8a13c;
+    --amber-dim: #b87e2e;
+    --cream: #f4ead8;
+    --cream-dim: #cfc4ae;
+    --red: #d96a4f;
+    --green: #7fae7a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--charcoal);
+    color: var(--cream);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.6;
+    padding-bottom: 80px;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 28px; }
+  header {
+    padding: 64px 0 40px;
+    border-bottom: 2px solid var(--amber);
+    margin-bottom: 48px;
+  }
+  .eyebrow {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 14px;
+  }
+  h1 { font-size: 42px; line-height: 1.15; font-weight: normal; margin-bottom: 18px; }
+  .thesis {
+    font-size: 20px; color: var(--amber); font-style: italic; margin-bottom: 22px;
+  }
+  .meta {
+    font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; color: var(--cream-dim);
+  }
+  nav {
+    font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px;
+    display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 26px 0 0;
+  }
+  nav a { color: var(--cream-dim); text-decoration: none; border-bottom: 1px dotted var(--amber-dim); }
+  nav a:hover { color: var(--amber); }
+  section { margin-bottom: 56px; }
+  h2 {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 15px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--amber); font-weight: 600;
+    margin-bottom: 20px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--charcoal-2);
+  }
+  h2 .num { color: var(--cream-dim); margin-right: 10px; }
+  p { margin-bottom: 14px; font-size: 17px; }
+  strong { color: #fff; }
+  a { color: var(--amber); }
+  ul, ol { margin: 0 0 16px 24px; }
+  li { margin-bottom: 8px; font-size: 16.5px; }
+  .callout {
+    background: var(--charcoal-2); border-left: 4px solid var(--amber);
+    padding: 18px 22px; margin: 20px 0; border-radius: 0 6px 6px 0;
+    font-size: 16.5px;
+  }
+  .callout.warn { border-left-color: var(--red); }
+  table {
+    width: 100%; border-collapse: collapse; margin: 18px 0 24px;
+    font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px;
+  }
+  th {
+    text-align: left; color: var(--amber); font-weight: 600;
+    padding: 10px 12px; border-bottom: 2px solid var(--amber-dim);
+    letter-spacing: 0.5px;
+  }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--charcoal-2); vertical-align: top; }
+  tr:hover td { background: rgba(232,161,60,0.05); }
+  .pill {
+    display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; padding: 2px 9px; border-radius: 10px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+  .pill.event { background: rgba(232,161,60,0.18); color: var(--amber); }
+  .pill.decision { background: rgba(217,106,79,0.18); color: var(--red); }
+  .pill.mktg { background: rgba(127,174,122,0.18); color: var(--green); }
+  .pill.conf { background: rgba(150,170,220,0.18); color: #9db4e0; }
+  .quote-card {
+    background: var(--charcoal-2); border-radius: 8px; padding: 20px 24px;
+    margin: 14px 0;
+  }
+  .quote-card blockquote { font-size: 18px; font-style: italic; margin-bottom: 8px; }
+  .quote-card .attr {
+    font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; color: var(--cream-dim);
+  }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 720px) { .grid2 { grid-template-columns: 1fr; } h1 { font-size: 32px; } }
+  .gap-card {
+    background: var(--charcoal-2); border-radius: 8px; padding: 18px 20px;
+  }
+  .gap-card h3 {
+    font-family: 'Segoe UI', Arial, sans-serif; font-size: 15px;
+    color: var(--red); margin-bottom: 6px;
+  }
+  .gap-card p { font-size: 15px; margin: 0; color: var(--cream-dim); }
+  .stat-row { display: flex; flex-wrap: wrap; gap: 16px; margin: 20px 0; }
+  .stat {
+    flex: 1; min-width: 160px; background: var(--charcoal-2); border-radius: 8px;
+    padding: 18px; text-align: center;
+  }
+  .stat .n { font-size: 34px; color: var(--amber); font-family: Georgia, serif; }
+  .stat .l {
+    font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--cream-dim); margin-top: 4px;
+  }
+  footer {
+    margin-top: 70px; padding-top: 24px; border-top: 1px solid var(--charcoal-2);
+    font-family: 'Segoe UI', Arial, sans-serif; font-size: 13px; color: var(--cream-dim);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">The Build Room · For the incoming marketing lead</div>
+  <h1>Marketing Onboarding Brief</h1>
+  <div class="thesis">Learn AI. Build Robots. Stay Human.</div>
+  <div class="meta">Prepared by Alex Salinsky · 2026-07-15 · ~20 min read · <a href="marketing-onboarding-brief.md" download>Download the Markdown twin (for your AI)</a></div>
+  <nav>
+    <a href="#what">1 What it is</a>
+    <a href="#products">2 Products</a>
+    <a href="#goals">3 Goals</a>
+    <a href="#engine">4 Engine</a>
+    <a href="#done">5 What's been done</a>
+    <a href="#gaps">6 Gaps</a>
+    <a href="#calendar">7 Calendar</a>
+    <a href="#rules">8 Brand rules</a>
+    <a href="#decisions">9 Open decisions</a>
+    <a href="#links">10 Links</a>
+  </nav>
+</header>
+
+<section id="what">
+  <h2><span class="num">01</span>What The Build Room is</h2>
+  <div class="callout" style="font-size:20px;">
+    <strong>The three rules (the most important thing in this document):</strong><br>
+    <span style="color:var(--amber); font-style:italic;">Learn AI. Build Robots. Stay Human.</span><br>
+    <span style="font-size:14px; color:var(--cream-dim);">That line is the brand. Verbatim, never paraphrased, in every asset that uses it.</span>
+  </div>
+  <p>The Build Room takes regular people (operators, founders, and their teams) and has them <strong>build something real with AI in four weeks</strong>. Cohort-based, outcome-oriented: everyone ships by Demo Day. It's a founder-led brand built around Alex Salinsky's facilitation. Don't position it as "AI training" or "AI fluency"; the product is the transformation, the confidence of having built something yourself.</p>
+  <div class="callout">
+    <strong>The purpose</strong> (from Alex's Horizons of Focus, 2026-07-12): watch people transform. The win is their confidence, crossing from hopeless to empowered and still human. AI is the vehicle, not the point.
+  </div>
+  <p><strong>Non-negotiable principles:</strong></p>
+  <ul>
+    <li>Technology serves us, not drives us.</li>
+    <li>You will change. You will make a product. This is not a course.</li>
+    <li>Nobody rejects themselves on my watch.</li>
+    <li>No step-by-step framework. You tackle your problem, with coaching.</li>
+    <li>No fabricated proof. Real wins, real names (with permission), real numbers.</li>
+    <li>The emotional element is permanent.</li>
+  </ul>
+  <p><strong>Format:</strong> 4 weeks, one live ~2-hour session per week, builds between sessions, Demo Day at the end. A "Session Zero" kickoff precedes S1-S4.</p>
+</section>
+
+<section id="products">
+  <h2><span class="num">02</span>Products and pricing</h2>
+  <table>
+    <tr><th>Product</th><th>What it is</th><th>Price now</th><th>Target (12mo)</th><th>Status</th></tr>
+    <tr><td><strong>Open Cohort</strong></td><td>Virtual 4-week cohort, individuals</td><td>$1,500-2,000/seat</td><td>Add $400 entry tier</td><td>4 delivered; July cohort launching now</td></tr>
+    <tr><td><strong>Closed Cohort</strong></td><td>Private cohort for a team/org</td><td>$2,000-4,000</td><td>$5-25K by org size</td><td>3 delivered</td></tr>
+    <tr><td><strong>Retreat</strong></td><td>5-day in-person immersive</td><td>$2,750 / $3,250 / $3,750</td><td>Same, 2-4/yr</td><td>PDC Oct + Chiang Mai Nov, both GO</td></tr>
+    <tr><td><strong>Membership</strong></td><td>Alumni community layer</td><td>TBD</td><td>$50-100/mo</td><td>Design due Feb 2027</td></tr>
+    <tr><td><strong>Build Day</strong></td><td>One-day live build facilitation, strongest at conferences</td><td>Not priced standalone yet</td><td>Sell it as a conference product</td><td>Format proven (DCMex buildathon, Build Day site live); under-sold today, Alex wants that to change</td></tr>
+  </table>
+  <div class="stat-row">
+    <div class="stat"><div class="n">$6.1K</div><div class="l">June 2026 revenue</div></div>
+    <div class="stat"><div class="n">$36K/mo</div><div class="l">Fase 1 target (6 mo)</div></div>
+    <div class="stat"><div class="n">$92K/mo</div><div class="l">Fase 2 target (12 mo)</div></div>
+    <div class="stat"><div class="n">$52.4K</div><div class="l">Trailing 24-mo revenue</div></div>
+  </div>
+</section>
+
+<section id="goals">
+  <h2><span class="num">03</span>Goals, the honest hierarchy</h2>
+  <ul>
+    <li><strong>Vision (2029-2031):</strong> a company with coaches and systems, empowering entire business teams. Alex earns ~$20K/mo. Permanent wait list; opportunities come to us.</li>
+    <li><strong>By July 2028:</strong> Alex's Build Room income $10-20K/mo. A thriving community on a monthly rhythm. Likely one full-time coach.</li>
+    <li><strong>The hardest date: first business-team client by March 2027.</strong> Alex's own words: "Without business clients, I don't know if we have a thing here."</li>
+    <li><strong>Explicitly NOT a goal:</strong> retreats. They're 2026 revenue plays, not the long-term engine.</li>
+  </ul>
+  <div class="callout">
+    <strong>What this means for marketing:</strong> the corporate / closed-cohort motion matters more than any single launch. Kickoff Sessions sell open cohorts and retreats; they probably don't sell closed cohorts. That path runs through conferences (LPI Learning Live, London, Sep 16-17) and direct outreach through friends and affiliates.
+  </div>
+</section>
+
+<section id="engine">
+  <h2><span class="num">04</span>The marketing engine (designed, locked 2026-06-28)</h2>
+  <p>One reusable launch engine, three launches (July cohort + two retreats), six channels. Full spec: <code>marketing-sprint-v1.md</code>.</p>
+  <table>
+    <tr><th></th><th>Cohort cycle (7 wk)</th><th>Retreat cycle (12 wk)</th></tr>
+    <tr><td><strong>Shape</strong></td><td>Pre-marketing → public wave → Kickoff Session → TSLS one week later → 4-week cohort</td><td>Pre-marketing → wave 1 → Kickoff 1 (tier 1) → excite events → Kickoff 2 (tier 2) → scarcity push (tier 3) → retreat</td></tr>
+    <tr><td><strong>Buying zone</strong></td><td>~3 weeks</td><td>~8 weeks</td></tr>
+    <tr><td><strong>Hard floor</strong></td><td>July: 4 paid by Jul 15 or Kickoff becomes a public talk</td><td>PDC: 10 paid by Aug 1 or alumni MVV. Chiang Mai: 8 paid by Oct 1 or 6-seat alumni pilot</td></tr>
+  </table>
+  <p><strong>Cross-cutting audience plays:</strong> NC17 Nomad Cruise (Alex runs all AI programming on board, ~150 people), LPI Learning Live, DC London Junto, DCBKK Bangkok, CMSEO Chiang Mai, alumni referrals (15% off), 10-15 personal-network DMs per launch.</p>
+  <p><strong>Validated data point:</strong> the one Kickoff-style event run so far converted ~50% of warm attendees (~14 of 27-30 paid, sliding scale).</p>
+</section>
+
+<section id="done">
+  <h2><span class="num">05</span>What's been done marketing-wise</h2>
+  <p><strong>Delivery proof is the strongest asset.</strong> Four cohorts completed since June 2026: DBALP (PR agency team), RPA (nonprofit org), and two Friends &amp; Family tracks (~30 builders). Every session transcribed, debriefed, and mined for proof.</p>
+  <div class="stat-row">
+    <div class="stat"><div class="n">178</div><div class="l">Proof Library entries</div></div>
+    <div class="stat"><div class="n">23</div><div class="l">Public-ready today</div></div>
+    <div class="stat"><div class="n">155</div><div class="l">Raw, need permission</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">Newsletter editions</div></div>
+  </div>
+  <p><strong>Headline public-ready proof:</strong></p>
+  <div class="quote-card">
+    <blockquote>"So David, what you did, someone six months ago quoted me $20,000 to make that."</blockquote>
+    <div class="attr">Ginger Gentile, org owner, RPA cohort Demo Day</div>
+  </div>
+  <div class="quote-card">
+    <blockquote>"It is going to save me basically six hours per campaign... that is like 35 hours of work saved."</blockquote>
+    <div class="attr">Kandice, DBALP cohort, named live on Demo Day (clip exists)</div>
+  </div>
+  <div class="quote-card">
+    <blockquote>"The most tech-illiterate person on this team came out with something pretty awesome."</blockquote>
+    <div class="attr">Bryce North, CEO, DBALP cohort</div>
+  </div>
+  <p><strong>Existing assets and channels:</strong></p>
+  <ul>
+    <li><strong>Landing pages, live:</strong> <a href="https://alexsalinsky.github.io/build-room-visuals/build-room.html">Build Room landing</a> (Luma + Stripe CTAs) and <a href="https://alexsalinsky.github.io/build-day-site/">Build Day site</a></li>
+    <li><strong>LinkedIn Newsletter:</strong> 3 editions Mar-Jun 2026 (<a href="https://www.linkedin.com/in/alexsalinsky/recent-activity/newsletter/">index</a>). Zero talks or podcasts published yet.</li>
+    <li><strong>Proof Library, live:</strong> <a href="https://alexsalinsky.github.io/build-room-visuals/proof-library.html">hosted inventory</a> of every win, clip, and testimonial</li>
+    <li><strong>Two featured brand clips</strong> (thesis line on camera; "Losing my ambitious friends to AI") plus a finished 51-second vertical reel, currently unposted</li>
+    <li><strong>Channels:</strong> LinkedIn (Alex personal), IG (@alexsalinsky + new @the.build.room), WhatsApp (incl. new automated group sends), <a href="https://www.skool.com/the-build-room-3309">Skool community</a>, MailChimp, Luma</li>
+    <li><strong>Campaigns run:</strong> July cohort launch (IG/WhatsApp/LinkedIn posts + ~30 warm DMs on Kickoff day); NC17 affiliate kit built (29 ranked clips, reel scripts, copy) but mostly unpublished</li>
+    <li><strong>Ops infrastructure:</strong> TBR marketing calendar, nightly Stripe revenue dashboard, per-launch tracker sheets, and the jess-pack (onboarding kit built for Jess, the current part-time marketing executor: tone of voice, visual style, hard rules, asset map, starter copy; the tone and rules sections apply to anyone doing Build Room marketing)</li>
+  </ul>
+  <p><strong>Team:</strong> Alex (strategy, sales, all delivery) · Jess (part-time marketing execution) · Thierry (co-facilitator) · Jessica (coach). No FTEs, no outside capital.</p>
+</section>
+
+<section id="gaps">
+  <h2><span class="num">06</span>The obvious gaps</h2>
+  <div class="grid2">
+    <div class="gap-card"><h3>1 · No marketing owner</h3><p>Alex's own Horizons note: "I don't know how to do it. Needs an owner or a system." This is the seat being recruited for.</p></div>
+    <div class="gap-card"><h3>2 · No attribution</h3><p>Nobody knows which channel produces buyers. No UTMs enforced, no "where did you hear about us" at checkout.</p></div>
+    <div class="gap-card"><h3>3 · Proof is trapped</h3><p>155 of 178 proof entries are raw. The best material the business owns sits unpublished for lack of permission asks and clip cutting.</p></div>
+    <div class="gap-card"><h3>4 · Publish-step stall</h3><p>3 newsletter editions in 5 months, no talks or podcasts shipped, finished reels unposted. Assets get built, then stall at publish.</p></div>
+    <div class="gap-card"><h3>5 · No corporate pipeline</h3><p>First business-team client by Mar 2027 is the existential goal. Today the pipeline is two warm names and one conference.</p></div>
+    <div class="gap-card"><h3>6 · CAC unknown</h3><p>No paid channel ever tested. One $200 LinkedIn experiment planned for the PDC retreat.</p></div>
+    <div class="gap-card"><h3>7 · Thin top of funnel</h3><p>A 30-day engagement scrape found ~16 LinkedIn reactors and ~12 IG engagers. The launch engine assumes audiences that don't exist yet.</p></div>
+    <div class="gap-card"><h3>8 · Founder bottleneck</h3><p>Alex travels Sep-Nov exactly when all three launches peak. Whatever is designed must run without him some weeks.</p></div>
+  </div>
+  <div class="callout warn" style="margin-top:16px;">
+    <strong>9 · Alumni layer undefined.</strong> Membership format and price are parked until Feb 2027, so post-cohort energy has nowhere to go except Skool.
+  </div>
+</section>
+
+<section id="calendar">
+  <h2><span class="num">07</span>The calendar (live, Jul-Nov 2026)</h2>
+  <p>Source of truth: the "TBR Mktg &amp; Events" Google Calendar (ask Alex for access). Times America/Bogota.</p>
+  <table>
+    <tr><th>Date</th><th>Type</th><th>What</th></tr>
+    <tr><td><strong>Jul 15</strong></td><td><span class="pill event">Event</span></td><td><strong>July Cohort Kickoff Session, 5-6pm (today).</strong> Hard floor: 4 paid</td></tr>
+    <tr><td>Jul 15</td><td><span class="pill mktg">Mktg</span></td><td>PDC retreat pre-marketing begins</td></tr>
+    <tr><td>Jul 22</td><td><span class="pill event">Event</span></td><td>July Cohort TSLS, 6-7pm (late buyers can still join)</td></tr>
+    <tr><td>Aug 1</td><td><span class="pill decision">Decision</span></td><td>PDC hard-floor check (10 paid or pivot) + first public PDC post</td></tr>
+    <tr><td>Aug 15</td><td><span class="pill event">Event</span></td><td>PDC Kickoff Session 1, 6pm. Tier 1 $2,750 opens 7 days</td></tr>
+    <tr><td>Aug 15</td><td><span class="pill mktg">Mktg</span></td><td>Thailand retreat pre-marketing begins</td></tr>
+    <tr><td>Aug 22</td><td><span class="pill decision">Decision</span></td><td>PDC excite-event format due</td></tr>
+    <tr><td>Sep 1</td><td><span class="pill mktg">Mktg</span></td><td>Thailand first public post</td></tr>
+    <tr><td>Sep 10</td><td><span class="pill decision">Decision</span></td><td>London L&amp;D corporate pricing due (pre-LPI)</td></tr>
+    <tr><td>Sep 11</td><td><span class="pill event">Event</span></td><td>Thailand Kickoff Session 1, 6pm</td></tr>
+    <tr><td>Sep 12</td><td><span class="pill decision">Decision</span></td><td>NC17 cruise offer defined (150 people on board)</td></tr>
+    <tr><td>Sep 14</td><td><span class="pill event">Event</span></td><td>PDC Kickoff Session 2, 6pm. Tier 2 $3,250</td></tr>
+    <tr><td>Sep 16-17</td><td><span class="pill conf">Conference</span></td><td>LPI Learning Live, London (corporate ICP)</td></tr>
+    <tr><td>Sep 17</td><td><span class="pill conf">Conference</span></td><td>DC London Junto (Alex hosting)</td></tr>
+    <tr><td>Sep 18</td><td><span class="pill conf">Conference</span></td><td>British Science Festival fringe, Southampton (pitching)</td></tr>
+    <tr><td>Sep 19-26</td><td><span class="pill conf">Conference</span></td><td>NC17 Nomad Cruise (Alex runs all AI programming)</td></tr>
+    <tr><td>Sep 28</td><td><span class="pill decision">Decision</span></td><td>PDC scarcity push begins (tier 3 $3,750) + Thailand excite format due</td></tr>
+    <tr><td>Oct 1</td><td><span class="pill decision">Decision</span></td><td>Thailand hard-floor check (8 paid or alumni pilot)</td></tr>
+    <tr><td><strong>Oct 11-16</strong></td><td><span class="pill event">Event</span></td><td><strong>PDC Retreat, Playa del Carmen</strong> (Fiesta Inn)</td></tr>
+    <tr><td>Oct 16</td><td><span class="pill event">Event</span></td><td>Thailand Kickoff Session 2, 6pm</td></tr>
+    <tr><td>Oct 22-25</td><td><span class="pill conf">Conference</span></td><td>DCBKK Bangkok (in-person Thailand pre-sale)</td></tr>
+    <tr><td>Nov 9-13</td><td><span class="pill conf">Conference</span></td><td>CMSEO Chiang Mai (direct pre-sale channel)</td></tr>
+    <tr><td><strong>Nov 16-20</strong></td><td><span class="pill event">Event</span></td><td><strong>Thailand Retreat, Chiang Mai</strong></td></tr>
+  </table>
+</section>
+
+<section id="rules">
+  <h2><span class="num">08</span>Brand and voice rules (hard, don't re-litigate)</h2>
+  <ul>
+    <li>Thesis line verbatim wherever used: <strong>"Learn AI. Build Robots. Stay Human."</strong></li>
+    <li>The live event is a <strong>"Kickoff Session."</strong> Never "webinar" or "masterclass."</li>
+    <li><strong>No em dashes</strong> in any copy. Ever.</li>
+    <li>Stripe link in chat <strong>once</strong> per Kickoff Session. No pressure closes.</li>
+    <li><strong>No fabricated proof.</strong> Only Proof Library entries cleared for public go public. Real names only with permission. Never publish putdown quotes, even cleared ones.</li>
+    <li>No invented URLs or domains (buildroom.work does not exist).</li>
+    <li>No black-box visual treatment in decks. No "drop it in the chat" audience prompts.</li>
+    <li>Cohort ads: no. Retreat ads: small test only; kill if CAC exceeds 2x tier-1 margin.</li>
+    <li>Skool stays engagement-gated, not open-by-affiliate-link.</li>
+    <li>Voice: direct, peer-to-peer, contractions on, no corporate filler. Samples: the LinkedIn newsletter + <code>jess-pack/01-tone-of-voice.md</code>.</li>
+    <li>Sliding-scale pricing and per-builder performance details stay private. Client-facing artifacts show role + name only.</li>
+  </ul>
+</section>
+
+<section id="decisions">
+  <h2><span class="num">09</span>Open decisions where your opinion is wanted</h2>
+  <table>
+    <tr><th>Decision</th><th>Deadline</th></tr>
+    <tr><td>IG cross-post mechanism (Alex personal vs @the.build.room)</td><td><strong>Overdue since Jul 10</strong></td></tr>
+    <tr><td>PDC excite-event format</td><td>Aug 22</td></tr>
+    <tr><td>London L&amp;D corporate pricing (one advisor believes enterprise pays $50-200K; historical pricing $2-4K)</td><td>Sep 10</td></tr>
+    <tr><td>NC17 on-board offer</td><td>Sep 12</td></tr>
+    <tr><td>Thailand excite-event format</td><td>Sep 28</td></tr>
+    <tr><td>Alumni membership format + pricing</td><td>Feb 2027</td></tr>
+  </table>
+  <p>Standing strategy questions: is the pricing ladder right ($400 / $1,500 / $4K?), how to build the corporate pipeline, and what THE one 90-day priority should be.</p>
+</section>
+
+<section id="links">
+  <h2><span class="num">10</span>Where everything lives</h2>
+  <table>
+    <tr><th>What</th><th>Where</th></tr>
+    <tr><td>This brief (machine-readable twin)</td><td><code>brain/the-build-room/MARKETING-ONBOARDING-BRIEF.md</code></td></tr>
+    <tr><td>Deep-dive audit brief (unit economics, tensions)</td><td><code>brain/the-build-room/expert-review/marketing-audit-brief.md</code></td></tr>
+    <tr><td>Launch engine spec</td><td><code>brain/the-build-room/marketing-sprint-v1.md</code></td></tr>
+    <tr><td>Horizons (purpose → projects)</td><td><code>brain/the-build-room/HORIZONS.md</code></td></tr>
+    <tr><td>Proof Library (live)</td><td><a href="https://alexsalinsky.github.io/build-room-visuals/proof-library.html">alexsalinsky.github.io/build-room-visuals/proof-library.html</a></td></tr>
+    <tr><td>Landing page</td><td><a href="https://alexsalinsky.github.io/build-room-visuals/build-room.html">alexsalinsky.github.io/build-room-visuals/build-room.html</a></td></tr>
+    <tr><td>LinkedIn newsletter</td><td><a href="https://www.linkedin.com/in/alexsalinsky/recent-activity/newsletter/">linkedin.com/in/alexsalinsky · newsletter</a></td></tr>
+    <tr><td>Skool community</td><td><a href="https://www.skool.com/the-build-room-3309">skool.com/the-build-room-3309</a></td></tr>
+    <tr><td>Tone of voice + visual style</td><td><code>brain/the-build-room/jess-pack/</code></td></tr>
+    <tr><td>Marketing calendar</td><td>"TBR Mktg &amp; Events" Google Calendar (ask Alex)</td></tr>
+  </table>
+</section>
+
+<footer>
+  Alex Salinsky / The Build Room
+</footer>
+
+</div>
+</body>
+</html>
