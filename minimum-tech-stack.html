@@ -23,6 +23,20 @@
   .branch a { color: #1a1a1a; text-decoration: underline; }
   .branch code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; background: #f0f0f0; padding: 1px 6px; border-radius: 3px; }
   .tools { font-size: 15px; color: #555; margin-top: 4px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 22px 24px; }
+  .card .name { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+  .card .price { font-size: 14px; color: #666; font-weight: 600; margin-bottom: 16px; }
+  .card ul { list-style: none; padding: 0; margin: 0 0 16px; }
+  .card li { font-size: 15px; line-height: 1.55; color: #333; padding-left: 18px; position: relative; margin-bottom: 6px; }
+  .card li::before { content: "•"; position: absolute; left: 4px; color: #1a1a1a; font-weight: 700; }
+  .card a.btn { display: inline-block; font-size: 14px; font-weight: 600; color: #1a1a1a; text-decoration: none; border: 1.5px solid #1a1a1a; padding: 8px 16px; border-radius: 6px; transition: all 0.15s ease; }
+  .card a.btn:hover { background: #1a1a1a; color: #fff; }
+  .why { font-size: 16px; line-height: 1.65; color: #333; }
+  .why p { margin-bottom: 12px; }
+  .why p:last-child { margin-bottom: 0; }
+  .why strong { font-weight: 700; color: #1a1a1a; }
   .next { background: #f0f7f0; border: 2px solid #16a34a; border-radius: 12px; padding: 22px 26px; margin-top: 24px; }
   .next h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
   .next p { font-size: 16px; color: #333; line-height: 1.55; margin-bottom: 10px; }
@@ -57,6 +71,36 @@
     <h3>Download and install Codex.</h3>
     <p><a href="https://openai.com/codex/get-started/" target="_blank" rel="noopener">Download the Codex desktop app</a>, install it, and sign in with your ChatGPT account. That's it.</p>
     <p><strong>You only need the $20/month ChatGPT plan to get started.</strong></p>
+  </div>
+
+  <h2>What it costs</h2>
+  <div class="grid">
+
+    <div class="card">
+      <div class="name">ChatGPT Plus</div>
+      <div class="price">$20 / month · OpenAI</div>
+      <ul>
+        <li>Full ChatGPT</li>
+        <li>Codex for building</li>
+        <li>File uploads, image generation, voice</li>
+      </ul>
+      <a class="btn" href="https://chatgpt.com/pricing" target="_blank" rel="noopener">See pricing</a>
+    </div>
+
+    <div class="card">
+      <div class="name">Claude Pro or Max</div>
+      <div class="price">Pro $20 / month · Max from $100 · Anthropic</div>
+      <ul>
+        <li>Full Claude.ai</li>
+        <li>Claude Code for building</li>
+        <li>Max tiers give you the heavy-use ceiling</li>
+      </ul>
+      <a class="btn" href="https://www.anthropic.com/pricing" target="_blank" rel="noopener">See pricing</a>
+    </div>
+
+  </div>
+  <div class="why" style="margin-top:16px">
+    <p><strong>You only need one $20/month subscription.</strong> Each one gives you both the chat product and a build tool on the same account. Pick the one you'll actually open every day. Either gets you through the whole cohort.</p>
   </div>
 
   <h2>Both branches converge here</h2>
