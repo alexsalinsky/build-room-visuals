@@ -23,11 +23,6 @@
   .branch a { color: #1a1a1a; text-decoration: underline; }
   .branch code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; background: #f0f0f0; padding: 1px 6px; border-radius: 3px; }
   .tools { font-size: 15px; color: #555; margin-top: 4px; }
-  .install-steps { list-style: none; padding: 0; margin: 14px 0 4px; counter-reset: step; }
-  .install-steps li { counter-increment: step; padding: 10px 0 10px 42px; position: relative; font-size: 16px; color: #1a1a1a; border-bottom: 1px solid #eee; }
-  .install-steps li:last-child { border-bottom: 0; }
-  .install-steps li::before { content: counter(step); position: absolute; left: 0; top: 8px; width: 28px; height: 28px; background: #1a1a1a; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; }
-  .codeblock { background: #1e1e1e; color: #e5e7eb; border-radius: 8px; margin: 8px 0 4px; padding: 12px 16px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13.5px; overflow-x: auto; }
   .next { background: #f0f7f0; border: 2px solid #16a34a; border-radius: 12px; padding: 22px 26px; margin-top: 24px; }
   .next h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
   .next p { font-size: 16px; color: #333; line-height: 1.55; margin-bottom: 10px; }
@@ -59,21 +54,9 @@
   <h2>Branch B</h2>
   <div class="branch">
     <span class="tag">NO, NOT YET</span>
-    <h3>Install Codex.</h3>
-    <p>Lowest-friction install for people who aren't already in an AI coding tool. Runs in your terminal, signs in with your ChatGPT account, works on Mac, Linux, and Windows.</p>
-    <ol class="install-steps">
-      <li>Open your terminal.</li>
-      <li>
-        Paste and run the install command for your OS:
-        <div class="codeblock"># Mac or Linux
-curl -fsSL https://chatgpt.com/codex/install.sh | sh
-
-# Windows (PowerShell)
-powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"</div>
-      </li>
-      <li>Run <code>codex</code> and sign in with your ChatGPT account.</li>
-    </ol>
-    <p style="margin-top:14px">Official install page: <a href="https://github.com/openai/codex" target="_blank" rel="noopener">github.com/openai/codex</a>. If <code>curl</code> fails on Mac, <code>brew install --cask codex</code> also works.</p>
+    <h3>Download and install Codex.</h3>
+    <p><a href="https://openai.com/codex/get-started/" target="_blank" rel="noopener">Download the Codex desktop app</a>, install it, and sign in with your ChatGPT account. That's it.</p>
+    <p><strong>You only need the $20/month ChatGPT plan to get started.</strong></p>
   </div>
 
   <h2>Both branches converge here</h2>
