@@ -1691,7 +1691,7 @@
       "cohort": "ff-thu",
       "title": "Cece's first Zoom since COVID → working ChatGPT photo-rating system in one session",
       "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/thu-s1-wins-post-2026-06-25.md",
-      "media_url": "brain/the-build-room/recordings/clips/ff-thu-s1/cece-happened-so-fast-tight-clean.mp4",
+      "media_url": "https://drive.google.com/file/d/1AJnUpY1vJuxaFmuc_cyZHn0GBoJD4an1/view",
       "thumbnail": null,
       "quote": "It just happened so fast. It was pretty awesome.",
       "attribution": "Cece Bedolla (F&F Humans V Robots Thu cohort)",
@@ -1699,12 +1699,14 @@
       "tags": [
         "breakthrough",
         "first-time-builder",
-        "recovery"
+        "recovery",
+        "awaiting-review"
       ],
       "status": "cleared-for-public",
       "date_captured": "2026-06-25",
       "date_cleared": null,
-      "notes": "Speaker mis-attributed to Dominika in Fathom transcript; content matches Cece's photo-curator project from earlier in call. TODO: cut clip from https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu around 01:56. Permission granted 2026-07-06 (Alex confirmed directly with the builder; cleared for the Jul 15 kickoff Luma page and general public use). Clips cut 2026-07-13: cece-first-app-full-clean.mp4 (49s full answer, starts \"Well, I got started on the idea for the app\") and cece-happened-so-fast-tight-clean.mp4 (22s, \"it immediately just jumped into action... it happened so fast, it was pretty awesome\"). Actual recording time 01:55:02, Fathom timestamp drifted ~75s. Video is gallery view; Cece is top-left tile, needs punch-in crop for reel use."
+      "notes": "Speaker mis-attributed to Dominika in Fathom transcript; content matches Cece's photo-curator project from earlier in call. TODO: cut clip from https://fathom.video/share/MxD5y66n8ETNFjHWPeqSa2dLDkH_cYnu around 01:56. Permission granted 2026-07-06 (Alex confirmed directly with the builder; cleared for the Jul 15 kickoff Luma page and general public use). Clips cut 2026-07-13: cece-first-app-full-clean.mp4 (49s full answer, starts \"Well, I got started on the idea for the app\") and cece-happened-so-fast-tight-clean.mp4 (22s, \"it immediately just jumped into action... it happened so fast, it was pretty awesome\"). Actual recording time 01:55:02, Fathom timestamp drifted ~75s. Video is gallery view; Cece is top-left tile, needs punch-in crop for reel use.",
+      "local_path": "brain/the-build-room/recordings/clips/ff-thu-s1/cece-happened-so-fast-tight-clean.mp4"
     },
     {
       "id": "ff-thu-s1-anthony-stayed-after",
@@ -2183,7 +2185,7 @@
       "cohort": "dbalp",
       "title": "Clip: Kandice names 35 hours saved per month live on Demo Day",
       "source_url": "brain/the-build-room/cohorts/bryce-dbalp/s4-fathom-transcript-2026-06-30.md",
-      "media_url": "brain/the-build-room/recordings/clips/dbalp-s4/kandice-35-hours-saved-tight-clean.mp4",
+      "media_url": "https://drive.google.com/file/d/15PMdLm3OfzMTPiw3eMzz33oFzFw4S1Sd/view",
       "thumbnail": null,
       "quote": "It is going to save me basically six hours per campaign. And right now I am doing six campaigns a month. So that is like 35 hours of work saved, essentially.",
       "attribution": "Kandice Vincent (DBALP cohort)",
@@ -2193,12 +2195,14 @@
         "hard-roi",
         "hours-saved",
         "vertical-reel",
-        "demo"
+        "demo",
+        "awaiting-review"
       ],
       "status": "cleared-for-public",
       "date_captured": "2026-06-30",
       "date_cleared": "2026-07-13",
-      "notes": "Clip cut 2026-07-13. Clean cuts archived: kandice-35-hours-saved-clean.mp4 (full) and -tight-clean.mp4 (dead air \"So... Yeah\" spliced out). Featured as clip 2 in highlights reel v4 (clips/highlights-reel-v1/). Cleared under Alex's blanket clearance for all call clips (2026-07)."
+      "notes": "Clip cut 2026-07-13. Clean cuts archived: kandice-35-hours-saved-clean.mp4 (full) and -tight-clean.mp4 (dead air \"So... Yeah\" spliced out). Featured as clip 2 in highlights reel v4 (clips/highlights-reel-v1/). Cleared under Alex's blanket clearance for all call clips (2026-07).",
+      "local_path": "brain/the-build-room/recordings/clips/dbalp-s4/kandice-35-hours-saved-tight-clean.mp4"
     },
     {
       "id": "dbalp-s4-chanel-prompt-sharing-clip",
@@ -2739,7 +2743,7 @@
     {
       "type": "quote",
       "cohort": "rpa",
-      "media_url": "brain/the-build-room/recordings/clips/rpa-s4/ginger-20k-quote-clean.mp4",
+      "media_url": "https://drive.google.com/file/d/1_qznVl8AuiOnQQfX5Upi5oPvh8alqhla/view",
       "thumbnail": null,
       "status": "cleared-for-public",
       "date_captured": "2026-07-07",
@@ -2753,14 +2757,16 @@
       "tags": [
         "owner-testimonial",
         "roi",
-        "demo-day"
+        "demo-day",
+        "awaiting-review"
       ],
-      "notes": "Permission granted (Alex confirmed verbally with Ginger/Bryce and team, 2026-07-08); cleared for July revenue campaign public use. Closing praise round. Clip cut (internal): brain/the-build-room/recordings/clips/rpa-s4/07-ginger-praise-round.mp4.video/calls/735881251 (02:02:00-02:08:36) Permission granted by Ginger 2026-07-08 via Alex (name + quote OK in Build Room marketing). Clean cut archived 2026-07-13; featured as clip 1 in highlights reel v4 (clips/highlights-reel-v1/)."
+      "notes": "Permission granted (Alex confirmed verbally with Ginger/Bryce and team, 2026-07-08); cleared for July revenue campaign public use. Closing praise round. Clip cut (internal): brain/the-build-room/recordings/clips/rpa-s4/07-ginger-praise-round.mp4.video/calls/735881251 (02:02:00-02:08:36) Permission granted by Ginger 2026-07-08 via Alex (name + quote OK in Build Room marketing). Clean cut archived 2026-07-13; featured as clip 1 in highlights reel v4 (clips/highlights-reel-v1/).",
+      "local_path": "brain/the-build-room/recordings/clips/rpa-s4/ginger-20k-quote-clean.mp4"
     },
     {
       "type": "quote",
       "cohort": "rpa",
-      "media_url": "brain/the-build-room/recordings/clips/rpa-s4/ginger-youre-a-coder-clean.mp4",
+      "media_url": "https://drive.google.com/file/d/1kC5RlCS6zNrpvrwaAvYBZYZNxUQlmyKd/view",
       "thumbnail": null,
       "status": "cleared-for-public",
       "date_captured": "2026-07-07",
@@ -2774,9 +2780,11 @@
       "tags": [
         "owner-testimonial",
         "identity-shift",
-        "demo-day"
+        "demo-day",
+        "awaiting-review"
       ],
-      "notes": "Permission granted (Alex confirmed verbally with Ginger/Bryce and team, 2026-07-08); cleared for July revenue campaign public use. Clip cut (internal): brain/the-build-room/recordings/clips/rpa-s4/07-ginger-praise-round.mp4.video/calls/735881251 (02:02:00-02:08:36) Permission granted by Ginger 2026-07-08 via Alex (name + quote OK in Build Room marketing). Clean cut archived 2026-07-13; featured as clip 3 in highlights reel v4 (clips/highlights-reel-v1/)."
+      "notes": "Permission granted (Alex confirmed verbally with Ginger/Bryce and team, 2026-07-08); cleared for July revenue campaign public use. Clip cut (internal): brain/the-build-room/recordings/clips/rpa-s4/07-ginger-praise-round.mp4.video/calls/735881251 (02:02:00-02:08:36) Permission granted by Ginger 2026-07-08 via Alex (name + quote OK in Build Room marketing). Clean cut archived 2026-07-13; featured as clip 3 in highlights reel v4 (clips/highlights-reel-v1/).",
+      "local_path": "brain/the-build-room/recordings/clips/rpa-s4/ginger-youre-a-coder-clean.mp4"
     },
     {
       "type": "quote",
@@ -3239,7 +3247,7 @@
       "cohort": "ff-thu",
       "title": "Clip: Stu, zero experience, off to the races with Lotus Rooftop",
       "source_url": "brain/the-build-room/recordings/ff-thu-s3-2026-07-09.mp4 (8621.6s-8638.0s)",
-      "media_url": "brain/the-build-room/recordings/clips/ff-thu-s3/stu-off-to-the-races-clean.mp4",
+      "media_url": "https://drive.google.com/file/d/1fEtWqM7kqWSnmTRMAOwaRrfDa_1unNsk/view",
       "thumbnail": null,
       "quote": "I came into this with like zero experience... I'm going to be off to the races.",
       "attribution": "Stu Gildred (Lotus Rooftop, F&F Thu cohort)",
@@ -3248,12 +3256,14 @@
         "builder-testimonial",
         "identity-shift",
         "vertical-reel",
-        "demo"
+        "demo",
+        "awaiting-review"
       ],
       "status": "cleared-for-public",
       "date_captured": "2026-07-09",
       "date_cleared": "2026-07-13",
-      "notes": "Featured as clip 4 in highlights reel v4 (clips/highlights-reel-v1/). Cleared under Alex's blanket clearance for all call clips (2026-07)."
+      "notes": "Featured as clip 4 in highlights reel v4 (clips/highlights-reel-v1/). Cleared under Alex's blanket clearance for all call clips (2026-07).",
+      "local_path": "brain/the-build-room/recordings/clips/ff-thu-s3/stu-off-to-the-races-clean.mp4"
     },
     {
       "id": "ff-thu-s2-alex-abre-la-puerta-clip",
@@ -3261,7 +3271,7 @@
       "cohort": "ff-thu",
       "title": "Clip: Alex's closer, the first two hours are the hardest, then abre la puerta",
       "source_url": "brain/the-build-room/recordings/ff-thu-s2-2026-07-02.mp4 (7071.0s-7088.1s)",
-      "media_url": "brain/the-build-room/recordings/clips/ff-thu-s2/alex-door-opens-clean.mp4",
+      "media_url": "https://drive.google.com/file/d/1-uWziBEro8NND-o-qx1VWu5T4ndLy1FY/view",
       "thumbnail": null,
       "quote": "The first two hours are the hardest, most frustrating two hours... and then you have a win, abre la puerta, the door opens.",
       "attribution": "Alex Salinsky (The Build Room)",
@@ -3269,12 +3279,14 @@
       "tags": [
         "coach-voice",
         "door-metaphor",
-        "supercut-candidate"
+        "supercut-candidate",
+        "awaiting-review"
       ],
       "status": "cleared-for-public",
       "date_captured": "2026-07-02",
       "date_cleared": "2026-07-13",
-      "notes": "Cut for highlights reel v3 but dropped from v4 (Alex chose to remove himself). Captioned renders exist (05-alex-door-916/169.mp4 in clips/highlights-reel-v1/). Prime candidate for door-metaphor supercut with Narnia retelling + Mon S3/Thu S1 door lines. Used in build-room-door-supercut-916-tall.mp4 (2026-07-15, clips/highlights-reel-v1/)."
+      "notes": "Cut for highlights reel v3 but dropped from v4 (Alex chose to remove himself). Captioned renders exist (05-alex-door-916/169.mp4 in clips/highlights-reel-v1/). Prime candidate for door-metaphor supercut with Narnia retelling + Mon S3/Thu S1 door lines. Used in build-room-door-supercut-916-tall.mp4 (2026-07-15, clips/highlights-reel-v1/).",
+      "local_path": "brain/the-build-room/recordings/clips/ff-thu-s2/alex-door-opens-clean.mp4"
     },
     {
       "id": "ff-mon-s4-bernie-bernieos-demo",
@@ -3632,7 +3644,7 @@
       "cohort": "ff-mon",
       "title": "Clip: Alex looking around the room, people have really opened the door here",
       "source_url": "brain/the-build-room/recordings/ff-mon-s3-2026-07-06.mp4 (7527.0s-7572.1s)",
-      "media_url": "brain/the-build-room/recordings/clips/ff-mon-s3/alex-opened-the-door-tight-clean.mp4",
+      "media_url": "https://drive.google.com/file/d/1n343Ym3tsJGUuxvZCVjkFvCKebFKwn_E/view",
       "thumbnail": null,
       "quote": "People have really opened the door here... Now you've created a thing. Everyone in this room has created a thing.",
       "attribution": "Alex Salinsky (The Build Room)",
@@ -3641,12 +3653,14 @@
         "coach-voice",
         "door-metaphor",
         "supercut-candidate",
-        "identity-shift"
+        "identity-shift",
+        "awaiting-review"
       ],
       "status": "cleared-for-public",
       "date_captured": "2026-07-06",
       "date_cleared": "2026-07-13",
-      "notes": "Cuts archived 2026-07-13: alex-opened-the-door-clean.mp4 (45s full riff through 'block out these two hours a week') and -tight-clean.mp4 (21s). Gallery view; Alex is top-left tile (speaker-highlighted), needs punch-in crop. Cleared under Alex's blanket clearance for all call clips (2026-07). Reel splice archived 2026-07-15: alex-opened-the-door-reel-clean.mp4 (14.8s, garbled mid-sentence removed). Used as segment 3 of build-room-door-supercut-916-tall.mp4."
+      "notes": "Cuts archived 2026-07-13: alex-opened-the-door-clean.mp4 (45s full riff through 'block out these two hours a week') and -tight-clean.mp4 (21s). Gallery view; Alex is top-left tile (speaker-highlighted), needs punch-in crop. Cleared under Alex's blanket clearance for all call clips (2026-07). Reel splice archived 2026-07-15: alex-opened-the-door-reel-clean.mp4 (14.8s, garbled mid-sentence removed). Used as segment 3 of build-room-door-supercut-916-tall.mp4.",
+      "local_path": "brain/the-build-room/recordings/clips/ff-mon-s3/alex-opened-the-door-tight-clean.mp4"
     },
     {
       "id": "ff-mon-s3-dinemari-new-door-opened-clip",
@@ -3654,7 +3668,7 @@
       "cohort": "ff-mon",
       "title": "Clip: Dine-Mari, scared of code, then a new door opened and I can actually build these things",
       "source_url": "brain/the-build-room/recordings/ff-mon-s3-2026-07-06.mp4 (9880.9s-9912.1s)",
-      "media_url": "brain/the-build-room/recordings/clips/ff-mon-s3/dinemari-new-door-opened-tight-clean.mp4",
+      "media_url": "https://drive.google.com/file/d/1Yv3S6eL9z7FCmvnoRTUK7ccZySatpPyQ/view",
       "thumbnail": null,
       "quote": "As soon as we started the cohort, it was like a new door opened. And I can actually build these things. And it's plain English... it builds the system for you.",
       "attribution": "Dine-Mari (F&F Mon cohort)",
@@ -3664,12 +3678,14 @@
         "door-metaphor",
         "supercut-candidate",
         "identity-shift",
-        "b-roll"
+        "b-roll",
+        "awaiting-review"
       ],
       "status": "cleared-for-public",
       "date_captured": "2026-07-06",
       "date_cleared": "2026-07-13",
-      "notes": "Cuts archived 2026-07-13: dinemari-new-door-opened-clean.mp4 (31s, includes 'whole cohort has been a lightbulb' + 'scared of code' setup) and -tight-clean.mp4 (15s). Visual is her live app screen share with her webcam tile top-right: built-in B-roll, she says 'new door opened' over the thing she built. Say-do gap: she says 'scared of code' about herself (her own win words, OK per no-putdown rule since self-described positively framed). Cleared under blanket clip clearance (2026-07). Used in build-room-door-supercut-916-tall.mp4 (2026-07-15, clips/highlights-reel-v1/)."
+      "notes": "Cuts archived 2026-07-13: dinemari-new-door-opened-clean.mp4 (31s, includes 'whole cohort has been a lightbulb' + 'scared of code' setup) and -tight-clean.mp4 (15s). Visual is her live app screen share with her webcam tile top-right: built-in B-roll, she says 'new door opened' over the thing she built. Say-do gap: she says 'scared of code' about herself (her own win words, OK per no-putdown rule since self-described positively framed). Cleared under blanket clip clearance (2026-07). Used in build-room-door-supercut-916-tall.mp4 (2026-07-15, clips/highlights-reel-v1/).",
+      "local_path": "brain/the-build-room/recordings/clips/ff-mon-s3/dinemari-new-door-opened-tight-clean.mp4"
     },
     {
       "id": "cross-cohort-highlights-reel-v4",
@@ -3677,7 +3693,7 @@
       "cohort": "cross-cohort",
       "title": "MASTER: Build Room highlights reel v4 (Ginger $20K, Kandice 35 hrs, Ginger coder, Stu races)",
       "source_url": "clips/highlights-reel-v1/shotlist.md",
-      "media_url": "clips/highlights-reel-v1/build-room-highlights-v4-916-tall.mp4",
+      "media_url": "https://drive.google.com/file/d/1wgQzMi9hu0B2mNIwcBlMU5Z5KVhH4nn1/view",
       "thumbnail": null,
       "quote": null,
       "attribution": "The Build Room (multi-cohort)",
@@ -3697,7 +3713,8 @@
       "status": "cleared-for-public",
       "date_captured": "2026-07-13",
       "date_cleared": "2026-07-13",
-      "notes": "Finished 53.1s vertical master (1080x1920, tall layout, IG word-pop captions), Alex's keeper. Variants in same folder: -v4-916 (letterboxed vertical) and -v4-169 (1920x1080 for LinkedIn/YouTube). Every constituent clip individually cleared and archived in recordings/clips/. Available for social, ads, website embeds, branding. Full edit spec: shotlist.md."
+      "notes": "Finished 53.1s vertical master (1080x1920, tall layout, IG word-pop captions), Alex's keeper. Variants in same folder: -v4-916 (letterboxed vertical) and -v4-169 (1920x1080 for LinkedIn/YouTube). Every constituent clip individually cleared and archived in recordings/clips/. Available for social, ads, website embeds, branding. Full edit spec: shotlist.md.",
+      "local_path": "clips/highlights-reel-v1/build-room-highlights-v4-916-tall.mp4"
     },
     {
       "id": "cross-cohort-door-supercut-v1",
@@ -3705,7 +3722,7 @@
       "cohort": "cross-cohort",
       "title": "MASTER: Door-metaphor supercut (abre la puerta / Dine-Mari new door / everyone has created a thing)",
       "source_url": "clips/highlights-reel-v1/shotlist.md",
-      "media_url": "clips/highlights-reel-v1/build-room-door-supercut-916-tall.mp4",
+      "media_url": "https://drive.google.com/file/d/1iyij2cFQkx7jGLnmyiw8EaqoaS8gUH7Z/view",
       "thumbnail": null,
       "quote": null,
       "attribution": "The Build Room (F&F Mon + Thu cohorts)",
@@ -3725,7 +3742,8 @@
       "status": "cleared-for-public",
       "date_captured": "2026-07-15",
       "date_cleared": "2026-07-15",
-      "notes": "Finished 51.0s vertical master (1080x1920, tall layout, IG word-pop captions). Structure: Alex sets the metaphor, Dine-Mari proves it, Alex closes room-wide, thesis end card. Brand-story asset: this IS the door narrative for the Build Room. Available for social, ads, website, branding. Narnia retelling clip archived separately as standalone candidate."
+      "notes": "Finished 51.0s vertical master (1080x1920, tall layout, IG word-pop captions). Structure: Alex sets the metaphor, Dine-Mari proves it, Alex closes room-wide, thesis end card. Brand-story asset: this IS the door narrative for the Build Room. Available for social, ads, website, branding. Narnia retelling clip archived separately as standalone candidate.",
+      "local_path": "clips/highlights-reel-v1/build-room-door-supercut-916-tall.mp4"
     },
     {
       "thumbnail": null,

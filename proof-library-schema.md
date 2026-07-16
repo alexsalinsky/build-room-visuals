@@ -85,7 +85,11 @@ Honest gaps over fabrication. If you can't verify a URL, set null. Acceptable va
 
 ### `media_url` and `thumbnail`
 
-Both nullable. The library deliberately does NOT host media at v1. Media uploads to Drive / YouTube unlisted are a later project. When a media upload is pending, set `media_url: null` and add `"TODO: upload <type> to <destination>"` to `notes`.
+Both nullable. As of 2026-07-16, cut clips upload to the Drive "Clips" folder (inside the Build Room master folder, anyone-with-link viewer) and `media_url` gets the Drive `/file/d/<id>/view` link. The library page embeds Drive links as `/preview` iframes, and relative `.mp4` paths (repo-hosted files) as native video. When a media upload is pending, set `media_url: null` and add `"TODO: upload <type> to <destination>"` to `notes`.
+
+### `local_path` (optional)
+
+For clip entries, the path to the archived clean cut on Alex's machine (usually under `brain/the-build-room/recordings/clips/<cohort>/`). Set when `media_url` points at Drive so the local master is still traceable.
 
 `thumbnail`, when set, should be a path under `build-room-visuals/assets/proof/` (relative) for repo-tracked images, or an absolute URL.
 
@@ -96,6 +100,8 @@ Free-form, but reuse existing tags when they fit. Live working set:
 `first-brick`, `thesis`, `breakthrough`, `pivot`, `peer-teaching`, `live-demo`, `mid-session-extension`, `recovery`, `scope-lock`, `tooling`, `vision`, `urgency`, `framework`, `cohort-promise`, `objection-handling`, `humor`, `story`, `recognition`.
 
 Don't invent a tag if an existing one works.
+
+**Workflow tag:** `awaiting-review` marks a cut clip Alex has not yet approved. The library page has a "Ready for review" filter for it. Remove the tag when Alex approves the clip; that is the moment it becomes shareable to the marketing loop.
 
 ---
 

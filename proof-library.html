@@ -97,6 +97,9 @@
   .copy-btn:hover { background: #444; }
   .copy-btn.copied { background: #166534; }
   .modal-notes { font-size: 13px; color: #666; padding: 12px 14px; background: #fef9e7; border-radius: 6px; border-left: 3px solid #f59e0b; margin-top: 14px; }
+  .media-embed { margin: 0 0 18px; }
+  .media-embed iframe, .media-embed video { width: 100%; aspect-ratio: 16 / 9; max-height: 60vh; border: 0; border-radius: 8px; background: #000; display: block; }
+  .badge.review { background: #fef3c7; color: #92400e; border: 1px solid #f59e0b; }
 
   footer { margin-top: 56px; font-size: 12px; color: #888; text-align: center; padding-top: 24px; border-top: 1px solid #ddd; }
 </style>
@@ -125,6 +128,10 @@
       <div class="filter-group">
         <span class="filter-label">Status</span>
         <div id="status-filters"></div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Review</span>
+        <div id="review-filters"></div>
       </div>
     </div>
   </div>
@@ -201,6 +208,7 @@
     type: null,
     cohort: null,
     status: null,
+    review: false,
     search: '',
     view: 'cards',
     sortKey: 'date_captured',
@@ -263,6 +271,7 @@
     if (state.type && entry.type !== state.type) return false;
     if (state.cohort && entry.cohort !== state.cohort) return false;
     if (state.status && entry.status !== state.status) return false;
+    if (state.review && !(entry.tags || []).includes('awaiting-review')) return false;
     if (state.search) {
       const q = state.search.toLowerCase();
       const hay = [entry.title, entry.quote, entry.attribution, (entry.tags || []).join(' '), entry.notes || '']
@@ -290,6 +299,9 @@
     meta.appendChild(el('span', { className: 'badge type' }, entry.type));
     meta.appendChild(el('span', { className: 'badge' }, COHORT_LABELS[entry.cohort] || entry.cohort));
     meta.appendChild(el('span', { className: 'pill-status ' + entry.status }, entry.status));
+    if ((entry.tags || []).includes('awaiting-review')) {
+      meta.appendChild(el('span', { className: 'badge review' }, 'ready for review'));
+    }
     card.appendChild(meta);
 
     if (entry.quote) {
@@ -308,6 +320,19 @@
     return card;
   }
 
+  function mediaEmbed(url) {
+    if (!url) return null;
+    const drive = url.match(/drive\.google\.com\/file\/d\/([\w-]+)/);
+    if (drive) {
+      return el('div', { className: 'media-embed' },
+        el('iframe', { src: 'https://drive.google.com/file/d/' + drive[1] + '/preview', allow: 'autoplay', allowfullscreen: '' }));
+    }
+    if (/\.mp4($|\?)/i.test(url) && !/^https?:\/\//i.test(url)) {
+      return el('div', { className: 'media-embed' }, el('video', { src: url, controls: '' }));
+    }
+    return null;
+  }
+
   function openModal(entry) {
     const content = document.getElementById('modal-content');
     content.innerHTML = '';
@@ -318,7 +343,13 @@
     meta.appendChild(el('span', { className: 'badge type' }, entry.type));
     meta.appendChild(el('span', { className: 'badge' }, COHORT_LABELS[entry.cohort] || entry.cohort));
     meta.appendChild(el('span', { className: 'pill-status ' + entry.status }, entry.status));
+    if ((entry.tags || []).includes('awaiting-review')) {
+      meta.appendChild(el('span', { className: 'badge review' }, 'ready for review'));
+    }
     content.appendChild(meta);
+
+    const embed = mediaEmbed(entry.media_url);
+    if (embed) content.appendChild(embed);
 
     if (entry.quote) {
       content.appendChild(el('div', { className: 'modal-quote' }, entry.quote));
@@ -470,6 +501,17 @@
     buildFilters('type-filters', TYPES, 'type');
     buildFilters('cohort-filters', COHORTS, 'cohort', COHORT_LABELS);
     buildFilters('status-filters', STATUSES, 'status');
+
+    const reviewContainer = document.getElementById('review-filters');
+    reviewContainer.style.display = 'flex';
+    reviewContainer.style.gap = '6px';
+    const reviewChip = el('button', { className: 'chip', type: 'button' }, 'Ready for review');
+    reviewChip.onclick = () => {
+      state.review = !state.review;
+      reviewChip.classList.toggle('active', state.review);
+      render();
+    };
+    reviewContainer.appendChild(reviewChip);
 
     document.getElementById('search').addEventListener('input', e => {
       state.search = e.target.value.trim();
