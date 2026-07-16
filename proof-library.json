@@ -1,7 +1,7 @@
 {
   "$schema_doc": "proof-library-schema.md",
   "version": 1,
-  "last_updated": "2026-07-13",
+  "last_updated": "2026-07-16",
   "entries": [
     {
       "id": "linkedin-how-to-get-your-team-to-actually-use-ai",
@@ -3890,6 +3890,293 @@
         "offer-design"
       ],
       "notes": "Marley wanted to do it but \"I don't got time for this stuff\" [00:05:16]. Design implication: build-for-them and hold-their-hand offers beat tell-them-what-to-do training for busy teams. Motivates the done-with-you / done-for-you tiers."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "01:36:45",
+      "status": "raw",
+      "date_captured": "2026-07-16",
+      "date_cleared": null,
+      "id": "ff-thu-s4-alvaro-attention-to-real-life",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Alvaro demos the map-based social network that turns attention back into real life",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-thu-2026-07-16.md",
+      "quote": "What I learned was that I can do whatever I have in my mind possible with AI.",
+      "attribution": "Alvaro (F&F Thu Demo Day, Mon-track builder)",
+      "tags": [
+        "live-demo",
+        "recovery",
+        "vision"
+      ],
+      "notes": "Monday screen-share failure redeemed on Thursday per the Mon wins-post promise. Four lenses over a map: events, items, posts, communities. TODO: cut clip from https://fathom.video/share/aZHzfxw4xAXLFGaqWgoeLzxYkaX5ih99 around 01:34:11-01:37:10."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "01:38:21",
+      "status": "raw",
+      "date_captured": "2026-07-16",
+      "date_cleared": null,
+      "id": "ff-thu-s4-andrea-doctor-network-1000",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Andrea grows her medical-tourism doctor network from 141 to 1,000+ with AI-drafted outreach",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-thu-2026-07-16.md",
+      "quote": "Aprendí a utilizar la IA correctamente, aprendí a automatizar las cosas, aprendí mucho de ustedes realmente.",
+      "attribution": "Andrea (F&F Thu cohort)",
+      "tags": [
+        "live-demo",
+        "breakthrough"
+      ],
+      "notes": "Presented in Spanish. Dashboard + auto-drafted outreach emails left in drafts for review. Next: WhatsApp via Meta authorization, post-op partner hotels. TODO: cut clip from https://fathom.video/share/aZHzfxw4xAXLFGaqWgoeLzxYkaX5ih99 around 01:38:21-01:44:00."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "01:47:48",
+      "status": "raw",
+      "date_captured": "2026-07-16",
+      "date_cleared": null,
+      "id": "ff-thu-s4-andrew-content-machine",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Andrew avoided his PC for a year, then built a clip pipeline his VA can run",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-thu-2026-07-16.md",
+      "quote": "I've been avoiding using this thing for like a year... this is like huge progress for me.",
+      "attribution": "Andrew (F&F Thu cohort)",
+      "tags": [
+        "live-demo",
+        "breakthrough",
+        "recovery"
+      ],
+      "notes": "Fathom to dashboard with wins/testimonial/lessons buckets; side wins: e-signature forms + website + branding. Speaker labels drift in this transcript stretch; quote verified by content. TODO: cut clip from https://fathom.video/share/aZHzfxw4xAXLFGaqWgoeLzxYkaX5ih99 around 01:44:17-01:48:45."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "01:54:00",
+      "status": "raw",
+      "date_captured": "2026-07-16",
+      "date_cleared": null,
+      "id": "ff-thu-s4-anthony-sentinel-10-hours",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Anthony's Sentinel monitors every client ad account daily and wins him ~10 hours a week",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-thu-2026-07-16.md",
+      "quote": "I am basically winning around 10 hours work per week... it's not random optimization that he's going to suggest to me.",
+      "attribution": "Anthony (F&F Thu cohort)",
+      "tags": [
+        "live-demo",
+        "breakthrough",
+        "tooling"
+      ],
+      "notes": "Daily email alerts, Google Calendar escalation for criticals, dry-run optimizations with human approval. Next: Meta + TikTok, 900-product client. TODO: cut clip from https://fathom.video/share/aZHzfxw4xAXLFGaqWgoeLzxYkaX5ih99 around 01:49:18-01:56:00."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "01:57:01",
+      "status": "raw",
+      "date_captured": "2026-07-16",
+      "date_cleared": null,
+      "id": "ff-thu-s4-juan-find-your-rhythm",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Guest Juan demos Find Your Rhythm, an iOS dance app targeting the App Store by end of year",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-thu-2026-07-16.md",
+      "quote": "Something that's really helping me out is just the new age of agentic coding.",
+      "attribution": "Juan Galvis (guest, F&F Thu Demo Day)",
+      "tags": [
+        "live-demo",
+        "vision"
+      ],
+      "notes": "Xcode build: video library, adjustable song speed, social finder, $5/mo pro tier, admin CRM backend, Eleven Labs dubbing. TODO: cut clip from https://fathom.video/share/aZHzfxw4xAXLFGaqWgoeLzxYkaX5ih99 around 01:57:00-02:01:00."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "02:05:43",
+      "status": "raw",
+      "date_captured": "2026-07-16",
+      "date_cleared": null,
+      "id": "ff-thu-s4-cece-phone-built-curator",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Cece builds a photo curator that learns her scoring style, entirely from her phone",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-thu-2026-07-16.md",
+      "quote": "I had to stop it and ask it like, wait, what is our goal here? What are we doing actually?",
+      "attribution": "Cece (F&F Thu cohort)",
+      "tags": [
+        "live-demo",
+        "thesis",
+        "scope-lock",
+        "breakthrough"
+      ],
+      "notes": "Whole cohort done from a phone (joined Demo Day from California). Staying-human moment: halting AI scope sprawl mid-build. iCloud backup + batch dedupe next. Phone-only story needs her permission before public use. TODO: cut clip from https://fathom.video/share/aZHzfxw4xAXLFGaqWgoeLzxYkaX5ih99 around 02:02:20-02:06:10."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "02:09:15",
+      "status": "raw",
+      "date_captured": "2026-07-16",
+      "date_cleared": null,
+      "id": "ff-thu-s4-dominika-content-hour",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Dominika's Content Hour turns one voice note into a week of marketing",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-thu-2026-07-16.md",
+      "quote": "The idea is that you do an hour of work and you have at least a week of marketing done.",
+      "attribution": "Dominika (F&F Thu cohort)",
+      "tags": [
+        "live-demo",
+        "tooling"
+      ],
+      "notes": "Brand setup + voice-note-to-content generation + Monday prompt emails to users + graphics. Next step she named: give it away for feedback. TODO: cut clip from https://fathom.video/share/aZHzfxw4xAXLFGaqWgoeLzxYkaX5ih99 around 02:07:00-02:10:50."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "02:15:38",
+      "status": "raw",
+      "date_captured": "2026-07-16",
+      "date_cleared": null,
+      "id": "ff-thu-s4-ruben-debt-app-double-award",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Ruben's debt payoff app wins both Most Want to Steal and Could Change the World",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-thu-2026-07-16.md",
+      "quote": "I've learned how to code, man. I've learned how to do this with AI. No lie. This is a big deal.",
+      "attribution": "Ruben (F&F Thu cohort)",
+      "tags": [
+        "live-demo",
+        "breakthrough",
+        "recognition"
+      ],
+      "notes": "Live 'I'm going to be broke on 12-6' projection beat, then fixed it on screen by adding income streams. ~75% done. Two of the three chat-vote awards [02:29:52, 02:31:26]. TODO: cut clip from https://fathom.video/share/aZHzfxw4xAXLFGaqWgoeLzxYkaX5ih99 around 02:11:18-02:15:45; the broke-on-12-6 moment at 02:13:21 is the hook."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "02:28:00",
+      "status": "raw",
+      "date_captured": "2026-07-16",
+      "date_cleared": null,
+      "id": "ff-thu-s4-sam-stem-player-3-year-idea",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Sam ships the stem audio player his website waited three years for, and wins Wildest Use of AI",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-thu-2026-07-16.md",
+      "quote": "It's just limitless... you can build your own ideas and you can make them real.",
+      "attribution": "Sam (F&F Thu cohort)",
+      "tags": [
+        "live-demo",
+        "breakthrough",
+        "recognition"
+      ],
+      "notes": "Was going to pay a developer; built it himself: per-stem channels, filters, master filters, spectrum analyzer. Fathom labels his demo narration as Alex around 02:27-02:28; verified by content. Won Wildest Use of AI [02:30:00]. TODO: cut clip from https://fathom.video/share/aZHzfxw4xAXLFGaqWgoeLzxYkaX5ih99 around 02:23:37-02:28:20 (audio snags make cutting tricky)."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "02:23:23",
+      "status": "raw",
+      "date_captured": "2026-07-16",
+      "date_cleared": null,
+      "id": "ff-thu-s4-zach-lead-gen-funnel",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Zach ships a life assessment plus Airtable command center: a whole lead generation funnel",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-wins-post-thu-2026-07-16.md",
+      "quote": "You didn't just build, I mean, you built a whole lead generation funnel here.",
+      "attribution": "Zach (F&F Thu cohort); quote is the room's read of his demo",
+      "tags": [
+        "live-demo",
+        "breakthrough"
+      ],
+      "notes": "10-question assessment, branded personal report, responses flow to Airtable command center with follow-up pipeline + in-app email sending. Floated a paid career-discovery assessment next. TODO: cut clip from https://fathom.video/share/aZHzfxw4xAXLFGaqWgoeLzxYkaX5ih99 around 02:18:37-02:23:30."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "02:35:00",
+      "status": "raw",
+      "date_captured": "2026-07-16",
+      "date_cleared": null,
+      "id": "ff-thu-s4-thierry-transformation-testimonial",
+      "type": "testimonial",
+      "cohort": "ff-thu",
+      "title": "Coach Thierry on the one-month transformation across both Demo Days",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-fathom-transcript-thu-2026-07-16.md",
+      "quote": "You took things in directions I did not expect at all and it went even way beyond what I thought you could do... in one month the transformation is evident.",
+      "attribution": "Thierry Muller (coach, F&F cohorts)",
+      "tags": [
+        "story",
+        "recognition"
+      ],
+      "notes": "Session close. He also credited Alex's teaching + energy directly. Coach testimonial, not builder; get his OK before public use. TODO: cut clip from https://fathom.video/share/aZHzfxw4xAXLFGaqWgoeLzxYkaX5ih99 around 02:34:32-02:35:00."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "01:33:00",
+      "status": "raw",
+      "date_captured": "2026-07-16",
+      "date_cleared": null,
+      "id": "ff-thu-s4-lesson-three-award-ritual",
+      "type": "lesson",
+      "cohort": "cross-cohort",
+      "title": "Three chat-vote awards with certificates is the Demo Day standard",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-facilitator-recap-thu-2026-07-16.md",
+      "quote": "Most Want to Steal / Wildest Use of AI / Could Change the World. One vote each, typed in the chat, winners get certificates.",
+      "attribution": null,
+      "tags": [
+        "framework",
+        "recognition"
+      ],
+      "notes": "Up from two awards on Mon S4. Voting was live theater: a three-way tie broke on screen. Certificates promised on the spot [02:29:56] raised the stakes. Now logged in CUSTOMER-JOURNEY changelog as the standard."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": "02:17:07",
+      "status": "raw",
+      "date_captured": "2026-07-16",
+      "date_cleared": null,
+      "id": "ff-thu-s4-lesson-audio-demo-preflight",
+      "type": "lesson",
+      "cohort": "cross-cohort",
+      "title": "Audio demos need a coach-verified share-with-audio test in the refinement hour",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-facilitator-recap-thu-2026-07-16.md",
+      "quote": null,
+      "attribution": null,
+      "tags": [
+        "failure-mode",
+        "framework"
+      ],
+      "notes": "Sam lost ~2 of 4 minutes to Zoom share-audio mute snags (re-shared twice, 02:17 and ~02:25). Same class of failure as Alvaro's Mon screen share; the fix generalizes: preflight the exact share mode the demo needs, during the refinement hour, verified by a coach."
+    },
+    {
+      "thumbnail": null,
+      "media_url": null,
+      "timestamp": null,
+      "status": "raw",
+      "date_captured": "2026-07-16",
+      "date_cleared": null,
+      "id": "ff-thu-s4-lesson-demo-block-sizing",
+      "type": "lesson",
+      "cohort": "cross-cohort",
+      "title": "Ten demos plus awards does not fit the standard 2-hour block; size the calendar, not the facilitation",
+      "source_url": "brain/the-build-room/cohorts/2026-jun-friends-family/s4-facilitator-recap-thu-2026-07-16.md",
+      "quote": null,
+      "attribution": null,
+      "tags": [
+        "framework",
+        "failure-mode"
+      ],
+      "notes": "Both F&F Demo Days ran ~10 min over with tight 4-min slots and manual timing. At 10+ demos, either extend the Demo Day invite by 15 minutes or cap main-room demos. Alex asked live consent to run over [02:18:26], which worked but should not be the plan."
     }
   ]
 }
