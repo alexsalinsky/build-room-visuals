@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drafting Table Lead Magnet Funnel Plan</title>
+<style>
+  :root {
+    --ink: #1a1a1a; --muted: #666; --line: #e2e2e2;
+    --accent: #c2571f; --accent-soft: #fdf1e8;
+    --paper: #faf9f7; --card: #ffffff;
+    --green: #2e7d4f; --blue: #2b5f8a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: var(--paper); color: var(--ink); line-height: 1.55; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  h1 { font-size: 1.9rem; margin-bottom: 0.3rem; }
+  .meta { color: var(--muted); font-size: 0.85rem; font-family: ui-monospace, Consolas, monospace; margin-bottom: 2.5rem; }
+  h2.section { font-size: 1.35rem; margin: 3.5rem 0 0.4rem; padding-top: 2rem; border-top: 3px solid var(--ink); }
+  .section-sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+
+  /* funnel diagram */
+  .funnel { display: flex; flex-direction: column; align-items: center; gap: 0; margin: 1.5rem 0; }
+  .stage { background: var(--card); border: 1.5px solid var(--ink); border-radius: 10px; padding: 0.9rem 1.3rem; text-align: center; position: relative; }
+  .stage .s-label { font-family: ui-monospace, Consolas, monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+  .stage .s-title { font-weight: bold; font-size: 1.05rem; }
+  .stage .s-desc { font-size: 0.85rem; color: var(--muted); max-width: 480px; }
+  .arrow { font-size: 1.3rem; color: var(--muted); padding: 0.35rem 0; }
+  .arrow small { font-size: 0.72rem; font-family: ui-monospace, Consolas, monospace; display: block; }
+  .stage.magnet { background: var(--accent-soft); border-color: var(--accent); border-width: 2.5px; }
+  .traffic-row { display: flex; gap: 0.7rem; flex-wrap: wrap; justify-content: center; }
+  .traffic-row .stage { border-style: dashed; border-width: 1px; padding: 0.6rem 1rem; }
+
+  .prereq { background: #fff8e6; border: 1px solid #e0c368; border-radius: 8px; padding: 0.9rem 1.2rem; font-size: 0.88rem; margin: 1.5rem 0; }
+  .prereq strong { color: #8a6d00; }
+
+  /* browser chrome for landing mocks */
+  .browser { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--card); box-shadow: 0 3px 18px rgba(0,0,0,0.07); margin: 1.5rem 0; }
+  .browser-bar { background: #efefef; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid var(--line); }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #ccc; }
+  .urlbar { background: #fff; border: 1px solid var(--line); border-radius: 6px; font-family: ui-monospace, Consolas, monospace; font-size: 0.72rem; color: var(--muted); padding: 0.2rem 0.7rem; flex: 1; }
+  .lp { padding: 3rem 2.5rem; }
+  .lp .kicker { font-family: ui-monospace, Consolas, monospace; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+  .lp h3.hero { font-size: 2rem; line-height: 1.2; margin-bottom: 0.9rem; max-width: 620px; }
+  .lp .sub { font-size: 1.05rem; color: #444; max-width: 560px; margin-bottom: 1.6rem; }
+  .cta { display: inline-block; background: var(--ink); color: #fff; padding: 0.75rem 1.6rem; border-radius: 8px; font-size: 1rem; text-decoration: none; font-family: Georgia, serif; }
+  .cta.orange { background: var(--accent); }
+  .cta-note { font-size: 0.8rem; color: var(--muted); margin-top: 0.55rem; }
+  .lp-steps { display: flex; gap: 1.2rem; margin: 2.2rem 0; flex-wrap: wrap; }
+  .lp-step { flex: 1; min-width: 180px; border-top: 2px solid var(--ink); padding-top: 0.7rem; }
+  .lp-step .n { font-family: ui-monospace, Consolas, monospace; font-size: 0.72rem; color: var(--accent); }
+  .lp-step b { display: block; margin: 0.15rem 0 0.25rem; }
+  .lp-step p { font-size: 0.87rem; color: #555; }
+  .proof-strip { background: var(--paper); border-radius: 10px; padding: 1.4rem 1.6rem; margin: 2rem 0 1rem; }
+  .proof-strip blockquote { font-style: italic; font-size: 1.02rem; margin-bottom: 0.4rem; }
+  .proof-strip .attr { font-size: 0.8rem; color: var(--muted); font-style: normal; }
+  .thesis { font-family: ui-monospace, Consolas, monospace; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--muted); text-align: center; padding: 1.2rem 0 0.4rem; border-top: 1px solid var(--line); margin-top: 2.5rem; }
+
+  /* chat mock for LP B */
+  .chatmock { max-width: 520px; margin: 1.8rem auto; border: 1px solid var(--line); border-radius: 12px; background: #fff; padding: 1.1rem; font-size: 0.88rem; }
+  .bubble { border-radius: 12px; padding: 0.6rem 0.9rem; margin: 0.5rem 0; max-width: 88%; }
+  .bubble.coach { background: var(--accent-soft); }
+  .bubble.you { background: #eef2f6; margin-left: auto; }
+  .bubble .who { font-family: ui-monospace, Consolas, monospace; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); display: block; margin-bottom: 0.2rem; }
+  .chat-fade { text-align: center; color: var(--muted); font-size: 0.8rem; padding: 0.4rem 0; }
+
+  /* ad mock */
+  .ad-card { max-width: 500px; border: 1px solid var(--line); border-radius: 10px; background: #fff; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.06); font-family: Helvetica, Arial, sans-serif; margin: 1.5rem 0; }
+  .ad-head { display: flex; align-items: center; gap: 0.6rem; padding: 0.7rem 1rem; }
+  .ad-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--ink); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85rem; }
+  .ad-head .nm { font-weight: bold; font-size: 0.85rem; }
+  .ad-head .sp { font-size: 0.7rem; color: var(--muted); }
+  .ad-body { padding: 0 1rem 0.8rem; font-size: 0.86rem; white-space: pre-line; }
+  .ad-visual { background: var(--ink); color: #fff; padding: 2.2rem 1.5rem; text-align: center; }
+  .ad-visual .big { font-family: Georgia, serif; font-size: 1.35rem; margin-bottom: 0.4rem; }
+  .ad-visual .small { font-size: 0.75rem; color: #bbb; }
+  .ad-foot { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 1rem; background: #f4f4f4; }
+  .ad-foot .hl { font-weight: bold; font-size: 0.85rem; }
+  .ad-foot .dm { font-size: 0.72rem; color: var(--muted); }
+  .ad-btn { border: 1px solid #999; border-radius: 5px; padding: 0.35rem 0.9rem; font-size: 0.8rem; background: #fff; }
+
+  /* post mock */
+  .post-card { max-width: 560px; border: 1px solid var(--line); border-radius: 10px; background: #fff; padding: 1.1rem 1.3rem; font-family: Helvetica, Arial, sans-serif; font-size: 0.9rem; margin: 1.5rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+  .post-card .ad-head { padding: 0 0 0.7rem; }
+  .post-body { white-space: pre-line; }
+
+  .copybtn { font-family: ui-monospace, Consolas, monospace; font-size: 0.72rem; background: #fff; border: 1px solid var(--ink); border-radius: 6px; padding: 0.3rem 0.8rem; cursor: pointer; margin: 0.4rem 0 0; }
+  .copybtn:hover { background: var(--ink); color: #fff; }
+  .note { font-size: 0.82rem; color: var(--muted); margin-top: 0.5rem; }
+  .proof-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; margin: 1rem 0; }
+  .proof-table th, .proof-table td { border: 1px solid var(--line); padding: 0.5rem 0.7rem; text-align: left; vertical-align: top; }
+  .proof-table th { background: #f2f0ec; font-family: ui-monospace, Consolas, monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .pill { display: inline-block; border-radius: 20px; padding: 0.05rem 0.55rem; font-family: ui-monospace, Consolas, monospace; font-size: 0.65rem; }
+  .pill.pub { background: #e2f2e8; color: var(--green); }
+  .pill.raw { background: #fdeaea; color: #a33; }
+  .variant-tag { display: inline-block; background: var(--ink); color: #fff; font-family: ui-monospace, Consolas, monospace; font-size: 0.68rem; padding: 0.15rem 0.6rem; border-radius: 4px; margin-bottom: 0.3rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Drafting Table — Lead Magnet Funnel Plan</h1>
+  <div class="meta">2026-07-15 · plan for review, nothing live yet · URLs shown as placeholders until the domain is set</div>
+
+  <!-- ══════════ 1. FUNNEL OUTLINE ══════════ -->
+  <h2 class="section">1 · Funnel Outline</h2>
+  <p class="section-sub">The Drafting Table open session IS the lead magnet. Nobody downloads a PDF. They talk to the coach for ten minutes and walk out with a plan and a starter prompt they can use that same day.</p>
+
+  <div class="funnel">
+    <div class="traffic-row">
+      <div class="stage"><div class="s-label">Traffic</div><div class="s-title">LinkedIn post</div></div>
+      <div class="stage"><div class="s-label">Traffic</div><div class="s-title">Demo ad</div></div>
+      <div class="stage"><div class="s-label">Traffic</div><div class="s-title">Talks / podcasts</div></div>
+      <div class="stage"><div class="s-label">Traffic</div><div class="s-title">Skool + WhatsApp</div></div>
+      <div class="stage"><div class="s-label">Traffic</div><div class="s-title">Nomad Cruise</div></div>
+    </div>
+    <div class="arrow">↓ <small>click</small></div>
+    <div class="stage"><div class="s-label">Landing</div><div class="s-title">Landing page (A or B below)</div><div class="s-desc">One promise, one button. No form up front.</div></div>
+    <div class="arrow">↓ <small>start session</small></div>
+    <div class="stage magnet"><div class="s-label">Lead Magnet</div><div class="s-title">Drafting Table open session</div><div class="s-desc">~10 min chat with the coach. It locks your Dream, your Build, your Demo, drafts a four-session plan, and writes your personal starter prompt.</div></div>
+    <div class="arrow">↓ <small>gate: name + email to unlock the plan + prompt</small></div>
+    <div class="stage"><div class="s-label">Capture</div><div class="s-title">Email captured, plan revealed</div><div class="s-desc">Personal page with their plan, decisions, and copy-paste starter prompt. Bookmarkable link.</div></div>
+    <div class="arrow">↓ <small>same day + day 3 + day 7</small></div>
+    <div class="stage"><div class="s-label">Nurture</div><div class="s-title">3-email sequence</div><div class="s-desc">1) Your plan + prompt, use it today. 2) Proof story (Kate / Cece / Ginger's $20k quote). 3) Invite: build it with us.</div></div>
+    <div class="arrow">↓ <small>invite</small></div>
+    <div class="stage"><div class="s-label">Conversion</div><div class="s-title">Build Room cohort (paid) · Skool community (free)</div><div class="s-desc">Two doors. Cohort for people ready to build now, Skool for the rest so nobody falls off the list.</div></div>
+    <div class="arrow">↓ <small>ascend</small></div>
+    <div class="stage"><div class="s-label">Ascend</div><div class="s-title">Team cohorts / client engagements</div><div class="s-desc">Builders bring their company. RPA and DBALP both started as one person in a room.</div></div>
+  </div>
+
+  <div class="prereq"><strong>Launch checklist (before paid traffic):</strong> custom domain for the landing (links below are placeholders until then), session caps on the free tool, and the 3-email nurture sequence still needs writing.</div>
+
+  <!-- ══════════ 2. LANDING PAGE A ══════════ -->
+  <h2 class="section">2 · Landing Page A — outcome-led</h2>
+  <p class="section-sub">For cold traffic (ads, LinkedIn). Leads with the artifact you leave with.</p>
+
+  <div class="browser">
+    <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="urlbar">[drafting-table-domain]/open</div></div>
+    <div class="lp">
+      <div class="kicker">The Drafting Table · from The Build Room</div>
+      <h3 class="hero">Ten minutes with an AI coach. Walk out with a build plan and a prompt that actually works.</h3>
+      <p class="sub">You've got an idea you keep not building. The Drafting Table pins it down: what you're really after, the smallest version worth building, and how you'd show it off. Then it writes your starter prompt for you.</p>
+      <a class="cta orange" href="#">Sit down at the Drafting Table</a>
+      <div class="cta-note">Free. No signup to start. About 10 minutes.</div>
+
+      <div class="lp-steps">
+        <div class="lp-step"><span class="n">01</span><b>Talk</b><p>The coach asks about your idea. Plain language, no jargon quiz.</p></div>
+        <div class="lp-step"><span class="n">02</span><b>Lock</b><p>Together you lock three things: Dream, Build, Demo. Scope stops being fuzzy.</p></div>
+        <div class="lp-step"><span class="n">03</span><b>Leave with it</b><p>A four-session plan plus a ready-to-paste starter prompt, written in your words.</p></div>
+      </div>
+
+      <div class="proof-strip">
+        <blockquote>"So David, what you did, someone six months ago quoted me $20,000 to make that."</blockquote>
+        <div class="attr">Ginger Gentile, agency owner, after her team's demo day</div>
+      </div>
+      <div class="proof-strip">
+        <blockquote>"It just happened so fast. It was pretty awesome."</blockquote>
+        <div class="attr">Cece, first Zoom call since COVID, working tool in one session</div>
+      </div>
+
+      <a class="cta" href="#">Start your session</a>
+      <div class="thesis">LEARN AI. BUILD ROBOTS. STAY HUMAN.</div>
+    </div>
+  </div>
+
+  <!-- ══════════ 3. LANDING PAGE B ══════════ -->
+  <h2 class="section">3 · Landing Page B — conversation-led</h2>
+  <p class="section-sub">For warm traffic (Skool, WhatsApp, post clicks). Shows the experience instead of describing it. Almost no copy; the chat preview does the selling.</p>
+
+  <div class="browser">
+    <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="urlbar">[drafting-table-domain]/open</div></div>
+    <div class="lp" style="text-align:center;">
+      <div class="kicker">The Drafting Table</div>
+      <h3 class="hero" style="margin-left:auto;margin-right:auto;">The coach is in.</h3>
+      <p class="sub" style="margin-left:auto;margin-right:auto;">Bring the idea you keep circling. Leave with a plan.</p>
+
+      <div class="chatmock" style="text-align:left;">
+        <div class="bubble coach"><span class="who">Coach</span>Hi. I'm the Drafting Table coach. What's the thing you keep meaning to build?</div>
+        <div class="bubble you"><span class="who">You</span>Honestly? Something that stops me re-answering the same 20 client emails every week.</div>
+        <div class="bubble coach"><span class="who">Coach</span>Good. That's real. Let's pin it down: if this worked perfectly, what would Monday morning look like?</div>
+        <div class="chat-fade">· · · ten minutes later · · ·</div>
+        <div class="bubble coach"><span class="who">Coach</span>Locked. Here's your four-session plan, and I've written your starter prompt. Paste it into your AI tool and correct anything it gets wrong before you let it start.</div>
+      </div>
+
+      <a class="cta orange" href="#">Start the conversation</a>
+      <div class="cta-note">Free · ~10 min · your plan is saved to a personal link</div>
+      <div class="thesis">LEARN AI. BUILD ROBOTS. STAY HUMAN.</div>
+    </div>
+  </div>
+
+  <!-- ══════════ 4. DEMO AD ══════════ -->
+  <h2 class="section">4 · Demo Ad (Meta / LinkedIn sponsored)</h2>
+  <p class="section-sub">Visual slot = the cleared door-metaphor supercut (proof library: cross-cohort-door-supercut-v1, tagged ads/website). Static fallback shown here.</p>
+
+  <div class="ad-card">
+    <div class="ad-head">
+      <div class="ad-avatar">BR</div>
+      <div><div class="nm">The Build Room</div><div class="sp">Sponsored</div></div>
+    </div>
+    <div class="ad-body" id="ad-copy">You don't need another AI course. You need a plan for the one thing you keep not building.
+
+The Drafting Table is a free 10-minute session with an AI coach. It locks your idea down to a first build, drafts a four-session plan, and writes your starter prompt for you.
+
+An agency owner watched her team demo what they built: "Someone six months ago quoted me $20,000 to make that."
+
+Ten minutes. No signup to start.</div>
+    <div class="ad-visual">
+      <div class="big">"...and then you have a win. Abre la puerta. The door opens."</div>
+      <div class="small">▶ 0:32 — door-metaphor supercut (cleared for ads)</div>
+    </div>
+    <div class="ad-foot">
+      <div><div class="hl">Sit down at the Drafting Table</div><div class="dm">[drafting-table-domain]</div></div>
+      <div class="ad-btn">Start free</div>
+    </div>
+  </div>
+  <button class="copybtn" data-copy="ad-copy">Copy ad primary text</button>
+  <div class="note">Headline: "Sit down at the Drafting Table" · CTA button: Start free / Learn more · Video: door supercut v1 (already cleared).</div>
+
+  <!-- ══════════ 5. DESCRIPTIVE POST ══════════ -->
+  <h2 class="section">5 · Descriptive Post (LinkedIn, organic)</h2>
+  <p class="section-sub">Alex's voice, first person, story-led. Also works trimmed for Skool.</p>
+
+  <div class="post-card">
+    <div class="ad-head">
+      <div class="ad-avatar">AS</div>
+      <div><div class="nm">Alex Salinsky</div><div class="sp">The Build Room · Learn AI. Build Robots. Stay Human.</div></div>
+    </div>
+    <div class="post-body" id="post-copy">I built an AI coach that argues with you about scope.
+
+It's called the Drafting Table. You bring the idea you've been circling for months, and in about ten minutes it pins down three things: the dream behind it, the smallest version worth building, and how you'd demo it to someone.
+
+Then it does the part people actually thank me for. It writes your starter prompt. Not a template. A prompt in your words, about your build, that ends by making the AI summarize what it thinks you want and ask clarifying questions before it writes a single line.
+
+That last step is the whole trick. Most people paste a vague idea into ChatGPT, get a vague result, and decide AI isn't for them. The Drafting Table makes the machine prove it understood you first.
+
+We've run this inside our cohorts all year. Kate, the self-described least technical person on her team, shipped a live tool her CEO said they'd spent two months trying to hire a developer for.
+
+It starts with a plan.
+
+The open version is free. Ten minutes, no signup to start, and you leave with a plan saved to your own link.
+
+Comment "TABLE" or DM me and I'll send it to you.</div>
+  </div>
+  <button class="copybtn" data-copy="post-copy">Copy post text</button>
+  <div class="note">Comment-gate ("TABLE") keeps the link out of the post so LinkedIn doesn't suppress reach, and every comment is a warm DM opening.</div>
+
+  <!-- ══════════ 6. PROOF USED ══════════ -->
+  <h2 class="section">6 · Proof Used (from the Proof Library)</h2>
+  <table class="proof-table">
+    <tr><th>Entry</th><th>Status</th><th>Used in</th></tr>
+    <tr><td>Ginger's $20k quote (rpa-s4-ginger-20k-quote)</td><td><span class="pill pub">cleared-for-public</span></td><td>Landing A, ad primary text</td></tr>
+    <tr><td>Cece first Zoom since COVID (ff-thu-s1-cece-first-zoom-since-covid)</td><td><span class="pill pub">cleared-for-public</span></td><td>Landing A</td></tr>
+    <tr><td>Door-metaphor supercut (cross-cohort-door-supercut-v1)</td><td><span class="pill pub">cleared-for-public</span></td><td>Ad video slot</td></tr>
+    <tr><td>Kate Missive sidebar live + Bryce testimonial (dbalp-s3/s4)</td><td><span class="pill pub">cleared-for-public</span></td><td>Post, nurture email 2</td></tr>
+    <tr><td>Four levels of fluency clip (nc17-four-levels-fluency)</td><td><span class="pill raw">raw — needs clearance</span></td><td>Not used. Would strengthen nurture email 2 if cleared.</td></tr>
+    <tr><td>"Build a tool for the first time, surrounded by coaches" (nc17)</td><td><span class="pill raw">raw — needs clearance</span></td><td>Not used. Strong cohort-promise line for email 3.</td></tr>
+  </table>
+
+  <div class="thesis">FUNNEL PLAN · THE BUILD ROOM · LEARN AI. BUILD ROBOTS. STAY HUMAN.</div>
+</div>
+
+<script>
+document.querySelectorAll('.copybtn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const el = document.getElementById(btn.dataset.copy);
+    try {
+      await navigator.clipboard.writeText(el.textContent.trim());
+      const old = btn.textContent; btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = old; }, 1800);
+    } catch { btn.textContent = 'Select and copy manually'; }
+  });
+});
+</script>
+</body>
+</html>
