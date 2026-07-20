@@ -1,7 +1,7 @@
 {
   "_meta": {
     "generated": "2026-07-20",
-    "source": "Hand-maintained. Single source of truth for Build Room events. Drives event badges + countdowns on the plan-refresh HTML pages.",
+    "source": "Hand-maintained. Single source of truth for Build Room events. After ANY edit run: node scripts/sync-events.js (syncs Google Calendar 'The Build Room Events Calendar', GitHub Pages mirror at alexsalinsky.github.io/build-room-visuals/events.json, and the EC2 plan pages).",
     "structure": "events = public-audience events only (retreats, build labs, conferences, kickoffs). NO cohort sessions — those live in the Drafting Table config as a starting week. work = internal milestones/deadlines around an event, each linked via parentEvent.",
     "eventTypes": ["retreat", "build-lab", "conference", "kickoff", "external"]
   },
