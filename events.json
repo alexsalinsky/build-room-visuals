@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "generated": "2026-07-20",
+    "source": "Hand-maintained. Single source of truth for Build Room events. Drives event badges + countdowns on the plan-refresh HTML pages.",
+    "structure": "events = public-audience events only (retreats, build labs, conferences, kickoffs). NO cohort sessions — those live in the Drafting Table config as a starting week. work = internal milestones/deadlines around an event, each linked via parentEvent.",
+    "eventTypes": ["retreat", "build-lab", "conference", "kickoff", "external"]
+  },
+  "events": [
+    { "id": "pdc-kickoff1",      "title": "PDC Kickoff Session 1",              "date": "2026-08-15", "type": "kickoff",    "theme": "Marketing + Proof",   "notes": "why I built this retreat framing. Tier 1 $2,750 opens for 7 days." },
+    { "id": "gtd-denmark",       "title": "GTD Denmark retreat (David Allen)",  "date": "2026-09-02", "endDate": "2026-09-04", "type": "external", "theme": "Travel Planning", "notes": "$4,700 all-in. Application required." },
+    { "id": "pdc-kickoff2",      "title": "PDC Kickoff Session 2",              "date": "2026-09-15", "type": "kickoff",    "theme": "Marketing + Proof",   "notes": "deeper walkthrough + alumni testimonials. Tier 2 $3,250 opens." },
+    { "id": "cm-kickoff1",       "title": "CM Kickoff Session 1",               "date": "2026-09-15", "type": "kickoff",    "theme": "Marketing + Proof",   "notes": "post-DCBKK extension angle. Tier 1 opens." },
+    { "id": "lpi-learning-live", "title": "LPI Learning Live (London)",         "date": "2026-09-16", "endDate": "2026-09-17", "type": "conference", "theme": "Marketing + Proof", "notes": "Convene 133 Houndsditch EC3A 7DB. At-cost AI Build Day offer to Pauline Saunders (Head of Events) + Ed Monk (CEO). No CFP; agenda crowdsourced from attendees." },
+    { "id": "nc17-cruise",       "title": "NC17 Nomad Cruise (Southampton → NYC)", "date": "2026-09-19", "endDate": "2026-09-26", "type": "conference", "theme": "Marketing + Proof", "notes": "Alex = AI Coordinator, runs all AI programming on board (~150 people)." },
+    { "id": "boston-ai-week",    "title": "Boston AI Week",                     "date": "2026-09-28", "endDate": "2026-10-02", "type": "conference", "theme": "Marketing + Proof", "notes": "CFP status TBC; SoFar Sounds side option Sep 28 or 29 for networking." },
+    { "id": "pdc-retreat",       "title": "PDC Builder Retreat",                "date": "2026-10-12", "endDate": "2026-10-16", "type": "retreat",    "theme": "Retreat Logistics", "notes": "5 days at Fiesta Inn, Playa del Carmen." },
+    { "id": "cm-kickoff2",       "title": "CM Kickoff Session 2",               "date": "2026-10-15", "type": "kickoff",    "theme": "Marketing + Proof",   "notes": "builder-led, leverages PDC alumni." },
+    { "id": "dcbkk",             "title": "DCBKK (Bangkok)",                    "date": "2026-10-22", "endDate": "2026-10-25", "type": "conference", "theme": "Marketing + Proof", "notes": "CM retreat pre-sale push window. Warm-channel close." },
+    { "id": "cmseo",             "title": "CMSEO (Chiang Mai SEO Conference)",  "date": "2026-11-09", "endDate": "2026-11-13", "type": "conference", "theme": "Marketing + Proof", "notes": "Chiang Mai Marriott, 800+ attendees. Alex attends + pursues Whova side event as CM retreat funnel." },
+    { "id": "cm-retreat",        "title": "CM Builder Retreat (Chiang Mai)",    "date": "2026-11-16", "endDate": "2026-11-20", "type": "retreat",    "theme": "Retreat Logistics", "notes": "Thailand. Starts 3 days after CMSEO closes to catch the warm crowd." }
+  ],
+  "work": [
+    { "id": "lpi-outreach-due",  "title": "LPI Build Day outreach SENT",        "date": "2026-07-17", "parentEvent": "lpi-learning-live", "theme": "Marketing + Proof", "notes": "DM Pauline + Ed, submit exhibit form. Trello lch8kRqu. Pitch: outreach/lpi-build-day-pitch-2026-07-15.md" },
+    { "id": "gtd-gonogo",        "title": "GTD Denmark RSVP GO/NO-GO",          "date": "2026-07-31", "parentEvent": "gtd-denmark",       "theme": "Travel Planning",   "notes": "Decide by Jul 31." },
+    { "id": "pdc-floor",         "title": "PDC HARD FLOOR: 10 paid seats",      "date": "2026-08-01", "parentEvent": "pdc-retreat",       "theme": "Retreat Logistics", "notes": "below floor → pivot to MVV (6 alumni @ $1,500 flat)." },
+    { "id": "pdc-wave1",         "title": "PDC marketing wave 1 begins",        "date": "2026-08-01", "parentEvent": "pdc-retreat",       "theme": "Marketing + Proof" },
+    { "id": "pdc-ads-start",     "title": "PDC LinkedIn ads start ($200 cap)",  "date": "2026-08-15", "parentEvent": "pdc-retreat",       "theme": "Marketing + Proof", "notes": "kill if CAC > $400 by Sept 1." },
+    { "id": "cm-premarket",      "title": "CM retreat pre-marketing kick",      "date": "2026-08-15", "parentEvent": "cm-retreat",        "theme": "Retreat Logistics", "notes": "venue research Chiang Mai, pricing locked, CMSEO organizers contacted re affiliate." },
+    { "id": "cm-wave1",          "title": "CM marketing wave 1 begins",         "date": "2026-09-01", "parentEvent": "cm-retreat",        "theme": "Marketing + Proof", "notes": "CMSEO Whova side-event slot pursued." },
+    { "id": "london-leg",        "title": "London leg (travel context)",        "date": "2026-09-12", "endDate": "2026-09-18", "parentEvent": "lpi-learning-live", "theme": "Marketing + Proof", "notes": "DC Junto Sep 17, BSF Sep 17-18. Salsa Temple optional anchor." },
+    { "id": "pdc-scarcity",      "title": "PDC scarcity push begins",           "date": "2026-09-28", "parentEvent": "pdc-retreat",       "theme": "Marketing + Proof", "notes": "Last Call tier $3,750. Cohort referral push." },
+    { "id": "cm-floor",          "title": "CM HARD FLOOR: 8 paid seats",        "date": "2026-10-01", "parentEvent": "cm-retreat",        "theme": "Retreat Logistics", "notes": "below floor → run as alumni-only 6-seat pilot at $1,500." },
+    { "id": "cm-whova-side-event", "title": "CMSEO Whova side event (funnel)",  "date": "2026-11-09", "parentEvent": "cmseo",             "theme": "Marketing + Proof", "notes": "Pursue Whova listing during conference week. Graduates to a build-lab event once confirmed." }
+  ]
+}
