@@ -6,7 +6,10 @@
 <title>Sesión de Kickoff · 23 de julio · The Build Room</title>
 <!--
   Kickoff Session deck, versión en español colombiano (webinar Humanos vs. Robots, 2026-07-23 7pm COT).
-  Gemela de kickoff-session-2026-07-23-en.html (misma estructura, 28 slides). Vocabulario bloqueado 2026-07-21:
+  Basada en kickoff-session-2026-07-23-en.html. 24 slides: reordenada por Alex 2026-07-23 (programa antes de
+  victorias, ambos antes de Skool; precio + 1:1 antes de retiros; 4 slides archivadas en
+  _archived-slides-2026-07-23.md). Los números en los comentarios son los originales, el orden real es la posición
+  en el array. Vocabulario bloqueado 2026-07-21:
   "El Laboratorio" (nombre del cohort), "el programa" (logística/precios), "la banda" (comunidad).
   Tesis en español bloqueada: "Aprende IA. Construye Robots. Sigue Siendo Humano."
   Niveles de fluidez se mantienen en inglés (Exploring/Adopting/Operating/Multiplying, nombres canónicos).
@@ -262,7 +265,7 @@ const slides = [
       </div>
       <div class="walkaway-gifts" style="margin-top:22px">
         <div class="label">LOS 3 REGALOS</div>
-        <div class="list"><span>1 · AI Fluency Assessment</span><span>2 · Comunidad en Skool</span><span>3 · Se revela al final</span></div>
+        <div class="list"><span>1 · Evaluación de Fluidez en IA</span><span>2 · Comunidad en Skool</span><span>3 · Se revela al final</span></div>
       </div>
     </div>`
   },
@@ -386,129 +389,20 @@ const slides = [
     </div>`
   },
 
-  // 9. Regalo 1: AI Fluency Assessment
+  // 9. Regalo 1: Evaluación de Fluidez en IA
   {
     html: `<div class="slide center">
       <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:26px;max-width:1040px;width:100%;align-items:center">
         <div class="gift-hero" style="padding:30px 32px;max-width:none">
           <div class="ribbon">REGALO 1 DE 3</div>
-          <h2>AI Fluency Assessment</h2>
+          <h2>Evaluación de Fluidez en IA</h2>
           <p>¿Quieres saber dónde estás? Haz la misma rúbrica de 4 niveles que uso con equipos corporativos (Exploring · Adopting · Operating · Multiplying). Recibes un reporte personalizado que muestra tu fluidez en 5 dominios y exactamente dónde enfocarte. Gratis, toma menos de 15 minutos.</p>
           <p style="margin-top:18px;margin-bottom:0"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfPAy7jEekZgRFlZ1GpjWacfZ3z-ybpwRGP73frMoQ6IaZ-JQ/viewform" target="_blank" rel="noopener" style="display:inline-block;background:#1a1a1a;color:#fff;font-weight:700;font-size:16px;padding:12px 24px;border-radius:8px;text-decoration:none">Haz la evaluación →</a></p>
         </div>
         <div style="text-align:left">
           <div style="font-size:12px;font-weight:800;letter-spacing:2px;color:#888;margin-bottom:8px">EL REPORTE QUE LLEGA A TU CORREO</div>
-          <iframe src="fluency-report-sample.html" title="Reporte de muestra de AI Fluency" style="width:100%;height:440px;border:2.5px solid #1a1a1a;border-radius:12px;background:#fff"></iframe>
+          <iframe src="fluency-report-sample-es.html" title="Reporte de muestra de la Evaluación de Fluidez en IA" style="width:100%;height:440px;border:2.5px solid #1a1a1a;border-radius:12px;background:#fff"></iframe>
         </div>
-      </div>
-    </div>`
-  },
-
-  // 10. Build real 1: David + la cita de los $20K de Ginger EN VIDEO
-  {
-    html: `<div class="slide">
-      <div class="section-chip">Builds Reales</div>
-      <div class="build-slide">
-        <div class="build-info">
-          <div class="who">David · Laboratorio de una Empresa de Coaching</div>
-          <div class="name">Evaluador de Sesiones de Coaching</div>
-          <div class="desc">Subes la transcripción de una llamada de coaching y recibes un reporte de evaluación completo en menos de un minuto. Anonimiza a los clientes antes de que algo toque la IA. Lo presentó en el Demo Day, semana 4. Y entonces la dueña de la empresa dijo esto:</div>
-        </div>
-        <div class="clip-slot">
-          <span class="pill cut">EN VIDEO</span>
-          <video src="clips/ginger-20k-quote-clean.mp4" controls preload="metadata"></video>
-          <div class="clip-note">Ginger, la dueña: "someone six months ago quoted me $20,000 to make that."</div>
-        </div>
-      </div>
-    </div>`
-  },
-
-  // 11. Build real 2: Maria + "You're a coder" EN VIDEO
-  {
-    html: `<div class="slide">
-      <div class="section-chip">Builds Reales</div>
-      <div class="build-slide">
-        <div class="build-info">
-          <div class="who">Maria · Laboratorio de una Empresa de Coaching</div>
-          <div class="name">El Dashboard "Imposible"</div>
-          <div class="desc">Un dashboard de clientes y coaches que su organización llamó imposible durante dos años. Ella lo publicó en vivo en la web durante el programa. Hoy está funcionando.</div>
-        </div>
-        <div class="clip-slot">
-          <span class="pill cut">EN VIDEO</span>
-          <video src="clips/ginger-youre-a-coder-clean.mp4" controls preload="metadata"></video>
-          <div class="clip-note">Ginger, en el Demo Day: "Maria, you figured it out. You're a coder."</div>
-        </div>
-      </div>
-    </div>`
-  },
-
-  // 12. Build real 3: las 35 horas de Kandice EN VIDEO
-  {
-    html: `<div class="slide">
-      <div class="section-chip">Builds Reales</div>
-      <div class="build-slide">
-        <div class="build-info">
-          <div class="who">Kandice · Laboratorio de una Agencia de PR</div>
-          <div class="name">Reportes de Campaña</div>
-          <div class="desc">Seis horas de reportes por campaña, seis campañas al mes. Su herramienta ahora hace el trabajo pesado. Aquí está haciendo la cuenta en vivo en el Demo Day:</div>
-        </div>
-        <div class="clip-slot">
-          <span class="pill cut">EN VIDEO</span>
-          <video src="clips/kandice-35-hours-saved-tight-clean.mp4" controls preload="metadata"></video>
-          <div class="clip-note">"That's like 35 hours of work saved, essentially."</div>
-        </div>
-      </div>
-    </div>`
-  },
-
-  // 13. Highlights reel
-  {
-    html: `<div class="slide center">
-      <div class="section-chip">Highlights</div>
-      <h2 style="margin-top:20px">4 laboratorios en 53 segundos</h2>
-      <video src="clips/highlights-v4-169.mp4" controls preload="metadata" style="width:100%;max-width:820px;max-height:420px;border-radius:12px;border:2px solid #1a1a1a;margin-top:10px"></video>
-    </div>`
-  },
-
-  // 14. Más victorias
-  {
-    html: `<div class="slide">
-      <div class="section-chip">Y Más</div>
-      <h2 style="margin-top:30px;text-align:center">Victorias de la primera sesión, de gente que nunca había construido</h2>
-      <div class="wins-grid">
-        <div class="win-card"><strong>El workspace de clientes de Bernie</strong><span>Ahorra ~2 horas por cliente a la semana, con 20 clientes</span></div>
-        <div class="win-card"><strong>La app de audio de Sam</strong><span>Demo funcional con filtrado de audio en vivo. "Less than one hour, dude."</span></div>
-        <div class="win-card"><strong>El sistema de fotos de Cece</strong><span>Su primera llamada por Zoom desde el COVID. Salió con una herramienta funcionando. "It just happened so fast."</span></div>
-        <div class="win-card"><strong>El dashboard diario de Chanel</strong><span>Dashboard de clientes + proceso de correos automatizado + resúmenes de llamadas</span></div>
-        <div class="win-card"><strong>El sistema de soporte de Muhammad</strong><span>Chatbot para clientes + dashboard interno con datos reales de la empresa</span></div>
-        <div class="win-card"><strong>El auto-respondedor de ventas de Bryce</strong><span>El CEO de la agencia también construyó: cada lead recibe una respuesta redactada, en producción en la semana 3</span></div>
-      </div>
-      <p style="text-align:center;font-size:15px;color:#666;margin-top:16px">El Wins Wall completo es público: alexsalinsky.github.io/build-room-visuals/wins-wall.html</p>
-    </div>`
-  },
-
-  // 15. Llévate esto hoy: Entrada → Salida → Cuándo
-  {
-    html: `<div class="slide">
-      <div class="section-chip">Llévate Esto Hoy</div>
-      <h2 style="margin-top:26px;text-align:center">Piensa como diseñador, no como prompter</h2>
-      <p style="text-align:center;font-size:17px;color:#555;max-width:780px;margin:0 auto">Cada build que acabas de ver empezó con tres respuestas escritas antes de tocar cualquier herramienta de IA. Es la primera lección del programa, y esta noche es tuya.</p>
-      <div class="io-row">
-        <div class="io-box"><div class="k">ENTRADA</div><div class="v">¿Qué entra?</div><div class="ex">La transcripción de una llamada de coaching</div></div>
-        <div class="io-box"><div class="k">SALIDA</div><div class="v">¿Qué sale?</div><div class="ex">Un reporte de evaluación con puntaje</div></div>
-        <div class="io-box"><div class="k">CUÁNDO</div><div class="v">¿Cuándo corre?</div><div class="ex">Después de cada llamada de coaching</div></div>
-      </div>
-    </div>`
-  },
-
-  // 16. Regalo 2: comunidad en Skool
-  {
-    html: `<div class="slide center">
-      <div class="gift-hero">
-        <div class="ribbon">REGALO 2 DE 3</div>
-        <h2>Acceso a la Comunidad en Skool</h2>
-        <p>Tuyo desde ya, solo por estar aquí. Lecciones paso a paso, biblioteca de recursos, mi lista de lectura sobre fluidez en IA, conversación con la banda. Abierto para ti para siempre, entres o no al programa pago.</p>
-        <p style="margin-top:18px;margin-bottom:0"><a href="https://www.skool.com/the-build-room-3309" target="_blank" rel="noopener" style="display:inline-block;background:#1a1a1a;color:#fff;font-weight:700;font-size:16px;padding:12px 24px;border-radius:8px;text-decoration:none">Únete en Skool →</a></p>
       </div>
     </div>`
   },
@@ -591,6 +485,44 @@ const slides = [
     </div>`
   },
 
+  // 13. Highlights reel
+  {
+    html: `<div class="slide center">
+      <div class="section-chip">Highlights</div>
+      <h2 style="margin-top:20px">4 laboratorios en 53 segundos</h2>
+      <video src="clips/highlights-v4-169-es.mp4" controls preload="metadata" style="width:100%;max-width:820px;max-height:420px;border-radius:12px;border:2px solid #1a1a1a;margin-top:10px"></video>
+    </div>`
+  },
+
+  // 14. Más victorias
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Y Más</div>
+      <h2 style="margin-top:30px;text-align:center">Victorias de la primera sesión, de gente que nunca había construido</h2>
+      <div class="wins-grid">
+        <div class="win-card"><strong>El workspace de clientes de Bernie</strong><span>Ahorra ~2 horas por cliente a la semana, con 20 clientes</span></div>
+        <div class="win-card"><strong>La app de audio de Sam</strong><span>Demo funcional con filtrado de audio en vivo. "Less than one hour, dude."</span></div>
+        <div class="win-card"><strong>El sistema de fotos de Cece</strong><span>Su primera llamada por Zoom desde el COVID. Salió con una herramienta funcionando. "It just happened so fast."</span></div>
+        <div class="win-card"><strong>El dashboard diario de Chanel</strong><span>Dashboard de clientes + proceso de correos automatizado + resúmenes de llamadas</span></div>
+        <div class="win-card"><strong>El sistema de soporte de Muhammad</strong><span>Chatbot para clientes + dashboard interno con datos reales de la empresa</span></div>
+        <div class="win-card"><strong>El auto-respondedor de ventas de Bryce</strong><span>El CEO de la agencia también construyó: cada lead recibe una respuesta redactada, en producción en la semana 3</span></div>
+      </div>
+      <p style="text-align:center;font-size:15px;color:#666;margin-top:16px">El Wins Wall completo es público: alexsalinsky.github.io/build-room-visuals/wins-wall.html</p>
+    </div>`
+  },
+
+  // 16. Regalo 2: comunidad en Skool
+  {
+    html: `<div class="slide center">
+      <div class="gift-hero">
+        <div class="ribbon">REGALO 2 DE 3</div>
+        <h2>Acceso a la Comunidad en Skool</h2>
+        <p>Tuyo desde ya, solo por estar aquí. Lecciones paso a paso, biblioteca de recursos, mi lista de lectura sobre fluidez en IA, conversación con la banda. Abierto para ti para siempre, entres o no al programa pago.</p>
+        <p style="margin-top:18px;margin-bottom:0"><a href="https://www.skool.com/the-build-room-3309" target="_blank" rel="noopener" style="display:inline-block;background:#1a1a1a;color:#fff;font-weight:700;font-size:16px;padding:12px 24px;border-radius:8px;text-decoration:none">Únete en Skool →</a></p>
+      </div>
+    </div>`
+  },
+
   // 22. Próximas fechas: dos opciones en la noche
   {
     html: `<div class="slide">
@@ -610,6 +542,34 @@ const slides = [
         </div>
       </div>
       <p style="text-align:center;font-size:15px;color:#666;margin-top:18px">Dinos tu preferencia cuando te inscribas.</p>
+    </div>`
+  },
+
+  // 24. La oferta (precio COP)
+  {
+    html: `<div class="slide center">
+      <div class="section-chip">Solo Esta Noche</div>
+      <div class="offer-card">
+        <div class="tag">PRECIO DEL PROGRAMA DE 4 SEMANAS</div>
+        <div class="prices">
+          <div class="now">600.000<span class="cur"> COP</span></div>
+          <div class="later">800.000 COP</div>
+        </div>
+        <div class="cond">El programa completo de 4 semanas. 600.000 COP si lo reservas en esta llamada, 800.000 COP después.</div>
+      </div>
+    </div>`
+  },
+
+  // 25. Bono para los primeros 5
+  {
+    html: `<div class="slide center">
+      <div class="urgency-card">
+        <div class="tag">PRIMEROS 5 EN INSCRIBIRSE</div>
+        <h2>Un 1:1 de siguiente nivel con Alex o con el AI Coach que elijas</h2>
+        <p>Una sesión privada durante el programa, sobre tu build, tus herramientas o tu ruta. Solo para los primeros cinco.</p>
+        <div class="value">🎁 VALOR: 800.000 COP</div>
+        <div style="margin-top:4px"><span class="deadline">⚡ ANTES DE QUE TERMINE ESTA LLAMADA</span></div>
+      </div>
     </div>`
   },
 
@@ -642,50 +602,22 @@ const slides = [
     </div>`
   },
 
-  // 24. La oferta (precio COP)
-  {
-    html: `<div class="slide center">
-      <div class="section-chip">Solo Esta Noche</div>
-      <div class="offer-card">
-        <div class="tag">PRECIO DE LA SESIÓN DE KICKOFF</div>
-        <div class="prices">
-          <div class="now">600.000<span class="cur"> COP</span></div>
-          <div class="later">800.000 COP</div>
-        </div>
-        <div class="cond">El programa completo de 4 semanas. 600.000 COP si lo reservas en esta llamada, 800.000 COP después.</div>
-      </div>
-    </div>`
-  },
-
-  // 25. Bono para los primeros 5
-  {
-    html: `<div class="slide center">
-      <div class="urgency-card">
-        <div class="tag">PRIMEROS 5 EN INSCRIBIRSE</div>
-        <h2>Un 1:1 de siguiente nivel con Alex o con el AI Coach que elijas</h2>
-        <p>Una sesión privada durante el programa, sobre tu build, tu stack o tu ruta. Solo para los primeros cinco.</p>
-        <div class="value">🎁 VALOR: 800.000 COP</div>
-        <div style="margin-top:4px"><span class="deadline">⚡ ANTES DE QUE TERMINE ESTA LLAMADA</span></div>
-      </div>
-    </div>`
-  },
-
-  // 26. Regalo 3: el stack inicial
+  // 26. Regalo 3: las herramientas para empezar
   {
     html: `<div class="slide center">
       <div class="gift-hero">
         <div class="ribbon">REGALO 3 DE 3</div>
-        <h2>El Stack Inicial Óptimo</h2>
-        <p>Llevas toda la noche pensando en qué quieres construir. Este es el stack más barato y más fácil para construirlo. La lista completa está en la siguiente diapositiva para que le tomes pantallazo.</p>
+        <h2>Las Herramientas para Empezar</h2>
+        <p>Llevas toda la noche pensando en qué quieres construir. Estas son las herramientas más baratas y más fáciles para construirlo. La lista completa está en la siguiente diapositiva para que le tomes pantallazo.</p>
       </div>
     </div>`
   },
 
-  // 27. El stack inicial (detalle)
+  // 27. Las herramientas para empezar (detalle)
   {
     html: `<div class="slide">
-      <div class="section-chip">Regalo 3 · El Stack</div>
-      <h2 style="margin-top:26px;text-align:center">El Stack Inicial Óptimo <span style="font-size:14px;background:#fef3e0;border:1.5px solid #d97706;color:#d97706;border-radius:999px;padding:4px 12px;vertical-align:middle;margin-left:8px">📸 Toma pantallazo</span></h2>
+      <div class="section-chip">Regalo 3 · Las Herramientas</div>
+      <h2 style="margin-top:26px;text-align:center">Las Herramientas para Empezar <span style="font-size:14px;background:#fef3e0;border:1.5px solid #d97706;color:#d97706;border-radius:999px;padding:4px 12px;vertical-align:middle;margin-left:8px">📸 Toma pantallazo</span></h2>
       <div class="stack-table" style="margin-top:18px">
         <div class="stack-row reco"><div class="layer">ENTORNO DE BUILD</div><div class="tool">Codex (ChatGPT)<span class="reco-pill">RECOMENDADO</span><span class="note">Una sola suscripción a ChatGPT te da la IA y la herramienta de build. Aquí vas a pasar el 90% del tiempo. Claude Code también funciona si ya es lo que pagas.</span></div><div class="cost">$20+/mes</div></div>
         <div class="stack-row"><div class="layer">SERVIDOR (OPCIONAL)</div><div class="tool">Un servidor<span class="note">Solo cuando tu robot necesita correr mientras duermes. Hay planes gratis, así que arrancar puede costarte cero.</span></div><div class="cost">$0+</div></div>

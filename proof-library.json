@@ -4181,6 +4181,82 @@
         "failure-mode"
       ],
       "notes": "Both F&F Demo Days ran ~10 min over with tight 4-min slots and manual timing. At 10+ demos, either extend the Demo Day invite by 15 minutes or cap main-room demos. Alex asked live consent to run over [02:18:26], which worked but should not be the plan."
+    },
+    {
+      "id": "ff-mon-s3-dinemari-new-door-opened-face-clip",
+      "type": "clip",
+      "cohort": "ff-mon",
+      "title": "Clip: Dine-Mari 'a new door opened' — face punch-in version",
+      "source_url": "brain/the-build-room/recordings/ff-mon-s3-2026-07-06.mp4 (9897.1s-9912.1s)",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "As soon as we started the cohort, it was like a new door opened. And I can actually build these things.",
+      "attribution": "Dine-Mari (F&F Mon cohort)",
+      "timestamp": "02:44:57",
+      "tags": [
+        "builder-testimonial",
+        "door-metaphor",
+        "identity-shift",
+        "face-cam",
+        "social-media",
+        "website"
+      ],
+      "status": "cleared-for-public",
+      "date_captured": "2026-07-06",
+      "date_cleared": "2026-07-13",
+      "notes": "Face version of the tight cut (same audio window, audio-aligned to source, corr 0.977). Webcam-tile punch-in crop 210:117:1069:1 upscaled to 1280x714. Cut 2026-07-23 for the Spanish kickoff deck (Alex wanted her face, not the screenshare). Screenshare original remains archived alongside.",
+      "local_path": "brain/the-build-room/recordings/clips/ff-mon-s3/dinemari-new-door-opened-face-tight-clean.mp4"
+    },
+    {
+      "id": "rpa-s4-cohort-hi-wave-clip",
+      "type": "clip",
+      "cohort": "rpa",
+      "title": "Clip: RPA cohort waves goodbye at camera (hi-and-wave group moment)",
+      "source_url": "brain/the-build-room/recordings/clips/rpa-s4/08-cohort-selfie.mp4 (0s-2.8s)",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": null,
+      "attribution": "RPA cohort (S4 closing ritual)",
+      "timestamp": "02:08:59",
+      "tags": [
+        "community",
+        "stay-human",
+        "b-roll",
+        "social-media",
+        "website"
+      ],
+      "status": "cleared-for-public",
+      "date_captured": "2026-07-07",
+      "date_cleared": "2026-07-12",
+      "notes": "Tight loopable cut of the full-gallery wave (first 2.8s of the cohort selfie, before tiles drop off). Cut 2026-07-23 as the 'Hi' slide candidate for the Spanish kickoff deck. Blanket clip clearance.",
+      "local_path": "brain/the-build-room/recordings/clips/rpa-s4/cohort-hi-wave-tight-clean.mp4"
+    },
+    {
+      "id": "ff-thu-s4-andrea-spanish-demo-clip",
+      "type": "clip",
+      "cohort": "ff-thu",
+      "title": "Clip: Andrea demos her medical-tourism doctor automation entirely in Spanish (Demo Day)",
+      "source_url": "brain/the-build-room/recordings/ff-thu-s4-2026-07-16.mp4 (splice 5895.7-5935.4 + 6085.7-6108.6 + 6162.6-6173.3; full 5895.7-6173.3)",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Solamente teníamos 141 doctores y sólo tres alianzas... ya la IA lo hace automáticamente... Aprendí mucho, aprendí a utilizar la IA correctamente, aprendí a automatizar las cosas, aprendí mucho de ustedes realmente.",
+      "attribution": "Andrea (F&F Thu / HvR cohort)",
+      "timestamp": "01:38:15",
+      "tags": [
+        "demo-day",
+        "live-demo",
+        "spanish",
+        "automation",
+        "hard-roi",
+        "builder-testimonial",
+        "social-media",
+        "website"
+      ],
+      "status": "cleared-for-public",
+      "date_captured": "2026-07-16",
+      "date_cleared": "2026-07-23",
+      "notes": "Only recorded Spanish-language win. Paseo Health Red de Doctores dashboard live on screen + her webcam tile. Tight splice 73.5s (problem/141-doctors numbers, automation working, aprendí close); full 4:38 also archived (andrea-spanish-demo-full-clean.mp4). Whisper-verified timestamps; Fathom transcript runs ~66s ahead in mid-segment and mis-attributes her 01:42:45-01:43:48 lines to Alex/Andrew. Share links: ?timestamp=5901.0 / 6095.0 / 6228.0 on aZHzfxw4xAXLFGaqWgoeLzxYkaX5ih99. Blanket clip clearance. Used on the 2026-07-23 Spanish kickoff deck.",
+      "local_path": "brain/the-build-room/recordings/clips/ff-thu-s4/andrea-spanish-demo-clean.mp4"
     }
   ]
 }

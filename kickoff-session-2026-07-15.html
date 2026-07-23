@@ -5,8 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kickoff Session · July 15 — The Build Room</title>
 <!--
-  Kickoff Session deck, July 15 2026, 5pm America/Bogota. Live event, ~60 min.
+  Kickoff Session deck v2, July 15 2026, 5pm America/Bogota. Live event, 45 min content + offer, 60 min hard stop.
   Sells from proof (3 completed cohorts) instead of promise.
+  v2 adds (per Richard AoS teardown + restored old-deck assets): Session Zero cold open,
+  strengthened host slide, Steal This Tonight (Input/Output/When), Gifts 1-3 in old-deck
+  distribution (Gift 3 revealed last as retention mechanic), confirmation pivot, First 5 bonus,
+  Starter Stack screenshot slide.
   Visual language: workshop heat / editorial paper per marketing/2026-07-04-visual-direction.md.
   Video placeholders: swap the .clip-slot inner content for a <video> tag once the cut lands.
 -->
@@ -121,6 +125,41 @@
 
   .price-pill { display: inline-block; background: #fff; border: 2.5px solid #1a1a1a; color: #1a1a1a; padding: 10px 22px; border-radius: 26px; font-size: 18px; font-weight: 700; margin-top: 22px; }
 
+  /* Gifts (restored from fnf-info-session, recolored to workshop-heat palette) */
+  .gift-hero { background: #fff; border: 3px solid #d97706; border-radius: 18px; padding: 36px 42px; max-width: 760px; text-align: left; position: relative; }
+  .gift-hero .ribbon { position: absolute; top: -16px; left: 24px; background: #fef3e0; color: #d97706; font-weight: 800; letter-spacing: 2px; font-size: 13px; padding: 6px 16px; border-radius: 20px; border: 2px solid #d97706; }
+  .gift-hero h2 { font-size: 34px; margin-bottom: 14px; }
+  .gift-hero p { font-size: 17px; color: #444; margin: 0; }
+  .walkaway-gifts { background: #fef3e0; border: 2px solid #d97706; border-radius: 12px; padding: 18px 24px; max-width: 680px; margin: 26px auto 0; }
+  .walkaway-gifts .label { font-size: 12px; color: #d97706; letter-spacing: 2px; font-weight: 800; margin-bottom: 8px; text-align: center; }
+  .walkaway-gifts .list { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .walkaway-gifts .list span { background: #fff; padding: 6px 12px; border-radius: 16px; border: 1.5px solid #d97706; }
+
+  /* First 5 urgency card */
+  .urgency-card { background: #fef3e0; border: 3px solid #d97706; border-radius: 16px; padding: 34px 40px; max-width: 740px; text-align: center; }
+  .urgency-card .tag { font-size: 12px; color: #d97706; letter-spacing: 2px; font-weight: 800; margin-bottom: 14px; }
+  .urgency-card h2 { font-size: 30px; margin-bottom: 12px; }
+  .urgency-card p { font-size: 17px; color: #444; }
+  .urgency-card .value { font-size: 19px; font-weight: 800; margin-top: 14px; }
+  .urgency-card .deadline { display: inline-block; background: #1a1a1a; color: #fff; font-size: 14px; font-weight: 700; letter-spacing: 1px; padding: 8px 18px; border-radius: 999px; margin-top: 12px; }
+
+  /* Input / Output / When lesson boxes */
+  .io-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; max-width: 940px; margin: 24px auto 0; }
+  @media (max-width: 720px) { .io-row { grid-template-columns: 1fr; } }
+  .io-box { border: 2.5px solid #1a1a1a; border-radius: 12px; background: #fff; padding: 20px 18px; text-align: center; }
+  .io-box .k { font-size: 13px; font-weight: 800; letter-spacing: 2px; color: #d97706; margin-bottom: 8px; }
+  .io-box .v { font-size: 17px; font-weight: 700; line-height: 1.35; }
+  .io-box .ex { font-size: 14px; color: #666; margin-top: 10px; line-height: 1.4; font-style: italic; }
+
+  /* Starter stack table */
+  .stack-table { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+  .stack-row { display: grid; grid-template-columns: 180px 1fr 90px; gap: 16px; align-items: center; background: #fff; border: 2px solid #1a1a1a; border-radius: 10px; padding: 14px 20px; }
+  @media (max-width: 720px) { .stack-row { grid-template-columns: 1fr; } }
+  .stack-row .layer { font-size: 14px; font-weight: 800; letter-spacing: 0.5px; }
+  .stack-row .tool { font-size: 16px; font-weight: 700; }
+  .stack-row .tool span { display: block; font-size: 13px; color: #666; font-weight: 400; margin-top: 3px; line-height: 1.4; }
+  .stack-row .cost { font-size: 15px; font-weight: 800; text-align: right; }
+
   .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); background: rgba(250,250,250,0.95); backdrop-filter: blur(8px); padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); z-index: 1000; }
   .hud strong { color: #1a1a1a; font-size: 16px; }
   .controls { display: flex; gap: 10px; }
@@ -187,7 +226,17 @@ const slides = [
     </div>`
   },
 
-  // 3. Thesis (verbatim)
+  // 3. Session Zero cold open (anti-webinar)
+  {
+    html: `<div class="slide center">
+      <div class="section-chip">Session Zero</div>
+      <h1 style="margin-top:10px">This isn't a webinar.</h1>
+      <p class="lead" style="max-width:720px">This is Session Zero. The cohort starts the moment you show up, and you just did. No replay, no recording. What happens in this room happens once.</p>
+      <p class="sub" style="margin-top:18px;max-width:680px">You're leaving tonight with <strong style="color:#d97706">three gifts</strong>. Two you'll get as we go. The third comes at the very end, and it's the one you'll want to screenshot.</p>
+    </div>`
+  },
+
+  // 4. Thesis (verbatim)
   {
     html: `<div class="slide center">
       <div class="section-chip">The Mission</div>
@@ -200,12 +249,17 @@ const slides = [
     </div>`
   },
 
-  // 4. Host
+  // 5. Host (strengthened for people who don't know Alex)
   {
     html: `<div class="slide center">
       <div class="section-chip">Your Host</div>
       <h2 style="margin-top:20px;font-size:42px">Alex Salinsky</h2>
-      <p class="lead" style="max-width:720px;margin-top:16px">I run The Build Room. Three cohorts have finished. Tonight you'll see what the people in them actually built.</p>
+      <ul style="max-width:680px;text-align:left;margin-top:14px">
+        <li>Runs The Build Room. <strong>3 cohorts completed, 40+ real builds</strong> shipped by working professionals, most of them non-technical</li>
+        <li>Builds AI systems inside client companies: pipelines, dashboards, and agents that run every day</li>
+        <li>Teaches AI fluency to corporate teams with the same 4-level rubric you'll see tonight</li>
+      </ul>
+      <p class="sub" style="margin-top:16px">Tonight you'll see what the people in those rooms actually built.</p>
     </div>`
   },
 
@@ -354,7 +408,22 @@ const slides = [
     </div>`
   },
 
-  // 12. Testimonials: the people who paid
+  // Steal this tonight: Input → Output → When (new version of the S1 "Think Like a Designer" lesson)
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Steal This Tonight</div>
+      <h2 style="margin-top:26px;text-align:center">Think like a designer, not a prompter</h2>
+      <p style="text-align:center;font-size:17px;color:#555;max-width:780px;margin:0 auto">Every build you just saw started as three answers written down before anyone touched an AI tool. This is the first lesson of the cohort, and it's yours tonight.</p>
+      <div class="io-row">
+        <div class="io-box"><div class="k">INPUT</div><div class="v">What goes in?</div><div class="ex">David: one coaching call transcript</div></div>
+        <div class="io-box"><div class="k">OUTPUT</div><div class="v">What comes out?</div><div class="ex">David: a scored evaluation report</div></div>
+        <div class="io-box"><div class="k">WHEN</div><div class="v">When does it run?</div><div class="ex">David: after every coaching call</div></div>
+      </div>
+      <p style="text-align:center;font-size:17px;font-weight:700;margin-top:18px">Specific in, specific out, on a trigger. That's a robot. Write yours down before we hit the offer.</p>
+    </div>`
+  },
+
+  // Testimonials: the people who paid
   {
     html: `<div class="slide">
       <div class="section-chip">In Their Words</div>
@@ -412,7 +481,18 @@ const slides = [
     </div>`
   },
 
-  // 15. The 4-week arc
+  // Gift 1: Skool community (restored, old-deck position: after demos, before the program)
+  {
+    html: `<div class="slide center">
+      <div class="gift-hero">
+        <div class="ribbon">GIFT 1 OF 3</div>
+        <h2>Skool Community Access</h2>
+        <p>Yours right now, just for being here. Click-through lessons, resource library, my reading list on AI fluency, peer discussion. Open to you forever, whether or not you join the paid cohort.</p>
+      </div>
+    </div>`
+  },
+
+  // The 4-week arc
   {
     html: `<div class="slide">
       <div class="section-chip">The Program</div>
@@ -442,7 +522,18 @@ const slides = [
     </div>`
   },
 
-  // 17. What you walk away with (proof-backed)
+  // Gift 2: AI Fluency Assessment (restored, old-deck position: after session anatomy)
+  {
+    html: `<div class="slide center">
+      <div class="gift-hero">
+        <div class="ribbon">GIFT 2 OF 3</div>
+        <h2>AI Fluency Assessment</h2>
+        <p>Take the same 4-level rubric I use with corporate teams (Exploring · Adopting · Operating · Multiplying). You get a personalized report showing where your fluency stands across 5 domains, and exactly where to focus. Free, takes under 15 minutes.</p>
+      </div>
+    </div>`
+  },
+
+  // What you walk away with (proof-backed) + gifts strip
   {
     html: `<div class="slide center">
       <div class="section-chip">By the End</div>
@@ -453,6 +544,10 @@ const slides = [
         <li><strong>The confidence of having done it</strong> · "I'm not really a techie person" is where Kate started</li>
         <li><strong>A room that watched you build it</strong> · alumni community stays open after</li>
       </ul>
+      <div class="walkaway-gifts">
+        <div class="label">PLUS · 3 GIFTS YOU GET TONIGHT</div>
+        <div class="list"><span>Skool Community</span><span>Fluency Assessment</span><span>Gift 3 · revealed at the end</span></div>
+      </div>
     </div>`
   },
 
@@ -514,7 +609,16 @@ const slides = [
     </div>`
   },
 
-  // 21. The offer
+  // Confirmation pivot (before the offer; belief question, no chat instruction printed)
+  {
+    html: `<div class="slide center">
+      <h1 class="huge" style="margin-bottom:18px">Pause.</h1>
+      <p class="lead" style="max-width:700px">Based on what you've seen tonight, do you believe this room can take someone from "I'm not technical" to a working build in four weeks?</p>
+      <p class="sub" style="margin-top:16px">If yes, the next slide is for you.</p>
+    </div>`
+  },
+
+  // The offer
   {
     html: `<div class="slide center">
       <div class="section-chip">Tonight Only</div>
@@ -529,7 +633,45 @@ const slides = [
     </div>`
   },
 
-  // 22. Stay Human close
+  // First 5 fast-action bonus (restored)
+  {
+    html: `<div class="slide center">
+      <div class="urgency-card">
+        <div class="tag">FIRST 5 TO SIGN UP</div>
+        <h2>A Next-Level 1:1 with Alex or Thierry during the cohort</h2>
+        <p>One private session on your build, your stack, or your roadmap. First five sign-ups only.</p>
+        <div class="value">🎁 $200 VALUE</div>
+        <div style="margin-top:4px"><span class="deadline">⚡ BEFORE THIS CALL ENDS</span></div>
+      </div>
+    </div>`
+  },
+
+  // Gift 3: Starter Stack (revealed last, the retention mechanic)
+  {
+    html: `<div class="slide center">
+      <div class="gift-hero">
+        <div class="ribbon">GIFT 3 OF 3</div>
+        <h2>Optimal Starter Stack Advice</h2>
+        <p>You've been thinking all night about what you want to build. Here's the cheapest, easiest stack to build it with. The full list is on the next slide so you can screenshot it.</p>
+      </div>
+    </div>`
+  },
+
+  // The Starter Stack (screenshot slide)
+  {
+    html: `<div class="slide">
+      <div class="section-chip">Gift 3 · The Stack</div>
+      <h2 style="margin-top:26px;text-align:center">The Optimal Starter Stack <span style="font-size:14px;background:#fef3e0;border:1.5px solid #d97706;color:#d97706;border-radius:999px;padding:4px 12px;vertical-align:middle;margin-left:8px">📸 Screenshot This</span></h2>
+      <div class="stack-table" style="margin-top:18px">
+        <div class="stack-row"><div class="layer">BUILD ENVIRONMENT</div><div class="tool">Claude Code or Codex CLI<span>One subscription gets you the LLM AND the tool. This is where you'll spend 90% of your time.</span></div><div class="cost">$20+/mo</div></div>
+        <div class="stack-row"><div class="layer">CODE + DOCS</div><div class="tool">GitHub<span>Your build's home. Version history, backup, publishing.</span></div><div class="cost">$0</div></div>
+        <div class="stack-row"><div class="layer">SERVER (OPTIONAL)</div><div class="tool">DigitalOcean or Hostinger<span>Only when your robot needs to run while you sleep.</span></div><div class="cost">~$10/mo</div></div>
+      </div>
+      <p style="text-align:center;font-size:17px;font-weight:700;margin-top:16px">Total to start: about $20 a month.</p>
+    </div>`
+  },
+
+  // Stay Human close
   {
     html: `<div class="slide center">
       <p style="font-size:52px;line-height:1.15;font-weight:800;letter-spacing:-1.5px">Learn AI.<br/>Build Robots.<br/><span class="serif" style="font-weight:400">Stay Human.</span></p>

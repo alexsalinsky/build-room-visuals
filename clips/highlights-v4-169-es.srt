@@ -1,0 +1,39 @@
+1
+00:00:00,000 --> 00:00:08,800
+David, lo que hiciste: hace seis meses
+alguien me cotizó $20,000 por hacer eso.
+
+2
+00:00:09,460 --> 00:00:13,900
+Sí, me va a ahorrar básicamente
+seis horas por campaña.
+
+3
+00:00:13,900 --> 00:00:21,240
+Y ahora mismo hago seis campañas al mes,
+o sea como 35 horas de trabajo ahorradas.
+
+4
+00:00:21,600 --> 00:00:26,860
+Maria logró una tarea imposible. Me cansé de oír:
+"no podemos hacer un dashboard, es imposible".
+
+5
+00:00:26,860 --> 00:00:31,860
+Y Maria, tú lo resolviste.
+Así que felicitaciones, ya eres programadora.
+
+6
+00:00:32,380 --> 00:00:39,160
+Y todavía estoy asombrado,
+porque llegué a esto con cero experiencia.
+
+7
+00:00:39,880 --> 00:00:44,700
+Y si alguien como yo puede llegar
+tan lejos en tan poco tiempo,
+
+8
+00:00:44,700 --> 00:00:48,520
+en unas semanas o un par de meses voy a estar
+volando. Esto es muy emocionante.

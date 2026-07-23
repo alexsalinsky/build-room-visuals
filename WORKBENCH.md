@@ -1,5 +1,54 @@
 # build-room-visuals workbench
 
+## 2026-07-23 -- [Tool: Claude Code, worker es-deck-fixes] (ES kickoff deck: translation fixes + ES report + subtitled reel + Alex's restructure)
+
+**Focus:** Spanish kickoff deck ready for tonight: assessment name translated, Spanish sample report, ES-subtitled highlights reel, and Alex's live restructure (archive 4 slides, reorder sections, price relabel, "stack" rename).
+
+**What happened:**
+- ES deck: "AI Fluency Assessment" -> "Evaluación de Fluidez en IA" (list item, gift h2, iframe title). Band names stay English. Iframe now points to new `fluency-report-sample-es.html` (full Colombian-Spanish twin of the EN report, Audrey sample data kept, bands English).
+- Highlights reel: transcribed `clips/highlights-v4-169.mp4` with faster-whisper (small/int8), clean transcript matching known content. Translated to Colombian Spanish, 8 caption blocks, burned in with ffmpeg -> `clips/highlights-v4-169-es.mp4` (53.1s, matches source). SRT archived at `clips/highlights-v4-169-es.srt`. Deck slide now uses the -es video.
+- [DECISION] Subtitles placed at MarginV=58: the source video has baked-in English captions at the bottom; Spanish sits clearly above them instead of overlapping.
+- [DECISION] Translation register: informal tú, natural Colombian phrasing ("me cotizó", "pantallazo" kept); builder quotes in clip notes stay in English per locked convention.
+- Alex's restructure: archived 4 slides to `_archived-slides-2026-07-23.md` (Entrada/Salida/Cuándo lesson + the 3 individual Builds Reales video slides); order now programa section -> victorias -> Skool; price tag relabeled "PRECIO DEL PROGRAMA DE 4 SEMANAS"; oferta + 1:1 moved before retiros; "El Stack Inicial Óptimo" -> "Las Herramientas para Empezar". Deck is 24 slides, JS syntax-checked.
+
+**Open:** victorias section is now thin (highlights reel + wins grid only); flagged to Alex.
+
+## 2026-07-23 -- [Tool: Claude Code] (Build Vault: card art + helps-with tags)
+
+**Focus:** Added pictures and "helps with" tags to the Build Vault prototype per Alex's ask; redeployed to the token-gated EC2 plan page.
+
+**What happened:**
+- `build-vault.html`: card + modal image slots, second filter row (Helps with: marketing, content, productivity, creative, personal, life-admin), `helps_with` + `image_key` on all 4 cards. Filters combine (pattern AND helps-with), verified headless (Playwright) plus screenshots.
+- Wrote `scripts/generate-vault-images.js` for gpt-image-1 art (1536x1024, medium, webp, ~$0.06/card one time, embeds data URIs between IMAGES_START/END markers).
+- OpenAI returned `billing_hard_limit_reached`, so shipped 4 hand-drawn brand-style SVG placeholders (`assets/vault/*.svg`) embedded as data URIs. Script swaps in real art once Alex raises the limit (~$0.25 total).
+- Redeployed to EC2 plan server (`/plan/build-vault.html`, plan_key gate), verified 200 + embedded images live. Still NOT committed to the build-room-visuals repo (Pages is public).
+- Design doc updated with `helps_with` + `image_key` schema fields.
+
+**Decisions:**
+- [DECISION] Images embed as data URIs, not server assets: the plan server whitelists routes, so a self-contained HTML avoids new routes and keeps deploy = one scp.
+- [DECISION] Placeholder SVGs in brand palette (#fafafa/#1a1a1a/#f59e0b) instead of waiting on billing, so Alex can review the layout today.
+
+**Open:** Alex raises OpenAI billing limit, then `node scripts/generate-vault-images.js`. Clip cutting and starter-prompt testing still pending.
+
+## 2026-07-23 -- [Tool: Claude Code] (Consent fields applied to proof library)
+
+**Focus:** Applied the do-not-share mechanism end to end (schema → JSON → HTML → lookup skill), pushed live (eb30e54).
+
+**What happened:**
+- `proof-library-schema.md`: added optional `do_not_share` (enforcement flag; excluded from every rendered view at every tier, off-limits to skills) and `consent_note` (record of what the builder said and when).
+- `proof-library.json`: flagged Ruben's two debt-project entries (`ff-thu-s1-ruben-debt-sequencer-locked`, `ff-thu-s4-ruben-debt-app-double-award`) with both fields. His cleared testimonial and the group table clips are untouched; he approved the testimonial himself 2026-07-06.
+- `proof-library.html`: render now filters out `do_not_share` entries. Verified live on Pages.
+- `proof-library-lookup` skill: new hard rule, restricted entries never returned as matches.
+
+**Decisions:**
+- [DECISION] Scope of Ruben's restriction = his debt project only, not his testimonial or group-scene clips, based on the S1 "deep IP" note and Alex's 2026-07-23 confirmation.
+
+**Still open:** the raw JSON on public Pages still contains the flagged entries' text (schema doc documents this gap; slimming those entries is the fix if Alex wants full removal). Plus prior open items: cut 4 demo clips, test 4 starter prompts, journey placement, Mon-track batch 2.
+
+**Key files:** proof-library-schema.md, proof-library.json, proof-library.html, .claude/skills/proof-library-lookup/SKILL.md
+
+---
+
 ## 2026-07-23 -- [Tool: Claude Code] (Build Vault: Ruben removed, consent mechanism, published internal)
 
 **Focus:** Alex reviewed the Build Vault prototype, pulled Ruben's card, and asked to publish.

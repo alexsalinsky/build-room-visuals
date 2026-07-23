@@ -69,6 +69,90 @@
     .nav-bar { display: none; }
     .block-card { break-inside: avoid; page-break-inside: avoid; }
   }
+                                                        /* plan-refresh:start:complete-ui-style */
+  .plan-card-item { display: flex; align-items: flex-start; gap: 8px; }
+  .plan-card-item::before { display: none !important; }
+  .card-complete-toggle { margin-top: 2px; flex-shrink: 0; width: 15px; height: 15px; cursor: pointer; }
+  .card-complete-toggle[disabled] { cursor: not-allowed; opacity: 0.6; }
+  .card-main { flex: 1; min-width: 0; }
+  .card-title-row { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .size-pill { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; padding: 1px 6px; border-radius: 999px; font-size: 10px; line-height: 1.4; font-weight: 700; color: #fff; vertical-align: middle; }
+  .plan-suggestions { margin-top: 24px; border-top: 1px solid rgba(0, 0, 0, 0.12); padding-top: 16px; }
+  .plan-suggestions summary { cursor: pointer; font-weight: 700; }
+  .suggestion-theme { margin-top: 12px; }
+  .suggestion-theme h3 { margin: 0 0 6px; font-size: 14px; }
+  .plan-card-item.completed .card-main { text-decoration: line-through; color: #777; }
+  .card-complete-feedback { margin-left: 6px; font-size: 10px; color: #2f855a; white-space: nowrap; }
+  .card-complete-feedback.error { color: #b42318; }
+  .card-complete-feedback.visible { display: inline-block; }
+  .plan-card-item.pending .card-main { opacity: 0.72; }
+  .task .card-complete-feedback { display: block; margin: 4px 0 0; }
+  .plan-vertical { max-width: 900px; margin: 0 auto; }
+  .week-section { margin: 40px 0; }
+  .week-heading { display: flex; align-items: baseline; gap: 12px; border-bottom: 3px solid #1a202c; padding-bottom: 6px; margin-bottom: 14px; }
+  .week-heading .week-label { font-size: 22px; font-weight: 800; }
+  .week-heading .week-dates { font-size: 13px; color: #666; }
+  .week-heading .week-count { margin-left: auto; font-size: 12px; color: #888; }
+  .theme-group { margin: 16px 0 20px; }
+  .theme-heading { display: flex; align-items: center; gap: 8px; margin: 0 0 6px; padding: 4px 10px; border-left: 4px solid #888; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: #222; background: #f4f4f5; }
+  .theme-swatch { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .theme-count { margin-left: auto; font-size: 11px; color: #666; font-weight: 600; }
+  .task-list { list-style: none; padding: 0; margin: 0; }
+  .task-list .task-row { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border: none; background: transparent; }
+  .task-list .task-row:nth-child(even) { background: #eef1f4; }
+  .task-list .task-row.is-today { background: #fff5f0; border-left: 3px solid #b42318; padding-left: 7px; }
+  .task-list .task-row.is-today:nth-child(even) { background: #ffe9df; }
+  .task-list .task-row.empty { color: #888; font-style: italic; }
+  .task-list .task-row .task-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .task-list .task-row .task-title a { color: inherit; text-decoration: none; }
+  .task-list .task-row .task-title a:hover { text-decoration: underline; }
+  .task-list .task-row .task-meta { font-size: 11px; color: #666; font-style: italic; white-space: nowrap; }
+  .task-list .task-row .task-added { font-size: 10px; color: #999; white-space: nowrap; padding: 1px 5px; border-radius: 3px; background: #edeef1; }
+  .task-list .task-row .task-added[title*="2024"], .task-list .task-row .task-added[title*="2025"] { background: #fde68a; color: #92400e; }
+  .today-pill { display: inline-flex; align-items: center; padding: 1px 6px; border-radius: 3px; background: #b42318; color: #fff; font-size: 9px; font-weight: 700; letter-spacing: 0.5px; }
+  .blocked-pill { display: inline-flex; align-items: center; padding: 1px 6px; border-radius: 3px; background: #6b7280; color: #fff; font-size: 9px; font-weight: 700; }
+  .task-list .task-row.blocked { opacity: 0.6; }
+  .task-list .task-row.blocked .task-title { text-decoration: line-through; }
+  .empty-week { color: #888; font-style: italic; padding-left: 10px; }
+  #plan-refresh-btn { position: fixed; top: 12px; right: 12px; z-index: 9999; background: #1a202c; color: #fff; border: none; padding: 8px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+  #plan-refresh-btn:hover { background: #2d3748; }
+  #plan-refresh-btn[disabled] { opacity: 0.6; cursor: wait; }
+  #plan-refresh-btn .btn-status { display: block; font-size: 10px; font-weight: 400; opacity: 0.75; margin-top: 2px; }
+  .events-strip { position: sticky; top: 0; z-index: 100; background: #1a202c; color: #fff; padding: 10px 14px; margin: 0 -12px 24px; overflow-x: auto; }
+  .events-strip-inner { display: flex; gap: 12px; flex-wrap: nowrap; max-width: 900px; margin: 0 auto; }
+  .event-chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background: rgba(255,255,255,0.08); border-radius: 4px; font-size: 12px; white-space: nowrap; }
+  .event-chip strong { color: #fbbf24; font-size: 11px; letter-spacing: 0.3px; }
+  .event-chip .event-countdown { color: #a0aec0; font-size: 10px; }
+  .event-chip.event-type-retreat { background: rgba(180, 35, 24, 0.35); }
+  .event-chip.event-type-milestone { background: rgba(59, 130, 246, 0.35); }
+  .event-chip.event-type-session { background: rgba(34, 139, 34, 0.35); }
+  .event-chip.event-type-external { background: rgba(139, 92, 246, 0.35); }
+  .week-events { padding: 6px 12px; margin: -4px 0 10px; background: #fef9c3; border-left: 4px solid #f59e0b; font-size: 13px; }
+  .week-work { padding: 4px 12px; margin: -4px 0 10px; background: #f4f4f5; border-left: 4px solid #a1a1aa; font-size: 12px; color: #52525b; }
+  .event-inline strong { color: #b45309; }
+  .task-row-main { display: flex; align-items: center; gap: 8px; width: 100%; }
+  .label-chip { display: inline-flex; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 600; color: #fff; white-space: nowrap; }
+  .desc-toggle { background: #dbeafe; border: 1px solid #93c5fd; cursor: pointer; padding: 2px 8px; font-size: 12px; color: #1e40af; border-radius: 4px; font-weight: 700; line-height: 1; }
+  .desc-toggle:hover { background: #bfdbfe; }
+  .desc-toggle.open { background: #1e40af; color: #fff; }
+  .desc-toggle.empty { display: inline-block; width: 24px; background: transparent; border: 1px dashed #d1d5db; color: transparent; cursor: default; }
+  .desc-panel { grid-column: 1 / -1; margin: 4px 0 8px 32px; padding: 8px 12px; background: #f8f9fb; border-left: 3px solid #cbd5e0; font-size: 12px; }
+  .desc-panel pre { margin: 0; white-space: pre-wrap; word-wrap: break-word; font-family: inherit; color: #334155; }
+  .week-dates-inline { font-weight: 500; font-size: 12px; color: #666; margin-left: 6px; letter-spacing: 0; text-transform: none; }
+  .block-row.plan-card-item { display: flex !important; flex-wrap: nowrap; align-items: flex-start; gap: 10px; padding: 10px 14px; }
+  .block-row:nth-child(even) { background: #eef1f4; }
+  .block-row > input[type="checkbox"] { flex: 0 0 auto; margin-top: 3px; }
+  .block-row .size-pill { flex: 0 0 auto; }
+  .block-row .blocked-pill { flex: 0 0 auto; }
+  .block-row .block-title { flex: 1 1 auto; min-width: 0; font-size: 14px; line-height: 1.4; white-space: normal; word-wrap: break-word; }
+  .block-row .block-title a { color: inherit; text-decoration: none; }
+  .block-row .block-min { flex: 0 0 auto; font-size: 11px; font-weight: 700; white-space: nowrap; background: #1a202c; color: #fff; padding: 3px 10px; border-radius: 3px; margin-top: 1px; }
+  .block-row .block-due { flex: 0 0 auto; font-size: 11px; font-weight: 600; white-space: nowrap; color: #b45309; background: #fef3c7; padding: 2px 8px; border-radius: 3px; margin-top: 1px; }
+  #plan-totals-bar { position: fixed; top: 12px; left: 12px; z-index: 9999; background: #ffffff; color: #1a202c; border: 1px solid #cbd5e0; padding: 6px 12px; border-radius: 6px; font-size: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+  #plan-totals-bar strong { color: #0079bf; }
+  .bucket-count { display: inline-block; padding: 1px 8px; background: #1a202c; color: #fff; border-radius: 10px; font-size: 11px; font-weight: 700; margin-left: 8px; }
+  .bucket-overflow { font-size: 11px; color: #666; font-style: italic; padding-left: 8px; }
+  /* plan-refresh:end:complete-ui-style */
 </style>
 </head>
 <body>
@@ -84,105 +168,462 @@
     <a class="nav-link" href="2026-07-plan-map.html">Altitude 1 · Map</a>
     <a class="nav-link" href="2026-07-plan-weekly.html">Altitude 2 · Weekly</a>
     <a class="nav-link active" href="2026-07-plan-block.html">Altitude 3 · Block</a>
-    <a class="nav-link ref" href="2026-07-plan-gantt.html">Reference · Linear gantt</a>
-    <a class="nav-link ref" href="2026-07-plan-calendar.html">Reference · Linear calendar</a>
+    <a class="nav-link" href="2026-07-plan-events.html">Events</a>
   </div>
+
+<!-- plan-refresh:start:block-body -->
 
   <div class="template-note">
     <strong>HOW TO USE THIS</strong><br>
-    Open a block. Pick 1-6 tasks from the theme's rolling to-do list (Altitude 2). Sum to ~90 min. Write one sentence for "done." Execute. Cross off. If you don't finish, tasks roll to the next block of that theme, not to another theme.
+    Open a theme block. Take up to four current cards. Write the real done line before you start. Keep blocked work visible, but out of the active block until the dependency clears.
   </div>
 
-  <h2>Block template</h2>
-  <div class="block-card">
-    <div class="block-head tpl">
-      <div class="lhs">
-        <div class="btime">[Day + time]</div>
-        <div class="bmeta">90 MIN · [BUCKET or FOCUS]</div>
-      </div>
-      <div class="rhs">
-        <span class="theme-tag" style="background:#888;">[Theme]</span>
-        <span class="shape-tag">[Shape]</span>
-      </div>
-    </div>
-    <div class="block-body">
-      <h3>Tasks (max 6 bucket / 1 focus)</h3>
-      <ul class="task-list">
-        <li><span class="dur">30 min</span><span class="task">[Task name] <span class="outcome">One sentence outcome.</span></span></li>
-        <li><span class="dur">15 min</span><span class="task">[Task name] <span class="outcome">One sentence outcome.</span></span></li>
-        <li><span class="dur">15 min</span><span class="task">[Task name] <span class="outcome">One sentence outcome.</span></span></li>
-        <li><span class="dur">30 min</span><span class="task">[Task name] <span class="outcome">One sentence outcome.</span></span></li>
-      </ul>
-      <div class="done-line"><strong>DONE =</strong> [What the block produces, one sentence.]</div>
-    </div>
-  </div>
+  <h2>Current block candidates</h2>
 
-  <h2>Filled example · Wed Jul 15 AM (focus block, Kickoff Session prep)</h2>
-  <div class="block-card">
-    <div class="block-head">
-      <div class="lhs">
-        <div class="btime">Wed Jul 15 · 09:00-10:30 COT</div>
-        <div class="bmeta">90 MIN · KICKOFF DAY</div>
+      <div class="theme-group">
+        <h3 class="theme-heading" style="border-left-color:#2b6cb0"><span class="theme-swatch" style="background:#2b6cb0"></span>Curriculum + Delivery <span class="theme-count">19 · ~575m</span></h3>
+        <ol class="task-list">
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a1a3c8710e7f1d532b071ce">
+          <input type="checkbox" data-card-id="6a1a3c8710e7f1d532b071ce" class="card-complete-toggle" aria-label="Move Foundations module: 10-min API/AI/framework speed lessons to Complete">
+           <span class="size-pill" style="background:#f5cd47">M</span>
+          <span class="block-title"><a href="https://trello.com/c/yUEJo6Vh">Foundations module: 10-min API/AI/framework speed lessons</a></span>
+           <span class="block-due">May 31</span>
+          <span class="block-min">60m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a4572cebcb9cc573b05b941">
+          <input type="checkbox" data-card-id="6a4572cebcb9cc573b05b941" class="card-complete-toggle" aria-label="Move F&amp;F Thu S2 final prep (Jul 2) to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/CQMn1dc3">F&amp;F Thu S2 final prep (Jul 2)</a></span>
+           <span class="block-due">Jul 2</span>
+          <span class="block-min">20m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a4572ce01746bdbbd08ae97">
+          <input type="checkbox" data-card-id="6a4572ce01746bdbbd08ae97" class="card-complete-toggle" aria-label="Move F&amp;F Thu S2 delivery (Jul 2, 15:00 COT) to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/JHncLLIQ">F&amp;F Thu S2 delivery (Jul 2, 15:00 COT)</a></span>
+           <span class="block-due">Jul 2</span>
+          <span class="block-min">45m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a4572d0107fc1bc2e01164c">
+          <input type="checkbox" data-card-id="6a4572d0107fc1bc2e01164c" class="card-complete-toggle" aria-label="Move F&amp;F Thu S2 debrief (build-room-debrief skill) to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/HTKwPipm">F&amp;F Thu S2 debrief (build-room-debrief skill)</a></span>
+           <span class="block-due">Jul 3</span>
+          <span class="block-min">30m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a4572d6beee29349441dd6d">
+          <input type="checkbox" data-card-id="6a4572d6beee29349441dd6d" class="card-complete-toggle" aria-label="Move Muhammad DM (RPA absent, window closes Fri Jul 3) to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/uyFsOuD1">Muhammad DM (RPA absent, window closes Fri Jul 3)</a></span>
+           <span class="block-due">Jul 3</span>
+          <span class="block-min">15m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a4572d1a00c0e619249c2a9">
+          <input type="checkbox" data-card-id="6a4572d1a00c0e619249c2a9" class="card-complete-toggle" aria-label="Move F&amp;F Mon S3 prep + ledger walk (Mode A) to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/Czie8nLe">F&amp;F Mon S3 prep + ledger walk (Mode A)</a></span>
+           <span class="block-due">Jul 4</span>
+          <span class="block-min">20m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a4572d24241bf9af02f9a33">
+          <input type="checkbox" data-card-id="6a4572d24241bf9af02f9a33" class="card-complete-toggle" aria-label="Move F&amp;F Mon S3 final prep to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/2ZmTqkID">F&amp;F Mon S3 final prep</a></span>
+           <span class="block-due">Jul 5</span>
+          <span class="block-min">20m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a4bf39dd4c03060969cd234">
+          <input type="checkbox" data-card-id="6a4bf39dd4c03060969cd234" class="card-complete-toggle" aria-label="Move TODAY: Invite Elevate Holistics to do an AI cohort to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/fl9XXZ1z">TODAY: Invite Elevate Holistics to do an AI cohort</a></span>
+           <span class="block-due">Jul 6</span>
+          <span class="block-min">15m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a4572d2fe9152aa41ec6faa">
+          <input type="checkbox" data-card-id="6a4572d2fe9152aa41ec6faa" class="card-complete-toggle" aria-label="Move F&amp;F Mon S3 delivery (Jul 6, 09:00 COT) to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/dT9iBdt3">F&amp;F Mon S3 delivery (Jul 6, 09:00 COT)</a></span>
+           <span class="block-due">Jul 6</span>
+          <span class="block-min">45m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a4572d35df0911c193c3b93">
+          <input type="checkbox" data-card-id="6a4572d35df0911c193c3b93" class="card-complete-toggle" aria-label="Move F&amp;F Mon S3 debrief to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/UY89B5TH">F&amp;F Mon S3 debrief</a></span>
+           <span class="block-due">Jul 6</span>
+          <span class="block-min">30m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a4572d40d73cd5912ce0dc5">
+          <input type="checkbox" data-card-id="6a4572d40d73cd5912ce0dc5" class="card-complete-toggle" aria-label="Move RPA S4 debrief + cohort close-out to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/CprxpFfz">RPA S4 debrief + cohort close-out</a></span>
+           <span class="block-due">Jul 7</span>
+          <span class="block-min">30m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a1a3c8868c3cb7ddc5332e6">
+          <input type="checkbox" data-card-id="6a1a3c8868c3cb7ddc5332e6" class="card-complete-toggle" aria-label="Move Recognition framework (Most Business Potential vote + Foundation Builder pick) to Complete">
+           <span class="size-pill" style="background:#4bce97">S</span>
+          <span class="block-title"><a href="https://trello.com/c/TtejMdKT">Recognition framework (Most Business Potential vote + Foundation Builder pick)</a></span>
+          
+          <span class="block-min">30m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a1a3c886aef6d8027d65f99">
+          <input type="checkbox" data-card-id="6a1a3c886aef6d8027d65f99" class="card-complete-toggle" aria-label="Move Demo Day Session 4 template to Complete">
+           <span class="size-pill" style="background:#f5cd47">M</span>
+          <span class="block-title"><a href="https://trello.com/c/NvIm8bxG">Demo Day Session 4 template</a></span>
+          
+          <span class="block-min">60m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a1a3c892838bb348039e36e">
+          <input type="checkbox" data-card-id="6a1a3c892838bb348039e36e" class="card-complete-toggle" aria-label="Move 1-month follow-up call template (schedule DURING the cohort) to Complete">
+           <span class="size-pill" style="background:#4bce97">S</span>
+          <span class="block-title"><a href="https://trello.com/c/Zs9FRxO2">1-month follow-up call template (schedule DURING the cohort)</a></span>
+          
+          <span class="block-min">30m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a1a3c8ac5ccf89e8bb983cc">
+          <input type="checkbox" data-card-id="6a1a3c8ac5ccf89e8bb983cc" class="card-complete-toggle" aria-label="Move Refine Onboarding Questionnaire into Google Form or Tally to Complete">
+           <span class="size-pill" style="background:#4bce97">S</span>
+          <span class="block-title"><a href="https://trello.com/c/qf6QRFRL">Refine Onboarding Questionnaire into Google Form or Tally</a></span>
+          
+          <span class="block-min">30m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a39e513495b1bd987b88d1e">
+          <input type="checkbox" data-card-id="6a39e513495b1bd987b88d1e" class="card-complete-toggle" aria-label="Move Build MVP-prep into pre-work pipeline to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/emnyhpzi">Build MVP-prep into pre-work pipeline</a></span>
+          
+          <span class="block-min">20m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a4572d7081a959f06eacc67">
+          <input type="checkbox" data-card-id="6a4572d7081a959f06eacc67" class="card-complete-toggle" aria-label="Move Week 1 focus block (RPA reschedule call OR Bryce testimonial shoot) to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/q5QszfYw">Week 1 focus block (RPA reschedule call OR Bryce testimonial shoot)</a></span>
+          
+          <span class="block-min">15m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a45907b0b6d781e1c9f0936">
+          <input type="checkbox" data-card-id="6a45907b0b6d781e1c9f0936" class="card-complete-toggle" aria-label="Move Put DBALP recordings in Skool to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/PUNZKN0h">Put DBALP recordings in Skool</a></span>
+          
+          <span class="block-min">15m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item blocked" data-card-item data-card-id="6a4572d4b36c2e0dd6e7f408">
+          <input type="checkbox" data-card-id="6a4572d4b36c2e0dd6e7f408" class="card-complete-toggle" aria-label="Move RPA S4 delivery (Jul 7, 10:00 COT) to Complete">
+           <span class="blocked-pill">BLK</span>
+          <span class="block-title"><a href="https://trello.com/c/ul29rceG">RPA S4 delivery (Jul 7, 10:00 COT)</a></span>
+           <span class="block-due">Jul 7</span>
+          <span class="block-min">45m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        </ol>
       </div>
-      <div class="rhs">
-        <span class="theme-tag theme-marketing">Marketing + Proof</span>
-        <span class="shape-tag focus">Focus</span>
-      </div>
-    </div>
-    <div class="block-body">
-      <h3>Tasks</h3>
-      <ul class="task-list">
-        <li><span class="dur">30 min</span><span class="task">Walk the deck end-to-end <span class="outcome">Every slide has intent. Thesis verbatim. No black-box. No "drop in chat."</span></span></li>
-        <li><span class="dur">10 min</span><span class="task">Test Zoom room + screen share <span class="outcome">No surprises at go-time.</span></span></li>
-        <li><span class="dur">10 min</span><span class="task">Test Stripe link end-to-end <span class="outcome">Price + application gate fires correctly.</span></span></li>
-        <li><span class="dur">15 min</span><span class="task">Schedule final Skool + WhatsApp reminders (T-2h and T-15min) <span class="outcome">Both queued.</span></span></li>
-        <li><span class="dur">10 min</span><span class="task">Confirm application form links (Kickoff deck slide + Skool post) <span class="outcome">Live and tested.</span></span></li>
-        <li><span class="dur">15 min</span><span class="task">Buffer / pacing check <span class="outcome">Dry-run timing.</span></span></li>
-      </ul>
-      <div class="done-line"><strong>DONE =</strong> Kickoff Session ready to run at 11:00 COT. Zero unknowns.</div>
-    </div>
-  </div>
 
-  <h2>Filled example · Thu Jul 2 AM (bucket block, S2 final prep)</h2>
-  <div class="block-card">
-    <div class="block-head">
-      <div class="lhs">
-        <div class="btime">Thu Jul 2 · 09:00-10:30 COT</div>
-        <div class="bmeta">90 MIN · S2 SESSION DAY</div>
+      <div class="theme-group">
+        <h3 class="theme-heading" style="border-left-color:#b7791f"><span class="theme-swatch" style="background:#b7791f"></span>Marketing + Proof <span class="theme-count">6 · ~105m</span></h3>
+        <ol class="task-list">
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a4572d5fd783e24e51090ba">
+          <input type="checkbox" data-card-id="6a4572d5fd783e24e51090ba" class="card-complete-toggle" aria-label="Move Bryce testimonial capture kickoff (7-day SLA) to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/7WIgsRJ6">Bryce testimonial capture kickoff (7-day SLA)</a></span>
+           <span class="block-due">Jul 7</span>
+          <span class="block-min">15m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a1a3c8b53aa14c7222d17c1">
+          <input type="checkbox" data-card-id="6a1a3c8b53aa14c7222d17c1" class="card-complete-toggle" aria-label="Move Adapt proposal into shorter warm-outreach DM template to Complete">
+           <span class="size-pill" style="background:#4bce97">S</span>
+          <span class="block-title"><a href="https://trello.com/c/VrvbI72A">Adapt proposal into shorter warm-outreach DM template</a></span>
+          
+          <span class="block-min">30m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a341c2fc3d0bec9e36e317b">
+          <input type="checkbox" data-card-id="6a341c2fc3d0bec9e36e317b" class="card-complete-toggle" aria-label="Move Publish NC17 affiliate reel (Variant 2, BC/AC) to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/cdzPzgPZ">Publish NC17 affiliate reel (Variant 2, BC/AC)</a></span>
+          
+          <span class="block-min">15m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a341c30260bc95167155b65">
+          <input type="checkbox" data-card-id="6a341c30260bc95167155b65" class="card-complete-toggle" aria-label="Move Publish NC17 LinkedIn post + Skool update + email blast to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/mD2PMrWA">Publish NC17 LinkedIn post + Skool update + email blast</a></span>
+          
+          <span class="block-min">15m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a341c30698f3184912cc547">
+          <input type="checkbox" data-card-id="6a341c30698f3184912cc547" class="card-complete-toggle" aria-label="Move Cut Build Room thesis-line clip (top-of-funnel brand) to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/uD8b4290">Cut Build Room thesis-line clip (top-of-funnel brand)</a></span>
+          
+          <span class="block-min">15m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a341c31536d862813910d8c">
+          <input type="checkbox" data-card-id="6a341c31536d862813910d8c" class="card-complete-toggle" aria-label="Move Cut &#39;Losing my ambitious friends to AI&#39; long-form reel to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/1R4lXeKq">Cut &#39;Losing my ambitious friends to AI&#39; long-form reel</a></span>
+          
+          <span class="block-min">15m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        </ol>
       </div>
-      <div class="rhs">
-        <span class="theme-tag theme-curriculum">Curriculum + Delivery</span>
-        <span class="shape-tag">Bucket</span>
-      </div>
-    </div>
-    <div class="block-body">
-      <h3>Tasks</h3>
-      <ul class="task-list">
-        <li><span class="dur">10 min</span><span class="task">Verify Zoom link + Drafting Table <code>/c/ff-thu</code> URLs <span class="outcome">Both live and tested.</span></span></li>
-        <li><span class="dur">10 min</span><span class="task">Send Skool reminder post <span class="outcome">Pinned in cohort space.</span></span></li>
-        <li><span class="dur">10 min</span><span class="task">Send WhatsApp broadcast to Thu cohort <span class="outcome">Sent.</span></span></li>
-        <li><span class="dur">20 min</span><span class="task">Thierry brief · Stu + Andrea onboarding catch-up note <span class="outcome">Thierry has it before session.</span></span></li>
-        <li><span class="dur">20 min</span><span class="task">Walk S2 agenda + mid-cohort share block slot picks <span class="outcome">Agenda locked.</span></span></li>
-        <li><span class="dur">20 min</span><span class="task">Buffer / open comms check <span class="outcome">Any last DMs answered.</span></span></li>
-      </ul>
-      <div class="done-line"><strong>DONE =</strong> Walk into S2 at 15:00 with zero prep debt.</div>
-    </div>
-  </div>
 
-  <h2>Rules for filling a block</h2>
+      <div class="theme-group">
+        <h3 class="theme-heading" style="border-left-color:#6b46c1"><span class="theme-swatch" style="background:#6b46c1"></span>Retreat Logistics <span class="theme-count">5 · ~195m</span></h3>
+        <ol class="task-list">
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a1a3c9091d9e9cbc85f0299">
+          <input type="checkbox" data-card-id="6a1a3c9091d9e9cbc85f0299" class="card-complete-toggle" aria-label="Move PDC Retreat: decide positioning (Build Room ladder tier vs standalone AI Facilitation) to Complete">
+           <span class="size-pill" style="background:#579dff">XS</span>
+          <span class="block-title"><a href="https://trello.com/c/8nmg5a43">PDC Retreat: decide positioning (Build Room ladder tier vs standalone AI Facilitation)</a></span>
+          
+          <span class="block-min">15m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a1a3c904e8eb6a1b28a185f">
+          <input type="checkbox" data-card-id="6a1a3c904e8eb6a1b28a185f" class="card-complete-toggle" aria-label="Move PDC Retreat: set dates (placeholder Oct 10-17 after Johannes retreat ends) to Complete">
+           <span class="size-pill" style="background:#579dff">XS</span>
+          <span class="block-title"><a href="https://trello.com/c/8UQoXszS">PDC Retreat: set dates (placeholder Oct 10-17 after Johannes retreat ends)</a></span>
+          
+          <span class="block-min">15m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a1a3c91cd443e4ccb6a36ec">
+          <input type="checkbox" data-card-id="6a1a3c91cd443e4ccb6a36ec" class="card-complete-toggle" aria-label="Move PDC Retreat: define audience (Build Room alumni / cold / mixed) to Complete">
+           <span class="size-pill" style="background:#4bce97">S</span>
+          <span class="block-title"><a href="https://trello.com/c/v1A6QnnP">PDC Retreat: define audience (Build Room alumni / cold / mixed)</a></span>
+          
+          <span class="block-min">30m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a1a3c938d3bca6970bfe5a1">
+          <input type="checkbox" data-card-id="6a1a3c938d3bca6970bfe5a1" class="card-complete-toggle" aria-label="Move PDC Retreat: kick off marketing sprint (12-14 weeks lead time) to Complete">
+           <span class="size-pill" style="background:#8590a2">L</span>
+          <span class="block-title"><a href="https://trello.com/c/MGLsP48x">PDC Retreat: kick off marketing sprint (12-14 weeks lead time)</a></span>
+          
+          <span class="block-min">120m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a343c4473f1441ea153480d">
+          <input type="checkbox" data-card-id="6a343c4473f1441ea153480d" class="card-complete-toggle" aria-label="Move Fiesta Inn Round 1 SENT - awaiting Sthephany reply (dates + rates) to Complete">
+          
+          <span class="block-title"><a href="https://trello.com/c/RbPVS796">Fiesta Inn Round 1 SENT - awaiting Sthephany reply (dates + rates)</a></span>
+          
+          <span class="block-min">15m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        </ol>
+      </div>
+
+      <div class="theme-group">
+        <h3 class="theme-heading" style="border-left-color:#0f766e"><span class="theme-swatch" style="background:#0f766e"></span>Travel Planning <span class="theme-count">1 · ~15m</span></h3>
+        <ol class="task-list">
+        <li class="block-row plan-card-item" data-card-item data-card-id="6a1a3c9b23e91ef208eb49ee">
+          <input type="checkbox" data-card-id="6a1a3c9b23e91ef208eb49ee" class="card-complete-toggle" aria-label="Move Fall cascade - confirm all trip dates lock together to Complete">
+           <span class="size-pill" style="background:#579dff">XS</span>
+          <span class="block-title"><a href="https://trello.com/c/mbMy5ZR9">Fall cascade - confirm all trip dates lock together</a></span>
+          
+          <span class="block-min">15m</span>
+          <span class="card-complete-feedback" aria-live="polite"></span>
+        </li>
+        </ol>
+      </div>
+
+  <h2>Deferred queue</h2>
   <div class="rules">
     <ul>
-      <li><strong>Bucket blocks</strong> hold 3-6 tasks from one theme's rolling list. Sum to ~90 min.</li>
-      <li><strong>Focus blocks</strong> hold 1 task. When a single thing earns the whole 90 min, give it the whole 90 min.</li>
-      <li>Every task carries a duration estimate (5 / 10 / 15 / 30 / 45 / 60 min) and a one-sentence outcome.</li>
-      <li>"Done" is written before starting. If it's fuzzy, the block is fuzzy.</li>
-      <li>Blocked tasks stay in the rolling list, not the block. Add them when their dependency clears.</li>
-      <li>Undone tasks roll to the next block of the same theme, not another theme.</li>
-      <li>Grab-bag is the only theme where miscellaneous belongs.</li>
+      <li class="plan-card-item" data-card-item data-card-id="6a1a3c81983f320c1c406047">
+  <input type="checkbox" data-card-id="6a1a3c81983f320c1c406047" class="card-complete-toggle" aria-label="Move Claim handle &quot;the-build-room&quot; on Skool (Hobby tier $9/mo) to Complete">
+  <span class="card-main"><span class="card-title-row"><a href="https://trello.com/c/4t4ChkbU">Claim handle &quot;the-build-room&quot; on Skool (Hobby tier $9/mo)</a> <span class="size-pill" style="background:#579dff">XS</span></span> <span class="task-meta">deferred</span></span>
+  <span class="card-complete-feedback" aria-live="polite"></span>
+</li>
+        <li class="plan-card-item" data-card-item data-card-id="6a39fd8b19338463121eb157">
+  <input type="checkbox" data-card-id="6a39fd8b19338463121eb157" class="card-complete-toggle" aria-label="Move Build resource: Where to host your prototype (Vercel / Replit / GitHub Pages) to Complete">
+  <span class="card-main"><span class="card-title-row"><a href="https://trello.com/c/hzevhwTy">Build resource: Where to host your prototype (Vercel / Replit / GitHub Pages)</a></span> <span class="task-meta">deferred</span></span>
+  <span class="card-complete-feedback" aria-live="polite"></span>
+</li>
+        <li class="plan-card-item" data-card-item data-card-id="6962ef75cd6eecf6d9ba797b">
+  <input type="checkbox" data-card-id="6962ef75cd6eecf6d9ba797b" class="card-complete-toggle" aria-label="Move Fwd: DCBKK Recordings + Dec 31 Deadline to Complete">
+  <span class="card-main"><span class="card-title-row"><a href="https://trello.com/c/W6nbprQo">Fwd: DCBKK Recordings + Dec 31 Deadline</a></span> <span class="task-meta">deferred</span></span>
+  <span class="card-complete-feedback" aria-live="polite"></span>
+</li>
+        <li class="plan-card-item blocked" data-card-item data-card-id="6a1a3c8d2078c76594a58181">
+  <input type="checkbox" data-card-id="6a1a3c8d2078c76594a58181" class="card-complete-toggle" aria-label="Move If standalone: Build Room landing hero + 3 pathways + social proof + application form to Complete">
+  <span class="card-main"><span class="card-title-row"><a href="https://trello.com/c/r4FXugzR">If standalone: Build Room landing hero + 3 pathways + social proof + application form</a> <span class="size-pill" style="background:#8590a2">L</span></span> <span class="task-meta">deferred</span> <span class="task-blocked">blocked-until: blocked</span></span>
+  <span class="card-complete-feedback" aria-live="polite"></span>
+</li>
+        <li class="plan-card-item" data-card-item data-card-id="6a1a3c8f47e7a1aeeb71b9df">
+  <input type="checkbox" data-card-id="6a1a3c8f47e7a1aeeb71b9df" class="card-complete-toggle" aria-label="Move Position relationship with Johannes for 2027 MSC Europe paid headline to Complete">
+  <span class="card-main"><span class="card-title-row"><a href="https://trello.com/c/r5ArfHsm">Position relationship with Johannes for 2027 MSC Europe paid headline</a> <span class="size-pill" style="background:#4bce97">S</span></span> <span class="task-meta">deferred</span></span>
+  <span class="card-complete-feedback" aria-live="polite"></span>
+</li>
     </ul>
   </div>
-
+<!-- plan-refresh:end:block-body -->
   <footer>Alex Salinsky · The Build Room</footer>
 </div>
+<!-- plan-refresh:start:complete-ui-script -->
+<script>
+(() => {
+  const isServed = ['localhost', '127.0.0.1'].includes(window.location.hostname)
+    || window.location.pathname.startsWith('/plan/');
+
+  // Totals bar (all modes)
+  try {
+    const metaEl = document.querySelector('meta[name="plan-totals"]');
+    if (metaEl) {
+      const t = JSON.parse(metaEl.getAttribute('content'));
+      const bar = document.createElement('div');
+      bar.id = 'plan-totals-bar';
+      bar.innerHTML = 'Total <strong>' + t.total + '</strong> · Today <strong>' + t.today + '</strong> · W1 <strong>' + t.week1 + '</strong> · W2 <strong>' + t.week2 + '</strong> · W3 <strong>' + t.week3 + '</strong> · W4 <strong>' + t.week4 + '</strong> · Suggestions <strong>' + t.suggestions + '</strong> · Deferred <strong>' + t.deferred + '</strong>';
+      document.body.appendChild(bar);
+    }
+  } catch (e) { console.warn('totals bar failed', e); }
+
+  // Sync-from-Trello button (only in --serve mode)
+  if (isServed) {
+    const btn = document.createElement('button');
+    btn.id = 'plan-refresh-btn';
+    btn.innerHTML = 'Sync from Trello<span class="btn-status"></span>';
+    const status = btn.querySelector('.btn-status');
+    btn.addEventListener('click', async () => {
+      btn.disabled = true;
+      status.textContent = 'fetching...';
+      try {
+        const t0 = Date.now();
+        const r = await fetch('api/refresh', { method: 'POST' });
+        const j = await r.json();
+        if (!r.ok || !j.ok) throw new Error(j.error || 'refresh failed');
+        status.textContent = 'reloading...';
+        window.location.reload();
+      } catch (e) {
+        status.textContent = 'error: ' + e.message;
+        setTimeout(() => { btn.disabled = false; status.textContent = ''; }, 3000);
+      }
+    });
+    document.body.appendChild(btn);
+  }
+
+  // Description expander
+  document.querySelectorAll('.desc-toggle:not(.empty)').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = btn.getAttribute('data-card-id');
+      const panel = document.querySelector('.desc-panel[data-desc-for="' + id + '"]');
+      if (!panel) return;
+      const isHidden = panel.hasAttribute('hidden');
+      if (isHidden) { panel.removeAttribute('hidden'); btn.classList.add('open'); btn.textContent = 'desc ▾'; }
+      else { panel.setAttribute('hidden', ''); btn.classList.remove('open'); btn.textContent = 'desc ▸'; }
+    });
+  });
+
+  const toggles = Array.from(document.querySelectorAll('.card-complete-toggle'));
+  if (!toggles.length) return;
+
+  if (!isServed) {
+    toggles.forEach((toggle) => {
+      toggle.disabled = true;
+      toggle.title = 'Open via --serve mode to enable check-off';
+    });
+    return;
+  }
+
+  const pending = new Set();
+
+  function setState(cardId, state) {
+    document.querySelectorAll('[data-card-id="' + cardId + '"]').forEach((node) => {
+      if (node.matches('.card-complete-toggle')) {
+        node.checked = state.checked;
+        node.disabled = state.disabled;
+        return;
+      }
+      node.classList.toggle('pending', !!state.pending);
+      node.classList.toggle('completed', !!state.completed);
+    });
+  }
+
+  function showFeedback(cardId, message, isError) {
+    document.querySelectorAll('[data-card-item][data-card-id="' + cardId + '"] .card-complete-feedback').forEach((node) => {
+      node.textContent = message;
+      node.classList.toggle('error', !!isError);
+      node.classList.add('visible');
+      clearTimeout(node._feedbackTimer);
+      if (isError) {
+        node._feedbackTimer = setTimeout(() => {
+          node.textContent = '';
+          node.classList.remove('error', 'visible');
+        }, 2600);
+      }
+    });
+  }
+
+  async function completeCard(cardId) {
+    const response = await fetch('api/complete-card', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ cardId }),
+    });
+
+    let payload = {};
+    try {
+      payload = await response.json();
+    } catch (error) {
+      payload = {};
+    }
+
+    if (!response.ok || !payload.ok) {
+      throw new Error(payload.error || 'Request failed');
+    }
+  }
+
+  toggles.forEach((toggle) => {
+    toggle.addEventListener('change', async (event) => {
+      if (!event.target.checked) return;
+
+      const cardId = event.target.dataset.cardId;
+      if (!cardId || pending.has(cardId)) return;
+      pending.add(cardId);
+      setState(cardId, { checked: true, disabled: true, pending: true, completed: true });
+      showFeedback(cardId, '', false);
+
+      try {
+        await completeCard(cardId);
+        setState(cardId, { checked: true, disabled: true, pending: false, completed: true });
+        showFeedback(cardId, 'moved to Complete', false);
+      } catch (error) {
+        console.error('Failed to move card to Complete', { cardId, error });
+        setState(cardId, { checked: false, disabled: false, pending: false, completed: false });
+        showFeedback(cardId, error.message || 'Failed to move card', true);
+      } finally {
+        pending.delete(cardId);
+      }
+    });
+  });
+})();
+</script>
+<!-- plan-refresh:end:complete-ui-script -->
 </body>
 </html>
