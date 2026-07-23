@@ -6,7 +6,8 @@
 <title>Sesión de Kickoff · 23 de julio · The Build Room</title>
 <!--
   Kickoff Session deck, versión en español colombiano (webinar Humanos vs. Robots, 2026-07-23 7pm COT).
-  Basada en kickoff-session-2026-07-23-en.html. 24 slides: reordenada por Alex 2026-07-23 (programa antes de
+  Basada en kickoff-session-2026-07-23-en.html. 26 slides (24 + one-pager de comunidad como primera y última,
+  via iframe a one-pager-community-es.html): reordenada por Alex 2026-07-23 (programa antes de
   victorias, ambos antes de Skool; precio + 1:1 antes de retiros; 4 slides archivadas en
   _archived-slides-2026-07-23.md). Los números en los comentarios son los originales, el orden real es la posición
   en el array. Vocabulario bloqueado 2026-07-21:
@@ -231,6 +232,11 @@
 
 <script>
 const slides = [
+
+  // 0. One-pager de comunidad (pantalla de entrada, full-bleed via iframe)
+  {
+    html: `<div class="slide" style="position:absolute;inset:0;padding:0;overflow:hidden;border-radius:14px;background:#11141b"><iframe src="one-pager-community-es.html" title="The Build Room, Comunidad en acción" style="width:100%;height:100%;border:0;display:block"></iframe></div>`
+  },
 
   // 1. Portada (sin clip, por decisión de Alex 2026-07-23)
   {
@@ -633,6 +639,11 @@ const slides = [
       <p class="sub" style="margin-top:24px;font-size:22px;color:#1a1a1a;font-weight:700">Estamos en esto juntos.</p>
       <div class="price-pill">600.000 COP en esta llamada · 800.000 COP después</div>
     </div>`
+  },
+
+  // 29. One-pager de comunidad (pantalla de cierre, full-bleed via iframe)
+  {
+    html: `<div class="slide" style="position:absolute;inset:0;padding:0;overflow:hidden;border-radius:14px;background:#11141b"><iframe src="one-pager-community-es.html" title="The Build Room, Comunidad en acción" style="width:100%;height:100%;border:0;display:block"></iframe></div>`
   }
 ];
 
