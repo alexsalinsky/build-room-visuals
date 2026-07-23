@@ -1,6 +1,6 @@
 # Proof Library — Schema
 
-Last updated: 2026-06-30
+Last updated: 2026-07-23
 
 Single source of truth for the structure of `proof-library.json`. The static page at `proof-library.html` reads this JSON client-side. Anything that writes to the JSON (skills, workers, manual edits) MUST conform to the entry shape below.
 
@@ -29,6 +29,8 @@ Each entry is a JSON object with these fields. Required unless marked optional.
 | `date_captured` | string (YYYY-MM-DD) | yes | Date this entry was added to the library. Shown on each card as "Added: YYYY-MM-DD" and available as a sort option in the UI (default sort is Date added, newest first). |
 | `date_cleared` | string OR null | yes | Date status moved past `raw`. Null until that happens. |
 | `notes` | string | optional | Internal-use free-form. TODO markers, permission asks pending, sensitivity flags. |
+| `do_not_share` | boolean | optional | Builder asked that this work not circulate. When `true`, the entry is excluded from every derived view at every tier (proof-library.html render, Build Vault internal and public) and is off-limits to content, outreach, and lookup skills. Absence means false. |
+| `consent_note` | string | optional | Plain-language record of what the builder said about sharing and when, so future sessions don't rediscover the preference from transcripts. Can exist without `do_not_share` (e.g. "OK internally, never public"). |
 
 ---
 
@@ -92,6 +94,12 @@ Both nullable. As of 2026-07-16, cut clips upload to the Drive "Clips" folder (i
 For clip entries, the path to the archived clean cut on Alex's machine (usually under `brain/the-build-room/recordings/clips/<cohort>/`). Set when `media_url` points at Drive so the local master is still traceable.
 
 `thumbnail`, when set, should be a path under `build-room-visuals/assets/proof/` (relative) for repo-tracked images, or an absolute URL.
+
+### `do_not_share` and `consent_note`
+
+Consent protection above and beyond `status`. `status` tracks public clearance; `do_not_share` tracks a builder's request that the work not circulate at all, even internally. The `confidentiality-requested` tag remains the lightweight signal; `do_not_share: true` is the enforcement flag renderers and skills must obey. First use: Ruben's debt-project entries (2026-07-23, Alex confirmed his sensitivity).
+
+Note: `proof-library.json` itself is fetchable from public GitHub Pages. `do_not_share` hides an entry from every rendered view, but the raw entry text stays in the public JSON. If an entry's content itself is sensitive, also slim the entry (trim `quote`/`notes` down to non-sensitive stubs) or keep the detail only in cohort docs.
 
 ### `tags`
 

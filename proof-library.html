@@ -568,7 +568,8 @@
     fetch('proof-library.json?v=' + Date.now())
       .then(r => r.json())
       .then(data => {
-        state.entries = (data.entries || []).slice();
+        // do_not_share: builder asked that this work not circulate; excluded from every rendered view (see schema).
+        state.entries = (data.entries || []).filter(e => !e.do_not_share);
         render();
       })
       .catch(err => {

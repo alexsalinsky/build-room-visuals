@@ -1,5 +1,106 @@
 # build-room-visuals workbench
 
+## 2026-07-23 -- [Tool: Claude Code] (Build Vault: Ruben removed, consent mechanism, published internal)
+
+**Focus:** Alex reviewed the Build Vault prototype, pulled Ruben's card, and asked to publish.
+
+**What happened:**
+- Removed Ruben's Debt Payoff App card and the now-empty single-file-app filter chip from `build-vault.html`. Alex confirmed he's sensitive about sharing it.
+- Design doc gained a do-not-share mechanism proposal: optional top-level `do_not_share` (enforcement flag, excludes entry from Vault at every tier and from content/outreach) + `consent_note` (plain-language record of what the builder said and when). Schema change still pends the normal mutation order.
+- Published the Vault to the token-gated EC2 plan server: added `/build-vault.html` to SERVE_ROUTES in `scripts/build-room-plan-refresh.js`, scp'd script + page, pm2 restart. Verified 401 without token, 200 with. Live at https://13-218-176-29.sslip.io/plan/build-vault.html
+- Draft banner now reads INTERNAL / Build Room members only. Page remains uncommitted in the build-room-visuals repo so it can't reach public GitHub Pages.
+- Cockpit review item #2 (Alex's owed review) resolved.
+
+**Decisions:**
+- [DECISION] Internal hosting question resolved by publish: EC2 token-gated plan server, per design doc recommendation.
+- [DECISION] Ruben's entries get do-not-share treatment across all tiers, not just the public one.
+
+**Still open:** cut S4 demo clips (first batch: the 4 live cards), test the 4 starter prompts in a real agent, journey placement, Mon-track batch 2, schema fields not yet applied to proof-library-schema.md/JSON.
+
+**Key files:** build-vault.html, scripts/build-room-plan-refresh.js, docs/superpowers/specs/2026-07-22-build-vault-design.md
+
+---
+
+## 2026-07-22 -- [Tool: Claude Code] (Build Vault: design doc + prototype)
+
+**Focus:** Designed and prototyped "The Build Vault", a browsable showcase answering a new builder's "what could I build?" Origin: Bernice 1:1 (2026-07-22, 20:12-21:02); her ask was a card that "takes it into the agent that you use", so every card carries a copy-paste starter prompt.
+
+**What happened:**
+- Design doc + proposed schema extension: `docs/superpowers/specs/2026-07-22-build-vault-design.md`. Adds ONE optional `vault` object per proof-library entry (project_name, what_it_is, how_it_was_built, build_pattern, how_to_think, starter_prompt, demo_url, tier). Schema change not yet applied; awaits Alex review.
+- Prototype `build-vault.html` (local, NOT committed): 5 real S4 cards (Ruben, Anthony, Dominika, Cece, Sarah), pattern filter, modal with WHAT/HOW/THINK layers + starter prompt with copy button. Browser-verified via Playwright.
+- Only real video embed is Cece's cleared S1 Drive clip; other cards link to Fathom at verified demo timestamps because no S4 recordings exist locally and no S4 clips are cut.
+
+**Decisions:**
+- [DECISION] Vault is a derived view of proof-library.json via a `vault` extension field, not a second database. Keeps single-inventory rule and one write path (debrief skill).
+- [DECISION] Two tiers: internal (recommend EC2 token-gated; Pages is public) and public (cleared-for-public status only). Prototype stays uncommitted until Alex clears hosting + consent.
+
+**Still open:** 6 decision points in the design doc: internal hosting, clip cutting order, Ruben consent (his S1 confidentiality request), starter-prompt testing (drafted, NOT machine-tested), journey placement, Mon-track coverage.
+
+**Key files:** build-vault.html (uncommitted), docs/superpowers/specs/2026-07-22-build-vault-design.md
+
+---
+
+## 2026-07-15 13:53 -- [Tool: Claude Code] (Restore LLM pricing section)
+
+**Focus:** Alex asked where the LLM pricing/options content went; restored it onto minimum-tech-stack.html (8d3c866, live).
+
+**What happened:**
+- Traced the missing content: the pre-rewrite Minimum Tech Stack page (before de232bf) had "The Two Options" pricing cards; the two-branch rewrite dropped them.
+- Restored as a "What it costs" section between the branches and the converge block: ChatGPT Plus card ($20/mo, includes Codex) and Claude Pro or Max card (Pro $20/mo, Max from $100, includes Claude Code), each with official pricing links, plus the "you only need one $20/month subscription" line.
+
+**Decisions:**
+- [DECISION] Restored on the same page (option 1) rather than a separate pricing page because the radical-simplicity direction favors one link for builders; Alex chose 1.
+- [DECISION] Dropped the old GitHub add-on and $10/mo server mentions because new-builder pages now exclude GitHub/terminal/server complexity; Alex approved the result.
+
+**Still open:** None.
+
+**Key files:** minimum-tech-stack.html
+
+---
+
+## 2026-07-15 -- [Tool: Claude Code] (Simplify two resource pages)
+
+**Focus:** Alex-directed simplification of two Build Room resource pages; pushed live (1dc907a).
+
+**What happened:**
+- `publish-online-free-cloudflare.html`: removed old step 3 (save token to shell env / .env) as redundant with the paste-into-robot prompt, which already carries the token. Now three steps: sign up, create token, paste prompt. Heading updated to "Three steps".
+- `minimum-tech-stack.html` Branch B: replaced terminal install commands + GitHub link with a single line — download the Codex desktop app (links to openai.com/codex/get-started/, verified live), sign in with ChatGPT account. Added "You only need the $20/month ChatGPT plan to get started." Removed now-unused install-steps/codeblock CSS.
+
+**Decisions:**
+- [DECISION] Resource pages for new builders get the radical-simplicity bar: no terminal, no GitHub, no env-var steps. If a step duplicates what the robot prompt already does, cut the step. Memory updated (feedback_simpler_builder_pre_work).
+
+## 2026-07-06 -- [Tool: Claude Code, worker] (Facilitator notes page)
+
+**Focus:** Generic facilitator notes page for coaches (Jessica, Thierry), pushed live.
+
+**What happened:**
+- Created `facilitator/facilitator-notes.html` (aa52d6d): one-screen page built on Alex's three rules. 1) Ledger time is for the next step, not troubleshooting. 2) Troubleshooting is 1:1 or small group in the build hour, at facilitator discretion. 3) Prompt builders to articulate demo, prototype, WHY and HOW. Added a 60-90 sec ledger exchange script (where / next step / lock it / move on), four coaching questions (Demo, Prototype, Why, How), and a short build-hour section (rotate 1:1s, park rabbit holes, protect momentum). Reused ff-hub CSS so it feels native. Footer verbatim, no em dashes, no thesis line needed.
+- Added a link card to `facilitator/ff-hub.html` in the "Open every session with this" grid, next to Session Opener and Drafting Table.
+- Pushed to origin; live at https://alexsalinsky.github.io/build-room-visuals/facilitator/facilitator-notes.html
+
+**Decisions:**
+- [DECISION] Kept content strictly to elaborations of the three rules; no new policy invented. The "if a builder can answer all four crisply they're on track" line is a reading of rule 3, not new doctrine.
+- [DECISION] Placed the hub card in the every-session section (not Live tools) because it's a pre-session read, cohort-agnostic.
+
+## 2026-07-06 -- [Tool: Claude Code, ff-mon-s3-agenda-slides] (F&F Mon S3 deck + hub update)
+
+**Focus:** Ship the F&F Mon Session 3 (Become a Publisher) deck and update the facilitator hub S3 block.
+
+**What happened:**
+- Created `facilitator/ff-mon-s3.html` (23705bc): 10-slide deck with the 2-slide opener built in (thesis verbatim + agreements from session-opener.html), agenda, builder shares, Cloudflare publish walkthrough link, ledger review, 66-min build time, Demo Day close, send-off. Inlined tokens per the ff-mon-kickoff precedent; template nav + arrow keys + 50px swipe handlers; glassy HUD pill; footer "Alex Salinsky · The Build Room".
+- Rewrote ff-hub.html S3 block to the new 5-block flow (arc-v2026-07-06), moved `s-now` to S3, corrected the date to Mon Jul 7, demoted old lesson pills to reference, linked the deck + agenda.
+- Verification: script parses, nav handlers present, zero em dashes outside `<title>`, thesis + footer verbatim. Live browser click-through blocked (both browser MCPs locked), fell back to static checks.
+
+**Decisions:**
+- [DECISION] Static nav verification accepted over live browser test because Playwright MCP held a stale profile lock and chrome-devtools needs a pre-launched Chrome; the nav script is the proven template pattern unchanged plus standard swipe handlers.
+
+**Still open:**
+- Alex click-through of the live deck before Mon 9am (arrows + swipe on phone).
+
+**Key files:** facilitator/ff-mon-s3.html, facilitator/ff-hub.html
+
+---
+
 ## 2026-07-06 -- [Tool: Claude Code] (landing page final review + proof data hotfix)
 
 **Focus:** Final whole-implementation review of the live landing page, hotfix what it found.
