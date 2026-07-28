@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Facilitator Hub · Humans V Robots 2</title>
+<!--
+  Humans V Robots 2 (hvr2) cohort facilitator hub.
+  Wed cohort A: 9:00-11:00am COT (Alan Duro EN, Diana Montoya ES, Juan Castellanos ES)
+  Wed cohort B: 7:00-9:00pm COT (Bernice Chan EN, Daniel Cartwright EN, Jessica Cordoba ES)
+  4 Wednesdays: Jul 29, Aug 5, Aug 12, Aug 19 (2026).
+  Mixed-language cohort. S1 resources ship in EN + ES pairs.
+  Sessions are 2 hours. Facilitator-only, bookmark-only, never linked from participant surfaces.
+-->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 40px 28px 80px; }
+  header { margin-bottom: 28px; }
+  h1 { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .sub { font-size: 17px; color: #666; }
+  .cohort-pill { display: inline-block; background: #1a1a1a; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 1px; margin-bottom: 14px; }
+
+  h2 { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin: 32px 0 12px; padding-bottom: 6px; border-bottom: 1.5px solid #ddd; }
+
+  .zone-banner { background: #1a1a1a; color: #fff; padding: 10px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin: 32px 0 14px; display: flex; align-items: center; gap: 12px; }
+  .zone-banner.generic { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; }
+  .zone-banner .badge { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 8px; border-radius: 10px; background: rgba(255,255,255,0.18); }
+  .zone-banner.generic .badge { background: #1a1a1a; color: #fff; }
+
+  .glance { background: #fff; border: 2px solid #1a1a1a; border-radius: 10px; padding: 18px 20px; margin-bottom: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 720px) { .glance { grid-template-columns: 1fr; } }
+  .glance .item .label { font-size: 11px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+  .glance .item .val { font-size: 18px; font-weight: 800; line-height: 1.25; }
+  .glance .item .hint { font-size: 12px; color: #666; margin-top: 2px; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 12px; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  @media (max-width: 720px) { .grid-3 { grid-template-columns: 1fr; } }
+
+  .card { background: #fff; border: 2px solid #1a1a1a; border-radius: 10px; padding: 16px 18px; text-decoration: none; color: #1a1a1a; display: block; transition: all 0.15s; }
+  .card:hover { background: #1a1a1a; color: #fff; }
+  .card:hover .meta { color: #aaa; }
+  .card .title { font-size: 16px; font-weight: 700; line-height: 1.25; margin-bottom: 3px; }
+  .card .meta { font-size: 12px; color: #666; line-height: 1.4; }
+  .card.primary { background: #1a1a1a; color: #fff; }
+  .card.primary .meta { color: #aaa; }
+  .card.primary:hover { background: #444; }
+
+  .ref-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  @media (max-width: 720px) { .ref-grid { grid-template-columns: 1fr; } }
+  .ref-card { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 8px; padding: 10px 14px; text-decoration: none; color: #1a1a1a; font-size: 13px; transition: all 0.15s; }
+  .ref-card:hover { background: #1a1a1a; color: #fff; }
+  .ref-card strong { display: block; font-size: 14px; margin-bottom: 2px; }
+
+  .session-block { background: #fff; border: 1.5px solid #ddd; border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; }
+  .session-block.s-now { border: 2.5px solid #1a1a1a; background: #fafafa; }
+  .session-block h3 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+  .session-block .when { font-size: 12px; color: #888; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+  .session-block .flow { font-size: 13px; color: #444; line-height: 1.55; margin-bottom: 10px; }
+  .session-block .flow ol { padding-left: 22px; }
+  .session-block .flow li { padding: 2px 0; }
+  .session-block .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .session-block .pill { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 16px; padding: 4px 12px; font-size: 12px; text-decoration: none; color: #1a1a1a; }
+  .session-block .pill:hover { background: #1a1a1a; color: #fff; }
+  .session-block .pill.tbd { border-style: dashed; color: #888; }
+  .session-block .pill.es { border-color: #2563eb; color: #2563eb; }
+  .session-block .pill.es:hover { background: #2563eb; color: #fff; }
+
+  .bilingual-note { background: #eff6ff; border: 1.5px solid #2563eb; border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; font-size: 13px; color: #1e3a8a; }
+
+  footer { margin-top: 36px; font-size: 12px; color: #888; text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="cohort-pill">HUMANS V ROBOTS 2 · FACILITATOR HUB</div>
+    <h1>HvR2 Facilitator Hub</h1>
+    <p class="sub">Wed Jul 29 &rarr; Wed Aug 19, 2026 &middot; 2-hour sessions &middot; Mixed EN/ES cohort &middot; Two Wednesday groups.</p>
+    <div style="margin-top:14px; display:grid; grid-template-columns:repeat(2,1fr); gap:10px;">
+      <div style="background:#fff; border:1.5px solid #1a1a1a; border-radius:8px; padding:10px 14px;">
+        <div style="font-size:11px; font-weight:700; color:#888; letter-spacing:1.5px; text-transform:uppercase;">Wed Morning cohort</div>
+        <div style="font-size:14px; font-weight:700;">Wed &middot; 09:00-11:00 COT</div>
+        <div style="font-size:12px; color:#555; margin-top:4px;">Alan Duro (EN) &middot; Diana Montoya (ES) &middot; Juan Castellanos (ES)</div>
+      </div>
+      <div style="background:#fff; border:1.5px solid #1a1a1a; border-radius:8px; padding:10px 14px;">
+        <div style="font-size:11px; font-weight:700; color:#888; letter-spacing:1.5px; text-transform:uppercase;">Wed Evening cohort</div>
+        <div style="font-size:14px; font-weight:700;">Wed &middot; 19:00-21:00 COT</div>
+        <div style="font-size:12px; color:#555; margin-top:4px;">Bernice Chan (EN) &middot; Daniel Cartwright (EN) &middot; Jessica Cordoba (ES)</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="glance">
+    <div class="item">
+      <div class="label">Current session</div>
+      <div class="val">Session 1 · Kickoff</div>
+      <div class="hint">Wed Jul 29 &middot; AM 09:00 + PM 19:00 COT</div>
+    </div>
+    <div class="item">
+      <div class="label">Next session</div>
+      <div class="val">Session 2 · Builder</div>
+      <div class="hint">Wed Aug 5</div>
+    </div>
+    <div class="item">
+      <div class="label">Session length</div>
+      <div class="val">2 hours</div>
+      <div class="hint">Starts on the hour</div>
+    </div>
+  </div>
+
+  <h2>Open every session with this</h2>
+  <div class="grid">
+    <a class="card primary" href="https://alexsalinsky.github.io/build-room-visuals/session-opener.html" target="_blank">
+      <div class="title">Session Opener (Agenda &middot; Agreements &middot; Three Principles)</div>
+      <div class="meta">Standing 3-slide frame. Open first thing. Learn AI. Build Robots. Stay Human.</div>
+    </a>
+    <a class="card primary" href="https://13-218-176-29.sslip.io/c/hvr2" target="_blank">
+      <div class="title">Drafting Table</div>
+      <div class="meta">Cohort planning room. Per-builder Dream/Prototype/Demo. Facilitator-only landing.</div>
+    </a>
+    <a class="card" href="https://alexsalinsky.github.io/build-room-visuals/facilitator/facilitator-notes.html" target="_blank">
+      <div class="title">Facilitator Notes · How to run the room</div>
+      <div class="meta">Three rules: ledger time is for next steps, troubleshooting goes to build hour, keep builders articulating demo + WHY/HOW.</div>
+    </a>
+  </div>
+
+  <div class="zone-banner">Cohort-specific <span class="badge">HvR2</span></div>
+
+  <h2>Live tools</h2>
+  <div class="grid">
+    <a class="card" href="https://docs.google.com/spreadsheets/d/1asSiowlXIQ00p9IJoCCQzhUghCcY5Y5lDatUEq-d1Jc" target="_blank">
+      <div class="title">Project Ledger</div>
+      <div class="meta">Humans V Robots 2 cohort ledger. Per-builder Dream, MVP, First Brick. Live-fill in Session 1.</div>
+    </a>
+    <a class="card" href="https://13-218-176-29.sslip.io/c/hvr2/join" target="_blank">
+      <div class="title">Builder Join Link</div>
+      <div class="meta">Self-serve join. Share with paid signups only. Takes name, email, WhatsApp. Dedupes by email.</div>
+    </a>
+    <a class="card" href="https://www.skool.com/the-build-room-3309" target="_blank">
+      <div class="title">Skool Community</div>
+      <div class="meta">The Build Room main group. All cohorts share this space.</div>
+    </a>
+    <a class="card" href="https://docs.google.com/forms/d/e/1FAIpQLSfPAy7jEekZgRFlZ1GpjWacfZ3z-ybpwRGP73frMoQ6IaZ-JQ/viewform?usp=pp_url&amp;entry.534543081=Humans%20V%20Robots%202&amp;entry.1686970719=2026-jul-hvr2" target="_blank">
+      <div class="title">AI Fluency Assessment</div>
+      <div class="meta">Pre-filled for hvr2. For builders who haven't taken it. Under 15 minutes. Bands: Exploring, Adopting, Operating, Multiplying.</div>
+    </a>
+    <a class="card" href="https://alexsalinsky.github.io/build-room-visuals/llm-builder-bps.html" target="_blank">
+      <div class="title">LLM Builder Best Practices</div>
+      <div class="meta">One-drop MD file that teaches your LLM to keep clean project notes. Hand-off in S2.</div>
+    </a>
+    <a class="card" href="https://alexsalinsky.github.io/build-room-visuals/tools-three-tiers.html" target="_blank">
+      <div class="title">Same brain, different hands</div>
+      <div class="meta">Chat vs Cowork vs Claude Code vs Codex in three tiers. Show when the question comes up.</div>
+    </a>
+    <a class="card" href="https://alexsalinsky.github.io/build-room-visuals/credentials-hygiene-deck.html" target="_blank">
+      <div class="title">Credentials Hygiene</div>
+      <div class="meta">Teach-from deck: .env, .gitignore, no-LLM-typing rules.</div>
+    </a>
+    <a class="card" href="https://alexsalinsky.github.io/build-room-visuals/publish-online-free-cloudflare.html" target="_blank">
+      <div class="title">Publish Online for Free (Cloudflare)</div>
+      <div class="meta">Ship a static build to a public URL. Free Cloudflare Pages walkthrough for S3.</div>
+    </a>
+  </div>
+
+  <h2>Roster snapshot</h2>
+  <div class="ref-grid">
+    <a class="ref-card" href="https://docs.google.com/spreadsheets/d/1asSiowlXIQ00p9IJoCCQzhUghCcY5Y5lDatUEq-d1Jc" target="_blank">
+      <strong>Ledger (live count)</strong>
+      Pull at session start. Morning: Alan, Diana, Juan C. Evening: Bernice, Daniel, Jessica. Juan Pablo = guest.
+    </a>
+    <a class="ref-card" href="https://13-218-176-29.sslip.io/c/hvr2" target="_blank">
+      <strong>Drafting Table</strong>
+      Per-builder state. Confirm session pointer before each session.
+    </a>
+    <a class="ref-card" href="#" onclick="return false;">
+      <strong>Post-session debrief</strong>
+      After session ends and Fathom processes, invoke /build-room-debrief to run debrief + personal-reports.
+    </a>
+  </div>
+
+  <div class="zone-banner generic">Generic, same across all cohorts <span class="badge">Curriculum library</span></div>
+
+  <h2>Session arc</h2>
+
+  <div class="session-block s-now">
+    <h3>Session 1 · Kickoff + Ledger live-fill</h3>
+    <div class="when">120 min · Week 1 · Wed Jul 29 · AM 09:00 COT + PM 19:00 COT</div>
+    <div style="background:#eff6ff; border:1.5px solid #2563eb; border-radius:8px; padding:10px 14px; margin-bottom:12px; font-size:13px; color:#1e3a8a;">
+      <strong>Bilingual session.</strong> Morning group is mixed EN/ES; Evening group is mixed EN/ES. All S1 lesson visuals below ship in EN and ES pairs. Use the right language version for each builder when sharing screen or directing to a link.
+    </div>
+    <div style="background:#fff8e1; border:1.5px solid #92400e; border-radius:8px; padding:10px 14px; margin-bottom:12px; font-size:13px; color:#1a1a1a;">
+      <strong>Backward-design frame:</strong> Dream, Prototype, Demo, then reverse-design. S4 refine demo, S3 refine feature, S2 unlock door, S1 configure and screw around.
+    </div>
+    <div class="flow">
+      Set the cohort up. Live-fill the ledger with each builder's Dream, MVP, First Brick. Land a Session 1 build goal per person.
+      <ol style="margin-top:10px;padding-left:22px">
+        <li>Be Human check-in</li>
+        <li>Kickoff deck, promise, agreements, the loop</li>
+        <li>Lesson: <a href="https://alexsalinsky.github.io/build-room-visuals/inside-the-robot.html" target="_blank">Inside the Robot</a> (foundation)</li>
+        <li>Lesson: <a href="https://alexsalinsky.github.io/build-room-visuals/dream-big-build-small.html" target="_blank">Dream Big, Build Small</a> (build philosophy)</li>
+        <li>Ledger live-fill, per builder, framed by <a href="https://alexsalinsky.github.io/build-room-visuals/plan-the-problem.html" target="_blank">Plan the Problem</a></li>
+        <li>Quick <a href="https://alexsalinsky.github.io/build-room-visuals/how-to-prompt.html" target="_blank">How to Prompt</a> primer</li>
+        <li>Set First Brick + Session 1 goal each</li>
+        <li>First build sprint</li>
+        <li>Share-back + close</li>
+      </ol>
+    </div>
+    <div class="bilingual-note">
+      S1 resources below: each lesson has an EN link and an ES link. Use both as needed. Lesson diagrams are identical in both languages.
+    </div>
+    <div class="links">
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/inside-the-robot.html" target="_blank">Inside the Robot EN</a>
+      <a class="pill es" href="https://alexsalinsky.github.io/build-room-visuals/inside-the-robot-es.html" target="_blank">Dentro del robot ES</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/dream-big-build-small.html" target="_blank">Dream Big, Build Small EN</a>
+      <a class="pill es" href="https://alexsalinsky.github.io/build-room-visuals/dream-big-build-small-es.html" target="_blank">Suena en grande, construye en chico ES</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/plan-the-problem.html" target="_blank">Plan the Problem EN</a>
+      <a class="pill es" href="https://alexsalinsky.github.io/build-room-visuals/plan-the-problem-es.html" target="_blank">Planea el problema ES</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/how-to-prompt.html" target="_blank">How to Prompt EN</a>
+      <a class="pill es" href="https://alexsalinsky.github.io/build-room-visuals/how-to-prompt-es.html" target="_blank">C&oacute;mo hacer prompts ES</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/inside-the-robot-2slides.html" target="_blank">System &rarr; Product (2-slide) EN</a>
+      <a class="pill es" href="https://alexsalinsky.github.io/build-room-visuals/inside-the-robot-2slides-es.html" target="_blank">Sistema &rarr; Producto (2 diapositivas) ES</a>
+      <a class="pill" href="https://docs.google.com/spreadsheets/d/1asSiowlXIQ00p9IJoCCQzhUghCcY5Y5lDatUEq-d1Jc" target="_blank">Ledger</a>
+    </div>
+  </div>
+
+  <div class="session-block">
+    <h3>Session 2 · Become a Builder</h3>
+    <div class="when">120 min · Week 2 · Wed Aug 5</div>
+    <div style="background:#fff8e1; border:1.5px solid #92400e; border-radius:8px; padding:10px 14px; margin-bottom:12px; font-size:13px; color:#1a1a1a;">
+      <strong>Standing rule:</strong> hand builders the rule-pack MD file directly. Do NOT teach it. 60-90 seconds: "drop this into your AI coding tool's config, we'll build with it live."
+    </div>
+    <div class="flow">
+      You are a builder now. Files are appearing on your computer that didn't exist last week. Learn via threads-burn-files-remain visual + one live burn-the-thread demo. Then hand off the rule-pack MD file and get out of the way.
+      <ol style="margin-top:10px;padding-left:22px">
+        <li>Arrival (1), camera on, one breath, mission line</li>
+        <li>Session opener (2). Agenda + Agreements + thesis</li>
+        <li>Check-in (8). New builders 60 sec; returning 45 sec (one line since S1). Sweep blockers</li>
+        <li>Frame today (2)</li>
+        <li>Learn: Threads burn. Files remain. visual (2)</li>
+        <li>Learn: Burn-the-thread live demo, screen 2 (6)</li>
+        <li>Hand off the rule-pack MD file (3). No lesson. Show where to drop it and go</li>
+        <li>Build sprint (66), HARD FLOOR, never shrinks</li>
+        <li>Mid-cohort share (10). 2-3 builders coach-picked. Show the thing + one surprise</li>
+        <li>Close + Demo Day preview + homework (18)</li>
+        <li>Send-off (2), one-sentence carry, mission line</li>
+      </ol>
+    </div>
+    <div class="links">
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/session-opener.html" target="_blank"><strong>Session Opener</strong></a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/threads-burn-files-remain.html" target="_blank"><strong>Threads burn. Files remain.</strong></a>
+      <a class="pill" href="https://raw.githubusercontent.com/alexsalinsky/build-room-visuals/main/llm-builder-bps/llm-builder-bps.md" target="_blank"><strong>Rule-pack MD (hand-off)</strong></a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/inside-the-robot-2slides.html" target="_blank"><strong>Inside the Robot (2-slide)</strong></a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/bot-setup-standards.html" target="_blank">Bot Setup Standards (reference)</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/llm-builder-bps.html" target="_blank">LLM Builder BPs (rendered)</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/tools-three-tiers.html" target="_blank">Same brain, different hands</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/credentials-hygiene-deck.html" target="_blank">Credentials Hygiene</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/api-key-generic.html" target="_blank">API Key Flow (reserve)</a>
+    </div>
+  </div>
+
+  <div class="session-block">
+    <h3>Session 3 · Become a Publisher</h3>
+    <div class="when">120 min · Week 3 · Wed Aug 12</div>
+    <div style="background:#fff8e1; border:1.5px solid #92400e; border-radius:8px; padding:10px 14px; margin-bottom:12px; font-size:13px; color:#1a1a1a;">
+      <strong>Flow:</strong> builder shares move to the top (2 slots, show the thing + one surprise), centerpiece is a live Cloudflare publish walkthrough, build-time coaching runs as 1:1s. No demo carousel; demos are S4.
+    </div>
+    <div class="flow">
+      The thing is shippable and gets a public URL. Cloudflare only, no GitHub. README a teammate could pick up. Demos wait for S4.
+      <ol style="margin-top:10px;padding-left:22px">
+        <li>Arrival (1)</li>
+        <li>Opener, thesis + Agreements (2)</li>
+        <li>Be Human check-in (7). 30 sec each</li>
+        <li>Frame today (2). You become a publisher</li>
+        <li>Builder shares (8). 2 slots, show the thing + one surprise</li>
+        <li>Live walkthrough: Publish on Cloudflare (14). One real build to a real URL</li>
+        <li>Ledger review (12). Coach walks per-builder S3 objectives, 45 sec each</li>
+        <li>Build time (66). 1:1 coaching rotations, never shrinks</li>
+        <li>Close + Demo Day prep (6)</li>
+        <li>Send-off (2)</li>
+      </ol>
+    </div>
+    <div class="links">
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/publish-online-free-cloudflare.html" target="_blank"><strong>Publish online for free (Cloudflare)</strong></a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/where-your-build-lives.html" target="_blank">Where Your Build Lives (reference)</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/connector-vs-api.html" target="_blank">Connector vs API</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/tokenomics.html" target="_blank">Tokenomics</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/llm-builder-bps.html" target="_blank">LLM Builder BPs</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/minimum-tech-stack.html" target="_blank">Minimum Tech Stack</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/api-key-generic.html" target="_blank">API Key Flow</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/inside-the-robot-2slides.html" target="_blank">System &rarr; Product (2-slide)</a>
+    </div>
+  </div>
+
+  <div class="session-block">
+    <h3>Session 4 · Demo Day</h3>
+    <div class="when">120 min · Week 4 · Wed Aug 19</div>
+    <div class="flow">
+      Each builder demos. Most Business Value + Coolest Build votes. 1-month follow-up scheduled live. Lesson load is intentionally light. The demos are the lesson. Closing tie-back to <a href="https://alexsalinsky.github.io/build-room-visuals/inside-the-robot.html" target="_blank">Inside the Robot</a> and the <a href="https://alexsalinsky.github.io/build-room-visuals/build-plan-loop.html" target="_blank">Build Plan Loop</a> as the takeaway frame.
+    </div>
+    <div class="links">
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/build-plan-loop.html" target="_blank">Build Plan Loop (recap)</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/inside-the-robot.html" target="_blank">Inside the Robot (close)</a>
+      <a class="pill" href="https://alexsalinsky.github.io/build-room-visuals/inside-the-robot-2slides.html" target="_blank">System &rarr; Product (2-slide)</a>
+      <span class="pill tbd">Demo Day template TBD</span>
+    </div>
+  </div>
+
+  <h2>Standing protocols</h2>
+  <div class="ref-grid">
+    <a class="ref-card" href="../../brain/the-build-room/tools/wins-from-transcript-protocol.md" target="_blank">
+      <strong>Wins from transcript</strong>
+      Run after every session. Mine the recording for wins, post to Skool.
+    </a>
+    <a class="ref-card" href="../../brain/the-build-room/PRESENTATION-PATTERN.md" target="_blank">
+      <strong>Post-session writeup</strong>
+      Standard writeup pattern. Voice + structure rules.
+    </a>
+    <a class="ref-card" href="https://docs.google.com/spreadsheets/d/1asSiowlXIQ00p9IJoCCQzhUghCcY5Y5lDatUEq-d1Jc" target="_blank">
+      <strong>Ledger live-fill</strong>
+      Update each builder's row in-session, not after. Visible to the room.
+    </a>
+    <a class="ref-card" href="#" onclick="return false;">
+      <strong>Post-session debrief</strong>
+      After Fathom processes the recording, invoke /build-room-debrief to run debrief + personal-reports.
+    </a>
+    <a class="ref-card" href="#" onclick="return false;">
+      <strong>Language note</strong>
+      Morning session: Alan (EN), Diana + Juan (ES). Evening: Bernice + Daniel (EN), Jessica (ES). Share the right language visual when directing builders to a link.
+    </a>
+    <a class="ref-card" href="#" onclick="return false;">
+      <strong>Juan Pablo</strong>
+      Guest, no payment. Not a paid builder row in the ledger. Participation at discretion.
+    </a>
+  </div>
+
+  <h2>Visual library + community</h2>
+  <div class="grid-3">
+    <a class="card" href="https://alexsalinsky.github.io/build-room-visuals/" target="_blank">
+      <div class="title">Visual library</div>
+      <div class="meta">All click-through lessons. Foundations, How-to, Rule Packs, Setup, Cohort Kickoffs.</div>
+    </a>
+    <a class="card" href="https://www.skool.com/the-build-room-3309" target="_blank">
+      <div class="title">Skool community</div>
+      <div class="meta">The Build Room main group. All cohorts live in here as private classrooms.</div>
+    </a>
+    <a class="card" href="https://github.com/alexsalinsky/build-room-visuals" target="_blank">
+      <div class="title">GitHub repo (source)</div>
+      <div class="meta">Templates, tokens.css, deck-template.html.</div>
+    </a>
+  </div>
+
+  <footer>
+    Alex Salinsky &middot; The Build Room
+  </footer>
+</div>
+</body>
+</html>
