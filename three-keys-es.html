@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tres Claves para tu Primer Build</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  .stage { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 20px; gap: 28px; }
+  .heading { text-align: center; }
+  .heading h1 { font-size: 44px; font-weight: 800; letter-spacing: -1px; line-height: 1.1; }
+  .heading .sub { font-size: 17px; color: #666; margin-top: 10px; }
+  .cards { display: flex; gap: 20px; width: 100%; max-width: 1000px; }
+  @media (max-width: 720px) { .cards { flex-direction: column; } }
+  .card { flex: 1; background: #fff; border: 2px solid #1a1a1a; border-radius: 14px; padding: 28px 24px; display: flex; flex-direction: column; gap: 10px; }
+  .card .num { font-size: 56px; font-weight: 900; color: #e5e5e5; line-height: 1; }
+  .card .body { font-size: 22px; font-weight: 700; line-height: 1.25; }
+  .card .detail { font-size: 15px; color: #555; line-height: 1.5; margin-top: 4px; }
+  .footer-line { font-size: 20px; font-weight: 700; text-align: center; color: #1a1a1a; max-width: 700px; padding: 18px 24px; border-top: 1.5px solid #ddd; width: 100%; }
+  .byline { font-size: 12px; color: #aaa; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="heading">
+    <h1>Tres Claves para tu Primer Build</h1>
+    <div class="sub">The Build Room &middot; Marco de alcance, Sesi&#xF3;n 1</div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="num">1</div>
+      <div class="body">Enf&#xF3;cate en una sola cosa.</div>
+      <div class="detail">No dos cosas. No una plataforma. Una sola cosa.</div>
+    </div>
+    <div class="card">
+      <div class="num">2</div>
+      <div class="body">Una cosa con impacto para ti.</div>
+      <div class="detail">Algo que crea negocio, gana dinero, o te ahorra tiempo. Impacto real. No una demo que queda en el caj&#xF3;n.</div>
+    </div>
+    <div class="card">
+      <div class="num">3</div>
+      <div class="body">Enf&#xF3;cate en una parte de esa cosa.</div>
+      <div class="detail">Una parte peque&#xF1;a y central. No el sistema completo. La puerta de entrada al sistema.</div>
+    </div>
+  </div>
+
+  <div class="footer-line">
+    Una cosa. Una cosa con impacto. Una parte de esa cosa.
+  </div>
+
+  <div class="byline">Alex Salinsky / The Build Room</div>
+</div>
+</body>
+</html>

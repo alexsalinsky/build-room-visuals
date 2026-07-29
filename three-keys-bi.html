@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Three Keys / Tres Claves para tu Primer Build</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  .stage { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 20px 32px; gap: 24px; }
+  .heading { text-align: center; }
+  .heading h1 { font-size: 40px; font-weight: 800; letter-spacing: -1px; line-height: 1.1; }
+  .heading .h1-es { display: block; font-size: 28px; font-weight: 500; color: #2563eb; font-style: italic; margin-top: 6px; letter-spacing: -0.5px; }
+  .heading .sub { font-size: 15px; color: #666; margin-top: 8px; }
+  .cards { display: flex; gap: 20px; width: 100%; max-width: 1060px; }
+  @media (max-width: 720px) { .cards { flex-direction: column; } }
+  .card { flex: 1; background: #fff; border: 2px solid #1a1a1a; border-radius: 14px; padding: 26px 22px; display: flex; flex-direction: column; gap: 8px; }
+  .card .num { font-size: 52px; font-weight: 900; color: #e5e5e5; line-height: 1; }
+  .card .body-en { font-size: 20px; font-weight: 700; line-height: 1.25; }
+  .card .body-es { font-size: 15px; font-style: italic; color: #2563eb; margin-top: 2px; line-height: 1.3; }
+  .card .detail-en { font-size: 14px; color: #555; line-height: 1.5; margin-top: 6px; }
+  .card .detail-es { font-size: 13px; color: #60a5fa; font-style: italic; line-height: 1.4; margin-top: 2px; }
+  .footer-line { width: 100%; max-width: 820px; border-top: 1.5px solid #ddd; padding-top: 18px; text-align: center; }
+  .footer-line .f-en { font-size: 20px; font-weight: 700; color: #1a1a1a; }
+  .footer-line .f-es { font-size: 15px; font-style: italic; color: #2563eb; margin-top: 5px; }
+  .byline { font-size: 12px; color: #aaa; }
+
+  /* Language toggle */
+  .lang-toggle { position: fixed; top: 12px; right: 14px; display: flex; gap: 4px; background: #fff; border: 1.5px solid #1a1a1a; border-radius: 20px; padding: 3px 6px; font-size: 12px; font-weight: 600; z-index: 100; }
+  .lang-toggle button { border: none; background: transparent; padding: 3px 8px; border-radius: 14px; cursor: pointer; font-size: 12px; font-weight: 600; color: #666; }
+  .lang-toggle button.active { background: #1a1a1a; color: #fff; }
+
+  /* Mode visibility */
+  body.mode-en .body-es,
+  body.mode-en .detail-es,
+  body.mode-en .f-es,
+  body.mode-en .h1-es { display: none; }
+
+  body.mode-es .body-en,
+  body.mode-es .detail-en,
+  body.mode-es .f-en,
+  body.mode-es h1 > .h1-en { display: none; }
+</style>
+</head>
+<body class="mode-both">
+
+<div class="lang-toggle">
+  <button onclick="setMode('en')" id="btn-en">EN</button>
+  <button onclick="setMode('both')" id="btn-both" class="active">EN+ES</button>
+  <button onclick="setMode('es')" id="btn-es">ES</button>
+</div>
+
+<div class="stage">
+  <div class="heading">
+    <h1>
+      <span class="h1-en">Three Keys for a First Build</span>
+      <span class="h1-es">Tres Claves para tu Primer Build</span>
+    </h1>
+    <div class="sub">The Build Room &middot; Session 1 Scoping Frame</div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="num">1</div>
+      <div class="body-en">Focus on one thing.</div>
+      <div class="body-es">Enf&#xF3;cate en una sola cosa.</div>
+      <div class="detail-en">Not two things. Not a platform. One thing.</div>
+      <div class="detail-es">No dos cosas. No una plataforma. Una sola cosa.</div>
+    </div>
+    <div class="card">
+      <div class="num">2</div>
+      <div class="body-en">One thing with impact for you.</div>
+      <div class="body-es">Una cosa con impacto para ti.</div>
+      <div class="detail-en">Creates business, gains money, or saves you time. Real impact. Not a demo that sits on a shelf.</div>
+      <div class="detail-es">Algo que crea negocio, gana dinero, o te ahorra tiempo. Impacto real. No una demo que queda en el caj&#xF3;n.</div>
+    </div>
+    <div class="card">
+      <div class="num">3</div>
+      <div class="body-en">Focus on one part of that thing.</div>
+      <div class="body-es">Enf&#xF3;cate en una parte de esa cosa.</div>
+      <div class="detail-en">A small, central piece. Not the whole system. The door into the system.</div>
+      <div class="detail-es">Una parte peque&#xF1;a y central. No el sistema completo. La puerta de entrada al sistema.</div>
+    </div>
+  </div>
+
+  <div class="footer-line">
+    <div class="f-en">One thing. One thing with impact. One part of that thing.</div>
+    <div class="f-es">Una cosa. Una cosa con impacto. Una parte de esa cosa.</div>
+  </div>
+
+  <div class="byline">Alex Salinsky / The Build Room</div>
+</div>
+
+<script>
+function setMode(m) {
+  document.body.className = 'mode-' + m;
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + m).classList.add('active');
+}
+</script>
+</body>
+</html>
