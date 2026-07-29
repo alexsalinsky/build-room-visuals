@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How to Prompt / C&#xF3;mo hacer prompts</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 12px; }
+  .frame-wrap { flex: 1; max-height: 80vh; width: 100%; max-width: 920px; display: flex; align-items: center; justify-content: center; padding: 0 16px; }
+  .title-screen { font-size: 50px; font-weight: 800; text-align: center; color: #1a1a1a; letter-spacing: -1.5px; line-height: 1.1; }
+  .title-screen .sub { display: block; font-size: 22px; font-weight: 400; margin-top: 18px; color: #666; letter-spacing: 0; }
+  .title-es { display: block; font-size: 34px; font-weight: 400; color: #2563eb; font-style: italic; margin-top: 10px; letter-spacing: -0.5px; }
+  .caption { max-width: 920px; text-align: center; font-size: 17px; line-height: 1.5; color: #333; padding: 0 12px; min-height: 66px; }
+  .cap-en { display: block; }
+  .cap-es { display: block; font-size: 14px; color: #2563eb; font-style: italic; margin-top: 4px; }
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
+  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
+
+  .lang-toggle { position: fixed; top: 12px; right: 14px; display: flex; gap: 4px; background: #fff; border: 1.5px solid #1a1a1a; border-radius: 20px; padding: 3px 6px; font-size: 12px; font-weight: 600; z-index: 100; }
+  .lang-toggle button { border: none; background: transparent; padding: 3px 8px; border-radius: 14px; cursor: pointer; font-size: 12px; font-weight: 600; color: #666; }
+  .lang-toggle button.active { background: #1a1a1a; color: #fff; }
+
+  body.mode-en .es-text { display: none; }
+  body.mode-es .en-text { display: none; }
+  body.mode-en .title-es { display: none; }
+  body.mode-en .cap-es { display: none; }
+  body.mode-es .cap-en { display: none; }
+
+  /* Chat window */
+  .chat { width: 100%; max-width: 820px; max-height: 100%; background: #fff; border: 2.5px solid #1a1a1a; border-radius: 14px; padding: 22px 24px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; }
+  .chat-header { font-size: 12px; color: #888; letter-spacing: 2px; font-weight: 700; padding-bottom: 12px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
+  .chat-header span:last-child { color: #16a34a; }
+
+  .bubble { max-width: 88%; padding: 14px 18px; border-radius: 14px; font-size: 15px; line-height: 1.55; opacity: 0; transition: opacity 0.4s ease, transform 0.4s ease; transform: translateY(8px); }
+  .bubble.show { opacity: 1; transform: translateY(0); }
+  .bubble.user { background: #1a1a1a; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+  .bubble.ai { background: #f4ede0; color: #1a1a1a; align-self: flex-start; border-bottom-left-radius: 4px; }
+  .bubble .role { font-size: 11px; letter-spacing: 1.5px; font-weight: 700; opacity: 0.7; margin-bottom: 4px; }
+  .bubble.ai .role { color: #92400e; }
+  .bubble strong { font-weight: 700; }
+
+  .highlight { background: #fde68a; padding: 1px 4px; border-radius: 3px; color: #1a1a1a; }
+
+  .es-text { display: block; font-size: 12px; font-style: italic; color: #93c5fd; margin-top: 4px; }
+  .bubble.user .es-text { color: #93c5fd; }
+  .bubble.ai .es-text { color: #2563eb; }
+
+  .title-screen-wrap { width: 100%; display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body class="mode-both">
+
+<div class="lang-toggle">
+  <button onclick="setMode('en')" id="btn-en">EN</button>
+  <button onclick="setMode('both')" id="btn-both" class="active">EN+ES</button>
+  <button onclick="setMode('es')" id="btn-es">ES</button>
+</div>
+
+<div class="stage">
+  <div class="frame-wrap" id="frame"></div>
+  <div class="caption" id="caption"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">&#x2190; Prev</button>
+      <button id="next">Next &#x2192;</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">9</span></div>
+  </div>
+</div>
+<div class="hint">&#x2190; &#x2192; arrow keys also work</div>
+
+<script>
+const captionsEN = [
+  "How to prompt. The trick most people miss.",
+  "Most people open the chat and start ordering the AI around. Then they're surprised when it builds the wrong thing.",
+  "Better move: planning mode. Talk through what you want before you tell the AI to do anything.",
+  "Move 1: Say what you're hoping for. Don't filter. Talk like you're explaining it to a friend.",
+  "Move 2: Ask the AI to repeat back what it understood. This is the magic line.",
+  "It tells you what it thinks you're asking. Now you see the gap.",
+  "You correct. Or expand. Or sharpen.",
+  "Keep going until the AI's understanding matches yours. Then, and only then, switch to building.",
+  "Planning is half the work. Skip it and you redo the same build three times."
+];
+
+const captionsES = [
+  "C\xF3mo hacer prompts. El truco que la mayor\xEDa de la gente se salta.",
+  "La mayor\xEDa abre el chat y empieza a darle \xF3rdenes a la IA. Luego se sorprende cuando construye lo equivocado.",
+  "Mejor movimiento: modo planificaci\xF3n. Habla sobre lo que quieres antes de pedirle a la IA que haga algo.",
+  "Movimiento 1: Di lo que esperas. No te filtres. Habla como si se lo explicaras a un amigo.",
+  "Movimiento 2: P\xEDdele a la IA que repita lo que entendi\xF3. Esta es la l\xEDnea m\xE1gica.",
+  "Te dice lo que cree que est\xE1s preguntando. Ahora ves la brecha.",
+  "Corriges. O amplias. O afinas.",
+  "Sigue hasta que el entendimiento de la IA coincida con el tuyo. Solo entonces, cambia a construir.",
+  "Planear es la mitad del trabajo. Saltarlo significa rehacer lo mismo tres veces."
+];
+
+const stepHTML = [
+  // Step 1: Title
+  `<div class="title-screen-wrap"><div class="title-screen">
+    <span class="en-text">How to Prompt</span>
+    <span class="es-text title-es">C&#xF3;mo hacer prompts</span>
+    <span class="sub">Plan first, build second &middot; The Build Room</span>
+  </div></div>`,
+
+  // Step 2: Mistake
+  `<div class="chat">
+    <div class="chat-header">
+      <span><span class="en-text">Most people start like this</span><span class="es-text">As\xED empieza la mayor\xEDa de la gente</span></span>
+      <span>&#x25CF; <span class="en-text">Live</span><span class="es-text">En vivo</span></span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">Build me a tool that organizes my Monday board and sends reminders to my team.</span>
+      <span class="es-text">Hazme una herramienta que organice mi tablero de Monday y mande recordatorios a mi equipo.</span>
+    </div>
+  </div>`,
+
+  // Step 3: Planning mode
+  `<div class="chat">
+    <div class="chat-header">
+      <span><span class="en-text">Better: planning mode</span><span class="es-text">Mejor: modo planificaci\xF3n</span></span>
+      <span>&#x25CF; <span class="en-text">Ready</span><span class="es-text">Listo</span></span>
+    </div>
+    <div style="padding:40px;text-align:center;color:#999;font-style:italic">
+      <span class="en-text">talk first. build later.</span>
+      <span class="es-text" style="color:#2563eb;">habla primero. construye despu\xE9s.</span>
+    </div>
+  </div>`,
+
+  // Step 4: Say what you hope for
+  `<div class="chat">
+    <div class="chat-header">
+      <span><span class="en-text">Planning conversation</span><span class="es-text">Conversaci\xF3n de planificaci\xF3n</span></span>
+      <span>&#x25CF; <span class="en-text">Ready</span><span class="es-text">Listo</span></span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">OK so I'm hoping for something that takes the chaos out of my week. I'm in client-facing PR. Every Monday I lose two hours just figuring out what to do. There are pitches in my email, calendar events, a Monday board, and I have to mentally stitch it all together. I want one place that tells me what matters today.</span>
+      <span class="es-text">Ok, lo que espero es algo que quite el caos de mi semana. Estoy en PR orientado a clientes. Cada lunes pierdo dos horas solo para saber qu\xE9 tengo que hacer. Hay pitches en mi email, eventos de calendario, un tablero de Monday, y tengo que unirlo todo mentalmente. Quiero un solo lugar que me diga qu\xE9 importa hoy.</span>
+    </div>
+  </div>`,
+
+  // Step 5: The magic line
+  `<div class="chat">
+    <div class="chat-header">
+      <span><span class="en-text">Planning conversation</span><span class="es-text">Conversaci\xF3n de planificaci\xF3n</span></span>
+      <span>&#x25CF; <span class="en-text">Ready</span><span class="es-text">Listo</span></span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">OK so I'm hoping for something that takes the chaos out of my week. I'm in client-facing PR. Every Monday I lose two hours just figuring out what to do. There are pitches in my email, calendar events, a Monday board, and I have to mentally stitch it all together. I want one place that tells me what matters today.</span>
+      <span class="es-text">Ok, lo que espero es algo que quite el caos de mi semana. Estoy en PR orientado a clientes. Cada lunes pierdo dos horas solo para saber qu\xE9 tengo que hacer. Hay pitches en my email, eventos de calendario, un tablero de Monday, y tengo que unirlo todo mentalmente. Quiero un solo lugar que me diga qu\xE9 importa hoy.</span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">Before you start building, <span class="highlight">tell me what you understand me to be asking</span>. We're still in planning.</span>
+      <span class="es-text">Antes de empezar a construir, <span class="highlight">d\xEDme qu\xE9 entiendes que te estoy pidiendo</span>. Todav\xEDa estamos en planificaci\xF3n.</span>
+    </div>
+  </div>`,
+
+  // Step 6: AI echoes back
+  `<div class="chat">
+    <div class="chat-header">
+      <span><span class="en-text">Planning conversation</span><span class="es-text">Conversaci\xF3n de planificaci\xF3n</span></span>
+      <span>&#x25CF; <span class="en-text">Ready</span><span class="es-text">Listo</span></span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">OK so I'm hoping for something that takes the chaos out of my week...</span>
+      <span class="es-text">Ok, lo que espero es algo que quite el caos de mi semana...</span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">Before you start building, <span class="highlight">tell me what you understand me to be asking</span>. We're still in planning.</span>
+      <span class="es-text">Antes de empezar a construir, <span class="highlight">d\xEDme qu\xE9 entiendes que te estoy pidiendo</span>. Todav\xEDa estamos en planificaci\xF3n.</span>
+    </div>
+    <div class="bubble ai show">
+      <div class="role"><span class="en-text">AI</span><span class="es-text">IA</span></div>
+      <span class="en-text">Here's what I understand:<br/><br/>You want a <strong>Monday morning briefing</strong> that pulls from three sources (email pitches, calendar, Monday board) and produces a single ranked view of what to focus on today. The goal is to remove ~2 hrs of weekly stitching work. The user is you. Is that right? Anything I'm missing?</span>
+      <span class="es-text">Esto es lo que entiendo:<br/><br/>Quieres un <strong>informe del lunes por la ma\xF1ana</strong> que jale de tres fuentes (pitches por email, calendario, tablero de Monday) y produzca una vista \xFAnica y priorizada de en qu\xE9 concentrarse hoy. El objetivo es eliminar ~2 horas semanales de trabajo de ensamble. El usuario eres t\xFA. \xBFEs correcto? \xBFAlgo que me falt\xF3?</span>
+    </div>
+  </div>`,
+
+  // Step 7: User corrects
+  `<div class="chat">
+    <div class="chat-header">
+      <span><span class="en-text">Planning conversation</span><span class="es-text">Conversaci\xF3n de planificaci\xF3n</span></span>
+      <span>&#x25CF; <span class="en-text">Ready</span><span class="es-text">Listo</span></span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">OK so I'm hoping for something that takes the chaos out of my week...</span>
+      <span class="es-text">Ok, lo que espero es algo que quite el caos de mi semana...</span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">Before you start building, <span class="highlight">tell me what you understand me to be asking</span>.</span>
+      <span class="es-text">Antes de empezar a construir, <span class="highlight">d\xEDme qu\xE9 entiendes que te estoy pidiendo</span>.</span>
+    </div>
+    <div class="bubble ai show">
+      <div class="role"><span class="en-text">AI</span><span class="es-text">IA</span></div>
+      <span class="en-text">You want a <strong>Monday morning briefing</strong> that pulls from three sources... Is that right? Anything I'm missing?</span>
+      <span class="es-text">Quieres un <strong>informe del lunes por la ma\xF1ana</strong> que jale de tres fuentes... \xBFEs correcto? \xBFAlgo que me falt\xF3?</span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">Close. Two things to add. <strong>One</strong>, it should flag pitches that haven't been replied to in 48+ hours. <strong>Two</strong>, the output should land in WhatsApp at 8am, not in an email I'll ignore.</span>
+      <span class="es-text">Casi. Dos cosas m\xE1s. <strong>Una</strong>: debe marcar pitches que no han tenido respuesta en 48+ horas. <strong>Dos</strong>: el resultado debe llegar a WhatsApp a las 8am, no a un email que voy a ignorar.</span>
+    </div>
+  </div>`,
+
+  // Step 8: Aligned, switch to building
+  `<div class="chat">
+    <div class="chat-header">
+      <span><span class="en-text">Planning conversation</span><span class="es-text">Conversaci\xF3n de planificaci\xF3n</span></span>
+      <span>&#x25CF; <span class="en-text">Aligned</span><span class="es-text">Alineados</span></span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">OK so I'm hoping for something that takes the chaos out of my week...</span>
+      <span class="es-text">Ok, lo que espero es algo que quite el caos de mi semana...</span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">Before you start building, <span class="highlight">tell me what you understand me to be asking</span>.</span>
+      <span class="es-text">Antes de empezar a construir, <span class="highlight">d\xEDme qu\xE9 entiendes que te estoy pidiendo</span>.</span>
+    </div>
+    <div class="bubble ai show">
+      <div class="role"><span class="en-text">AI</span><span class="es-text">IA</span></div>
+      <span class="en-text">You want a <strong>Monday morning briefing</strong>... Is that right?</span>
+      <span class="es-text">Quieres un <strong>informe del lunes por la ma\xF1ana</strong>... \xBFEs correcto?</span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">Close. Two things to add. <strong>One</strong>, flag 48+ hr unreplied pitches. <strong>Two</strong>, output to WhatsApp at 8am.</span>
+      <span class="es-text">Casi. Dos cosas m\xE1s. <strong>Una</strong>: marcar pitches sin respuesta en 48+ horas. <strong>Dos</strong>: el resultado a WhatsApp a las 8am.</span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">Good. <span class="highlight">Now let's build the smallest version.</span> What's the first piece we tackle?</span>
+      <span class="es-text">Bien. <span class="highlight">Ahora construyamos la versi\xF3n m\xE1s peque\xF1a.</span> \xBFCu\xE1l es la primera pieza?</span>
+    </div>
+  </div>`,
+
+  // Step 9: Final
+  `<div class="chat">
+    <div class="chat-header">
+      <span><span class="en-text">Planning conversation</span><span class="es-text">Conversaci\xF3n de planificaci\xF3n</span></span>
+      <span>&#x25CF; <span class="en-text">Aligned &middot; Build mode</span><span class="es-text">Alineados &middot; Modo construcci\xF3n</span></span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">OK so I'm hoping for something that takes the chaos out of my week...</span>
+      <span class="es-text">Ok, lo que espero es algo que quite el caos de mi semana...</span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">Before you start building, <span class="highlight">tell me what you understand me to be asking</span>.</span>
+      <span class="es-text">Antes de empezar a construir, <span class="highlight">d\xEDme qu\xE9 entiendes que te estoy pidiendo</span>.</span>
+    </div>
+    <div class="bubble ai show">
+      <div class="role"><span class="en-text">AI</span><span class="es-text">IA</span></div>
+      <span class="en-text">You want a <strong>Monday morning briefing</strong>... Is that right?</span>
+      <span class="es-text">Quieres un <strong>informe del lunes por la ma\xF1ana</strong>... \xBFEs correcto?</span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">Close. <strong>One</strong>, flag 48+ hr unreplied pitches. <strong>Two</strong>, output to WhatsApp at 8am.</span>
+      <span class="es-text">Casi. <strong>Una</strong>: marcar pitches sin respuesta en 48+ horas. <strong>Dos</strong>: el resultado a WhatsApp a las 8am.</span>
+    </div>
+    <div class="bubble user show">
+      <div class="role"><span class="en-text">YOU</span><span class="es-text">T\xDA</span></div>
+      <span class="en-text">Good. <span class="highlight">Now let's build the smallest version.</span> What's the first piece we tackle?</span>
+      <span class="es-text">Bien. <span class="highlight">Ahora construyamos la versi\xF3n m\xE1s peque\xF1a.</span> \xBFCu\xE1l es la primera pieza?</span>
+    </div>
+  </div>`
+];
+
+let mode = 'both';
+let i = 0;
+const frame = document.getElementById("frame");
+const cap = document.getElementById("caption");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = captionsEN.length;
+
+function setMode(m) {
+  mode = m;
+  document.body.className = 'mode-' + m;
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + m).classList.add('active');
+  render();
+}
+
+function render() {
+  frame.innerHTML = stepHTML[i];
+
+  let html = '';
+  if (mode === 'en') {
+    html = '<span class="cap-en">' + captionsEN[i] + '</span>';
+  } else if (mode === 'es') {
+    html = '<span class="cap-es" style="color:#1a1a1a;font-style:normal;font-size:17px">' + captionsES[i] + '</span>';
+  } else {
+    html = '<span class="cap-en">' + captionsEN[i] + '</span><span class="cap-es">' + captionsES[i] + '</span>';
+  }
+  cap.innerHTML = html;
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === captionsEN.length - 1;
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < captionsEN.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") next.click();
+  if (e.key === "ArrowLeft") prev.click();
+});
+
+render();
+</script>
+</body>
+</html>
