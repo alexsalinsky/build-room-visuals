@@ -4551,6 +4551,199 @@
       "date_captured": "2026-07-29",
       "date_cleared": null,
       "notes": "Alex delivered the three-keys frame in EN at 00:47:14; Jess immediately reinforced in ES at 00:48:10 without prompting. Mixed-language cohort (mostly Latinx) showed immediate comprehension vs prior EN-only delivery. Reusable pattern for bilingual cohorts: design one facilitator per language, brief them to reinforce in their language after each major frame."
+    },
+    {
+      "id": "hvr2-s1-pm-alan-aging-parent-scorecard",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Alan built a first-iteration Aging Parent Preparedness scorecard in one session",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s1-pm-wins-post-2026-07-29.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I mean, main goal for this session, Alex, is just get a dialogue going with one of the coding tools to help get like a visual... a starting point of something that we can all see.",
+      "attribution": "Alan James Duro (hvr2 cohort)",
+      "timestamp": "01:35:00",
+      "tags": [
+        "first-brick",
+        "personal-project",
+        "breakthrough",
+        "live-demo"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-29",
+      "date_cleared": null,
+      "notes": "Alan joined PM from Massachusetts visiting family. Project: end-of-life document tracker / aging parent prep tool. Had a working visual in Claude by share-back [01:55:10]. TODO: cut clip from https://fathom.video/calls/766208406"
+    },
+    {
+      "id": "hvr2-s1-pm-bernice-grant-filter-start",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Bernice read through the AI clarifying questions live, corrected it, and uploaded her case document",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s1-pm-wins-post-2026-07-29.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "For future conversations, just know that I am not a developer. If you have techie requests from me, can you please speak to me like I'm six years old so I can understand what it is that you're asking from me?",
+      "attribution": "COACH - Bernice Chan (hvr2 cohort)",
+      "timestamp": "01:27:32",
+      "tags": [
+        "breakthrough",
+        "first-brick",
+        "tooling",
+        "non-technical-builder"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-29",
+      "date_cleared": null,
+      "notes": "Bernice is the session coach who stayed as a builder. Grant filter project: surface top 5 grants for her nonprofit from Instrumentl + other sources, scored, with draft applications. She demonstrated the read-correct-add-rule technique live. TODO: clip from https://fathom.video/calls/766208406 ~01:21-01:28"
+    },
+    {
+      "id": "hvr2-s1-pm-daniel-calendar-pivot",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Daniel used AI to discover he didn't need to build his first idea, then pivoted to a smarter one",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s1-pm-wins-post-2026-07-29.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I typed that into ChatGPT and it told me I can do that through the native functionality of the iPhone. So I was able to do it already.",
+      "attribution": "Daniel Cartwright (hvr2 cohort)",
+      "timestamp": "00:55:49",
+      "tags": [
+        "pivot",
+        "scope-lock",
+        "first-brick"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-29",
+      "date_cleared": null,
+      "notes": "Daniel used ChatGPT to validate his first idea (calendar merge) and found a native solution. Pivoted to a scheduling assistant. Clean example of AI as feasibility checker before building. TODO: clip from https://fathom.video/calls/766208406"
+    },
+    {
+      "id": "hvr2-s1-pm-juan-castellanos-crm-scoped",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Juan Castellanos locked a CRM automation project with Notion on day one",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s1-pm-wins-post-2026-jul-hvr2/s1-pm-wins-post-2026-07-29.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I need to build a CRM, a custom CRM pipeline tracker for my sales job. Grab a transcript from a call, and then updating the CRM.",
+      "attribution": "Juan Castellanos (hvr2 cohort)",
+      "timestamp": "00:32:42",
+      "tags": [
+        "scope-lock",
+        "first-brick",
+        "sales-automation"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-29",
+      "date_cleared": null,
+      "notes": "Juan migrated from AM (no-show there, attended PM). Project: call transcript to Notion CRM deal scorecard. Clear stack: Notion + transcript + scoring prompt. TODO: clip from https://fathom.video/calls/766208406"
+    },
+    {
+      "id": "hvr2-s1-pm-emanuel-paisa-translator",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Emanuel has a working Paisa-dialect translator demo and wants to scale it into a startup",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s1-pm-wins-post-2026-07-29.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "La idea seria potenciarlo y para ver si podria llegar a la escalabilidad de ser una startup.",
+      "attribution": "Emanuel Colorado (hvr2 cohort)",
+      "timestamp": "01:07:50",
+      "tags": [
+        "working-demo",
+        "first-brick",
+        "startup-aspiration"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-29",
+      "date_cleared": null,
+      "notes": "Emanuel arrived late (mentioned hackathon context). Developer with a working Paisa-dialect translator demo. Enrollment status NEEDS-ALEX-INPUT. TODO: clip from https://fathom.video/calls/766208406"
+    },
+    {
+      "id": "hvr2-s1-pm-ivan-credit-bureau-tool",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Ivan is building a consultancy tool to serve Colombians locked out of the financial system by credit bureaus",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s1-pm-wins-post-2026-07-29.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "De cada cuatro colombianos, tres estan reportados y no han podido acceder al sistema financiero.",
+      "attribution": "Ivan Camilo Chaparro (hvr2 cohort)",
+      "timestamp": "00:50:47",
+      "tags": [
+        "social-impact",
+        "real-clients",
+        "vision"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-29",
+      "date_cleared": null,
+      "notes": "Ivan is a former bank employee now building an independent consultancy. Project: AI tool for credit bureau data analysis + email delivery. Arrived from Libertario Cafe. Enrollment status NEEDS-ALEX-INPUT. TODO: clip from https://fathom.video/calls/766208406"
+    },
+    {
+      "id": "hvr2-s1-pm-sara-content-robot",
+      "type": "win",
+      "cohort": "ff-thu",
+      "title": "Sara showed up unprepared, described a content robot for her personal brand, and stayed for the whole session",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s1-pm-wins-post-2026-07-29.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "O sea, crear una inteligencia artificial mia.",
+      "attribution": "sara penagos (hvr2 cohort)",
+      "timestamp": "01:02:00",
+      "tags": [
+        "first-session",
+        "started",
+        "content-creator"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-29",
+      "date_cleared": null,
+      "notes": "Sara arrived with Juan Castellanos, project unknown beforehand. Wants a virtual brand avatar that posts content when she doesn't want to record. Enrollment status NEEDS-ALEX-INPUT. TODO: clip from https://fathom.video/calls/766208406"
+    },
+    {
+      "id": "hvr2-s1-pm-lesson-pivot-as-win",
+      "type": "lesson",
+      "cohort": "ff-thu",
+      "title": "Pivoting on day one is a win: use AI as a feasibility checker before building",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s1-pm-facilitator-recap-2026-07-29.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I typed that into ChatGPT and it told me I can do that through the native functionality of the iPhone. So I was able to do it already. So in a way, I used AI, but I didn't use an AI robot.",
+      "attribution": null,
+      "timestamp": "00:55:49",
+      "tags": [
+        "pivot",
+        "lesson",
+        "scoping",
+        "cross-cohort"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-29",
+      "date_cleared": null,
+      "notes": "Daniel Cartwright validated his first idea using ChatGPT and discovered the native iPhone feature already solved it. He pivoted cleanly to a scheduling assistant. Cross-cohort framing: prompt the AI to prove your idea wrong before you spend the build hour."
+    },
+    {
+      "id": "hvr2-s1-pm-lesson-read-correct-add-rule",
+      "type": "lesson",
+      "cohort": "ff-thu",
+      "title": "Non-developer technique: read the AI response aloud, correct what's wrong, add a standing rule",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s1-pm-facilitator-recap-2026-07-29.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "For future conversations, just know that I am not a developer. If you have techie requests from me, can you please speak to me like I'm six years old.",
+      "attribution": null,
+      "timestamp": "01:27:32",
+      "tags": [
+        "lesson",
+        "non-technical-builder",
+        "tooling",
+        "cross-cohort"
+      ],
+      "status": "raw",
+      "date_captured": "2026-07-29",
+      "date_cleared": null,
+      "notes": "Bernice Chan demonstrated live: paste the Drafting Table prompt, read the AI response aloud, flag jargon, correct misunderstandings, then add a standing rule. Reusable as a S2 teaching moment for non-developer builders across all cohorts."
     }
   ]
 }
