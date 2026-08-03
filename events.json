@@ -7,7 +7,7 @@
   },
   "events": [
     { "id": "pdc-kickoff1",      "title": "PDC Kickoff Session 1",              "date": "2026-08-15", "type": "kickoff",    "theme": "Marketing + Proof",   "notes": "why I built this retreat framing. Tier 1 $2,750 opens for 7 days." },
-    { "id": "gtd-denmark",       "title": "GTD Denmark retreat (David Allen)",  "date": "2026-09-02", "endDate": "2026-09-04", "type": "external", "theme": "Travel Planning", "notes": "$4,700 all-in. Application required." },
+    { "id": "gtd-denmark",       "title": "GTD Denmark retreat (David Allen)",  "date": "2026-09-02", "endDate": "2026-09-04", "type": "external", "theme": "Travel Planning", "notes": "CONFIRMED GOING (2026-08-03). $4,700 all-in." },
     { "id": "pdc-kickoff2",      "title": "PDC Kickoff Session 2",              "date": "2026-09-15", "type": "kickoff",    "theme": "Marketing + Proof",   "notes": "deeper walkthrough + alumni testimonials. Tier 2 $3,250 opens." },
     { "id": "cm-kickoff1",       "title": "CM Kickoff Session 1",               "date": "2026-09-15", "type": "kickoff",    "theme": "Marketing + Proof",   "notes": "post-DCBKK extension angle. Tier 1 opens." },
     { "id": "lpi-learning-live", "title": "LPI Learning Live (London)",         "date": "2026-09-16", "endDate": "2026-09-17", "type": "conference", "theme": "Marketing + Proof", "notes": "Convene 133 Houndsditch EC3A 7DB. At-cost AI Build Day offer to Pauline Saunders (Head of Events) + Ed Monk (CEO). No CFP; agenda crowdsourced from attendees." },
@@ -21,7 +21,6 @@
   ],
   "work": [
     { "id": "lpi-outreach-due",  "title": "LPI Build Day outreach SENT",        "date": "2026-07-17", "parentEvent": "lpi-learning-live", "theme": "Marketing + Proof", "notes": "DM Pauline + Ed, submit exhibit form. Trello lch8kRqu. Pitch: outreach/lpi-build-day-pitch-2026-07-15.md" },
-    { "id": "gtd-gonogo",        "title": "GTD Denmark RSVP GO/NO-GO",          "date": "2026-07-31", "parentEvent": "gtd-denmark",       "theme": "Travel Planning",   "notes": "Decide by Jul 31." },
     { "id": "pdc-floor",         "title": "PDC HARD FLOOR: 10 paid seats",      "date": "2026-08-01", "parentEvent": "pdc-retreat",       "theme": "Retreat Logistics", "notes": "below floor → pivot to MVV (6 alumni @ $1,500 flat)." },
     { "id": "pdc-wave1",         "title": "PDC marketing wave 1 begins",        "date": "2026-08-01", "parentEvent": "pdc-retreat",       "theme": "Marketing + Proof" },
     { "id": "pdc-ads-start",     "title": "PDC LinkedIn ads start ($200 cap)",  "date": "2026-08-15", "parentEvent": "pdc-retreat",       "theme": "Marketing + Proof", "notes": "kill if CAC > $400 by Sept 1." },
