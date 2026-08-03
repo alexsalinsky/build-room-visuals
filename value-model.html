@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What a Robot Is Worth — Humans V Robots</title>
+<meta name="description" content="One person builds a robot in a month. Four teammates adopt it. That is a full-time employee's worth of capacity, recovered. Run the numbers yourself.">
+<meta property="og:title" content="What a Robot Is Worth">
+<meta property="og:description" content="One person builds a robot in a month. Four teammates adopt it. That is a full-time employee's worth of capacity, recovered.">
+<style>
+  :root{
+    --bg:#0d0f12; --panel:#15181d; --line:#252a32;
+    --ink:#eef1f5; --dim:#8e97a5; --volt:#c6ff2e; --warm:#ffb020;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    padding:44px 22px 70px}
+  .wrap{max-width:1000px;margin:0 auto}
+  .brand{font-size:11.5px;letter-spacing:2.4px;text-transform:uppercase;color:var(--volt);margin:0 0 18px}
+  h1{font-size:38px;margin:0 0 12px;letter-spacing:-1px;line-height:1.1}
+  @media(max-width:620px){h1{font-size:29px}}
+  .lede{color:var(--dim);margin:0 0 38px;font-size:17px;max-width:660px}
+  .lede b{color:var(--ink);font-weight:600}
+  h2{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--dim);
+    margin:46px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:16px}
+
+  .calc{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+  @media(max-width:780px){.calc{grid-template-columns:1fr}}
+  .ctl{margin-bottom:21px}
+  .ctl label{display:flex;justify-content:space-between;font-size:13.5px;color:var(--dim);margin-bottom:8px}
+  .ctl label b{color:var(--ink);font-variant-numeric:tabular-nums}
+  input[type=range]{width:100%;accent-color:var(--volt);height:4px}
+  .out{display:flex;flex-direction:column;justify-content:center;gap:17px}
+  .big{font-size:52px;font-weight:700;color:var(--volt);line-height:1;letter-spacing:-1.8px;
+    font-variant-numeric:tabular-nums}
+  @media(max-width:620px){.big{font-size:42px}}
+  .biglabel{font-size:11.5px;color:var(--dim);text-transform:uppercase;letter-spacing:1.3px;margin-top:7px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .stat{font-size:25px;font-weight:600;font-variant-numeric:tabular-nums}
+  .fte{color:var(--warm)}
+  .note{font-size:13px;color:var(--dim);border-top:1px solid var(--line);padding-top:13px;margin:4px 0 0}
+
+  .proof{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:780px){.proof{grid-template-columns:1fr}}
+  .proof .panel{margin:0;display:flex;flex-direction:column}
+  blockquote{margin:0 0 16px;font-size:19px;line-height:1.45;color:var(--ink)}
+  blockquote:before{content:'"';color:var(--volt)}
+  blockquote:after{content:'"';color:var(--volt)}
+  .attr{font-size:13px;color:var(--dim);margin-top:auto}
+  .attr b{color:var(--ink);display:block;font-size:14px;margin-bottom:2px}
+  .figure{font-size:31px;font-weight:700;color:var(--volt);font-variant-numeric:tabular-nums;
+    letter-spacing:-1px;margin-bottom:4px}
+  .figlabel{font-size:11.5px;text-transform:uppercase;letter-spacing:1.2px;color:var(--dim);margin-bottom:16px}
+
+  .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px}
+  .cols .panel{margin:0}
+  .cols h3{font-size:15px;margin:0 0 8px}
+  .cols p{margin:0;font-size:13.5px;color:var(--dim)}
+  .tag{font-size:10.5px;color:var(--volt);text-transform:uppercase;letter-spacing:1.1px;margin-bottom:9px}
+
+  .kicker{font-size:20px;line-height:1.5;margin:0}
+  .kicker b{color:var(--volt)}
+  .thesis{margin:52px 0 0;padding:26px;text-align:center;border:1px solid var(--line);border-radius:12px}
+  .thesis .line{color:var(--volt);font-size:19px;font-weight:600;letter-spacing:.4px;margin:0 0 14px}
+  .thesis a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--volt);padding-bottom:2px;font-size:15px}
+  footer{margin-top:34px;color:var(--dim);font-size:12.5px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="brand">Humans V Robots</p>
+  <h1>What a robot is actually worth</h1>
+  <p class="lede">One person builds a tool in a month. Four teammates start using it. Nobody was hired, nobody was onboarded, and the savings show up again every month after that. <b>Here is how that math works, using real numbers our builders said out loud.</b></p>
+
+  <h2>Run it yourself</h2>
+  <div class="panel calc">
+    <div>
+      <div class="ctl">
+        <label>Hours saved per month, per person <b><span id="vh">35</span> hrs</b></label>
+        <input type="range" id="h" min="2" max="80" value="35">
+      </div>
+      <div class="ctl">
+        <label>People using the robot <b><span id="va">5</span></b></label>
+        <input type="range" id="a" min="1" max="20" value="5">
+      </div>
+      <div class="ctl">
+        <label>Loaded hourly rate <b>$<span id="vr">40</span>/hr</b></label>
+        <input type="range" id="r" min="10" max="90" value="40">
+      </div>
+      <p class="note">The sliders start on real numbers: six hours per campaign, six campaigns a month, one builder plus four teammates. Loaded rate means salary plus benefits and overhead, usually about 1.3x base. Change it to match your own team.</p>
+    </div>
+    <div class="out">
+      <div>
+        <div class="big" id="annual">$84,000</div>
+        <div class="biglabel">recovered per year, every year</div>
+      </div>
+      <div class="row2">
+        <div>
+          <div class="stat" id="hrs">2,100</div>
+          <div class="biglabel">hours back / yr</div>
+        </div>
+        <div>
+          <div class="stat fte" id="fte">1.01</div>
+          <div class="biglabel">full-time humans</div>
+        </div>
+      </div>
+      <p class="note" id="verdict"></p>
+    </div>
+  </div>
+
+  <h2>Where those numbers came from</h2>
+  <div class="proof">
+    <div class="panel">
+      <div class="figure">35 hrs / month</div>
+      <div class="figlabel">recovered capacity</div>
+      <blockquote>It is going to save me basically six hours per campaign. And right now I am doing six campaigns a month. So that is like 35 hours of work saved.</blockquote>
+      <p class="attr"><b>Kandice Vincent</b>Demo Day, live on camera. Two weeks later her CEO put it his own way: "She saved 35 hours. That's a human resource."</p>
+    </div>
+    <div class="panel">
+      <div class="figure">$20,000</div>
+      <div class="figlabel">quote avoided</div>
+      <blockquote>So David, what you did, someone six months ago quoted me $20,000 to make that.</blockquote>
+      <p class="attr"><b>Ginger Gentile</b>Said to one of her own team members on Demo Day, about a tool he built during the cohort.</p>
+    </div>
+  </div>
+
+  <h2>Four ways a robot pays</h2>
+  <div class="cols">
+    <div class="panel">
+      <div class="tag">01</div>
+      <h3>Hours back</h3>
+      <p>The obvious one. Work that took six hours takes twenty minutes, every time, from now on.</p>
+    </div>
+    <div class="panel">
+      <div class="tag">02</div>
+      <h3>Same build, more desks</h3>
+      <p>Built once, adopted by the whole team at no extra cost. This is where the real money is and almost nobody measures it.</p>
+    </div>
+    <div class="panel">
+      <div class="tag">03</div>
+      <h3>The quote you never pay</h3>
+      <p>What an agency or developer would have charged for the same thing. Owners remember these numbers exactly.</p>
+    </div>
+    <div class="panel">
+      <div class="tag">04</div>
+      <h3>The raised ceiling</h3>
+      <p>Some builders don't save hours, they serve four times the clients. That's not a cost line, it's a revenue line.</p>
+    </div>
+  </div>
+
+  <h2>The part that gets missed</h2>
+  <div class="panel">
+    <p class="kicker">The build takes <b>one month</b>. The savings come back <b>every month after that</b>. So you're comparing something you pay for once against something that keeps paying, and the gap widens every month while the cost stays exactly where it was.</p>
+    <p class="note" style="margin-top:18px">Which is why the tool isn't really the point. A cohort that produces one robot is worth what it costs. A cohort that produces a person who can build the next one, and the one after that, is worth something else entirely.</p>
+  </div>
+
+  <div class="thesis">
+    <p class="line">Learn AI. Build Robots. Stay Human.</p>
+    <a href="https://humansvrobots.co">humansvrobots.co</a>
+  </div>
+
+  <footer>Alex Salinsky / Humans V Robots</footer>
+</div>
+
+<script>
+(function(){
+  var h=document.getElementById('h'), a=document.getElementById('a'), r=document.getElementById('r');
+  function fmt(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+  function calc(){
+    var H=+h.value, A=+a.value, R=+r.value;
+    var hrsYr=H*12*A, dollars=hrsYr*R, fte=(H*A)/173;
+    document.getElementById('vh').textContent=H;
+    document.getElementById('va').textContent=A;
+    document.getElementById('vr').textContent=R;
+    document.getElementById('hrs').textContent=fmt(hrsYr);
+    document.getElementById('fte').textContent=fte.toFixed(2);
+    document.getElementById('annual').textContent='$'+fmt(Math.round(dollars));
+    var v=document.getElementById('verdict');
+    if(fte>=1){
+      v.innerHTML='That is <b style="color:var(--volt)">'+fte.toFixed(2)+' full-time humans</b> of capacity, from one robot built in one month. Nobody hired. Nobody onboarded. Nothing to pay again next year.';
+    }else{
+      var need=Math.ceil(173/H)-A;
+      v.innerHTML='That is <b>'+Math.round(fte*100)+'%</b> of a full-time human. '+(need>0?('Add '+need+' more '+(need===1?'person':'people')+' at this rate and the same robot crosses a full headcount.'):'');
+    }
+  }
+  [h,a,r].forEach(function(el){el.addEventListener('input',calc);});
+  calc();
+})();
+</script>
+</body>
+</html>
