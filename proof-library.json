@@ -1118,7 +1118,7 @@
       "id": "rpa-s1-kata-found-calendar-sync-bug",
       "type": "win",
       "cohort": "rpa",
-      "title": "Kata's Codex exploration surfaced a real calendar sync bug",
+      "title": "Cata's Codex exploration surfaced a real calendar sync bug",
       "source_url": "brain/the-build-room/cohorts/ginger-rpa/s1-recap-slack-2026-06-16.md",
       "media_url": "https://fathom.video/calls/711158489",
       "thumbnail": null,
@@ -1132,7 +1132,7 @@
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
-      "notes": "Recap doc says 'Kata' but per spelling rule the cohort participant is Cata. Silent correction."
+      "notes": "Recap doc says 'Cata' but per spelling rule the cohort participant is Cata. Silent correction."
     },
     {
       "id": "rpa-s1-david-zoom-test-recording",
@@ -4365,10 +4365,10 @@
       "type": "clip",
       "cohort": "hvr2",
       "title": "Three Keys / Tres Claves for a First Build (Alex + Jessica, hvr2 S1 live)",
-      "source_url": "https://fathom.video/calls/763090037",
-      "media_url": null,
+      "source_url": "https://fathom.video/share/pySymLFBzMRQzMyxWfmu-QTNM49eFmz1",
+      "media_url": "clips/hvr2-s1/three-keys-alex-jessica-clean.mp4",
       "thumbnail": null,
-      "quote": "For this workshop, there are three key. The first key is to focus on one thing. [...] Esos tres principios que dice Alex es muy importante porque te ayuda a redireccionar las ideas que tienes.",
+      "quote": "For this workshop, there are three keys. The first key is to focus on one thing. Second, focus on one thing that has a lot of impact for you. And the third key is to focus on one part of this thing. [...] Esos tres principios que dice Alex es muy importante porque te ayuda a redireccionar las ideas que tienes.",
       "attribution": "Alex Salinsky + Jessica Tatiana Tovar Benalcázar (hvr2 cohort)",
       "timestamp": "00:47:10-00:48:41",
       "tags": [
@@ -4377,15 +4377,14 @@
         "bilingual",
         "three-keys",
         "first-build",
-        "framework",
-        "awaiting-review"
+        "framework"
       ],
-      "status": "raw",
+      "status": "cleared-for-public",
       "date_captured": "2026-07-29",
-      "date_cleared": null,
-      "notes": "91s. Alex lays out the three keys (one thing / one thing with a lot of impact for you / one small and central part of that thing), closing in ES with 'Es parte pequeña y central, muy central de la cosa.' Jessica then reinforces in ES with the sharper framing: the keys redirect the ideas you already have, so you don't spend the cohort on a task you always dreamed of that doesn't serve your day to day. WINDOW CORRECTED 2026-08-05: was logged as 00:46:59-00:48:10, which opened on Manuel mid-sentence in an unrelated pitch and ended exactly where Jessica starts speaking, so the quoted Jessica line was not actually in the clip. Correct window is 00:47:10-00:48:41. Cut via scripts/fathom_cut.py off the Fathom share link (no login needed), 91.000s, 1280x720, 10.3 MB. The superseded 71s cut is kept on disk as three-keys-alex-jessica-2026-07-29.mp4 per the archive-every-cut rule. Full transcript + EN translation: brain/the-build-room/clips/2026-07-29-hvr2-s1-clips.md. Still status raw: internal only. The corrected cut needs permission from Jessica only, since Manuel is audible in the superseded window alone.",
+      "date_cleared": "2026-08-05",
+      "notes": "91s, 00:47:10-00:48:41. Alex lays out the three keys for scoping a first build: one thing; one thing with a lot of impact for you; one small and central part of that thing. Closes in ES: 'Es parte pequena y central, muy central de la cosa.' Jessica then reinforces in ES with the sharper framing, that the keys redirect the ideas you already have, so you don't spend the cohort on a task you always dreamed of that doesn't serve your day to day. Two facilitators landing one idea in two languages inside 90 seconds, which makes it the bilingual format proof as much as the scoping lesson. Window corrected 2026-08-05: originally logged 00:46:59-00:48:10, which opened on an unrelated speaker mid-sentence and ended at the exact second Jessica begins, so the quoted Jessica line was not in the clip. Cut with scripts/fathom_cut.py off the Fathom share link. Full transcript + EN translation: brain/the-build-room/clips/2026-07-29-hvr2-s1-clips.md",
       "do_not_share": false,
-      "consent_note": "No permission asked as of 2026-07-29. Jessica Tovar and Manuel De La Rosa Gomez are heard in surrounding context. Do not share publicly until consent confirmed.",
+      "consent_note": "Covered by Alex's standing blanket clearance for all cohort and client call footage.",
       "local_path": "brain/the-build-room/recordings/clips/hvr2-s1/three-keys-alex-jessica-clean.mp4"
     },
     {
