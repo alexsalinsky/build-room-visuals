@@ -42,7 +42,7 @@ Full source: [HORIZONS.md](HORIZONS.md)
 |---|---|---|---|---|---|
 | Open Cohort | Virtual 4-week cohort for individuals | 4 weeks | $1,500-2,000/seat | Add $400 entry tier | 4 cohorts delivered; July cohort launching now |
 | Closed Cohort | Private cohort for a team or org, custom curriculum | 4 weeks | $2,000-4,000 | $5-25K by org size | 3 delivered (DBALP, RPA, Centaur adjacent) |
-| Retreat | 5-day in-person immersive | 5 days | $2,750 / $3,250 / $3,750 tiers | Same, 2-4/yr | PDC (Oct 12-16) + Chiang Mai (Nov 16-20) both GO |
+| Retreat | 5-day in-person immersive | 5 days | $2,000 | Same, 2-4/yr | PDC (Oct 12-16) + Chiang Mai (Nov 16-20) both GO |
 | Membership / Alumni | Post-cohort community layer | Ongoing | TBD | $50-100/mo | Design deadline Feb 2027 |
 | Build Day | One-day live build facilitation, strongest at conferences | 1 day | Not priced as a standalone yet | Sell it as a conference product | Format proven (DCMex buildathon day-lead, Build Day site live); under-sold today and Alex wants that to change |
 
@@ -147,7 +147,7 @@ All times America/Bogota unless noted. This calendar is the source of truth; ask
 | Jul 22 | Event | July Cohort TSLS, 6-7pm (late buyers can still join) |
 | ~Jul 27+ | Delivery | July cohort runs, 4 weekly sessions |
 | Aug 1 | Decision | PDC hard-floor check: 10 paid or pivot to MVV. Also first public PDC post |
-| Aug 15 | Event | PDC Retreat Kickoff Session 1, 6pm (tier 1 $2,750 opens 7 days) |
+| Aug 15 | Event | PDC Retreat Kickoff Session 1, 6pm ($2,000 flat, opens 7 days) |
 | Aug 15 | Mktg | Thailand retreat pre-marketing begins |
 | Aug 22 | Decision | PDC excite-event format due |
 | Sep 1 | Mktg | Thailand retreat first public post |
