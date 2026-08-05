@@ -4383,10 +4383,10 @@
       "status": "raw",
       "date_captured": "2026-07-29",
       "date_cleared": null,
-      "notes": "~71s. Alex lays out the three keys live in EN (one thing, high impact, one small part of that thing), then Jessica reinforces bilingually in ES. Moment starts at Alex: 'For this workshop, there are three key.' Ends mid-Jessica reinforcement at 00:48:10. Manuel Alejandro De La Rosa Gomez is also on the call; Jessica Tatiana Tovar Benalcázar speaks. No permission asked yet from either. TODO: re-run fathom_video_download.py --login to refresh session, then download source and cut clip to brain/the-build-room/recordings/clips/hvr2-s1/three-keys-alex-jessica-2026-07-29.mp4.",
+      "notes": "~71s. Alex lays out the three keys live in EN (one thing, high impact, one small part of that thing), then Jessica reinforces bilingually in ES. Moment starts at Alex: 'For this workshop, there are three key.' Ends mid-Jessica reinforcement at 00:48:10. Manuel Alejandro De La Rosa Gomez is also on the call; Jessica Tatiana Tovar Benalcázar speaks. No permission asked yet from either. CUT 2026-08-05 via scripts/fathom_cut.py off the Fathom share link, 71.000s, 1280x720, 8.2 MB. Still status raw: internal only until Jessica and Manuel clear it.",
       "do_not_share": false,
       "consent_note": "No permission asked as of 2026-07-29. Jessica Tovar and Manuel De La Rosa Gomez are heard in surrounding context. Do not share publicly until consent confirmed.",
-      "local_path": null
+      "local_path": "brain/the-build-room/recordings/clips/hvr2-s1/three-keys-alex-jessica-2026-07-29.mp4"
     },
     {
       "id": "hvr2-s1-am-cata-wiki-knowledge-fix",
