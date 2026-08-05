@@ -6,9 +6,9 @@
     "eventTypes": ["retreat", "build-lab", "conference", "kickoff", "external"]
   },
   "events": [
-    { "id": "pdc-kickoff1",      "title": "PDC Kickoff Session 1",              "date": "2026-08-15", "type": "kickoff",    "theme": "Marketing + Proof",   "notes": "why I built this retreat framing. Tier 1 $2,750 opens for 7 days." },
+    { "id": "pdc-kickoff1",      "title": "PDC Kickoff Session 1",              "date": "2026-08-15", "type": "kickoff",    "theme": "Marketing + Proof",   "notes": "why I built this retreat framing. $2,000 flat, opens for 7 days." },
     { "id": "gtd-denmark",       "title": "GTD Denmark retreat (David Allen)",  "date": "2026-09-02", "endDate": "2026-09-04", "type": "external", "theme": "Travel Planning", "notes": "CONFIRMED GOING (2026-08-03). $4,700 all-in." },
-    { "id": "pdc-kickoff2",      "title": "PDC Kickoff Session 2",              "date": "2026-09-15", "type": "kickoff",    "theme": "Marketing + Proof",   "notes": "deeper walkthrough + alumni testimonials. Tier 2 $3,250 opens." },
+    { "id": "pdc-kickoff2",      "title": "PDC Kickoff Session 2",              "date": "2026-09-15", "type": "kickoff",    "theme": "Marketing + Proof",   "notes": "deeper walkthrough + alumni testimonials. $2,000 flat." },
     { "id": "cm-kickoff1",       "title": "CM Kickoff Session 1",               "date": "2026-09-15", "type": "kickoff",    "theme": "Marketing + Proof",   "notes": "post-DCBKK extension angle. Tier 1 opens." },
     { "id": "lpi-learning-live", "title": "LPI Learning Live (London)",         "date": "2026-09-16", "endDate": "2026-09-17", "type": "conference", "theme": "Marketing + Proof", "notes": "Convene 133 Houndsditch EC3A 7DB. At-cost AI Build Day offer to Pauline Saunders (Head of Events) + Ed Monk (CEO). No CFP; agenda crowdsourced from attendees." },
     { "id": "nc17-cruise",       "title": "NC17 Nomad Cruise (Southampton → NYC)", "date": "2026-09-19", "endDate": "2026-09-26", "type": "conference", "theme": "Marketing + Proof", "notes": "Alex = AI Coordinator, runs all AI programming on board (~150 people)." },
@@ -27,7 +27,7 @@
     { "id": "cm-premarket",      "title": "CM retreat pre-marketing kick",      "date": "2026-08-15", "parentEvent": "cm-retreat",        "theme": "Retreat Logistics", "notes": "venue research Chiang Mai, pricing locked, CMSEO organizers contacted re affiliate." },
     { "id": "cm-wave1",          "title": "CM marketing wave 1 begins",         "date": "2026-09-01", "parentEvent": "cm-retreat",        "theme": "Marketing + Proof", "notes": "CMSEO Whova side-event slot pursued." },
     { "id": "london-leg",        "title": "London leg (travel context)",        "date": "2026-09-12", "endDate": "2026-09-18", "parentEvent": "lpi-learning-live", "theme": "Marketing + Proof", "notes": "DC Junto Sep 17, BSF Sep 17-18. Salsa Temple optional anchor." },
-    { "id": "pdc-scarcity",      "title": "PDC scarcity push begins",           "date": "2026-09-28", "parentEvent": "pdc-retreat",       "theme": "Marketing + Proof", "notes": "Last Call tier $3,750. Cohort referral push." },
+    { "id": "pdc-scarcity",      "title": "PDC scarcity push begins",           "date": "2026-09-28", "parentEvent": "pdc-retreat",       "theme": "Marketing + Proof", "notes": "$2,000 flat, no tier escalation while pricing is under review. Cohort referral push." },
     { "id": "cm-floor",          "title": "CM HARD FLOOR: 8 paid seats",        "date": "2026-10-01", "parentEvent": "cm-retreat",        "theme": "Retreat Logistics", "notes": "below floor → run as alumni-only 6-seat pilot at $1,500." },
     { "id": "cm-whova-side-event", "title": "CMSEO Whova side event (funnel)",  "date": "2026-11-09", "parentEvent": "cmseo",             "theme": "Marketing + Proof", "notes": "Pursue Whova listing during conference week. Graduates to a build-lab event once confirmed." }
   ]
