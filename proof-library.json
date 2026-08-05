@@ -4370,7 +4370,7 @@
       "thumbnail": null,
       "quote": "For this workshop, there are three key. The first key is to focus on one thing. [...] Esos tres principios que dice Alex es muy importante porque te ayuda a redireccionar las ideas que tienes.",
       "attribution": "Alex Salinsky + Jessica Tatiana Tovar Benalcázar (hvr2 cohort)",
-      "timestamp": "00:46:59-00:48:10",
+      "timestamp": "00:47:10-00:48:41",
       "tags": [
         "scoping",
         "s1",
@@ -4383,10 +4383,10 @@
       "status": "raw",
       "date_captured": "2026-07-29",
       "date_cleared": null,
-      "notes": "~71s. Alex lays out the three keys live in EN (one thing, high impact, one small part of that thing), then Jessica reinforces bilingually in ES. Moment starts at Alex: 'For this workshop, there are three key.' Ends mid-Jessica reinforcement at 00:48:10. Manuel Alejandro De La Rosa Gomez is also on the call; Jessica Tatiana Tovar Benalcázar speaks. No permission asked yet from either. CUT 2026-08-05 via scripts/fathom_cut.py off the Fathom share link, 71.000s, 1280x720, 8.2 MB. Still status raw: internal only until Jessica and Manuel clear it.",
+      "notes": "91s. Alex lays out the three keys (one thing / one thing with a lot of impact for you / one small and central part of that thing), closing in ES with 'Es parte pequeña y central, muy central de la cosa.' Jessica then reinforces in ES with the sharper framing: the keys redirect the ideas you already have, so you don't spend the cohort on a task you always dreamed of that doesn't serve your day to day. WINDOW CORRECTED 2026-08-05: was logged as 00:46:59-00:48:10, which opened on Manuel mid-sentence in an unrelated pitch and ended exactly where Jessica starts speaking, so the quoted Jessica line was not actually in the clip. Correct window is 00:47:10-00:48:41. Cut via scripts/fathom_cut.py off the Fathom share link (no login needed), 91.000s, 1280x720, 10.3 MB. The superseded 71s cut is kept on disk as three-keys-alex-jessica-2026-07-29.mp4 per the archive-every-cut rule. Full transcript + EN translation: brain/the-build-room/clips/2026-07-29-hvr2-s1-clips.md. Still status raw: internal only. The corrected cut needs permission from Jessica only, since Manuel is audible in the superseded window alone.",
       "do_not_share": false,
       "consent_note": "No permission asked as of 2026-07-29. Jessica Tovar and Manuel De La Rosa Gomez are heard in surrounding context. Do not share publicly until consent confirmed.",
-      "local_path": "brain/the-build-room/recordings/clips/hvr2-s1/three-keys-alex-jessica-2026-07-29.mp4"
+      "local_path": "brain/the-build-room/recordings/clips/hvr2-s1/three-keys-alex-jessica-clean.mp4"
     },
     {
       "id": "hvr2-s1-am-cata-wiki-knowledge-fix",
