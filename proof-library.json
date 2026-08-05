@@ -679,7 +679,7 @@
       "source_url": "brain/the-build-room/cohorts/bryce-dbalp/s3-wins-post-2026-06-23.md",
       "media_url": null,
       "thumbnail": null,
-      "quote": "Your sidebar is live. Public. Today. DA. UVPM. Outlet. Reporter. Email. Beats. Macro URL. All of it in one panel, inside Missive. You wired Monday into the same flow during the session. Save to Monday Fox Hollow works. Bryce said it out loud: this is the thing we hired a developer for, for two months. You built it in three sessions.",
+      "quote": "Your sidebar is live. Public. Today. DA. UVPM. Outlet. Reporter. Email. Beats. Macro URL. All of it in one panel, inside Missive. You wired Monday into the same flow during the session. Save to Monday Fox Hollow works. Marley said it out loud: this is the thing we hired a developer for, for two months. You built it in three sessions.",
       "attribution": "Kate (DBALP cohort)",
       "timestamp": null,
       "tags": [
@@ -691,18 +691,18 @@
       "status": "cleared-for-public",
       "date_captured": "2026-06-23",
       "date_cleared": null,
-      "notes": "FEATURED candidate for marketing once permission asked. Mid-session continuous extension pattern (Bryce asked, Kate shipped same session, room applauded). TODO: ask Kate for permission to use as marketing asset; pull video clip from S3 Fathom https://fathom.video/share/niM3mdCCwSSFEhbyJyMjfMaAxQgNM32A. Permission granted 2026-07-06 (Alex confirmed directly with the builder; cleared for the Jul 15 kickoff Luma page and general public use)."
+      "notes": "FEATURED candidate for marketing once permission asked. Mid-session continuous extension pattern (Bryce asked, Kate shipped same session, room applauded). TODO: ask Kate for permission to use as marketing asset; pull video clip from S3 Fathom https://fathom.video/share/niM3mdCCwSSFEhbyJyMjfMaAxQgNM32A. Permission granted 2026-07-06 (Alex confirmed directly with the builder; cleared for the Jul 15 kickoff Luma page and general public use). Verified against the S3 transcript 2026-08-05 [01:52:43]: the speaker is Marley, not Bryce. Marley is praising Kate and turning to Bryce with \"Bryce, this is that.\" Earlier entries misattributed this to Bryce."
     },
     {
       "id": "dbalp-s3-bryce-callback-developer-two-months",
       "type": "quote",
       "cohort": "dbalp",
-      "title": "Bryce's callback: remember when we hired that developer for two months",
+      "title": "Marley's callback: remember when we hired that developer for two months",
       "source_url": "brain/the-build-room/cohorts/bryce-dbalp/s3-wins-post-2026-06-23.md",
       "media_url": null,
       "thumbnail": null,
       "quote": "Remember when we hired that developer for two months.",
-      "attribution": "Bryce North (DBALP cohort owner)",
+      "attribution": "Marley Peters (DBALP cohort)",
       "timestamp": "01:51:00",
       "tags": [
         "story",
@@ -712,7 +712,7 @@
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
-      "notes": "Said during Kate's Missive sidebar live-build moment. Paraphrase, not verbatim. Pulls double duty as buyer testimonial (org-buyer recognizing ROI live). TODO: confirm exact wording from S3 transcript."
+      "notes": "Duplicate of dbalp-s3-bryce-developer-callback, which carries the fuller quote. Verified against the S3 transcript 2026-08-05 [01:52:43]: the speaker is Marley, not Bryce. Marley is praising Kate and turning to Bryce with \"Bryce, this is that.\" Earlier entries misattributed this to Bryce."
     },
     {
       "id": "dbalp-s3-bryce-crm-cats-sad-dogs",
@@ -1484,8 +1484,8 @@
       "source_url": "brain/the-build-room/cohorts/bryce-dbalp/2026-06-23-s3-transcript.md",
       "media_url": null,
       "thumbnail": null,
-      "quote": "Bryce: could you connect Monday to this, Kate, and pull more conversations? Kate at 01:51: I created like this opportunity overview ... this button is working, like save the Monday Fox Hollow form. Bryce: remember when we hired that developer for like two months to do this for us? Yeah, Bryce, this is that, this is like that too.",
-      "attribution": "Kate + Bryce (DBALP cohort)",
+      "quote": "Bryce: could you connect Monday to this, Kate, and pull more conversations? Kate at 01:51: I created like this opportunity overview ... this button is working, like save the Monday Fox Hollow form. Marley: remember when we hired that developer for like two months to do this for us? Yeah, Bryce, this is that, this is like that too.",
+      "attribution": "Kate + Marley + Bryce (DBALP cohort)",
       "timestamp": "00:34:20 idea then 01:51:00 working button then 01:52:43 developer callback",
       "tags": [
         "mid-session-extension",
@@ -1496,7 +1496,7 @@
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
-      "notes": "Marketing-clip candidate. Three-beat moment: peer drops idea, builder ships inside session, CEO does the ROI callback. New CUSTOMER-JOURNEY touchpoint pattern lifted from this. Needs permission ask before public use."
+      "notes": "Marketing-clip candidate. Three-beat moment: peer drops idea, builder ships inside session, CEO does the ROI callback. New CUSTOMER-JOURNEY touchpoint pattern lifted from this. Needs permission ask before public use. Verified against the S3 transcript 2026-08-05 [01:52:43]: the speaker is Marley, not Bryce. Marley is praising Kate and turning to Bryce with \"Bryce, this is that.\" Earlier entries misattributed this to Bryce."
     },
     {
       "id": "dbalp-s3-bryce-sales-loop-done",
@@ -1647,12 +1647,12 @@
       "id": "dbalp-s3-bryce-developer-callback",
       "type": "quote",
       "cohort": "dbalp",
-      "title": "Bryce: remember when we hired that developer for two months to do this for us? This is that.",
+      "title": "Marley to Kate: remember when we hired that developer for two months to do this for us? This is that.",
       "source_url": "brain/the-build-room/cohorts/bryce-dbalp/2026-06-23-s3-transcript.md",
       "media_url": null,
       "thumbnail": null,
-      "quote": "Remember when we hired that developer for like two months to do this for us? Yeah, Bryce, this is that, this is like that too.",
-      "attribution": "Bryce (DBALP cohort, CEO) about Kate Missive sidebar",
+      "quote": "I'm proud of you for this. Remember when we hired that developer for like two months to do this for us? Yeah, Bryce, this is that, this is like that too.",
+      "attribution": "Marley Peters (DBALP cohort), to Kate, in front of the CEO",
       "timestamp": "01:52:43",
       "tags": [
         "recognition",
@@ -1662,7 +1662,7 @@
       "status": "raw",
       "date_captured": "2026-06-23",
       "date_cleared": null,
-      "notes": "CEO ROI callback, in-cohort, unprompted. Useful for org-buyer landing copy. Same moment as dbalp-s3-kate-mid-session-extension; isolated as a quote for reuse. Needs permission."
+      "notes": "Peer ROI callback, in-cohort, unprompted: a colleague names that Kate built in three sessions what a hired developer took two months on. Verified against the S3 transcript 2026-08-05 [01:52:43]: the speaker is Marley, not Bryce. Marley is praising Kate and turning to Bryce with \"Bryce, this is that.\" Earlier entries misattributed this to Bryce."
     },
     {
       "id": "ff-thu-s1-ruben-debt-sequencer-locked",
