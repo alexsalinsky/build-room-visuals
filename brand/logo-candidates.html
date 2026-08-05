@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Build Room Logo Candidates (internal draft)</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body { background:#faf6ee; font-family:'IBM Plex Sans',sans-serif; color:#1f1a14; margin:0; padding:40px; }
+  h1 { font-family:'Anton',sans-serif; letter-spacing:0.02em; }
+  .grid { display:flex; gap:40px; flex-wrap:wrap; margin-top:24px; }
+  .card { text-align:center; }
+  .card p { max-width:400px; font-size:14px; }
+  svg { display:block; }
+  .note { margin-top:32px; font-size:13px; color:#6b6257; }
+</style>
+</head>
+<body>
+<h1>LOGO CANDIDATES: 400 x 400</h1>
+<p>Internal draft for LinkedIn Company Page + certificate use. Palette: charcoal #1a1612, cream #faf6ee, amber #f59e0b.</p>
+
+<div class="grid">
+
+  <div class="card">
+    <svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#1a1612"/>
+      <text x="200" y="150" font-family="Anton" font-size="72" fill="#faf6ee" text-anchor="middle" letter-spacing="2">THE</text>
+      <text x="200" y="230" font-family="Anton" font-size="72" fill="#f59e0b" text-anchor="middle" letter-spacing="2">BUILD</text>
+      <text x="200" y="310" font-family="Anton" font-size="72" fill="#faf6ee" text-anchor="middle" letter-spacing="2">ROOM</text>
+    </svg>
+    <p><strong>A. Stacked wordmark.</strong> Charcoal field, amber BUILD. Reads clearly at LinkedIn's small render sizes.</p>
+  </div>
+
+  <div class="card">
+    <svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#faf6ee"/>
+      <rect x="70" y="70" width="260" height="260" fill="none" stroke="#1a1612" stroke-width="14"/>
+      <rect x="70" y="70" width="260" height="260" fill="none" stroke="#f59e0b" stroke-width="14" stroke-dasharray="130 910"/>
+      <text x="200" y="248" font-family="Anton" font-size="130" fill="#1a1612" text-anchor="middle" letter-spacing="4">BR</text>
+    </svg>
+    <p><strong>B. BR monogram in a room frame.</strong> Cream field, the square is the "room," amber marks the open corner (the door). Distinct as a tiny avatar.</p>
+  </div>
+
+  <div class="card">
+    <svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#1a1612"/>
+      <rect x="130" y="110" width="140" height="110" rx="16" fill="none" stroke="#f59e0b" stroke-width="12"/>
+      <circle cx="172" cy="162" r="12" fill="#f59e0b"/>
+      <circle cx="228" cy="162" r="12" fill="#f59e0b"/>
+      <line x1="200" y1="110" x2="200" y2="78" stroke="#f59e0b" stroke-width="12"/>
+      <circle cx="200" cy="70" r="10" fill="#f59e0b"/>
+      <text x="200" y="300" font-family="Anton" font-size="52" fill="#faf6ee" text-anchor="middle" letter-spacing="3">BUILD ROOM</text>
+    </svg>
+    <p><strong>C. Robot head + wordmark.</strong> Nods to "Learn AI. Build Robots. Stay Human." Friendliest of the three; robot may read as toy-like in formal contexts.</p>
+  </div>
+
+</div>
+
+<p class="note">Internal draft, not published. Export path once one is picked: render the chosen SVG at 400x400 PNG for the LinkedIn Page (268x268 minimum) and reuse on the Certifier certificate design.</p>
+</body>
+</html>

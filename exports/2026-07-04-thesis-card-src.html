@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body {
+    background: #fafafa;
+    color: #1a1a1a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card {
+    width: 920px;
+    height: 1190px;
+    background: #fff;
+    border: 3px solid #1a1a1a;
+    border-radius: 16px;
+    padding: 80px 72px 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  .pill {
+    display: inline-block;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 10px 26px;
+    border-radius: 30px;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    align-self: flex-start;
+    margin-bottom: 90px;
+  }
+  .thesis {
+    font-size: 96px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.14;
+  }
+  .thesis .line { display: block; }
+  .thesis .line + .line { margin-top: 18px; }
+  .rule {
+    height: 4px;
+    background: #1a1a1a;
+    width: 140px;
+    border-radius: 2px;
+    margin: 80px 0 0;
+  }
+  .kickoff {
+    margin-top: auto;
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 14px;
+    padding: 34px 38px;
+    text-align: center;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .footer {
+    margin-top: 36px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #888;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="pill">THE BUILD ROOM</div>
+    <div class="thesis">
+      <span class="line">Learn AI.</span>
+      <span class="line">Build Robots.</span>
+      <span class="line">Stay Human.</span>
+    </div>
+    <div class="rule"></div>
+    <div class="kickoff">Next cohort Kickoff Session &middot; July 15</div>
+    <div class="footer">Alex Salinsky / The Build Room</div>
+  </div>
+</body>
+</html>

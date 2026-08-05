@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Upcoming Events · The Build Room · IG 1080x1350</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body {
+    background: #fafafa;
+    color: #1a1a1a;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 60px 38px;
+  }
+
+  /* header */
+  .pill { display: inline-block; background: #1a1a1a; color: #fff; padding: 8px 20px; border-radius: 24px; font-size: 19px; font-weight: 700; letter-spacing: 2px; margin-bottom: 18px; }
+  h1 { font-size: 62px; font-weight: 800; letter-spacing: -2px; line-height: 1.04; margin-bottom: 10px; }
+  h1 em { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -1px; }
+  .sub { font-size: 24px; color: #666; margin-bottom: 28px; }
+
+  /* event rows */
+  .rows { display: flex; flex-direction: column; gap: 13px; flex: 1; }
+  .row {
+    display: flex; align-items: center; gap: 26px;
+    border: 2.5px solid #1a1a1a; border-radius: 14px;
+    padding: 16px 28px;
+  }
+  .row.amber  { background: #fef3e0; }
+  .row.sky    { background: #e0f2fe; }
+  .row.green  { background: #f0fdf4; }
+  .row.pink   { background: #fce7f3; }
+  .row.violet { background: #ede9fe; }
+
+  .date { width: 190px; flex-shrink: 0; font-family: Georgia, "Times New Roman", serif; }
+  .date .mo { font-size: 21px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #1a1a1a; }
+  .date .d { font-size: 44px; line-height: 1.05; letter-spacing: -1px; }
+  .body-txt { flex: 1; }
+  .ev-name { font-size: 30px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.12; margin-bottom: 4px; }
+  .ev-det { font-size: 21px; color: #444; line-height: 1.3; }
+  .ev-det strong { color: #1a1a1a; font-weight: 700; }
+  .tag {
+    align-self: flex-start; flex-shrink: 0;
+    background: #1a1a1a; color: #fff;
+    font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 6px 13px; border-radius: 8px; margin-top: 4px;
+  }
+  .row.amber .tag  { background: #d97706; }
+  .row.sky .tag    { background: #0369a1; }
+  .row.green .tag  { background: #15803d; }
+  .row.pink .tag   { background: #be185d; }
+  .row.violet .tag { background: #6d28d9; }
+
+  /* retreat hook */
+  .hook { display: flex; align-items: baseline; gap: 16px; padding: 6px 4px 0; }
+  .hook .label { font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #1a1a1a; flex-shrink: 0; }
+  .hook .line { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 23px; color: #444; }
+
+  /* on the road */
+  .road {
+    display: flex; align-items: center; gap: 22px;
+    border: 2px dashed #999; border-radius: 14px;
+    padding: 14px 28px; background: #f5f5f5;
+  }
+  .road .label { font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #888; width: 110px; flex-shrink: 0; }
+  .road .txt { font-size: 20px; color: #444; line-height: 1.4; }
+  .road .txt strong { color: #1a1a1a; font-weight: 700; }
+
+  /* thesis band */
+  .band {
+    margin-top: 20px;
+    background: #1a1a1a; color: #fff;
+    border-radius: 16px;
+    padding: 26px 34px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thesis { font-size: 33px; font-weight: 800; letter-spacing: -0.5px; }
+
+  footer { margin-top: 18px; display: flex; justify-content: space-between; font-size: 18px; color: #888; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="pill">THE BUILD ROOM</div>
+    <h1>Your next chance to build <em>with us.</em></h1>
+    <div class="sub">Five ways in, July through November.</div>
+  </header>
+
+  <div class="rows">
+    <div class="row amber">
+      <div class="date"><div class="mo">Jul</div><div class="d">15</div></div>
+      <div class="body-txt">
+        <div class="ev-name">Kickoff Session</div>
+        <div class="ev-det">Free, live on Zoom. See the build method, meet the room, leave knowing what you'd ship. <strong>luma.com/rnmkpxoc</strong></div>
+      </div>
+      <div class="tag">Free</div>
+    </div>
+
+    <div class="row sky">
+      <div class="date"><div class="mo">Jul&ndash;Aug</div><div class="d">4 wks</div></div>
+      <div class="body-txt">
+        <div class="ev-name">July AI Build Cohort</div>
+        <div class="ev-det">Online, one session a week. Non-technical operators build one working tool that's still running when it ends.</div>
+      </div>
+      <div class="tag">Online</div>
+    </div>
+
+    <div class="row green">
+      <div class="date"><div class="mo">Aug</div><div class="d">Soon</div></div>
+      <div class="body-txt">
+        <div class="ev-name">Women's Cohort</div>
+        <div class="ev-det">Women-only AI build cohort, first run. Details soon.</div>
+      </div>
+      <div class="tag">New</div>
+    </div>
+
+    <div class="hook">
+      <div class="label">Builder Retreats</div>
+      <div class="line">Robots during the day, humans at night.</div>
+    </div>
+
+    <div class="row pink">
+      <div class="date"><div class="mo">Oct</div><div class="d">12&ndash;16</div></div>
+      <div class="body-txt">
+        <div class="ev-name">Builder Retreat &middot; Playa del Carmen</div>
+        <div class="ev-det">Five days building in one house in Mexico. Beaches, margaritas, nature.</div>
+      </div>
+      <div class="tag">Mexico</div>
+    </div>
+
+    <div class="row violet">
+      <div class="date"><div class="mo">Nov</div><div class="d">16&ndash;20</div></div>
+      <div class="body-txt">
+        <div class="ev-name">Builder Retreat &middot; Chiang Mai</div>
+        <div class="ev-det">Same retreat, other side of the world. Temples, elephants, street food.</div>
+      </div>
+      <div class="tag">Thailand</div>
+    </div>
+
+    <div class="road">
+      <div class="label">On the road</div>
+      <div class="txt"><strong>Sep 16&ndash;17: Learning Live, London.</strong> I'll be in the room both days.<br><strong>Sep 26&ndash;Oct 3: Boston AI Week.</strong> Hosting and hopping side events all week. Come find me.</div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="thesis">Learn AI. Build Robots. Stay Human.</div>
+  </div>
+
+  <footer>
+    <div>Alex Salinsky / The Build Room</div>
+    <div>wins wall: alexsalinsky.github.io/build-room-visuals</div>
+  </footer>
+</body>
+</html>

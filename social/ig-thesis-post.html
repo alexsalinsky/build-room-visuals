@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>IG · Thesis A · Amber Flood</title>
+<link rel="stylesheet" href="../_template/tokens.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body {
+    font-family: var(--br-font);
+    background: var(--br-amber-bg);
+    color: var(--br-text);
+  }
+  .canvas {
+    width: 1080px; height: 1350px;
+    padding: 64px;
+    display: flex; flex-direction: column;
+    position: relative;
+  }
+  .chip {
+    align-self: flex-start;
+    background: var(--br-text);
+    color: var(--br-amber-bg);
+    border-radius: var(--br-radius-sm);
+    padding: 14px 26px;
+    font-size: 28px; font-weight: 800;
+    letter-spacing: 4px; text-transform: uppercase;
+  }
+  .thesis {
+    flex: 1;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .line {
+    font-size: 190px; font-weight: 900;
+    line-height: 0.98; letter-spacing: -6px;
+  }
+  .line.two { margin-left: 60px; }
+  .line.human {
+    margin-top: 34px;
+    align-self: flex-start;
+    background: var(--br-text);
+    color: var(--br-amber-bg);
+    padding: 6px 34px 18px;
+    border-radius: var(--br-radius-md);
+    transform: rotate(-2deg);
+    font-size: 150px; letter-spacing: -4px;
+  }
+  .footer {
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 5px solid var(--br-text);
+    padding-top: 30px;
+  }
+  .footer .handle { font-size: 34px; font-weight: 800; }
+  .footer .dots { display: flex; gap: 16px; }
+  .footer .dots span { width: 26px; height: 26px; border-radius: 50%; border: 3px solid var(--br-text); display: inline-block; }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="chip">The Build Room</div>
+    <div class="thesis">
+      <div class="line">Learn AI.</div>
+      <div class="line two">Build Robots.</div>
+      <div class="line human">Stay Human.</div>
+    </div>
+    <div class="footer">
+      <div class="handle">@the.build.room</div>
+      <div class="dots">
+        <span style="background: var(--br-exploring)"></span>
+        <span style="background: var(--br-adopting)"></span>
+        <span style="background: var(--br-operating)"></span>
+        <span style="background: var(--br-multiplying)"></span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

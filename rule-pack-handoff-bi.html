@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rule-pack hand-off EN+ES / Entrega del paquete de reglas</title>
+<!--
+  S2 rule-pack HAND-OFF. Two slides, 60 to 90 seconds total. Not a lesson.
+  Per DECISIONS 2026-07-01: bot-setup-standards.html was taught for ~20 min and lost
+  roughly 80% of non-engineers. This deck only shows the file and where it goes.
+  Do NOT teach the contents. The tool teaches itself once the file is in place.
+  Bilingual: English primary, Spanish beneath (smaller / italic / blue). Default: Both.
+  DO NOT modify bot-setup-standards.html.
+-->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 28px 90px; gap: 24px; }
+  .slide { display: none; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 1000px; flex: 1; }
+  .slide.active { display: flex; }
+
+  .eyebrow { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; }
+  h1 { font-size: 54px; font-weight: 800; letter-spacing: -1px; line-height: 1.1; text-align: center; margin-bottom: 6px; }
+  .slide-title-es { display: block; font-size: 28px; font-weight: 400; color: #2563eb; font-style: italic; text-align: center; margin-bottom: 22px; letter-spacing: -0.3px; }
+  .sub { font-size: 19px; color: #555; text-align: center; }
+  .sub-es { display: block; font-size: 15px; color: #2563eb; font-style: italic; text-align: center; margin-top: 4px; }
+
+  /* Slide 1: the file */
+  .file-card { background: #fff; border: 3px solid #1a1a1a; border-radius: 14px; padding: 26px 40px; text-align: center; margin: 8px 0 20px; }
+  .file-card .fname { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 34px; font-weight: 700; letter-spacing: -0.5px; }
+  .file-card .src { font-size: 13px; color: #777; margin-top: 10px; font-family: ui-monospace, "SF Mono", Menlo, monospace; word-break: break-all; }
+
+  /* Slide 2: where it goes */
+  .tools { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 100%; margin-bottom: 22px; }
+  .tool { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 18px 16px; text-align: center; }
+  .tool .t { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+  .tool .arrow { font-size: 20px; color: #92400e; line-height: 1; margin-bottom: 10px; }
+  .tool .dest { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 20px; font-weight: 700; color: #92400e; background: #fef3c7; border-radius: 6px; padding: 6px 10px; display: inline-block; }
+
+  .tree { background: #1e1e1e; color: #e5e7eb; border-radius: 10px; padding: 16px 22px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 15px; line-height: 1.7; }
+  .tree .hot { color: #fbbf24; font-weight: 700; }
+  .tree .dim { color: #9ca3af; }
+
+  .hud { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; gap: 22px; align-items: center; font-size: 14px; color: #666; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border: 1.5px solid #1a1a1a; border-radius: 999px; padding: 8px 18px; }
+  .hud strong { color: #1a1a1a; font-size: 15px; }
+  .controls { display: flex; gap: 8px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+
+  footer { position: fixed; bottom: 6px; right: 16px; font-size: 11px; color: #999; }
+
+  /* Language toggle */
+  .lang-toggle { position: fixed; top: 12px; right: 14px; display: flex; gap: 4px; background: #fff; border: 1.5px solid #1a1a1a; border-radius: 20px; padding: 3px 6px; font-size: 12px; font-weight: 600; z-index: 100; }
+  .lang-toggle button { border: none; background: transparent; padding: 3px 8px; border-radius: 14px; cursor: pointer; font-size: 12px; font-weight: 600; color: #666; }
+  .lang-toggle button.active { background: #1a1a1a; color: #fff; }
+
+  /* Mode visibility */
+  body.mode-en .es-elem { display: none !important; }
+  body.mode-es .en-elem { display: none !important; }
+</style>
+</head>
+<body class="mode-both">
+
+<div class="lang-toggle">
+  <button onclick="setMode('en')" id="btn-en">EN</button>
+  <button onclick="setMode('both')" id="btn-both" class="active">EN+ES</button>
+  <button onclick="setMode('es')" id="btn-es">ES</button>
+</div>
+
+<div class="stage">
+
+  <!-- ============================================================== -->
+  <!-- SLIDE 1 - THE FILE                                              -->
+  <!-- ============================================================== -->
+  <section class="slide active" data-slide="1">
+    <div class="eyebrow en-elem">Hand-off, not a lesson</div>
+    <div class="eyebrow es-elem">Entrega, no una clase</div>
+    <h1 class="en-elem">One file.<br/>Then go build.</h1>
+    <span class="slide-title-es es-elem">Un archivo.<br/>Y a construir.</span>
+
+    <div class="file-card">
+      <div class="fname">llm-builder-bps.md</div>
+      <div class="src">build-room-visuals / llm-builder-bps /</div>
+    </div>
+
+    <p class="sub en-elem">You don't have to read it. Your tool does.</p>
+    <span class="sub-es es-elem">No tienes que leerlo. Tu herramienta lo lee por ti.</span>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- SLIDE 2 - WHERE IT GOES                                         -->
+  <!-- ============================================================== -->
+  <section class="slide" data-slide="2">
+    <h1 class="en-elem">Where it goes</h1>
+    <span class="slide-title-es es-elem">D&oacute;nde va</span>
+
+    <div class="tools">
+      <div class="tool">
+        <div class="t">Codex</div>
+        <div class="arrow">&darr;</div>
+        <div class="dest">AGENTS.md</div>
+      </div>
+      <div class="tool">
+        <div class="t">Claude Code</div>
+        <div class="arrow">&darr;</div>
+        <div class="dest">CLAUDE.md</div>
+      </div>
+      <div class="tool">
+        <div class="t">Gemini</div>
+        <div class="arrow">&darr;</div>
+        <div class="dest">GEMINI.md</div>
+      </div>
+    </div>
+
+    <div class="tree">
+      <div>my-project/</div>
+      <div>&nbsp;&nbsp;<span class="hot">AGENTS.md</span> &nbsp;<span class="dim en-elem">&lt;- paste the rule-pack here</span><span class="dim es-elem">&lt;- pega aqu&iacute; el paquete de reglas</span></div>
+      <div>&nbsp;&nbsp;<span class="dim">src/</span></div>
+      <div>&nbsp;&nbsp;<span class="dim">data/</span></div>
+    </div>
+
+    <p class="sub en-elem" style="margin-top:20px">Project root. Same folder as your build. Rename it for your tool. That's it.</p>
+    <span class="sub-es es-elem">Ra&iacute;z del proyecto. La misma carpeta de tu build. Le cambias el nombre seg&uacute;n tu herramienta. Ya.</span>
+  </section>
+
+</div>
+
+<div class="hud">
+  <div class="controls">
+    <button id="prev">&larr; Prev</button>
+    <button id="next">Next &rarr;</button>
+  </div>
+  <div><strong id="counter">1</strong> / 2</div>
+</div>
+<footer>Alex Salinsky &middot; The Build Room</footer>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const counter = document.getElementById('counter');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
+let i = 0;
+
+function render() {
+  slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === slides.length - 1;
+}
+
+function setMode(m) {
+  document.body.className = 'mode-' + m;
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + m).classList.add('active');
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < slides.length - 1) { i++; render(); } };
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ') next.click();
+  if (e.key === 'ArrowLeft') prev.click();
+});
+
+// Basic touch swipe
+let touchStartX = null;
+document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+document.addEventListener('touchend', (e) => {
+  if (touchStartX === null) return;
+  const dx = e.changedTouches[0].screenX - touchStartX;
+  if (Math.abs(dx) > 40) { if (dx < 0) next.click(); else prev.click(); }
+  touchStartX = null;
+}, { passive: true });
+
+render();
+</script>
+</body>
+</html>

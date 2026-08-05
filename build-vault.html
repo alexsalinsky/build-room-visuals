@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Build Vault · The Build Room</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  .page { max-width: 1200px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  .draft-banner { background: #fde68a; color: #92400e; border: 2px solid #f59e0b; border-radius: 10px; padding: 12px 16px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
+
+  header { margin-bottom: 28px; }
+  .cohort-pill { display: inline-block; background: #1a1a1a; color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 1px; margin-bottom: 14px; }
+  h1 { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .sub { font-size: 17px; color: #666; max-width: 720px; }
+  @media (max-width: 640px) { h1 { font-size: 30px; } .sub { font-size: 15px; } }
+
+  .filter-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 26px 0 22px; }
+  .filter-label { font-size: 11px; font-weight: 700; color: #888; letter-spacing: 1.5px; text-transform: uppercase; margin-right: 6px; }
+  .chip { background: #fff; border: 1.5px solid #1a1a1a; border-radius: 16px; padding: 5px 12px; font-size: 12px; cursor: pointer; user-select: none; transition: all 0.12s; font-family: inherit; }
+  .chip:hover { background: #f0f0f0; }
+  .chip.active { background: #1a1a1a; color: #fff; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 16px; }
+  @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
+
+  .card { background: #fff; border: 2px solid #1a1a1a; border-radius: 10px; padding: 18px 20px; cursor: pointer; transition: all 0.12s; display: flex; flex-direction: column; gap: 10px; text-align: left; font-family: inherit; color: #1a1a1a; }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #1a1a1a; }
+  .card-project { font-size: 19px; font-weight: 800; line-height: 1.25; }
+  .card-builder { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #666; }
+  .card-hook { font-size: 14px; line-height: 1.5; color: #444; }
+  .card-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+  .badge { display: inline-block; background: #1a1a1a; color: #fff; padding: 2px 9px; border-radius: 10px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .badge.pattern { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; }
+  .badge.tier { background: #fde68a; color: #92400e; }
+  .badge.award { background: #dcfce7; color: #166534; }
+  .badge.video { background: #dbeafe; color: #1e40af; }
+  .badge.helps { background: #ede9fe; color: #5b21b6; }
+  .card-img { width: calc(100% + 40px); margin: -18px -20px 0; height: 150px; object-fit: cover; border-radius: 8px 8px 0 0; border-bottom: 2px solid #1a1a1a; display: block; }
+  .modal-img { width: 100%; height: 190px; object-fit: cover; border-radius: 8px; border: 1.5px solid #1a1a1a; margin-bottom: 18px; display: block; }
+
+  .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 100; padding: 20px; overflow-y: auto; }
+  .modal-bg.open { display: flex; align-items: flex-start; justify-content: center; }
+  .modal { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 12px; max-width: 760px; width: 100%; padding: 28px 28px 24px; margin: 40px 0; position: relative; }
+  @media (max-width: 640px) { .modal { padding: 22px 18px; margin-top: 20px; } }
+  .modal-close { position: absolute; top: 12px; right: 14px; background: none; border: none; font-size: 28px; cursor: pointer; line-height: 1; color: #888; font-family: inherit; }
+  .modal-close:hover { color: #1a1a1a; }
+  .modal h2 { font-size: 26px; font-weight: 800; line-height: 1.25; margin-bottom: 4px; padding-right: 24px; }
+  .modal .m-builder { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #666; margin-bottom: 14px; }
+  .modal-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+
+  .media-embed { margin: 0 0 18px; }
+  .media-embed iframe, .media-embed video { width: 100%; aspect-ratio: 16 / 9; max-height: 60vh; border: 0; border-radius: 8px; background: #000; display: block; }
+  .demo-link { display: inline-flex; align-items: center; gap: 8px; background: #1a1a1a; color: #fff; text-decoration: none; padding: 10px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; margin-bottom: 18px; }
+  .demo-link:hover { background: #444; }
+  .demo-note { font-size: 12px; color: #888; margin: -12px 0 18px; }
+
+  .layer { margin-bottom: 20px; }
+  .layer-label { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+  .layer p { font-size: 15px; line-height: 1.6; color: #1a1a1a; margin-bottom: 8px; }
+
+  .prompt-box { background: #1a1a1a; color: #e5e5e5; border-radius: 10px; padding: 18px 18px 14px; font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 13px; line-height: 1.55; white-space: pre-wrap; margin-bottom: 10px; max-height: 340px; overflow-y: auto; }
+  .prompt-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .copy-btn { background: #1a1a1a; color: #fff; border: none; padding: 10px 18px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; }
+  .copy-btn:hover { background: #444; }
+  .copy-btn.copied { background: #166534; }
+  .prompt-hint { font-size: 12px; color: #888; }
+
+  footer { margin-top: 56px; font-size: 12px; color: #888; text-align: center; padding-top: 24px; border-top: 1px solid #ddd; line-height: 1.8; }
+  footer .thesis { font-weight: 700; color: #1a1a1a; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="draft-banner">INTERNAL. For Build Room members only, please don't share outside the community. Demo links open the session recordings; short demo clips are coming.</div>
+
+  <header>
+    <div class="cohort-pill">THE BUILD ROOM · BUILD VAULT</div>
+    <h1>What could you build?</h1>
+    <p class="sub">Real projects from Build Room builders, most of whom had never touched code a month before Demo Day. Each card shows what they made, how it was built, and how to think about your own version. The starter prompt is yours: copy it into Codex or Claude Code and start building.</p>
+  </header>
+
+  <div class="filter-row" style="margin-bottom: 6px;">
+    <span class="filter-label">Pattern</span>
+    <button class="chip active" data-pattern="all">All</button>
+    <button class="chip" data-pattern="daily-watchdog">Daily watchdog</button>
+    <button class="chip" data-pattern="content-pipeline">Content pipeline</button>
+    <button class="chip" data-pattern="phone-only-build">Phone-only build</button>
+    <button class="chip" data-pattern="folder-watcher">Folder watcher</button>
+  </div>
+  <div class="filter-row" style="margin-top: 0;">
+    <span class="filter-label">Helps with</span>
+    <button class="chip active" data-helps="all">All</button>
+    <button class="chip" data-helps="marketing">Marketing</button>
+    <button class="chip" data-helps="content">Content</button>
+    <button class="chip" data-helps="productivity">Productivity</button>
+    <button class="chip" data-helps="creative">Creative</button>
+    <button class="chip" data-helps="personal">Personal</button>
+    <button class="chip" data-helps="life-admin">Life admin</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    <span class="thesis">Learn AI. Build Robots. Stay Human.</span><br>
+    Alex Salinsky / The Build Room<br>
+    Data layer: proof-library.json (this prototype inlines its cards; production reads the library)
+  </footer>
+</div>
+
+<div class="modal-bg" id="modalBg">
+  <div class="modal" id="modal"></div>
+</div>
+
+<script>
+// PROTOTYPE NOTE: production version reads proof-library.json and renders entries
+// that carry a `vault` object (see proposed schema extension in
+// docs/superpowers/specs/2026-07-22-build-vault-design.md).
+// Cards are inlined here so the draft opens as a local file with no server.
+
+const FATHOM_THU = "https://fathom.video/share/aZHzfxw4xAXLFGaqWgoeLzxYkaX5ih99";
+const FATHOM_MON = "https://fathom.video/share/zwoaU6ayZejVucVbtPy1ZEBTqiyn5gox";
+
+// Consent rule: entries whose builder asked not to share (proof-library tag
+// `confidentiality-requested` or a consent note) are excluded at EVERY tier.
+// Ruben's Debt Payoff App is excluded for exactly this reason.
+
+// IMAGES_START (placeholder SVGs, brand style, drawn by hand — swap for gpt-image-1 art via scripts/generate-vault-images.js once OpenAI billing is unblocked)
+const IMAGES = {
+  anthony: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNDAwIj4KICA8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2ZhZmFmYSIvPgogIDxjaXJjbGUgY3g9IjQ3MCIgY3k9IjQwMCIgcj0iMTUwIiBmaWxsPSIjZmRlNjhhIiBvcGFjaXR5PSIwLjYiLz4KICA8Y2lyY2xlIGN4PSI0NzAiIGN5PSI0MDAiIHI9Ijk1IiBmaWxsPSIjZjU5ZTBiIiBvcGFjaXR5PSIwLjM1Ii8+CiAgPCEtLSB0aHJlZSBkYXNoYm9hcmQgc2NyZWVucyBvbiBzdGFuZHMgLS0+CiAgPGcgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjUiIGZpbGw9IiNmZmYiPgogICAgPHJlY3QgeD0iNzAiIHk9IjEyMCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI3NSIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSIxMjUiIHkxPSIxOTUiIHgyPSIxMjUiIHkyPSIyNDAiLz4KICAgIDxsaW5lIHgxPSI5NSIgeTE9IjI0MCIgeDI9IjE1NSIgeTI9IjI0MCIvPgogICAgPHJlY3QgeD0iMjE1IiB5PSIxMDAiIHdpZHRoPSIxMTAiIGhlaWdodD0iNzUiIHJ4PSI4Ii8+CiAgICA8bGluZSB4MT0iMjcwIiB5MT0iMTc1IiB4Mj0iMjcwIiB5Mj0iMjQwIi8+CiAgICA8bGluZSB4MT0iMjQwIiB5MT0iMjQwIiB4Mj0iMzAwIiB5Mj0iMjQwIi8+CiAgICA8cmVjdCB4PSIzNjAiIHk9IjEyMCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI3NSIgcng9IjgiLz4KICAgIDxsaW5lIHgxPSI0MTUiIHkxPSIxOTUiIHgyPSI0MTUiIHkyPSIyNDAiLz4KICAgIDxsaW5lIHgxPSIzODUiIHkxPSIyNDAiIHgyPSI0NDUiIHkyPSIyNDAiLz4KICA8L2c+CiAgPCEtLSBhbGVydCBkb3Qgb24gbWlkZGxlIHNjcmVlbiAtLT4KICA8Y2lyY2xlIGN4PSIyNzAiIGN5PSIxMzciIHI9IjE0IiBmaWxsPSIjZjU5ZTBiIiBzdHJva2U9IiMxYTFhMWEiIHN0cm9rZS13aWR0aD0iNCIvPgogIDwhLS0gY2hhcnQgbGluZXMgb24gc2lkZSBzY3JlZW5zIC0tPgogIDxwb2x5bGluZSBwb2ludHM9Ijg1LDE3NSAxMTAsMTU1IDEzNSwxNjUgMTY1LDE0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxwb2x5bGluZSBwb2ludHM9IjM3NSwxODAgNDAwLDE2NSA0MjUsMTcyIDQ1NSwxNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFhMWExYSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIHdhdGNoZG9nIC0tPgogIDxnIHN0cm9rZT0iIzFhMWExYSIgc3Ryb2tlLXdpZHRoPSI1IiBmaWxsPSIjZmZmIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KICAgIDxyZWN0IHg9IjQ2MCIgeT0iMjcwIiB3aWR0aD0iOTAiIGhlaWdodD0iNjAiIHJ4PSIxOCIvPgogICAgPHJlY3QgeD0iNTMwIiB5PSIyMzgiIHdpZHRoPSI0NiIgaGVpZ2h0PSI0NCIgcng9IjEyIi8+CiAgICA8cGF0aCBkPSJNNTM4IDIzOCBMNTQ2IDIxNiBMNTU4IDIzOCBaIiBmaWxsPSIjZjU5ZTBiIi8+CiAgICA8bGluZSB4MT0iNDcwIiB5MT0iMzMwIiB4Mj0iNDcwIiB5Mj0iMzUyIi8+CiAgICA8bGluZSB4MT0iNTM2IiB5MT0iMzMwIiB4Mj0iNTM2IiB5Mj0iMzUyIi8+CiAgICA8cGF0aCBkPSJNNDYwIDI5MiBRNDMyIDI4NCA0MzYgMjYyIiBmaWxsPSJub25lIi8+CiAgPC9nPgogIDxjaXJjbGUgY3g9IjU1MiIgY3k9IjI1OCIgcj0iNC41IiBmaWxsPSIjMWExYTFhIi8+CiAgPCEtLSBwYXBlciBwbGFuZSBlbWFpbCAtLT4KICA8ZyBzdHJva2U9IiMxYTFhMWEiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNMTEwIDMyMCBMMTcwIDMwMCBMMTMwIDM0NSBaIiBmaWxsPSIjZjU5ZTBiIi8+CiAgICA8cGF0aCBkPSJNNzggMzEwIFE5NSAzMTYgMTEwIDMyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWRhc2hhcnJheT0iMiA4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8L2c+Cjwvc3ZnPgo=",
+  dominika: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNDAwIj4KICA8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2ZhZmFmYSIvPgogIDxjaXJjbGUgY3g9IjEyMCIgY3k9IjkwIiByPSI3MCIgZmlsbD0iI2ZkZTY4YSIgb3BhY2l0eT0iMC41Ii8+CiAgPCEtLSBtaWNyb3Bob25lIC0tPgogIDxnIHN0cm9rZT0iIzFhMWExYSIgc3Ryb2tlLXdpZHRoPSI1IiBmaWxsPSIjZmZmIj4KICAgIDxyZWN0IHg9Ijk1IiB5PSIxMjAiIHdpZHRoPSI3MCIgaGVpZ2h0PSIxMjAiIHJ4PSIzNSIvPgogICAgPHBhdGggZD0iTTc1IDIwMCBRNzUgMjY1IDEzMCAyNjUgUTE4NSAyNjUgMTg1IDIwMCIgZmlsbD0ibm9uZSIvPgogICAgPGxpbmUgeDE9IjEzMCIgeTE9IjI2NSIgeDI9IjEzMCIgeTI9IjMwNSIvPgogICAgPGxpbmUgeDE9Ijk1IiB5MT0iMzA1IiB4Mj0iMTY1IiB5Mj0iMzA1Ii8+CiAgPC9nPgogIDxsaW5lIHgxPSIxMTAiIHkxPSIxNTUiIHgyPSIxMTAiIHkyPSIyMDUiIHN0cm9rZT0iI2Y1OWUwYiIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8bGluZSB4MT0iMTMwIiB5MT0iMTQ1IiB4Mj0iMTMwIiB5Mj0iMjE1IiBzdHJva2U9IiNmNTllMGIiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjE1MCIgeTE9IjE1NSIgeDI9IjE1MCIgeTI9IjIwNSIgc3Ryb2tlPSIjZjU5ZTBiIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gd2F2ZSBicmFuY2hpbmcgLS0+CiAgPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8cGF0aCBkPSJNMTkwIDE4MCBRMjYwIDE4MCAzMDAgMTIwIFEzMzAgODAgMzgwIDgwIi8+CiAgICA8cGF0aCBkPSJNMTkwIDE4MCBRMjcwIDE4MCAzMzAgMTY1IFEzODAgMTU1IDQyMCAxNjAiLz4KICAgIDxwYXRoIGQ9Ik0xOTAgMTgwIFEyNjAgMTgwIDMwMCAyNDUgUTMzNSAyOTAgMzg1IDI5NSIvPgogIDwvZz4KICA8IS0tIHF1b3RlIGNhcmQgLS0+CiAgPGcgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjUiIGZpbGw9IiNmZmYiPgogICAgPHJlY3QgeD0iMzkwIiB5PSI0NSIgd2lkdGg9IjEzMCIgaGVpZ2h0PSI4MCIgcng9IjgiLz4KICA8L2c+CiAgPHBhdGggZD0iTTQxMCA3NSBxMCAtMTIgMTQgLTEyIE00MzYgNzUgcTAgLTEyIDE0IC0xMiIgc3Ryb2tlPSIjZjU5ZTBiIiBzdHJva2Utd2lkdGg9IjUiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSI0MTAiIHkxPSI5NSIgeDI9IjUwMCIgeTI9Ijk1IiBzdHJva2U9IiMxYTFhMWEiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjQxMCIgeTE9IjEwOCIgeDI9IjQ3NSIgeTI9IjEwOCIgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gcGhvdG8gY2FyZCAtLT4KICA8ZyBzdHJva2U9IiMxYTFhMWEiIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0iI2ZmZiI+CiAgICA8cmVjdCB4PSI0MzAiIHk9IjE0MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI4NSIgcng9IjgiLz4KICA8L2c+CiAgPGNpcmNsZSBjeD0iNDYwIiBjeT0iMTY1IiByPSI5IiBmaWxsPSIjZjU5ZTBiIi8+CiAgPHBhdGggZD0iTTQzOCAyMTAgTDQ3MCAxODIgTDQ5MiAyMDAgTDUxMiAxODYgTDUzMiAyMDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFhMWExYSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPCEtLSBlbnZlbG9wZSAtLT4KICA8ZyBzdHJva2U9IiMxYTFhMWEiIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0iI2ZmZiI+CiAgICA8cmVjdCB4PSIzOTUiIHk9IjI1NSIgd2lkdGg9IjEyNSIgaGVpZ2h0PSI4MCIgcng9IjgiLz4KICAgIDxwYXRoIGQ9Ik0zOTUgMjYyIEw0NTcgMzEwIEw1MjAgMjYyIiBmaWxsPSJub25lIi8+CiAgPC9nPgogIDxjaXJjbGUgY3g9IjUyMCIgY3k9IjI2MiIgcj0iMTIiIGZpbGw9IiNmNTllMGIiIHN0cm9rZT0iIzFhMWExYSIgc3Ryb2tlLXdpZHRoPSI0Ii8+Cjwvc3ZnPgo=",
+  cece: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNDAwIj4KICA8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2ZhZmFmYSIvPgogIDxjaXJjbGUgY3g9IjQ5MCIgY3k9IjgwIiByPSI3NSIgZmlsbD0iI2ZkZTY4YSIgb3BhY2l0eT0iMC41Ii8+CiAgPCEtLSBwaG9uZSAtLT4KICA8ZyBzdHJva2U9IiMxYTFhMWEiIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0iI2ZmZiI+CiAgICA8cmVjdCB4PSI5MCIgeT0iMTEwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjIzMCIgcng9IjE4Ii8+CiAgICA8bGluZSB4MT0iMTMwIiB5MT0iMTMyIiB4Mj0iMTcwIiB5Mj0iMTMyIi8+CiAgPC9nPgogIDwhLS0gcGhvdG9zIGZhbm5pbmcgb3V0IC0tPgogIDxnIHN0cm9rZT0iIzFhMWExYSIgc3Ryb2tlLXdpZHRoPSI1IiBmaWxsPSIjZmZmIj4KICAgIDxyZWN0IHg9IjIwMCIgeT0iOTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIHJ4PSI2IiB0cmFuc2Zvcm09InJvdGF0ZSgtMTQgMjUwIDEzMCkiLz4KICAgIDxyZWN0IHg9IjI1NSIgeT0iMTUwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgwIiByeD0iNiIgdHJhbnNmb3JtPSJyb3RhdGUoLTUgMzA1IDE5MCkiLz4KICAgIDxyZWN0IHg9IjIzMCIgeT0iMjQ1IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgwIiByeD0iNiIgdHJhbnNmb3JtPSJyb3RhdGUoOCAyODAgMjg1KSIvPgogIDwvZz4KICA8Y2lyY2xlIGN4PSIyMzUiIGN5PSIxMjAiIHI9IjgiIGZpbGw9IiNmNTllMGIiLz4KICA8cGF0aCBkPSJNMjYyIDI1MCBMMjg1IDIyOCBMMzAwIDI0MCBMMzE4IDIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjQiIHRyYW5zZm9ybT0icm90YXRlKC01IDMwNSAxOTApIHRyYW5zbGF0ZSgwIC01NSkiLz4KICA8IS0tIHNvcnRlZCBzdGFjayAtLT4KICA8ZyBzdHJva2U9IiMxYTFhMWEiIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0iI2ZmZiI+CiAgICA8cmVjdCB4PSI0MjAiIHk9IjIwMCIgd2lkdGg9IjEzMCIgaGVpZ2h0PSI5NSIgcng9IjYiLz4KICAgIDxyZWN0IHg9IjQxMCIgeT0iMTg1IiB3aWR0aD0iMTMwIiBoZWlnaHQ9Ijk1IiByeD0iNiIvPgogICAgPHJlY3QgeD0iNDAwIiB5PSIxNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTUiIHJ4PSI2Ii8+CiAgPC9nPgogIDxwYXRoIGQ9Ik00NDggMjE1IEw0MzYgMjQwIEw0MTAgMjQzIEw0MzAgMjYwIEw0MjQgMjg2IEw0NDggMjcyIEw0NzIgMjg2IEw0NjYgMjYwIEw0ODYgMjQzIEw0NjAgMjQwIFoiCiAgICAgICAgZmlsbD0iI2Y1OWUwYiIgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHRyYW5zZm9ybT0ic2NhbGUoMC44KSB0cmFuc2xhdGUoMTE1IDU1KSIvPgogIDwhLS0gbW90aW9uIGRhc2hlcyAtLT4KICA8ZyBzdHJva2U9IiMxYTFhMWEiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSIyIDEwIj4KICAgIDxwYXRoIGQ9Ik0zMTAgMTIwIFEzNzAgMTMwIDQwMCAxNzAiIGZpbGw9Im5vbmUiLz4KICAgIDxwYXRoIGQ9Ik0zNTUgMTk1IFEzODAgMjAwIDM5OCAyMTUiIGZpbGw9Im5vbmUiLz4KICA8L2c+Cjwvc3ZnPgo=",
+  sarah: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNDAwIj4KICA8cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2ZhZmFmYSIvPgogIDxjaXJjbGUgY3g9IjExMCIgY3k9IjMzMCIgcj0iODAiIGZpbGw9IiNmZGU2OGEiIG9wYWNpdHk9IjAuNSIvPgogIDwhLS0gb3BlbiBmb2xkZXIgLS0+CiAgPGcgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjUiIGZpbGw9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgPHBhdGggZD0iTTcwIDIyMCBMNzAgMzIwIEwyNjAgMzIwIEwyNjAgMjQwIEwxNjAgMjQwIEwxNDAgMjIwIFoiLz4KICAgIDxwYXRoIGQ9Ik03MCAzMjAgTDEwMCAyNTUgTDI5MCAyNTUgTDI2MCAzMjAgWiIgZmlsbD0iI2ZkZTY4YSIvPgogIDwvZz4KICA8IS0tIGxldHRlciBkcm9wcGluZyBpbiAtLT4KICA8ZyBzdHJva2U9IiMxYTFhMWEiIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0iI2ZmZiIgdHJhbnNmb3JtPSJyb3RhdGUoMTIgMTc1IDE0MCkiPgogICAgPHJlY3QgeD0iMTMwIiB5PSIxMDAiIHdpZHRoPSI5MCIgaGVpZ2h0PSI2NSIgcng9IjYiLz4KICAgIDxwYXRoIGQ9Ik0xMzAgMTA2IEwxNzUgMTQwIEwyMjAgMTA2IiBmaWxsPSJub25lIi8+CiAgPC9nPgogIDxnIHN0cm9rZT0iIzFhMWExYSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1kYXNoYXJyYXk9IjIgMTAiPgogICAgPHBhdGggZD0iTTE4MCAxNzUgUTE3OCAyMDUgMTcyIDIzNSIgZmlsbD0ibm9uZSIvPgogIDwvZz4KICA8IS0tIHN1bW1hcnkgc2hlZXQgd2l0aCBjaGVja21hcmsgLS0+CiAgPGcgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjUiIGZpbGw9IiNmZmYiPgogICAgPHJlY3QgeD0iMzYwIiB5PSI5MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMDAiIHJ4PSIxMCIvPgogIDwvZz4KICA8bGluZSB4MT0iMzg1IiB5MT0iMTMwIiB4Mj0iNDg1IiB5Mj0iMTMwIiBzdHJva2U9IiMxYTFhMWEiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGxpbmUgeDE9IjM4NSIgeTE9IjE1MiIgeDI9IjQ2NSIgeTI9IjE1MiIgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxsaW5lIHgxPSIzODUiIHkxPSIxNzQiIHgyPSI0ODAiIHkyPSIxNzQiIHN0cm9rZT0iIzFhMWExYSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8Y2lyY2xlIGN4PSI0MzUiIGN5PSIyMzUiIHI9IjMyIiBmaWxsPSIjZjU5ZTBiIiBzdHJva2U9IiMxYTFhMWEiIHN0cm9rZS13aWR0aD0iNSIvPgogIDxwYXRoIGQ9Ik00MjAgMjM1IEw0MzEgMjQ3IEw0NTIgMjIyIiBmaWxsPSJub25lIiBzdHJva2U9IiMxYTFhMWEiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPCEtLSBzbWFsbCBlbnZlbG9wZSBmbHlpbmcgLS0+CiAgPGcgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjQiIGZpbGw9IiNmZmYiIHRyYW5zZm9ybT0icm90YXRlKC0xMCAzMjAgMzUwKSI+CiAgICA8cmVjdCB4PSIyOTAiIHk9IjMzNSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjQwIiByeD0iNSIvPgogICAgPHBhdGggZD0iTTI5MCAzMzkgTDMyMCAzNjIgTDM1MCAzMzkiIGZpbGw9Im5vbmUiLz4KICA8L2c+CiAgPHBhdGggZD0iTTI1NSAzNDUgUTI3MCAzNDggMjg1IDM0OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWExYTFhIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWRhc2hhcnJheT0iMiA4Ii8+Cjwvc3ZnPgo="
+};
+// IMAGES_END
+
+const VAULT = [
+  {
+    proof_id: "ff-thu-s4-anthony-sentinel-10-hours",
+    builder: "Anthony · F&F Thu cohort",
+    project_name: "The Sentinel",
+    hook: "Every morning it reads his clients' ad accounts and emails him what matters. About 10 hours a week, back.",
+    pattern: "daily-watchdog",
+    helps_with: ["marketing", "productivity"],
+    image_key: "anthony",
+    awards: [],
+    tier: "internal",
+    demo_url: FATHOM_THU + "?timestamp=6558",
+    media_embed: null,
+    what_it_is: "Anthony manages ad campaigns for clients in France. Every morning The Sentinel analyzes their Google Ads accounts and emails him a status: all clear, warning, or critical. Critical alerts also land on his Google Calendar so he can't miss them, and the system preps dry-run optimizations he approves or rejects. He estimates it wins him back about 10 hours a week, and one client has 900 products to watch.",
+    how_it_was_built: "Claude Code does the analysis, connected to Google Ads for the data. The clever part: Anthony already had months of client context sitting in Claude Cowork folders, so he wired Claude Code to read those folders. That's why the suggestions aren't generic, they know how he actually works. The hard thinking wasn't code, it was writing down his thresholds: what counts as an alert for budget, for spend, for performance. Email and calendar are just the delivery layer. Nothing acts without his yes.",
+    how_to_think: "Notice where the human sits. The robot watches and prepares, Anthony decides. His path went report first, then alerts, then dry-runs. Start with one account and one metric, delivered as a single morning email. Simplest version you could build this week: a daily email that says \"all clear\" or \"look at X\" for one thing you already check every morning anyway.",
+    starter_prompt: `I want to build a morning watchdog agent. Every morning it checks one data source I care about and emails me a short status report with any alerts.
+
+First, interview me. Ask what I want to watch (examples: an ad account, a spreadsheet of sales, prices on a website, my calendar load) and what counts as normal, warning, and critical for me. Write my answers into a thresholds file we can edit later.
+
+V1 scope:
+- A script that pulls the data from that one source.
+- Classify the day as all clear, warning, or critical using my thresholds.
+- Email me the result: classification at the top, 3 bullets max underneath.
+- I run it manually first. Scheduling it to run daily is the last step, not the first.
+
+Do not build yet: multiple sources, auto-fixing anything, dashboards. The watchdog only watches and tells me. I stay the human who decides.`
+  },
+  {
+    proof_id: "ff-thu-s4-dominika-content-hour",
+    builder: "Dominika · F&F Thu cohort",
+    project_name: "Content Hour",
+    hook: "Record one voice note. Get a week of marketing back.",
+    pattern: "content-pipeline",
+    helps_with: ["marketing", "content"],
+    image_key: "dominika",
+    awards: [],
+    tier: "internal",
+    demo_url: FATHOM_THU + "?timestamp=7620",
+    media_embed: null,
+    what_it_is: "One voice note in, a week of marketing out: a quote graphic, Instagram captions, a long-form post, and an email, all in your voice. A Monday email tells you your prompts are up and it's time to record. The promise is right in the name: one hour of work, at least a week of content done.",
+    how_it_was_built: "It starts with a brand setup: who you are, your business, brand colors and fonts, examples of your voice, your ideal client. That file is what makes the outputs sound like you instead of like AI, and it keeps learning as you edit your content. Then the pipeline: voice note or video in, transcript out, and each format generated from the same source through the brand lens. The Monday nudge email closes the loop so the system runs weekly instead of once.",
+    how_to_think: "The brand file is the actual product. The generation is the easy part, and it's only as good as what the system knows about your voice. Dominika built the brand setup first. Don't start with graphics or scheduling. Simplest version you could build this week: a voice file with your tone rules and two example posts, then paste one voice note transcript against it and ask for 3 captions.",
+    starter_prompt: `I want a content repurposer: I give it one voice note transcript or a paragraph of raw thoughts, and it gives me back a week of content in my voice.
+
+Step 1, before any code: help me create a brand file (brand.md) by interviewing me about my business, my ideal client, my tone, and 2 examples of past posts I like. Save it so we can reuse and improve it.
+
+V1 scope:
+- I paste a transcript or rough text into one input.
+- Using brand.md, generate: text for 1 quote card, 3 short social captions, 1 long-form post, and 1 email.
+- Put the output on one clean page or file I can copy from, clearly labeled by format.
+
+Do not build yet: audio recording, image generation, scheduling, logins, reminder emails. Text in, text out.
+
+Ask me whether I'd rather have this as a simple local web page or a command I run, then build that.`
+  },
+  {
+    proof_id: "ff-thu-s4-cece-phone-built-curator",
+    builder: "Cece · F&F Thu cohort",
+    project_name: "Photo Curator",
+    hook: "Built entirely from her phone. It learned her taste and picks her top photos for her.",
+    pattern: "phone-only-build",
+    helps_with: ["creative", "personal"],
+    image_key: "cece",
+    awards: [],
+    tier: "internal",
+    demo_url: FATHOM_THU + "?timestamp=7340",
+    media_embed: "https://drive.google.com/file/d/1AJnUpY1vJuxaFmuc_cyZHn0GBoJD4an1/preview",
+    media_note: "Clip above is from session one, the first version of this build coming alive. Demo Day link below.",
+    what_it_is: "Cece ran her whole Demo Day demo from her phone, the same way she built all cohort long. Her photo curator learns her scoring style, triages photos in batches (\"these 50 are terrible, these 50 are duplicates\"), backs up to iCloud, and picks her top photos for her.",
+    how_it_was_built: "No laptop, no dev setup. Built inside a chat agent from her phone, starting in session one with a simple photo-rating system and growing from there. The core is a scoring rubric the AI learned from her own picks, then applies in batches. Her staying-human moment came near the end: \"I had to stop it and ask, wait, what is our goal here?\" The feature list had run away from her, so she cut it back to basics.",
+    how_to_think: "Proof that you don't need a dev environment to be a builder. The rubric is the build: make the AI interview you about your taste until it can score the way you would. And steal her move: when the AI piles on features, stop it and re-ask the goal out loud. Simplest version you could build this week: one chat where the AI learns your taste from 10 photos, then scores the next 20.",
+    starter_prompt: `I'm working entirely from my phone, no laptop. I want to build a photo curator with you, step by step, right here in chat.
+
+Goal: when I share a batch of photos, you rate them against my personal style and tell me the top picks, the duplicates, and the deletes.
+
+Step 1: interview me to build my scoring rubric. Ask me to share 5 photos I love and 5 I'd delete, and keep asking why until you can write my rules down.
+Step 2: show me the rubric and let me correct it. That rubric is now our scoring system.
+Step 3: I'll share batches. Score every photo with the rubric and give me the top 10 first, then duplicates, then deletes.
+
+Keep me honest: if we start adding extra features, stop and ask me "what is our goal here?"`
+  },
+  {
+    proof_id: "ff-mon-s4-sarah-doc-watcher",
+    builder: "Sarah · F&F Mon cohort",
+    project_name: "Document Watcher",
+    hook: "Drop a German insurance letter in a folder. Do nothing else.",
+    pattern: "folder-watcher",
+    helps_with: ["life-admin", "personal"],
+    image_key: "sarah",
+    awards: [],
+    tier: "internal",
+    demo_url: FATHOM_MON + "?timestamp=5959",
+    media_embed: null,
+    what_it_is: "Sarah drops a German insurance letter into a folder and walks away. The watcher translates it, emails her a plain-English summary with action items, and files both the original and the translation in Drive. She even built an error dashboard for when it hiccups.",
+    how_it_was_built: "A folder watcher script: a new file arrives, the AI reads it, translates it, pulls out deadlines and action items, sends the email, and files everything away. The error dashboard came from real life, because when a step fails silently you want to see it. That instinct, planning for the bad day, is what separates a demo from a tool you actually trust.",
+    how_to_think: "Pick a document that shows up in your life uninvited and automate exactly what you already do with it by hand. One folder, one document type, one email. Drive sync and dashboards come after the first successful drop. Simplest version you could build this week: a script you run manually that summarizes whatever file is sitting in a folder.",
+    starter_prompt: `I want a folder watcher on my computer. When I drop a document into a folder called Inbox, it gets processed automatically and I get an email about it.
+
+Here's my version of "processed" (help me adapt it to my real documents): the letters I get are in another language. I want a plain-English summary with any deadlines and action items, and the original plus the translation moved to a Done folder.
+
+V1 scope:
+- Watch one folder on my computer.
+- On a new file: read it, translate if needed, summarize it, list action items with dates.
+- Email me the summary.
+- Move the file and a summary text file into Done.
+
+Do not build yet: cloud sync, dashboards, multiple folders, multiple document types.
+
+Start by asking me: what documents I actually get, what language they're in, and what my email setup is. Then build it so I can test by dropping in one file.`
+  }
+];
+
+const grid = document.getElementById('grid');
+const modalBg = document.getElementById('modalBg');
+const modal = document.getElementById('modal');
+let activePattern = 'all';
+let activeHelps = 'all';
+
+function el(tag, attrs, ...children) {
+  const n = document.createElement(tag);
+  if (attrs) for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'class') n.className = v;
+    else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
+    else n.setAttribute(k, v);
+  }
+  for (const c of children) n.append(c);
+  return n;
+}
+
+function render() {
+  grid.innerHTML = '';
+  const items = VAULT.filter(v =>
+    (activePattern === 'all' || v.pattern === activePattern) &&
+    (activeHelps === 'all' || (v.helps_with || []).includes(activeHelps)));
+  for (const v of items) {
+    const meta = el('div', { class: 'card-meta' },
+      el('span', { class: 'badge pattern' }, v.pattern.replace(/-/g, ' ')),
+      el('span', { class: 'badge tier' }, v.tier));
+    if (v.media_embed) meta.prepend(el('span', { class: 'badge video' }, 'clip'));
+    for (const h of (v.helps_with || [])) meta.append(el('span', { class: 'badge helps' }, h.replace(/-/g, ' ')));
+    for (const a of v.awards) meta.append(el('span', { class: 'badge award' }, a));
+    const card = el('div', { class: 'card', onclick: () => openModal(v) });
+    const img = IMAGES[v.image_key];
+    if (img) card.append(el('img', { class: 'card-img', src: img, alt: v.project_name }));
+    card.append(
+      el('div', { class: 'card-builder' }, v.builder),
+      el('div', { class: 'card-project' }, v.project_name),
+      el('div', { class: 'card-hook' }, v.hook),
+      meta);
+    grid.append(card);
+  }
+}
+
+function layer(label, text) {
+  const p = el('p', null);
+  p.textContent = text;
+  return el('div', { class: 'layer' }, el('div', { class: 'layer-label' }, label), p);
+}
+
+function openModal(v) {
+  modal.innerHTML = '';
+  modal.append(el('button', { class: 'modal-close', onclick: closeModal }, '×'));
+  modal.append(el('h2', null, v.project_name));
+  modal.append(el('div', { class: 'm-builder' }, v.builder));
+
+  const meta = el('div', { class: 'modal-meta' },
+    el('span', { class: 'badge pattern' }, v.pattern.replace(/-/g, ' ')),
+    el('span', { class: 'badge tier' }, v.tier));
+  for (const h of (v.helps_with || [])) meta.append(el('span', { class: 'badge helps' }, h.replace(/-/g, ' ')));
+  for (const a of v.awards) meta.append(el('span', { class: 'badge award' }, a));
+  modal.append(meta);
+
+  const mImg = IMAGES[v.image_key];
+  if (mImg && !v.media_embed) {
+    modal.append(el('img', { class: 'modal-img', src: mImg, alt: v.project_name }));
+  }
+  if (v.media_embed) {
+    modal.append(el('div', { class: 'media-embed' },
+      el('iframe', { src: v.media_embed, allow: 'autoplay', allowfullscreen: '' })));
+    if (v.media_note) modal.append(el('div', { class: 'demo-note' }, v.media_note));
+  }
+  if (v.demo_url) {
+    modal.append(el('a', { class: 'demo-link', href: v.demo_url, target: '_blank', rel: 'noopener' }, '▶ Watch the Demo Day demo (Fathom)'));
+  }
+
+  modal.append(layer('What it is', v.what_it_is));
+  modal.append(layer('How it was built', v.how_it_was_built));
+  modal.append(layer('How to think about your version', v.how_to_think));
+
+  const promptBox = el('div', { class: 'prompt-box' });
+  promptBox.textContent = v.starter_prompt;
+  const copyBtn = el('button', { class: 'copy-btn', onclick: () => {
+    navigator.clipboard.writeText(v.starter_prompt).then(() => {
+      copyBtn.textContent = 'Copied. Now paste it into your agent.';
+      copyBtn.classList.add('copied');
+      setTimeout(() => { copyBtn.textContent = 'Copy starter prompt'; copyBtn.classList.remove('copied'); }, 2500);
+    });
+  } }, 'Copy starter prompt');
+  modal.append(el('div', { class: 'layer' },
+    el('div', { class: 'layer-label' }, 'Starter prompt · paste into Codex or Claude Code'),
+    promptBox,
+    el('div', { class: 'prompt-actions' }, copyBtn,
+      el('span', { class: 'prompt-hint' }, 'Make it yours: swap the example details for your own before you hit enter.'))));
+
+  modalBg.classList.add('open');
+}
+
+function closeModal() { modalBg.classList.remove('open'); }
+modalBg.addEventListener('click', e => { if (e.target === modalBg) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+document.querySelectorAll('.chip[data-pattern]').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.chip[data-pattern]').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    activePattern = chip.dataset.pattern;
+    render();
+  });
+});
+
+document.querySelectorAll('.chip[data-helps]').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.chip[data-helps]').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    activeHelps = chip.dataset.helps;
+    render();
+  });
+});
+
+render();
+</script>
+</body>
+</html>

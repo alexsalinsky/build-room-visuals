@@ -2035,7 +2035,7 @@
       "status": "raw",
       "date_captured": "2026-06-30",
       "date_cleared": null,
-      "notes": "Cohort lead build. Peer-voted Coolest AI Tool. Bryce post-call: the most tech-illiterate person on this team is Kate, and she came out with something pretty awesome. Bryce pledged 100 USD cash prize on the call."
+      "notes": "Cohort lead build. Peer-voted Coolest AI Tool. Bryce pledged 100 USD cash prize on the call. (A post-call Bryce quote about this build is permanently blocked, see dbalp-s4-bryce-on-kate-testimonial.)"
     },
     {
       "id": "dbalp-s4-kandice-most-want-to-try-win",
@@ -2287,16 +2287,20 @@
       "attribution": "Bryce North (DBALP cohort CEO)",
       "timestamp": "01:53:47",
       "tags": [
-        "testimonial-candidate",
+        "blocked-permanently",
         "ceo-peer-recognition",
         "kate-anchor",
+        "no-putdown-quotes",
+        "permission-needed",
         "post-call",
-        "permission-needed"
+        "testimonial-candidate"
       ],
-      "status": "cleared-for-public",
+      "status": "redacted",
       "date_captured": "2026-06-30",
       "date_cleared": null,
-      "notes": "Permission granted (Alex confirmed verbally with Ginger/Bryce and team, 2026-07-08); cleared for July revenue campaign public use. TODO: cut clip from https://fathom.video/share/iZEF3S_4HZHVDsxa-2Q-WfKSi8bE7JxM. GOLD. CEO peer-naming the cohort most unlikely shipper. About 10s. Cut 01:53:40 to 01:54:00. PERMISSION REQUIRED before any external use; Bryce offered testimonials broadly at 01:54:00 so this should be easy to clear. Permission granted 2026-07-06 (Alex confirmed directly with the builder; cleared for the Jul 15 kickoff Luma page and general public use)."
+      "notes": "Permission granted (Alex confirmed verbally with Ginger/Bryce and team, 2026-07-08); cleared for July revenue campaign public use. TODO: cut clip from https://fathom.video/share/iZEF3S_4HZHVDsxa-2Q-WfKSi8bE7JxM. GOLD. CEO peer-naming the cohort most unlikely shipper. About 10s. Cut 01:53:40 to 01:54:00. PERMISSION REQUIRED before any external use; Bryce offered testimonials broadly at 01:54:00 so this should be easy to clear. Permission granted 2026-07-06 (Alex confirmed directly with the builder; cleared for the Jul 15 kickoff Luma page and general public use).",
+      "do_not_share": true,
+      "consent_note": "PERMANENTLY BLOCKED by Alex 2026-08-05. Never use in any content, internal or public, verbatim or paraphrased. Bryce granted permission and meant it as praise. That is irrelevant. The quote's hook is a builder being labeled incompetent. Substitute Kandice's 35 hrs/month or Ginger's \"You're a coder\"."
     },
     {
       "id": "dbalp-s4-bryce-testimonial-offer-open",
@@ -3357,7 +3361,7 @@
       "status": "raw",
       "date_captured": "2026-07-13",
       "date_cleared": null,
-      "notes": "TODO: cut clip from https://fathom.video/calls/742268679 (video download blocked, Fathom login expired 2026-07-13)."
+      "notes": "FindMealPlans.com has public users on it as of 2026-08-05 (confirmed by Alex). Clip cuttable from https://fathom.video/share/zwoaU6ayZejVucVbtPy1ZEBTqiyn5gox at 01:30:26 via scripts/fathom_cut.py."
     },
     {
       "id": "ff-mon-s4-dine-mari-pipeline",
@@ -4743,6 +4747,14 @@
       "date_captured": "2026-07-29",
       "date_cleared": null,
       "notes": "Bernice Chan demonstrated live: paste the Drafting Table prompt, read the AI response aloud, flag jargon, correct misunderstandings, then add a standing rule. Reusable as a S2 teaching moment for non-developer builders across all cohorts."
+    }
+  ],
+  "blocked_quotes": [
+    {
+      "quote_fragment": "most tech-illiterate person on this team",
+      "entry_id": "dbalp-s4-bryce-on-kate-testimonial",
+      "blocked_on": "2026-08-05",
+      "reason": "Hooks on a builder being labeled incompetent. Blocked for every use, internal and public. All other call footage remains cleared for public use; this is the single exception."
     }
   ]
 }

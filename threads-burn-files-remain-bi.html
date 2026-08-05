@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Threads burn. Files remain. / Los hilos se queman. Los archivos quedan.</title>
+<!--
+  Bilingual twin of threads-burn-files-remain.html. English primary, Spanish beneath
+  (smaller / italic / blue). Fixed top-right EN | EN+ES | ES toggle. Default: Both.
+  S2 centerpiece for the HvR2 Night Cohort (bilingual) and Morning Cohort (Spanish).
+  DO NOT modify threads-burn-files-remain.html.
+-->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 12px; }
+  .frame-wrap { flex: 1; max-height: 80vh; width: 100%; display: flex; align-items: center; justify-content: center; }
+  svg { width: auto; height: auto; max-width: 100%; max-height: 100%; }
+  .title-screen { font-size: 56px; font-weight: 700; text-align: center; color: #1a1a1a; letter-spacing: -1px; line-height: 1.1; }
+  .title-screen .sub { display: block; font-size: 22px; font-weight: 400; margin-top: 18px; color: #666; letter-spacing: 0; }
+  .title-es { display: block; font-size: 36px; font-weight: 400; color: #2563eb; font-style: italic; margin-top: 12px; letter-spacing: -0.5px; line-height: 1.15; }
+  .caption { max-width: 940px; text-align: center; font-size: 17px; line-height: 1.5; color: #333; padding: 0 12px; min-height: 66px; }
+  .cap-en { display: block; }
+  .cap-es { display: block; font-size: 14px; color: #2563eb; font-style: italic; margin-top: 4px; }
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
+  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
+  footer { position: fixed; bottom: 6px; left: 16px; font-size: 11px; color: #999; }
+
+  /* Language toggle */
+  .lang-toggle { position: fixed; top: 12px; right: 14px; display: flex; gap: 4px; background: #fff; border: 1.5px solid #1a1a1a; border-radius: 20px; padding: 3px 6px; font-size: 12px; font-weight: 600; z-index: 100; }
+  .lang-toggle button { border: none; background: transparent; padding: 3px 8px; border-radius: 14px; cursor: pointer; font-size: 12px; font-weight: 600; color: #666; }
+  .lang-toggle button.active { background: #1a1a1a; color: #fff; }
+
+  /* Mode-based visibility */
+  body.mode-en .cap-es { display: none; }
+  body.mode-en .title-es { display: none; }
+  body.mode-es .cap-en { display: none; }
+  body.mode-es .title-screen > span.title-en { display: none; }
+
+  .scene { display: none; }
+  .scene.active { display: block; }
+
+  .box { fill: #fff; stroke: #1a1a1a; stroke-width: 2.5; }
+  .box-soft { fill: #f3f4f6; stroke: #d1d5db; stroke-width: 1.5; }
+  .box-finale { fill: #1a1a1a; stroke: #1a1a1a; stroke-width: 2.5; }
+  .line-thin { fill: none; stroke: #d1d5db; stroke-width: 1.5; }
+  .line-mid  { fill: none; stroke: #1a1a1a; stroke-width: 1.5; }
+  .highlight { fill: #fde68a; stroke: #92400e; stroke-width: 2.5; }
+  .ember     { fill: #fde68a; stroke: #92400e; stroke-width: 2; }
+  .bubble-user { fill: #1a1a1a; stroke: #1a1a1a; stroke-width: 2; }
+  .bubble-ai   { fill: #fffbe8; stroke: #92400e; stroke-width: 2; }
+  .crossed   { stroke: #b91c1c; stroke-width: 4; stroke-linecap: round; }
+
+  .head-xl { font-size: 28px; font-weight: 700; fill: #1a1a1a; letter-spacing: 0.5px; }
+  .head-md { font-size: 18px; font-weight: 700; fill: #1a1a1a; }
+  .head-md-white { font-size: 18px; font-weight: 700; fill: #fff; }
+  .label-b { font-size: 14px; font-weight: 400; fill: #1a1a1a; }
+  .label-b-bold { font-size: 14px; font-weight: 600; fill: #1a1a1a; }
+  .label-b-white { font-size: 14px; font-weight: 400; fill: #fff; }
+  .label-sm { font-size: 12px; font-weight: 400; fill: #666; }
+  .label-sm-white { font-size: 12px; font-weight: 400; fill: #d1d5db; }
+  .mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; font-weight: 500; fill: #1a1a1a; }
+  .mono-rule { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; font-weight: 700; fill: #92400e; }
+  .label-h-white { font-size: 22px; font-weight: 700; fill: #fff; }
+  .label-h-white-sm { font-size: 16px; font-weight: 400; fill: #fff; }
+
+  /* Spanish layers inside the SVG scenes */
+  .head-es { font-size: 19px; font-weight: 400; font-style: italic; fill: #2563eb; }
+  .head-md-es { font-size: 14px; font-weight: 400; font-style: italic; fill: #2563eb; }
+  .label-es { font-size: 11.5px; font-weight: 400; font-style: italic; fill: #2563eb; }
+  .label-es-white { font-size: 11.5px; font-weight: 400; font-style: italic; fill: #93c5fd; }
+</style>
+</head>
+<body class="mode-both">
+
+<div class="lang-toggle">
+  <button onclick="setMode('en')" id="btn-en">EN</button>
+  <button onclick="setMode('both')" id="btn-both" class="active">EN+ES</button>
+  <button onclick="setMode('es')" id="btn-es">ES</button>
+</div>
+
+<div class="stage">
+  <div class="frame-wrap" id="frame">
+
+    <div class="title-screen" id="titleScreen">
+      <span class="title-en">Threads burn.<br/>Files remain.</span>
+      <span class="title-es">Los hilos se queman.<br/>Los archivos quedan.</span>
+      <span class="sub">The Build Room</span>
+    </div>
+
+    <!-- =========== SCENE 2: the chat (what people think building is) =========== -->
+    <svg class="scene" data-scene="2" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <text x="550" y="36" text-anchor="middle" class="head-xl">"I'm building something with AI."</text>
+      <text x="550" y="60" text-anchor="middle" class="head-es">"Estoy construyendo algo con IA."</text>
+      <text x="550" y="84" text-anchor="middle" class="label-sm">What most people picture.</text>
+      <text x="550" y="99" text-anchor="middle" class="label-es">Lo que la mayor&#xED;a se imagina.</text>
+
+      <!-- Chat window -->
+      <rect x="180" y="118" width="740" height="540" rx="14" class="box"/>
+      <rect x="180" y="118" width="740" height="58" rx="14" fill="#f9fafb" stroke="#1a1a1a" stroke-width="2.5"/>
+      <circle cx="212" cy="141" r="14" fill="#1a1a1a"/>
+      <text x="212" y="146" text-anchor="middle" class="label-b-white" style="font-weight:700">C</text>
+      <text x="240" y="136" class="label-b-bold">Codex</text>
+      <text x="240" y="152" class="label-sm">your AI build tool</text>
+      <text x="240" y="167" class="label-es">tu herramienta de IA para construir</text>
+
+      <!-- user bubble -->
+      <rect x="380" y="196" width="510" height="92" rx="14" class="bubble-user"/>
+      <text x="405" y="222" class="label-b-white" style="font-weight:600">You</text>
+      <text x="405" y="247" class="label-b-white">Help me build the tool we scoped last week.</text>
+      <text x="405" y="267" class="label-es-white">Ay&#xFA;dame a construir la herramienta que definimos la semana pasada.</text>
+
+      <!-- ai bubble -->
+      <rect x="210" y="305" width="560" height="125" rx="14" class="bubble-ai"/>
+      <text x="235" y="331" class="label-b-bold">Codex</text>
+      <text x="235" y="356" class="label-b">Got it. Let's start with the data structure...</text>
+      <text x="235" y="373" class="label-es">Listo. Empecemos por la estructura de datos...</text>
+      <text x="235" y="396" class="label-b">First I'll set up a project folder.</text>
+      <text x="235" y="413" class="label-es">Primero creo una carpeta de proyecto.</text>
+
+      <!-- user bubble 2 -->
+      <rect x="430" y="445" width="460" height="70" rx="14" class="bubble-user"/>
+      <text x="455" y="475" class="label-b-white">Sounds good. Go.</text>
+      <text x="455" y="495" class="label-es-white">Suena bien. Dale.</text>
+
+      <!-- ai bubble 2 -->
+      <rect x="210" y="528" width="520" height="122" rx="14" class="bubble-ai"/>
+      <text x="235" y="554" class="label-b-bold">Codex</text>
+      <text x="235" y="579" class="label-b">Working on it. Creating files...</text>
+      <text x="235" y="596" class="label-es">Trabajando. Creando archivos...</text>
+      <text x="235" y="620" class="label-sm" style="font-style:italic">(this is the part people don't see)</text>
+      <text x="235" y="637" class="label-es">(esta es la parte que nadie ve)</text>
+    </svg>
+
+    <!-- =========== SCENE 3: the files appear =========== -->
+    <svg class="scene" data-scene="3" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <text x="550" y="36" text-anchor="middle" class="head-xl">Underneath the chat, files.</text>
+      <text x="550" y="59" text-anchor="middle" class="head-es">Debajo del chat, archivos.</text>
+      <text x="550" y="81" text-anchor="middle" class="label-sm">An app is just files. A website is just files. Your build is too.</text>
+      <text x="550" y="96" text-anchor="middle" class="label-es">Una app son archivos. Un sitio web son archivos. Lo que construyes tambi&#xE9;n.</text>
+
+      <!-- Chat window shrunk on the left -->
+      <rect x="40" y="112" width="380" height="545" rx="12" class="box"/>
+      <rect x="40" y="112" width="380" height="50" rx="12" fill="#f9fafb" stroke="#1a1a1a" stroke-width="2"/>
+      <circle cx="65" cy="132" r="10" fill="#1a1a1a"/>
+      <text x="65" y="136" text-anchor="middle" style="font-weight:700;fill:#fff;font-size:11px">C</text>
+      <text x="84" y="131" class="label-sm" style="font-weight:600">Codex chat</text>
+      <text x="84" y="147" class="label-es">chat de Codex</text>
+
+      <rect x="180" y="185" width="220" height="58" rx="10" class="bubble-user" opacity="0.75"/>
+      <text x="195" y="209" class="label-b-white" style="font-size:12px">Help me build it.</text>
+      <text x="195" y="228" class="label-es-white">Ay&#xFA;dame a construirlo.</text>
+
+      <rect x="60" y="258" width="300" height="80" rx="10" class="bubble-ai" opacity="0.75"/>
+      <text x="75" y="281" class="label-sm" style="font-weight:700;fill:#92400e">Codex</text>
+      <text x="75" y="300" class="label-sm">Setting up your project folder.</text>
+      <text x="75" y="318" class="label-es">Creando tu carpeta de proyecto.</text>
+
+      <rect x="200" y="352" width="200" height="54" rx="10" class="bubble-user" opacity="0.75"/>
+      <text x="215" y="375" class="label-b-white" style="font-size:12px">Go.</text>
+      <text x="215" y="394" class="label-es-white">Dale.</text>
+
+      <text x="230" y="448" text-anchor="middle" class="label-sm" style="font-style:italic">(meanwhile, on your computer...)</text>
+      <text x="230" y="465" text-anchor="middle" class="label-es">(mientras tanto, en tu computador...)</text>
+
+      <!-- Arrow from chat to folder -->
+      <path d="M 410 390 Q 470 390 480 290" class="line-mid" fill="none" stroke-dasharray="5 4"/>
+      <polygon points="478,278 485,294 472,290" fill="#1a1a1a"/>
+
+      <!-- Folder on the right -->
+      <rect x="500" y="112" width="560" height="545" rx="12" class="box"/>
+      <rect x="500" y="112" width="560" height="42" rx="12" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="2"/>
+      <text x="520" y="138" class="label-sm" style="font-weight:700">~/projects/your-build/</text>
+
+      <!-- Folder tree -->
+      <text x="520" y="186" class="mono">&#x1F4C1; your-build/</text>
+      <text x="540" y="214" class="mono">&#x1F4C4; PROJECT.md</text>
+      <text x="540" y="238" class="mono">&#x1F4C4; ARCHITECTURE.md</text>
+      <text x="540" y="262" class="mono">&#x1F4C4; WORKBENCH.md</text>
+      <text x="540" y="286" class="mono">&#x1F4C4; USER_GUIDE.md</text>
+      <text x="540" y="310" class="mono">&#x1F4C4; TODOS.md</text>
+      <text x="540" y="338" class="mono">&#x1F4C1; src/</text>
+      <text x="560" y="362" class="mono">&#x1F4C4; main.py</text>
+      <text x="560" y="386" class="mono">&#x1F4C4; config.py</text>
+      <text x="540" y="414" class="mono">&#x1F4C1; data/</text>
+      <text x="560" y="438" class="mono">&#x1F4C4; sample.json</text>
+      <text x="540" y="466" class="mono">&#x1F4C1; prompt-journal/</text>
+      <text x="560" y="490" class="mono">&#x1F4C4; session-1.md</text>
+      <text x="560" y="514" class="mono">&#x1F4C4; session-2.md</text>
+
+      <text x="520" y="566" class="label-sm" style="font-style:italic">Real files. On your computer. Made by Codex while you talked.</text>
+      <text x="520" y="583" class="label-es">Archivos reales. En tu computador. Creados por Codex mientras hablabas.</text>
+      <text x="520" y="609" class="label-sm" style="font-style:italic">Not a chat transcript. A project.</text>
+      <text x="520" y="626" class="label-es">No es la transcripci&#xF3;n de un chat. Es un proyecto.</text>
+    </svg>
+
+    <!-- =========== SCENE 4: the four rule-pack docs glow =========== -->
+    <svg class="scene" data-scene="4" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <text x="550" y="34" text-anchor="middle" class="head-xl">Four of them keep the project alive.</text>
+      <text x="550" y="57" text-anchor="middle" class="head-es">Cuatro de ellos mantienen vivo el proyecto.</text>
+      <text x="550" y="79" text-anchor="middle" class="label-sm">The rule-pack tells Codex to write these without being asked, every session.</text>
+      <text x="550" y="94" text-anchor="middle" class="label-es">El paquete de reglas hace que Codex los escriba solo, en cada sesi&#xF3;n.</text>
+
+      <!-- Folder window -->
+      <rect x="60" y="112" width="500" height="545" rx="12" class="box"/>
+      <rect x="60" y="112" width="500" height="42" rx="12" fill="#f3f4f6" stroke="#1a1a1a" stroke-width="2"/>
+      <text x="80" y="138" class="label-sm" style="font-weight:700">~/projects/your-build/</text>
+
+      <text x="80" y="186" class="mono">&#x1F4C1; your-build/</text>
+
+      <!-- Glow on the four -->
+      <rect x="92" y="199" width="450" height="120" rx="6" class="highlight" opacity="0.6"/>
+
+      <text x="100" y="220" class="mono-rule">&#x1F4C4; ARCHITECTURE.md</text>
+      <text x="100" y="244" class="mono-rule">&#x1F4C4; WORKBENCH.md</text>
+      <text x="100" y="268" class="mono-rule">&#x1F4C4; USER_GUIDE.md</text>
+      <text x="100" y="292" class="mono-rule">&#x1F4C4; TODOS.md</text>
+
+      <text x="100" y="336" class="mono">&#x1F4C4; PROJECT.md</text>
+      <text x="100" y="360" class="mono" style="fill:#666">&#x1F4C1; src/</text>
+      <text x="100" y="384" class="mono" style="fill:#666">&#x1F4C1; data/</text>
+      <text x="100" y="408" class="mono" style="fill:#666">&#x1F4C1; prompt-journal/</text>
+
+      <!-- Explanations on the right -->
+      <rect x="600" y="112" width="460" height="545" rx="12" class="box-soft"/>
+      <text x="620" y="148" class="head-md">The four living documents</text>
+      <text x="620" y="167" class="head-md-es">Los cuatro documentos vivos</text>
+      <line x1="620" y1="181" x2="1040" y2="181" class="line-thin"/>
+
+      <text x="620" y="212" class="mono-rule">ARCHITECTURE.md</text>
+      <text x="620" y="232" class="label-b">How the thing is built. Stack, files, decisions.</text>
+      <text x="620" y="249" class="label-es">C&#xF3;mo est&#xE1; construido. Stack, archivos, decisiones.</text>
+
+      <text x="620" y="282" class="mono-rule">WORKBENCH.md</text>
+      <text x="620" y="302" class="label-b">What happened this session. Newest at top.</text>
+      <text x="620" y="319" class="label-es">Qu&#xE9; pas&#xF3; en esta sesi&#xF3;n. Lo m&#xE1;s nuevo arriba.</text>
+
+      <text x="620" y="352" class="mono-rule">USER_GUIDE.md</text>
+      <text x="620" y="372" class="label-b">What the thing does, plain language.</text>
+      <text x="620" y="389" class="label-es">Qu&#xE9; hace la herramienta, en lenguaje simple.</text>
+
+      <text x="620" y="422" class="mono-rule">TODOS.md</text>
+      <text x="620" y="442" class="label-b">What's next. Honest. Updated at session end.</text>
+      <text x="620" y="459" class="label-es">Qu&#xE9; sigue. Sin adornos. Se actualiza al cerrar.</text>
+
+      <line x1="620" y1="486" x2="1040" y2="486" class="line-thin"/>
+      <text x="620" y="512" class="label-b-bold">Why these four:</text>
+      <text x="620" y="529" class="label-es">Por qu&#xE9; estos cuatro:</text>
+      <text x="620" y="554" class="label-b">They are the brain of the project.</text>
+      <text x="620" y="571" class="label-es">Son el cerebro del proyecto.</text>
+      <text x="620" y="594" class="label-b">A new Codex thread reads them and remembers</text>
+      <text x="620" y="612" class="label-b">where you left off. So do you. So does a teammate.</text>
+      <text x="620" y="629" class="label-es">Un hilo nuevo los lee y recuerda d&#xF3;nde quedaste.</text>
+      <text x="620" y="645" class="label-es">T&#xFA; tambi&#xE9;n. Y quien trabaje contigo.</text>
+    </svg>
+
+    <!-- =========== SCENE 5: why .md (and why CLAUDE.md) =========== -->
+    <svg class="scene" data-scene="5" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <text x="550" y="32" text-anchor="middle" class="head-xl">Why <tspan style="font-family:ui-monospace,Menlo,monospace; fill:#92400e">.md</tspan> ? Why <tspan style="font-family:ui-monospace,Menlo,monospace; fill:#92400e">CLAUDE.md</tspan> ?</text>
+      <text x="550" y="55" text-anchor="middle" class="head-es">&#xBF;Por qu&#xE9; <tspan style="font-family:ui-monospace,Menlo,monospace">.md</tspan>? &#xBF;Por qu&#xE9; <tspan style="font-family:ui-monospace,Menlo,monospace">CLAUDE.md</tspan>?</text>
+      <text x="550" y="76" text-anchor="middle" class="label-sm">The format matters as much as the existence.</text>
+      <text x="550" y="90" text-anchor="middle" class="label-es">El formato importa tanto como el hecho de que existan.</text>
+
+      <!-- Top-left: machine-first -->
+      <rect x="60" y="100" width="490" height="270" rx="12" class="box"/>
+      <text x="80" y="132" class="head-md">1. Machine-first format</text>
+      <text x="80" y="152" class="head-md-es">Formato pensado para la m&#xE1;quina</text>
+      <line x1="80" y1="166" x2="530" y2="166" class="line-thin"/>
+      <text x="80" y="192" class="label-b">Plain text. No rendering tax. No tags.</text>
+      <text x="80" y="207" class="label-es">Texto plano. Sin costo de renderizado. Sin etiquetas.</text>
+      <text x="80" y="228" class="label-b">LLMs are trained on tons of markdown.</text>
+      <text x="80" y="243" class="label-es">Los LLM se entrenaron con toneladas de markdown.</text>
+      <text x="80" y="264" class="label-b">Lighter than .docx, lighter than HTML.</text>
+      <text x="80" y="279" class="label-es">M&#xE1;s liviano que .docx y que HTML.</text>
+      <text x="80" y="300" class="label-b">The model reads it directly, fast and cheap.</text>
+      <text x="80" y="315" class="label-es">El modelo lo lee directo, r&#xE1;pido y barato.</text>
+      <text x="80" y="342" class="label-sm" style="font-style:italic">It's the right shape for AI to consume.</text>
+      <text x="80" y="357" class="label-es">Es la forma correcta para que la IA lo consuma.</text>
+
+      <!-- Top-right: human-readable -->
+      <rect x="570" y="100" width="490" height="270" rx="12" class="box"/>
+      <text x="590" y="132" class="head-md">2. Still human-readable</text>
+      <text x="590" y="152" class="head-md-es">Sigue siendo legible para humanos</text>
+      <line x1="590" y1="166" x2="1040" y2="166" class="line-thin"/>
+      <text x="590" y="192" class="label-b">Any text editor opens it. Forever.</text>
+      <text x="590" y="207" class="label-es">Cualquier editor de texto lo abre. Para siempre.</text>
+      <text x="590" y="228" class="label-b">A teammate can read it without tools.</text>
+      <text x="590" y="243" class="label-es">Alguien de tu equipo lo lee sin instalar nada.</text>
+      <text x="590" y="264" class="label-b">You in three months can read it.</text>
+      <text x="590" y="279" class="label-es">T&#xFA;, en tres meses, lo vas a entender.</text>
+      <text x="590" y="300" class="label-b">Anyone in 2040 can read it.</text>
+      <text x="590" y="315" class="label-es">Cualquiera en 2040 lo va a poder leer.</text>
+      <text x="590" y="342" class="label-sm" style="font-style:italic">Format won't rot. Files won't go obsolete.</text>
+      <text x="590" y="357" class="label-es">El formato no se pudre. Los archivos no quedan obsoletos.</text>
+
+      <!-- Bottom-left: CLAUDE.md is a convention -->
+      <rect x="60" y="382" width="490" height="270" rx="12" class="highlight" opacity="0.4"/>
+      <rect x="60" y="382" width="490" height="270" rx="12" fill="none" stroke="#92400e" stroke-width="2.5"/>
+      <text x="80" y="414" class="head-md">3. <tspan style="font-family:ui-monospace,Menlo,monospace">CLAUDE.md</tspan> is a known convention</text>
+      <text x="80" y="434" class="head-md-es"><tspan style="font-family:ui-monospace,Menlo,monospace">CLAUDE.md</tspan> es una convenci&#xF3;n conocida</text>
+      <line x1="80" y1="448" x2="530" y2="448" class="line-thin"/>
+      <text x="80" y="474" class="label-b">Claude Code looks for it on startup.</text>
+      <text x="80" y="489" class="label-es">Claude Code lo busca al arrancar.</text>
+      <text x="80" y="510" class="label-b">Codex looks for <tspan class="mono">AGENTS.md</tspan>. Gemini, <tspan class="mono">GEMINI.md</tspan>.</text>
+      <text x="80" y="525" class="label-es">Codex busca <tspan style="font-family:ui-monospace,Menlo,monospace">AGENTS.md</tspan>. Gemini busca <tspan style="font-family:ui-monospace,Menlo,monospace">GEMINI.md</tspan>.</text>
+      <text x="80" y="546" class="label-b">Drop one at the project root.</text>
+      <text x="80" y="561" class="label-es">Pon uno en la ra&#xED;z del proyecto.</text>
+      <text x="80" y="582" class="label-b">The AI reads it every session, no prompt needed.</text>
+      <text x="80" y="597" class="label-es">La IA lo lee en cada sesi&#xF3;n, sin que se lo pidas.</text>
+      <text x="80" y="624" class="label-sm" style="font-style:italic">Persistent system context, free of charge.</text>
+      <text x="80" y="639" class="label-es">Contexto de sistema permanente, sin costo.</text>
+
+      <!-- Bottom-right: compressed prior reasoning -->
+      <rect x="570" y="382" width="490" height="270" rx="12" class="box"/>
+      <text x="590" y="414" class="head-md">4. Compressed prior reasoning</text>
+      <text x="590" y="434" class="head-md-es">Razonamiento previo, comprimido</text>
+      <line x1="590" y1="448" x2="1040" y2="448" class="line-thin"/>
+      <text x="590" y="474" class="label-b">Bullets. Headings. Tables. The shape your</text>
+      <text x="590" y="489" class="label-es">Vi&#xF1;etas. T&#xED;tulos. Tablas. La forma en que</text>
+      <text x="590" y="510" class="label-b">brain already uses to think.</text>
+      <text x="590" y="525" class="label-es">tu cabeza ya piensa.</text>
+      <text x="590" y="546" class="label-b">The file isn't documentation. It's the thinking</text>
+      <text x="590" y="561" class="label-es">El archivo no es documentaci&#xF3;n. Es el pensamiento</text>
+      <text x="590" y="582" class="label-b">you did <tspan style="font-weight:700">once</tspan>, stored cheap, referenced forever.</text>
+      <text x="590" y="597" class="label-es">que hiciste <tspan style="font-weight:700">una vez</tspan>, guardado barato, para siempre.</text>
+      <text x="590" y="624" class="label-sm" style="font-style:italic">Write the rule once. Stop re-teaching.</text>
+      <text x="590" y="639" class="label-es">Escribe la regla una vez. Deja de repetirla.</text>
+    </svg>
+
+    <!-- =========== SCENE 6: the thread breaks =========== -->
+    <svg class="scene" data-scene="6" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <text x="550" y="34" text-anchor="middle" class="head-xl">The thread breaks. The files stay.</text>
+      <text x="550" y="57" text-anchor="middle" class="head-es">El hilo se rompe. Los archivos quedan.</text>
+      <text x="550" y="79" text-anchor="middle" class="label-sm">Codex confused. You hit a wall. Doesn't matter. Build keeps going.</text>
+      <text x="550" y="94" text-anchor="middle" class="label-es">Codex se enreda. Te estrellas contra un muro. No importa. El proyecto sigue.</text>
+
+      <!-- Chat window crossed out -->
+      <rect x="40" y="112" width="440" height="520" rx="12" class="box" opacity="0.55"/>
+      <rect x="40" y="112" width="440" height="52" rx="12" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+      <text x="60" y="132" class="label-sm" style="font-weight:700;fill:#b91c1c">Codex chat (this thread)</text>
+      <text x="60" y="149" class="label-es" style="fill:#b91c1c">chat de Codex (este hilo)</text>
+
+      <rect x="200" y="188" width="240" height="50" rx="10" fill="#1a1a1a" opacity="0.45"/>
+      <rect x="60" y="256" width="320" height="100" rx="10" fill="#fffbe8" stroke="#92400e" stroke-width="2" opacity="0.45"/>
+      <rect x="220" y="374" width="220" height="50" rx="10" fill="#1a1a1a" opacity="0.45"/>
+      <rect x="60" y="442" width="300" height="150" rx="10" fill="#fffbe8" stroke="#92400e" stroke-width="2" opacity="0.45"/>
+
+      <!-- Big red X across the chat -->
+      <line x1="80" y1="175" x2="450" y2="605" class="crossed"/>
+      <line x1="450" y1="175" x2="80" y2="605" class="crossed"/>
+
+      <text x="260" y="668" text-anchor="middle" class="label-b-bold" style="fill:#b91c1c">Thread polluted. Close it. Don't fight it.</text>
+      <text x="260" y="686" text-anchor="middle" class="label-es" style="fill:#b91c1c">Hilo contaminado. Ci&#xE9;rralo. No pelees con &#xE9;l.</text>
+
+      <!-- Folder still intact, glowing -->
+      <rect x="540" y="112" width="520" height="520" rx="12" class="box" stroke="#16a34a" stroke-width="3"/>
+      <rect x="540" y="112" width="520" height="52" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <text x="560" y="132" class="label-sm" style="font-weight:700;fill:#15803d">~/projects/your-build/  still there</text>
+      <text x="560" y="149" class="label-es" style="fill:#15803d">~/projects/your-build/  sigue ah&#xED;</text>
+
+      <text x="560" y="192" class="mono">&#x1F4C1; your-build/</text>
+      <text x="580" y="220" class="mono">&#x1F4C4; PROJECT.md</text>
+      <text x="580" y="244" class="mono">&#x1F4C4; ARCHITECTURE.md</text>
+      <text x="580" y="268" class="mono">&#x1F4C4; WORKBENCH.md</text>
+      <text x="580" y="292" class="mono">&#x1F4C4; USER_GUIDE.md</text>
+      <text x="580" y="316" class="mono">&#x1F4C4; TODOS.md</text>
+      <text x="580" y="344" class="mono">&#x1F4C1; src/</text>
+      <text x="580" y="368" class="mono">&#x1F4C1; data/</text>
+      <text x="580" y="392" class="mono">&#x1F4C1; prompt-journal/</text>
+
+      <text x="560" y="452" class="label-b-bold" style="fill:#15803d">Everything you built is on disk.</text>
+      <text x="560" y="470" class="label-es" style="fill:#15803d">Todo lo que construiste est&#xE1; en el disco.</text>
+      <text x="560" y="500" class="label-b">The thread was just one conversation about it.</text>
+      <text x="560" y="518" class="label-es">El hilo era solo una conversaci&#xF3;n sobre eso.</text>
+      <text x="560" y="548" class="label-b">The project is in the files.</text>
+      <text x="560" y="566" class="label-es">El proyecto est&#xE1; en los archivos.</text>
+    </svg>
+
+    <!-- =========== SCENE 7: fresh thread, paste PROJECT.md =========== -->
+    <svg class="scene" data-scene="7" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <text x="550" y="34" text-anchor="middle" class="head-xl">Fresh thread. Same project.</text>
+      <text x="550" y="57" text-anchor="middle" class="head-es">Hilo nuevo. Mismo proyecto.</text>
+      <text x="550" y="79" text-anchor="middle" class="label-sm">Open a new Codex thread. First message: paste PROJECT.md. Done.</text>
+      <text x="550" y="94" text-anchor="middle" class="label-es">Abre un hilo nuevo en Codex. Primer mensaje: pega PROJECT.md. Listo.</text>
+
+      <!-- New chat window -->
+      <rect x="180" y="110" width="740" height="530" rx="14" class="box"/>
+      <rect x="180" y="110" width="740" height="58" rx="14" fill="#f9fafb" stroke="#1a1a1a" stroke-width="2.5"/>
+      <circle cx="212" cy="134" r="13" fill="#1a1a1a"/>
+      <text x="212" y="139" text-anchor="middle" class="label-b-white" style="font-weight:700">C</text>
+      <text x="240" y="128" class="label-b-bold">Codex</text>
+      <text x="240" y="144" class="label-sm">new thread, no history</text>
+      <text x="240" y="159" class="label-es">hilo nuevo, sin historial</text>
+
+      <!-- User pastes PROJECT.md -->
+      <rect x="300" y="185" width="600" height="200" rx="14" class="bubble-user"/>
+      <text x="325" y="211" class="label-b-white" style="font-weight:600">You</text>
+      <text x="325" y="235" class="label-b-white">Read this. We're picking up where we left off.</text>
+      <text x="325" y="253" class="label-es-white">Lee esto. Retomamos donde quedamos.</text>
+      <text x="325" y="277" class="label-sm-white" style="font-style:italic">[pasting PROJECT.md... / pegando PROJECT.md...]</text>
+      <rect x="325" y="286" width="555" height="72" rx="6" fill="#262626" stroke="#444" stroke-width="1.5"/>
+      <text x="340" y="308" class="label-sm-white" style="font-family:ui-monospace,Menlo,monospace">## Project: coach-evaluator</text>
+      <text x="340" y="325" class="label-sm-white" style="font-family:ui-monospace,Menlo,monospace">## Stack: Python + Zoom API + local LLM</text>
+      <text x="340" y="342" class="label-sm-white" style="font-family:ui-monospace,Menlo,monospace">## Current state: 3 principles drafted, 1 transcript scored...</text>
+
+      <!-- AI response -->
+      <rect x="210" y="400" width="660" height="220" rx="14" class="bubble-ai"/>
+      <text x="235" y="426" class="label-b-bold">Codex</text>
+      <text x="235" y="452" class="label-b">Got it. I see the three principles, the transcript scored,</text>
+      <text x="235" y="473" class="label-b">and the TODO to refine principle 2 based on the miss in session 1.</text>
+      <text x="235" y="494" class="label-es">Listo. Veo los tres principios, la transcripci&#xF3;n calificada,</text>
+      <text x="235" y="511" class="label-es">y el pendiente de ajustar el principio 2 por lo que fall&#xF3; en la sesi&#xF3;n 1.</text>
+      <text x="235" y="541" class="label-b" style="font-weight:600">Where do you want to start?</text>
+      <text x="235" y="559" class="label-es">&#xBF;Por d&#xF3;nde quieres empezar?</text>
+
+      <text x="550" y="672" text-anchor="middle" class="label-sm" style="font-style:italic">Same project. Different conversation. Zero re-explaining.</text>
+      <text x="550" y="692" text-anchor="middle" class="label-es">Mismo proyecto. Otra conversaci&#xF3;n. Cero explicaciones repetidas.</text>
+    </svg>
+
+    <!-- =========== SCENE 8: finale =========== -->
+    <svg class="scene" data-scene="8" viewBox="0 0 1100 720" preserveAspectRatio="xMidYMid meet">
+      <rect x="40" y="90" width="1020" height="540" rx="16" class="box-finale"/>
+
+      <text x="550" y="170" text-anchor="middle" class="label-h-white" style="font-size:32px;font-weight:800">The thread is the conversation.</text>
+      <text x="550" y="203" text-anchor="middle" class="label-es-white" style="font-size:20px">El hilo es la conversaci&#xF3;n.</text>
+
+      <text x="550" y="255" text-anchor="middle" class="label-h-white" style="font-size:32px;font-weight:800">The files are the project.</text>
+      <text x="550" y="288" text-anchor="middle" class="label-es-white" style="font-size:20px">Los archivos son el proyecto.</text>
+
+      <line x1="280" y1="326" x2="820" y2="326" stroke="#fde68a" stroke-width="2"/>
+
+      <text x="550" y="368" text-anchor="middle" class="label-h-white-sm">Build accordingly.</text>
+      <text x="550" y="392" text-anchor="middle" class="label-es-white" style="font-size:15px">Construye en consecuencia.</text>
+
+      <text x="550" y="436" text-anchor="middle" class="label-sm-white">Drop the rule-pack into your tool's config so the right files always exist.</text>
+      <text x="550" y="452" text-anchor="middle" class="label-es-white">Pon el paquete de reglas en la config de tu herramienta para que los archivos correctos siempre existan.</text>
+      <text x="550" y="480" text-anchor="middle" class="label-sm-white">When a thread feels stuck, close it. Open a fresh one. Paste PROJECT.md.</text>
+      <text x="550" y="496" text-anchor="middle" class="label-es-white">Cuando un hilo se atasque, ci&#xE9;rralo. Abre uno nuevo. Pega PROJECT.md.</text>
+      <text x="550" y="524" text-anchor="middle" class="label-sm-white">Your build was never in the chat.</text>
+      <text x="550" y="540" text-anchor="middle" class="label-es-white">Lo que construiste nunca estuvo en el chat.</text>
+
+      <text x="550" y="596" text-anchor="middle" class="label-sm-white" style="opacity:0.7">Alex Salinsky &#xB7; The Build Room</text>
+    </svg>
+  </div>
+
+  <div class="caption" id="caption"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">&#x2190; Prev</button>
+      <button id="next">Next &#x2192;</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">8</span></div>
+  </div>
+</div>
+<div class="hint">&#x2190; &#x2192; arrow keys also work</div>
+<footer>Alex Salinsky &#xB7; The Build Room</footer>
+
+<script>
+const captionsEN = [
+  "An app is just files. A website is just files. Your build is files too.",
+  "Most people picture building as a conversation. That's only half of it.",
+  "Underneath the chat, real files are appearing on your computer. That's what your build actually is.",
+  "Four of those files keep the project alive between sessions. The rule-pack tells Codex to write them without being asked.",
+  "And the format matters. Markdown is machine-first, human-readable, plays nice with the conventions every AI tool already follows.",
+  "When the thread breaks, when Codex gets confused, when you have to start over: the files are still there.",
+  "Open a fresh thread. Paste PROJECT.md as the first message. The new conversation picks up exactly where the old one stopped.",
+  "The thread is the conversation. The files are the project. Build accordingly."
+];
+
+const captionsES = [
+  "Una app son archivos. Un sitio web son archivos. Lo que construyes tambi\xE9n son archivos.",
+  "La mayor\xEDa se imagina que construir es una conversaci\xF3n. Eso es solo la mitad.",
+  "Debajo del chat aparecen archivos reales en tu computador. Eso es de verdad lo que est\xE1s construyendo.",
+  "Cuatro de esos archivos mantienen vivo el proyecto entre sesiones. El paquete de reglas hace que Codex los escriba sin que se lo pidas.",
+  "Y el formato importa. Markdown est\xE1 hecho para la m\xE1quina, sigue siendo legible para humanos, y encaja con las convenciones que ya siguen las herramientas de IA.",
+  "Cuando el hilo se rompe, cuando Codex se enreda, cuando toca empezar de nuevo: los archivos siguen ah\xED.",
+  "Abre un hilo nuevo. Pega PROJECT.md como primer mensaje. La conversaci\xF3n nueva retoma justo donde par\xF3 la anterior.",
+  "El hilo es la conversaci\xF3n. Los archivos son el proyecto. Construye en consecuencia."
+];
+
+let mode = 'both';
+let i = 0;
+const titleScreen = document.getElementById("titleScreen");
+const scenes = document.querySelectorAll(".scene");
+const cap = document.getElementById("caption");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = captionsEN.length;
+
+function setMode(m) {
+  mode = m;
+  document.body.className = 'mode-' + m;
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + m).classList.add('active');
+  render();
+}
+
+function render() {
+  let html = '';
+  if (mode === 'en') {
+    html = '<span class="cap-en">' + captionsEN[i] + '</span>';
+  } else if (mode === 'es') {
+    html = '<span class="cap-es" style="color:#1a1a1a;font-style:normal;font-size:17px">' + captionsES[i] + '</span>';
+  } else {
+    html = '<span class="cap-en">' + captionsEN[i] + '</span><span class="cap-es">' + captionsES[i] + '</span>';
+  }
+  cap.innerHTML = html;
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === captionsEN.length - 1;
+
+  if (i === 0) {
+    titleScreen.style.display = '';
+    scenes.forEach(s => s.classList.remove('active'));
+  } else {
+    titleScreen.style.display = 'none';
+    scenes.forEach(s => {
+      const step = parseInt(s.dataset.scene);
+      s.classList.toggle('active', step === i + 1);
+    });
+  }
+
+  // Show/hide ES layers inside the SVG scenes
+  document.querySelectorAll('.head-es, .head-md-es, .label-es, .label-es-white').forEach(el => {
+    if (el.closest('svg')) el.style.display = (mode === 'en') ? 'none' : '';
+  });
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < captionsEN.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") next.click();
+  if (e.key === "ArrowLeft") prev.click();
+});
+
+// Basic touch swipe
+let touchStartX = null;
+document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+document.addEventListener('touchend', (e) => {
+  if (touchStartX === null) return;
+  const dx = e.changedTouches[0].screenX - touchStartX;
+  if (Math.abs(dx) > 40) { if (dx < 0) next.click(); else prev.click(); }
+  touchStartX = null;
+}, { passive: true });
+
+render();
+</script>
+</body>
+</html>

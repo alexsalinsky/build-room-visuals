@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <rect width="600" height="400" fill="#fafafa"/>
+  <circle cx="470" cy="400" r="150" fill="#fde68a" opacity="0.6"/>
+  <circle cx="470" cy="400" r="95" fill="#f59e0b" opacity="0.35"/>
+  <!-- three dashboard screens on stands -->
+  <g stroke="#1a1a1a" stroke-width="5" fill="#fff">
+    <rect x="70" y="120" width="110" height="75" rx="8"/>
+    <line x1="125" y1="195" x2="125" y2="240"/>
+    <line x1="95" y1="240" x2="155" y2="240"/>
+    <rect x="215" y="100" width="110" height="75" rx="8"/>
+    <line x1="270" y1="175" x2="270" y2="240"/>
+    <line x1="240" y1="240" x2="300" y2="240"/>
+    <rect x="360" y="120" width="110" height="75" rx="8"/>
+    <line x1="415" y1="195" x2="415" y2="240"/>
+    <line x1="385" y1="240" x2="445" y2="240"/>
+  </g>
+  <!-- alert dot on middle screen -->
+  <circle cx="270" cy="137" r="14" fill="#f59e0b" stroke="#1a1a1a" stroke-width="4"/>
+  <!-- chart lines on side screens -->
+  <polyline points="85,175 110,155 135,165 165,140" fill="none" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+  <polyline points="375,180 400,165 425,172 455,150" fill="none" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+  <!-- watchdog -->
+  <g stroke="#1a1a1a" stroke-width="5" fill="#fff" stroke-linejoin="round">
+    <rect x="460" y="270" width="90" height="60" rx="18"/>
+    <rect x="530" y="238" width="46" height="44" rx="12"/>
+    <path d="M538 238 L546 216 L558 238 Z" fill="#f59e0b"/>
+    <line x1="470" y1="330" x2="470" y2="352"/>
+    <line x1="536" y1="330" x2="536" y2="352"/>
+    <path d="M460 292 Q432 284 436 262" fill="none"/>
+  </g>
+  <circle cx="552" cy="258" r="4.5" fill="#1a1a1a"/>
+  <!-- paper plane email -->
+  <g stroke="#1a1a1a" stroke-width="4" stroke-linejoin="round">
+    <path d="M110 320 L170 300 L130 345 Z" fill="#f59e0b"/>
+    <path d="M78 310 Q95 316 110 320" fill="none" stroke-dasharray="2 8" stroke-linecap="round"/>
+  </g>
+</svg>

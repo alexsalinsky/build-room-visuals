@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <rect width="600" height="400" fill="#fafafa"/>
+  <circle cx="120" cy="90" r="70" fill="#fde68a" opacity="0.5"/>
+  <!-- microphone -->
+  <g stroke="#1a1a1a" stroke-width="5" fill="#fff">
+    <rect x="95" y="120" width="70" height="120" rx="35"/>
+    <path d="M75 200 Q75 265 130 265 Q185 265 185 200" fill="none"/>
+    <line x1="130" y1="265" x2="130" y2="305"/>
+    <line x1="95" y1="305" x2="165" y2="305"/>
+  </g>
+  <line x1="110" y1="155" x2="110" y2="205" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
+  <line x1="130" y1="145" x2="130" y2="215" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
+  <line x1="150" y1="155" x2="150" y2="205" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
+  <!-- wave branching -->
+  <g fill="none" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round">
+    <path d="M190 180 Q260 180 300 120 Q330 80 380 80"/>
+    <path d="M190 180 Q270 180 330 165 Q380 155 420 160"/>
+    <path d="M190 180 Q260 180 300 245 Q335 290 385 295"/>
+  </g>
+  <!-- quote card -->
+  <g stroke="#1a1a1a" stroke-width="5" fill="#fff">
+    <rect x="390" y="45" width="130" height="80" rx="8"/>
+  </g>
+  <path d="M410 75 q0 -12 14 -12 M436 75 q0 -12 14 -12" stroke="#f59e0b" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <line x1="410" y1="95" x2="500" y2="95" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="410" y1="108" x2="475" y2="108" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+  <!-- photo card -->
+  <g stroke="#1a1a1a" stroke-width="5" fill="#fff">
+    <rect x="430" y="140" width="110" height="85" rx="8"/>
+  </g>
+  <circle cx="460" cy="165" r="9" fill="#f59e0b"/>
+  <path d="M438 210 L470 182 L492 200 L512 186 L532 205" fill="none" stroke="#1a1a1a" stroke-width="4" stroke-linejoin="round"/>
+  <!-- envelope -->
+  <g stroke="#1a1a1a" stroke-width="5" fill="#fff">
+    <rect x="395" y="255" width="125" height="80" rx="8"/>
+    <path d="M395 262 L457 310 L520 262" fill="none"/>
+  </g>
+  <circle cx="520" cy="262" r="12" fill="#f59e0b" stroke="#1a1a1a" stroke-width="4"/>
+</svg>

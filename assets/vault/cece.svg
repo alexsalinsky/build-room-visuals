@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <rect width="600" height="400" fill="#fafafa"/>
+  <circle cx="490" cy="80" r="75" fill="#fde68a" opacity="0.5"/>
+  <!-- phone -->
+  <g stroke="#1a1a1a" stroke-width="5" fill="#fff">
+    <rect x="90" y="110" width="120" height="230" rx="18"/>
+    <line x1="130" y1="132" x2="170" y2="132"/>
+  </g>
+  <!-- photos fanning out -->
+  <g stroke="#1a1a1a" stroke-width="5" fill="#fff">
+    <rect x="200" y="90" width="100" height="80" rx="6" transform="rotate(-14 250 130)"/>
+    <rect x="255" y="150" width="100" height="80" rx="6" transform="rotate(-5 305 190)"/>
+    <rect x="230" y="245" width="100" height="80" rx="6" transform="rotate(8 280 285)"/>
+  </g>
+  <circle cx="235" cy="120" r="8" fill="#f59e0b"/>
+  <path d="M262 250 L285 228 L300 240 L318 224" fill="none" stroke="#1a1a1a" stroke-width="4" transform="rotate(-5 305 190) translate(0 -55)"/>
+  <!-- sorted stack -->
+  <g stroke="#1a1a1a" stroke-width="5" fill="#fff">
+    <rect x="420" y="200" width="130" height="95" rx="6"/>
+    <rect x="410" y="185" width="130" height="95" rx="6"/>
+    <rect x="400" y="170" width="130" height="95" rx="6"/>
+  </g>
+  <path d="M448 215 L436 240 L410 243 L430 260 L424 286 L448 272 L472 286 L466 260 L486 243 L460 240 Z"
+        fill="#f59e0b" stroke="#1a1a1a" stroke-width="4" stroke-linejoin="round" transform="scale(0.8) translate(115 55)"/>
+  <!-- motion dashes -->
+  <g stroke="#1a1a1a" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 10">
+    <path d="M310 120 Q370 130 400 170" fill="none"/>
+    <path d="M355 195 Q380 200 398 215" fill="none"/>
+  </g>
+</svg>

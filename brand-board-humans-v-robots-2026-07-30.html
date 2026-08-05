@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Humans V Robots · Brand Board · 2026-07-30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page-bg: #EFEAE0;
+    --board-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.06);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--page-bg); color: #1E1E1E; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+
+  .page-head {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 56px 40px 24px;
+  }
+  .page-head .kicker { font-size: 12px; text-transform: uppercase; letter-spacing: 0.18em; color: #6f655a; margin: 0 0 12px; font-weight: 600; }
+  .page-head h1 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 52px; letter-spacing: -0.02em; margin: 0 0 16px; line-height: 1.05; }
+  .page-head h1 .v { color: #B94F2A; }
+  .page-head .positioning { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 22px; line-height: 1.45; max-width: 900px; margin: 20px 0 8px; color: #1E1E1E; }
+  .page-head .thesis { font-size: 14px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #6f655a; margin: 24px 0 0; }
+  .page-head .meta { color: #6f655a; font-size: 14px; margin: 8px 0 0; }
+
+  .board {
+    max-width: 1400px;
+    margin: 32px auto;
+    background: var(--board-bg, #F7F4EE);
+    border-radius: 24px;
+    padding: 48px 44px;
+    box-shadow: var(--board-shadow);
+  }
+  .board-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 36px; padding-bottom: 20px; border-bottom: 1px solid rgba(30,30,30,0.08); }
+  .board-head .label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 8px; }
+  .board-head .name { font-family: 'Fraunces', Georgia, serif; font-size: 34px; letter-spacing: -0.01em; margin: 0; }
+  .board-head .name .accent { color: var(--accent); }
+  .board-head .oneline { font-size: 14px; color: var(--muted); max-width: 460px; text-align: right; }
+
+  .board-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; }
+
+  .wordmark-well {
+    background: var(--well-bg);
+    border-radius: 16px;
+    padding: 56px 32px;
+    min-height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .palette { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 24px 0 8px; }
+  .swatch { border-radius: 12px; padding: 10px 10px 12px; min-height: 92px; display: flex; flex-direction: column; justify-content: flex-end; font-size: 11px; }
+  .swatch .role { font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.9; }
+  .swatch .hex { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; margin-top: 2px; opacity: 0.85; }
+
+  .spec-row { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(30,30,30,0.06); font-size: 13.5px; }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-row .k { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 700; padding-top: 2px; }
+
+  h3.section-h { font-family: 'Fraunces', Georgia, serif; font-size: 22px; margin: 28px 0 12px; letter-spacing: -0.01em; }
+
+  .mockup-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .mockup-card { background: var(--well-bg); border-radius: 16px; padding: 22px; min-height: 180px; display: flex; flex-direction: column; justify-content: space-between; }
+  .mockup-card .m-kicker { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .mockup-card .m-head { font-size: 20px; line-height: 1.15; margin: 8px 0 10px; }
+  .mockup-card .m-cta { align-self: flex-start; padding: 10px 18px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .mockup-card .m-sub { font-size: 12px; color: var(--muted); }
+
+  .donts { margin-top: 24px; padding: 20px 22px; background: rgba(0,0,0,0.03); border-radius: 12px; font-size: 13.5px; }
+  .donts strong { display: block; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .donts ul { margin: 0; padding-left: 18px; }
+  .donts li { margin-bottom: 4px; }
+
+  .rationale { font-size: 13px; color: var(--muted); line-height: 1.55; margin: 12px 0 0; }
+
+  /* ============ DIRECTION A: Editorial Restraint ============ */
+  .board-a {
+    --board-bg: #F7F4EE;
+    --well-bg: #EFEAE0;
+    --ink: #1E1E1E;
+    --muted: #6f655a;
+    --accent: #3A7A6A;
+    --amber: #C9932F;
+    color: var(--ink);
+  }
+  .wordmark-a {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: clamp(36px, 6vw, 76px);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .wordmark-a .v { color: var(--accent); }
+
+  .mockup-card.a1 { }
+  .board-a .m-cta.primary { background: var(--accent); color: #F7F4EE; }
+  .board-a .m-cta.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+
+  /* ============ DIRECTION B: V as Design System ============ */
+  .board-b {
+    --board-bg: #F7F4EE;
+    --well-bg: #EFEAE0;
+    --ink: #1E1E1E;
+    --muted: #6f655a;
+    --accent: #B94F2A;
+    --graphite: #4A5560;
+    color: var(--ink);
+  }
+  .wordmark-b {
+    text-align: center;
+    line-height: 0.92;
+    color: var(--ink);
+  }
+  .wordmark-b .w-humans {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: clamp(28px, 4.5vw, 52px);
+    letter-spacing: -0.01em;
+    display: block;
+  }
+  .wordmark-b .w-v {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(80px, 14vw, 168px);
+    color: var(--accent);
+    line-height: 0.85;
+    display: block;
+    margin: 4px 0 0;
+  }
+  .wordmark-b .w-robots {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 4.5vw, 52px);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--graphite);
+    display: block;
+    margin-top: 6px;
+  }
+
+  .board-b .m-cta.primary { background: var(--accent); color: #F7F4EE; }
+  .board-b .m-cta.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+  .board-b .mockup-card.b1 { border-left: 6px solid var(--accent); }
+  .board-b .mockup-card.b2 .m-head { font-family: 'Fraunces', Georgia, serif; }
+  .board-b .mockup-card.b2 .m-head em { color: var(--accent); font-style: italic; }
+
+  /* ============ DIRECTION C: Warm Editorial ============ */
+  .board-c {
+    --board-bg: #FAF7F2;
+    --well-bg: #F1EAE0;
+    --ink: #1F1B16;
+    --muted: #6f655a;
+    --accent: #BD5836;
+    --amber: #C9932F;
+    color: var(--ink);
+  }
+  .wordmark-c {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(36px, 6vw, 76px);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .wordmark-c .v { color: var(--amber); font-style: italic; }
+
+  .board-c .m-cta.primary { background: var(--accent); color: #FAF7F2; }
+  .board-c .m-cta.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+  .board-c .mockup-card.c2 .m-head { font-family: 'Fraunces', Georgia, serif; }
+
+  /* ============ Icon-mark holding pane ============ */
+  .icon-placeholders { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .icon-placeholder {
+    aspect-ratio: 1/1;
+    background: var(--well-bg);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ============ Prompt bundle ============ */
+  .prompt-bundle {
+    max-width: 1400px;
+    margin: 32px auto 80px;
+    background: #F7F4EE;
+    border-radius: 24px;
+    padding: 40px 44px;
+    box-shadow: var(--board-shadow);
+  }
+  .prompt-bundle h2 { font-family: 'Fraunces', Georgia, serif; margin: 0 0 8px; font-size: 28px; letter-spacing: -0.01em; }
+  .prompt-bundle p { color: #6f655a; font-size: 14px; margin: 0 0 24px; max-width: 780px; }
+  .prompt-block {
+    background: #1E1E1E;
+    color: #F7F4EE;
+    border-radius: 16px;
+    padding: 20px 22px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12.5px;
+    line-height: 1.6;
+    margin-bottom: 14px;
+    white-space: pre-wrap;
+  }
+  .prompt-block .p-tag {
+    font-family: 'Inter', sans-serif;
+    display: inline-block;
+    padding: 3px 10px;
+    background: #B94F2A;
+    color: #F7F4EE;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .board-grid { grid-template-columns: 1fr; }
+    .palette { grid-template-columns: repeat(3, 1fr); }
+    .mockup-strip { grid-template-columns: 1fr; }
+    .icon-placeholders { grid-template-columns: repeat(2, 1fr); }
+    .board-head { flex-direction: column; align-items: flex-start; }
+    .board-head .oneline { text-align: left; }
+    .page-head h1 { font-size: 38px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <p class="kicker">Brand Board · 2026-07-30 · Alex Salinsky</p>
+  <h1>Humans <span class="v">V</span> Robots</h1>
+  <p class="positioning">For leaders bringing AI to their teams, Humans V Robots is the live cohort where every person ships a working tool for their own job in 4 weeks, coached by builders, not lectured at.</p>
+  <p class="thesis">Learn AI. Build Robots. Stay Human.</p>
+  <p class="meta">Three directions, each a mini brand board. Pick one and I polish it into the single-page BrandKit deliverable. Icon-mark exploration prompts at the bottom of this page for ChatGPT / gpt-image-1 when the billing cap resets.</p>
+</header>
+
+<!-- ================================================================ -->
+<!-- DIRECTION A: EDITORIAL RESTRAINT                                  -->
+<!-- ================================================================ -->
+<section class="board board-a">
+  <div class="board-head">
+    <div>
+      <div class="label">Direction A</div>
+      <h2 class="name">Editorial <span class="accent">Restraint</span></h2>
+    </div>
+    <div class="oneline">Facilitator.com's discipline. One accent color. Sans-first. Serifs reserved for the thesis line only. Buyer sees "serious training company" first, "human" second.</div>
+  </div>
+
+  <div class="board-grid">
+    <div>
+      <div class="wordmark-well">
+        <div class="wordmark-a">HUMANS <span class="v">V</span> ROBOTS</div>
+      </div>
+
+      <div class="mockup-strip">
+        <article class="mockup-card a1">
+          <div>
+            <div class="m-kicker">For teams</div>
+            <div class="m-head">You bought AI. Your team still isn't using it.</div>
+            <div class="m-sub">A private cohort where every person ships one working tool for their own job.</div>
+          </div>
+          <button class="m-cta primary">Book a 20-min fit call</button>
+        </article>
+        <article class="mockup-card a2">
+          <div>
+            <div class="m-kicker">Free monthly</div>
+            <div class="m-head">Come see the room. Sept 24, 12pm ET.</div>
+            <div class="m-sub">A live 45-min session with a working demo and 20 minutes of Q&amp;A.</div>
+          </div>
+          <button class="m-cta ghost">Save my seat</button>
+        </article>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="section-h">Color system</h3>
+      <div class="palette">
+        <div class="swatch" style="background:#F7F4EE; color:#1E1E1E;"><div><div class="role">Paper</div><div class="hex">#F7F4EE</div></div></div>
+        <div class="swatch" style="background:#EFEAE0; color:#1E1E1E;"><div><div class="role">Card</div><div class="hex">#EFEAE0</div></div></div>
+        <div class="swatch" style="background:#1E1E1E; color:#F7F4EE;"><div><div class="role">Ink</div><div class="hex">#1E1E1E</div></div></div>
+        <div class="swatch" style="background:#6f655a; color:#F7F4EE;"><div><div class="role">Muted</div><div class="hex">#6F655A</div></div></div>
+        <div class="swatch" style="background:#3A7A6A; color:#F7F4EE;"><div><div class="role">Accent</div><div class="hex">#3A7A6A</div></div></div>
+        <div class="swatch" style="background:#C9932F; color:#1E1E1E;"><div><div class="role">Badge</div><div class="hex">#C9932F</div></div></div>
+      </div>
+      <p class="rationale">Warmth lives in the paper, not in the accent. The sage teal reads competent and calm; the amber is reserved for one-per-page moments (certificate ribbons, "20% off teams," dated live-class chips).</p>
+
+      <h3 class="section-h">Typography</h3>
+      <div class="spec-row"><div class="k">Display</div><div><strong style="font-family:'Space Grotesk',sans-serif; font-weight:700;">Space Grotesk 700</strong> · tight tracking (-0.02em), large sizes only</div></div>
+      <div class="spec-row"><div class="k">Text</div><div><strong style="font-family:'Inter',sans-serif; font-weight:500;">Inter 400/500/600</strong> · body 16-18px, line-height 1.55</div></div>
+      <div class="spec-row"><div class="k">Thesis</div><div style="font-family:'Fraunces',serif; font-style:italic;">Fraunces italic 500, reserved for the mission line only</div></div>
+      <div class="spec-row"><div class="k">License</div><div>All three free via Google Fonts (SIL Open Font License)</div></div>
+
+      <div class="donts">
+        <strong>Three don'ts</strong>
+        <ul>
+          <li>Don't reach for a second accent. If you need contrast, use ink weight, not another color.</li>
+          <li>Don't use Fraunces for body copy or CTAs. It exists here for the thesis line and pull quotes, not decoration.</li>
+          <li>Don't crowd the accent. If sage is in the hero, it doesn't appear again above the fold.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- DIRECTION B: V AS DESIGN SYSTEM                                   -->
+<!-- ================================================================ -->
+<section class="board board-b">
+  <div class="board-head">
+    <div>
+      <div class="label">Direction B</div>
+      <h2 class="name">V as <span class="accent">Design System</span></h2>
+    </div>
+    <div class="oneline">The V from the name becomes a structural device across the page. Two typefaces meet at the V; two color territories (warm human, cool robot) meet at the V. The tension is the brand.</div>
+  </div>
+
+  <div class="board-grid">
+    <div>
+      <div class="wordmark-well">
+        <div class="wordmark-b">
+          <span class="w-humans">Humans</span>
+          <span class="w-v">V</span>
+          <span class="w-robots">ROBOTS</span>
+        </div>
+      </div>
+
+      <div class="mockup-strip">
+        <article class="mockup-card b1">
+          <div>
+            <div class="m-kicker">For teams</div>
+            <div class="m-head">A cohort your team leaves with a working tool, not a certificate.</div>
+            <div class="m-sub">4 weeks, live, coached by builders.</div>
+          </div>
+          <button class="m-cta primary">Book a 20-min fit call</button>
+        </article>
+        <article class="mockup-card b2">
+          <div>
+            <div class="m-kicker">Free monthly</div>
+            <div class="m-head">Watch a real builder <em>ship</em>. Sept 24.</div>
+            <div class="m-sub">45 minutes, one working demo, 20 minutes Q&amp;A.</div>
+          </div>
+          <button class="m-cta ghost">Save my seat</button>
+        </article>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="section-h">Color system</h3>
+      <div class="palette">
+        <div class="swatch" style="background:#F7F4EE; color:#1E1E1E;"><div><div class="role">Paper</div><div class="hex">#F7F4EE</div></div></div>
+        <div class="swatch" style="background:#EFEAE0; color:#1E1E1E;"><div><div class="role">Card</div><div class="hex">#EFEAE0</div></div></div>
+        <div class="swatch" style="background:#1E1E1E; color:#F7F4EE;"><div><div class="role">Ink</div><div class="hex">#1E1E1E</div></div></div>
+        <div class="swatch" style="background:#6f655a; color:#F7F4EE;"><div><div class="role">Muted</div><div class="hex">#6F655A</div></div></div>
+        <div class="swatch" style="background:#B94F2A; color:#F7F4EE;"><div><div class="role">Clay</div><div class="hex">#B94F2A</div></div></div>
+        <div class="swatch" style="background:#4A5560; color:#F7F4EE;"><div><div class="role">Graphite</div><div class="hex">#4A5560</div></div></div>
+      </div>
+      <p class="rationale">Two accents on purpose: clay is the "human" heat, graphite is the "robot" restraint. They only appear together at the V moment. Everywhere else, one or the other, never both.</p>
+
+      <h3 class="section-h">Typography</h3>
+      <div class="spec-row"><div class="k">Human face</div><div><span style="font-family:'Fraunces',serif; font-weight:500; font-style:italic; font-size:16px;">Fraunces italic 500</span> · warmth, editorial pull quotes, "Humans" side</div></div>
+      <div class="spec-row"><div class="k">Robot face</div><div><span style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16px;">Space Grotesk 700</span> · CTAs, structure, "Robots" side</div></div>
+      <div class="spec-row"><div class="k">Body</div><div><span style="font-family:'Inter',sans-serif; font-weight:500;">Inter 400/500/600</span> · reading text, sits under both accents</div></div>
+      <div class="spec-row"><div class="k">Rule</div><div>Max 2 families visible in any one composition. Inter counts as neutral scaffolding.</div></div>
+
+      <h3 class="section-h">The V rule</h3>
+      <p class="rationale">The V appears exactly once per page in its wordmark form. Beyond that, it recurs as a section divider (angled rule), as a wedge in the hero, and as the pointer on CTAs. It is a structural motif, not a decoration.</p>
+
+      <div class="donts">
+        <strong>Three don'ts</strong>
+        <ul>
+          <li>Don't ever tilt this playful. The V is confident, not cute. No sound-effect typography, no exclamation points.</li>
+          <li>Don't use clay and graphite on the same block of copy. They meet at the V, not on a paragraph.</li>
+          <li>Don't stack Fraunces italic in a paragraph. It's a moment font. One line at a time.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- DIRECTION C: WARM EDITORIAL                                       -->
+<!-- ================================================================ -->
+<section class="board board-c">
+  <div class="board-head">
+    <div>
+      <div class="label">Direction C</div>
+      <h2 class="name">Warm <span class="accent">Editorial</span></h2>
+    </div>
+    <div class="oneline">Keeps most of your current system. Cream + clay survive. Fraunces stays. What changes: the grid tightens up, sans-serif carries more of the load, the V picks up a warm amber twist so the wordmark still has a beat.</div>
+  </div>
+
+  <div class="board-grid">
+    <div>
+      <div class="wordmark-well">
+        <div class="wordmark-c">Humans <span class="v">V</span> Robots</div>
+      </div>
+
+      <div class="mockup-strip">
+        <article class="mockup-card c1">
+          <div>
+            <div class="m-kicker">For teams</div>
+            <div class="m-head">Your team ships a real tool, together, in four weeks.</div>
+            <div class="m-sub">Private cohort · live · coached by builders.</div>
+          </div>
+          <button class="m-cta primary">Book a 20-min fit call</button>
+        </article>
+        <article class="mockup-card c2">
+          <div>
+            <div class="m-kicker">Free monthly</div>
+            <div class="m-head">Come see how it works. Sept 24, 12pm ET.</div>
+            <div class="m-sub">45 minutes, live demo, 20 minutes Q&amp;A.</div>
+          </div>
+          <button class="m-cta ghost">Save my seat</button>
+        </article>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="section-h">Color system</h3>
+      <div class="palette">
+        <div class="swatch" style="background:#FAF7F2; color:#1F1B16;"><div><div class="role">Cream</div><div class="hex">#FAF7F2</div></div></div>
+        <div class="swatch" style="background:#F1EAE0; color:#1F1B16;"><div><div class="role">Sand</div><div class="hex">#F1EAE0</div></div></div>
+        <div class="swatch" style="background:#1F1B16; color:#FAF7F2;"><div><div class="role">Ink</div><div class="hex">#1F1B16</div></div></div>
+        <div class="swatch" style="background:#6f655a; color:#FAF7F2;"><div><div class="role">Muted</div><div class="hex">#6F655A</div></div></div>
+        <div class="swatch" style="background:#BD5836; color:#FAF7F2;"><div><div class="role">Clay</div><div class="hex">#BD5836</div></div></div>
+        <div class="swatch" style="background:#C9932F; color:#1F1B16;"><div><div class="role">Amber</div><div class="hex">#C9932F</div></div></div>
+      </div>
+      <p class="rationale">Same palette you already ship, tightened. Clay stays the primary accent (buttons, links, key numbers). Amber is the "V" beat and the "founding cohort" ribbon, nothing else.</p>
+
+      <h3 class="section-h">Typography</h3>
+      <div class="spec-row"><div class="k">Display</div><div><span style="font-family:'Fraunces',serif; font-weight:600; font-size:16px;">Fraunces 600</span> · headlines, wordmark, pull quotes</div></div>
+      <div class="spec-row"><div class="k">Text</div><div><span style="font-family:'Inter',sans-serif; font-weight:500;">Inter 400/500/600</span> · body, CTAs, forms, navigation</div></div>
+      <div class="spec-row"><div class="k">Rule</div><div>Sans carries 80% of the type. Fraunces is the beat, not the melody.</div></div>
+      <div class="spec-row"><div class="k">License</div><div>Both free via Google Fonts</div></div>
+
+      <div class="donts">
+        <strong>Three don'ts</strong>
+        <ul>
+          <li>Don't run Fraunces below 22px. It softens and loses the beat.</li>
+          <li>Don't use amber and clay side by side. Amber is for the V moment and the founding-cohort ribbon; that's it.</li>
+          <li>Don't let this go "handmade." Grid discipline is what separates this from being generic warm-brand template #47.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- ICON-MARK PROMPT BUNDLE                                           -->
+<!-- ================================================================ -->
+<section class="prompt-bundle">
+  <h2>Icon-mark prompts for ChatGPT / gpt-image-1</h2>
+  <p>Paste these into ChatGPT (Plus or higher, image generation on) or into a rerun of <code>scripts/generate-hvr-brand-mockups.js</code> when the OpenAI cap resets. Every prompt is standalone and includes the palette hex codes so the exploration stays inside the brand. Generate 2-4 variants per prompt and pick.</p>
+
+  <div class="prompt-block">
+<span class="p-tag">Mark 1 — Facing silhouettes</span>Logo mark for a professional AI cohort program named Humans V Robots. A minimal geometric V shape formed by two facing silhouettes: on the left, a simplified human head and shoulders profile; on the right, a simplified geometric robot head profile with a small antenna. They face each other and meet at the bottom to form a clean V. Single-color deep charcoal #1E1E1E on cream #F7F4EE background. Flat vector style, uniform 3px stroke, no fill, no shadows, no gradients. Editorial, minimalist, adult professional feel. Must remain legible at 24px. Do not include any letters, words, or numbers.
+  </div>
+
+  <div class="prompt-block">
+<span class="p-tag">Mark 2 — Negative-space V</span>Logo mark: a solid warm clay red #B94F2A rounded square with a large negative-space V cut cleanly out of the center. The V is centered, sharp-cornered, geometric. The negative space reveals a cream #F7F4EE background behind. Editorial, striking, professional brand mark for an AI training company. Flat vector style, no shadows, no gradients, no illustration. Must work at favicon scale. No text, no letters, no words, no numbers.
+  </div>
+
+  <div class="prompt-block">
+<span class="p-tag">Mark 3 — H V R monogram</span>Monogram logo mark: the letters H, V, R arranged in a compact horizontal composition. H and R are in deep charcoal #1E1E1E; the V between them is oversized and in warm clay red #B94F2A. Modern geometric sans-serif letterforms with tight construction. Cream #F7F4EE background. Professional brand mark for an adult training company. Flat vector style, no shadows, no gradients, no ornament.
+  </div>
+
+  <div class="prompt-block">
+<span class="p-tag">Mark 4 — Two-arrow V</span>Logo mark: a large geometric V formed by two arrowheads meeting at the bottom point. Left arrow points down-right in deep charcoal #1E1E1E. Right arrow points down-left in warm clay red #B94F2A. They meet cleanly at the base to form a single V. Cream #F7F4EE background. Flat vector, no shadows, no gradients. Modern, confident, editorial, adult professional. No text, no letters, no words.
+  </div>
+
+  <div class="prompt-block">
+<span class="p-tag">Mark 5 — Circle seal</span>Circular seal-style logo. A thin charcoal #1E1E1E ring encloses a large geometric V that fills the interior. The V is warm clay red #B94F2A. Cream #F7F4EE background. Editorial, credible, minimal, adult professional feel. Suitable for use as a certificate seal or a favicon. Flat vector, no shadows, no gradients. Do not include any letters, words, or numbers inside or around the ring.
+  </div>
+
+  <div class="prompt-block">
+<span class="p-tag">Icon set — brand system</span>Set of four minimal line icons arranged in a single horizontal row on a cream #F7F4EE background: (1) a simple human profile silhouette from the shoulders up, facing right; (2) a small geometric robot head with a single antenna, facing left; (3) a bold uppercase letter V; (4) a compact laptop showing a simplified terminal window with a cursor. Uniform 2px stroke weight, single color deep charcoal #1E1E1E, no fill, no shadows, no gradients. Flat editorial illustration style, adult, professional, minimalist. Even spacing between the four icons.
+  </div>
+
+  <div class="prompt-block">
+<span class="p-tag">Scene — hero card</span>Promotional card mockup for a professional AI training program. Cream #F7F4EE background. In the upper left, a large geometric mark: a V formed by two intersecting angled shapes. Below the mark, a bold sans-serif headline area shown as solid dark blocks (no readable text). One warm clay red #B94F2A accent block anchored to the lower right. Editorial magazine layout, generous whitespace, clean grid. Professional, adult, warm, not childish. Flat vector illustration, no shadows.
+  </div>
+
+  <p style="margin-top:24px; color:#6f655a; font-size:13px;">Model note: gpt-image-1 is unreliable with precise typography. The three wordmarks above (rendered in real Fraunces and Space Grotesk) are what a designer would ship. Use image generation for the abstract mark exploration and for hero-scene mockups, not for wordmarks.</p>
+</section>
+
+</body>
+</html>

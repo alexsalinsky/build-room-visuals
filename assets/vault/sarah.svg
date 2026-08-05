@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <rect width="600" height="400" fill="#fafafa"/>
+  <circle cx="110" cy="330" r="80" fill="#fde68a" opacity="0.5"/>
+  <!-- open folder -->
+  <g stroke="#1a1a1a" stroke-width="5" fill="#fff" stroke-linejoin="round">
+    <path d="M70 220 L70 320 L260 320 L260 240 L160 240 L140 220 Z"/>
+    <path d="M70 320 L100 255 L290 255 L260 320 Z" fill="#fde68a"/>
+  </g>
+  <!-- letter dropping in -->
+  <g stroke="#1a1a1a" stroke-width="5" fill="#fff" transform="rotate(12 175 140)">
+    <rect x="130" y="100" width="90" height="65" rx="6"/>
+    <path d="M130 106 L175 140 L220 106" fill="none"/>
+  </g>
+  <g stroke="#1a1a1a" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 10">
+    <path d="M180 175 Q178 205 172 235" fill="none"/>
+  </g>
+  <!-- summary sheet with checkmark -->
+  <g stroke="#1a1a1a" stroke-width="5" fill="#fff">
+    <rect x="360" y="90" width="150" height="200" rx="10"/>
+  </g>
+  <line x1="385" y1="130" x2="485" y2="130" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="385" y1="152" x2="465" y2="152" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="385" y1="174" x2="480" y2="174" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="435" cy="235" r="32" fill="#f59e0b" stroke="#1a1a1a" stroke-width="5"/>
+  <path d="M420 235 L431 247 L452 222" fill="none" stroke="#1a1a1a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- small envelope flying -->
+  <g stroke="#1a1a1a" stroke-width="4" fill="#fff" transform="rotate(-10 320 350)">
+    <rect x="290" y="335" width="60" height="40" rx="5"/>
+    <path d="M290 339 L320 362 L350 339" fill="none"/>
+  </g>
+  <path d="M255 345 Q270 348 285 348" fill="none" stroke="#1a1a1a" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 8"/>
+</svg>
