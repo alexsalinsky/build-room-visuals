@@ -99,7 +99,7 @@ Diagrams: funnel + launch timeline SVGs at `build-room-visuals/diagrams/2026-06-
 Headline public-ready proof:
 - Ginger (RPA owner): "Someone six months ago quoted me $20,000 to make that."
 - Kandice (DBALP): 35 hours/month saved, named live on Demo Day (clip exists)
-- Marley (DBALP), watching a teammate ship in three sessions: "Remember when we hired that developer for like two months to do this for us? Bryce, this is that."
+- Marley (DBALP), watching a non-technical teammate build it herself: "Remember when we hired that developer for like two months to do this for us? Bryce, this is that."
 - Two featured brand clips: the thesis line on camera + "Losing my ambitious friends to AI"
 - A finished 51-second vertical "door supercut" reel (drafted 2026-07-15, unposted)
 
