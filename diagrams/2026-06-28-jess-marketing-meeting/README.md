@@ -1,4 +1,4 @@
-# 2026-06-28 Jess Marketing Meeting — Diagrams
+# 2026-06-28 Jess Marketing Meeting: Diagrams
 
 Clean SVG recreations of Alex's hand-drawn flowcharts from the marketing strategy session with Jess.
 
@@ -6,10 +6,10 @@ Clean SVG recreations of Alex's hand-drawn flowcharts from the marketing strateg
 
 ## Diagrams (clean SVGs)
 
-1. [`01-funnel.svg`](01-funnel.svg) — Top-of-funnel sources → Webinar → CC / DC cohorts → Retreat → Membership.
-2. [`02-launch-timeline.svg`](02-launch-timeline.svg) — **v2 (2026-06-28 late):** relative-time pattern, not calendar dates. Cohort = 7-wk cycle (first webinar T-2wk). Retreat = 12-wk cycle (first webinar T-8wk). Anchored on the live event (T0). Reusable template for any future launch.
-3. [`03-next-steps.svg`](03-next-steps.svg) — Five-item checklist (clean IG, new IG, WhatsApp post, landing pages, tone of voice).
-4. [`04-financial-model.svg`](04-financial-model.svg) — Revenue table (Actual / Fase 1 / Fase 2) + growth bets + channel split.
+1. [`01-funnel.svg`](01-funnel.svg): Top-of-funnel sources → Webinar → CC / DC cohorts → Retreat → Membership.
+2. [`02-launch-timeline.svg`](02-launch-timeline.svg): **v2 (2026-06-28 late):** relative-time pattern, not calendar dates. Cohort = 7-wk cycle (first webinar T-2wk). Retreat = 12-wk cycle (first webinar T-8wk). Anchored on the live event (T0). Reusable template for any future launch.
+3. [`03-next-steps.svg`](03-next-steps.svg): Five-item checklist (clean IG, new IG, WhatsApp post, landing pages, tone of voice).
+4. [`04-financial-model.svg`](04-financial-model.svg): Revenue table (Actual / Fase 1 / Fase 2) + growth bets + channel split.
 
 ## Raw originals (Alex's hand-drawn whiteboard)
 

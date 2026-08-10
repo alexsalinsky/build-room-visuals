@@ -1,4 +1,4 @@
-# 03 — Landing Pages + Channels
+# 03: Landing Pages + Channels
 
 Public URLs you'll point people to + channels we post on.
 

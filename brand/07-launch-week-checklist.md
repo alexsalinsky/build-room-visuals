@@ -1,4 +1,4 @@
-# 07 — Launch Week Checklist
+# 07: Launch Week Checklist
 
 Standard ship-list for the week leading into a Kickoff Session launch. Use this for any cohort launch.
 
@@ -15,7 +15,7 @@ Anchor everything on the live event. Call it T0.
 | **T-11 days** | First LinkedIn post live (Alex posts; you draft) |
 | **T-2 days → T-1 day** | Scarcity push: "2 days until Kickoff Session" / "tomorrow" reminders |
 | **T0** | Kickoff Session goes live |
-| **T+1 week** | TSLS (Tech Setup / Ledger Session) — late buyers can still join the cohort here |
+| **T+1 week** | TSLS (Tech Setup / Ledger Session): late buyers can still join the cohort here |
 
 ---
 

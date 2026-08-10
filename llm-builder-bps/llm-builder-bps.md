@@ -116,10 +116,10 @@ Last updated: YYYY-MM-DD
 |---|---|---|
 
 ## Shared at root
-- `.env` — master secrets, shared across every project (never commit)
-- `.env.example` — template showing key names (safe to commit)
-- `.gitignore` — protects secrets and junk
-- `WORKSPACE.md` — this file
+- `.env`: master secrets, shared across every project (never commit)
+- `.env.example`: template showing key names (safe to commit)
+- `.gitignore`: protects secrets and junk
+- `WORKSPACE.md`: this file
 ```
 
 **Then briefly explain to the user:**

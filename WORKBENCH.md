@@ -113,7 +113,7 @@
 
 **What happened:**
 - `publish-online-free-cloudflare.html`: removed old step 3 (save token to shell env / .env) as redundant with the paste-into-robot prompt, which already carries the token. Now three steps: sign up, create token, paste prompt. Heading updated to "Three steps".
-- `minimum-tech-stack.html` Branch B: replaced terminal install commands + GitHub link with a single line — download the Codex desktop app (links to openai.com/codex/get-started/, verified live), sign in with ChatGPT account. Added "You only need the $20/month ChatGPT plan to get started." Removed now-unused install-steps/codeblock CSS.
+- `minimum-tech-stack.html` Branch B: replaced terminal install commands + GitHub link with a single line: download the Codex desktop app (links to openai.com/codex/get-started/, verified live), sign in with ChatGPT account. Added "You only need the $20/month ChatGPT plan to get started." Removed now-unused install-steps/codeblock CSS.
 
 **Decisions:**
 - [DECISION] Resource pages for new builders get the radical-simplicity bar: no terminal, no GitHub, no env-var steps. If a step duplicates what the robot prompt already does, cut the step. Memory updated (feedback_simpler_builder_pre_work).
@@ -262,7 +262,7 @@ Spec: brain/the-build-room/specs/2026-07-04-build-room-landing-page-design.md ·
 
 ## 2026-07-01 -- [Tool: Claude Code]
 
-**Focus:** session-opener.html cleanup — removed the three redundant "Learn AI / Build Robots / Stay Human" pill boxes on slide 1 (duplicated the big headline verbatim) and their orphaned `.three` + `.pill` CSS. Committed + pushed to main.
+**Focus:** session-opener.html cleanup: removed the three redundant "Learn AI / Build Robots / Stay Human" pill boxes on slide 1 (duplicated the big headline verbatim) and their orphaned `.three` + `.pill` CSS. Committed + pushed to main.
 
 ## 2026-07-01 -- [Tool: Claude Code]
 
@@ -301,14 +301,14 @@ Spec: brain/the-build-room/specs/2026-07-04-build-room-landing-page-design.md ·
 
 ## 2026-06-30 -- [Tool: Claude Code]
 
-**Focus:** Tiny follow-up to `ab08452` — surface date_captured as a labeled column in the Proof Library table view.
+**Focus:** Tiny follow-up to `ab08452`: surface date_captured as a labeled column in the Proof Library table view.
 
 **What happened:**
 - Renamed the existing table header for `date_captured` from "Captured" to "Date added" in `proof-library.html`. Column, sort handler, arrow indicator, and row value were already wired from the prior commit; only the label was off.
 - Card view untouched.
 
 **Decisions:**
-- [DECISION] Rename in place rather than adding a new column — `date_captured` was already the sortable column, just labeled ambiguously. Matches the card view's "Added: " prefix and the sort-select's "Date added" wording.
+- [DECISION] Rename in place rather than adding a new column, `date_captured` was already the sortable column, just labeled ambiguously. Matches the card view's "Added: " prefix and the sort-select's "Date added" wording.
 
 ---
 
@@ -326,7 +326,7 @@ Spec: brain/the-build-room/specs/2026-07-04-build-room-landing-page-design.md ·
 **Decisions:**
 - [DECISION] Named the router `WORKSPACE.md` (tool-agnostic) instead of `CLAUDE.md` (Claude-only) so the BP file stays portable across Cursor/ChatGPT/Codex/Claude Code.
 - [DECISION] Kept the copy-paste prompt on the HTML page (reversed earlier "fold into install" decision) after Alex confirmed copy-paste is the more useful UX for cohort newcomers.
-- [DECISION] Bootstrap creates 4 files at root, not 3 — added `WORKSPACE.md` so any future LLM session has a single entry point to find the right project.
+- [DECISION] Bootstrap creates 4 files at root, not 3. Added `WORKSPACE.md` so any future LLM session has a single entry point to find the right project.
 
 **Still open:**
 - WORKSPACE.md concept is not yet tested with a real new cohort member. Worth grilling on first user.

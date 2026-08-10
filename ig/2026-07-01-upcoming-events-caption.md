@@ -1,4 +1,4 @@
-# IG Caption — Upcoming Events Carousel (Jul-Nov 2026)
+# IG Caption: Upcoming Events Carousel (Jul-Nov 2026)
 
 Target account: @the.build.room
 Post date: on or after 2026-07-01

@@ -1,4 +1,4 @@
-# LLM Builder Best Practices — by The Build Room
+# LLM Builder Best Practices: by The Build Room
 
 One file (`llm-builder-bps.md`). Save it, then add one line to your existing CLAUDE.md or AGENTS.md that points to it.
 
@@ -8,7 +8,7 @@ You stop losing context between sessions. The next session (yours or someone els
 
 ## What's inside
 
-**`llm-builder-bps.md`** — the rule pack. All four document templates (workbench, ARCHITECTURE, USER_GUIDE, TODOS) are embedded inline so this is the only file you install.
+**`llm-builder-bps.md`**: the rule pack. All four document templates (workbench, ARCHITECTURE, USER_GUIDE, TODOS) are embedded inline so this is the only file you install.
 
 ## Why a separate file (not a CLAUDE.md)
 
@@ -16,7 +16,7 @@ If you already use Claude Code or Codex, you probably already have a `CLAUDE.md`
 
 ## 60-second install
 
-### Path A — every project on your machine (Claude Code)
+### Path A: every project on your machine (Claude Code)
 
 1. Download `llm-builder-bps.md` to `~/.claude/llm-builder-bps.md`.
 2. Open `~/.claude/CLAUDE.md` (create it if it doesn't exist).
@@ -26,7 +26,7 @@ If you already use Claude Code or Codex, you probably already have a `CLAUDE.md`
    ```
 4. Done. Every Claude Code session on your machine now follows these rules in addition to whatever else is in your CLAUDE.md.
 
-### Path B — one project (Claude Code)
+### Path B: one project (Claude Code)
 
 1. Drop `llm-builder-bps.md` in the root of your project folder.
 2. Open or create `CLAUDE.md` in the same folder.

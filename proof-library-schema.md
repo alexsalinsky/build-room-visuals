@@ -1,4 +1,4 @@
-# Proof Library — Schema
+# Proof Library: Schema
 
 Last updated: 2026-07-23
 
@@ -40,12 +40,12 @@ Each entry is a JSON object with these fields. Required unless marked optional.
 
 Globally unique kebab-case slug. Convention by type:
 
-- **win** — `<cohort>-s<N>-<builder-slug>-<short-tag>`, e.g. `dbalp-s3-kate-missive-live`
-- **clip** — `<cohort>-<short-tag>` or `<source>-<short-tag>`, e.g. `nc17-thesis-line`, `dbalp-s3-kate-applause`
-- **published** — `<platform>-<slug-from-url>`, e.g. `linkedin-how-to-get-your-team-to-actually-use-ai`
-- **testimonial** / **quote** — `<cohort>-<speaker-slug>-<short-tag>`, e.g. `ff-mon-ruben-on-purpose-on-track`
-- **lesson** — `<cohort>-s<N>-<concept-slug>`, e.g. `cross-cohort-burn-the-thread`
-- **screenshot** — `<cohort>-s<N>-<builder-slug>-screenshot-<N>`
+- **win**: `<cohort>-s<N>-<builder-slug>-<short-tag>`, e.g. `dbalp-s3-kate-missive-live`
+- **clip**: `<cohort>-<short-tag>` or `<source>-<short-tag>`, e.g. `nc17-thesis-line`, `dbalp-s3-kate-applause`
+- **published**: `<platform>-<slug-from-url>`, e.g. `linkedin-how-to-get-your-team-to-actually-use-ai`
+- **testimonial** / **quote**: `<cohort>-<speaker-slug>-<short-tag>`, e.g. `ff-mon-ruben-on-purpose-on-track`
+- **lesson**: `<cohort>-s<N>-<concept-slug>`, e.g. `cross-cohort-burn-the-thread`
+- **screenshot**: `<cohort>-s<N>-<builder-slug>-screenshot-<N>`
 
 If a builder appears multiple times in one session, append a discriminator: `-1`, `-2`, or a concept-tag.
 
@@ -65,7 +65,7 @@ If a builder appears multiple times in one session, append a discriminator: `-1`
 
 Use `cross-cohort` when the entry applies to multiple cohorts or to The Build Room as a whole (e.g. the thesis line). Use `none` for things outside any cohort context (e.g. Alex's own published article).
 
-### `status` — lifecycle
+### `status`: lifecycle
 
 | Value | Meaning |
 |---|---|

@@ -1,10 +1,10 @@
-# 05 — Featured Quotes (public-cleared)
+# 05: Featured Quotes (public-cleared)
 
 Pulled from the Proof Library, filtered to entries safe for public use.
 
 **Legend:**
-- ⭐ **featured** — top-tier, use freely on landing pages, posts, ads
-- ✅ **live** — already published somewhere public, safe to quote
+- ⭐ **featured**: top-tier, use freely on landing pages, posts, ads
+- ✅ **live**: already published somewhere public, safe to quote
 
 For quotes not listed here, check the live Proof Library first: https://alexsalinsky.github.io/build-room-visuals/proof-library.html. If a quote is tagged `raw`, ask Alex before public use.
 

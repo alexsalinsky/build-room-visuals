@@ -1,4 +1,4 @@
-# 01 — Tone of Voice
+# 01: Tone of Voice
 
 How Alex actually writes. Pulled from his LinkedIn Newsletter editions, the Nomad Cruise affiliate copy, and the quotes he's spoken on camera. This is descriptive, not aspirational. Match this pattern.
 

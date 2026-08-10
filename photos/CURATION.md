@@ -50,17 +50,17 @@ Source: shared Google Photos album (live cohort + build day photos). Downloaded 
 ## Picks
 
 ### (a) THE first post for @the.build.room
-**cohort-photo-07-v2.jpg** — same wide Lotus cafe frame as 07 but the better take: eight-plus builders on laptops with faces up, smiles, one waving at camera. Building energy plus warmth. Backup: cohort-photo-07.jpg (heads-down version). Runner-up: cohort-photo-26.jpg (biggest energy, but celebration not building).
+**cohort-photo-07-v2.jpg**: same wide Lotus cafe frame as 07 but the better take: eight-plus builders on laptops with faces up, smiles, one waving at camera. Building energy plus warmth. Backup: cohort-photo-07.jpg (heads-down version). Runner-up: cohort-photo-26.jpg (biggest energy, but celebration not building).
 
 ### (b) Top 3 for LinkedIn
-1. **cohort-photo-10.jpg** — Alex on mic leading the DC AI Build Day. Authority + scale.
-2. **cohort-photo-07.jpg** — the cohort at work. Credibility shot for "what a session looks like."
-3. **cohort-photo-33.jpg** — laptops running real code, pizza, pairing. Proof that building happens, not slides.
+1. **cohort-photo-10.jpg**: Alex on mic leading the DC AI Build Day. Authority + scale.
+2. **cohort-photo-07.jpg**: the cohort at work. Credibility shot for "what a session looks like."
+3. **cohort-photo-33.jpg**: laptops running real code, pizza, pairing. Proof that building happens, not slides.
 
 ### (c) Top 3 for IG
-1. **cohort-photo-26.jpg** — overhead 25-person wave. Pure community energy.
-2. **cohort-photo-37.jpg** — Alex coaching with the Medellín mountains behind. The most aesthetic frame in the set.
-3. **cohort-photo-38.jpg** — small pod, big smiles, laptops outdoors. Feels like an invitation.
+1. **cohort-photo-26.jpg**: overhead 25-person wave. Pure community energy.
+2. **cohort-photo-37.jpg**: Alex coaching with the Medellín mountains behind. The most aesthetic frame in the set.
+3. **cohort-photo-38.jpg**: small pod, big smiles, laptops outdoors. Feels like an invitation.
 
 ## Privacy flags
 - **cohort-photo-22.jpg**: login page + WhatsApp thread visible. Do not publish without cropping/blurring.

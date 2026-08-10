@@ -1,4 +1,4 @@
-# The Build Room — Brand Pack
+# The Build Room: Brand Pack
 
 Voice, rules, channels, and starter copy for anyone writing on behalf of The Build Room.
 
@@ -9,13 +9,13 @@ This is the public, sharable version. If you're writing copy, drafting a post, o
 
 ## What's inside
 
-1. **[Tone of voice](01-tone-of-voice.md)** — how Alex writes, with examples + anti-patterns
-2. **[Hard rules](02-hard-rules.md)** — voice, mission line, event names, CTAs, cadence. One-page cheat sheet.
-3. **[Landing pages + channels](03-landing-pages-and-channels.md)** — every public URL you'll need
-4. **[Reference library](04-reference-library.md)** — what to read to absorb the voice
-5. **[Featured quotes](05-featured-quotes.md)** — the public-cleared quote inventory from the Proof Library
-6. **[Starter copy templates](06-starter-copy.md)** — ready-to-ship IG / WhatsApp / LinkedIn / Skool / email drafts for a typical Kickoff Session launch
-7. **[Launch week checklist](07-launch-week-checklist.md)** — the standard ship-list for the week leading into a Kickoff Session
+1. **[Tone of voice](01-tone-of-voice.md)**: how Alex writes, with examples + anti-patterns
+2. **[Hard rules](02-hard-rules.md)**: voice, mission line, event names, CTAs, cadence. One-page cheat sheet.
+3. **[Landing pages + channels](03-landing-pages-and-channels.md)**: every public URL you'll need
+4. **[Reference library](04-reference-library.md)**: what to read to absorb the voice
+5. **[Featured quotes](05-featured-quotes.md)**: the public-cleared quote inventory from the Proof Library
+6. **[Starter copy templates](06-starter-copy.md)**: ready-to-ship IG / WhatsApp / LinkedIn / Skool / email drafts for a typical Kickoff Session launch
+7. **[Launch week checklist](07-launch-week-checklist.md)**: the standard ship-list for the week leading into a Kickoff Session
 
 ## Quick orientation
 

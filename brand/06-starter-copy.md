@@ -1,4 +1,4 @@
-# 06 — Starter Copy Templates
+# 06: Starter Copy Templates
 
 Five drafts, in Alex's voice, ready to ship or adapt for a typical Kickoff Session launch. Swap dates + links and you've got a launch.
 
@@ -59,7 +59,7 @@ Alex
 - Length: under 50 words for the body. WhatsApp = brisk.
 - One CTA. No "let me know if you have questions."
 - The "pass it on" line is the soft referral mechanic.
-- For 1:1 sends, personalize the opener ("Quick one — saw your post about X, made me think of this").
+- For 1:1 sends, personalize the opener ("Quick one, saw your post about X, made me think of this").
 
 ---
 
@@ -98,7 +98,7 @@ Learn AI. Build Robots. Stay Human.
 - Names what good actually looks like.
 - One CTA + one soft referral ask.
 - Mission line as the closer (verbatim).
-- No em dashes — check before posting.
+- No em dashes. Check before posting.
 
 ### Image guidance:
 A real photo of a past cohort moment, OR a clean text-on-background graphic with the headline "Your team has the AI tools. They're not using them."
@@ -107,10 +107,10 @@ A real photo of a past cohort moment, OR a clean text-on-background graphic with
 
 ## D. Skool community post
 
-Audience here is warmer — existing community members, some past cohort alumni. Lower-pressure framing.
+Audience here is warmer: existing community members, some past cohort alumni. Lower-pressure framing.
 
 ```
-Heads up — Kickoff Session for the next cohort is [DATE].
+Heads up: Kickoff Session for the next cohort is [DATE].
 
 90 min, live on Zoom. If you've been thinking about jumping into a cohort, this is the front door.
 
@@ -127,7 +127,7 @@ If you're alumni and you know one person this is for, send them the link directl
 ### Notes:
 - Names what's new since the last cohort.
 - Warm-audience CTA: alumni referrals.
-- Doesn't pitch the mission line — community already knows it.
+- Doesn't pitch the mission line. Community already knows it.
 
 ---
 
@@ -174,7 +174,7 @@ P.S. The payment link to join the cohort goes into the Kickoff Session chat ONCE
 - Subject line: 5 words or less, no clickbait, no emoji.
 - Preheader = the promise + outcome.
 - "Who it's for / who it's not for" pattern.
-- The P.S. signals the soft-sell discipline — that's a feature for the audience.
+- The P.S. signals the soft-sell discipline. That's a feature for the audience.
 
 ---
 

@@ -1,4 +1,4 @@
-# 02 — Hard Rules (Cheat Sheet)
+# 02: Hard Rules (Cheat Sheet)
 
 Print this. Pin it.
 
@@ -24,9 +24,9 @@ Print this. Pin it.
 
 ## Event names
 
-- ✓ "Kickoff Session" — NOT "webinar," NOT "masterclass," NOT "workshop."
-- ✓ "Cohort" — what we run (4-week, virtual).
-- ✓ "Retreat" — 5-day in-person.
+- ✓ "Kickoff Session": NOT "webinar," NOT "masterclass," NOT "workshop."
+- ✓ "Cohort": what we run (4-week, virtual).
+- ✓ "Retreat": 5-day in-person.
 - ✓ "Open Cohort" for individuals. "Closed Cohort" for booked teams.
 
 ## Calls to action
