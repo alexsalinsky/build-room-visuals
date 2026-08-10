@@ -16,7 +16,7 @@ Each entry is a JSON object with these fields. Required unless marked optional.
 |---|---|---|---|
 | `id` | string (kebab-case slug) | yes | Globally unique. Convention: `<cohort>-s<N>-<builder-slug>-<short-tag>` for wins, `<cohort>-<short-tag>` for everything else, e.g. `rpa-s2-david-zoom-downloader`, `nc17-thesis-line`. |
 | `type` | enum | yes | One of: `clip`, `win`, `testimonial`, `lesson`, `screenshot`, `published`, `quote`. |
-| `cohort` | enum | yes | One of: `rpa`, `dbalp`, `ff-mon`, `ff-thu`, `nc17`, `dcmex`, `none`, `cross-cohort`. |
+| `cohort` | enum | yes | One of: `rpa`, `ginger-rpa`, `dbalp`, `ff-mon`, `ff-thu`, `nc17`, `hvr2`, `dcmex`, `none`, `cross-cohort`, or a **consulting engagement slug** (see below). |
 | `title` | string (one line) | yes | Short and concrete. The card headline. |
 | `source_url` | string OR null | yes | Where this came from. Transcript file path (relative repo path is OK), Skool post URL, LinkedIn URL, Fathom URL. Null if unverified. |
 | `media_url` | string OR null | yes | YouTube unlisted, Drive, direct file. Null if no media uploaded yet. Use TODO marker in `notes` when waiting on upload. |
@@ -65,6 +65,15 @@ If a builder appears multiple times in one session, append a discriminator: `-1`
 
 Use `cross-cohort` when the entry applies to multiple cohorts or to The Build Room as a whole (e.g. the thesis line). Use `none` for things outside any cohort context (e.g. Alex's own published article).
 
+**Consulting engagements** (Centaur Digital, and any future direct-consulting client) use the client slug from `clients/` as the cohort value, e.g. `centaur`. `ginger-rpa` set the precedent for client-named values.
+
+These proofs come from consulting work, not from people learning to build with AI, so they need to be separable from cohort proof. Two rules:
+
+- Every consulting entry carries the `consulting` tag. That is the filter for "proof from client work."
+- Every consulting entry also carries a **domain tag** naming what kind of proof it is: `founder-dependency`, `delegation`, `ops-systems`, `performance-reviews`, `engagement-outcome`. Add new ones as needed; these are not AI-building tags and shouldn't be forced into `first-brick` / `ship` / `deploy` vocabulary.
+
+**Consent is different for consulting clients.** The blanket clip clearance covers Build Room cohort calls, NOT paying consulting clients. Consulting entries default to `raw` and stay there until the client says yes in writing. Anything containing performance commentary about a named employee never leaves local working files at all, regardless of status (see `feedback-client-facing-artifacts-no-perf`).
+
 ### `status`: lifecycle
 
 | Value | Meaning |
@@ -106,6 +115,8 @@ Note: `proof-library.json` itself is fetchable from public GitHub Pages. `do_not
 Free-form, but reuse existing tags when they fit. Live working set:
 
 `first-brick`, `thesis`, `breakthrough`, `pivot`, `peer-teaching`, `live-demo`, `mid-session-extension`, `recovery`, `scope-lock`, `tooling`, `vision`, `urgency`, `framework`, `cohort-promise`, `objection-handling`, `humor`, `story`, `recognition`.
+
+Consulting-engagement tags: `consulting` (required on every consulting entry), plus one or more of `founder-dependency`, `delegation`, `ops-systems`, `performance-reviews`, `engagement-outcome`.
 
 Don't invent a tag if an existing one works.
 
