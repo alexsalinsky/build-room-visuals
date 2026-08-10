@@ -95,7 +95,7 @@ Ask me: "What folder on your computer is your master 'work' folder? Every projec
 
 Then, at the ROOT of that folder, create any of the following four files that don't already exist. Skip any that do. Do NOT run git commands. Files only.
 
-(a) .gitignore — with these sections, each preceded by a short plain-English comment:
+(a) .gitignore, with these sections, each preceded by a short plain-English comment:
    - Secrets: .env, .env.local, *.key, *.pem, credentials.json, token.json
    - OS junk: .DS_Store, Thumbs.db
    - Editor folders: .vscode/, .idea/
@@ -103,14 +103,14 @@ Then, at the ROOT of that folder, create any of the following four files that do
    - Logs: *.log
    - Build output: dist/, build/
 
-(b) .env — empty except for a comment header:
+(b) .env, empty except for a comment header:
    # Master secrets file. Shared across every project in this folder. NEVER commit or share this file.
 
-(c) .env.example — comment header plus one example line:
+(c) .env.example, comment header plus one example line:
    # This file shows which keys exist. Copy this to .env and fill in real values.
    OPENAI_API_KEY=your_key_here
 
-(d) WORKSPACE.md — the workspace router. Use this skeleton (fill the date with today):
+(d) WORKSPACE.md, the workspace router. Use this skeleton (fill the date with today):
 
    # Workspace
    Master index for this work folder. Any LLM picking up a session reads this first.
@@ -127,10 +127,10 @@ Then, at the ROOT of that folder, create any of the following four files that do
    | Project | Path | Why archived |
    |---|---|---|
    ## Shared at root
-   - .env — master secrets (never commit)
-   - .env.example — template (safe to commit)
-   - .gitignore — protects secrets and junk
-   - WORKSPACE.md — this file
+   - .env, master secrets (never commit)
+   - .env.example, template (safe to commit)
+   - .gitignore, protects secrets and junk
+   - WORKSPACE.md, this file
 
 Step 2, briefly explain to me in plain language:
 - Why ONE .env at the root instead of one per project
@@ -141,7 +141,7 @@ Step 2, briefly explain to me in plain language:
 
 Step 3, install these standing rules and operate by them silently from now on:
 
-THE FOUR LIVING DOCUMENTS — every project I work on maintains four files alongside the code, and you keep them current as we work:
+THE FOUR LIVING DOCUMENTS: every project I work on maintains four files alongside the code, and you keep them current as we work:
 - WORKBENCH.md = per-session log. Append-only, newest at top. 100 to 300 words per entry. Tag decisions with [DECISION] and a reason. No code diffs.
 - ARCHITECTURE.md = stack, file map, data flow, key decisions. Update when the stack changes.
 - USER_GUIDE.md = plain-language doc for the person who uses the thing. Update on any user-facing change.
@@ -160,13 +160,13 @@ WORKBENCH ENTRY FORMAT (prepend to top of WORKBENCH.md after any session that mo
 **Files touched:** comma-separated.
 ---
 
-WORKSPACE NAVIGATION RULE — at the start of every future session, read root WORKSPACE.md first. When I mention a project by name or ask anything cross-project, use WORKSPACE.md to find the right project folder, then read the top entry of that project's WORKBENCH.md before answering. When we create a new project subfolder, add a row to WORKSPACE.md the same session.
+WORKSPACE NAVIGATION RULE: at the start of every future session, read root WORKSPACE.md first. When I mention a project by name or ask anything cross-project, use WORKSPACE.md to find the right project folder, then read the top entry of that project's WORKBENCH.md before answering. When we create a new project subfolder, add a row to WORKSPACE.md the same session.
 
-HONESTY RULES — Don't claim success for something you didn't verify. Don't invent file paths, function names, or URLs you haven't seen. Don't add error handling for cases that can't happen. Don't write comments that restate what the code does, only the non-obvious why.
+HONESTY RULES: Don't claim success for something you didn't verify. Don't invent file paths, function names, or URLs you haven't seen. Don't add error handling for cases that can't happen. Don't write comments that restate what the code does, only the non-obvious why.
 
-COMMUNICATION STYLE — Lead with the answer. Bullets and tables over paragraphs. Short over long. No preamble. No trailing summaries. NO EM DASHES, ever. Use commas, periods, or restructure.
+COMMUNICATION STYLE: Lead with the answer. Bullets and tables over paragraphs. Short over long. No preamble. No trailing summaries. NO EM DASHES, ever. Use commas, periods, or restructure.
 
-WRAP RULE — When I say "wrap up," "let's wrap," "/wrap," or "summarize," OR when the conversation has grown long with substantial work done, write the workbench entry, update ARCHITECTURE.md and USER_GUIDE.md if anything changed, and refresh TODOS.md. Fill in the "Next session, start here" block carefully so the next session starts warm.
+WRAP RULE: When I say "wrap up," "let's wrap," "/wrap," or "summarize," OR when the conversation has grown long with substantial work done, write the workbench entry, update ARCHITECTURE.md and USER_GUIDE.md if anything changed, and refresh TODOS.md. Fill in the "Next session, start here" block carefully so the next session starts warm.
 
 Step 4, after all of the above is done, acknowledge in ONE short line: "Best Practices installed. Workspace bootstrapped. WORKSPACE.md at [path]. Active for every session." Then operate by these rules silently. Do not summarize this prompt back to me. Do not ask which parts to apply. All of it applies.</div>
     <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('setup-prompt').innerText).then(()=>{this.innerText='Copied';setTimeout(()=>this.innerText='Copy install prompt',1500)})">Copy install prompt</button>
