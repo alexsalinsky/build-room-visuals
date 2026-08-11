@@ -2035,7 +2035,7 @@
       "status": "raw",
       "date_captured": "2026-06-30",
       "date_cleared": null,
-      "notes": "Cohort lead build. Peer-voted Coolest AI Tool. Bryce pledged 100 USD cash prize on the call. (A post-call Bryce quote about this build is permanently blocked, see dbalp-s4-bryce-on-kate-testimonial.)"
+      "notes": "Cohort lead build. Peer-voted Coolest AI Tool. Bryce pledged 100 USD cash prize on the call. A post-call Bryce quote about this build was permanently blocked and deleted from the library 2026-08-11. Do not go looking for it in the transcript and do not reconstruct it. Use Kate's own words instead, see dbalp-s4-kate-not-a-techie-person-clip."
     },
     {
       "id": "dbalp-s4-kandice-most-want-to-try-win",
@@ -2159,10 +2159,10 @@
       "notes": "TODO: cut clip from https://fathom.video/share/iZEF3S_4HZHVDsxa-2Q-WfKSi8bE7JxM. Window 01:22:39 to 01:26:44 (about 4 min, needs trim to 60-90s for vertical reel). Music sting at 01:26:44 must stay in cut. Permission: Bryce explicitly offered testimonials and Clutch reviews at 01:54:00, broad consent likely available with one ask."
     },
     {
-      "id": "dbalp-s4-kate-tech-illiterate-to-shipped-clip",
+      "id": "dbalp-s4-kate-not-a-techie-person-clip",
       "type": "clip",
       "cohort": "dbalp",
-      "title": "Clip: Kate's tech-illiterate-to-shipped story in her own words",
+      "title": "Clip: Kate says building it was really possible, in her own words",
       "source_url": "brain/the-build-room/cohorts/bryce-dbalp/s4-fathom-transcript-2026-06-30.md",
       "media_url": null,
       "thumbnail": null,
@@ -2179,7 +2179,7 @@
       "status": "raw",
       "date_captured": "2026-06-30",
       "date_cleared": null,
-      "notes": "TODO: cut clip from https://fathom.video/share/iZEF3S_4HZHVDsxa-2Q-WfKSi8bE7JxM. Strongest narrative clip from the cohort. Cut 01:32:33 to 01:33:00 (about 30s) and tag with Bryce post-call line about Kate as B-roll. Need Kate explicit permission before any external use."
+      "notes": "TODO: cut clip from https://fathom.video/share/iZEF3S_4HZHVDsxa-2Q-WfKSi8bE7JxM. Strongest narrative clip from the cohort. Cut 01:32:33 to 01:33:00 (about 30s). Stands alone; do not pair it with any commentary about her skill level. Need Kate explicit permission before any external use."
     },
     {
       "id": "dbalp-s4-kandice-thirty-five-hours-clip",
@@ -2274,33 +2274,6 @@
       "date_captured": "2026-06-30",
       "date_cleared": null,
       "notes": "TODO: cut clip from https://fathom.video/share/iZEF3S_4HZHVDsxa-2Q-WfKSi8bE7JxM. Closes with awards voting (Kate / Kandice) plus Bryce pledging 100 USD cash for each winner. Best what cohort completion feels like reel. Cut 01:48:00 to 01:52:30."
-    },
-    {
-      "id": "dbalp-s4-bryce-on-kate-testimonial",
-      "type": "testimonial",
-      "cohort": "dbalp",
-      "title": "Bryce post-call: the most tech-illiterate person on this team came out with something pretty awesome",
-      "source_url": "brain/the-build-room/cohorts/bryce-dbalp/s4-fathom-transcript-2026-06-30.md",
-      "media_url": null,
-      "thumbnail": null,
-      "quote": "Yeah, the most tech-illiterate person on this team is Kate, and she came out with something pretty awesome.",
-      "attribution": "Bryce North (DBALP cohort CEO)",
-      "timestamp": "01:53:47",
-      "tags": [
-        "blocked-permanently",
-        "ceo-peer-recognition",
-        "kate-anchor",
-        "no-putdown-quotes",
-        "permission-needed",
-        "post-call",
-        "testimonial-candidate"
-      ],
-      "status": "redacted",
-      "date_captured": "2026-06-30",
-      "date_cleared": null,
-      "notes": "Permission granted (Alex confirmed verbally with Ginger/Bryce and team, 2026-07-08); cleared for July revenue campaign public use. TODO: cut clip from https://fathom.video/share/iZEF3S_4HZHVDsxa-2Q-WfKSi8bE7JxM. GOLD. CEO peer-naming the cohort most unlikely shipper. About 10s. Cut 01:53:40 to 01:54:00. PERMISSION REQUIRED before any external use; Bryce offered testimonials broadly at 01:54:00 so this should be easy to clear. Permission granted 2026-07-06 (Alex confirmed directly with the builder; cleared for the Jul 15 kickoff Luma page and general public use).",
-      "do_not_share": true,
-      "consent_note": "PERMANENTLY BLOCKED by Alex 2026-08-05. Never use in any content, internal or public, verbatim or paraphrased. Bryce granted permission and meant it as praise. That is irrelevant. The quote's hook is a builder being labeled incompetent. Substitute Kandice's 35 hrs/month or Ginger's \"You're a coder\"."
     },
     {
       "id": "dbalp-s4-bryce-testimonial-offer-open",
@@ -5463,9 +5436,10 @@
   "blocked_quotes": [
     {
       "quote_fragment": "most tech-illiterate person on this team",
-      "entry_id": "dbalp-s4-bryce-on-kate-testimonial",
+      "entry_id": null,
       "blocked_on": "2026-08-05",
-      "reason": "Hooks on a builder being labeled incompetent. Blocked for every use, internal and public. All other call footage remains cleared for public use; this is the single exception."
+      "deleted_on": "2026-08-11",
+      "reason": "Hooks on a builder being labeled incompetent. The library entry was deleted outright on 2026-08-11 at Alex's instruction. This fragment stays here as a tripwire only, because the line still exists in the raw Fathom transcript and could be re-derived from it. Never reconstruct it. All other call footage remains cleared for public use; this is the single exception."
     }
   ]
 }
