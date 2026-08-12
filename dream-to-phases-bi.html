@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Dream to Phases / Del sue&#xF1;o a las fases</title>
+<!--
+  Worked example of the method taught in dream-big-build-small(-bi).html.
+  Same ladder vocabulary: DREAM, MVP, FIRST BRICK. Phases are the rungs.
+  Part 1 teaches the five rules. Part 2 walks one real cohort project
+  (Diana Sof&#xED;a, digital passport for a garment) down all six phases.
+  Bilingual, English primary, Spanish beneath. Toggle EN | EN+ES | ES, default Both.
+  Slide mechanics cloned from _template/deck-template.html (slides array, HUD,
+  arrow keys). Tokens inlined so the file is self-contained.
+  House rules honored: no em dashes, no black-box panels, thesis line verbatim.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F7F4EE;
+    --card:  #FAF7F2;
+    --line:  #EFEAE0;
+    --edge:  #E3DCD0;
+    --ink:   #1E1E1E;
+    --muted: #6F655A;
+    --rust:  #B94F2A;
+    --gold:  #C9932F;
+    --teal:  #3A7A6A;
+    --slate: #4A5560;
+    --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px 16px 10px; gap: 12px; }
+  .slide-wrap { flex: 1; width: 100%; max-width: 1260px; display: flex; align-items: center; justify-content: center; padding: 10px 24px; overflow: hidden; }
+  .slide { width: 100%; display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+  .slide.center { align-items: center; text-align: center; }
+
+  /* ---------- Type ---------- */
+  h1 { font-family: var(--display); font-weight: 600; font-size: 74px; line-height: 1.03; letter-spacing: -0.02em; }
+  h1 .es { font-family: var(--display); font-weight: 400; font-style: italic; font-size: 46px; color: var(--slate); display: block; margin-top: 10px; }
+  h2 { font-family: var(--display); font-weight: 600; font-size: 48px; line-height: 1.1; letter-spacing: -0.015em; }
+  h2 .es { font-family: var(--display); font-weight: 400; font-style: italic; font-size: 31px; color: var(--slate); display: block; margin-top: 4px; }
+
+  .kicker { font-family: var(--mono); font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .kicker .en, .kicker .es { display: inline; }
+  .kicker .es { font-style: italic; }
+  body.mode-both .kicker .es::before,
+  body.mode-both .lbl .es::before { content: " / "; font-style: normal; }
+
+  .lead { font-size: 27px; line-height: 1.42; }
+  .lead .es { display: block; font-style: italic; font-size: 21px; color: var(--slate); margin-top: 5px; line-height: 1.4; }
+
+  .sub { font-size: 23px; color: var(--muted); }
+  .sub .es { display: block; font-style: italic; font-size: 19px; color: var(--slate); margin-top: 4px; }
+
+  .en, .es { display: block; }
+  span.inline-es { display: inline; }
+
+  /* ---------- Head row ---------- */
+  .head-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .pill {
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    background: var(--rust); color: var(--paper); border-radius: 999px; padding: 7px 15px; white-space: nowrap;
+  }
+  .pill .es { font-style: italic; opacity: 0.92; }
+  body.mode-both .pill .es::before { content: " / "; font-style: normal; }
+  body.mode-both .pill .es { display: inline; }
+  body.mode-both .pill .en { display: inline; }
+
+  /* ---------- Numbered rules ---------- */
+  .rules { display: flex; flex-direction: column; gap: 18px; }
+  .rule { display: flex; gap: 20px; align-items: flex-start; }
+  .rule .n {
+    flex: 0 0 auto; width: 54px; height: 54px; border-radius: 50%;
+    background: var(--card); border: 1.5px solid var(--edge); color: var(--rust);
+    font-family: var(--display); font-weight: 600; font-size: 26px;
+    display: flex; align-items: center; justify-content: center; margin-top: 2px;
+  }
+  .rule .txt .en { font-size: 30px; font-weight: 500; line-height: 1.3; }
+  .rule .txt .es { font-size: 23px; font-style: italic; color: var(--slate); line-height: 1.35; margin-top: 3px; }
+
+  .rules.tight .rule .txt .en { font-size: 27px; }
+  .rules.tight .rule .txt .es { font-size: 21px; }
+
+  /* ---------- Ladder chips ---------- */
+  .ladder { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .rung {
+    background: var(--card); border: 1.5px solid var(--edge); border-radius: 12px;
+    padding: 16px 22px; text-align: center; flex: 1; min-width: 200px;
+  }
+  .rung.top { border-color: var(--rust); }
+  .rung.mid { border-color: var(--gold); }
+  .rung.base { border-color: var(--teal); }
+  .rung .name { font-family: var(--mono); font-size: 20px; letter-spacing: 0.1em; font-weight: 500; }
+  .rung .gloss { font-size: 16px; color: var(--muted); margin-top: 6px; line-height: 1.35; }
+  .rung .gloss .es { font-style: italic; color: var(--slate); margin-top: 2px; }
+  .arrowx { font-family: var(--mono); color: var(--muted); font-size: 20px; flex: 0 0 auto; }
+
+  /* ---------- Four-cell phase grid ---------- */
+  .grid4 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cell {
+    background: var(--card); border: 1.5px solid var(--edge); border-left-width: 5px;
+    border-radius: 10px; padding: 18px 22px 20px;
+  }
+  .cell.a { border-left-color: var(--rust); }
+  .cell.b { border-left-color: var(--teal); }
+  .cell.c { border-left-color: var(--gold); }
+  .cell.d { border-left-color: var(--slate); }
+  .lbl { font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; margin-bottom: 7px; }
+  .cell.a .lbl { color: var(--rust); }
+  .cell.b .lbl { color: var(--teal); }
+  .cell.c .lbl { color: var(--gold); }
+  .cell.d .lbl { color: var(--slate); }
+  .lbl .en, .lbl .es { display: inline; }
+  .lbl .es { font-style: italic; }
+  .cell .t-en { font-size: 20.5px; line-height: 1.38; }
+  .cell .t-es { font-size: 17.5px; font-style: italic; color: var(--slate); line-height: 1.38; margin-top: 5px; }
+
+  /* ---------- Note strip ---------- */
+  .note {
+    background: var(--paper); border: 1.5px solid var(--edge); border-left: 5px solid var(--gold);
+    border-radius: 10px; padding: 15px 22px 18px;
+  }
+  .note .lbl { color: var(--muted); }
+  .note .t-en { font-size: 18px; line-height: 1.4; }
+  .note .t-es { font-size: 15.5px; font-style: italic; color: var(--slate); line-height: 1.4; margin-top: 4px; }
+
+  /* ---------- Truth list ---------- */
+  .truths { display: flex; flex-direction: column; gap: 9px; }
+  .truth { display: flex; gap: 18px; align-items: flex-start; background: var(--card); border: 1.5px solid var(--edge); border-radius: 10px; padding: 15px 20px; }
+  .truth .n { font-family: var(--mono); font-size: 18px; color: var(--rust); font-weight: 500; flex: 0 0 auto; width: 20px; padding-top: 2px; }
+  .truth .en { font-size: 23px; line-height: 1.28; }
+  .truth .es { font-size: 18.5px; font-style: italic; color: var(--slate); line-height: 1.32; margin-top: 3px; }
+
+  /* ---------- Two-up cards ---------- */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .qcard { background: var(--card); border: 1.5px solid var(--edge); border-top: 5px solid var(--teal); border-radius: 12px; padding: 18px 20px 20px; }
+  .qcard .q .en { font-family: var(--display); font-weight: 600; font-size: 32px; line-height: 1.15; }
+  .qcard .q .es { font-family: var(--display); font-weight: 400; font-style: italic; font-size: 24px; color: var(--slate); margin-top: 4px; }
+  .qcard .how { margin-top: 12px; }
+  .qcard .how .en { font-size: 19.5px; line-height: 1.4; }
+  .qcard .how .es { font-size: 16.5px; font-style: italic; color: var(--slate); line-height: 1.38; margin-top: 4px; }
+
+  /* ---------- Reframe + thesis ---------- */
+  .reframe { background: var(--card); border: 2px solid var(--gold); border-radius: 16px; padding: 34px 40px; max-width: 1040px; }
+  .thesis .word { font-family: var(--display); font-weight: 600; font-size: 72px; line-height: 1.08; letter-spacing: -0.02em; }
+  .thesis .word .es { font-family: var(--display); font-weight: 400; font-style: italic; font-size: 42px; color: var(--slate); margin-top: 2px; }
+  .thesis .stack { display: flex; flex-direction: column; gap: 16px; }
+
+  /* ---------- HUD ---------- */
+  .hud { display: flex; gap: 22px; align-items: center; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .hud strong { color: var(--ink); font-size: 14px; font-weight: 500; }
+  .controls { display: flex; gap: 8px; }
+  button {
+    background: var(--card); color: var(--ink); border: 1.5px solid var(--edge);
+    padding: 7px 16px; border-radius: 8px; cursor: pointer;
+    font-family: var(--mono); font-size: 12px;
+  }
+  button:hover { border-color: var(--rust); color: var(--rust); }
+  button:disabled { opacity: 0.3; cursor: default; }
+  button:disabled:hover { border-color: var(--edge); color: var(--ink); }
+  .hint { position: fixed; bottom: 9px; right: 14px; font-family: var(--mono); font-size: 10.5px; color: var(--muted); opacity: 0.65; }
+  .br-footer { position: fixed; bottom: 9px; left: 16px; font-family: var(--mono); font-size: 10.5px; color: var(--muted); letter-spacing: 0.06em; }
+
+  /* ---------- Language toggle ---------- */
+  .lang-toggle {
+    position: fixed; top: 12px; right: 14px; display: flex; gap: 3px;
+    background: var(--card); border: 1.5px solid var(--edge); border-radius: 999px;
+    padding: 3px 5px; z-index: 100;
+  }
+  .lang-toggle button { border: none; background: transparent; padding: 4px 11px; border-radius: 999px; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); }
+  .lang-toggle button:hover { color: var(--rust); }
+  .lang-toggle button.active { background: var(--rust); color: var(--paper); }
+  .lang-toggle button.active:hover { color: var(--paper); }
+
+  /* ---------- Mode visibility ---------- */
+  body.mode-en .es { display: none !important; }
+  body.mode-es .en { display: none !important; }
+  body.mode-es h2 .es, body.mode-es h1 .es { margin-top: 0; }
+  body.mode-es .cell .t-es, body.mode-es .note .t-es, body.mode-es .truth .es,
+  body.mode-es .rule .txt .es, body.mode-es .lead .es, body.mode-es .sub .es,
+  body.mode-es .qcard .how .es { margin-top: 0; }
+
+  /* In ES-only mode Spanish is the primary layer, so it takes the English
+     sizes and weights instead of the smaller italic secondary treatment.
+     This is the mode the Morning Cohort runs in. */
+  body.mode-es .es { font-style: normal; color: var(--ink); }
+  body.mode-es h1 .es { font-size: 74px; }
+  body.mode-es h2 .es { font-size: 48px; }
+  body.mode-es .lead .es { font-size: 27px; line-height: 1.42; }
+  body.mode-es .sub .es { font-size: 23px; color: var(--muted); }
+  body.mode-es .rule .txt .es { font-size: 30px; font-weight: 500; line-height: 1.3; font-style: normal; color: var(--ink); }
+  body.mode-es .rung .gloss .es { font-size: 16px; color: var(--muted); font-style: normal; }
+  body.mode-es .cell .t-es { font-size: 20.5px; }
+  body.mode-es .note .t-es { font-size: 18px; }
+  body.mode-es .truth .es { font-size: 23px; line-height: 1.28; }
+  body.mode-es .qcard .q .es { font-size: 32px; font-style: normal; color: var(--ink); }
+  body.mode-es .qcard .how .es { font-size: 19.5px; font-style: normal; color: var(--ink); }
+  body.mode-es .thesis .word .es { font-size: 72px; font-style: normal; color: var(--ink); }
+  body.mode-es .pill .es { color: var(--paper); }
+  body.mode-es .kicker .es { color: var(--muted); }
+  body.mode-es .cell.a .lbl .es { color: var(--rust); }
+  body.mode-es .cell.b .lbl .es { color: var(--teal); }
+  body.mode-es .cell.c .lbl .es { color: var(--gold); }
+  body.mode-es .cell.d .lbl .es { color: var(--slate); }
+  body.mode-es .note .lbl .es { color: var(--muted); }
+</style>
+</head>
+<body class="mode-both">
+
+<div class="lang-toggle">
+  <button onclick="setMode('en')" id="btn-en">EN</button>
+  <button onclick="setMode('both')" id="btn-both" class="active">EN+ES</button>
+  <button onclick="setMode('es')" id="btn-es">ES</button>
+</div>
+
+<div class="stage">
+  <div class="slide-wrap" id="slideWrap"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">&#x2190; Prev</button>
+      <button id="next">Next &#x2192;</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">15</span></div>
+  </div>
+</div>
+<div class="hint">&#x2190; &#x2192; arrow keys also work</div>
+<div class="br-footer">Alex Salinsky / Humans V Robots</div>
+
+<script>
+/* Every phase slide is built by the same function so the four fields
+   land in the same place on every screen. */
+function cell(cls, lblEn, lblEs, en, es) {
+  return '<div class="cell ' + cls + '">' +
+    '<div class="lbl"><span class="en">' + lblEn + '</span><span class="es">' + lblEs + '</span></div>' +
+    '<div class="t-en en">' + en + '</div>' +
+    '<div class="t-es es">' + es + '</div>' +
+  '</div>';
+}
+
+function phase(n, o) {
+  return '<div class="slide">' +
+    '<div class="head-row">' +
+      '<div class="kicker"><span class="en">Phase ' + n + '</span><span class="es">Fase ' + n + '</span></div>' +
+      (o.pill ? '<div class="pill"><span class="en">' + o.pill.en + '</span><span class="es">' + o.pill.es + '</span></div>' : '') +
+    '</div>' +
+    '<h2><span class="en">' + o.title.en + '</span><span class="es">' + o.title.es + '</span></h2>' +
+    '<div class="grid4">' +
+      cell('a', 'Experience', 'La experiencia', o.exp.en, o.exp.es) +
+      cell('b', 'What it proves', 'Qu&#xE9; demuestra', o.proves.en, o.proves.es) +
+      cell('c', 'Demo moment', 'El momento de mostrarlo', o.demo.en, o.demo.es) +
+      cell('d', 'Done when', 'Listo cuando', o.done.en, o.done.es) +
+    '</div>' +
+    (o.note ?
+      '<div class="note">' +
+        '<div class="lbl"><span class="en">Note</span><span class="es">Nota</span></div>' +
+        '<div class="t-en en">' + o.note.en + '</div>' +
+        '<div class="t-es es">' + o.note.es + '</div>' +
+      '</div>' : '') +
+  '</div>';
+}
+
+const slides = [
+
+  /* 1. TITLE */
+  { html: '<div class="slide center">' +
+      '<h1><span class="en">From dream<br/>to phases</span>' +
+        '<span class="es">Del sue&#xF1;o<br/>a las fases</span>' +
+      '</h1>' +
+      '<div class="sub" style="margin-top:26px">' +
+        '<span class="en">One dream, cut into parts you can build.</span>' +
+        '<span class="es">Un sue&#xF1;o, cortado en partes que s&#xED; puedes construir.</span>' +
+      '</div>' +
+      '<div class="kicker" style="margin-top:26px"><span class="en">Humans V Robots</span></div>' +
+    '</div>' },
+
+  /* 2. THE LADDER YOU ALREADY KNOW */
+  { html: '<div class="slide">' +
+      '<div class="kicker"><span class="en">The method</span><span class="es">El m&#xE9;todo</span></div>' +
+      '<h2><span class="en">You already know the ladder.</span><span class="es">Ya conoces la escalera.</span></h2>' +
+      '<div class="ladder" style="margin-top:6px">' +
+        '<div class="rung top"><div class="name">DREAM</div>' +
+          '<div class="gloss"><span class="en">What do you really want?</span><span class="es">&#xBF;Qu&#xE9; es lo que realmente quieres?</span></div></div>' +
+        '<div class="arrowx">&#x2192;</div>' +
+        '<div class="rung mid"><div class="name">MVP</div>' +
+          '<div class="gloss"><span class="en">Smallest version that proves it can work.</span><span class="es">La versi&#xF3;n m&#xE1;s peque&#xF1;a que demuestra que funciona.</span></div></div>' +
+        '<div class="arrowx">&#x2192;</div>' +
+        '<div class="rung base"><div class="name">FIRST BRICK</div>' +
+          '<div class="gloss"><span class="en">Smallest thing you can build today.</span><span class="es">Lo m&#xE1;s peque&#xF1;o que puedes construir hoy.</span></div></div>' +
+      '</div>' +
+      '<div class="lead" style="margin-top:22px">' +
+        '<span class="en">Phases are the rungs between your First Brick and the dream. Each one ends with something a person can use.</span>' +
+        '<span class="es">Las fases son los pelda&#xF1;os entre tu First Brick y el sue&#xF1;o. Cada una termina con algo que una persona puede usar.</span>' +
+      '</div>' +
+    '</div>' },
+
+  /* 3. RULES 1 to 3 */
+  { html: '<div class="slide">' +
+      '<div class="kicker"><span class="en">The method</span><span class="es">El m&#xE9;todo</span></div>' +
+      '<h2><span class="en">Cutting a dream into phases</span><span class="es">C&#xF3;mo cortar un sue&#xF1;o en fases</span></h2>' +
+      '<div class="rules" style="margin-top:10px">' +
+        '<div class="rule"><div class="n">1</div><div class="txt">' +
+          '<span class="en">Write the dream in one sentence. Keep it big.</span>' +
+          '<span class="es">Escribe el sue&#xF1;o en una sola frase. Que siga siendo grande.</span></div></div>' +
+        '<div class="rule"><div class="n">2</div><div class="txt">' +
+          '<span class="en">List what has to be true for that dream to work. Those are your phases.</span>' +
+          '<span class="es">Haz la lista de todo lo que tiene que ser cierto para que ese sue&#xF1;o funcione. Esas son tus fases.</span></div></div>' +
+        '<div class="rule"><div class="n">3</div><div class="txt">' +
+          '<span class="en">Order them by what would kill the project soonest, not by what\'s easiest to build.</span>' +
+          '<span class="es">Ord&#xE9;nalas por lo que matar&#xED;a el proyecto m&#xE1;s r&#xE1;pido, no por lo m&#xE1;s f&#xE1;cil de construir.</span></div></div>' +
+      '</div>' +
+    '</div>' },
+
+  /* 4. RULES 4 to 5 */
+  { html: '<div class="slide">' +
+      '<div class="kicker"><span class="en">The method</span><span class="es">El m&#xE9;todo</span></div>' +
+      '<h2><span class="en">The two that people skip</span><span class="es">Las dos que la gente se salta</span></h2>' +
+      '<div class="rules" style="margin-top:10px">' +
+        '<div class="rule"><div class="n">4</div><div class="txt">' +
+          '<span class="en">Every phase ends with something a person can use. If a phase ends with a component, it isn\'t a phase.</span>' +
+          '<span class="es">Cada fase termina con algo que una persona puede usar. Si una fase termina en un componente, no es una fase.</span></div></div>' +
+        '<div class="rule"><div class="n">5</div><div class="txt">' +
+          '<span class="en">Some of what has to be true needs a conversation, not a build. Do those in parallel, this week.</span>' +
+          '<span class="es">Parte de lo que tiene que ser cierto se resuelve con una conversaci&#xF3;n, no con un build. Esas van en paralelo, esta semana.</span></div></div>' +
+      '</div>' +
+    '</div>' },
+
+  /* 5. THE DREAM */
+  { html: '<div class="slide">' +
+      '<div class="kicker"><span class="en">Worked example</span><span class="es">Ejemplo real</span></div>' +
+      '<h2><span class="en">The dream</span><span class="es">El sue&#xF1;o</span></h2>' +
+      '<div class="reframe" style="max-width:100%;padding:26px 30px">' +
+        '<div class="lead">' +
+          '<span class="en">A customer portal where clients see everything about what they bought, earn points, and redeem them with allied brands.</span>' +
+          '<span class="es">Un portal de clientes donde cada persona ve todo sobre lo que compr&#xF3;, acumula puntos y los redime con marcas aliadas.</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="note" style="border-left-color:var(--teal)">' +
+        '<div class="lbl"><span class="en">The build</span><span class="es">El build</span></div>' +
+        '<div class="t-en en">Diana Sof&#xED;a makes garments. Every piece gets a digital passport, reached by a QR code on the tag.</div>' +
+        '<div class="t-es es">Diana Sof&#xED;a hace prendas. Cada pieza tiene un pasaporte digital, al que se llega con un c&#xF3;digo QR en la etiqueta.</div>' +
+      '</div>' +
+    '</div>' },
+
+  /* 6. WHAT HAS TO BE TRUE */
+  { html: '<div class="slide">' +
+      '<div class="head-row">' +
+        '<div class="kicker"><span class="en">Worked example</span><span class="es">Ejemplo real</span></div>' +
+        '<div class="kicker"><span class="en">Ordered by what kills it soonest</span><span class="es">Ordenado por lo que lo matar&#xED;a m&#xE1;s r&#xE1;pido</span></div>' +
+      '</div>' +
+      '<h2><span class="en">What has to be true</span><span class="es">Qu&#xE9; tiene que ser cierto</span></h2>' +
+      '<div class="truths" style="margin-top:4px">' +
+        '<div class="truth"><div class="n">1</div><div><span class="en">Customers will actually scan a code on a garment.</span>' +
+          '<span class="es">Los clientes s&#xED; van a escanear un c&#xF3;digo en una prenda.</span></div></div>' +
+        '<div class="truth"><div class="n">2</div><div><span class="en">She can generate pages from data instead of hand-building each one.</span>' +
+          '<span class="es">Ella puede generar p&#xE1;ginas desde datos, en vez de armar cada una a mano.</span></div></div>' +
+        '<div class="truth"><div class="n">3</div><div><span class="en">Customers will hand over their identity to save something.</span>' +
+          '<span class="es">Los clientes s&#xED; entregan su identidad para guardar algo.</span></div></div>' +
+        '<div class="truth"><div class="n">4</div><div><span class="en">Purchases can be verified without her doing manual work forever.</span>' +
+          '<span class="es">Las compras se pueden verificar sin que ella haga trabajo manual para siempre.</span></div></div>' +
+        '<div class="truth"><div class="n">5</div><div><span class="en">Other brands want in.</span>' +
+          '<span class="es">Otras marcas quieren entrar.</span></div></div>' +
+      '</div>' +
+    '</div>' },
+
+  /* 7. PHASE 1 */
+  { html: phase(1, {
+      pill: { en: "She's here now", es: 'Aqu&#xED; va hoy' },
+      title: { en: 'One passport that works', es: 'Un pasaporte que funciona' },
+      exp: {
+        en: 'Someone scans the tag on a real garment and a page opens showing that piece: photo, name, materials, the story.',
+        es: 'Alguien escanea la etiqueta de una prenda real y se abre una p&#xE1;gina con esa pieza: foto, nombre, materiales, la historia.'
+      },
+      proves: {
+        en: 'The scan-to-page loop works on a real phone, on a real garment.',
+        es: 'El recorrido de escanear a p&#xE1;gina funciona en un celular real, con una prenda real.'
+      },
+      demo: {
+        en: 'Hand someone the garment and your phone. Say nothing. Let them scan.',
+        es: 'Dale la prenda y tu celular a alguien. No digas nada. Deja que escanee.'
+      },
+      done: {
+        en: "It works on somebody else's phone, not hers.",
+        es: 'Funciona en el celular de otra persona, no en el de ella.'
+      },
+      note: {
+        en: 'The pieces: one row in a sheet, one page that reads it, one QR code.',
+        es: 'Las piezas: una fila en una hoja de c&#xE1;lculo, una p&#xE1;gina que la lee, un c&#xF3;digo QR.'
+      }
+    }) },
+
+  /* 8. PHASE 2 */
+  { html: phase(2, {
+      title: { en: 'Three passports from one system', es: 'Tres pasaportes desde un solo sistema' },
+      exp: {
+        en: 'Three garments, three pages, all coming from the same sheet.',
+        es: 'Tres prendas, tres p&#xE1;ginas, todas saliendo de la misma hoja.'
+      },
+      proves: {
+        en: "It's a generator, not a hand-made page. That's the line between a demo and a product.",
+        es: 'Es un generador, no una p&#xE1;gina hecha a mano. Esa es la l&#xED;nea entre una demo y un producto.'
+      },
+      demo: {
+        en: 'Add a fourth product to the spreadsheet live, in front of the room, and let them watch the page appear.',
+        es: 'Agrega un cuarto producto a la hoja en vivo, frente al sal&#xF3;n, y deja que vean aparecer la p&#xE1;gina.'
+      },
+      done: {
+        en: 'Adding a product takes a spreadsheet row and no code.',
+        es: 'Agregar un producto solo pide una fila en la hoja, sin c&#xF3;digo.'
+      }
+    }) },
+
+  /* 9. PHASE 3 */
+  { html: phase(3, {
+      title: { en: '"Save this piece."', es: '"Guardar esta pieza."' },
+      exp: {
+        en: 'One button on the passport page. It asks for an email. No password.',
+        es: 'Un bot&#xF3;n en la p&#xE1;gina del pasaporte. Pide un correo. Sin contrase&#xF1;a.'
+      },
+      proves: {
+        en: 'Customers will identify themselves, which is the entire premise of a portal.',
+        es: 'Los clientes s&#xED; se identifican, que es toda la premisa de un portal.'
+      },
+      demo: {
+        en: 'Put the page in front of five customers and count how many type their email in.',
+        es: 'Pon la p&#xE1;gina frente a cinco clientes y cuenta cu&#xE1;ntos escriben su correo.'
+      },
+      done: {
+        en: 'She can see who owns what.',
+        es: 'Ella puede ver qui&#xE9;n tiene qu&#xE9;.'
+      },
+      note: {
+        en: "Real accounts get skipped here on purpose. Passwords, resets and sessions are the biggest difficulty jump in the whole ladder, and they prove nothing extra. If people won't give an email, they were never going to make an account.",
+        es: 'Las cuentas reales se saltan aqu&#xED; a prop&#xF3;sito. Contrase&#xF1;as, recuperaci&#xF3;n y sesiones son el salto de dificultad m&#xE1;s grande de toda la escalera, y no demuestran nada adicional. Si la gente no da un correo, tampoco iba a crear una cuenta.'
+      }
+    }) },
+
+  /* 10. PHASE 4 */
+  { html: phase(4, {
+      title: { en: 'The portal', es: 'El portal' },
+      exp: {
+        en: "One page listing everything a customer has saved. The dream's shape, at small scale.",
+        es: 'Una sola p&#xE1;gina con todo lo que un cliente guard&#xF3;. La forma del sue&#xF1;o, en peque&#xF1;o.'
+      },
+      proves: {
+        en: 'The portal exists.',
+        es: 'El portal existe.'
+      },
+      demo: {
+        en: 'Open one customer\'s page in front of her and let her recognize her own pieces.',
+        es: 'Abre la p&#xE1;gina de una clienta frente a ella y deja que reconozca sus propias piezas.'
+      },
+      done: {
+        en: 'A customer with two pieces sees exactly their two pieces.',
+        es: 'Una clienta con dos piezas ve exactamente sus dos piezas.'
+      },
+      note: {
+        en: 'Real login goes here, and only if Phase 3 showed that people actually save things.',
+        es: 'El login real va aqu&#xED;, y solo si la Fase 3 mostr&#xF3; que la gente s&#xED; guarda cosas.'
+      }
+    }) },
+
+  /* 11. PHASE 5 */
+  { html: phase(5, {
+      title: { en: 'Points', es: 'Puntos' },
+      exp: {
+        en: 'A customer opens the portal and sees a points number sitting next to their pieces.',
+        es: 'Un cliente abre el portal y ve un n&#xFA;mero de puntos al lado de sus piezas.'
+      },
+      proves: {
+        en: 'A purchase can be tied to a person. Points are arithmetic on a number that already exists.',
+        es: 'Una compra se puede conectar con una persona. Los puntos son aritm&#xE9;tica sobre un n&#xFA;mero que ya existe.'
+      },
+      demo: {
+        en: 'Make a sale, mark the row, refresh the portal, and let the customer watch the number move.',
+        es: 'Haz una venta, marca la fila, refresca el portal y deja que el cliente vea moverse el n&#xFA;mero.'
+      },
+      done: {
+        en: 'A customer sees a number that went up because they bought something.',
+        es: 'Un cliente ve un n&#xFA;mero que subi&#xF3; porque compr&#xF3; algo.'
+      },
+      note: {
+        en: "The hard part isn't points, it's verifying a purchase. Cheapest first version: the store marks the sale, she adds a column. Don't build automatic store-system verification until manual has run a month and the volume starts to hurt.",
+        es: 'Lo dif&#xED;cil no son los puntos, es verificar la compra. La primera versi&#xF3;n m&#xE1;s barata: la tienda marca la venta, ella agrega una columna. No construyas verificaci&#xF3;n autom&#xE1;tica con el sistema de la tienda hasta que lo manual lleve un mes corriendo y el volumen empiece a doler.'
+      }
+    }) },
+
+  /* 12. PHASE 6 */
+  { html: phase(6, {
+      title: { en: 'Allies', es: 'Aliados' },
+      exp: {
+        en: 'A page listing partner stores and what a point is worth at each one.',
+        es: 'Una p&#xE1;gina con las tiendas aliadas y cu&#xE1;nto vale un punto en cada una.'
+      },
+      proves: {
+        en: 'Other brands want in.',
+        es: 'Otras marcas quieren entrar.'
+      },
+      demo: {
+        en: 'A customer redeems with an ally, even if she sends the code over WhatsApp by hand.',
+        es: 'Un cliente redime con un aliado, aunque ella mande el c&#xF3;digo por WhatsApp a mano.'
+      },
+      done: {
+        en: 'One ally has said yes in writing and one customer has redeemed something.',
+        es: 'Un aliado dijo que s&#xED; por escrito y un cliente ya redimi&#xF3; algo.'
+      },
+      note: {
+        en: 'No code until an ally says yes in writing. The first version is a page, not a system.',
+        es: 'Nada de c&#xF3;digo hasta que un aliado diga que s&#xED; por escrito. La primera versi&#xF3;n es una p&#xE1;gina, no un sistema.'
+      }
+    }) },
+
+  /* 13. THE ONES THAT AREN'T BUILDS */
+  { html: '<div class="slide">' +
+      '<div class="kicker"><span class="en">In parallel, this week</span><span class="es">En paralelo, esta semana</span></div>' +
+      '<h2><span class="en">Two of these aren\'t builds</span><span class="es">Dos de estas no son builds</span></h2>' +
+      '<div class="two" style="margin-top:8px">' +
+        '<div class="qcard">' +
+          '<div class="q"><span class="en">Will they scan?</span><span class="es">&#xBF;S&#xED; van a escanear?</span></div>' +
+          '<div class="how">' +
+            '<span class="en">Five customers, one garment, one question. You\'ll know in a day.</span>' +
+            '<span class="es">Cinco clientes, una prenda, una pregunta. Lo sabes en un d&#xED;a.</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="qcard" style="border-top-color:var(--rust)">' +
+          '<div class="q"><span class="en">Do allies want in?</span><span class="es">&#xBF;Los aliados quieren entrar?</span></div>' +
+          '<div class="how">' +
+            '<span class="en">Five brands, one call each. No code involved.</span>' +
+            '<span class="es">Cinco marcas, una llamada con cada una. Sin escribir c&#xF3;digo.</span>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="note" style="margin-top:8px">' +
+        '<div class="t-en en">These run alongside Phase 2. The answers change the order of everything below them.</div>' +
+        '<div class="t-es es">Estas corren junto con la Fase 2. Las respuestas cambian el orden de todo lo que viene abajo.</div>' +
+      '</div>' +
+    '</div>' },
+
+  /* 14. THE REFRAME */
+  { html: '<div class="slide center">' +
+      '<div class="reframe">' +
+        '<h2 style="text-align:center">' +
+          '<span class="en">You\'ve shipped the first product,<br/>not failed to reach the last one.</span>' +
+          '<span class="es">Ya lanzaste el primer producto,<br/>no fallaste en llegar al &#xFA;ltimo.</span>' +
+        '</h2>' +
+        '<div class="lead" style="margin-top:22px">' +
+          '<span class="en">At the end of Phase 1 you have a working product, not a fragment. Every phase ends with something a customer can use.</span>' +
+          '<span class="es">Al final de la Fase 1 tienes un producto que funciona, no un pedazo. Cada fase termina con algo que un cliente puede usar.</span>' +
+        '</div>' +
+      '</div>' +
+    '</div>' },
+
+  /* 15. THESIS */
+  { html: '<div class="slide center thesis">' +
+      '<div class="stack">' +
+        '<div class="word"><span class="en">Learn AI.</span><span class="es">Aprende IA.</span></div>' +
+        '<div class="word"><span class="en">Build Robots.</span><span class="es">Construye robots.</span></div>' +
+        '<div class="word"><span class="en">Stay Human.</span><span class="es">Sigue siendo humano.</span></div>' +
+      '</div>' +
+    '</div>' }
+];
+
+let i = 0;
+const wrap = document.getElementById("slideWrap");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = slides.length;
+
+function render() {
+  wrap.innerHTML = slides[i].html;
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === slides.length - 1;
+}
+
+function setMode(m) {
+  document.body.className = 'mode-' + m;
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + m).classList.add('active');
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < slides.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") next.click();
+  if (e.key === "ArrowLeft") prev.click();
+});
+
+// Basic touch swipe
+let touchStartX = null;
+document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+document.addEventListener('touchend', (e) => {
+  if (touchStartX === null) return;
+  const dx = e.changedTouches[0].screenX - touchStartX;
+  if (Math.abs(dx) > 40) { if (dx < 0) next.click(); else prev.click(); }
+  touchStartX = null;
+}, { passive: true });
+
+render();
+</script>
+</body>
+</html>

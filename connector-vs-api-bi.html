@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Connector vs API / Integraci&#xF3;n o API</title>
+<!--
+  Bilingual twin of connector-vs-api.html. English primary, Spanish beneath
+  (smaller / italic / blue). Fixed top-right EN | EN+ES | ES toggle. Default: Both.
+  S3 lesson block for the HvR2 Night Cohort (bilingual) and Morning Cohort (Spanish).
+  ES term for Connector is "Integraci&#xF3;n", matching inside-the-robot-bi.html.
+  DO NOT modify connector-vs-api.html.
+  Finale panel is cream + gold, not a black box (house rule).
+-->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 12px; }
+  .frame-wrap { flex: 1; max-height: 80vh; width: 100%; display: flex; align-items: center; justify-content: center; }
+  svg { width: auto; height: auto; max-width: 100%; max-height: 100%; }
+  .title-screen { font-size: 54px; font-weight: 700; text-align: center; color: #1a1a1a; letter-spacing: -1px; line-height: 1.1; }
+  .title-screen .sub { display: block; font-size: 22px; font-weight: 400; margin-top: 18px; color: #666; letter-spacing: 0; }
+  .title-es { display: block; font-size: 34px; font-weight: 400; color: #2563eb; font-style: italic; margin-top: 12px; letter-spacing: -0.5px; line-height: 1.15; }
+  .caption { max-width: 940px; text-align: center; font-size: 17px; line-height: 1.5; color: #333; padding: 0 12px; min-height: 66px; }
+  .cap-en { display: block; }
+  .cap-es { display: block; font-size: 14px; color: #2563eb; font-style: italic; margin-top: 4px; }
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
+  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+  button:hover { background: #1a1a1a; color: #fff; }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
+  footer { position: fixed; bottom: 6px; left: 16px; font-size: 11px; color: #999; }
+
+  /* Language toggle */
+  .lang-toggle { position: fixed; top: 12px; right: 14px; display: flex; gap: 4px; background: #fff; border: 1.5px solid #1a1a1a; border-radius: 20px; padding: 3px 6px; font-size: 12px; font-weight: 600; z-index: 100; }
+  .lang-toggle button { border: none; background: transparent; padding: 3px 8px; border-radius: 14px; cursor: pointer; font-size: 12px; font-weight: 600; color: #666; }
+  .lang-toggle button.active { background: #1a1a1a; color: #fff; }
+
+  /* Mode-based visibility */
+  body.mode-en .cap-es { display: none; }
+  body.mode-en .title-es { display: none; }
+  body.mode-es .cap-en { display: none; }
+  body.mode-es .title-screen > span.title-en { display: none; }
+
+  .el { opacity: 0; transition: opacity 0.35s ease; }
+  .el.show { opacity: 1; }
+
+  .box { fill: #fff; stroke: #1a1a1a; stroke-width: 2.5; }
+  .box-finale { fill: #F7F4EE; stroke: #C9932F; stroke-width: 3; }
+  .line-thin { fill: none; stroke: #1a1a1a; stroke-width: 1.5; }
+  .head-xl { font-size: 28px; font-weight: 700; fill: #1a1a1a; letter-spacing: 1px; }
+  .head-sub { font-size: 14px; font-style: italic; fill: #666; }
+  .row-label { font-size: 12.5px; font-weight: 700; fill: #92400e; letter-spacing: 0.5px; }
+  .label-b { font-size: 14px; font-weight: 400; fill: #1a1a1a; }
+  .label-b-bold { font-size: 15px; font-weight: 600; fill: #1a1a1a; }
+  .label-sm { font-size: 12px; font-weight: 400; fill: #666; }
+  .label-h-ink { font-size: 21px; font-weight: 700; fill: #1a1a1a; }
+  .label-b-ink { font-size: 14px; font-weight: 400; fill: #333; }
+
+  /* Spanish layers inside the SVG */
+  .head-es { font-size: 19px; font-weight: 400; font-style: italic; fill: #2563eb; }
+  .head-xl-es { font-size: 20px; font-weight: 400; font-style: italic; fill: #1d4ed8; letter-spacing: 0.5px; }
+  .label-es { font-size: 12px; font-weight: 400; font-style: italic; fill: #2563eb; }
+  .label-es-lg { font-size: 14px; font-weight: 400; font-style: italic; fill: #2563eb; }
+</style>
+</head>
+<body class="mode-both">
+
+<div class="lang-toggle">
+  <button onclick="setMode('en')" id="btn-en">EN</button>
+  <button onclick="setMode('both')" id="btn-both" class="active">EN+ES</button>
+  <button onclick="setMode('es')" id="btn-es">ES</button>
+</div>
+
+<div class="stage">
+  <div class="frame-wrap" id="frame">
+
+    <div class="title-screen" id="titleScreen">
+      <span class="title-en">Connector or API.<br/>Which do I use?</span>
+      <span class="title-es">&#xBF;Integraci&#xF3;n o API?<br/>&#xBF;Cu&#xE1;l uso?</span>
+      <span class="sub">Humans V Robots</span>
+    </div>
+
+    <svg id="diagram" viewBox="0 0 1100 970" preserveAspectRatio="xMidYMid meet" style="display:none">
+
+      <!-- Header, visible from step 2 on -->
+      <g class="el" data-step="2">
+        <text x="550" y="32" text-anchor="middle" style="font-size:25px;font-weight:700;fill:#1a1a1a">Connector or API. Which do I use?</text>
+        <text x="550" y="56" text-anchor="middle" class="head-es">&#xBF;Integraci&#xF3;n o API? &#xBF;Cu&#xE1;l uso?</text>
+        <text x="550" y="77" text-anchor="middle" class="label-sm">Two ways to plug your build into other tools.</text>
+        <text x="550" y="92" text-anchor="middle" class="label-es">Dos formas de conectar tu build con otras herramientas.</text>
+      </g>
+
+      <!-- STEP 2: two empty columns + headers -->
+      <g class="el" data-step="2">
+        <!-- CONNECTOR column -->
+        <rect x="40" y="100" width="500" height="700" rx="12" class="box"/>
+        <text x="290" y="140" text-anchor="middle" class="head-xl">CONNECTOR</text>
+        <text x="290" y="165" text-anchor="middle" class="head-xl-es">INTEGRACI&#xD3;N</text>
+        <text x="290" y="188" text-anchor="middle" class="head-sub">lives inside Claude</text>
+        <text x="290" y="205" text-anchor="middle" class="label-es">vive dentro de Claude</text>
+        <line x1="60" y1="220" x2="520" y2="220" class="line-thin"/>
+
+        <!-- API column -->
+        <rect x="560" y="100" width="500" height="700" rx="12" class="box"/>
+        <text x="810" y="140" text-anchor="middle" class="head-xl">API</text>
+        <text x="810" y="188" text-anchor="middle" class="head-sub">lives anywhere</text>
+        <text x="810" y="205" text-anchor="middle" class="label-es">vive en cualquier parte</text>
+        <line x1="580" y1="220" x2="1040" y2="220" class="line-thin"/>
+      </g>
+
+      <!-- STEP 3: CONNECTOR setup -->
+      <g class="el" data-step="3">
+        <text x="60" y="250" class="row-label">HOW TO SET IT UP / C&#xD3;MO SE CONFIGURA</text>
+        <text x="60" y="278" class="label-b-bold">One click in Claude</text>
+        <text x="60" y="296" class="label-es">Un clic dentro de Claude</text>
+        <text x="60" y="322" class="label-b">Settings &#x2192; Integrations &#x2192;</text>
+        <text x="60" y="342" class="label-b">toggle on. Done.</text>
+        <text x="60" y="360" class="label-es">Configuraci&#xF3;n &#x2192; Integraciones &#x2192;</text>
+        <text x="60" y="377" class="label-es">act&#xED;vala. Listo.</text>
+      </g>
+
+      <!-- STEP 4: API setup -->
+      <g class="el" data-step="4">
+        <text x="580" y="250" class="row-label">HOW TO SET IT UP / C&#xD3;MO SE CONFIGURA</text>
+        <text x="580" y="278" class="label-b-bold">Generate a key</text>
+        <text x="580" y="296" class="label-es">Genera una clave</text>
+        <text x="580" y="322" class="label-b">1. Make a token in the tool</text>
+        <text x="580" y="342" class="label-b">2. Paste it in a .env file</text>
+        <text x="580" y="362" class="label-b">3. Tell Claude where it is</text>
+        <text x="580" y="380" class="label-es">1. Crea un token en la herramienta</text>
+        <text x="580" y="397" class="label-es">2. P&#xE9;galo en un archivo .env</text>
+        <text x="580" y="414" class="label-es">3. Dile a Claude d&#xF3;nde est&#xE1;</text>
+      </g>
+
+      <!-- STEP 5: CONNECTOR can do + limits -->
+      <g class="el" data-step="5">
+        <line x1="60" y1="400" x2="520" y2="400" class="line-thin"/>
+        <text x="60" y="428" class="row-label">WHAT YOU CAN DO / QU&#xC9; PUEDES HACER</text>
+        <text x="60" y="456" class="label-b">&#x2022; Fast experiments</text>
+        <text x="60" y="474" class="label-es">&#x2022; Experimentos r&#xE1;pidos</text>
+        <text x="60" y="500" class="label-b">&#x2022; Ask questions in chat</text>
+        <text x="60" y="518" class="label-es">&#x2022; Preguntar dentro del chat</text>
+        <text x="60" y="544" class="label-b">&#x2022; Build artifacts inside Claude</text>
+        <text x="60" y="562" class="label-es">&#x2022; Crear artefactos dentro de Claude</text>
+
+        <line x1="60" y1="584" x2="520" y2="584" class="line-thin"/>
+        <text x="60" y="612" class="row-label">LIMITS / L&#xCD;MITES</text>
+        <text x="60" y="640" class="label-b">&#x2022; Only tools Claude supports</text>
+        <text x="60" y="658" class="label-es">&#x2022; Solo las herramientas que Claude soporta</text>
+        <text x="60" y="684" class="label-b">&#x2022; Only works inside Claude</text>
+        <text x="60" y="702" class="label-es">&#x2022; Solo funciona dentro de Claude</text>
+        <text x="60" y="734" class="label-sm" style="font-style:italic">If you close Claude, it stops.</text>
+        <text x="60" y="753" class="label-es">Si cierras Claude, se detiene.</text>
+      </g>
+
+      <!-- STEP 6: API can do + limits -->
+      <g class="el" data-step="6">
+        <line x1="580" y1="436" x2="1040" y2="436" class="line-thin"/>
+        <text x="580" y="464" class="row-label">WHAT YOU CAN DO / QU&#xC9; PUEDES HACER</text>
+        <text x="580" y="492" class="label-b">&#x2022; Reach any tool</text>
+        <text x="580" y="510" class="label-es">&#x2022; Llega a cualquier herramienta</text>
+        <text x="580" y="536" class="label-b">&#x2022; Builds that run on their own</text>
+        <text x="580" y="554" class="label-es">&#x2022; Builds que corren solos</text>
+        <text x="580" y="580" class="label-b">&#x2022; Live outside Claude</text>
+        <text x="580" y="598" class="label-es">&#x2022; Viven fuera de Claude</text>
+
+        <line x1="580" y1="620" x2="1040" y2="620" class="line-thin"/>
+        <text x="580" y="648" class="row-label">LIMITS / L&#xCD;MITES</text>
+        <text x="580" y="676" class="label-b">&#x2022; More setup</text>
+        <text x="580" y="694" class="label-es">&#x2022; M&#xE1;s configuraci&#xF3;n</text>
+        <text x="580" y="720" class="label-b">&#x2022; You manage the key</text>
+        <text x="580" y="738" class="label-es">&#x2022; T&#xFA; manejas la clave</text>
+        <text x="580" y="765" class="label-sm" style="font-style:italic">Treat keys like passwords.</text>
+        <text x="580" y="784" class="label-es">Trata las claves como contrase&#xF1;as.</text>
+      </g>
+
+      <!-- STEP 7: rule of thumb -->
+      <g class="el" data-step="7">
+        <rect x="70" y="835" width="960" height="118" rx="14" class="box-finale"/>
+        <text x="550" y="871" text-anchor="middle" class="label-h-ink">Rule of thumb</text>
+        <text x="550" y="893" text-anchor="middle" class="label-es-lg">Regla pr&#xE1;ctica</text>
+        <text x="550" y="920" text-anchor="middle" class="label-b-ink">Connector for fast experiments. API for builds that live outside Claude or run without you.</text>
+        <text x="550" y="938" text-anchor="middle" class="label-es">Integraci&#xF3;n para experimentar r&#xE1;pido. API para builds que viven fuera de Claude o corren sin ti.</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="caption" id="caption"></div>
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">&#x2190; Prev</button>
+      <button id="next">Next &#x2192;</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">7</span></div>
+  </div>
+</div>
+<div class="hint">&#x2190; &#x2192; arrow keys also work</div>
+<footer>Alex Salinsky / Humans V Robots</footer>
+
+<script>
+const captionsEN = [
+  "Connector or API. Same idea, different shape. Here's when to use each.",
+  "Two ways to plug your build into other tools. They're different.",
+  "Connectors are click-and-go. Settings, Integrations, toggle on. Done.",
+  "APIs need a key. You generate it, store it, hand it to your build. A bit more work upfront.",
+  "Connectors are good for fast experiments and tools that live inside Claude.",
+  "APIs are for builds that need to run on their own, or reach tools with no connector, or live outside Claude.",
+  "Use connectors to explore. Move to APIs when the build needs to live and run on its own."
+];
+
+const captionsES = [
+  "\xBFIntegraci\xF3n o API? La misma idea con otra forma. Aqu\xED va cu\xE1ndo usar cada una.",
+  "Dos formas de conectar tu build con otras herramientas. Son distintas.",
+  "Las integraciones son de un clic. Configuraci\xF3n, Integraciones, act\xEDvala. Listo.",
+  "Las API piden una clave. La generas, la guardas, y se la entregas a tu build. Un poco m\xE1s de trabajo al principio.",
+  "Las integraciones sirven para experimentar r\xE1pido y para herramientas que viven dentro de Claude.",
+  "Las API son para builds que tienen que correr solos, o llegar a herramientas sin integraci\xF3n, o vivir fuera de Claude.",
+  "Usa integraciones para explorar. P\xE1sate a las API cuando el build tenga que vivir y correr por su cuenta."
+];
+
+let mode = 'both';
+let i = 0;
+const titleScreen = document.getElementById("titleScreen");
+const diagram = document.getElementById("diagram");
+const cap = document.getElementById("caption");
+const counter = document.getElementById("counter");
+const total = document.getElementById("total");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
+
+total.textContent = captionsEN.length;
+
+function setMode(m) {
+  mode = m;
+  document.body.className = 'mode-' + m;
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + m).classList.add('active');
+  render();
+}
+
+function render() {
+  let html = '';
+  if (mode === 'en') {
+    html = '<span class="cap-en">' + captionsEN[i] + '</span>';
+  } else if (mode === 'es') {
+    html = '<span class="cap-es" style="color:#1a1a1a;font-style:normal;font-size:17px">' + captionsES[i] + '</span>';
+  } else {
+    html = '<span class="cap-en">' + captionsEN[i] + '</span><span class="cap-es">' + captionsES[i] + '</span>';
+  }
+  cap.innerHTML = html;
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === captionsEN.length - 1;
+
+  if (i === 0) {
+    titleScreen.style.display = '';
+    diagram.style.display = 'none';
+  } else {
+    titleScreen.style.display = 'none';
+    diagram.style.display = '';
+    document.querySelectorAll('#diagram .el').forEach(el => {
+      const step = parseInt(el.dataset.step);
+      el.classList.toggle('show', step <= i + 1);
+    });
+  }
+
+  // Show/hide ES layers inside the SVG
+  document.querySelectorAll('.head-es, .head-xl-es, .label-es, .label-es-lg').forEach(el => {
+    if (el.closest('svg')) el.style.display = (mode === 'en') ? 'none' : '';
+  });
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < captionsEN.length - 1) { i++; render(); } };
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") next.click();
+  if (e.key === "ArrowLeft") prev.click();
+});
+
+// Basic touch swipe
+let touchStartX = null;
+document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+document.addEventListener('touchend', (e) => {
+  if (touchStartX === null) return;
+  const dx = e.changedTouches[0].screenX - touchStartX;
+  if (Math.abs(dx) > 40) { if (dx < 0) next.click(); else prev.click(); }
+  touchStartX = null;
+}, { passive: true });
+
+render();
+</script>
+</body>
+</html>

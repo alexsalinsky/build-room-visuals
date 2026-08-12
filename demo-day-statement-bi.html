@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo Day Statement / Tu guion de Demo Day</title>
+<!--
+  NEW for S3. No English-only original exists; this file is the source.
+  The four-sentence Demo Day statement format on one screen. Shown twice in S3:
+  during the per-builder ledger walk (0:35-0:50) and again at close (1:50-1:58).
+  Must read without narration. Fixed top-right EN | EN+ES | ES toggle. Default: Both.
+  Cohort: hvr2, Session 3, 2026-08-12. Demo Day = Wed 2026-08-19.
+-->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; }
+  .stage { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 22px 34px; gap: 26px; }
+
+  .heading { text-align: center; }
+  .heading h1 { font-size: 42px; font-weight: 800; letter-spacing: -1px; line-height: 1.08; }
+  .heading .h1-es { display: block; font-size: 28px; font-weight: 500; color: #2563eb; font-style: italic; margin-top: 6px; letter-spacing: -0.5px; }
+  .heading .sub-en { font-size: 16px; color: #666; margin-top: 12px; letter-spacing: 0.02em; }
+  .heading .sub-es { font-size: 14px; color: #2563eb; font-style: italic; margin-top: 3px; }
+
+  .cards { display: flex; gap: 16px; width: 100%; max-width: 1180px; align-items: stretch; }
+  @media (max-width: 980px) { .cards { flex-wrap: wrap; } .cards .card { flex: 1 1 44%; } }
+  @media (max-width: 620px) { .cards { flex-direction: column; } }
+
+  .card { flex: 1; background: #fff; border: 2px solid #1a1a1a; border-radius: 14px; padding: 22px 20px 24px; display: flex; flex-direction: column; gap: 4px; }
+  .card .num { font-size: 46px; font-weight: 900; color: #e5e5e5; line-height: 1; margin-bottom: 2px; }
+  .card .body-en { font-size: 21px; font-weight: 800; line-height: 1.18; letter-spacing: -0.3px; }
+  .card .body-es { font-size: 16px; font-style: italic; color: #2563eb; line-height: 1.25; margin-top: 1px; }
+  .card .detail-en { font-size: 14.5px; color: #444; line-height: 1.45; margin-top: 10px; }
+  .card .detail-es { font-size: 13px; color: #60a5fa; font-style: italic; line-height: 1.4; margin-top: 3px; }
+
+  .fill { width: 100%; max-width: 1180px; background: #F7F4EE; border: 3px solid #C9932F; border-radius: 16px; padding: 26px 28px; text-align: center; }
+  .fill .kicker-en { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #92400e; }
+  .fill .kicker-es { font-size: 11.5px; font-style: italic; color: #b07a1e; margin-top: 2px; }
+  .fill .line-en { font-size: 34px; font-weight: 800; letter-spacing: -0.6px; line-height: 1.2; margin-top: 12px; }
+  .fill .line-es { font-size: 25px; font-weight: 500; font-style: italic; color: #2563eb; line-height: 1.25; margin-top: 6px; }
+  .fill .blank { border-bottom: 4px solid #C9932F; padding: 0 44px; }
+
+  .byline { font-size: 12px; color: #aaa; }
+
+  /* Language toggle */
+  .lang-toggle { position: fixed; top: 12px; right: 14px; display: flex; gap: 4px; background: #fff; border: 1.5px solid #1a1a1a; border-radius: 20px; padding: 3px 6px; font-size: 12px; font-weight: 600; z-index: 100; }
+  .lang-toggle button { border: none; background: transparent; padding: 3px 8px; border-radius: 14px; cursor: pointer; font-size: 12px; font-weight: 600; color: #666; }
+  .lang-toggle button.active { background: #1a1a1a; color: #fff; }
+
+  /* Mode visibility */
+  body.mode-en .body-es,
+  body.mode-en .detail-es,
+  body.mode-en .h1-es,
+  body.mode-en .sub-es,
+  body.mode-en .kicker-es,
+  body.mode-en .line-es { display: none; }
+
+  body.mode-es .body-en,
+  body.mode-es .detail-en,
+  body.mode-es .sub-en,
+  body.mode-es .kicker-en,
+  body.mode-es .line-en,
+  body.mode-es h1 > .h1-en { display: none; }
+</style>
+</head>
+<body class="mode-both">
+
+<div class="lang-toggle">
+  <button onclick="setMode('en')" id="btn-en">EN</button>
+  <button onclick="setMode('both')" id="btn-both" class="active">EN+ES</button>
+  <button onclick="setMode('es')" id="btn-es">ES</button>
+</div>
+
+<div class="stage">
+
+  <div class="heading">
+    <h1>
+      <span class="h1-en">Your Demo Day statement</span>
+      <span class="h1-es">Tu guion de Demo Day</span>
+    </h1>
+    <div class="sub-en">Four sentences. 90 seconds. Same script you'll use on August 19.</div>
+    <div class="sub-es">Cuatro frases. 90 segundos. El mismo guion que vas a usar el 19 de agosto.</div>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="num">1</div>
+      <div class="body-en">The problem</div>
+      <div class="body-es">El problema</div>
+      <div class="detail-en">The thing that was tedious or broken before you built anything.</div>
+      <div class="detail-es">Eso que era tedioso o que estaba roto antes de que construyeras algo.</div>
+    </div>
+
+    <div class="card">
+      <div class="num">2</div>
+      <div class="body-en">What it does</div>
+      <div class="body-es">Qu&#xE9; hace</div>
+      <div class="detail-en">Your build, in one sentence, in plain language. No jargon.</div>
+      <div class="detail-es">Tu build, en una sola frase, en palabras simples. Sin tecnicismos.</div>
+    </div>
+
+    <div class="card">
+      <div class="num">3</div>
+      <div class="body-en">What I learned</div>
+      <div class="body-es">Qu&#xE9; aprend&#xED;</div>
+      <div class="detail-en">One honest lesson from building it. The part that surprised you counts.</div>
+      <div class="detail-es">Una lecci&#xF3;n honesta de haberlo construido. Lo que te sorprendi&#xF3; tambi&#xE9;n cuenta.</div>
+    </div>
+
+    <div class="card">
+      <div class="num">4</div>
+      <div class="body-en">What's next</div>
+      <div class="body-es">Qu&#xE9; sigue</div>
+      <div class="detail-en">Your next move once the program ends. One step, not a roadmap.</div>
+      <div class="detail-es">Tu siguiente paso cuando termine el programa. Un paso, no una hoja de ruta.</div>
+    </div>
+
+  </div>
+
+  <div class="fill">
+    <div class="kicker-en">Say this one out loud today</div>
+    <div class="kicker-es">Esta la dices hoy en voz alta</div>
+    <div class="line-en">On August 19 I'm going to show <span class="blank">&#xA0;</span></div>
+    <div class="line-es">El 19 de agosto voy a mostrar <span class="blank">&#xA0;</span></div>
+  </div>
+
+  <div class="byline">Alex Salinsky / Humans V Robots</div>
+</div>
+
+<script>
+function setMode(m) {
+  document.body.className = 'mode-' + m;
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + m).classList.add('active');
+}
+</script>
+</body>
+</html>
