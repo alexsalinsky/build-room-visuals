@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tokenomics / Tokenomics &#xB7; Humans V Robots</title>
+<!--
+  Bilingual twin of tokenomics.html. S3 lesson on token efficiency.
+  English primary, Spanish beneath (smaller, italic, slate). Fixed top-right
+  EN | EN+ES | ES toggle, default Both. In ES-only mode the Spanish is promoted
+  to full English sizing and ink color, since Spanish is the Morning Cohort's
+  first language.
+  DO NOT modify tokenomics.html.
+  House rules honored: no em dashes, no black-box panels (the usage-limit figure
+  and the S2 tieback are cream + gold instead), brand palette, no blue.
+  Self-contained: inline CSS and JS, no CDN, works from file://.
+  Non-ASCII characters are written as HTML entities so the file stays ASCII-safe.
+-->
+<style>
+  :root {
+    --paper: #F7F4EE;
+    --card:  #FAF7F2;
+    --line:  #EFEAE0;
+    --edge:  #E3DCD0;
+    --ink:   #1E1E1E;
+    --muted: #6F655A;
+    --rust:  #B94F2A;
+    --gold:  #C9932F;
+    --teal:  #3A7A6A;
+    --slate: #4A5560;
+    --wash:  rgba(201,147,47,0.20);
+    --wash2: rgba(201,147,47,0.10);
+    --body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px 24px 12px; gap: 10px; }
+  .frame-wrap { flex: 1; max-height: 86vh; width: 100%; max-width: 1200px; display: flex; align-items: center; justify-content: center; }
+
+  .scene { display: none; width: 100%; max-width: 1130px; }
+  .scene.active { display: block; }
+
+  /* ---------- HUD + controls ---------- */
+  .hud { display: flex; gap: 22px; align-items: center; font-size: 13px; color: var(--muted); }
+  .hud strong { color: var(--ink); font-size: 15px; }
+  .controls { display: flex; gap: 10px; }
+  button { background: var(--card); color: var(--ink); border: 1.5px solid var(--ink); padding: 6px 15px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; }
+  button:hover { background: var(--ink); color: var(--paper); }
+  button:disabled { opacity: 0.25; cursor: default; }
+  button:disabled:hover { background: var(--card); color: var(--ink); }
+  .hint { position: fixed; bottom: 9px; right: 14px; opacity: 0.5; font-size: 11px; color: var(--muted); }
+  .br-footer { font-size: 11px; color: var(--muted); letter-spacing: 0.4px; }
+
+  /* ---------- Language toggle ---------- */
+  .lang-toggle { position: fixed; top: 12px; right: 14px; display: flex; gap: 4px; background: var(--card); border: 1.5px solid var(--ink); border-radius: 20px; padding: 3px 6px; font-size: 12px; font-weight: 600; z-index: 100; }
+  .lang-toggle button { border: none; background: transparent; padding: 3px 9px; border-radius: 14px; cursor: pointer; font-size: 12px; font-weight: 600; color: var(--muted); }
+  .lang-toggle button:hover { background: var(--wash); color: var(--ink); }
+  .lang-toggle button.active { background: var(--ink); color: var(--paper); }
+
+  /* ---------- Mode visibility ---------- */
+  body.mode-en .es-elem { display: none !important; }
+  body.mode-es .en-elem { display: none !important; }
+
+  /* Spanish base treatment: subordinate in EN+ES, promoted in ES-only */
+  .es-elem { color: var(--slate); font-style: italic; }
+  body.mode-es .es-elem { color: var(--ink); font-style: normal; }
+
+  /* ---------- Shared typography ---------- */
+  .eyebrow { text-transform: uppercase; letter-spacing: 1.8px; font-size: 10.5px; font-weight: 700; color: var(--muted); }
+  .eyebrow-en { margin-bottom: 8px; }
+  .eyebrow.es-elem { font-size: 10px; margin-bottom: 8px; letter-spacing: 1.5px; }
+  body.mode-en .eyebrow-en, body.mode-es .eyebrow.es-elem { margin-bottom: 8px; }
+  body.mode-both .eyebrow-en { margin-bottom: 2px; }
+  body.mode-es .eyebrow.es-elem { font-size: 10.5px; letter-spacing: 1.8px; color: var(--muted); }
+
+  h1.scene-title { font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1.05; }
+  body.mode-both h1.scene-title { margin-bottom: 3px; }
+  body.mode-en h1.scene-title, body.mode-es h1.scene-title { margin-bottom: 10px; }
+  .accent { background: var(--wash); padding: 0 7px; border-radius: 3px; }
+
+  .title-es { display: block; font-size: 25px; font-weight: 600; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 10px; }
+  body.mode-es .title-es { font-size: 38px; font-weight: 800; letter-spacing: -1px; }
+
+  .lead { font-size: 15.5px; color: #3A342E; line-height: 1.5; max-width: 940px; }
+  .lead strong { color: var(--ink); }
+  body.mode-both .lead-en { margin-bottom: 2px; }
+  body.mode-en .lead-en { margin-bottom: 16px; }
+  .lead-es { display: block; font-size: 13px; line-height: 1.45; max-width: 940px; margin-bottom: 16px; }
+  .lead-es strong { color: inherit; }
+  body.mode-es .lead-es { font-size: 15.5px; line-height: 1.5; }
+  body.mode-es .lead-es strong { font-weight: 700; }
+
+  blockquote { border-left: 3px solid var(--gold); padding: 9px 18px; background: var(--wash2); border-radius: 0 8px 8px 0; margin: 12px 0 0; font-size: 15px; color: var(--ink); font-weight: 500; line-height: 1.45; }
+  blockquote strong { background: var(--wash); padding: 0 4px; border-radius: 3px; }
+  .bq-es { display: block; font-size: 12.5px; line-height: 1.42; margin-top: 5px; font-weight: 400; }
+  .bq-es strong { background: none; padding: 0; font-weight: 600; }
+  body.mode-es .bq-es { font-size: 15px; font-weight: 500; margin-top: 0; line-height: 1.45; }
+  body.mode-es .bq-es strong { background: var(--wash); padding: 0 4px; }
+
+  ul.points { list-style: none; margin: 6px 0 4px 4px; }
+  ul.points > li { position: relative; padding-left: 18px; margin-bottom: 7px; font-size: 14.5px; color: #3A342E; line-height: 1.5; }
+  ul.points > li::before { content: ""; position: absolute; left: 2px; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  ul.points > li strong { color: var(--ink); }
+  .li-es { display: block; font-size: 12.3px; line-height: 1.42; margin-top: 2px; }
+  .li-es strong { color: inherit; font-weight: 600; }
+  body.mode-es .li-es { font-size: 14.5px; line-height: 1.5; margin-top: 0; }
+
+  /* ---------- Scene 1: title ---------- */
+  .title-hero { text-align: center; padding: 6px 0; }
+  .title-hero .eyebrow { color: var(--muted); }
+  body.mode-both .title-hero .eyebrow-en { margin-bottom: 2px; }
+  .title-hero h1 { font-size: 96px; font-weight: 900; letter-spacing: -3.5px; margin: 26px 0 16px; line-height: 1; }
+  .title-hero h1 .accent { padding: 0 14px; }
+  .hero-sub { font-size: 25px; font-weight: 600; color: #3A342E; max-width: 760px; margin: 0 auto; line-height: 1.3; }
+  .hero-sub-es { display: block; font-size: 19px; font-weight: 500; max-width: 760px; margin: 4px auto 0; line-height: 1.3; }
+  body.mode-es .hero-sub-es { font-size: 25px; font-weight: 600; }
+  .hero-tag { display: inline-block; margin-top: 20px; font-size: 12.5px; color: var(--muted); border: 1.5px solid var(--edge); border-radius: 20px; padding: 6px 16px; letter-spacing: 0.6px; max-width: 780px; }
+  .hero-tag-es { display: inline-block; margin-top: 7px; font-size: 12px; border: 1.5px solid var(--edge); border-radius: 20px; padding: 6px 16px; letter-spacing: 0.4px; max-width: 780px; }
+  body.mode-es .hero-tag-es { margin-top: 20px; font-size: 12.5px; color: var(--muted); }
+
+  /* ---------- Token demo ---------- */
+  .token-demo { background: var(--card); border: 2px solid var(--edge); border-radius: 12px; padding: 14px 18px; margin: 10px 0; }
+  .demo-string { font-size: 14px; color: var(--ink); font-weight: 600; margin-bottom: 3px; }
+  .demo-label { font-size: 12px; color: var(--muted); letter-spacing: 0.3px; margin-bottom: 8px; }
+  .demo-label.es-elem { font-size: 11.5px; }
+  body.mode-es .demo-label.es-elem { font-size: 12px; color: var(--muted); }
+  .demo-tokens { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
+  .demo-tokens .tok { background: var(--wash); border: 1px solid var(--gold); color: var(--ink); padding: 5px 9px; border-radius: 6px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 14px; font-weight: 600; white-space: pre; }
+  .demo-count { font-size: 13px; color: var(--muted); padding-top: 9px; border-top: 1px dashed var(--edge); }
+  .demo-count strong { color: var(--ink); font-size: 14.5px; }
+  .demo-count .es-elem { display: block; font-size: 11.8px; margin-top: 2px; }
+  .demo-count .es-elem strong { color: inherit; font-size: 12.5px; }
+  body.mode-es .demo-count .es-elem { font-size: 13px; color: var(--muted); }
+  body.mode-es .demo-count .es-elem strong { color: var(--ink); font-size: 14.5px; }
+  .demo-note { font-size: 12px; color: var(--muted); margin-top: 7px; }
+  .demo-note .es-elem { display: block; font-size: 11.4px; margin-top: 2px; }
+  body.mode-es .demo-note .es-elem { font-size: 12px; color: var(--muted); }
+
+  /* ---------- The Wall ---------- */
+  .wall-row { display: grid; grid-template-columns: 1.05fr 1fr; gap: 24px; align-items: center; margin-top: 4px; }
+  .wall-figure { background: #F7F4EE; border: 2.5px solid var(--gold); border-radius: 14px; padding: 20px 22px; color: var(--ink); }
+  .wall-figure .lab { font-size: 10.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--rust); font-weight: 700; }
+  .wall-figure .lab-es { display: block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; }
+  body.mode-es .wall-figure .lab-es { font-size: 10.5px; letter-spacing: 1.8px; color: var(--rust); }
+  .wall-figure h3 { font-size: 21px; margin: 5px 0 2px; }
+  .wall-figure .h3-es { display: block; font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+  body.mode-es .wall-figure .h3-es { font-size: 21px; font-weight: 700; margin-bottom: 10px; }
+  .wall-cap { font-size: 12px; color: var(--muted); }
+  .wall-cap .es-elem { display: block; font-size: 11.3px; }
+  body.mode-es .wall-cap .es-elem { font-size: 12px; color: var(--muted); }
+  .wall-bar { height: 13px; background: var(--line); border: 1px solid var(--edge); border-radius: 7px; overflow: hidden; margin: 6px 0 5px; }
+  .wall-bar .fill { display: block; height: 100%; background: linear-gradient(90deg, var(--gold), var(--rust)); }
+  .wall-msg { background: var(--card); border: 1.5px solid var(--edge); border-radius: 8px; padding: 10px 12px; margin-top: 11px; font-size: 13px; color: #3A342E; line-height: 1.45; }
+  .wall-msg strong { color: var(--rust); }
+  .wall-msg .es-elem { display: block; font-size: 11.8px; margin-top: 4px; line-height: 1.4; }
+  .wall-msg .es-elem strong { color: inherit; font-weight: 600; }
+  body.mode-es .wall-msg .es-elem { font-size: 13px; color: #3A342E; }
+  body.mode-es .wall-msg .es-elem strong { color: var(--rust); font-weight: 700; }
+  .wall-note { font-size: 13.5px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+  .wall-note .es-elem { display: block; font-size: 11.8px; margin-top: 3px; line-height: 1.45; }
+  body.mode-es .wall-note .es-elem { font-size: 13.5px; color: var(--muted); }
+
+  /* ---------- Scale comparison ---------- */
+  .scale-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 8px 0 0; }
+  .scale-card { background: var(--card); border: 2px solid var(--ink); border-radius: 12px; padding: 15px 17px; }
+  .scale-card.personal { border-color: var(--teal); }
+  .scale-card.product  { border-color: var(--rust); }
+  .scale-card .badge { font-size: 10px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; color: var(--muted); }
+  .scale-card .badge-es { display: block; font-size: 9.6px; font-weight: 700; letter-spacing: 1.1px; text-transform: uppercase; margin-bottom: 6px; }
+  body.mode-es .scale-card .badge-es { font-size: 10px; letter-spacing: 1.3px; color: var(--muted); }
+  .scale-card h3 { font-size: 21px; letter-spacing: -0.4px; margin-top: 4px; }
+  .scale-card .h3-es { display: block; font-size: 15px; font-weight: 600; letter-spacing: -0.2px; margin-bottom: 7px; }
+  body.mode-es .scale-card .h3-es { font-size: 21px; font-weight: 700; margin-bottom: 7px; }
+  .scale-card .nums { font-size: 12.6px; color: #3A342E; line-height: 1.6; }
+  .scale-card .nums-es { display: block; font-size: 11.4px; line-height: 1.55; margin-top: 6px; }
+  .scale-card .nums-es strong { color: inherit; font-weight: 600; }
+  body.mode-es .scale-card .nums-es { font-size: 12.6px; line-height: 1.6; }
+  .scale-card .verdict { margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--edge); font-size: 13.5px; font-weight: 700; }
+  .scale-card .verdict-es { display: block; font-size: 12px; font-weight: 600; margin-top: 3px; }
+  body.mode-es .scale-card .verdict-es { font-size: 13.5px; font-weight: 700; }
+  .scale-card.personal .verdict { color: var(--teal); }
+  .scale-card.product  .verdict { color: var(--rust); }
+  body.mode-es .scale-card.personal .verdict-es { color: var(--teal); }
+  body.mode-es .scale-card.product  .verdict-es { color: var(--rust); }
+
+  /* ---------- Ethics chain ---------- */
+  .chain { display: grid; grid-template-columns: 1fr 44px 1fr 44px 1fr; gap: 8px; margin: 16px 0 4px; align-items: center; }
+  .chain .node { background: var(--card); border: 2px solid var(--ink); border-radius: 10px; padding: 13px 12px; text-align: center; font-size: 14px; font-weight: 600; }
+  .chain .node .ic { font-size: 26px; display: block; margin-bottom: 4px; }
+  .chain .node .es-elem { display: block; font-size: 12px; font-weight: 500; margin-top: 3px; }
+  body.mode-es .chain .node .es-elem { font-size: 14px; font-weight: 600; }
+  .chain .arrow { text-align: center; font-size: 22px; color: var(--gold); font-weight: 700; }
+
+  /* ---------- Knob cards ---------- */
+  .knobs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; margin: 10px 0 0; }
+  .knob { background: var(--card); border: 2px solid var(--ink); border-radius: 12px; padding: 15px 16px; }
+  .knob .num { display: inline-block; background: var(--rust); color: var(--paper); font-weight: 800; font-size: 10px; padding: 3px 9px; border-radius: 12px; margin-bottom: 9px; letter-spacing: 1px; }
+  .knob h4 { font-size: 16.5px; line-height: 1.22; }
+  .knob .h4-es { display: block; font-size: 13px; font-weight: 600; line-height: 1.25; margin-top: 3px; margin-bottom: 7px; }
+  body.mode-es .knob .h4-es { font-size: 16.5px; font-weight: 700; margin-bottom: 7px; }
+  .knob h4.en-elem { margin-bottom: 7px; }
+  .knob p { font-size: 13px; color: #3A342E; line-height: 1.5; }
+  .knob .p-es { display: block; font-size: 11.6px; line-height: 1.45; margin-top: 5px; }
+  body.mode-es .knob .p-es { font-size: 13px; line-height: 1.5; }
+
+  /* ---------- Model ladder ---------- */
+  .ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 8px 0 0; }
+  .rung { background: var(--card); border: 1.5px solid var(--ink); border-radius: 10px; padding: 13px 15px; }
+  .rung .label { font-size: 10px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .rung .label-es { display: block; font-size: 9.6px; letter-spacing: 1.4px; text-transform: uppercase; font-weight: 700; margin-bottom: 3px; }
+  body.mode-es .rung .label-es { font-size: 10px; letter-spacing: 1.6px; color: var(--muted); }
+  .rung .size { font-size: 25px; font-weight: 800; letter-spacing: -0.8px; }
+  .rung .size-es { display: block; font-size: 17px; font-weight: 600; letter-spacing: -0.4px; }
+  body.mode-es .rung .size-es { font-size: 25px; font-weight: 800; letter-spacing: -0.8px; }
+  .rung .tasks { font-size: 12.3px; color: #3A342E; margin-top: 7px; line-height: 1.5; }
+  .rung .tasks-es { display: block; font-size: 11.2px; line-height: 1.45; margin-top: 5px; }
+  body.mode-es .rung .tasks-es { font-size: 12.3px; line-height: 1.5; }
+  .rung.s1 .size, body.mode-es .rung.s1 .size-es { color: var(--teal); }
+  .rung.s2 .size, body.mode-es .rung.s2 .size-es { color: var(--gold); }
+  .rung.s3 .size, body.mode-es .rung.s3 .size-es { color: var(--rust); }
+
+  /* ---------- LLM-builds-once swap ---------- */
+  .swap { display: grid; grid-template-columns: 1fr 52px 1fr; gap: 12px; align-items: center; margin: 10px 0 0; }
+  .swap .arrow { text-align: center; font-size: 30px; font-weight: 800; color: var(--gold); }
+  .swap-card { background: var(--card); border: 2px solid var(--ink); border-radius: 10px; padding: 14px 16px; }
+  .swap-card.before { border-color: var(--rust); }
+  .swap-card.after  { border-color: var(--teal); }
+  .swap-card .lab { font-size: 10px; letter-spacing: 1.6px; text-transform: uppercase; font-weight: 700; }
+  .swap-card .lab-es { display: block; font-size: 9.6px; letter-spacing: 1.4px; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+  .swap-card.before .lab { color: var(--rust); }
+  .swap-card.after  .lab { color: var(--teal); }
+  body.mode-es .swap-card.before .lab-es { color: var(--rust); font-size: 10px; letter-spacing: 1.6px; }
+  body.mode-es .swap-card.after  .lab-es { color: var(--teal); font-size: 10px; letter-spacing: 1.6px; }
+  .swap-card h4 { font-size: 16px; line-height: 1.25; }
+  .swap-card .h4-es { display: block; font-size: 12.8px; font-weight: 600; line-height: 1.28; margin-top: 3px; margin-bottom: 7px; }
+  body.mode-es .swap-card .h4-es { font-size: 16px; font-weight: 700; margin-bottom: 7px; }
+  .swap-card h4.en-elem { margin-bottom: 7px; }
+  .swap-card p { font-size: 12.8px; color: #3A342E; line-height: 1.5; }
+  .swap-card .p-es { display: block; font-size: 11.5px; line-height: 1.45; margin-top: 5px; }
+  body.mode-es .swap-card .p-es { font-size: 12.8px; line-height: 1.5; }
+
+  /* ---------- S2 tieback (cream + gold, not a black box) ---------- */
+  .tieback { background: #F7F4EE; border: 2.5px solid var(--gold); border-radius: 12px; padding: 14px 20px; margin: 10px 0 0; }
+  .tieback .lab { color: var(--rust); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; font-weight: 700; }
+  .tieback .lab-es { display: block; font-size: 9.6px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 7px; }
+  body.mode-es .tieback .lab-es { color: var(--rust); font-size: 10px; letter-spacing: 1.8px; }
+  .tieback .lab.en-elem { display: block; margin-bottom: 7px; }
+  .tieback p { font-size: 14px; line-height: 1.5; color: #3A342E; }
+  .tieback p strong { color: var(--ink); }
+  .tieback .p-es { display: block; font-size: 12.2px; line-height: 1.45; margin-top: 5px; }
+  .tieback .p-es strong { color: inherit; font-weight: 600; }
+  body.mode-es .tieback .p-es { font-size: 14px; line-height: 1.5; color: #3A342E; }
+  body.mode-es .tieback .p-es strong { color: var(--ink); font-weight: 700; }
+
+  /* ---------- Private LLM panel ---------- */
+  .private { background: var(--card); border: 2px solid var(--teal); border-radius: 12px; padding: 15px 18px; margin: 10px 0 0; }
+  .private .lab { color: var(--teal); font-size: 10px; letter-spacing: 1.7px; text-transform: uppercase; font-weight: 700; }
+  .private .lab-es { display: block; font-size: 9.6px; letter-spacing: 1.4px; text-transform: uppercase; font-weight: 700; margin-bottom: 5px; }
+  body.mode-es .private .lab-es { color: var(--teal); font-size: 10px; letter-spacing: 1.7px; }
+  .private .lab.en-elem { display: block; margin-bottom: 5px; }
+  .private h3 { font-size: 19px; line-height: 1.2; }
+  .private .h3-es { display: block; font-size: 14.5px; font-weight: 600; line-height: 1.22; margin-top: 2px; margin-bottom: 8px; }
+  body.mode-es .private .h3-es { font-size: 19px; font-weight: 700; margin-bottom: 8px; }
+  .private h3.en-elem { margin-bottom: 8px; }
+  .private p { font-size: 13.2px; color: #3A342E; line-height: 1.5; }
+  .private .p-es { display: block; font-size: 11.8px; line-height: 1.45; margin-top: 4px; margin-bottom: 7px; }
+  body.mode-es .private .p-es { font-size: 13.2px; line-height: 1.5; margin-bottom: 7px; }
+  .private p.en-elem { margin-bottom: 7px; }
+  .private .small { font-size: 12.2px; color: var(--teal); font-weight: 600; margin-top: 8px; }
+  .private .small-es { display: block; font-size: 11.2px; font-weight: 600; margin-top: 3px; }
+  body.mode-es .private .small-es { font-size: 12.2px; color: var(--teal); }
+
+  /* ---------- Close pills ---------- */
+  .close-pills { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 12px; }
+  .close-pills .pill { background: var(--card); border: 1.5px solid var(--ink); border-radius: 20px; padding: 7px 15px; font-size: 12.5px; color: var(--ink); font-weight: 600; text-align: center; }
+  .close-pills .pill .es-elem { display: block; font-size: 11px; font-weight: 500; margin-top: 1px; }
+  body.mode-es .close-pills .pill .es-elem { font-size: 12.5px; font-weight: 600; }
+
+  @media (max-width: 900px) {
+    .wall-row, .scale-grid, .knobs, .ladder, .swap, .chain { grid-template-columns: 1fr; }
+    .swap .arrow { transform: rotate(90deg); }
+    h1.scene-title { font-size: 28px; }
+    .title-hero h1 { font-size: 58px; }
+  }
+</style>
+</head>
+<body class="mode-both">
+
+<div class="lang-toggle">
+  <button onclick="setMode('en')" id="btn-en">EN</button>
+  <button onclick="setMode('both')" id="btn-both" class="active">EN+ES</button>
+  <button onclick="setMode('es')" id="btn-es">ES</button>
+</div>
+
+<div class="stage">
+
+  <div class="frame-wrap" id="frame">
+
+    <!-- ============ SCENE 1: TITLE ============ -->
+    <div class="scene active">
+      <div class="title-hero">
+        <div class="eyebrow eyebrow-en en-elem">Humans V Robots &#xB7; S3 lesson &#xB7; ~8 min</div>
+        <div class="eyebrow es-elem">Humans V Robots &#xB7; lecci&#xF3;n S3 &#xB7; ~8 min</div>
+        <h1><span class="accent">Tokenomics</span></h1>
+        <div class="hero-sub en-elem">Efficiency and ethics are the same thing.</div>
+        <div class="hero-sub-es es-elem">La eficiencia y la &#xE9;tica son la misma cosa.</div>
+        <div class="hero-tag en-elem">A mental model for getting more out of LLMs without burning your limits, your wallet, or the planet.</div>
+        <div class="hero-tag-es es-elem">Un modelo mental para sacarle m&#xE1;s a los LLM sin quemar tus l&#xED;mites, tu bolsillo ni el planeta.</div>
+      </div>
+    </div>
+
+    <!-- ============ SCENE 2: WHAT IS A TOKEN ============ -->
+    <div class="scene">
+      <div class="eyebrow eyebrow-en en-elem">First, the unit</div>
+      <div class="eyebrow es-elem">Primero, la unidad</div>
+      <h1 class="scene-title en-elem">What's a <span class="accent">token?</span></h1>
+      <span class="title-es es-elem">&#xBF;Qu&#xE9; es un <span class="accent">token?</span></span>
+
+      <p class="lead lead-en en-elem">The model doesn't read English. It reads <strong>tokens</strong>: word-pieces, roughly four characters or three-quarters of a word each. Everything you type gets broken into tokens. Everything the model writes back is more tokens.</p>
+      <span class="lead lead-es es-elem">El modelo no lee ingl&#xE9;s ni espa&#xF1;ol. Lee <strong>tokens</strong>: pedazos de palabra, m&#xE1;s o menos cuatro caracteres o tres cuartos de una palabra cada uno. Todo lo que escribes se parte en tokens. Todo lo que el modelo responde son m&#xE1;s tokens.</span>
+
+      <div class="token-demo">
+        <div class="demo-string">"Tokenomics is efficiency"</div>
+        <div class="demo-label en-elem">Broken into tokens:</div>
+        <div class="demo-label es-elem">Partida en tokens:</div>
+        <div class="demo-tokens">
+          <span class="tok">Token</span><span class="tok">omics</span><span class="tok"> is</span><span class="tok"> effi</span><span class="tok">ciency</span>
+        </div>
+        <div class="demo-count">
+          <span class="en-elem"><strong>5 tokens</strong> for 24 characters. Roughly the standard ratio.</span>
+          <span class="es-elem"><strong>5 tokens</strong> para 24 caracteres. M&#xE1;s o menos la proporci&#xF3;n normal.</span>
+        </div>
+        <div class="demo-note">
+          <span class="en-elem">Spanish usually splits into more tokens than English, so the same idea costs a little more.</span>
+          <span class="es-elem">El espa&#xF1;ol suele partirse en m&#xE1;s tokens que el ingl&#xE9;s, as&#xED; que la misma idea cuesta un poco m&#xE1;s.</span>
+        </div>
+      </div>
+
+      <ul class="points">
+        <li>
+          <span class="en-elem"><strong>~4 characters</strong> or <strong>~&#xBE; of a word</strong> per token. Rule of thumb.</span>
+          <span class="li-es es-elem"><strong>~4 caracteres</strong> o <strong>~&#xBE; de una palabra</strong> por token. Regla de bolsillo.</span>
+        </li>
+        <li>
+          <span class="en-elem">Every word in your prompt costs tokens. Every word the model writes costs tokens.</span>
+          <span class="li-es es-elem">Cada palabra de tu prompt cuesta tokens. Cada palabra que el modelo escribe cuesta tokens.</span>
+        </li>
+        <li>
+          <span class="en-elem">The model can only hold a <strong>maximum number of tokens at once.</strong> That ceiling is the <em>context window</em>.</span>
+          <span class="li-es es-elem">El modelo solo puede sostener un <strong>n&#xFA;mero m&#xE1;ximo de tokens a la vez.</strong> Ese techo es el <em>context window</em>.</span>
+        </li>
+      </ul>
+
+      <blockquote>
+        <span class="en-elem">Tokens are the meter. They measure how much work you're asking the system to do, and <strong>they're what runs out when you hit the wall.</strong></span>
+        <span class="bq-es es-elem">Los tokens son el medidor. Miden cu&#xE1;nto trabajo le est&#xE1;s pidiendo al sistema, y <strong>son lo que se acaba cuando te estrellas contra el muro.</strong></span>
+      </blockquote>
+    </div>
+
+    <!-- ============ SCENE 3: THE WALL ============ -->
+    <div class="scene">
+      <div class="eyebrow eyebrow-en en-elem">Why this matters</div>
+      <div class="eyebrow es-elem">Por qu&#xE9; importa</div>
+      <h1 class="scene-title en-elem">The hard ceiling.</h1>
+      <span class="title-es es-elem">El techo duro.</span>
+
+      <p class="lead lead-en en-elem">The first reason to care about tokens isn't money. It's <strong>the wall.</strong> If you're not efficient, you hit the limit and can't develop anymore. Paying more pushes the wall back. It doesn't remove it. <strong>Context keeps growing.</strong></p>
+      <span class="lead lead-es es-elem">La primera raz&#xF3;n para cuidar los tokens no es la plata. Es <strong>el muro.</strong> Si no eres eficiente, llegas al l&#xED;mite y no puedes seguir construyendo. Pagar m&#xE1;s corre el muro m&#xE1;s lejos. No lo quita. <strong>El contexto sigue creciendo.</strong></span>
+
+      <div class="wall-row">
+        <div class="wall-figure">
+          <div class="lab en-elem">Mid-build</div>
+          <div class="lab-es es-elem">A mitad del build</div>
+          <h3 class="en-elem">Usage limit reached</h3>
+          <span class="h3-es es-elem">Llegaste al l&#xED;mite de uso</span>
+          <div class="wall-cap">
+            <span class="en-elem">Allowance for this window</span>
+            <span class="es-elem">Cupo de esta ventana</span>
+          </div>
+          <div class="wall-bar"><span class="fill" style="width:100%"></span></div>
+          <div class="wall-cap">
+            <span class="en-elem">100% used. Resets later today.</span>
+            <span class="es-elem">100% usado. Se reinicia m&#xE1;s tarde hoy.</span>
+          </div>
+          <div class="wall-msg">
+            <span class="en-elem"><strong>You've hit your limit.</strong> Continue with a smaller model or wait for reset. Upgrade for more.</span>
+            <span class="es-elem"><strong>Llegaste a tu l&#xED;mite.</strong> Sigue con un modelo m&#xE1;s peque&#xF1;o o espera el reinicio. Sube de plan para tener m&#xE1;s.</span>
+          </div>
+        </div>
+        <div>
+          <p class="lead en-elem" style="margin:0;">The wall always exists. <strong>The number on it isn't the point. Efficiency is.</strong></p>
+          <span class="lead es-elem" style="display:block; font-size:13px; line-height:1.45;">El muro siempre existe. <strong>El n&#xFA;mero que tenga no es el punto. La eficiencia s&#xED;.</strong></span>
+          <div class="wall-note">
+            <span class="en-elem">Every message re-reads the full thread from scratch. A big thread costs that many tokens <em>before you type a word</em>. That's how you hit the wall sooner than you expected.</span>
+            <span class="es-elem">Cada mensaje vuelve a leer el hilo completo desde cero. Un hilo grande cuesta todos esos tokens <em>antes de que escribas una palabra</em>. As&#xED; es como llegas al muro antes de lo que esperabas.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ SCENE 4: PERSONAL vs PRODUCT SCALE ============ -->
+    <div class="scene">
+      <div class="eyebrow eyebrow-en en-elem">Why tighten up from day one</div>
+      <div class="eyebrow es-elem">Por qu&#xE9; apretar desde el d&#xED;a uno</div>
+      <h1 class="scene-title en-elem">It looks like nothing. <span class="accent">Until it doesn't.</span></h1>
+      <span class="title-es es-elem">Parece nada. <span class="accent">Hasta que deja de serlo.</span></span>
+
+      <p class="lead lead-en en-elem">At personal scale, an inefficient run feels like a rounding error. <strong>The moment N grows, the same inefficiency turns into the cost of the business.</strong> Build the habit now, while the stakes are low.</p>
+      <span class="lead lead-es es-elem">A escala personal, una corrida ineficiente se siente como un error de redondeo. <strong>En el momento en que N crece, esa misma ineficiencia se convierte en el costo del negocio.</strong> Construye el h&#xE1;bito ahora, mientras lo que est&#xE1; en juego es poco.</span>
+
+      <div class="scale-grid">
+        <div class="scale-card personal">
+          <div class="badge en-elem">Today &#xB7; personal scale</div>
+          <div class="badge-es es-elem">Hoy &#xB7; escala personal</div>
+          <h3 class="en-elem">You. Ten runs a month.</h3>
+          <span class="h3-es es-elem">T&#xFA;. Diez corridas al mes.</span>
+          <div class="nums en-elem">Say a run costs <strong>~30&#xA2; today.</strong><br>30&#xA2; &#xD7; 10 = <strong>$3/month</strong><br>Lunch money. Feels invisible. Easy to ignore. This is when most people decide tokenomics doesn't matter.</div>
+          <span class="nums-es es-elem">Digamos que una corrida cuesta <strong>~30&#xA2; hoy.</strong><br>30&#xA2; &#xD7; 10 = <strong>$3 al mes</strong><br>Plata de almuerzo. Se siente invisible. F&#xE1;cil de ignorar. Aqu&#xED; es cuando la mayor&#xED;a decide que la tokenomics no importa.</span>
+          <div class="verdict">
+            <span class="en-elem">But it's the cheapest moment to learn it.</span>
+            <span class="verdict-es es-elem">Pero es el momento m&#xE1;s barato para aprenderla.</span>
+          </div>
+        </div>
+        <div class="scale-card product">
+          <div class="badge en-elem">Soon &#xB7; publisher scale</div>
+          <div class="badge-es es-elem">Pronto &#xB7; escala de publicaci&#xF3;n</div>
+          <h3 class="en-elem">1,000 users. Daily.</h3>
+          <span class="h3-es es-elem">1.000 usuarios. Todos los d&#xED;as.</span>
+          <div class="nums en-elem">Same 30&#xA2; run &#xD7; 30,000 runs/month = <strong>$9,000/month</strong><br>10&#xD7; cheaper version (same output): <strong>$900/month</strong><br>Same code. Same logic. Different N. Plus the slowdown: bloated context = slower responses for everyone.</div>
+          <span class="nums-es es-elem">La misma corrida de 30&#xA2; &#xD7; 30.000 corridas al mes = <strong>$9.000 al mes</strong><br>Versi&#xF3;n 10&#xD7; m&#xE1;s barata (mismo resultado): <strong>$900 al mes</strong><br>Mismo c&#xF3;digo. Misma l&#xF3;gica. Distinta N. Y encima la lentitud: contexto inflado = respuestas m&#xE1;s lentas para todos.</span>
+          <div class="verdict">
+            <span class="en-elem">The habits you formed at small scale decide which version this is.</span>
+            <span class="verdict-es es-elem">Los h&#xE1;bitos que formaste en peque&#xF1;o deciden cu&#xE1;l de las dos versiones es esta.</span>
+          </div>
+        </div>
+      </div>
+
+      <blockquote>
+        <span class="en-elem">The numbers will age. The shape won't. <strong>Small &#xD7; small looks like nothing. Small &#xD7; big is the difference between a business and a burn rate.</strong></span>
+        <span class="bq-es es-elem">Los n&#xFA;meros van a envejecer. La forma no. <strong>Peque&#xF1;o &#xD7; peque&#xF1;o parece nada. Peque&#xF1;o &#xD7; grande es la diferencia entre un negocio y una quemadera de plata.</strong></span>
+      </blockquote>
+    </div>
+
+    <!-- ============ SCENE 5: ETHICS IS EFFICIENCY ============ -->
+    <div class="scene">
+      <div class="eyebrow eyebrow-en en-elem">The reframe</div>
+      <div class="eyebrow es-elem">El giro</div>
+      <h1 class="scene-title en-elem">Ethics IS efficiency.</h1>
+      <span class="title-es es-elem">La &#xE9;tica ES eficiencia.</span>
+
+      <p class="lead lead-en en-elem">Every token isn't free. Tokens are compute, compute is power, power is heat. Heat means cooling. Cooling means water. <strong>Wasted tokens have a real-world footprint.</strong></p>
+      <span class="lead lead-es es-elem">Ning&#xFA;n token es gratis. Los tokens son c&#xF3;mputo, el c&#xF3;mputo es energ&#xED;a, la energ&#xED;a es calor. Calor significa enfriar. Enfriar significa agua. <strong>Los tokens desperdiciados dejan una huella real.</strong></span>
+
+      <div class="chain">
+        <div class="node">
+          <span class="ic">&#x1F524;</span>
+          <span class="en-elem">Wasted tokens</span>
+          <span class="es-elem">Tokens desperdiciados</span>
+        </div>
+        <div class="arrow">&#x2192;</div>
+        <div class="node">
+          <span class="ic">&#x26A1;</span>
+          <span class="en-elem">Wasted compute</span>
+          <span class="es-elem">C&#xF3;mputo desperdiciado</span>
+        </div>
+        <div class="arrow">&#x2192;</div>
+        <div class="node">
+          <span class="ic">&#x1F4A7;</span>
+          <span class="en-elem">Wasted water + power</span>
+          <span class="es-elem">Agua y energ&#xED;a desperdiciadas</span>
+        </div>
+      </div>
+
+      <blockquote>
+        <span class="en-elem">This is the Humans V Robots ethics frame. <strong>Don't burn what you don't have to.</strong> It's the same discipline whether you call it efficiency, ethics, or good engineering.</span>
+        <span class="bq-es es-elem">Este es el marco &#xE9;tico de Humans V Robots. <strong>No quemes lo que no tienes que quemar.</strong> Es la misma disciplina, la llames eficiencia, &#xE9;tica o buena ingenier&#xED;a.</span>
+      </blockquote>
+    </div>
+
+    <!-- ============ SCENE 6: THREE KNOBS ============ -->
+    <div class="scene">
+      <div class="eyebrow eyebrow-en en-elem">Zooming out: from tokens to efficiency in general</div>
+      <div class="eyebrow es-elem">Ampliando: de los tokens a la eficiencia en general</div>
+      <h1 class="scene-title en-elem">Three knobs you can turn.</h1>
+      <span class="title-es es-elem">Tres perillas que puedes girar.</span>
+
+      <p class="lead lead-en en-elem">Tokens are the meter. But the meter measures something deeper: <strong>how much work you're asking the system to do.</strong> These three dials let you do more work with fewer tokens, and <strong>the same dials extrapolate to building efficient systems in general</strong>, not only AI-shaped ones.</p>
+      <span class="lead lead-es es-elem">Los tokens son el medidor. Pero el medidor mide algo m&#xE1;s de fondo: <strong>cu&#xE1;nto trabajo le est&#xE1;s pidiendo al sistema.</strong> Estas tres perillas te dejan hacer m&#xE1;s trabajo con menos tokens, y <strong>las mismas perillas sirven para construir sistemas eficientes en general</strong>, no solo los que tienen forma de IA.</span>
+
+      <div class="knobs">
+        <div class="knob">
+          <span class="num en-elem">KNOB 1</span>
+          <span class="num es-elem">PERILLA 1</span>
+          <h4 class="en-elem">Right model for the job</h4>
+          <span class="h4-es es-elem">El modelo correcto para el trabajo</span>
+          <p class="en-elem">Match the model size to the task. Small task, small model. Don't reach for the biggest hammer to drive a tack.</p>
+          <span class="p-es es-elem">Ajusta el tama&#xF1;o del modelo a la tarea. Tarea peque&#xF1;a, modelo peque&#xF1;o. No agarres el martillo m&#xE1;s grande para clavar una tachuela.</span>
+        </div>
+        <div class="knob">
+          <span class="num en-elem">KNOB 2</span>
+          <span class="num es-elem">PERILLA 2</span>
+          <h4 class="en-elem">From "LLM-built" to "LLM-builds-once"</h4>
+          <span class="h4-es es-elem">De "LLM-built" a "LLM-builds-once": que el LLM lo construya una sola vez</span>
+          <p class="en-elem">The biggest win. Use the LLM to figure out the logic. Then have the LLM write code that runs <em>without</em> calling an LLM next time.</p>
+          <span class="p-es es-elem">La ganancia m&#xE1;s grande. Usa el LLM para descubrir la l&#xF3;gica. Despu&#xE9;s p&#xED;dele que escriba c&#xF3;digo que corra <em>sin</em> llamar a un LLM la pr&#xF3;xima vez.</span>
+        </div>
+        <div class="knob">
+          <span class="num en-elem">KNOB 3</span>
+          <span class="num es-elem">PERILLA 3</span>
+          <h4 class="en-elem">Manage threads + context</h4>
+          <span class="h4-es es-elem">Maneja los hilos y el contexto</span>
+          <p class="en-elem">Don't ship the whole world into context every run. Chunk it. Burn threads when they bloat. Brief replaces archive.</p>
+          <span class="p-es es-elem">No metas el mundo entero al contexto en cada corrida. P&#xE1;rtelo. Quema los hilos cuando se inflen. El brief reemplaza al archivo.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ SCENE 7: KNOB 1, RIGHT MODEL ============ -->
+    <div class="scene">
+      <div class="eyebrow eyebrow-en en-elem">Knob 1</div>
+      <div class="eyebrow es-elem">Perilla 1</div>
+      <h1 class="scene-title en-elem">Match the model to the job.</h1>
+      <span class="title-es es-elem">Ajusta el modelo al trabajo.</span>
+
+      <p class="lead lead-en en-elem">Every model provider sells a ladder: light / mid / heavy. The brand names rotate. The ladder doesn't. <strong>Pick the smallest rung that gets the job done.</strong></p>
+      <span class="lead lead-es es-elem">Todo proveedor de modelos vende una escalera: liviano / medio / pesado. Los nombres de marca cambian. La escalera no. <strong>Escoge el escal&#xF3;n m&#xE1;s peque&#xF1;o que haga el trabajo.</strong></span>
+
+      <div class="ladder">
+        <div class="rung s1">
+          <div class="label en-elem">Light &#xB7; fast &#xB7; cheap</div>
+          <div class="label-es es-elem">Liviano &#xB7; r&#xE1;pido &#xB7; barato</div>
+          <div class="size en-elem">Sorter</div>
+          <span class="size-es es-elem">Clasificador</span>
+          <div class="tasks en-elem">"Is this A or B?" Classifying, tagging, extracting fields, routing, simple Q&amp;A. Verb-shaped jobs an intern could do.</div>
+          <span class="tasks-es es-elem">&#xAB;&#xBF;Esto es A o B?&#xBB; Clasificar, etiquetar, extraer campos, enrutar, preguntas simples. Trabajos que har&#xED;a un practicante.</span>
+        </div>
+        <div class="rung s2">
+          <div class="label en-elem">Balanced &#xB7; default</div>
+          <div class="label-es es-elem">Balanceado &#xB7; por defecto</div>
+          <div class="size en-elem">Worker</div>
+          <span class="size-es es-elem">Trabajador</span>
+          <div class="tasks en-elem">Writing, summarizing, code edits, planning. The middle of the road. Default here unless something needs less or more.</div>
+          <span class="tasks-es es-elem">Escribir, resumir, editar c&#xF3;digo, planear. El punto medio. Qu&#xE9;date aqu&#xED; por defecto, a menos que algo necesite menos o m&#xE1;s.</span>
+        </div>
+        <div class="rung s3">
+          <div class="label en-elem">Heavy &#xB7; slow &#xB7; expensive</div>
+          <div class="label-es es-elem">Pesado &#xB7; lento &#xB7; caro</div>
+          <div class="size en-elem">Reasoner</div>
+          <span class="size-es es-elem">Razonador</span>
+          <div class="tasks en-elem">Hard architecture, multi-step agent work, things that genuinely fail on the smaller rungs. Reach up only when needed.</div>
+          <span class="tasks-es es-elem">Arquitectura dif&#xED;cil, trabajo de agentes con varios pasos, cosas que s&#xED; fallan en los escalones de abajo. Sube solo cuando haga falta.</span>
+        </div>
+      </div>
+
+      <blockquote>
+        <span class="en-elem">The rule: <strong>default to the middle rung. Drop down for repetitive jobs. Reach up only when the smaller rung fails.</strong> "Biggest model on everything" is the most expensive bad habit in AI.</span>
+        <span class="bq-es es-elem">La regla: <strong>qu&#xE9;date por defecto en el escal&#xF3;n del medio. Baja para trabajos repetitivos. Sube solo cuando el escal&#xF3;n peque&#xF1;o falle.</strong> &#xAB;El modelo m&#xE1;s grande para todo&#xBB; es el mal h&#xE1;bito m&#xE1;s caro de la IA.</span>
+      </blockquote>
+    </div>
+
+    <!-- ============ SCENE 8: KNOB 2, LLM BUILDS ONCE ============ -->
+    <div class="scene">
+      <div class="eyebrow eyebrow-en en-elem">Knob 2 &#xB7; The biggest knob</div>
+      <div class="eyebrow es-elem">Perilla 2 &#xB7; La perilla m&#xE1;s grande</div>
+      <h1 class="scene-title en-elem">Let the LLM write the loop. <span class="accent">Then exit the loop.</span></h1>
+      <span class="title-es es-elem">Deja que el LLM escriba el bucle. <span class="accent">Despu&#xE9;s sal del bucle.</span></span>
+
+      <p class="lead lead-en en-elem">Most builds don't need an LLM in the loop forever. The LLM is the <strong>architect.</strong> Once you understand how something works, it becomes plain code that runs without paying for tokens at all.</p>
+      <span class="lead lead-es es-elem">La mayor&#xED;a de los builds no necesita un LLM en el bucle para siempre. El LLM es el <strong>arquitecto.</strong> Cuando ya entiendes c&#xF3;mo funciona algo, se convierte en c&#xF3;digo normal que corre sin pagar un solo token.</span>
+
+      <div class="swap">
+        <div class="swap-card before">
+          <div class="lab en-elem">Phase 1 &#xB7; build it WITH the LLM</div>
+          <div class="lab-es es-elem">Fase 1 &#xB7; constr&#xFA;yelo CON el LLM</div>
+          <h4 class="en-elem">LLM is in the loop on every run</h4>
+          <span class="h4-es es-elem">El LLM est&#xE1; en el bucle en cada corrida</span>
+          <p class="en-elem">You're figuring it out. The LLM helps you think, drafts the logic, tries options. Every run costs tokens. That's fine. You're learning the shape.</p>
+          <span class="p-es es-elem">Todav&#xED;a lo est&#xE1;s descubriendo. El LLM te ayuda a pensar, arma la l&#xF3;gica, prueba opciones. Cada corrida cuesta tokens. Est&#xE1; bien. Est&#xE1;s aprendiendo la forma.</span>
+        </div>
+        <div class="arrow">&#x2192;</div>
+        <div class="swap-card after">
+          <div class="lab en-elem">Phase 2 &#xB7; ship it WITHOUT the LLM</div>
+          <div class="lab-es es-elem">Fase 2 &#xB7; l&#xE1;nzalo SIN el LLM</div>
+          <h4 class="en-elem">LLM wrote a script that runs deterministic</h4>
+          <span class="h4-es es-elem">El LLM escribi&#xF3; un script que corre determinista</span>
+          <p class="en-elem">The logic is locked. The LLM wrote you a function, a cron job, a script. It runs by itself. Zero tokens. Instant. Free.</p>
+          <span class="p-es es-elem">La l&#xF3;gica qued&#xF3; fija. El LLM te escribi&#xF3; una funci&#xF3;n, un cron, un script. Corre solo. Cero tokens. Instant&#xE1;neo. Gratis.</span>
+        </div>
+      </div>
+
+      <blockquote>
+        <span class="en-elem">Humans V Robots rule: <strong>if a task is repeating, the LLM's job is to write the thing that does the task, not to keep doing the task.</strong></span>
+        <span class="bq-es es-elem">Regla de Humans V Robots: <strong>si una tarea se repite, el trabajo del LLM es escribir la cosa que hace la tarea, no seguir haciendo la tarea.</strong></span>
+      </blockquote>
+    </div>
+
+    <!-- ============ SCENE 9: KNOB 3, THREADS + CONTEXT ============ -->
+    <div class="scene">
+      <div class="eyebrow eyebrow-en en-elem">Knob 3</div>
+      <div class="eyebrow es-elem">Perilla 3</div>
+      <h1 class="scene-title en-elem">Don't ship the world. <span class="accent">Ship the brief.</span></h1>
+      <span class="title-es es-elem">No mandes el mundo. <span class="accent">Manda el brief.</span></span>
+
+      <p class="lead lead-en en-elem">Every message in an LLM thread re-reads the entire thread. A bloated thread is wasted tokens on every exchange. <strong>Briefs and project files solve this.</strong></p>
+      <span class="lead lead-es es-elem">Cada mensaje en un hilo de LLM vuelve a leer el hilo entero. Un hilo inflado son tokens desperdiciados en cada intercambio. <strong>Los briefs y los archivos de proyecto resuelven eso.</strong></span>
+
+      <ul class="points">
+        <li>
+          <span class="en-elem"><strong>Burn threads when they bloat.</strong> Start fresh. Paste a one-page brief instead of scrolling back.</span>
+          <span class="li-es es-elem"><strong>Quema los hilos cuando se inflen.</strong> Empieza de nuevo. Pega un brief de una p&#xE1;gina en vez de devolverte a buscar.</span>
+        </li>
+        <li>
+          <span class="en-elem"><strong>Project briefs over full repos.</strong> Point the LLM at a brief file, not every source file. Same knowledge, fraction of the tokens.</span>
+          <span class="li-es es-elem"><strong>Briefs de proyecto en vez de repos completos.</strong> Apunta el LLM a un archivo de brief, no a cada archivo de c&#xF3;digo. El mismo conocimiento, una fracci&#xF3;n de los tokens.</span>
+        </li>
+        <li>
+          <span class="en-elem"><strong>Machine-first formats.</strong> Markdown over rich text. APIs over screenshots. Every UI an LLM has to navigate is tokens spent on overhead, not work.</span>
+          <span class="li-es es-elem"><strong>Formatos pensados para la m&#xE1;quina.</strong> Markdown antes que texto con formato. APIs antes que pantallazos. Cada interfaz que un LLM tiene que navegar son tokens gastados en tr&#xE1;mite, no en trabajo.</span>
+        </li>
+      </ul>
+
+      <div class="tieback">
+        <div class="lab en-elem">Already covered in S2</div>
+        <div class="lab-es es-elem">Ya lo vimos en la S2</div>
+        <p class="en-elem"><strong>This is "threads burn, files remain"</strong> read at the cost level. The discipline you learned in S2 isn't only about not losing context. It's also <strong>the cheapest single thing you can do</strong> to keep your tokens going to work, not overhead.</p>
+        <span class="p-es es-elem"><strong>Esto es "los hilos se queman, los archivos quedan"</strong> le&#xED;do desde el costo. La disciplina que aprendiste en la S2 no es solo para no perder contexto. Tambi&#xE9;n es <strong>lo m&#xE1;s barato que puedes hacer</strong> para que tus tokens se vayan en trabajo y no en tr&#xE1;mite.</span>
+      </div>
+    </div>
+
+    <!-- ============ SCENE 10: PRIVATE LLM ============ -->
+    <div class="scene">
+      <div class="eyebrow eyebrow-en en-elem">A separate concern</div>
+      <div class="eyebrow es-elem">Un asunto aparte</div>
+      <h1 class="scene-title en-elem">When the data shouldn't leave.</h1>
+      <span class="title-es es-elem">Cuando los datos no deben salir.</span>
+
+      <p class="lead lead-en en-elem">Efficiency-as-ethics is about waste. There's a different ethical question that lives next to it: <strong>some data shouldn't go through a public model at all.</strong></p>
+      <span class="lead lead-es es-elem">La eficiencia como &#xE9;tica se trata del desperdicio. Al lado vive otra pregunta &#xE9;tica distinta: <strong>hay datos que no deber&#xED;an pasar por un modelo p&#xFA;blico.</strong></span>
+
+      <div class="private">
+        <div class="lab en-elem">When you reach for a private LLM</div>
+        <div class="lab-es es-elem">Cu&#xE1;ndo recurres a un LLM privado</div>
+        <h3 class="en-elem">Sensitive data, regulated industries, client confidentiality</h3>
+        <span class="h3-es es-elem">Datos sensibles, industrias reguladas, confidencialidad del cliente</span>
+        <p class="en-elem">Health records. Legal discovery. Financial documents you're not the owner of. Proprietary code under NDA. Anything where the question "did the data owner agree to this being read by a public LLM?" is "no" or "I don't know."</p>
+        <span class="p-es es-elem">Historias cl&#xED;nicas. Pruebas de un caso legal. Documentos financieros de los que no eres due&#xF1;o. C&#xF3;digo propietario bajo NDA. Todo aquello donde la pregunta &#xAB;&#xBF;el due&#xF1;o de los datos acept&#xF3; que un LLM p&#xFA;blico los leyera?&#xBB; se responde &#xAB;no&#xBB; o &#xAB;no s&#xE9;&#xBB;.</span>
+        <p class="en-elem">Options: self-hosted models (Llama / Mistral on your own server), enterprise LLM contracts with no-training guarantees, on-prem deployments. Slower, more setup, sometimes less capable. But the data stays where it belongs.</p>
+        <span class="p-es es-elem">Opciones: modelos alojados por ti (Llama o Mistral en tu propio servidor), contratos empresariales de LLM con garant&#xED;a de no entrenamiento, despliegues on-prem. M&#xE1;s lentos, m&#xE1;s configuraci&#xF3;n, a veces menos capaces. Pero los datos se quedan donde deben.</span>
+        <div class="small">
+          <span class="en-elem">Sometimes the right answer is "use no LLM at all for this part." That's also valid.</span>
+          <span class="small-es es-elem">A veces la respuesta correcta es &#xAB;para esta parte, ning&#xFA;n LLM&#xBB;. Tambi&#xE9;n vale.</span>
+        </div>
+      </div>
+
+      <blockquote>
+        <span class="en-elem">This is one slide because for most Humans V Robots projects, it doesn't apply. <strong>But when it applies, it's the whole game.</strong></span>
+        <span class="bq-es es-elem">Esto es una sola diapositiva porque para la mayor&#xED;a de proyectos de Humans V Robots no aplica. <strong>Pero cuando aplica, es todo el juego.</strong></span>
+      </blockquote>
+    </div>
+
+    <!-- ============ SCENE 11: CLOSE ============ -->
+    <div class="scene">
+      <div class="eyebrow eyebrow-en en-elem">The mindset shift</div>
+      <div class="eyebrow es-elem">El cambio de mentalidad</div>
+      <h1 class="scene-title en-elem">At publisher tier, <span class="accent">every token has a cost.</span></h1>
+      <span class="title-es es-elem">En escala de publicaci&#xF3;n, <span class="accent">cada token tiene un costo.</span></span>
+
+      <p class="lead lead-en en-elem">Personal scale: build it however. <strong>Publisher scale:</strong> every token is money, time, electricity, water. Tokenomics isn't optimization theater. <strong>It's the discipline of not wasting what you don't have to.</strong></p>
+      <span class="lead lead-es es-elem">Escala personal: constr&#xFA;yelo como sea. <strong>Escala de publicaci&#xF3;n:</strong> cada token es plata, tiempo, electricidad, agua. La tokenomics no es teatro de optimizaci&#xF3;n. <strong>Es la disciplina de no desperdiciar lo que no tienes que desperdiciar.</strong></span>
+
+      <div class="close-pills">
+        <div class="pill">
+          <span class="en-elem">Hard ceiling exists</span>
+          <span class="es-elem">El techo duro existe</span>
+        </div>
+        <div class="pill">
+          <span class="en-elem">Ethics = environmental cost</span>
+          <span class="es-elem">&#xC9;tica = costo ambiental</span>
+        </div>
+        <div class="pill">
+          <span class="en-elem">Right model for the job</span>
+          <span class="es-elem">El modelo correcto para el trabajo</span>
+        </div>
+        <div class="pill">
+          <span class="en-elem">LLM-builds-once</span>
+          <span class="es-elem">El LLM lo construye una vez</span>
+        </div>
+        <div class="pill">
+          <span class="en-elem">Burn threads &#xB7; ship briefs</span>
+          <span class="es-elem">Quema hilos &#xB7; manda briefs</span>
+        </div>
+        <div class="pill">
+          <span class="en-elem">Private LLM when needed</span>
+          <span class="es-elem">LLM privado cuando toca</span>
+        </div>
+      </div>
+
+      <blockquote style="margin-top:16px; font-size:18px;">
+        <span class="en-elem">Build for the next user, not the thousandth. <strong>But know which dials exist.</strong></span>
+        <span class="bq-es es-elem" style="font-size:14.5px;">Construye para el siguiente usuario, no para el n&#xFA;mero mil. <strong>Pero ten claro cu&#xE1;les perillas existen.</strong></span>
+      </blockquote>
+    </div>
+
+  </div>
+
+  <div class="hud">
+    <div class="controls">
+      <button id="prev">&#x2190; Prev</button>
+      <button id="next">Next &#x2192;</button>
+    </div>
+    <div><strong id="counter">1</strong> / <span id="total">1</span></div>
+    <div class="br-footer">Alex Salinsky / Humans V Robots</div>
+  </div>
+
+</div>
+
+<div class="hint">&#x2190; &#x2192; arrow keys also work</div>
+
+<script>
+const scenes = document.querySelectorAll('.scene');
+const counter = document.getElementById('counter');
+const total = document.getElementById('total');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
+let i = 0;
+
+total.textContent = scenes.length;
+
+function render() {
+  scenes.forEach((s, idx) => s.classList.toggle('active', idx === i));
+  counter.textContent = i + 1;
+  prev.disabled = i === 0;
+  next.disabled = i === scenes.length - 1;
+}
+
+function setMode(m) {
+  document.body.className = 'mode-' + m;
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + m).classList.add('active');
+}
+
+prev.onclick = () => { if (i > 0) { i--; render(); } };
+next.onclick = () => { if (i < scenes.length - 1) { i++; render(); } };
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); next.click(); }
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp') { e.preventDefault(); prev.click(); }
+});
+
+// Basic touch swipe
+let touchStartX = null;
+document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+document.addEventListener('touchend', (e) => {
+  if (touchStartX === null) return;
+  const dx = e.changedTouches[0].screenX - touchStartX;
+  if (Math.abs(dx) > 40) { if (dx < 0) next.click(); else prev.click(); }
+  touchStartX = null;
+}, { passive: true });
+
+render();
+</script>
+</body>
+</html>

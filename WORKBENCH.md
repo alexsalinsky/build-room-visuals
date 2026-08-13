@@ -1,5 +1,23 @@
 # build-room-visuals workbench
 
+## 2026-08-12 -- [Tool: Claude Code, worker tokenomics-bi] (Tokenomics: bilingual twin of the S3 token-efficiency lesson)
+
+**Focus:** `tokenomics-bi.html`, an 11-slide EN + ES version of `tokenomics.html`, needed same night for a live cohort session. Source file untouched.
+
+**What happened:**
+- Cloned all 11 scenes with the standard `-bi` convention: fixed EN / EN+ES / ES toggle top right, `en-elem` and `es-elem` pairs, default `mode-both`. Spanish sits under its English counterpart, smaller and italic; in ES-only mode it takes the English sizes and ink color.
+- Adding a Spanish line under every English line roughly doubles the vertical budget, so type sizes and card padding were recomputed rather than scaled down. Densest screens are 2 (token demo), 4 (personal vs publisher scale) and 10 (private LLM).
+
+**[DECISION] The tokenization demo keeps the English string "Tokenomics is efficiency" in both languages, with the Spanish explaining what's being shown.** The 5-token, 24-character split only holds for that exact English string. Building a parallel Spanish string would have meant inventing a token count without running a tokenizer. Added one line, in both languages, saying Spanish usually splits into more tokens than English, so the same idea costs a little more. Alex should sanity-check whether he wants that line on stage.
+
+**[DECISION] Used the HvR brand palette with slate `#4A5560` italic for Spanish, not the older deck blue.** The source deck's blues (`#1e4480`, `#f5f9ff`) aren't in the palette, so they became teal and rust. The two black panels, the usage-limit figure and the S2 tieback, are now cream with a gold border per the no-black-box rule. The purple private-LLM panel became teal.
+
+**[DECISION] Front-facing "Build Room" references now read "Humans V Robots"** on the eyebrow, the ethics frame line, the LLM-builds-once rule and the private-LLM slide, per the brand rule. Filename keeps the `-bi` convention.
+
+**Verified:** headless Chromium at 1600x950, 11 slides in all three modes, 33 renders. Zero overflow, zero console errors. Zero em dashes, pure ASCII (entities for accents), 55.3 KB, no CDN.
+
+**Left uncommitted** per instruction, since this repo publishes to public GitHub Pages.
+
 ## 2026-08-12 -- [Tool: Claude Code, worker dream-to-phases-visual] (From Dream to Phases: bilingual teaching deck)
 
 **Focus:** `dream-to-phases-bi.html`, a 15-slide bilingual deck that teaches how to cut a big vision into phases, then walks one real cohort project (Diana Sof&iacute;a's digital passport for a garment) down all six of them. Built because builders keep getting discouraged when they don't have the finished product yet.
