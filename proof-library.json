@@ -5431,6 +5431,461 @@
       ],
       "notes": "From the 2026-07-27 call, backfilled 08-10. This argument reversed the client's email drift in real time at [00:14:37]. Full excerpt already saved to book/role-performance-guide/sources/transcripts/why-rpg-conversations-live-vlad-2026-07-27.md and registered in the book source inventory.",
       "consent_note": "Alex's own words in a client call. The line is his to use; the client context around it is not. Strip identifying client detail before publishing."
+    },
+    {
+      "id": "hvr2-s3-diana-sofia-passport-published",
+      "type": "win",
+      "cohort": "hvr2",
+      "title": "Learned the publishing method at 9:20am, had a live URL by 10:55am",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-am-wins-post-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Y esto ya está por fuera de Codex a través de Cloudfair. Entonces, ese fue el avance. El día de hoy, paso uno completado. Me siento más clara respecto a los pasos a seguir.",
+      "attribution": "Diana Sofía (Humans V Robots 2, Morning Cohort)",
+      "timestamp": "01:55:06",
+      "tags": [
+        "deploy",
+        "ship",
+        "live-demo",
+        "breakthrough",
+        "scope-lock"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-13",
+      "date_cleared": null,
+      "notes": "Digital garment passport page live at https://maktub-pasaporte-digital.maktub-dpp.workers.dev/ (verified HTTP 200, 2026-08-13). She posted the URL to Zoom chat at 10:55am, five minutes before share-back. Fastest lesson-to-public-artifact turnaround recorded in any cohort so far. TODO: cut clip from https://fathom.video/share/uCFMuW7PTkX1m1wiMuLdEWy9Ufx5eJxo. Note Fathom speaker labels are offset by one in this window; her share is filed under Alex's label."
+    },
+    {
+      "id": "hvr2-s3-ivan-skill-half-day-to-minutes",
+      "type": "win",
+      "cohort": "hvr2",
+      "title": "Half a day of document review per client, down to minutes",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-am-wins-post-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Puedo tardar 45 minutos revisando todo un documento... una sola persona tiene dos documentos diferentes. Prácticamente me puede estar demorando y además digitando los diagnósticos y elaborando todo lo que yo tengo que hacer, yo creo que medio día. Entonces, ya esto me lo hace en cuestión de minutos.",
+      "attribution": "Ivan Camilo Chaparro (Humans V Robots 2, Morning Cohort)",
+      "timestamp": "01:48:48",
+      "tags": [
+        "first-brick",
+        "breakthrough",
+        "recovery",
+        "tooling"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-13",
+      "date_cleared": null,
+      "notes": "First working artifact after three sessions of structure work. A Claude skill that reads a credit report and returns a Word diagnostic naming the entity, the report and the next step. Built in a breakout with two coaches (Álvaro and Jess). Delivered from a phone because his laptop has failed on camera two sessions running. TODO: cut clip from https://fathom.video/share/uCFMuW7PTkX1m1wiMuLdEWy9Ufx5eJxo. Audio cuts out in places; check quality before cutting."
+    },
+    {
+      "id": "hvr2-s3-manuel-mock-data-gone",
+      "type": "win",
+      "cohort": "hvr2",
+      "title": "The AI feedback layer that was mock data last week now returns a real score",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-am-wins-post-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "El aplicativo lo graba, todo eso que decimos, de modo que cuando le damos parar, analiza lo que dijimos, y nos retorna un resultado como este... nos devuelve la transcripción de lo que el usuario dijo, marcándonos errores de gramática, filler words que hay que eliminar, palabras que se deberían reemplazar por otras.",
+      "attribution": "Manuel Alejandro De La Rosa (Humans V Robots 2, Morning Cohort)",
+      "timestamp": "01:52:07",
+      "tags": [
+        "live-demo",
+        "breakthrough",
+        "tooling"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-13",
+      "date_cleared": null,
+      "notes": "Sin Libreto (https://sin-libreto.vercel.app/, verified HTTP 200) now scores a real recording across ideas, structure, language and filler rate, plus a Focus for Next Time line. Manuel joined Sheryl's project at S2 with no slice of his own; the analysis engine is that slice. He also brought an unprompted market study on monetization. TODO: cut clip from https://fathom.video/share/uCFMuW7PTkX1m1wiMuLdEWy9Ufx5eJxo."
+    },
+    {
+      "id": "hvr2-s3-sheryl-asked-for-the-room",
+      "type": "win",
+      "cohort": "hvr2",
+      "title": "Said she hadn't built anything, then asked for the half hour that moved the product",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-am-wins-post-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Sí, creo que necesito hablar con Manuel, la verdad.",
+      "attribution": "Sheryl Lee (Humans V Robots 2, Morning Cohort)",
+      "timestamp": "00:27:08",
+      "tags": [
+        "peer-teaching",
+        "scope-lock",
+        "recovery"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-13",
+      "date_cleared": null,
+      "notes": "Asked for her next step, she named a conversation rather than a feature. Manuel agreed and proposed thirty minutes; Alex opened the breakout without facilitating it. That breakout is where the mock data came out of the app. Useful counter-example to the idea that a productive session means writing code."
+    },
+    {
+      "id": "hvr2-s3-lesson-iteration-is-a-whole-product",
+      "type": "lesson",
+      "cohort": "hvr2",
+      "title": "An iteration isn't a piece of the product, it's the whole product in a simpler version",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-am-facilitator-recap-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "No es construir partes de un producto, sino que en cada iteración sea un producto completo, pero más sencillo. O sea, versiones completas de la versión más grande que pensamos.",
+      "attribution": "Álvaro Jose Castaño Mendoza (volunteer coach, Humans V Robots 2)",
+      "timestamp": "00:15:39",
+      "tags": [
+        "framework",
+        "peer-teaching",
+        "vision"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-13",
+      "date_cleared": null,
+      "notes": "Alex taught the car-versus-skateboard version of Agile from 00:11:17, then asked if it landed. A participant produced the sharper version unprompted, in native Spanish. Use his wording next cohort. Alex's own closing phrasing at 00:15:20: 'la idea siempre es tu prototipo antes de tu prototipo.'"
+    },
+    {
+      "id": "hvr2-s3-lesson-publish-in-the-same-session",
+      "type": "lesson",
+      "cohort": "hvr2",
+      "title": "Teach the publishing method, then protect an hour for it, and someone ships that morning",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-am-facilitator-recap-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Entonces hay tres pasos para usar Cloudflare. Primero es crear una cuenta en Cloudflare. Y después crear un token de API. Si tienes tu API en Cloudflare, es fácil dar tu clave a tu herramienta de IA, y él puede hacer todas las cosas.",
+      "attribution": "Alex Salinsky (Humans V Robots 2, Morning Cohort)",
+      "timestamp": "00:18:16",
+      "tags": [
+        "framework",
+        "deploy",
+        "tooling"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-13",
+      "date_cleared": null,
+      "notes": "The lesson stopped at the concept, three steps and a prompt, and never became a walkthrough. Diana Sofía took it into the build hour and had a public URL eighty minutes later. Reusable heuristic: hand over the shortest possible version of the method, then give the hour, rather than demonstrating it step by step at the front of the room."
+    },
+    {
+      "id": "hvr2-s3-lesson-one-product-two-demo-slots",
+      "type": "lesson",
+      "cohort": "hvr2",
+      "title": "When two builders share one product, split the demo in writing before the day",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-am-facilitator-recap-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": null,
+      "attribution": null,
+      "timestamp": "01:50:38",
+      "tags": [
+        "framework",
+        "cohort-promise"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-13",
+      "date_cleared": null,
+      "notes": "Manuel and Sheryl merged projects at S2. At the S3 share-back Sheryl deferred and Manuel demoed, so the same person has now shown the product twice while the originator watched. Left unassigned, a pairing quietly turns into one builder with a demo and one with nothing. Fix is a written split: one takes the problem and the user experience, the other takes the engine. Applies to any cohort that lets builders merge."
+    },
+    {
+      "id": "hvr2-s3-lesson-attendance-dips-before-demo-day",
+      "type": "lesson",
+      "cohort": "hvr2",
+      "title": "Attendance drops hardest in the session right before Demo Day, and the people who skip are often the ones with working tools",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-am-facilitator-recap-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": null,
+      "attribution": null,
+      "timestamp": null,
+      "tags": [
+        "cohort-promise",
+        "urgency"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-13",
+      "date_cleared": null,
+      "notes": "Five of nine Morning builders missed S3. Three of the five had working artifacts at S2, including the most advanced tool in the room. The plausible read is that people who feel behind avoid the session where they'd have to show something. Counter-move for future cohorts: message the whole room before S3 with the sentence 'you can demo what you already have, nothing new required,' rather than waiting until the absence has happened."
+    },
+    {
+      "id": "hvr2-s3-lesson-hardware-fallback-for-demo-day",
+      "type": "lesson",
+      "cohort": "hvr2",
+      "title": "A builder whose machine has failed twice needs a recorded demo, not a live one",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-am-facilitator-recap-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Sí, es que el computador es viejito y toca con paciencia.",
+      "attribution": "Ivan Camilo Chaparro (Humans V Robots 2, Morning Cohort)",
+      "timestamp": "01:47:00",
+      "tags": [
+        "recovery",
+        "tooling"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-13",
+      "date_cleared": null,
+      "notes": "His laptop froze mid-share at S2 and again at S3, where he attended from his phone. He still produced the strongest result in the room. Heuristic: when a builder's hardware has failed on camera twice, stop treating the live demo as the plan. Have them record one clean run in advance and present the recording plus the output file."
+    },
+    {
+      "id": "hvr2-s3-bernice-verify-the-robot",
+      "type": "win",
+      "cohort": "hvr2",
+      "title": "Bernice checked her AI's work by hand and found the fault was in her own criteria",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-pm-wins-post-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I learned that I needed to go through my eligibility requirements and refine them a little bit more. I double-checked the two sources and double-checked how it filtered and it's filtering correctly.",
+      "attribution": "Bernice Chan (hvr2 Night Cohort)",
+      "timestamp": "01:46:16",
+      "tags": [
+        "breakthrough",
+        "framework",
+        "scope-lock"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-12",
+      "date_cleared": null,
+      "notes": "Spent her whole build hour verifying the filter against grants.gov by hand rather than trusting output. Concluded the tool was correct and her eligibility definition was loose. TODO: cut clip from https://fathom.video/calls/780623690"
+    },
+    {
+      "id": "hvr2-s3-bernice-double-filter",
+      "type": "win",
+      "cohort": "hvr2",
+      "title": "Her grant filter turned out to be sorting two projects at once",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-pm-wins-post-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "When I was rechecking everything, I realized that it's not only filtering for me the big project, it's also filtering for me a small milestone project. Like every single category has like six subcategories.",
+      "attribution": "Bernice Chan (hvr2 Night Cohort)",
+      "timestamp": "01:57:08",
+      "tags": [
+        "breakthrough",
+        "scope-lock"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-12",
+      "date_cleared": null,
+      "notes": "Fathom diarization labels this block to Alex; content and conversational context confirm it is Bernice answering the closing round. TODO: cut clip from https://fathom.video/calls/780623690"
+    },
+    {
+      "id": "hvr2-s3-alan-quiz-sends-email",
+      "type": "win",
+      "cohort": "hvr2",
+      "title": "Alan's senior-care quiz now alerts him to a new lead and mails back a real report",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-pm-wins-post-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "It wrote a script, so as soon as someone fills out this quiz and they put in their email, it sends an alert to me as the owner, just like, hey, you got a new lead, but then it also sends this report to their email that looks a lot better.",
+      "attribution": "Alan James Duro (hvr2 Night Cohort)",
+      "timestamp": "01:53:00",
+      "tags": [
+        "ship",
+        "breakthrough",
+        "live-demo"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-12",
+      "date_cleared": null,
+      "notes": "Google Apps Script capture layer added to a quiz already running as HTML on his live business domain. TODO: cut clip from https://fathom.video/calls/780623690"
+    },
+    {
+      "id": "hvr2-s3-alan-reddit-validation",
+      "type": "win",
+      "cohort": "hvr2",
+      "title": "Alan tested demand on Reddit before building more of the tool",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-pm-wins-post-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I posted one where I said this scenario where I went to the doctor. I took my mom to the doctor. She has dementia. The doctor basically asked me what medication she was taking, and I didn't know, and it was a total wake up call. And I've had a ton of people comment on it.",
+      "attribution": "Alan James Duro (hvr2 Night Cohort)",
+      "timestamp": "00:17:12",
+      "tags": [
+        "story",
+        "vision",
+        "urgency"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-12",
+      "date_cleared": null,
+      "notes": "He asked AI how to validate the idea, was told to post on Reddit, and did it with his own true story in an aging-parents community. Contains personal family health detail; check with Alan before any public use. TODO: cut clip from https://fathom.video/calls/780623690",
+      "consent_note": "Includes a detail about his mother's dementia diagnosis. Alex to confirm with Alan before this leaves internal use, regardless of the blanket call-footage clearance."
+    },
+    {
+      "id": "hvr2-s3-alan-one-thing-at-a-time",
+      "type": "quote",
+      "cohort": "hvr2",
+      "title": "Running two AI jobs at once slowed both down",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-pm-wins-post-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I'm trying to have it help with some client reports that I need for a meeting, and at the same time I'm working on this. I feel like it's making things run way slower as well. So I'm learning, maybe that's not the best idea going forward. Just do one thing at a time.",
+      "attribution": "Alan James Duro (hvr2 Night Cohort)",
+      "timestamp": "01:52:25",
+      "tags": [
+        "tooling",
+        "framework"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-12",
+      "date_cleared": null,
+      "notes": "Useful counter-programming to the 'run ten agents in parallel' genre of content. TODO: cut clip from https://fathom.video/calls/780623690"
+    },
+    {
+      "id": "hvr2-s3-jessica-cordoba-procedure-builder",
+      "type": "win",
+      "cohort": "hvr2",
+      "title": "Jessica Cordoba named a compliance checker and cut her own scope in the same breath",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-pm-wins-post-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I was thinking too big to all the systems. So I'm just going to start with one procedure and then with everything.",
+      "attribution": "Jessica Cordoba (hvr2 Night Cohort)",
+      "timestamp": "00:39:29",
+      "tags": [
+        "scope-lock",
+        "first-brick"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-12",
+      "date_cleared": null,
+      "notes": "Project: a small site holding company procedures, with AI checking them against Colombian regulation and ISO requirements, flagging gaps and drafting updates. She narrowed to a single procedure 30 minutes after the iterative-design lesson, unprompted. TODO: cut clip from https://fathom.video/calls/780623690"
+    },
+    {
+      "id": "hvr2-s3-jessica-cordoba-visualize",
+      "type": "win",
+      "cohort": "hvr2",
+      "title": "Description to skill to MVP to Codex in one build hour",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-pm-wins-post-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "I learned how to visualize what I was thinking. We describe what exactly I wanted, then we create the skill, then the MVP, and now we are doing the Codex, and we're going to see the website.",
+      "attribution": "Jessica Cordoba (hvr2 Night Cohort)",
+      "timestamp": "01:47:48",
+      "tags": [
+        "first-brick",
+        "breakthrough",
+        "peer-teaching"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-12",
+      "date_cleared": null,
+      "notes": "Worked the full build hour with Coach Jess in an unrecorded breakout; this is her own account at share-back. TODO: cut clip from https://fathom.video/calls/780623690"
+    },
+    {
+      "id": "hvr2-s3-skateboard-before-porsche",
+      "type": "lesson",
+      "cohort": "hvr2",
+      "title": "Build the skateboard, not a pile of Porsche parts",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-pm-facilitator-recap-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "If I start building all the parts of a Porsche, along the way I just have piles of metal all over the workshop. But if I build a very simple mechanism to get me from one place to another, a skateboard or a bicycle or a go-kart, then in the first phase I have a thing that gets me from one place to another.",
+      "attribution": "Alex Salinsky",
+      "timestamp": "00:08:56",
+      "tags": [
+        "framework",
+        "scope-lock"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-12",
+      "date_cleared": null,
+      "notes": "Also names why facilitators push back on scope: every phase should be a complete small product, not a fragment of the big one. Landed twice in the same session, Jessica Cordoba cut her scope 30 minutes later and Alex reused the frame on Alan at close. TODO: cut clip from https://fathom.video/calls/780623690"
+    },
+    {
+      "id": "hvr2-s3-black-box-verification",
+      "type": "lesson",
+      "cohort": "hvr2",
+      "title": "Learn the task yourself so you can teach the robot, instead of handing it off because the robot is smart",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-pm-facilitator-recap-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "It's a black box unless we go verify it. What I think I should do is use the smart technology, go and do things because it's smart technology. The super strategic way to do it is you go learn how to do it, and the robot can help you learn how to do it. Then you teach the robot, because otherwise it just fills in the gaps.",
+      "attribution": "Alex Salinsky",
+      "timestamp": "00:21:03",
+      "tags": [
+        "framework",
+        "breakthrough"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-12",
+      "date_cleared": null,
+      "notes": "Paired with the college-intern metaphor at 00:22:22: smart, capable with technology, no life experience, fills every gap you leave with an assumption. Directly produced Bernice's build hour and her diagnosis. TODO: cut clip from https://fathom.video/calls/780623690"
+    },
+    {
+      "id": "hvr2-s3-handoff-and-md-file",
+      "type": "lesson",
+      "cohort": "hvr2",
+      "title": "When one long thread gets clunky: a handoff prompt plus a .md file",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-pm-facilitator-recap-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "Do a handoff prompt: I'm going to move forward on this conversation with a new thread, what do I need to give the next step to start it. The other thing is to have it save things as you go to a .md file. Everything we're learning, every decision we make, save it to a .md file about this project.",
+      "attribution": "Alex Salinsky",
+      "timestamp": "00:30:37",
+      "tags": [
+        "framework",
+        "tooling"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-12",
+      "date_cleared": null,
+      "notes": "Answer to Bernice's question about staying in one Codex chat for an entire build. Coach Jess added her own variant at 00:34:21: projects with linked chats plus an auto-generated handoff written to Notion. TODO: cut clip from https://fathom.video/calls/780623690"
+    },
+    {
+      "id": "hvr2-s3-model-tier-corner-store",
+      "type": "lesson",
+      "cohort": "hvr2",
+      "title": "You don't fly to the corner store, and you can't drive to San Andrés",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-pm-facilitator-recap-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": "If you're going to the corner store, you just need your keys and your feet. You don't need to jump on an airplane. But if you're going to San Andrés Island, there's no way you can do a road trip, you need to hop on a flight. It's making sure that you are the person driving the thing, and you don't get tempted by putting the last model because you're just getting your tokens used.",
+      "attribution": "Jessica Tovar, Coach (hvr2)",
+      "timestamp": "01:50:31",
+      "tags": [
+        "framework",
+        "tooling",
+        "peer-teaching"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-12",
+      "date_cleared": null,
+      "notes": "Model-tier selection analogy, taught in a breakout and resurfaced in the main room at Alex's request. Alex said he hadn't heard it before and asked her to repeat it for the room. Add to the standard teach. TODO: cut clip from https://fathom.video/calls/780623690"
+    },
+    {
+      "id": "hvr2-s3-lesson-chase-items-need-an-owner",
+      "type": "lesson",
+      "cohort": "hvr2",
+      "title": "A chase item written in a recap is not a chase item",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-pm-facilitator-recap-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": null,
+      "attribution": null,
+      "timestamp": null,
+      "tags": [
+        "framework",
+        "cohort-promise"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-12",
+      "date_cleared": null,
+      "notes": "Facilitator heuristic. Every S2 follow-up (Daniel 1:1, Emanuel main-room slot, David onboarding, Juan deadline, Ivan and sara enrollment questions) was written down and none was executed. All six of those people were absent at S3, taking the Night room from seven builders to three on the session before Demo Day. Recap items need a named owner and a written confirmation loop, otherwise they are a record of intent. Related: the 60-second tech check has now been prescribed after three consecutive sessions and never once run."
+    },
+    {
+      "id": "hvr2-s3-lesson-publish-time-without-publishers",
+      "type": "lesson",
+      "cohort": "hvr2",
+      "title": "Budgeting publish time doesn't produce publishes if the publishers aren't in the room",
+      "source_url": "brain/the-build-room/cohorts/2026-jul-hvr2/s3-pm-facilitator-recap-2026-08-12.md",
+      "media_url": null,
+      "thumbnail": null,
+      "quote": null,
+      "attribution": null,
+      "timestamp": null,
+      "tags": [
+        "framework",
+        "ship"
+      ],
+      "status": "raw",
+      "date_captured": "2026-08-12",
+      "date_cleared": null,
+      "notes": "Facilitator heuristic. S3 was designed as the publish session and the design was executed correctly: a clean 4-minute Cloudflare teach at 00:10:26, a bilingual how-to page dropped in chat, and 65 minutes of build time from 00:40:33 to 01:45:05. Zero deploys happened. One of the three publish candidates was absent, one already had hosting and spent the hour elsewhere, one spent the hour on verification. Session design was not the constraint; attendance and per-builder readiness were."
     }
   ],
   "blocked_quotes": [
