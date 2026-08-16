@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0B0B0B">
+<title>Facilitator Hub · Humans v Robots</title>
+<!--
+  THE hub. One page for every cohort, forever. Do not clone this per cohort.
+
+  Data comes from the `hub` block on each brain/the-build-room/cohorts/<id>/cohort.json,
+  compiled by scripts/build-room-hub.js into cohorts.json and inlined below between the
+  BEGIN_DATA / END_DATA markers. The page fetches cohorts.json first for a live read and
+  falls back to the inlined copy on file:// where fetch is blocked by CORS.
+
+  To add a cohort: add a hub block to its cohort.json, run node scripts/build-room-hub.js.
+  Never type a cohort name, date, ledger URL or headcount into this file.
+
+  Session pointer is computed from today's date at runtime, so it stays right even if the
+  generator has not run in weeks.
+
+  Brand: locked Humans v Robots BrandKit (assets/Humans v Robots - Brand Guide.html, 2026-07-31).
+    Black #0B0B0B ground · Volt #C8FF3D accent ON BLACK ONLY, under 5% of a view
+    Paper #FFFFFF · Panel #17170F. Grays are rgba tints. No gradients, glows or shadows.
+    Volt belongs to the human, never the machine. Mark is inlined, never fetched.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0B0B0B; --volt: #C8FF3D; --paper: #FFFFFF; --panel: #17170F;
+    --hair: rgba(255,255,255,.16);
+    --hair-strong: rgba(255,255,255,.32);
+    --mute: rgba(255,255,255,.62);
+    --faint: rgba(255,255,255,.42);
+    --disp: 'Bricolage Grotesque','Space Grotesk',system-ui,-apple-system,sans-serif;
+    --body: 'Space Grotesk',system-ui,-apple-system,sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--paper); font-family: var(--body); line-height: 1.5; }
+  a { color: inherit; }
+  .page { max-width: 1120px; margin: 0 auto; padding: 44px 26px 90px; }
+
+  /* ---- header ---- */
+  .lockup { display: flex; align-items: center; gap: 13px; margin-bottom: 22px; }
+  .lockup .word { font-family: var(--disp); font-size: 34px; font-weight: 800; letter-spacing: .02em; line-height: 1; }
+  .mark { display: block; flex: none; }
+  .mark .arms { fill: none; stroke: currentColor; stroke-width: 13; stroke-linecap: butt; stroke-linejoin: miter; }
+  h1 { font-family: var(--disp); font-weight: 800; font-size: 52px; letter-spacing: -.035em; line-height: 1.02; margin-bottom: 10px; }
+  .mission { font-size: 14px; color: var(--volt); letter-spacing: 2.4px; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+  .standfirst { font-size: 17px; color: var(--mute); max-width: 640px; }
+  .standfirst a { color: var(--paper); }
+
+  /* ---- section headings ---- */
+  h2 { font-family: var(--disp); font-size: 13px; font-weight: 700; color: var(--faint); letter-spacing: 2.2px; text-transform: uppercase; margin: 46px 0 16px; padding-bottom: 9px; border-bottom: 1px solid var(--hair); }
+  h3 { font-family: var(--disp); font-size: 25px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 4px; }
+
+  /* ---- the now bar ---- */
+  .now { border: 1px solid var(--hair-strong); border-left: 3px solid var(--volt); border-radius: 12px; padding: 20px 24px; margin: 28px 0 8px; background: var(--panel); }
+  .now .stamp { font-size: 11.5px; letter-spacing: 2.2px; text-transform: uppercase; color: var(--volt); font-weight: 700; margin-bottom: 9px; }
+  .now .headline { font-family: var(--disp); font-size: 27px; font-weight: 800; letter-spacing: -.02em; line-height: 1.18; }
+  .now .detail { font-size: 15px; color: var(--mute); margin-top: 7px; }
+
+  /* ---- cohort tabs ---- */
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 26px 0 18px; }
+  .tab { font-family: var(--disp); font-weight: 700; font-size: 14px; letter-spacing: .01em; padding: 9px 17px; border: 1px solid var(--hair-strong); border-radius: 999px; background: none; color: var(--mute); cursor: pointer; font-family: var(--body); }
+  .tab:hover { color: var(--paper); border-color: var(--paper); }
+  .tab[aria-selected="true"] { background: var(--volt); color: var(--black); border-color: var(--volt); font-weight: 700; }
+  .tab .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--volt); margin-right: 7px; vertical-align: middle; }
+  .tab[aria-selected="true"] .dot { background: var(--black); }
+
+  /* ---- cards ---- */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(258px, 1fr)); gap: 12px; }
+  .card { display: block; border: 1px solid var(--hair-strong); border-radius: 11px; padding: 16px 18px; text-decoration: none; background: var(--panel); transition: border-color .14s ease, background .14s ease; }
+  .card:hover { border-color: var(--volt); background: #1d1d12; }
+  .card .t { font-family: var(--disp); font-size: 17px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 4px; }
+  .card .m { font-size: 13.5px; color: var(--mute); line-height: 1.45; }
+  .card.key { border-color: var(--volt); }
+  .card.key .t { color: var(--volt); }
+
+  /* ---- cohort panel ---- */
+  .cohort-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 4px; }
+  .badges { display: flex; gap: 7px; flex-wrap: wrap; }
+  .badge { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--hair-strong); color: var(--mute); }
+  .badge.volt { border-color: var(--volt); color: var(--volt); }
+  .cohort-note { font-size: 14px; color: var(--mute); max-width: 760px; margin: 10px 0 18px; }
+  .rooms { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 18px; }
+  .room { font-size: 13px; border: 1px solid var(--hair); border-radius: 8px; padding: 7px 13px; color: var(--mute); }
+  .room b { color: var(--paper); font-weight: 700; }
+
+  /* ---- session arc ---- */
+  .session { border: 1px solid var(--hair); border-radius: 12px; padding: 20px 22px; margin-bottom: 12px; }
+  .session.now-session { border-color: var(--volt); border-left-width: 3px; }
+  .session .when { font-size: 13px; color: var(--faint); letter-spacing: .4px; margin-bottom: 11px; }
+  .session.now-session .when { color: var(--volt); font-weight: 700; }
+  .session .aim { font-size: 15px; color: var(--mute); margin-bottom: 13px; max-width: 780px; }
+  .session ol { margin: 0 0 15px 19px; font-size: 14px; color: var(--mute); }
+  .session ol li { margin-bottom: 4px; padding-left: 4px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 7px; }
+  .pill { font-size: 12.5px; text-decoration: none; padding: 6px 13px; border: 1px solid var(--hair-strong); border-radius: 999px; color: var(--mute); white-space: nowrap; }
+  .pill:hover { border-color: var(--paper); color: var(--paper); }
+  .pill.primary { border-color: var(--volt); color: var(--volt); font-weight: 700; }
+  .pill.es { border-style: dashed; }
+  .pill.bi { border-style: dotted; }
+  .pill .lang { opacity: .6; font-size: 11px; margin-left: 5px; letter-spacing: 1px; }
+  .pill.hvr { border-color: var(--volt); color: var(--volt); }
+  .skin-toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--mute); margin: -6px 0 14px; cursor: pointer; }
+  .skin-toggle input { accent-color: var(--volt); cursor: pointer; }
+
+  .callout { border: 1px solid var(--hair-strong); border-left: 3px solid var(--volt); border-radius: 8px; padding: 11px 15px; margin-bottom: 13px; font-size: 13.5px; color: var(--mute); }
+  .callout b { color: var(--paper); }
+
+  /* ---- archive ---- */
+  details.archive { border: 1px solid var(--hair); border-radius: 12px; padding: 0; margin-top: 12px; }
+  details.archive > summary { cursor: pointer; padding: 17px 22px; font-family: var(--disp); font-weight: 700; font-size: 16px; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  details.archive > summary::-webkit-details-marker { display: none; }
+  details.archive > summary .chev { color: var(--volt); font-size: 13px; transition: transform .15s ease; }
+  details.archive[open] > summary .chev { transform: rotate(90deg); }
+  details.archive > summary:hover { color: var(--volt); }
+  .archive-body { padding: 0 22px 20px; }
+  .arch-row { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; padding: 13px 0; border-top: 1px solid var(--hair); }
+  .arch-row .name { font-family: var(--disp); font-weight: 700; font-size: 16px; min-width: 168px; }
+  .arch-row .meta { font-size: 13px; color: var(--faint); flex: 1; min-width: 160px; }
+
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--hair); font-size: 12.5px; color: var(--faint); display: flex; align-items: center; gap: 9px; }
+  footer .mark { color: var(--paper); }
+
+  .empty { font-size: 15px; color: var(--faint); padding: 18px 0; }
+  @media (max-width: 640px) {
+    h1 { font-size: 36px; }
+    .page { padding: 30px 18px 70px; }
+    .now .headline { font-size: 21px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="lockup">
+      <span class="word">HUMANS</span>
+      <svg class="mark" width="40" height="40" viewBox="0 0 120 120" aria-label="Humans v Robots">
+        <path class="arms" d="M16 40 L60 104 L104 40"/>
+        <circle cx="60" cy="30" r="18" fill="#C8FF3D"/>
+      </svg>
+      <span class="word">ROBOTS</span>
+    </div>
+    <div class="mission">Learn AI. Build Robots. Stay Human.</div>
+    <h1>Facilitator Hub</h1>
+    <p class="standfirst">Every cohort, one page. Ledgers, decks and the session arc. Not linked from the <a href="../">participant library</a>. Bookmark this.</p>
+  </header>
+
+  <div class="now" id="nowBar">
+    <div class="stamp">Right now</div>
+    <div class="headline" id="nowHeadline">Loading cohorts</div>
+    <div class="detail" id="nowDetail"></div>
+  </div>
+
+  <h2>Running cohorts</h2>
+  <div class="tabs" id="tabs" role="tablist"></div>
+  <div id="cohortPanel"></div>
+
+  <h2>Open every session with this</h2>
+  <div class="grid">
+    <a class="card key" href="https://alexsalinsky.github.io/build-room-visuals/session-opener.html" target="_blank">
+      <div class="t">Session Opener</div>
+      <div class="m">Agenda, Agreements, Three Principles. Standing frame, first thing, every time.</div>
+    </a>
+    <a class="card" href="facilitator-notes.html" target="_blank">
+      <div class="t">How to run the room</div>
+      <div class="m">Ledger time is for next steps. Troubleshooting goes to build hour. Keep builders articulating demo plus why and how.</div>
+    </a>
+    <a class="card" href="https://www.skool.com/the-build-room-3309" target="_blank">
+      <div class="t">Skool community</div>
+      <div class="m">Every cohort lives in here as a private classroom.</div>
+    </a>
+    <a class="card" href="https://alexsalinsky.github.io/build-room-visuals/proof-library.html" target="_blank">
+      <div class="t">Proof Library</div>
+      <div class="m">Every win, clip, testimonial and lesson. Check before quoting anything.</div>
+    </a>
+  </div>
+
+  <h2>Session arc</h2>
+  <label class="skin-toggle"><input type="checkbox" id="skin"> Open Session 1 in the Humans v Robots skin</label>
+  <div id="arc"></div>
+
+  <h2>Standing protocols</h2>
+  <div class="grid">
+    <a class="card" href="https://alexsalinsky.github.io/build-room-visuals/" target="_blank">
+      <div class="t">Visual library</div>
+      <div class="m">All click-through lessons. Foundations, How-to, Rule Packs, Setup.</div>
+    </a>
+    <a class="card" href="https://github.com/alexsalinsky/build-room-visuals" target="_blank">
+      <div class="t">Source repo</div>
+      <div class="m">Templates, tokens.css, deck-template.html.</div>
+    </a>
+    <a class="card" href="#" onclick="return false;">
+      <div class="t">Post-session debrief</div>
+      <div class="m">Once Fathom has processed the recording, run /build-room-debrief. Wins, personal reports and Proof Library entries come out of it.</div>
+    </a>
+    <a class="card" href="#" onclick="return false;">
+      <div class="t">Ledger live-fill</div>
+      <div class="m">Update each builder's row in the session, on screen, not after.</div>
+    </a>
+  </div>
+
+  <h2>Archive</h2>
+  <details class="archive" id="archive">
+    <summary><span id="archiveLabel">Finished cohorts</span> <span class="chev">&#9656;</span></summary>
+    <div class="archive-body" id="archiveBody"></div>
+  </details>
+
+  <footer>
+    <svg class="mark" width="15" height="15" viewBox="0 0 120 120" aria-hidden="true">
+      <path class="arms" d="M16 40 L60 104 L104 40"/>
+      <circle cx="60" cy="30" r="18" fill="#C8FF3D"/>
+    </svg>
+    <span>Alex Salinsky &middot; Humans v Robots &middot; <span id="stamp"></span></span>
+  </footer>
+</div>
+
+<!-- BEGIN_DATA -->
+<script id="cohort-data" type="application/json">
+{"generatedBy":"scripts/build-room-hub.js","generatedAt":"2026-08-16T23:31:26.477Z","cohorts":[{"dir":"2026-aug-fraim","id":"2026-aug-fraim","company":"Fraim, Cawley & Company, CPAs","slug":"fraim","label":"Fraim CPAs","status":"live","language":"en","rooms":[{"name":"Monday","when":"10:00 ET"}],"sessions":["2026-08-17","2026-08-24","2026-08-31","2026-09-07"],"ledgers":[{"label":"Cohort Ledger","url":"https://docs.google.com/spreadsheets/d/1eL9fAATJQWdTVHCWKzF_0ws6MRd-M0OM1IaPRacM50g/edit"}],"draftingTable":"https://13-218-176-29.sslip.io/c/fraim","join":"https://13-218-176-29.sslip.io/c/fraim/join","assessment":"https://docs.google.com/forms/d/e/1FAIpQLSfPAy7jEekZgRFlZ1GpjWacfZ3z-ybpwRGP73frMoQ6IaZ-JQ/viewform?usp=pp_url&entry.534543081=Fraim%2C%20Cawley%20%26%20Company%2C%20CPAs&entry.1686970719=2026-aug-fraim","leader":"Micah Fraim","builders":0,"rosterKnown":false,"notes":"Closed cohort, six seats per the engagement letter. Outside guests file under cohort ID 2026-aug-fraim-guest so they never roll into Fraim org numbers. Micah Fraim owns the room; Dave is the 49% owner and has not been in a conversation."},{"dir":"2026-jul-hvr2","id":"2026-jul-hvr2","company":"Humans V Robots 2","slug":"hvr2","label":"Humans V Robots 2","status":"live","language":"bi","rooms":[{"name":"Morning","when":"Wed 09:00 COT","language":"es"},{"name":"Night","when":"Wed 19:00 COT","language":"bi"}],"sessions":["2026-07-29","2026-08-05","2026-08-12","2026-08-19"],"ledgers":[{"label":"Cohort Ledger","url":"https://docs.google.com/spreadsheets/d/1asSiowlXIQ00p9IJoCCQzhUghCcY5Y5lDatUEq-d1Jc/edit"}],"draftingTable":"https://13-218-176-29.sslip.io/c/hvr2","join":"https://13-218-176-29.sslip.io/c/hvr2/join","assessment":"https://docs.google.com/forms/d/e/1FAIpQLSfPAy7jEekZgRFlZ1GpjWacfZ3z-ybpwRGP73frMoQ6IaZ-JQ/viewform?usp=pp_url&entry.534543081=Humans%20V%20Robots%202&entry.1686970719=2026-jul-hvr2","leader":null,"builders":14,"rosterKnown":true,"notes":"Morning room runs mostly Spanish; Night room is bilingual. Builders float between rooms. Share the right language version of every visual."},{"dir":"2026-jun-friends-family","id":"2026-jun-friends-family","company":"Friends & Family (Humans V Robots)","slug":"ff","label":"Friends & Family","status":"archived","language":"bi","rooms":[{"name":"Monday track","when":"Mon"},{"name":"Thursday track","when":"Thu"}],"sessions":["2026-06-22","2026-06-29","2026-07-06","2026-07-13"],"ledgers":[{"label":"Mon Ledger","url":"https://docs.google.com/spreadsheets/d/1dzAa4UPFjtDZW4aUhSQbvcKrrhaGbcChGis_YztJ20k/edit"},{"label":"Thu Ledger","url":"https://docs.google.com/spreadsheets/d/1r5JGGt2fOBq3dQb14TsRdgpY0pFMn483fIAx8j8bFYc/edit"},{"label":"Roster tracker","url":"https://docs.google.com/spreadsheets/d/1TNHaTtmnHQ0We6ivABwH4b7JjaAW7RoXCx3m9XQ2juI/edit"}],"draftingTable":null,"join":null,"assessment":null,"leader":null,"builders":28,"rosterKnown":true,"notes":"One cohort, two weekly tracks. Demo days Jul 13 (Mon) and Jul 16 (Thu). Pay-what-you-can wave."},{"dir":"bryce-dbalp","id":"2026-jun-dbalp","company":"DBALP","slug":"dbalp","label":"DBALP","status":"archived","language":"en","rooms":[{"name":"Monday","when":"13:00 COT"}],"sessions":[],"ledgers":[{"label":"Cohort Ledger","url":"https://docs.google.com/spreadsheets/d/13f06_YeWj7v48DflEFeuv69AqbB56g1D_Ivym3KdCUM/edit"}],"draftingTable":"https://13-218-176-29.sslip.io/c/dbalp","join":null,"assessment":null,"leader":null,"builders":8,"rosterKnown":true,"notes":"Bryce North co-facilitated. \"Don't Be A Little Pitch\"."},{"dir":"ginger-rpa","id":"2026-jun-rpa","company":"RPA","slug":"rpa","label":"RPA","status":"archived","language":"en","rooms":[{"name":"Tuesday","when":"10:00 COT"}],"sessions":[],"ledgers":[{"label":"Cohort Ledger","url":"https://docs.google.com/spreadsheets/d/1wDa_uV7TRYSvfqSCcHAELxvD2WXdVmKmB7NB2GRfulk/edit"}],"draftingTable":"https://13-218-176-29.sslip.io/c/rpa","join":null,"assessment":null,"leader":null,"builders":4,"rosterKnown":true,"notes":"Ginger Gentile. Ledger doubles as the cohort tracker."}]}
+</script>
+<!-- END_DATA -->
+
+<script>
+const LIB = 'https://alexsalinsky.github.io/build-room-visuals/';
+// hvr = the Humans v Robots skinned copy, generated by scripts/build-room-skin-slides.js.
+// Only the English Session 1 slides have one so far. The toggle above the arc swaps them in.
+const S = (n, en, es, bi, hvr) => ({ n, en, es, bi, hvr });
+
+// The session arc. Generic, identical for every cohort. Only the language variants
+// shown are filtered, by the selected cohort's language.
+const ARC = [
+  {
+    n: 1,
+    title: 'Kickoff + Ledger live-fill',
+    aim: 'Set the room up. Live-fill the ledger with each builder’s Dream, MVP and First Brick. Everybody leaves with a Session 1 build goal.',
+    callout: '<b>Backward-design frame:</b> Dream, Prototype, Demo, then reverse-design. S4 refine the demo, S3 refine the feature, S2 unlock the door, S1 configure and screw around.',
+    flow: ['Be Human check-in', 'Kickoff deck, promise, agreements, the loop', 'Lesson: Inside the Robot', 'Lesson: Dream Big, Build Small', 'Ledger live-fill per builder, framed by Plan the Problem', 'Quick How to Prompt primer', 'Set First Brick plus Session 1 goal each', 'First build sprint', 'Share-back and close'],
+    slides: [
+      S('Inside the Robot', 'inside-the-robot.html', 'inside-the-robot-es.html', 'inside-the-robot-bi.html', 'inside-the-robot-hvr.html'),
+      S('Dream Big, Build Small', 'dream-big-build-small.html', 'dream-big-build-small-es.html', 'dream-big-build-small-bi.html', 'dream-big-build-small-hvr.html'),
+      S('Plan the Problem', 'plan-the-problem.html', 'plan-the-problem-es.html', 'plan-the-problem-bi.html', 'plan-the-problem-hvr.html'),
+      S('How to Prompt', 'how-to-prompt.html', 'how-to-prompt-es.html', 'how-to-prompt-bi.html', 'how-to-prompt-hvr.html'),
+      S('System → Product (2-slide)', 'inside-the-robot-2slides.html', 'inside-the-robot-2slides-es.html', 'inside-the-robot-2slides-bi.html', 'inside-the-robot-2slides-hvr.html'),
+      S('Three Keys', 'three-keys.html', 'three-keys-es.html', 'three-keys-bi.html', 'three-keys-hvr.html')
+    ]
+  },
+  {
+    n: 2,
+    title: 'Become a Builder',
+    aim: 'You are a builder now. Files are appearing on your computer that did not exist last week. Teach threads-burn-files-remain, do one live burn-the-thread demo, then hand off the rule-pack file and get out of the way.',
+    callout: '<b>Standing rule:</b> hand builders the rule-pack MD file directly. Do NOT teach it. Sixty to ninety seconds: drop this into your AI coding tool’s config, we’ll build with it live.',
+    flow: ['Arrival, camera on, one breath, mission line', 'Session opener. Agenda, Agreements, thesis', 'Check-in. New builders 60 sec, returning 45 sec. Sweep blockers', 'Frame today', 'Learn: Threads burn. Files remain.', 'Learn: burn-the-thread live demo on screen two', 'Hand off the rule-pack MD file. No lesson', 'Build sprint, 60 min, HARD FLOOR, never shrinks', 'Mid-cohort share. Two or three builders, coach-picked', 'Close, Demo Day preview, homework', 'Send-off, one-sentence carry, mission line'],
+    slides: [
+      S('Session Opener', 'session-opener.html', 'session-opener-es.html', 'session-opener-bi.html', 'session-opener-hvr.html'),
+      S('S2 Check-in · 3 questions', null, null, 's2-checkin-3-questions-bi.html'),
+      S('Threads burn. Files remain.', 'threads-burn-files-remain.html', null, 'threads-burn-files-remain-bi.html'),
+      S('Rule-pack MD (hand-off)', 'https://raw.githubusercontent.com/alexsalinsky/build-room-visuals/main/llm-builder-bps/llm-builder-bps.md', null, null),
+      S('Rule-pack hand-off slide', null, null, 'rule-pack-handoff-bi.html'),
+      S('Same brain, different hands', 'tools-three-tiers.html', null, null),
+      S('Credentials Hygiene', 'credentials-hygiene-deck.html', null, null),
+      S('Bot Setup Standards', 'bot-setup-standards.html', null, null)
+    ]
+  },
+  {
+    n: 3,
+    title: 'Become a Publisher',
+    aim: 'The thing gets a public URL. Cloudflare only, no GitHub. A README a teammate could pick up. Demos wait for S4.',
+    callout: '<b>Flow:</b> builder shares move to the top, two slots, show the thing plus one surprise. Centerpiece is a live Cloudflare publish walkthrough. Build-time coaching runs as 1:1s.',
+    flow: ['Arrival', 'Opener, thesis and Agreements', 'Be Human check-in, 30 sec each', 'Frame today. You become a publisher', 'Builder shares, two slots', 'Live walkthrough: publish on Cloudflare. One real build to a real URL', 'Ledger review. Per-builder S3 objectives, 45 sec each', 'Build time, 66 min, 1:1 rotations, never shrinks', 'Close plus Demo Day prep', 'Send-off'],
+    slides: [
+      S('Publish online for free (Cloudflare)', 'publish-online-free-cloudflare.html', null, 'publish-online-free-cloudflare-bi.html'),
+      S('Where Your Build Lives', 'where-your-build-lives.html', null, 'where-your-build-lives-bi.html'),
+      S('Connector vs API', 'connector-vs-api.html', null, 'connector-vs-api-bi.html'),
+      S('Tokenomics', 'tokenomics.html', null, 'tokenomics-bi.html'),
+      S('Minimum Tech Stack', 'minimum-tech-stack.html', null, null),
+      S('API Key Flow', 'api-key-generic.html', null, null)
+    ]
+  },
+  {
+    n: 4,
+    title: 'Demo Day',
+    aim: 'Each builder demos. Most Business Value and Coolest Build votes. One-month follow-up scheduled live. Lesson load is deliberately light, the demos are the lesson.',
+    callout: null,
+    flow: [],
+    slides: [
+      S('Build Plan Loop (recap)', 'build-plan-loop.html', null, null),
+      S('Inside the Robot (close)', 'inside-the-robot.html', 'inside-the-robot-es.html', 'inside-the-robot-bi.html'),
+      S('Demo structure', 'demo-structure.html', null, null)
+    ]
+  }
+];
+
+let DATA = { cohorts: [] };
+let selected = null;
+let skinned = false;
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const abs = u => (!u ? null : /^https?:/.test(u) ? u : LIB + u);
+
+const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+// Parse as local noon so a date never slides a day across a timezone.
+const day = iso => { const [y, m, d] = iso.split('-').map(Number); return new Date(y, m - 1, d, 12); };
+const fmt = iso => { const d = day(iso); return DOW[d.getDay()] + ' ' + MON[d.getMonth()] + ' ' + d.getDate(); };
+const todayISO = () => { const d = new Date(); return [d.getFullYear(), String(d.getMonth() + 1).padStart(2, '0'), String(d.getDate()).padStart(2, '0')].join('-'); };
+
+// Which session is in play: today's if there is one, otherwise the next one ahead,
+// otherwise the last one that ran.
+function pointer(c) {
+  const t = todayISO();
+  const s = c.sessions || [];
+  if (!s.length) return null;
+  const i = s.indexOf(t);
+  if (i > -1) return { n: i + 1, date: s[i], when: 'today' };
+  const next = s.findIndex(d => d > t);
+  if (next > -1) return { n: next + 1, date: s[next], when: 'next' };
+  return { n: s.length, date: s[s.length - 1], when: 'done' };
+}
+
+function renderNow() {
+  const live = DATA.cohorts.filter(c => c.status === 'live');
+  if (!live.length) {
+    $('nowHeadline').textContent = 'No cohort is running';
+    $('nowDetail').textContent = 'Add a hub block to a cohort.json and run node scripts/build-room-hub.js.';
+    return;
+  }
+  const today = live.map(c => ({ c, p: pointer(c) })).filter(x => x.p && x.p.when === 'today');
+  if (today.length) {
+    const x = today[0];
+    $('nowHeadline').textContent = x.c.label + ' · Session ' + x.p.n + ' is today';
+    $('nowDetail').textContent = (x.c.rooms || []).map(r => r.name + ' ' + r.when).join('  ·  ') || fmt(x.p.date);
+    return;
+  }
+  const soon = live.map(c => ({ c, p: pointer(c) })).filter(x => x.p && x.p.when === 'next')
+    .sort((a, b) => a.p.date.localeCompare(b.p.date))[0];
+  if (soon) {
+    $('nowHeadline').textContent = 'Next up: ' + soon.c.label + ' · Session ' + soon.p.n;
+    $('nowDetail').textContent = fmt(soon.p.date) + '  ·  ' + (soon.c.rooms || []).map(r => r.name + ' ' + r.when).join('  ·  ');
+  } else {
+    $('nowHeadline').textContent = live.map(c => c.label).join(' + ') + ' · all sessions run';
+    $('nowDetail').textContent = 'Move these to archived in cohort.json once demo day is done.';
+  }
+}
+
+function renderTabs() {
+  const live = DATA.cohorts.filter(c => c.status !== 'archived');
+  $('tabs').innerHTML = live.map(c =>
+    '<button class="tab" role="tab" data-slug="' + esc(c.slug) + '" aria-selected="' + (c.slug === selected) + '">' +
+    (c.status === 'live' ? '<span class="dot"></span>' : '') + esc(c.label) + '</button>'
+  ).join('');
+  $('tabs').querySelectorAll('.tab').forEach(b => b.onclick = () => { selected = b.dataset.slug; render(); });
+}
+
+function renderCohort() {
+  const c = DATA.cohorts.find(x => x.slug === selected);
+  if (!c) { $('cohortPanel').innerHTML = '<p class="empty">No running cohort.</p>'; return; }
+  const p = pointer(c);
+  const LANG = { en: 'English', es: 'Spanish', bi: 'Bilingual EN + ES' };
+
+  const cards = [];
+  for (const l of c.ledgers || []) {
+    cards.push('<a class="card key" href="' + esc(l.url) + '" target="_blank"><div class="t">' + esc(l.label) +
+      '</div><div class="m">Per-builder Dream, MVP, First Brick. Live-fill it on screen during the session.</div></a>');
+  }
+  if (c.draftingTable) cards.push('<a class="card" href="' + esc(c.draftingTable) + '" target="_blank"><div class="t">Drafting Table</div><div class="m">Per-builder state. Confirm the session pointer before each session.</div></a>');
+  if (c.join) cards.push('<a class="card" href="' + esc(c.join) + '" target="_blank"><div class="t">Builder join link</div><div class="m">Self-serve. Paid signups only. Takes name, email, WhatsApp. Dedupes by email.</div></a>');
+  if (c.assessment) cards.push('<a class="card" href="' + esc(c.assessment) + '" target="_blank"><div class="t">AI Fluency Assessment</div><div class="m">Pre-filled for this cohort. Under 15 minutes. Bands: Exploring, Adopting, Operating, Multiplying.</div></a>');
+
+  const badges = ['<span class="badge volt">' + esc(c.status) + '</span>', '<span class="badge">' + esc(LANG[c.language] || c.language) + '</span>'];
+  if (c.rosterKnown) badges.push('<span class="badge">' + c.builders + ' builders</span>');
+  else badges.push('<span class="badge">roster not in yet</span>');
+  if (p) badges.push('<span class="badge">Session ' + p.n + ' ' + (p.when === 'today' ? 'today' : p.when === 'next' ? fmt(p.date) : 'was the last') + '</span>');
+
+  $('cohortPanel').innerHTML =
+    '<div class="cohort-head"><h3>' + esc(c.company) + '</h3><div class="badges">' + badges.join('') + '</div></div>' +
+    (c.leader ? '<div class="cohort-note">Owner: ' + esc(c.leader) + (c.notes ? '. ' + esc(c.notes) : '') + '</div>'
+      : c.notes ? '<div class="cohort-note">' + esc(c.notes) + '</div>' : '') +
+    ((c.rooms || []).length ? '<div class="rooms">' + c.rooms.map(r => '<span class="room"><b>' + esc(r.name) + '</b> ' + esc(r.when) + '</span>').join('') + '</div>' : '') +
+    '<div class="grid">' + cards.join('') + '</div>';
+}
+
+// A cohort only ever sees the language versions it can use. An English-only room
+// never gets shown a Spanish link it will not open.
+function slideLinks(slide, lang) {
+  const out = [];
+  const push = (url, cls, tag) => { if (url) out.push({ url: abs(url), cls, tag }); };
+  if (skinned && slide.hvr) { push(slide.hvr, 'hvr', 'HVR'); return out; }
+  if (lang === 'en') { push(slide.en, '', null); if (!slide.en) push(slide.bi, 'bi', 'EN+ES'); }
+  else if (lang === 'es') { push(slide.es, 'es', 'ES'); if (!slide.es) push(slide.bi, 'bi', 'EN+ES'); if (!slide.es && !slide.bi) push(slide.en, '', null); }
+  else { push(slide.en, '', 'EN'); push(slide.es, 'es', 'ES'); push(slide.bi, 'bi', 'EN+ES'); }
+  return out;
+}
+
+function renderArc() {
+  const c = DATA.cohorts.find(x => x.slug === selected);
+  const lang = c ? c.language : 'en';
+  const p = c ? pointer(c) : null;
+  const currentN = p && p.when !== 'done' ? p.n : null;
+
+  $('arc').innerHTML = ARC.map(s => {
+    const isNow = s.n === currentN;
+    const pills = s.slides.map(sl => slideLinks(sl, lang).map((l, i) =>
+      '<a class="pill ' + l.cls + (i === 0 && sl.n.indexOf('Session Opener') === 0 ? ' primary' : '') + '" href="' + esc(l.url) + '" target="_blank">' +
+      esc(sl.n) + (l.tag ? '<span class="lang">' + l.tag + '</span>' : '') + '</a>').join('')).join('');
+    const led = c && (c.ledgers || []).length && s.n === 1
+      ? '<a class="pill primary" href="' + esc(c.ledgers[0].url) + '" target="_blank">' + esc(c.ledgers[0].label) + '</a>' : '';
+    const when = c && (c.sessions || [])[s.n - 1] ? fmt(c.sessions[s.n - 1]) : 'date not set';
+    return '<div class="session' + (isNow ? ' now-session' : '') + '">' +
+      '<h3>Session ' + s.n + ' · ' + esc(s.title) + '</h3>' +
+      '<div class="when">120 min · ' + esc(when) + (isNow ? (p.when === 'today' ? ' · TODAY' : ' · NEXT') : '') + '</div>' +
+      (s.callout ? '<div class="callout">' + s.callout + '</div>' : '') +
+      '<div class="aim">' + esc(s.aim) + '</div>' +
+      (s.flow.length ? '<ol>' + s.flow.map(f => '<li>' + esc(f) + '</li>').join('') + '</ol>' : '') +
+      '<div class="pills">' + pills + led + '</div>' +
+      '</div>';
+  }).join('');
+}
+
+function renderArchive() {
+  const arch = DATA.cohorts.filter(c => c.status === 'archived');
+  $('archiveLabel').textContent = arch.length + ' finished cohort' + (arch.length === 1 ? '' : 's');
+  $('archiveBody').innerHTML = arch.length ? arch.map(c => {
+    const led = (c.ledgers || []).map(l => '<a class="pill" href="' + esc(l.url) + '" target="_blank">' + esc(l.label) + '</a>').join('');
+    const dt = c.draftingTable ? '<a class="pill" href="' + esc(c.draftingTable) + '" target="_blank">Drafting Table</a>' : '';
+    const ran = (c.sessions || []).length ? fmt(c.sessions[0]) + ' → ' + fmt(c.sessions[c.sessions.length - 1]) : '';
+    return '<div class="arch-row"><span class="name">' + esc(c.label) + '</span>' +
+      '<span class="meta">' + esc(c.company) + (ran ? ' · ' + ran : '') + (c.rosterKnown ? ' · ' + c.builders + ' builders' : '') + '</span>' +
+      '<span class="pills">' + led + dt + '</span></div>';
+  }).join('') : '<p class="empty">Nothing archived yet.</p>';
+}
+
+function render() {
+  const live = DATA.cohorts.filter(c => c.status !== 'archived');
+  if (!selected || !live.some(c => c.slug === selected)) {
+    const today = live.find(c => { const p = pointer(c); return p && p.when === 'today'; });
+    selected = today ? today.slug : (live[0] || {}).slug || null;
+  }
+  renderNow(); renderTabs(); renderCohort(); renderArc(); renderArchive();
+  $('stamp').textContent = fmt(todayISO());
+}
+
+// Live read when the file is reachable, inlined copy otherwise (file:// blocks fetch).
+function boot() {
+  try { DATA = JSON.parse($('cohort-data').textContent) || DATA; } catch (e) { /* keep the empty default */ }
+  skinned = localStorage.getItem('hvrSkin') === '1';
+  $('skin').checked = skinned;
+  $('skin').addEventListener('change', e => {
+    skinned = e.target.checked;
+    localStorage.setItem('hvrSkin', skinned ? '1' : '0');
+    renderArc();
+  });
+  render();
+  fetch('./cohorts.json', { cache: 'no-store' })
+    .then(r => r.ok ? r.json() : null)
+    .then(j => { if (j && j.cohorts) { DATA = j; render(); } })
+    .catch(() => { /* inlined copy already rendered */ });
+}
+boot();
+</script>
+</body>
+</html>

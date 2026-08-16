@@ -1,0 +1,184 @@
+{
+  "generatedBy": "scripts/build-room-hub.js",
+  "generatedAt": "2026-08-16T23:31:26.477Z",
+  "cohorts": [
+    {
+      "dir": "2026-aug-fraim",
+      "id": "2026-aug-fraim",
+      "company": "Fraim, Cawley & Company, CPAs",
+      "slug": "fraim",
+      "label": "Fraim CPAs",
+      "status": "live",
+      "language": "en",
+      "rooms": [
+        {
+          "name": "Monday",
+          "when": "10:00 ET"
+        }
+      ],
+      "sessions": [
+        "2026-08-17",
+        "2026-08-24",
+        "2026-08-31",
+        "2026-09-07"
+      ],
+      "ledgers": [
+        {
+          "label": "Cohort Ledger",
+          "url": "https://docs.google.com/spreadsheets/d/1eL9fAATJQWdTVHCWKzF_0ws6MRd-M0OM1IaPRacM50g/edit"
+        }
+      ],
+      "draftingTable": "https://13-218-176-29.sslip.io/c/fraim",
+      "join": "https://13-218-176-29.sslip.io/c/fraim/join",
+      "assessment": "https://docs.google.com/forms/d/e/1FAIpQLSfPAy7jEekZgRFlZ1GpjWacfZ3z-ybpwRGP73frMoQ6IaZ-JQ/viewform?usp=pp_url&entry.534543081=Fraim%2C%20Cawley%20%26%20Company%2C%20CPAs&entry.1686970719=2026-aug-fraim",
+      "leader": "Micah Fraim",
+      "builders": 0,
+      "rosterKnown": false,
+      "notes": "Closed cohort, six seats per the engagement letter. Outside guests file under cohort ID 2026-aug-fraim-guest so they never roll into Fraim org numbers. Micah Fraim owns the room; Dave is the 49% owner and has not been in a conversation."
+    },
+    {
+      "dir": "2026-jul-hvr2",
+      "id": "2026-jul-hvr2",
+      "company": "Humans V Robots 2",
+      "slug": "hvr2",
+      "label": "Humans V Robots 2",
+      "status": "live",
+      "language": "bi",
+      "rooms": [
+        {
+          "name": "Morning",
+          "when": "Wed 09:00 COT",
+          "language": "es"
+        },
+        {
+          "name": "Night",
+          "when": "Wed 19:00 COT",
+          "language": "bi"
+        }
+      ],
+      "sessions": [
+        "2026-07-29",
+        "2026-08-05",
+        "2026-08-12",
+        "2026-08-19"
+      ],
+      "ledgers": [
+        {
+          "label": "Cohort Ledger",
+          "url": "https://docs.google.com/spreadsheets/d/1asSiowlXIQ00p9IJoCCQzhUghCcY5Y5lDatUEq-d1Jc/edit"
+        }
+      ],
+      "draftingTable": "https://13-218-176-29.sslip.io/c/hvr2",
+      "join": "https://13-218-176-29.sslip.io/c/hvr2/join",
+      "assessment": "https://docs.google.com/forms/d/e/1FAIpQLSfPAy7jEekZgRFlZ1GpjWacfZ3z-ybpwRGP73frMoQ6IaZ-JQ/viewform?usp=pp_url&entry.534543081=Humans%20V%20Robots%202&entry.1686970719=2026-jul-hvr2",
+      "leader": null,
+      "builders": 14,
+      "rosterKnown": true,
+      "notes": "Morning room runs mostly Spanish; Night room is bilingual. Builders float between rooms. Share the right language version of every visual."
+    },
+    {
+      "dir": "2026-jun-friends-family",
+      "id": "2026-jun-friends-family",
+      "company": "Friends & Family (Humans V Robots)",
+      "slug": "ff",
+      "label": "Friends & Family",
+      "status": "archived",
+      "language": "bi",
+      "rooms": [
+        {
+          "name": "Monday track",
+          "when": "Mon"
+        },
+        {
+          "name": "Thursday track",
+          "when": "Thu"
+        }
+      ],
+      "sessions": [
+        "2026-06-22",
+        "2026-06-29",
+        "2026-07-06",
+        "2026-07-13"
+      ],
+      "ledgers": [
+        {
+          "label": "Mon Ledger",
+          "url": "https://docs.google.com/spreadsheets/d/1dzAa4UPFjtDZW4aUhSQbvcKrrhaGbcChGis_YztJ20k/edit"
+        },
+        {
+          "label": "Thu Ledger",
+          "url": "https://docs.google.com/spreadsheets/d/1r5JGGt2fOBq3dQb14TsRdgpY0pFMn483fIAx8j8bFYc/edit"
+        },
+        {
+          "label": "Roster tracker",
+          "url": "https://docs.google.com/spreadsheets/d/1TNHaTtmnHQ0We6ivABwH4b7JjaAW7RoXCx3m9XQ2juI/edit"
+        }
+      ],
+      "draftingTable": null,
+      "join": null,
+      "assessment": null,
+      "leader": null,
+      "builders": 28,
+      "rosterKnown": true,
+      "notes": "One cohort, two weekly tracks. Demo days Jul 13 (Mon) and Jul 16 (Thu). Pay-what-you-can wave."
+    },
+    {
+      "dir": "bryce-dbalp",
+      "id": "2026-jun-dbalp",
+      "company": "DBALP",
+      "slug": "dbalp",
+      "label": "DBALP",
+      "status": "archived",
+      "language": "en",
+      "rooms": [
+        {
+          "name": "Monday",
+          "when": "13:00 COT"
+        }
+      ],
+      "sessions": [],
+      "ledgers": [
+        {
+          "label": "Cohort Ledger",
+          "url": "https://docs.google.com/spreadsheets/d/13f06_YeWj7v48DflEFeuv69AqbB56g1D_Ivym3KdCUM/edit"
+        }
+      ],
+      "draftingTable": "https://13-218-176-29.sslip.io/c/dbalp",
+      "join": null,
+      "assessment": null,
+      "leader": null,
+      "builders": 8,
+      "rosterKnown": true,
+      "notes": "Bryce North co-facilitated. \"Don't Be A Little Pitch\"."
+    },
+    {
+      "dir": "ginger-rpa",
+      "id": "2026-jun-rpa",
+      "company": "RPA",
+      "slug": "rpa",
+      "label": "RPA",
+      "status": "archived",
+      "language": "en",
+      "rooms": [
+        {
+          "name": "Tuesday",
+          "when": "10:00 COT"
+        }
+      ],
+      "sessions": [],
+      "ledgers": [
+        {
+          "label": "Cohort Ledger",
+          "url": "https://docs.google.com/spreadsheets/d/1wDa_uV7TRYSvfqSCcHAELxvD2WXdVmKmB7NB2GRfulk/edit"
+        }
+      ],
+      "draftingTable": "https://13-218-176-29.sslip.io/c/rpa",
+      "join": null,
+      "assessment": null,
+      "leader": null,
+      "builders": 4,
+      "rosterKnown": true,
+      "notes": "Ginger Gentile. Ledger doubles as the cohort tracker."
+    }
+  ]
+}
