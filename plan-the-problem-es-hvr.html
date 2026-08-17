@@ -3,43 +3,43 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="theme-color" content="#0B0B0B">
+<meta name="theme-color" content="#FFFFFF">
 <title>Planea el problema: Humans v Robots</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100%; background: #fafafa; color:#FFFFFF; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  html, body { height: 100%; background: #FFFFFF; color: #0B0B0B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
   .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 12px; }
   .frame-wrap { flex: 1; max-height: 80vh; width: 100%; display: flex; align-items: center; justify-content: center; }
   svg { width: auto; height: auto; max-width: 100%; max-height: 100%; }
-  .title-screen { font-size: 60px; font-weight: 700; text-align: center; color:#FFFFFF; letter-spacing: -1px; line-height: 1.1; }
-  .title-screen .sub { display: block; font-size: 22px; font-weight: 400; margin-top: 18px; color:rgba(255,255,255,.62); letter-spacing: 0; }
+  .title-screen { font-size: 60px; font-weight: 700; text-align: center; color: #0B0B0B; letter-spacing: -1px; line-height: 1.1; }
+  .title-screen .sub { display: block; font-size: 22px; font-weight: 400; margin-top: 18px; color: #666; letter-spacing: 0; }
   .caption { max-width: 920px; text-align: center; font-size: 18px; line-height: 1.5; color: #333; padding: 0 12px; min-height: 56px; }
-  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color:rgba(255,255,255,.62); }
-  .hud strong { color:#FFFFFF; font-size: 16px; }
+  .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; }
+  .hud strong { color: #0B0B0B; font-size: 16px; }
   .controls { display: flex; gap: 10px; }
-  button { background: #fff; color:#FFFFFF; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
-  button:hover { background: #1a1a1a; color: #fff; }
+  button { background: #fff; color: #0B0B0B; border: 1.5px solid #0B0B0B; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+  button:hover { background: #0B0B0B; color: #fff; }
   button:disabled { opacity: 0.25; cursor: default; }
-  button:disabled:hover { background: #fff; color:#FFFFFF; }
+  button:disabled:hover { background: #fff; color: #0B0B0B; }
   .hint { position: fixed; bottom: 10px; right: 14px; opacity: 0.5; font-size: 12px; }
 
   .el { opacity: 0; transition: opacity 0.35s ease; }
   .el.show { opacity: 1; }
 
-  .box { fill: #fff; stroke: #1a1a1a; stroke-width: 2.5; }
-  .box-finale { fill:#FFFFFF; stroke: #1a1a1a; stroke-width: 2.5; }
-  .line { fill: none; stroke: #1a1a1a; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-  .line-thin { fill: none; stroke: #1a1a1a; stroke-width: 1.5; }
-  .arrow { fill:#FFFFFF; }
-  .head-xl { font-size: 26px; font-weight: 700; fill:#FFFFFF; letter-spacing: 1px; }
-  .head-q { font-size: 14px; font-style: italic; fill:rgba(255,255,255,.62); }
+  .box { fill: #fff; stroke: #0B0B0B; stroke-width: 2.5; }
+  .box-finale { fill: #0B0B0B; stroke: #0B0B0B; stroke-width: 2.5; }
+  .line { fill: none; stroke: #0B0B0B; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .line-thin { fill: none; stroke: #0B0B0B; stroke-width: 1.5; }
+  .arrow { fill: #0B0B0B; }
+  .head-xl { font-size: 26px; font-weight: 700; fill: #0B0B0B; letter-spacing: 1px; }
+  .head-q { font-size: 14px; font-style: italic; fill: #666; }
   .label-h-white { font-size: 22px; font-weight: 700; fill: #fff; }
-  .label-b { font-size: 16px; font-weight: 400; fill:#FFFFFF; }
-  .label-b-bold { font-size: 16px; font-weight: 600; fill:#FFFFFF; }
+  .label-b { font-size: 16px; font-weight: 400; fill: #0B0B0B; }
+  .label-b-bold { font-size: 16px; font-weight: 600; fill: #0B0B0B; }
   .label-b-white { font-size: 16px; font-weight: 400; fill: #fff; }
-  .label-sm { font-size: 13px; font-weight: 400; fill:rgba(255,255,255,.62); }
+  .label-sm { font-size: 13px; font-weight: 400; fill: #666; }
   .badge { fill: #fde68a; stroke: #92400e; stroke-width: 2; }
-  .badge-text { font-size: 16px; font-weight: 600; fill:#FFFFFF; }
+  .badge-text { font-size: 16px; font-weight: 600; fill: #0B0B0B; }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,122 +47,132 @@
 <style>
 /* Humans v Robots skin for the Session 1 slides.
    Inlined last in <head> by scripts/build-room-skin-slides.js, so every rule here
-   overrides the slide's own light theme without touching the source file.
+   overrides the slide's own styling without touching the source file.
 
-   Locked BrandKit (assets/Humans v Robots - Brand Guide.html, 2026-07-31):
-     Black #0B0B0B ground · Paper #FFFFFF · Panel #17170F
-     Volt #C8FF3D ON BLACK ONLY, under 5% of a view · Hot #FF5A1F ON WHITE ONLY
-   Grays are rgba tints. No gradients, glows, shadows. Volt and hot never share a surface.
-   Volt belongs to the human, never the machine: it lands on the mark, the human's
-   chat bubble label, the three keys, and the step counter. Never on an LLM or a
-   Platform box. The Product box is paper because the build is the human's, and the
-   one bright surface on a black slide should be the thing they made. */
+   Matched to humansvrobots.co, not to a reading of the brand guide. The site is
+   paper-first: ink #0B0B0B on white, square corners everywhere, 2px borders on
+   anything boxed, hairlines at rgba(11,11,11,.14), and volt used once or twice a
+   view rather than as a theme. Type is Bricolage Grotesque 800 with negative
+   tracking for display, Space Grotesk for everything else.
+
+   The source slides are already black on white, which is why this file is short.
+   It corrects the ground to pure paper, swaps the two fonts in, squares the
+   corners, and moves volt onto the one thing per slide the builder is heading
+   toward. Hot #FF5A1F is the dot in the mark, since volt never sits on white. */
 
 :root {
-  --black: #0B0B0B; --volt: #C8FF3D; --volt-ink: #4F6B00; --paper: #FFFFFF; --panel: #17170F;
-  --hair: rgba(255,255,255,.18); --mute: rgba(255,255,255,.62);
+  --ink: #0B0B0B; --paper: #FFFFFF; --volt: #C8FF3D; --hot: #FF5A1F;
+  --ink70: rgba(11,11,11,.72); --ink55: rgba(11,11,11,.55); --hair: rgba(11,11,11,.14);
   --disp: 'Bricolage Grotesque','Space Grotesk',system-ui,-apple-system,sans-serif;
   --body: 'Space Grotesk',system-ui,-apple-system,sans-serif;
 }
 
-html, body { background: var(--black); color: var(--paper); font-family: var(--body); }
+html, body { background: var(--paper); color: var(--ink); font-family: var(--body); }
+.stage { background: var(--paper); }
 svg { font-family: var(--body); }
 
-h1, .title-screen, .heading h1, .label-h, .label-h-white, .head-xl, .head-l, .head-l-white, .card .body, .footer-line {
-  font-family: var(--disp);
+/* Display type. SVG text keeps its own tracking, because the label positions in
+   those diagrams are hand-placed and negative tracking shifts them off their anchors. */
+h1, .heading h1, .title-screen, .slide-title, .card .body, .footer-line, .agreement .strong {
+  font-family: var(--disp); font-weight: 800; letter-spacing: -.03em;
 }
+.head-xl, .head-l, .head-l-white, .label-h, .label-h-white, .badge-text { font-family: var(--disp); }
 
-/* Title screens: the one place the wordmark speaks. */
-.title-screen { color: var(--paper); }
-.title-screen .sub, .heading .sub { color: var(--volt); font-family: var(--body); font-weight: 500; letter-spacing: .5px; }
-.eyebrow { color: var(--volt); }
-.sub { color: var(--mute); }
-.caption { color: var(--mute); }
+.eyebrow { color: var(--ink55); font-weight: 700; letter-spacing: .24em; text-transform: uppercase; }
+.sub, .caption, .card .detail, .byline, .hint, footer { color: var(--ink55); }
+.title-screen .sub, .heading .sub { color: var(--ink55); font-family: var(--body); font-weight: 500; }
 
-/* Machine surfaces: panel fill, paper hairline. Never volt. */
-.box { fill: var(--panel); stroke: var(--paper); stroke-width: 2; }
+/* The site's signature move: volt behind the last line of the thesis. In the bilingual
+   view only the leading language takes it, since the site never fills two things at once. */
+.hl { background: var(--volt); color: var(--ink); padding: 0 .1em; }
+body.mode-both .thesis-es .hl { background: none; color: inherit; }
+
+/* Square everything. The site has no rounded corner anywhere, including the SVG rects. */
+.card, .chat, .bubble, .agreement, .lang-toggle, .hud, button, .badge, .box, .box-wrap { border-radius: 0; }
+rect { rx: 0; ry: 0; }
+
+/* Boxed surfaces: white fill, ink rule. */
+.card { background: var(--paper); border: 2px solid var(--ink); }
+.card .num { color: var(--hair); }
+.agreement { background: var(--paper); border: 2px solid var(--hair); }
+.agreement span { color: var(--ink70); }
+.footer-line { border-top: 1px solid var(--hair); color: var(--ink); }
+
+/* Diagram surfaces. The machine is white with an ink rule, never volt. */
+.box { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
 .box-wrap { fill: none; stroke: var(--hair); stroke-width: 2; }
-.line, .line-thin { stroke: var(--paper); }
-.line-thin { stroke: rgba(255,255,255,.4); }
-.arrow { fill: var(--paper); }
+.line { stroke: var(--ink); }
+.line-thin { stroke: rgba(11,11,11,.32); }
+.arrow { fill: var(--ink); }
+.label-h, .label-b, .label-b-bold, .head-xl, .head-l { fill: var(--ink); }
+.label-edge, .label-sm, .head-q { fill: var(--ink55); }
 
-.label-h, .label-b, .label-b-bold, .head-xl, .head-l, .badge-text { fill: var(--paper); }
-.label-edge, .label-sm, .head-q { fill: var(--mute); }
+/* The finale box is what the builder is heading toward, so it takes the volt fill,
+   the way the site fills exactly one card in the four-weeks row. */
+.box-finale { fill: var(--volt); stroke: var(--volt); }
+.label-h-white, .label-b-white, .head-l-white { fill: var(--ink); }
 
-/* The finale box is what the human built. Paper, so it is the brightest thing on screen. */
-.box-finale { fill: var(--paper); stroke: var(--paper); }
-.label-h-white, .label-b-white, .head-l-white { fill: var(--black); }
+/* Callout badges: solid ink chip, paper type. */
+.badge { fill: var(--ink); stroke: var(--ink); stroke-width: 2; }
+.badge-text { fill: var(--paper); }
 
-/* Callout badges: volt outline on the ground. The fill stays opaque because
-   plan-the-problem parks its badge on top of the title and relies on it to occlude. */
-.badge { fill: var(--black); stroke: var(--volt); stroke-width: 2; }
-.badge-text { fill: var(--volt); }
+/* The Spanish layer arrives blue, which is not a brand color. It becomes ink, and the
+   italic carries the separation the color used to. How strong that ink is depends on
+   which language is driving: in EN+ES Spanish is the second layer and steps back, but
+   in ES-only it is the whole slide and has to read at full strength. */
+.title-es, .thesis-es, .slide-title-es, .heading .h1-es, .es-text,
+.card .body-es, .agreement .strong-es, .footer-line .f-es { color: var(--ink); }
+.label-es, .label-es-white { fill: var(--ink); }
+/* Captions and detail lines are the quiet tier in either language. */
+.cap-es, .card .detail-es, .agreement .span-es { color: var(--ink55); }
+.head-q-es { fill: var(--ink55); }
 
-/* The Spanish layer on the -es and -bi slides. It arrives blue, which is not a brand
-   color and reads dark on the ground. It becomes paper at reduced strength: the italic
-   already separates the two languages, so the color does not have to. */
-.title-es, .thesis-es, .slide-title-es, .heading .h1-es, .cap-es, .es-text,
-.card .body-es, .card .detail-es, .agreement .strong-es, .agreement .span-es,
-.footer-line .f-es, .bubble.ai .es-text { color: var(--mute); }
-.label-es, .head-q-es { fill: var(--mute); }
-/* Spanish sitting inside a paper surface flips the other way. */
-.label-es-white { fill: rgba(11,11,11,.55); }
-.bubble.user .es-text { color: rgba(11,11,11,.55); }
+body.mode-both .title-es, body.mode-both .thesis-es, body.mode-both .slide-title-es,
+body.mode-both .heading .h1-es, body.mode-both .es-text, body.mode-both .card .body-es,
+body.mode-both .agreement .strong-es, body.mode-both .footer-line .f-es { color: var(--ink55); }
+body.mode-both .label-es, body.mode-both .label-es-white { fill: var(--ink55); }
+
+/* The SVG diagrams carry their Spanish as an inline fill, which no selector can reach,
+   so the generator points those at this variable instead of a fixed value. */
+:root { --es: var(--ink55); }
+body.mode-es { --es: var(--ink); }
 
 /* Bilingual language toggle. Needs its own rules because the generic button style
    would otherwise outline each button inside the pill. */
-.lang-toggle { background: var(--panel); border-color: var(--hair); }
-.lang-toggle button { background: transparent; border: none; color: var(--mute); }
-.lang-toggle button:hover { background: transparent; color: var(--paper); }
-.lang-toggle button.active, .lang-toggle button.active:hover { background: var(--paper); color: var(--black); }
+.lang-toggle { background: var(--paper); border: 2px solid var(--hair); }
+.lang-toggle button { background: transparent; border: none; border-radius: 0; color: var(--ink55); }
+.lang-toggle button:hover { background: transparent; color: var(--ink); }
+.lang-toggle button.active, .lang-toggle button.active:hover { background: var(--ink); color: var(--paper); }
 
 /* how-to-prompt chat */
-.chat { background: var(--panel); border: 2px solid var(--hair); }
-.chat-header { color: var(--mute); border-bottom-color: var(--hair); }
-.chat-header span:last-child { color: var(--volt); }
-.bubble.user { background: var(--paper); color: var(--black); }
-.bubble.ai { background: transparent; border: 1.5px solid var(--hair); color: var(--paper); }
-.bubble.ai .role { color: var(--mute); }
-.bubble.user .role { color: rgba(11,11,11,.62); opacity: 1; }
-.highlight { background: transparent; color: var(--volt); padding: 0; font-weight: 700; }
-/* The human's bubble is paper, and volt never lands on white. Volt Ink is the accent there. */
-.bubble.user .highlight { color: var(--volt-ink); }
-.chat { scrollbar-color: rgba(255,255,255,.28) transparent; scrollbar-width: thin; }
-.chat::-webkit-scrollbar { width: 8px; }
-.chat::-webkit-scrollbar-track { background: transparent; }
-.chat::-webkit-scrollbar-thumb { background: rgba(255,255,255,.28); border-radius: 4px; }
-
-/* three-keys cards: the keys are the human's, so the numerals carry the volt. */
-.card { background: var(--panel); border: 1.5px solid var(--hair); }
-.card .num { color: var(--volt); }
-.card .detail { color: var(--mute); }
-.footer-line { color: var(--paper); border-top-color: var(--hair); }
-.byline { color: rgba(255,255,255,.38); }
-
-/* session-opener agreements */
-.agreement { background: var(--panel); border: 1.5px solid var(--hair); }
-.agreement span { color: var(--mute); }
+.chat { background: var(--paper); border: 2px solid var(--hair); }
+.chat-header { color: var(--ink55); border-bottom-color: var(--hair); }
+.bubble.user { background: var(--ink); color: var(--paper); }
+.bubble.user .role { color: rgba(255,255,255,.62); opacity: 1; }
+.bubble.user .es-text { color: rgba(255,255,255,.62); }
+body.mode-es .bubble.user .es-text { color: var(--paper); }
+.bubble.ai { background: transparent; border: 2px solid var(--hair); color: var(--ink); }
+.bubble.ai .role { color: var(--ink55); }
+/* The site's one repeated move: volt behind the words, not on them. */
+.highlight { background: var(--volt); color: var(--ink); padding: 1px 5px; font-weight: 700; }
 
 /* Chrome */
-/* Slides that give the hud a floating pill get the pill recolored by the generator.
-   The rest keep a bare row, so no box appears around the buttons. */
-.hud { color: var(--mute); }
-.hud strong { color: var(--volt); }
-button { background: transparent; color: var(--paper); border: 1.5px solid var(--paper); font-family: var(--body); }
-button:hover { background: var(--paper); color: var(--black); }
-button:disabled:hover { background: transparent; color: var(--paper); }
-.hint, footer { color: rgba(255,255,255,.38); opacity: 1; }
+.hud { color: var(--ink55); }
+.hud strong { color: var(--ink); }
+button { background: transparent; color: var(--ink); border: 2px solid var(--hair); font-family: var(--body); font-weight: 700; }
+button:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+button:disabled:hover { background: transparent; color: var(--ink); border-color: var(--hair); }
 
 /* Corner lockup */
 .hvr-mark { position: fixed; top: 16px; left: 18px; display: flex; align-items: center; gap: 7px;
-  font-family: var(--disp); font-weight: 800; font-size: 11px; letter-spacing: 2.5px;
-  text-transform: uppercase; color: rgba(255,255,255,.55); z-index: 50; pointer-events: none; }
+  font-family: var(--disp); font-weight: 800; font-size: 11px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--ink55); z-index: 50; pointer-events: none; }
 .hvr-mark svg { width: 17px; height: 17px; }
 @media print { .hvr-mark { position: absolute; } }
 </style>
 </head>
 <body>
-<div class="hvr-mark" aria-hidden="true">Humans<svg viewBox="0 0 120 120"><path d="M16 40 L60 104 L104 40" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter"/><circle cx="60" cy="30" r="18" fill="#C8FF3D"/></svg>Robots</div>
+<div class="hvr-mark" aria-hidden="true">Humans<svg viewBox="0 0 120 120"><path d="M16 40 L60 104 L104 40" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter"/><circle cx="60" cy="30" r="18" fill="#FF5A1F"/></svg>Robots</div>
 <div class="stage">
   <div class="frame-wrap" id="frame">
     <div class="title-screen" id="titleScreen">
@@ -178,7 +188,7 @@ button:disabled:hover { background: transparent; color: var(--paper); }
 
       <!-- ===== Header area: always visible from step 2+ ===== -->
       <g class="el" data-step="2">
-        <text x="550" y="40" text-anchor="middle" style="font-size:30px;font-weight:700;fill:#FFFFFF">Planea el problema</text>
+        <text x="550" y="40" text-anchor="middle" style="font-size:30px;font-weight:700;fill:#0B0B0B">Planea el problema</text>
         <text x="550" y="68" text-anchor="middle" class="label-sm">&#xBFQu&#xE9; resultado quiero, qu&#xE9; entrada me lleva ah&#xED;, y cu&#xE1;ndo sucede?</text>
       </g>
 

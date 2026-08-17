@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#0B0B0B">
+<meta name="theme-color" content="#FFFFFF">
 <title>Facilitator Hub · Humans v Robots</title>
 <!--
   THE hub. One page for every cohort, forever. Do not clone this per cohort.
@@ -20,112 +20,117 @@
   Session pointer is computed from today's date at runtime, so it stays right even if the
   generator has not run in weeks.
 
-  Brand: locked Humans v Robots BrandKit (assets/Humans v Robots - Brand Guide.html, 2026-07-31).
-    Black #0B0B0B ground · Volt #C8FF3D accent ON BLACK ONLY, under 5% of a view
-    Paper #FFFFFF · Panel #17170F. Grays are rgba tints. No gradients, glows or shadows.
-    Volt belongs to the human, never the machine. Mark is inlined, never fetched.
+  Brand: matched to humansvrobots.co, not to a reading of the brand guide. The site is
+  paper-first. Ink #0B0B0B on white, black used as a band rather than the ground, square
+  corners everywhere, 2px borders on anything interactive, hairlines at rgba(11,11,11,.14).
+  Volt #C8FF3D appears twice: as a highlighter behind the thesis line, and as the fill on
+  the one card you are meant to look at. Hot #FF5A1F is the dot in the mark, because volt
+  never sits on white. Type is Bricolage Grotesque 800 with negative tracking for display,
+  Space Grotesk for everything else. Mark is inlined, never fetched.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #0B0B0B; --volt: #C8FF3D; --paper: #FFFFFF; --panel: #17170F;
-    --hair: rgba(255,255,255,.16);
-    --hair-strong: rgba(255,255,255,.32);
-    --mute: rgba(255,255,255,.62);
-    --faint: rgba(255,255,255,.42);
+    --ink: #0B0B0B; --paper: #FFFFFF; --volt: #C8FF3D; --hot: #FF5A1F; --panel: #17170F;
+    --ink70: rgba(11,11,11,.72);
+    --ink55: rgba(11,11,11,.55);
+    --hair: rgba(11,11,11,.14);
     --disp: 'Bricolage Grotesque','Space Grotesk',system-ui,-apple-system,sans-serif;
     --body: 'Space Grotesk',system-ui,-apple-system,sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background: var(--black); color: var(--paper); font-family: var(--body); line-height: 1.5; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--body); line-height: 1.5; }
   a { color: inherit; }
   .page { max-width: 1120px; margin: 0 auto; padding: 44px 26px 90px; }
 
   /* ---- header ---- */
-  .lockup { display: flex; align-items: center; gap: 13px; margin-bottom: 22px; }
-  .lockup .word { font-family: var(--disp); font-size: 34px; font-weight: 800; letter-spacing: .02em; line-height: 1; }
+  .lockup { display: flex; align-items: center; gap: 13px; margin-bottom: 20px; }
+  .lockup .word { font-family: var(--disp); font-size: 34px; font-weight: 800; letter-spacing: .01em; line-height: 1; }
   .mark { display: block; flex: none; }
   .mark .arms { fill: none; stroke: currentColor; stroke-width: 13; stroke-linecap: butt; stroke-linejoin: miter; }
-  h1 { font-family: var(--disp); font-weight: 800; font-size: 52px; letter-spacing: -.035em; line-height: 1.02; margin-bottom: 10px; }
-  .mission { font-size: 14px; color: var(--volt); letter-spacing: 2.4px; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
-  .standfirst { font-size: 17px; color: var(--mute); max-width: 640px; }
-  .standfirst a { color: var(--paper); }
+  h1 { font-family: var(--disp); font-weight: 800; font-size: 52px; letter-spacing: -.03em; line-height: 1.02; margin-bottom: 12px; }
+  /* The thesis line is set the way the site sets it: sentence case, display weight,
+     with volt behind the last three words rather than coloring the type. */
+  .mission { font-family: var(--disp); font-size: 20px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 14px; }
+  .mission .hl { background: var(--volt); padding: 1px 5px; }
+  .standfirst { font-size: 17px; color: var(--ink70); max-width: 640px; }
+  .standfirst a { color: var(--ink); }
 
   /* ---- section headings ---- */
-  h2 { font-family: var(--disp); font-size: 13px; font-weight: 700; color: var(--faint); letter-spacing: 2.2px; text-transform: uppercase; margin: 46px 0 16px; padding-bottom: 9px; border-bottom: 1px solid var(--hair); }
-  h3 { font-family: var(--disp); font-size: 25px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 4px; }
+  h2 { font-family: var(--body); font-size: 12px; font-weight: 700; color: var(--ink55); letter-spacing: .24em; text-transform: uppercase; margin: 46px 0 16px; padding-bottom: 9px; border-bottom: 1px solid var(--hair); }
+  h3 { font-family: var(--disp); font-size: 25px; font-weight: 800; letter-spacing: -.025em; margin-bottom: 4px; }
 
   /* ---- the now bar ---- */
-  .now { border: 1px solid var(--hair-strong); border-left: 3px solid var(--volt); border-radius: 12px; padding: 20px 24px; margin: 28px 0 8px; background: var(--panel); }
-  .now .stamp { font-size: 11.5px; letter-spacing: 2.2px; text-transform: uppercase; color: var(--volt); font-weight: 700; margin-bottom: 9px; }
-  .now .headline { font-family: var(--disp); font-size: 27px; font-weight: 800; letter-spacing: -.02em; line-height: 1.18; }
-  .now .detail { font-size: 15px; color: var(--mute); margin-top: 7px; }
+  /* The one volt surface on the page, the way the site fills exactly one card. */
+  .now { background: var(--volt); color: var(--ink); padding: 22px 26px; margin: 30px 0 8px; }
+  .now .stamp { font-size: 12px; letter-spacing: .24em; text-transform: uppercase; font-weight: 700; margin-bottom: 9px; }
+  .now .headline { font-family: var(--disp); font-size: 28px; font-weight: 800; letter-spacing: -.03em; line-height: 1.15; }
+  .now .detail { font-size: 15px; color: rgba(11,11,11,.66); margin-top: 7px; font-weight: 500; }
 
   /* ---- cohort tabs ---- */
-  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 26px 0 18px; }
-  .tab { font-family: var(--disp); font-weight: 700; font-size: 14px; letter-spacing: .01em; padding: 9px 17px; border: 1px solid var(--hair-strong); border-radius: 999px; background: none; color: var(--mute); cursor: pointer; font-family: var(--body); }
-  .tab:hover { color: var(--paper); border-color: var(--paper); }
-  .tab[aria-selected="true"] { background: var(--volt); color: var(--black); border-color: var(--volt); font-weight: 700; }
-  .tab .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--volt); margin-right: 7px; vertical-align: middle; }
-  .tab[aria-selected="true"] .dot { background: var(--black); }
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 26px 0 20px; }
+  .tab { font-family: var(--body); font-weight: 700; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; padding: 9px 15px; border: 2px solid var(--hair); background: none; color: var(--ink55); cursor: pointer; }
+  .tab:hover { color: var(--ink); border-color: var(--ink); }
+  .tab[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .tab .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--hot); margin-right: 7px; vertical-align: middle; }
 
   /* ---- cards ---- */
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(258px, 1fr)); gap: 12px; }
-  .card { display: block; border: 1px solid var(--hair-strong); border-radius: 11px; padding: 16px 18px; text-decoration: none; background: var(--panel); transition: border-color .14s ease, background .14s ease; }
-  .card:hover { border-color: var(--volt); background: #1d1d12; }
-  .card .t { font-family: var(--disp); font-size: 17px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 4px; }
-  .card .m { font-size: 13.5px; color: var(--mute); line-height: 1.45; }
-  .card.key { border-color: var(--volt); }
-  .card.key .t { color: var(--volt); }
+  .card { display: block; border: 2px solid var(--hair); padding: 17px 19px; text-decoration: none; background: var(--paper); transition: border-color .14s ease, background .14s ease, color .14s ease; }
+  .card:hover { border-color: var(--ink); }
+  .card .t { font-family: var(--disp); font-size: 18px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 4px; }
+  .card .m { font-size: 13.5px; color: var(--ink70); line-height: 1.45; }
+  /* The card you are meant to open first inverts, the way the site's primary button does. */
+  .card.key { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .card.key .m { color: rgba(255,255,255,.74); }
+  .card.key:hover { background: #1d1d1d; }
 
   /* ---- cohort panel ---- */
   .cohort-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 4px; }
   .badges { display: flex; gap: 7px; flex-wrap: wrap; }
-  .badge { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--hair-strong); color: var(--mute); }
-  .badge.volt { border-color: var(--volt); color: var(--volt); }
-  .cohort-note { font-size: 14px; color: var(--mute); max-width: 760px; margin: 10px 0 18px; }
+  .badge { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; padding: 5px 10px; border: 2px solid var(--hair); color: var(--ink55); }
+  .badge.volt { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .cohort-note { font-size: 14px; color: var(--ink70); max-width: 760px; margin: 10px 0 18px; }
   .rooms { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 18px; }
-  .room { font-size: 13px; border: 1px solid var(--hair); border-radius: 8px; padding: 7px 13px; color: var(--mute); }
-  .room b { color: var(--paper); font-weight: 700; }
+  .room { font-size: 13px; border: 2px solid var(--hair); padding: 7px 13px; color: var(--ink70); }
+  .room b { color: var(--ink); font-weight: 700; }
 
   /* ---- session arc ---- */
-  .session { border: 1px solid var(--hair); border-radius: 12px; padding: 20px 22px; margin-bottom: 12px; }
-  .session.now-session { border-color: var(--volt); border-left-width: 3px; }
-  .session .when { font-size: 13px; color: var(--faint); letter-spacing: .4px; margin-bottom: 11px; }
-  .session.now-session .when { color: var(--volt); font-weight: 700; }
-  .session .aim { font-size: 15px; color: var(--mute); margin-bottom: 13px; max-width: 780px; }
-  .session ol { margin: 0 0 15px 19px; font-size: 14px; color: var(--mute); }
+  .session { border: 2px solid var(--hair); padding: 20px 22px; margin-bottom: 12px; }
+  .session.now-session { border-color: var(--ink); }
+  .session .when { font-size: 12px; color: var(--ink55); letter-spacing: .14em; text-transform: uppercase; font-weight: 700; margin-bottom: 11px; }
+  .session.now-session .when { color: var(--ink); }
+  .session .aim { font-size: 15px; color: var(--ink70); margin-bottom: 13px; max-width: 780px; }
+  .session ol { margin: 0 0 15px 19px; font-size: 14px; color: var(--ink70); }
   .session ol li { margin-bottom: 4px; padding-left: 4px; }
   .pills { display: flex; flex-wrap: wrap; gap: 7px; }
-  .pill { font-size: 12.5px; text-decoration: none; padding: 6px 13px; border: 1px solid var(--hair-strong); border-radius: 999px; color: var(--mute); white-space: nowrap; }
-  .pill:hover { border-color: var(--paper); color: var(--paper); }
-  .pill.primary { border-color: var(--volt); color: var(--volt); font-weight: 700; }
-  .pill.es { border-style: dashed; }
-  .pill.bi { border-style: dotted; }
-  .pill .lang { opacity: .6; font-size: 11px; margin-left: 5px; letter-spacing: 1px; }
+  .pill { font-size: 12.5px; text-decoration: none; padding: 7px 13px; border: 2px solid var(--hair); color: var(--ink70); white-space: nowrap; font-weight: 500; }
+  .pill:hover { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+  .pill.primary { border-color: var(--ink); font-weight: 700; color: var(--ink); }
+  .pill .lang { color: var(--ink55); font-size: 11px; margin-left: 6px; letter-spacing: .1em; font-weight: 700; }
+  .pill:hover .lang { color: rgba(255,255,255,.7); }
 
-  .callout { border: 1px solid var(--hair-strong); border-left: 3px solid var(--volt); border-radius: 8px; padding: 11px 15px; margin-bottom: 13px; font-size: 13.5px; color: var(--mute); }
-  .callout b { color: var(--paper); }
+  .callout { border: 2px solid var(--hair); border-left: 4px solid var(--ink); padding: 12px 15px; margin-bottom: 13px; font-size: 13.5px; color: var(--ink70); }
+  .callout b { color: var(--ink); }
 
   /* ---- archive ---- */
-  details.archive { border: 1px solid var(--hair); border-radius: 12px; padding: 0; margin-top: 12px; }
-  details.archive > summary { cursor: pointer; padding: 17px 22px; font-family: var(--disp); font-weight: 700; font-size: 16px; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  details.archive { border: 2px solid var(--hair); padding: 0; margin-top: 12px; }
+  details.archive > summary { cursor: pointer; padding: 17px 22px; font-family: var(--disp); font-weight: 800; font-size: 16px; letter-spacing: -.01em; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   details.archive > summary::-webkit-details-marker { display: none; }
-  details.archive > summary .chev { color: var(--volt); font-size: 13px; transition: transform .15s ease; }
+  details.archive > summary .chev { color: var(--ink55); font-size: 13px; transition: transform .15s ease; }
   details.archive[open] > summary .chev { transform: rotate(90deg); }
-  details.archive > summary:hover { color: var(--volt); }
   .archive-body { padding: 0 22px 20px; }
   .arch-row { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; padding: 13px 0; border-top: 1px solid var(--hair); }
-  .arch-row .name { font-family: var(--disp); font-weight: 700; font-size: 16px; min-width: 168px; }
-  .arch-row .meta { font-size: 13px; color: var(--faint); flex: 1; min-width: 160px; }
+  .arch-row .name { font-family: var(--disp); font-weight: 800; font-size: 16px; letter-spacing: -.01em; min-width: 168px; }
+  .arch-row .meta { font-size: 13px; color: var(--ink55); flex: 1; min-width: 160px; }
 
-  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--hair); font-size: 12.5px; color: var(--faint); display: flex; align-items: center; gap: 9px; }
-  footer .mark { color: var(--paper); }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--hair); font-size: 12.5px; color: var(--ink55); display: flex; align-items: center; gap: 9px; }
+  footer .mark { color: var(--ink); }
 
-  .empty { font-size: 15px; color: var(--faint); padding: 18px 0; }
+  .empty { font-size: 15px; color: var(--ink55); padding: 18px 0; }
   @media (max-width: 640px) {
     h1 { font-size: 36px; }
     .page { padding: 30px 18px 70px; }
@@ -141,11 +146,11 @@
       <span class="word">HUMANS</span>
       <svg class="mark" width="40" height="40" viewBox="0 0 120 120" aria-label="Humans v Robots">
         <path class="arms" d="M16 40 L60 104 L104 40"/>
-        <circle cx="60" cy="30" r="18" fill="#C8FF3D"/>
+        <circle cx="60" cy="30" r="18" fill="#FF5A1F"/>
       </svg>
       <span class="word">ROBOTS</span>
     </div>
-    <div class="mission">Learn AI. Build Robots. Stay Human.</div>
+    <div class="mission">Learn AI. Build Robots. <span class="hl">Stay Human.</span></div>
     <h1>Facilitator Hub</h1>
     <p class="standfirst">Every cohort, one page. Ledgers, decks and the session arc. Not linked from the <a href="../">participant library</a>. Bookmark this.</p>
   </header>
@@ -212,7 +217,7 @@
   <footer>
     <svg class="mark" width="15" height="15" viewBox="0 0 120 120" aria-hidden="true">
       <path class="arms" d="M16 40 L60 104 L104 40"/>
-      <circle cx="60" cy="30" r="18" fill="#C8FF3D"/>
+      <circle cx="60" cy="30" r="18" fill="#FF5A1F"/>
     </svg>
     <span>Alex Salinsky &middot; Humans v Robots &middot; <span id="stamp"></span></span>
   </footer>
