@@ -1,5 +1,27 @@
 # build-room-visuals workbench
 
+## 2026-08-16 -- [Tool: Claude Code] (One facilitator hub for every cohort, plus an HvR skin for Session 1)
+
+**Focus:** killing the per-cohort hub clone, and testing what Humans v Robots branding looks like on the Session 1 slides. Fraim CPAs starts Mon Aug 17.
+
+**What happened:**
+- `facilitator/hub.html` is now THE hub. It reads a new `hub` block on each `brain/the-build-room/cohorts/<id>/cohort.json`, compiled by `scripts/build-room-hub.js` into `facilitator/cohorts.json` and inlined between BEGIN_DATA / END_DATA. Live cohorts get tabs with their ledgers; finished ones sit in a collapsible archive, so Friends & Family still shows all three of its sheets. Five cohorts seeded: fraim, hvr2 live; ff, dbalp, rpa archived.
+- The session pointer (which session is next, and when) is computed from today's date in the browser, so the page stays right even if the generator has not run in weeks.
+- `facilitator/index.html` now points at one hub card. The four per-cohort hubs are demoted to a reference-only line and labelled do-not-clone. Nothing deleted the night before a live session.
+- Session 1 plus the Session 2 opener got HvR variants via `scripts/build-room-skin-slides.js`, which injects `scripts/lib/hvr-slide-skin.css` and a corner lockup into a generated `-hvr.html` sibling. Seven slides across English, Spanish and bilingual is 21 files. Originals untouched, since tomorrow's session and the ES/BI twins depend on them.
+
+**[DECISION] Builder counts on the hub come from the same CATEGORIES map that feeds counts.json, extracted to `scripts/lib/br-categories.js`.** Rule 17 says never type a headcount. Two scripts with their own copy of the map would have drifted. `git diff counts.json` after the refactor was empty, so the numbers did not move.
+
+**[DECISION] The finale box in each diagram (Product, First Brick, Your prompting plan) is paper white, not volt.** The BrandKit says volt belongs to the human, never the machine, and a solid volt box that size blows past the under-5% rule. Volt lands on the mark, the three keys numerals, the callout badges and the step counter instead. On the white user bubble in how-to-prompt the accent drops to Volt Ink, since volt never sits on white.
+
+**Known:** `plan-the-problem` parks its callout badge on top of its own title. Pre-existing, previously hidden by the opaque yellow fill; the skin keeps the badge opaque so it still occludes. Worth fixing in the source slide.
+
+**[DECISION] There is one version of each slide on the hub, and it is the branded one. Language is the only choice.** This took two wrong turns to reach. The skin shipped first behind an off-by-default checkbox, so Alex clicked Inside the Robot and got the plain English slide. Replacing the checkbox with an HVR pill beside the plain pill was still wrong: "I want one version of the slides on this hub. And the version is branded, and it has bilingual options." So the `-es` and `-bi` twins now get skinned too, and the hub's Session 1 rows point at `-hvr` files for all three languages. An English cohort sees a single pill; a bilingual cohort sees EN / ES / EN+ES, all branded.
+
+**[DECISION] Ink is remapped by hex value, not by class name.** The source slides are drawn for white paper, so flipping the ground to black inverts what is readable. The bilingual files carry roughly 20 `-en` and 55 `-es` class variants plus inline `fill:` on SVG text that no stylesheet can reach, and enumerating them by hand is how English primary copy ended up at `#555` on black while its Spanish twin sat bright at 62% white. `recolorInk()` in the generator maps the values instead, scoped to `color:` and `fill:` so `background: #1a1a1a` (the active language toggle) survives. Two maps, because a color's fix depends on the surface under it: most text sits on the black ground and gets lighter, text inside the paper finale box gets darker. Caught by a runtime contrast sweep across all 21 files, which flagged `f-en` at 1.1:1.
+
+**Pushed:** `8bedf99` (hub + the first seven `-hvr.html` slides) and `1011b37` (the pill fix), both scoped by Alex. The 14 new language variants, the repointed hub and this entry are still uncommitted, as are the pending proof-library, talks and photo changes.
+
 ## 2026-08-12 -- [Tool: Claude Code, worker tokenomics-bi] (Tokenomics: bilingual twin of the S3 token-efficiency lesson)
 
 **Focus:** `tokenomics-bi.html`, an 11-slide EN + ES version of `tokenomics.html`, needed same night for a live cohort session. Source file untouched.
