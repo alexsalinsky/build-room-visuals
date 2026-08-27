@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Build Plan · {{NAME}}</title>
+<style>
+  :root { --accent: {{ACCENT}}; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 2.5rem 1rem 3rem;
+    background: #2b2822;
+    font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 780px; margin: 0 auto; }
+  .ed {
+    background: #f7f2e7;
+    color: #23201a;
+    padding: 2.6rem 2.4rem 2rem;
+    position: relative;
+    border: 1px solid #d8cfbc;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.35);
+    border-radius: 2px;
+  }
+  .ed::before {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none; opacity: 0.5;
+    background-image: radial-gradient(rgba(35,32,26,0.05) 1px, transparent 1px);
+    background-size: 5px 5px;
+  }
+  .ed > * { position: relative; }
+
+  .ed-monogram {
+    width: 44px; height: 44px; margin: 0 auto 0.9rem;
+    border: 2px solid var(--accent); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: Consolas, monospace; font-size: 0.85rem; letter-spacing: 0.08em;
+    color: var(--accent); text-transform: uppercase;
+  }
+  .ed-masthead { text-align: center; border-bottom: 3px double #23201a; padding-bottom: 1rem; }
+  .ed-masthead .eyebrow { font-family: Consolas, monospace; font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--accent); }
+  .ed-masthead h1 { font-size: 2.3rem; font-weight: normal; letter-spacing: 0.02em; margin: 0.3rem 0 0.2rem; font-variant: small-caps; color: #23201a; }
+  .ed-masthead .dateline { font-style: italic; font-size: 0.85rem; color: #6b6357; }
+  .ed-masthead .fluency-line { font-family: Consolas, monospace; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: #6b6357; margin-top: 0.5rem; }
+
+  .ed-dream { margin: 1.8rem auto 1.6rem; max-width: 560px; text-align: center; }
+  .ed-dream .k, .ed-cols .k, .ed-brick .k { font-family: Consolas, monospace; font-size: 0.6rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); }
+  .ed-dream blockquote { font-size: 1.35rem; line-height: 1.35; font-style: italic; margin: 0.5rem 0 0; }
+
+  .ed-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.4rem 0 1.8rem; padding: 1.3rem 0; border-top: 1px solid #c8bfae; border-bottom: 1px solid #c8bfae; }
+  .ed-cols .k { margin-bottom: 0.4rem; }
+  .ed-cols p { font-size: 0.98rem; line-height: 1.55; margin: 0; }
+  .ed-cols p::first-letter { font-size: 1.8rem; float: left; line-height: 1; padding-right: 0.35rem; font-weight: bold; }
+
+  .ed-brick { max-width: 560px; margin: 0 auto 1.8rem; text-align: center; }
+  .ed-brick .k { display: block; margin-bottom: 0.5rem; }
+  .ed-brick p { font-size: 1.05rem; line-height: 1.5; margin: 0; }
+
+  .ed-memo { background: #fffdf8; border: 1px solid #c8bfae; box-shadow: 3px 3px 0 #c8bfae; padding: 1.2rem 1.4rem 1rem; margin: 0 auto 1.8rem; max-width: 640px; transform: rotate(-0.4deg); }
+  .ed-memo .memo-head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; border-bottom: 1px solid #c8bfae; padding-bottom: 0.5rem; margin-bottom: 0.7rem; font-family: Consolas, monospace; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); }
+  .ed-memo .memo-head button { font-family: Consolas, monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; background: #23201a; color: #f4efe6; border: none; padding: 0.3rem 0.8rem; cursor: pointer; }
+  .ed-memo .memo-head button:hover { background: #3a362e; }
+  .ed-memo pre { font-family: 'Courier New', Courier, monospace; font-size: 0.78rem; line-height: 1.65; white-space: pre-wrap; word-break: break-word; color: #33302a; margin: 0; }
+  .ed-memo .memo-note { font-family: 'Palatino Linotype', Palatino, Georgia, serif; font-style: italic; font-size: 0.78rem; color: #6b6357; margin: 0.6rem 0 0; }
+
+  .ed-foot { text-align: center; border-top: 3px double #23201a; padding-top: 1rem; }
+  .ed-foot .foot-note { font-style: italic; font-size: 0.9rem; color: #6b6357; margin: 0 0 0.6rem; }
+  .ed-foot .plan-link { font-family: Consolas, monospace; font-size: 0.66rem; letter-spacing: 0.06em; line-height: 1.6; margin: 0 0 0.7rem; word-break: break-all; }
+  .ed-foot .plan-link a { color: var(--accent); }
+  .ed-foot .thesis { font-family: Consolas, monospace; font-size: 0.58rem; letter-spacing: 0.3em; color: #6b6357; text-transform: uppercase; }
+
+  .credit { text-align: center; font-family: Consolas, monospace; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: #7a7266; margin-top: 1.2rem; }
+
+  @media (max-width: 600px) {
+    body { padding: 1rem 0.5rem 2rem; }
+    .ed { padding: 1.8rem 1.1rem 1.5rem; }
+    .ed-masthead h1 { font-size: 1.8rem; }
+    .ed-dream blockquote { font-size: 1.1rem; }
+    .ed-cols { grid-template-columns: 1fr; gap: 1.2rem; }
+    .ed-memo { transform: none; }
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .ed { border: none; box-shadow: none; }
+    .ed-memo pre { max-height: none; }
+    .memo-head button { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="ed">
+    <div class="ed-monogram">{{INITIALS}}</div>
+
+    <div class="ed-masthead">
+      <div class="eyebrow">The Drafting Table &middot; Nomad Cruise</div>
+      <h1>The Build Plan</h1>
+      <div class="dateline">Prepared for {{NAME}} &middot; {{DATE}}</div>
+      <div class="fluency-line">{{FLUENCY}}</div>
+    </div>
+
+    <div class="ed-dream">
+      <div class="k">The Dream</div>
+      <blockquote>{{DREAM}}</blockquote>
+    </div>
+
+    <div class="ed-cols">
+      <div><div class="k">What You'll Build</div><p>{{BUILD}}</p></div>
+      <div><div class="k">How You'll Prove It</div><p>{{DEMO}}</p></div>
+    </div>
+
+    <div class="ed-brick">
+      <span class="k">The First Brick</span>
+      <p>{{FIRST_BRICK}}</p>
+    </div>
+
+    <div class="ed-memo">
+      <div class="memo-head"><span>Enclosure &middot; Your Starter Prompt</span><button id="copy-btn" type="button">Copy</button></div>
+      <pre id="prompt-text">{{STARTER_PROMPT}}</pre>
+      <p class="memo-note">Paste this into your AI tool. It will summarize what it thinks you want and ask questions. Correct anything it got wrong before you let it start.</p>
+    </div>
+
+    <div class="ed-foot">
+      <p class="foot-note">Bring this page to an AI session on board and lay the first brick there.</p>
+      <p class="plan-link"><a href="{{PLAN_URL}}">{{PLAN_URL}}</a></p>
+      <div class="thesis">Learn AI &middot; Build Robots &middot; Stay Human</div>
+    </div>
+  </div>
+  <div class="credit">Alex Salinsky &middot; Nomad Cruise AI Coordinator</div>
+</div>
+
+<script>
+  document.getElementById('copy-btn').addEventListener('click', function () {
+    var btn = this;
+    var text = document.getElementById('prompt-text').textContent;
+    navigator.clipboard.writeText(text).then(function () {
+      btn.textContent = 'Copied';
+      setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+    });
+  });
+</script>
+</body>
+</html>
