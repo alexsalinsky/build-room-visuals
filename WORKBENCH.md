@@ -1,5 +1,78 @@
 # build-room-visuals workbench
 
+## 2026-09-28 22:35 -- [Tool: Claude Code] (Continue the paper-first HvR skin rebuild: fix ES-only wash-out, add thesis highlight, ship locally)
+
+**Focus:** finishing the branding pass Alex approved with "seems closer, let's continue with the slides." Session picked up after context compaction.
+
+**What happened:**
+- Language toggle buttons square now (`.lang-toggle button { border-radius: 0 }` was already saved in the skin but not yet regenerated).
+- Spanish layer is mode-aware. Under `body.mode-both` it stays at `ink55` so the italic carries the separation. Under `body.mode-es` it renders at full ink, since it's the only text on screen. Captions and detail lines stay quiet in both. SVG diagrams that inline `fill` on `<text>` now route through `var(--es)` (skin swings the variable by mode) instead of being hard-mapped to a tint.
+- Opener carries volt behind "Stay Human." / "Sigue siendo humano." Anchored to the preceding `<br/>` so it only fires inside the thesis block. In EN+ES only the leading language takes it.
+- Regenerated all 21 files, verified all four archetypes at 1600x950 (card slide, SVG diagram, chat mock, bilingual in both modes).
+- Committed as `34d8b58`. NOT pushed to GitHub Pages yet, per the standing rule for this repo.
+
+**Decisions:**
+- [DECISION] Spanish strength follows which language is driving, not a fixed tint. A single value broke ES-only mode (whole slide at 55%, washed out). Two rulesets keyed off `body.mode-*` fix it without a JS pass and keep EN+ES hierarchy intact.
+- [DECISION] Volt highlight is injected by the generator, not written into source slides. Only the two thesis lines qualify (`Stay Human.`, `Sigue siendo humano.`) and anchoring to `<br/>` scopes the transform to the thesis block, keeping the source files untouched.
+
+**Still open:**
+- `plan-the-problem` slide 6: "Example: Travel itinerary" badge overlaps its own title, and the WHEN card's divider hairline overshoots the card edge. Both reproduce in the unskinned source, so they affect all three language variants. Fix belongs in the source slide.
+- `34d8b58` still local. Fraim starts tomorrow morning and the hub won't serve any of this until pushed. Asked Alex; awaiting go-ahead.
+- Sessions 2 (beyond opener), 3 and 4 slides are still unbranded. Hub currently mixes a branded S1 with unbranded later sessions.
+
+**Key files:** scripts/lib/hvr-slide-skin.css, scripts/build-room-skin-slides.js, all 21 `-hvr.html` files, facilitator/hub.html, WORKBENCH.md.
+
+---
+
+## 2026-09-22 11:30 -- [Tool: Claude Code] (For-firms Cloudflare Access box added to publish-online pages)
+
+**Focus:** add an optional login-wall step to the "publish your work online, free" instructions, aimed at cohorts publishing tools that touch client data (Fraim CPAs the trigger).
+
+**What happened:**
+- Added a new `.bonus`-styled "For firms" box between step 3 and the Workers AI bonus in `publish-online-free-cloudflare.html`. Content: what Cloudflare Access is, the free-under-50-users tier, the enable-Zero-Trust + Pages Access Policy setup, and the "6-digit code emailed to them" outcome.
+- Mirrored into the bilingual `publish-online-free-cloudflare-bi.html` with matching `en-elem` / `es-elem` structure. Spanish uses "Para empresas" tag, "ponle un login" for the login-wall line, matches the t&uacute; register the rest of the file uses.
+- Committed and pushed both files only (repo had unrelated WIP in WORKBENCH, proof-library, talks/). Commit d843a36. Live on GitHub Pages.
+
+**Decisions:**
+- [DECISION] Framed as optional callout, not a fourth step. Steps 1-3 stay the minimum viable flow; a fourth step would imply it is required. Reusing `.bonus` styling keeps the visual pattern consistent.
+- [DECISION] Placed before the Workers AI bonus rather than after, so the CTA sits at the end unbroken and firms see their box right after the main flow.
+- [DECISION] Kept it under Alex's brand voice rules, no aphorisms ("The feature is called Cloudflare Access" rather than coining "the switch is Access"). Contractions on. No em dashes.
+
+**Still open:**
+- Alex tested Access on his own account earlier and got `access.api.error.not_enabled` (Zero Trust not turned on for `alexsalinsky@gmail.com`). The instructions target the firm's Cloudflare account, not Alex's, so his account state does not block anything. But if he ever wants to gate his own pages (fall-arc private hub currently uses a hand-rolled `_worker.js` token gate that does not cover preview URLs), enabling Zero Trust once would unlock Access on his side too.
+
+**Key files:** publish-online-free-cloudflare.html, publish-online-free-cloudflare-bi.html
+
+---
+
+## 2026-08-25 -- [Tool: Claude Code] (Build Vault closed)
+
+**Focus:** Alex closed the Build Vault thread. No further work planned.
+
+**State at close:** the 4-card prototype is live and healthy behind the plan-server token gate (`/plan/build-vault.html`, verified 200 with art embedded). Consent mechanism shipped across the library, the public page, and the lookup skill. Page stays uncommitted so it can't reach public Pages.
+
+**Decisions:**
+- [DECISION] Closed rather than parked-with-a-date. Nothing was blocked; it just stopped earning attention after 2026-07-23, and the Aug 10 daily log had been carrying it as an unanswered question since.
+- [DECISION] The unbuilt work is recorded in the design doc's "Closed 2026-08-25" section instead of staying live in workbench open-item lists, so reopening means reading one file.
+
+**Not built (full list in the design doc):** 4 demo clips, starter-prompt testing, batch 2 cards, journey placement, real gpt-image-1 art (~$0.25, OpenAI billing limit), and the vault-to-Drafting-Table deep link. That last one stalled on a real constraint worth remembering: the Drafting Table is one page per person by construction (token is `HMAC(secret, "open|" + email)`, plan fields are single columns), so a second plan would overwrite the first.
+
+**Key files:** build-vault.html, docs/superpowers/specs/2026-07-22-build-vault-design.md, scripts/generate-vault-images.js, assets/vault/*.svg
+
+---
+
+## 2026-08-16 -- [Tool: Claude Code, worker summit-proof-pass] (DG Summit session transcribed and mined into the Proof Library)
+
+**Focus:** overnight pipeline on the AI Digital Growth Summit live session recording (Fri Aug 14, virtual, hosts Ceanne Livingston + Lis Carpenter): transcribe, mine per the debrief pattern, land entries in `proof-library.json`.
+
+**What happened:**
+- Transcribed all 33:57 with ffmpeg audio extraction + Groq whisper-large-v3-turbo (key from wispr-dictation/.env). Timestamped, speaker-labeled transcript at `brain/the-build-room/recordings/2026-08-14-summit-session-transcript.md`. Labels are content-inferred, not diarized; header notes the caveats.
+- Appended 16 entries to `proof-library.json` (now 299, validated, backup at `scratch/proof-library-backup-2026-08-16.json`): 10 clips (Diana QR-code operator story, David $20k vendor punchline, Candice human-month math, dream-design-iterate, wash-elephants, lottery-ticket, women-coaches, coding-tool answer, bad-question opener, one-tool-a-month), 4 `copy` entries of Alex verbatim (outside-the-chat-system, change-the-digital-world, you-dont-suck, horse-out-of-the-gate), 1 host quote + 1 host testimonial ("simple and profound presentation... I loved it"). All raw, media_url null with TODO cut ranges.
+
+**[DECISION] Event appearances get their own cohort slug: `dgsummit`, per the nc17 precedent.** Added to the schema's cohort enum in `proof-library-schema.md` before the data write.
+
+**Not done on purpose:** no git push. `proof-library.html` reads the JSON client-side so there is nothing to regenerate locally, but the live Pages copy will not show the new entries until the next manual commit + push of build-room-visuals. Run summary: `scratch/summit-proof-pass-2026-08-16.md`.
+
 ## 2026-08-16 -- [Tool: Claude Code] (One facilitator hub for every cohort, plus an HvR skin for Session 1)
 
 **Focus:** killing the per-cohort hub clone, and testing what Humans v Robots branding looks like on the Session 1 slides. Fraim CPAs starts Mon Aug 17.
