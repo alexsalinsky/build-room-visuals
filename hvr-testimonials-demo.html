@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Humans V Robots — Testimonial scroller demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0B0B0B;
+    --panel: #17170F;
+    --paper: #FFFFFF;
+    --volt: #C8FF3D;
+    --volt-ink: #4F6B00;
+    --hot: #FF5A1F;
+    --mute: rgba(255,255,255,0.62);
+    --mute-dim: rgba(255,255,255,0.38);
+    --card-border: rgba(255,255,255,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--ink); color: var(--paper); font-family: 'Space Grotesk', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+
+  /* ------- top nav strip (minimal, just for context) ------- */
+  nav.topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 32px; border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .brand { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.01em; }
+  .brand .v { color: var(--volt); font-style: italic; margin: 0 2px; }
+  .tag { font-size: 12px; color: var(--mute); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* ------- section ------- */
+  section.scroller {
+    padding: 72px 0 88px;
+    position: relative;
+    overflow: hidden;
+  }
+  .heading-wrap {
+    max-width: 1080px; margin: 0 auto 44px; padding: 0 32px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--volt); margin-bottom: 18px;
+  }
+  h2 {
+    font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
+    font-size: clamp(34px, 5.4vw, 60px); line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+  h2 .accent { color: var(--volt); }
+  .sub {
+    margin-top: 18px; font-size: 17px; color: var(--mute);
+    max-width: 640px; margin-left: auto; margin-right: auto;
+  }
+
+  /* ------- marquee rows ------- */
+  .marquee {
+    display: flex; gap: 20px;
+    width: max-content;
+    animation-duration: 68s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+  .marquee.row-left  { animation-name: scroll-left;  }
+  .marquee.row-right { animation-name: scroll-right; }
+
+  @keyframes scroll-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes scroll-right {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  .row-wrap {
+    position: relative;
+    /* edge fade via mask so the ink background shows through */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+    padding: 10px 0;
+  }
+  .row-wrap + .row-wrap { margin-top: 24px; }
+
+  .row-wrap:hover .marquee { animation-play-state: paused; }
+
+  /* ------- card ------- */
+  .card {
+    flex: 0 0 auto;
+    width: 360px;
+    background: var(--panel);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 22px 22px 20px;
+    display: flex; flex-direction: column; gap: 14px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.4);
+  }
+  .card.wide { width: 440px; }
+  .card.narrow { width: 300px; }
+
+  .head {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .avatar {
+    flex: 0 0 auto;
+    width: 42px; height: 42px; border-radius: 999px;
+    display: grid; place-items: center;
+    font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
+    font-size: 16px; letter-spacing: -0.01em;
+    color: var(--ink);
+    background: var(--volt);
+  }
+  .avatar.hot { background: var(--hot); color: var(--paper); }
+  .avatar.outline {
+    background: transparent; border: 1.5px solid var(--volt);
+    color: var(--volt);
+  }
+  .meta {
+    display: flex; flex-direction: column; gap: 2px; min-width: 0;
+  }
+  .name {
+    font-weight: 700; font-size: 15px; color: var(--paper);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .cohort {
+    font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--mute-dim); font-weight: 500;
+  }
+  .quote {
+    font-size: 15.5px; line-height: 1.5; color: var(--paper);
+  }
+  .quote::before { content: '"'; color: var(--volt); font-weight: 700; margin-right: 1px; }
+  .quote::after  { content: '"'; color: var(--volt); font-weight: 700; margin-left: 1px; }
+
+  /* ------- bottom cta strip ------- */
+  .cta-wrap {
+    max-width: 760px; margin: 56px auto 0; padding: 0 32px;
+    text-align: center;
+  }
+  .cta-line {
+    font-size: 15px; color: var(--mute); margin-bottom: 18px;
+  }
+  .cta-btn {
+    display: inline-block; padding: 16px 28px;
+    background: var(--volt); color: var(--ink);
+    font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
+    font-size: 16px; letter-spacing: 0.01em;
+    text-decoration: none; border-radius: 10px;
+    transition: transform .15s ease;
+  }
+  .cta-btn:hover { transform: translateY(-1px); }
+
+  /* ------- footer tag ------- */
+  .footer-note {
+    margin-top: 72px; padding: 22px 32px 36px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 12px; color: var(--mute-dim); text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  /* ------- responsive ------- */
+  @media (max-width: 700px) {
+    nav.topbar { padding: 16px 18px; }
+    .heading-wrap { padding: 0 20px; margin-bottom: 32px; }
+    section.scroller { padding: 48px 0 64px; }
+    .card { width: 300px; padding: 18px; }
+    .card.wide { width: 320px; }
+    .card.narrow { width: 260px; }
+    .quote { font-size: 15px; }
+    .marquee { animation-duration: 52s; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee { animation: none; }
+    .row-wrap { overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="brand">humans <span class="v">v</span> robots</div>
+  <div class="tag">Demo · testimonial scroller</div>
+</nav>
+
+<section class="scroller">
+  <div class="heading-wrap">
+    <div class="eyebrow">What builders say</div>
+    <h2>Not a demo. <span class="accent">Real tools, real users.</span></h2>
+    <p class="sub">Every quote is from someone who went through Humans V Robots and built something that landed in their actual job.</p>
+  </div>
+
+  <!-- Row 1: scrolls left -->
+  <div class="row-wrap">
+    <div class="marquee row-left" id="row1"></div>
+  </div>
+
+  <!-- Row 2: scrolls right (opposite direction) -->
+  <div class="row-wrap">
+    <div class="marquee row-right" id="row2"></div>
+  </div>
+
+  <div class="cta-wrap">
+    <div class="cta-line">Learn AI. Build Robots. Stay Human.</div>
+    <a href="#" class="cta-btn">See the next cohort</a>
+  </div>
+</section>
+
+<div class="footer-note">Alex Salinsky / Humans V Robots · demo page, not production</div>
+
+<script>
+  // Real quotes from the proof library (build-room-visuals/proof-library.json).
+  // Everyone is cleared per Alex's blanket rule (2026-08-18).
+  const QUOTES = [
+    {
+      name: "Kandice Vincent",
+      cohort: "DBALP cohort",
+      initials: "KV",
+      accent: "volt",
+      size: "wide",
+      quote: "It is going to save me basically six hours per campaign. And right now I am doing six campaigns a month. So that is like 35 hours of work saved."
+    },
+    {
+      name: "Ruben Rosado",
+      cohort: "F&F Monday cohort",
+      initials: "RR",
+      accent: "hot",
+      size: "narrow",
+      quote: "I'm on purpose. I'm on track."
+    },
+    {
+      name: "Kate Sarmiento",
+      cohort: "DBALP cohort",
+      initials: "KS",
+      accent: "outline",
+      size: "default",
+      quote: "I learned that it is really possible to do this because I am not really a techie person. You will just learn how to play around it."
+    },
+    {
+      name: "Samuel Botero",
+      cohort: "F&F Thursday cohort",
+      initials: "SB",
+      accent: "hot",
+      size: "narrow",
+      quote: "Less than one hour, dude."
+    },
+    {
+      name: "Zach Cohen",
+      cohort: "F&F Thursday cohort",
+      initials: "ZC",
+      accent: "volt",
+      size: "default",
+      quote: "I built the whole report. I built all the questions. I went through it myself, and it was powerful."
+    },
+    {
+      name: "Marley Peters",
+      cohort: "DBALP cohort · said to teammate",
+      initials: "MP",
+      accent: "hot",
+      size: "wide",
+      quote: "I'm proud of you for this. Remember when we hired that developer for like two months to do this for us?"
+    },
+    {
+      name: "Cece Bedolla",
+      cohort: "F&F Thursday cohort",
+      initials: "CB",
+      accent: "outline",
+      size: "narrow",
+      quote: "It just happened so fast. It was pretty awesome."
+    },
+    {
+      name: "Chanel Frances",
+      cohort: "DBALP cohort",
+      initials: "CF",
+      accent: "volt",
+      size: "default",
+      quote: "Anytime I find something that is tedious or annoying, I try to make a prompt for it to make it easier, and then share it with the group."
+    },
+    {
+      name: "David Wang",
+      cohort: "RPA cohort",
+      initials: "DW",
+      accent: "hot",
+      size: "narrow",
+      quote: "It's running incredibly fast."
+    },
+    {
+      name: "Bryce North",
+      cohort: "DBALP cohort owner",
+      initials: "BN",
+      accent: "volt",
+      size: "default",
+      quote: "What I wanted to solve was a way to actually reduce workload for our campaign managers and Marley in terms of review process."
+    },
+    {
+      name: "Majo Urrea",
+      cohort: "RPA cohort",
+      initials: "MU",
+      accent: "outline",
+      size: "narrow",
+      quote: "It's working great."
+    },
+    {
+      name: "Andrew Topping",
+      cohort: "F&F Thursday cohort",
+      initials: "AT",
+      accent: "hot",
+      size: "default",
+      quote: "I'm all set up now and I've got a good idea."
+    }
+  ];
+
+  function cardHTML(q) {
+    const avatarClass = q.accent === 'hot' ? 'avatar hot' : (q.accent === 'outline' ? 'avatar outline' : 'avatar');
+    const sizeClass = q.size === 'wide' ? ' wide' : (q.size === 'narrow' ? ' narrow' : '');
+    return `
+      <article class="card${sizeClass}">
+        <div class="head">
+          <div class="${avatarClass}">${q.initials}</div>
+          <div class="meta">
+            <div class="name">${q.name}</div>
+            <div class="cohort">${q.cohort}</div>
+          </div>
+        </div>
+        <p class="quote">${q.quote}</p>
+      </article>
+    `;
+  }
+
+  // Split roughly in half for the two rows (interleave for variety)
+  const row1Quotes = QUOTES.filter((_, i) => i % 2 === 0);
+  const row2Quotes = QUOTES.filter((_, i) => i % 2 === 1);
+
+  // Duplicate the content so the marquee loops seamlessly
+  const row1 = document.getElementById('row1');
+  const row2 = document.getElementById('row2');
+  row1.innerHTML = (row1Quotes.map(cardHTML).join('') + row1Quotes.map(cardHTML).join(''));
+  row2.innerHTML = (row2Quotes.map(cardHTML).join('') + row2Quotes.map(cardHTML).join(''));
+</script>
+</body>
+</html>
