@@ -9,12 +9,12 @@
     { "id": "gtd-denmark",       "title": "GTD Denmark retreat (David Allen)",  "date": "2026-09-02", "endDate": "2026-09-04", "type": "external", "theme": "Travel Planning", "notes": "CONFIRMED GOING (2026-08-03). $4,700 all-in." },
     { "id": "lpi-learning-live", "title": "LPI Learning Live (London)",         "date": "2026-09-16", "endDate": "2026-09-17", "type": "conference", "theme": "Marketing + Proof", "notes": "Convene 133 Houndsditch EC3A 7DB. At-cost AI Build Day offer to Pauline Saunders (Head of Events) + Ed Monk (CEO). No CFP; agenda crowdsourced from attendees." },
     { "id": "nc17-cruise",       "title": "NC17 Nomad Cruise (Southampton → NYC)", "date": "2026-09-19", "endDate": "2026-09-26", "type": "conference", "theme": "Marketing + Proof", "notes": "Alex = AI Coordinator, runs all AI programming on board (~150 people)." },
-    { "id": "dcbkk",             "title": "DCBKK (Bangkok)",                    "date": "2026-10-22", "endDate": "2026-10-25", "type": "conference", "theme": "Marketing + Proof", "notes": "CM retreat pre-sale push window. Warm-channel close." },
-    { "id": "cmseo",             "title": "CMSEO (Chiang Mai SEO Conference)",  "date": "2026-11-09", "endDate": "2026-11-13", "type": "conference", "theme": "Marketing + Proof", "notes": "Chiang Mai Marriott, 800+ attendees. Alex attends + pursues Whova side event as CM retreat funnel." }
+    { "id": "dcbkk",             "title": "DCBKK (Bangkok)",                    "date": "2026-10-22", "endDate": "2026-10-25", "type": "conference", "theme": "Marketing + Proof", "notes": "" },
+    { "id": "cmseo",             "title": "CMSEO (Chiang Mai SEO Conference)",  "date": "2026-11-09", "endDate": "2026-11-13", "type": "conference", "theme": "Marketing + Proof", "notes": "Chiang Mai Marriott, 800+ attendees. Alex attends + pursues a Whova side event." }
   ],
   "work": [
     { "id": "lpi-outreach-due",  "title": "LPI Build Day outreach SENT",        "date": "2026-07-17", "parentEvent": "lpi-learning-live", "theme": "Marketing + Proof", "notes": "DM Pauline + Ed, submit exhibit form. Trello lch8kRqu. Pitch: outreach/lpi-build-day-pitch-2026-07-15.md" },
     { "id": "london-leg",        "title": "London leg (travel context)",        "date": "2026-09-12", "endDate": "2026-09-18", "parentEvent": "lpi-learning-live", "theme": "Marketing + Proof", "notes": "DC Junto Sep 17, BSF Sep 17-18. Salsa Temple optional anchor." },
-    { "id": "cm-whova-side-event", "title": "CMSEO Whova side event (funnel)",  "date": "2026-11-09", "parentEvent": "cmseo",             "theme": "Marketing + Proof", "notes": "Pursue Whova listing during conference week. Graduates to a build-lab event once confirmed." }
+    { "id": "cm-whova-side-event", "title": "CMSEO Whova side event",           "date": "2026-11-09", "parentEvent": "cmseo",             "theme": "Marketing + Proof", "notes": "Pursue Whova listing during conference week. Graduates to a build-lab event once confirmed." }
   ]
 }
