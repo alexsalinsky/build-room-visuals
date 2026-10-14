@@ -58,6 +58,13 @@
   .ownerquote .a { font-size: 13px; font-weight: 700; color: #15803d; margin-top: 8px; letter-spacing: 0.5px; }
 
   /* Video clip slot: real <video> when the cut exists, styled placeholder otherwise */
+  .q-card { background: #fff; border: 2.5px solid #1a1a1a; border-radius: 14px; padding: 34px 38px; max-width: 880px; width: 100%; text-align: left; }
+  .q-card .q-num { font-size: 14px; font-weight: 700; color: #888; letter-spacing: 2px; }
+  .q-card h2 { font-size: 38px; margin: 8px 0 24px; }
+  .q-card .choices { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .q-card .choice { display: flex; gap: 14px; align-items: baseline; padding: 12px 16px; background: #fafafa; border-radius: 8px; }
+  .q-card .choice .n { font-size: 22px; font-weight: 800; color: #1a1a1a; min-width: 28px; }
+  .q-card .choice .t { font-size: 18px; color: #333; line-height: 1.45; }
   .clip-slot { border: 2px solid #1a1a1a; border-radius: 12px; overflow: hidden; background: #fff; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 14px; }
   .clip-slot video { width: 100%; max-height: 420px; display: block; border-radius: 8px; }
   .clip-slot .pill { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 999px; border: 1.5px solid #1a1a1a; }
@@ -304,6 +311,111 @@ const slides = [
             <li style="font-size:16px;margin-bottom:5px">Builds alongside every cohort</li>
             <li style="font-size:16px;margin-bottom:0">Coaches every session</li>
           </ul>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // 6. Quick fluency quiz (from the Jun 25 Explorer-to-Operator talk, per Alex 2026-10-14)
+  {
+    html: `<div class="slide center">
+      <div class="section-chip">Quick Quiz</div>
+      <h2 style="margin-top:30px;font-size:48px">Score yourself</h2>
+      <p style="font-size:24px;color:#555;margin-top:12px">5 questions. Pick 1 to 4 for each and drop your number in the chat.</p>
+    </div>`
+  },
+
+  // Quiz Q1 USE
+  {
+    html: `<div class="slide center">
+      <div class="q-card">
+        <div class="q-num">QUESTION 1 OF 5 &middot; USE</div>
+        <h2>How does AI show up in your day?</h2>
+        <div class="choices">
+          <div class="choice"><div class="n">1</div><div class="t">I've tried it, but it hasn't stuck.</div></div>
+          <div class="choice"><div class="n">2</div><div class="t">I use it for some tasks: writing, summarizing, search.</div></div>
+          <div class="choice"><div class="n">3</div><div class="t">It's woven into how I work. I save hours.</div></div>
+          <div class="choice"><div class="n">4</div><div class="t">What I do with AI changes how my whole business runs.</div></div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // Quiz Q2 JUDGMENT
+  {
+    html: `<div class="slide center">
+      <div class="q-card">
+        <div class="q-num">QUESTION 2 OF 5 &middot; JUDGMENT</div>
+        <h2>When AI gives you an answer, how do you handle it?</h2>
+        <div class="choices">
+          <div class="choice"><div class="n">1</div><div class="t">I'm not sure when to trust it.</div></div>
+          <div class="choice"><div class="n">2</div><div class="t">I double-check. I have a sense of what it gets wrong.</div></div>
+          <div class="choice"><div class="n">3</div><div class="t">I have a clear standard for when an answer is good enough to use.</div></div>
+          <div class="choice"><div class="n">4</div><div class="t">I set the standard other people use.</div></div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // Quiz Q3 BUILD
+  {
+    html: `<div class="slide center">
+      <div class="q-card">
+        <div class="q-num">QUESTION 3 OF 5 &middot; BUILD</div>
+        <h2>What have you built with AI?</h2>
+        <div class="choices">
+          <div class="choice"><div class="n">1</div><div class="t">Nothing yet.</div></div>
+          <div class="choice"><div class="n">2</div><div class="t">Prompts that work. Maybe a small workflow I reuse.</div></div>
+          <div class="choice"><div class="n">3</div><div class="t">A tool that lives outside the chat: an automation, a website, a system that does real work for me.</div></div>
+          <div class="choice"><div class="n">4</div><div class="t">Something other people rely on, like a tool my team or clients use.</div></div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // Quiz Q4 CONNECT
+  {
+    html: `<div class="slide center">
+      <div class="q-card">
+        <div class="q-num">QUESTION 4 OF 5 &middot; CONNECT</div>
+        <h2>How does your AI work plug into the rest of your tools?</h2>
+        <div class="choices">
+          <div class="choice"><div class="n">1</div><div class="t">It lives in a chat window.</div></div>
+          <div class="choice"><div class="n">2</div><div class="t">I copy and paste. Maybe one integration.</div></div>
+          <div class="choice"><div class="n">3</div><div class="t">My builds plug into the systems I already run.</div></div>
+          <div class="choice"><div class="n">4</div><div class="t">I build things other people reuse.</div></div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // Quiz Q5 SPREAD
+  {
+    html: `<div class="slide center">
+      <div class="q-card">
+        <div class="q-num">QUESTION 5 OF 5 &middot; SPREAD</div>
+        <h2>How do you share what you learn?</h2>
+        <div class="choices">
+          <div class="choice"><div class="n">1</div><div class="t">I haven't shown anyone how I use AI.</div></div>
+          <div class="choice"><div class="n">2</div><div class="t">I've shown a colleague or friend.</div></div>
+          <div class="choice"><div class="n">3</div><div class="t">I coach others regularly.</div></div>
+          <div class="choice"><div class="n">4</div><div class="t">Other people get better because of how I share. My methods get adopted.</div></div>
+        </div>
+      </div>
+    </div>`
+  },
+
+  // Quiz result: average the five
+  {
+    html: `<div class="slide center">
+      <div class="q-card">
+        <div class="q-num">YOUR LEVEL</div>
+        <h2>Average your five numbers</h2>
+        <div class="choices">
+          <div class="choice"><div class="n">~1</div><div class="t"><strong>Exploring</strong> &middot; Curious. Welcome.</div></div>
+          <div class="choice"><div class="n">~2</div><div class="t"><strong>Adopting</strong> &middot; It's part of your day.</div></div>
+          <div class="choice"><div class="n">~3</div><div class="t"><strong>Operating</strong> &middot; You run the tools.</div></div>
+          <div class="choice"><div class="n">~4</div><div class="t"><strong>Multiplying</strong> &middot; You shape how others work.</div></div>
         </div>
       </div>
     </div>`
