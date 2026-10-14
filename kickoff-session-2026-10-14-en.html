@@ -287,16 +287,15 @@ const slides = [
     </div>`
   },
 
-  // 6. Hosts (Build Room stat banner + two host cards)
+  // 6. Host (stat banner + Alex card; Jessica removed per Alex 2026-10-14)
   {
     html: `<div class="slide center">
-      <div class="section-chip">Your Hosts</div>
+      <div class="section-chip">Your Host</div>
       <div style="max-width:860px;width:100%;margin:30px auto 0;background:#e0f2fe;border:2.5px solid #1a1a1a;border-radius:12px;padding:16px 26px;display:flex;gap:40px;justify-content:center;flex-wrap:wrap;align-items:baseline">
         <div style="font-size:12px;font-weight:800;letter-spacing:2px;color:#0369a1;align-self:center">HUMANS V ROBOTS</div>
-        <div style="font-size:17px;font-weight:700"><span class="serif" style="font-size:34px;letter-spacing:-1px">4</span> cohorts completed</div>
-        <div style="font-size:17px;font-weight:700"><span class="serif" style="font-size:34px;letter-spacing:-1px">200+</span> people served</div>
+        <div style="font-size:17px;font-weight:700"><span class="serif" style="font-size:34px;letter-spacing:-1px">300+</span> people served and apps built</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:860px;width:100%;margin:20px auto 0">
+      <div style="display:grid;grid-template-columns:1fr;gap:20px;max-width:520px;width:100%;margin:20px auto 0">
         <div style="background:#fff;border:2.5px solid #1a1a1a;border-radius:12px;padding:22px 26px;text-align:left">
           <div style="font-size:22px;font-weight:800;margin-bottom:6px">Alex Salinsky <span style="font-size:13px;font-weight:700;letter-spacing:1.5px;color:#d97706;margin-left:8px">HOST</span></div>
           <ul style="margin-top:6px">
@@ -305,37 +304,6 @@ const slides = [
             <li style="font-size:16px;margin-bottom:5px">Builds alongside every cohort</li>
             <li style="font-size:16px;margin-bottom:0">Coaches every session</li>
           </ul>
-        </div>
-        <div style="background:#fff;border:2.5px solid #1a1a1a;border-radius:12px;padding:22px 26px;text-align:left">
-          <div style="font-size:22px;font-weight:800;margin-bottom:6px">Jessica <span style="font-size:13px;font-weight:700;letter-spacing:1.5px;color:#d97706;margin-left:8px">CO-HOST</span></div>
-          <ul style="margin-top:6px">
-            <li style="font-size:16px;margin-bottom:5px">Marketing expert</li>
-            <li style="font-size:16px;margin-bottom:5px">Turns social media accounts into income</li>
-            <li style="font-size:16px;margin-bottom:0">Has coached and built in the cohorts herself</li>
-          </ul>
-        </div>
-      </div>
-    </div>`
-  },
-
-  // Andrea (moved up: recorded proof of winning in Spanish)
-  {
-    html: `<div class="slide">
-      <div class="section-chip">Real Builds</div>
-      <div class="build-slide">
-        <div class="build-info">
-          <div class="who">Andrea · July Cohort</div>
-          <div class="name">From 141 contacts to 1,000+</div>
-          <div class="desc">Andrea grew her medical-tourism doctor network from 141 contacts to over 1,000 with AI-drafted outreach, then demoed the whole thing on Demo Day.</div>
-          <div class="ownerquote">
-            <div class="q">"Aprendí a utilizar la IA correctamente, aprendí a automatizar las cosas, aprendí mucho de ustedes realmente."</div>
-            <div class="a">ANDREA · DEMO DAY, JULY 16</div>
-          </div>
-        </div>
-        <div class="clip-slot">
-          <span class="pill cut">ON VIDEO</span>
-          <video src="clips/andrea-spanish-demo-clean.mp4" controls preload="metadata"></video>
-          <div class="clip-note">"Solamente teníamos 141 doctores... ya la IA lo hace automáticamente." Demo Day, en español. (73s)</div>
         </div>
       </div>
     </div>`
@@ -494,6 +462,25 @@ const slides = [
     </div>`
   },
 
+  // 13b. Nomad Cruise: AI programming on NC17 (video from Drive, anyone-with-link)
+  {
+    html: `<div class="slide">
+      <div class="section-chip">On the Water</div>
+      <div class="build-slide">
+        <div class="build-info">
+          <div class="who">Nomad Cruise 17</div>
+          <div class="name">AI on the Nomad Cruise</div>
+          <div class="desc">Humans V Robots leads all the AI programming on Nomad Cruise 17. Same method you'll get in the cohort: pick a real problem, build the tool, show it off.</div>
+        </div>
+        <div class="clip-slot">
+          <span class="pill cut">ON VIDEO</span>
+          <iframe src="https://drive.google.com/file/d/1igquD3gEaKyyu0dDDiYqHtHhNdS-ZBQI/preview" allow="autoplay; fullscreen" allowfullscreen style="width:100%;aspect-ratio:16/9;max-height:420px;border:0;border-radius:8px"></iframe>
+          <div class="clip-note"><a href="https://drive.google.com/file/d/1igquD3gEaKyyu0dDDiYqHtHhNdS-ZBQI/view" target="_blank">Open the video in a new tab</a></div>
+        </div>
+      </div>
+    </div>`
+  },
+
   // 14. Steal this tonight: Input → Output → When
   {
     html: `<div class="slide">
@@ -598,7 +585,7 @@ const slides = [
     </div>`
   },
 
-  // 22. Next cohorts: two evening start options (per Alex 2026-07-23, CSV showed two evening camps)
+  // 22. Next cohort: one cohort, same slot as Session Zero, custom schedule on request
   {
     html: `<div class="slide">
       <div class="section-chip">Next Cohort</div>
@@ -611,6 +598,7 @@ const slides = [
           <div class="d"><strong>9 to 11 AM</strong> Bogotá · 10 AM to noon New York</div>
         </div>
       </div>
+      <p style="text-align:center;font-size:16px;color:#555;max-width:640px;margin:22px auto 0">Same time as today's session. Need a different schedule? Custom times are available at a custom price.</p>
     </div>`
   },
 
