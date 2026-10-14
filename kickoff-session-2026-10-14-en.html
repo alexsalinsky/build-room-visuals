@@ -320,8 +320,8 @@ const slides = [
   {
     html: `<div class="slide center">
       <div class="section-chip">Quick Quiz</div>
-      <h2 style="margin-top:30px;font-size:48px">Score yourself</h2>
-      <p style="font-size:24px;color:#555;margin-top:12px">5 questions. Pick 1 to 4 for each and drop your number in the chat.</p>
+      <h2 style="margin-top:30px;font-size:48px">Are you a user, or an operator?</h2>
+      <p style="font-size:24px;color:#555;margin-top:12px">Score yourself 1 to 4 on these five questions. Write your numbers down.</p>
     </div>`
   },
 
@@ -405,18 +405,19 @@ const slides = [
     </div>`
   },
 
-  // Quiz result: average the five
+  // Quiz result: add up the five (sum scoring, as in the Aug 14 AI summit talk)
   {
     html: `<div class="slide center">
       <div class="q-card">
         <div class="q-num">YOUR LEVEL</div>
-        <h2>Average your five numbers</h2>
+        <h2>Add up your five numbers</h2>
         <div class="choices">
-          <div class="choice"><div class="n">~1</div><div class="t"><strong>Exploring</strong> &middot; Curious. Welcome.</div></div>
-          <div class="choice"><div class="n">~2</div><div class="t"><strong>Adopting</strong> &middot; It's part of your day.</div></div>
-          <div class="choice"><div class="n">~3</div><div class="t"><strong>Operating</strong> &middot; You run the tools.</div></div>
-          <div class="choice"><div class="n">~4</div><div class="t"><strong>Multiplying</strong> &middot; You shape how others work.</div></div>
+          <div class="choice"><div class="n" style="min-width:110px">5 to 7</div><div class="t"><strong>Exploring</strong> &middot; Curious. Welcome.</div></div>
+          <div class="choice"><div class="n" style="min-width:110px">8 to 10</div><div class="t"><strong>Adopting</strong> &middot; It's part of your day.</div></div>
+          <div class="choice"><div class="n" style="min-width:110px">11 to 15</div><div class="t"><strong>Operating</strong> &middot; You run the tools.</div></div>
+          <div class="choice"><div class="n" style="min-width:110px">16 to 20</div><div class="t"><strong>Multiplying</strong> &middot; You shape the system.</div></div>
         </div>
+        <p style="font-size:20px;font-weight:700;margin-top:20px;text-align:center">Drop your number in the chat.</p>
       </div>
     </div>`
   },
