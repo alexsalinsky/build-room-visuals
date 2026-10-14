@@ -148,9 +148,9 @@
   .offer-card { border: 3px solid #d97706; background: #fef3e0; border-radius: 16px; padding: 36px 42px; max-width: 780px; text-align: center; margin-top: 10px; }
   .offer-card .tag { font-size: 12px; color: #d97706; letter-spacing: 2px; font-weight: 800; margin-bottom: 14px; }
   .offer-card .prices { display: flex; gap: 36px; justify-content: center; align-items: baseline; margin-bottom: 14px; flex-wrap: wrap; }
-  .offer-card .now { font-family: Georgia, serif; font-size: 72px; line-height: 1; }
+  .offer-card .now { font-family: Georgia, serif; font-size: 88px; line-height: 1; }
   .offer-card .now .cur { font-size: 26px; }
-  .offer-card .later { font-size: 26px; color: #888; text-decoration: line-through; }
+  .offer-card .later { font-family: Georgia, serif; font-size: 64px; line-height: 1; color: #999; text-decoration: line-through; text-decoration-color: #dc2626; text-decoration-thickness: 5px; }
   .offer-card .cond { font-size: 17px; color: #1a1a1a; line-height: 1.5; }
 
   .price-pill { display: inline-block; background: #fff; border: 2.5px solid #1a1a1a; color: #1a1a1a; padding: 10px 22px; border-radius: 26px; font-size: 18px; font-weight: 700; margin-top: 22px; }
@@ -734,15 +734,15 @@ const slides = [
     </div>`
   },
 
-  // 25. The offer (COP pricing per Alex; payment-link line removed)
+  // 25. The offer ($750 struck first to anchor, then $600, per Alex 2026-10-14)
   {
     html: `<div class="slide center">
       <div class="section-chip">Launch Price</div>
       <div class="offer-card">
         <div class="tag">4-WEEK COHORT</div>
         <div class="prices">
-          <div class="now">$600<span class="cur"> USD</span></div>
           <div class="later">$750</div>
+          <div class="now">$600<span class="cur"> USD</span></div>
         </div>
         <div class="cond">The full 4-week cohort. Use code <strong>LAUNCH150</strong> at checkout for $150 off.</div>
         <p style="margin-top:16px;margin-bottom:0"><a href="https://buy.stripe.com/4gM6oHeAI6KyfeP3FZ0x20A" target="_blank" rel="noopener" style="display:inline-block;background:#1a1a1a;color:#fff;font-weight:700;font-size:16px;padding:12px 24px;border-radius:8px;text-decoration:none">Save your seat →</a></p>
@@ -792,7 +792,7 @@ const slides = [
     html: `<div class="slide center">
       <p style="font-size:52px;line-height:1.15;font-weight:800;letter-spacing:-1.5px">Learn AI.<br/>Build Robots.<br/><span class="serif" style="font-weight:400">Stay Human.</span></p>
       <p class="sub" style="margin-top:24px;font-size:22px;color:#1a1a1a;font-weight:700">We're in this together.</p>
-      <div class="price-pill">$600 with code LAUNCH150 · $750 regular</div>
+      <div class="price-pill"><s>$750</s> $600 with code LAUNCH150</div>
     </div>`
   }
 ];
