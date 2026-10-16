@@ -148,5 +148,58 @@
   ],
   "starter_prompt": "I want a personal assistant I can text that answers questions about my calendar and books appointments. Before building anything, ask me: 1) where I want to text it (WhatsApp, Telegram, SMS), 2) which calendar I use, 3) what matters most to me: cheapest, easiest to set up, or most reliable. Then recommend one setup for the five boxes (where I type, bridge, where code runs, AI brain, calendar) and explain the trade-off in two lines. Build the smallest working version that answers one question, \"what's on my calendar tomorrow?\", and walk me through each setup step one at a time, waiting for me to confirm before the next.",
   "diagram": "flowchart TD\n  A[\"<b>Where I type</b><br/><span class='eg'>WhatsApp, Telegram</span>\"] --> B[\"<b>Bridge to my code</b><br/><span class='eg'>Twilio, Telegram Bot API</span>\"]\n  B --> C[\"<b>Where code runs</b><br/><span class='eg'>Google Apps Script, Cloudflare Worker</span>\"]\n  C --> D[\"<b>AI brain</b><br/><span class='eg'>Gemini, Claude</span><br/>works out what you mean\"]\n  D --> E[\"<b>Calendar</b><br/><span class='eg'>Google Calendar, Outlook</span><br/>read or book\"]\n  E -- answer --> A\n  class A start"
+ },
+ {
+  "title": "Apartment hunt scorer",
+  "original_name": "Medellín apartment hunt",
+  "what_it_does": "Searches three Colombian listing sites barrio by barrio, drops anything that fails his must-haves, checks real walking times to the nearest gym, work cafe and supermarket, and scores every place out of 100 with a one-line reason per line. A shared rating page shows each place with price, score breakdown, walk times and a small map, and opens on \"Gems\": the few places worth seeing the day they appear. Both people rate with stars and notes.",
+  "builder": "Alex",
+  "where": "Alex's builds, Oct 2026",
+  "why": "Hundreds of listings across several sites, most of them too small, too far from a gym or over budget once admin fees were added. Checking each one by hand ate evenings, and good owner-direct places went fast.",
+  "tools": [
+   "Claude Code",
+   "Node",
+   "Python",
+   "Google Maps API",
+   "Claude artifact"
+  ],
+  "category": "personal",
+  "demo_url": null,
+  "logged": "2026-10-14",
+  "integrations": [
+   "Public listing sites, searched with plain scripts (Finca Raiz, Metrocuadrado, Ciencuadras: no keys or logins)",
+   "A maps API key, for real walking times to the gym, cafe and supermarket (Google Maps Places + Distance Matrix)",
+   "An AI step, to judge workspace, terrace and nice-to-haves from each ad (Claude)",
+   "A page with a small shared database, for ratings and notes (Claude artifact)",
+   "Map tiles saved locally, because the page blocks outside images (OpenStreetMap)"
+  ],
+  "flow": [
+   {
+    "role": "Listing sites",
+    "eg": "Finca Raiz, Metrocuadrado"
+   },
+   {
+    "role": "Search script",
+    "eg": "Node"
+   },
+   {
+    "role": "Hard filters",
+    "eg": "Python: beds, m2, budget"
+   },
+   {
+    "role": "Walk check",
+    "eg": "Google Maps API"
+   },
+   {
+    "role": "AI judge + score",
+    "eg": "Claude"
+   },
+   {
+    "role": "Rating page",
+    "eg": "Claude artifact"
+   }
+  ],
+  "diagram": "flowchart TD\n  A[\"<b>Listing sites</b><br/><span class='eg'>Finca Raiz, Metrocuadrado</span>\"] --> B[\"<b>Search script</b><br/><span class='eg'>Node</span><br/>barrio by barrio\"]\n  B --> C[\"<b>Hard filters</b><br/><span class='eg'>Python</span><br/>beds, size, budget\"]\n  C --> D[\"<b>Walk check</b><br/><span class='eg'>Google Maps API</span><br/>gym, cafe, supermarket\"]\n  D --> E[\"<b>AI judge</b><br/><span class='eg'>Claude</span><br/>score out of 100\"]\n  E --> G[\"Gems\"] & H[\"All places\"]\n  G & H --> F[\"<b>Rating page</b><br/><span class='eg'>Claude artifact</span><br/>stars + notes\"]\n  F -. ratings feed gems .-> G\n  class A start\n  class G,H bucket",
+  "starter_prompt": "I want help finding a place to rent without checking every listing by hand. Before building anything, ask me: 1) the city, neighborhoods, move-in date and my all-in budget ceiling, 2) my must-haves (a place that fails one never shows up) and my nice-to-haves, 3) which listing sites people actually use there. Then build the smallest working version: one script that pulls listings from one site for one neighborhood, drops anything that fails my must-haves, and scores the rest out of 100 with a one-line reason per point. Show the top 10 on a simple page with price, score and a link. Research only: never contact landlords, log in or submit forms."
  }
 ]
