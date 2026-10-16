@@ -1,0 +1,118 @@
+<title>Build Vault flow test</title><meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 120 120&quot;%3E%3Crect width=&quot;120&quot; height=&quot;120&quot; fill=&quot;%23C8FF3D&quot;/%3E%3Cg transform=&quot;translate%2812%2C14%29 scale%280.8%29&quot;%3E%3Cpath d=&quot;M16 40 L60 104 L104 40&quot; fill=&quot;none&quot; stroke=&quot;%230B0B0B&quot; stroke-width=&quot;16&quot; stroke-linejoin=&quot;miter&quot;/%3E%3Ccircle cx=&quot;60&quot; cy=&quot;30&quot; r=&quot;18&quot; fill=&quot;%230B0B0B&quot;/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Space+Grotesk:wght@400;500;700&display=swap">
+<style>
+/* Humans v Robots BrandKit: black band header, paper ground, square cards with 2px rules. Single theme by brand rule. */
+:root{
+  --black:#0B0B0B; --volt:#C8FF3D; --hot:#FF5A1F; --volt-ink:#4F6B00; --paper:#FFFFFF; --panel:#17170F;
+  --muted:#4a4a44; --rule:#0B0B0B; --soft:#f2f2ee;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Space Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--black);font:16px/1.55 var(--body);margin:0}
+.band{background:var(--black);color:var(--paper)}
+.inner{max-width:1180px;margin:0 auto;padding-inline:20px}
+.band .inner{padding-block:28px 40px;display:flex;flex-direction:column;gap:22px}
+.lockup{display:flex;align-items:center;gap:.28em;font:800 22px/1 var(--display);letter-spacing:-.03em;color:var(--paper)}
+.lockup svg{height:.9em;width:auto}
+.eyebrow{font:700 13px var(--body);letter-spacing:.24em;text-transform:uppercase;color:#bdbdb4}
+h1{font:800 clamp(40px,6vw,62px)/1 var(--display);letter-spacing:-.03em;margin:0;text-wrap:balance}
+h1 em{font-style:normal;color:var(--volt)}
+.lede{margin:0;max-width:62ch;font-size:18px;color:#e4e4dc}
+main.inner{padding-block:28px 64px;display:flex;flex-direction:column;gap:22px}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+#q{flex:1 1 260px;min-width:0;font:inherit;padding:11px 14px;border:2px solid var(--black);border-radius:0;background:var(--paper);color:var(--black);min-height:44px}
+:focus-visible{outline:2px solid var(--black);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:500 15px var(--body);padding:8px 13px;min-height:40px;border:2px solid var(--black);border-radius:0;background:var(--paper);color:var(--black);cursor:pointer;text-transform:capitalize}
+.chip[aria-pressed="true"]{background:var(--black);color:var(--paper)}
+.count{font-size:15px;color:var(--muted);font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:18px;align-items:start}
+.card{border:2px solid var(--black);padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0;background:var(--paper)}
+.meta{display:flex;justify-content:space-between;gap:10px;align-items:baseline;font-size:14px;color:var(--muted)}
+.cat{font:700 12px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--black)}
+.card h2{font:800 24px/1.1 var(--display);letter-spacing:-.03em;margin:0;text-wrap:balance}
+.card p{margin:0}
+.by{font-size:15px;color:var(--muted)}
+.why{font-size:15px;color:var(--muted);border-left:2px solid var(--black);padding-left:10px}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font:700 15px var(--body);padding:10px 14px;min-height:44px;border:2px solid var(--black);border-radius:0;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.btn.primary{background:var(--black);color:var(--paper)}
+.btn.ghost{background:var(--paper);color:var(--black)}
+.btn:hover{background:var(--soft);color:var(--black)}
+details{border-top:2px solid var(--black);padding-top:10px}
+summary{cursor:pointer;font-size:15px;font-weight:700}
+.more{display:flex;flex-direction:column;gap:10px;padding-top:10px;font-size:15px;margin:0}
+.more dt{font:700 12px var(--body);letter-spacing:.16em;text-transform:uppercase}
+.more dd{margin:2px 0 0}
+pre{font:15px/1.5 var(--body);background:var(--soft);padding:12px;white-space:pre-wrap;word-break:break-word;margin:0}
+.flow{display:flex;flex-direction:column;gap:0;margin:0;padding:0;list-style:none}
+.flow li{display:flex;flex-direction:column;align-items:flex-start}
+.flow li+li::before{content:"\2193";font-weight:700;font-size:16px;line-height:1;padding:3px 0 3px 12px}
+.box{border:2px solid var(--black);padding:6px 10px;display:block;width:100%;font-size:14px;line-height:1.35}
+.flow li:first-child .box{background:var(--black);color:var(--paper)}
+.flow li:first-child .box .eg{color:#d6d6cc}
+.box b{font-weight:700}
+.box .eg{color:var(--muted)}
+.box .eg::before{content:" \00b7  "}
+.label{font:700 12px var(--body);letter-spacing:.16em;text-transform:uppercase;margin:0 0 6px}
+.integ{margin:0;padding-left:18px;font-size:15px;display:flex;flex-direction:column;gap:3px}
+.card.alex{border-color:var(--black);box-shadow:6px 6px 0 var(--volt)}
+.tag{font:700 11px var(--body);letter-spacing:.14em;text-transform:uppercase;background:var(--volt);color:var(--black);padding:3px 7px}
+.filters{display:flex;flex-direction:column;gap:8px;width:100%}
+.empty{color:var(--muted)}
+footer{border-top:2px solid var(--black);padding-top:16px;font-size:15px;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+footer b{color:var(--black)}
+@media (prefers-reduced-motion:no-preference){.btn,.chip{transition:background .15s,color .15s}}
+</style>
+
+<style>
+.diagram{border-top:2px solid var(--black);padding-top:12px}
+.diagram svg{max-width:100%!important;height:auto}
+.mermaid{background:none;padding:0}
+.note{max-width:70ch;color:var(--muted);margin:0}
+</style>
+<header class="band"><div class="inner"><span class="eyebrow">Build Vault · preview</span><h1>Flow diagram <em>test</em></h1><p class="lede">Three tools drawn as real flowcharts, with branches and loops, instead of a straight list of boxes. Boxes are roles; the grey text under each is the tool they used.</p></div></header>
+<main class="inner"><section class="grid"><article class="card"><div class="meta"><span class="cat">Preview</span><span>Sarah · Friends & Family cohort</span></div><h2>Foreign letter translator</h2><p>Drop a German letter in a folder and do nothing else. It gets translated, summarized and filed.</p><div class="diagram"><pre class="mermaid">flowchart TD
+  A["<b>Drop folder</b><br/><span class='eg'>Mac folder, Dropbox</span>"] --> B["<b>Folder watcher</b><br/><span class='eg'>Python script</span>"]
+  B --> C["<b>AI brain</b><br/><span class='eg'>Claude, Gemini</span><br/>translate + pull action items"]
+  C --> D["<b>Email summary</b><br/><span class='eg'>Gmail, Outlook</span>"]
+  C --> E["<b>File storage</b><br/><span class='eg'>Google Drive</span><br/>both versions"]
+  B -. if it fails .-> F["<b>Error dashboard</b>"]
+  class A start</pre></div></article><article class="card"><div class="meta"><span class="cat">Preview</span><span>Andrew · Friends &amp; Family cohort</span></div><h2>Coaching call clip finder</h2><p>Pulls client wins and teaching moments out of recorded coaching calls, sorted so a VA can caption them.</p><div class="diagram"><pre class="mermaid">flowchart TD
+  A["<b>Call</b><br/><span class='eg'>Zoom, Google Meet</span>"] --> B["<b>Call recorder</b><br/><span class='eg'>Fathom, Otter</span>"]
+  B -- transcript --> C["<b>AI brain</b><br/><span class='eg'>Claude, Gemini</span><br/>finds the moments"]
+  C --> D["<b>Clip cutter</b><br/><span class='eg'>ffmpeg, Descript</span>"]
+  D --> W["Wins"] & T["Testimonials"] & L["Lessons"]
+  W & T & L --> V["<b>Me or my VA</b><br/>caption + post"]
+  class A start
+  class W,T,L bucket</pre></div></article><article class="card"><div class="meta"><span class="cat">Preview</span><span>Dine-Mari · Friends & Family cohort</span></div><h2>Podcast to editor brief</h2><p>A recording becomes a ready-to-edit task in about 10 seconds. Slack requests become tasks too.</p><div class="diagram"><pre class="mermaid">flowchart TD
+  A["<b>Recording</b><br/><span class='eg'>Riverside, Zoom</span>"] --> C
+  S["<b>Team chat request</b><br/><span class='eg'>Slack</span>"] --> C
+  C["<b>Automation</b><br/><span class='eg'>Zapier, Make, n8n</span>"] --> D["<b>AI brain</b><br/><span class='eg'>Claude</span><br/>brief + content ideas"]
+  D --> E["<b>Task board</b><br/><span class='eg'>ClickUp, Asana</span><br/>right client folder"]
+  E -- one status click --> F["<b>Video editors</b>"]
+  class A,S start</pre></div></article></section>
+<p class="note">Drawn with Mermaid, so each diagram is a few lines of text in the build's data, easy to add for every tile.</p></main>
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
+mermaid.initialize({startOnLoad:false,securityLevel:"loose",theme:"base",
+ themeVariables:{fontFamily:"Space Grotesk, sans-serif",fontSize:"14px",primaryColor:"#FFFFFF",primaryBorderColor:"#0B0B0B",primaryTextColor:"#0B0B0B",lineColor:"#0B0B0B",edgeLabelBackground:"#FFFFFF"},
+ flowchart:{htmlLabels:true,curve:"basis",nodeSpacing:22,rankSpacing:30,padding:10}});
+await mermaid.run({querySelector:".mermaid"});
+</script>
+<style>
+.mermaid .node rect,.mermaid .node polygon{stroke-width:2px!important;rx:0;ry:0}
+.mermaid .start rect{fill:#0B0B0B!important}
+.mermaid .start .nodeLabel,.mermaid .start .nodeLabel *{color:#FFFFFF!important}
+.mermaid .start .eg{color:#d6d6cc!important}
+.mermaid .bucket rect{fill:#C8FF3D!important}
+.mermaid .label,.mermaid .nodeLabel,.mermaid .edgeLabel{font:500 13px/1.3 var(--body)!important;letter-spacing:0!important;text-transform:none!important;margin:0!important}
+.mermaid .nodeLabel b{font-weight:700}
+.mermaid .eg{color:#4a4a44;font-size:12px}
+.mermaid .edgeLabel{font-size:12px;color:#4a4a44}
+</style>
