@@ -29,14 +29,14 @@
  {
   "title": "Alumni outreach CRM",
   "original_name": null,
-  "what_it_does": "A one-page CRM for personally reaching about 300 past students. Each person gets a card with a drafted message in their language, personalized with their name and what they built. One click opens WhatsApp with the text filled in, he records a voice note, and the card moves along the pipeline with today's date. A chat co-pilot answers \"where did we leave off?\" and flags anyone who hasn't replied in a week.",
+  "what_it_does": "A one-page CRM for personally reaching about 300 past students. Each person gets a card with a drafted message in their language, personalized with their name and what they built. One click opens WhatsApp with the text filled in, he records a voice note, and the card moves along the pipeline with today's date. A chat co-pilot answers \"where did we leave off?\" and flags anyone who hasn't replied in a week. A live counter shows how many he has sent today, a filter shows only people with a name on file, and cards without a name have a box for the name from their WhatsApp profile, plus a ready-to-copy contact label like \"Maria (Nomad Cruise 17)\". First day: 28 people contacted, 20 in one focused hour, against a target of 5 to 10.",
   "builder": "Alex",
   "where": "Alex's builds, Oct 2026",
   "why": "He wanted to personally contact every alumnus in daily two-hour blocks, and keeping 300 conversations straight in his head and in WhatsApp wasn't going to work.",
   "tools": ["Google Sheets", "Claude", "WhatsApp"],
   "category": "sales",
   "demo_url": null,
-  "logged": "2026-10-15",
+  "logged": "2026-10-16",
   "integrations": [
    "Spreadsheet access, to import the contact list (Google Sheets)",
    "A place to host the page and save its data (Claude artifact, Cloudflare)",
