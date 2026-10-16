@@ -64,6 +64,17 @@ pre{font:15px/1.5 var(--body);background:var(--soft);padding:12px;white-space:pr
 .card.alex{border-color:var(--black);box-shadow:6px 6px 0 var(--volt)}
 .tag{font:700 11px var(--body);letter-spacing:.14em;text-transform:uppercase;background:var(--volt);color:var(--black);padding:3px 7px}
 .filters{display:flex;flex-direction:column;gap:8px;width:100%}
+.diagram{min-height:40px;font-size:14px;color:var(--muted)}
+.diagram svg{max-width:100%!important;height:auto;display:block;margin:0 auto}
+.diagram .node rect,.diagram .node polygon{stroke-width:2px!important}
+.diagram .start rect{fill:#0B0B0B!important}
+.diagram .start .nodeLabel,.diagram .start .nodeLabel *{color:#FFFFFF!important}
+.diagram .start .eg{color:#d6d6cc!important}
+.diagram .bucket rect{fill:#C8FF3D!important}
+.diagram .label,.diagram .nodeLabel,.diagram .edgeLabel{font:500 13px/1.3 var(--body)!important;letter-spacing:0!important;text-transform:none!important;margin:0!important;color:var(--black)}
+.diagram .nodeLabel b{font-weight:700}
+.diagram .eg{color:#4a4a44;font-size:12px}
+.diagram .edgeLabel{font-size:12px!important;color:var(--muted)}
 .empty{color:var(--muted)}
 footer{border-top:2px solid var(--black);padding-top:16px;font-size:15px;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 footer b{color:var(--black)}
@@ -127,13 +138,13 @@ function card(b, i) {
     <p class="by">Built by ${esc(b.builder)}</p>
     <p>${esc(b.what_it_does)}</p>
     ${b.why ? `<p class="why">${esc(b.why)}</p>` : ''}
-    ${flow}
     ${integ}
     <div class="actions">
       ${b.starter_prompt ? `<button class="btn primary" data-copy="${i}">Copy starter prompt</button>` : ''}
       ${b.demo_url ? `<a class="btn ghost" href="${esc(b.demo_url)}" target="_blank" rel="noopener">${isVideo ? 'Watch the demo' : 'Open the project'}</a>` : ''}
     </div>
-    <details><summary>More about this build</summary><dl class="more">
+    <details data-i="${i}"><summary>More about this build</summary><dl class="more">
+      ${b.diagram ? `<div><dt>How it works</dt><dd><div class="diagram" id="d${i}">Drawing the flow...</div></dd></div>` : (flow ? `<div><dt>How it works</dt><dd>${flow.replace('<p class="label">How it works</p>','')}</dd></div>` : '')}
       ${b.original_name ? `<div><dt>What they called it</dt><dd>${esc(b.original_name)}</dd></div>` : ''}
       ${b.tools && b.tools.length ? `<div><dt>Tools</dt><dd>${esc(b.tools.join(', '))}</dd></div>` : ''}
       ${b.starter_prompt ? `<div><dt>Starter prompt</dt><dd><pre id="p${i}">${esc(b.starter_prompt)}</pre></dd></div>` : ''}
@@ -162,6 +173,25 @@ grid.addEventListener('click', e => {
   };
   try { navigator.clipboard.writeText(text).then(done, fallback); } catch { fallback(); }
 });
+const svgCache = {};
+let mermaidP;
+function mm() {
+  return mermaidP ||= import('https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs').then(({default: m}) => {
+    m.initialize({startOnLoad: false, securityLevel: 'loose', theme: 'base',
+      themeVariables: {fontFamily: 'Space Grotesk, sans-serif', fontSize: '14px', primaryColor: '#FFFFFF', primaryBorderColor: '#0B0B0B', primaryTextColor: '#0B0B0B', lineColor: '#0B0B0B', edgeLabelBackground: '#FFFFFF'},
+      flowchart: {htmlLabels: true, curve: 'basis', nodeSpacing: 22, rankSpacing: 30, padding: 10}});
+    return m;
+  });
+}
+grid.addEventListener('toggle', async e => {
+  const d = e.target; if (!d.open || d.dataset.i == null) return;
+  const i = +d.dataset.i, box = document.getElementById('d' + i);
+  if (!box || !builds[i].diagram || box.dataset.done) return;
+  try {
+    svgCache[i] ||= (await (await mm()).render('mm' + i, builds[i].diagram)).svg;
+    box.innerHTML = svgCache[i]; box.dataset.done = 1;
+  } catch { box.textContent = (builds[i].flow || []).map(f => f.role).join(' > '); }
+}, true);
 q.addEventListener('input', render);
 render();
 </script>

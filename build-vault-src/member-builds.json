@@ -36,7 +36,8 @@
     "eg": "Monday, Airtable, HubSpot"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Inbox</b><br/><span class='eg'>Missive, Gmail, Outlook</span><br/>PR opportunity emails\"] --> B[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT</span><br/>pulls outlet, reporter, type\"]\n  B --> C[\"<b>Leads board</b><br/><span class='eg'>Monday, Airtable, HubSpot</span><br/>new row\"]\n  B --> E[\"<b>Thread summary</b><br/><span class='eg'>Monday, Missive</span><br/>status + next action\"]\n  class A start"
  },
  {
   "title": "Media list builder",
@@ -73,7 +74,8 @@
     "eg": "Spreadsheet, Google Sheets, Excel"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Where I type</b><br/><span class='eg'>Claude, ChatGPT</span><br/>build lists for client\"] --> C[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT, Gemini</span>\"]\n  B[\"<b>Client brief</b><br/><span class='eg'>Claude project, Google Doc</span>\"] --> C\n  C --> L1[\"List for angle one\"] & L2[\"List for angle two\"]\n  L1 & L2 --> S[\"<b>Media list</b><br/><span class='eg'>Google Sheets, Excel</span><br/>fit score + why\"]\n  class A,B start\n  class L1,L2 bucket"
  },
  {
   "title": "PR campaign pipeline",
@@ -119,7 +121,8 @@
     "eg": "Gmail, Google Sheets"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Campaign intake</b><br/><span class='eg'>Google Doc, form</span><br/>intake + consultation\"] --> B[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT</span><br/>angles + pitch\"]\n  B --> C[\"<b>Pitch doc</b><br/><span class='eg'>Google Docs, Word</span><br/>AI comments inline\"]\n  C --> D[\"<b>List checker</b><br/><span class='eg'>Claude, Muck Rack</span><br/>red, yellow, green\"]\n  D --> E[\"<b>Manager approval</b><br/>human check\"]\n  E --> F[\"<b>Client review</b><br/>human check\"]\n  F -- changes --> C\n  F --> G[\"<b>Send and log</b><br/><span class='eg'>Gmail, Google Sheets</span>\"]\n  class A start"
  },
  {
   "title": "Daily client dashboard",
@@ -164,7 +167,8 @@
     "eg": "Gmail, Outlook"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Task board</b><br/><span class='eg'>Monday, Asana, ClickUp</span>\"] --> C\n  B[\"<b>Call recorder</b><br/><span class='eg'>Fathom, Otter, Fireflies</span>\"] --> C\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT, Gemini</span>\"]\n  C --> D[\"<b>Dashboard page</b><br/><span class='eg'>Claude artifact, Notion</span><br/>by client\"]\n  C --> E[\"<b>Email draft</b><br/><span class='eg'>Gmail, Outlook</span>\"]\n  C --> G[\"<b>Call agenda + recap</b><br/><span class='eg'>Fathom, Google Doc</span>\"]\n  E --> F[\"<b>Me, checking</b><br/>then send\"]\n  class A,B start"
  },
  {
   "title": "Monthly client report writer",
@@ -208,7 +212,8 @@
     "eg": "Google Doc, Word"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Data export</b><br/><span class='eg'>PR platform CSV, Muck Rack</span>\"] --> C\n  B[\"<b>Task board</b><br/><span class='eg'>Monday, Asana</span>\"] --> C\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT, Gemini</span><br/>runs on Cloudflare\"]\n  C --> D[\"<b>Report draft</b><br/><span class='eg'>Google Doc, Word</span>\"]\n  D --> E[\"<b>Campaign manager</b><br/>edits, not writes\"]\n  class A,B start"
  },
  {
   "title": "Transcript to social posts",
@@ -245,7 +250,8 @@
     "eg": "LinkedIn, Instagram"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Transcript</b><br/><span class='eg'>Zoom, Otter, Fathom</span>\"] -- paste --> B[\"<b>AI brain</b><br/><span class='eg'>Claude project, ChatGPT</span><br/>draft this\"]\n  B --> L[\"LinkedIn post\"] & I[\"Instagram caption\"]\n  L & I --> V[\"<b>Brand voice check</b><br/><span class='eg'>Claude</span>\"]\n  class A start\n  class L,I bucket"
  },
  {
   "title": "Coaching call grader",
@@ -287,7 +293,8 @@
     "eg": "Web page, Google Doc"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Call transcript</b><br/><span class='eg'>Zoom, Otter</span>\"] -- upload --> B[\"<b>Name scrubber</b><br/><span class='eg'>Custom code, Codex-built</span><br/>removes client names\"]\n  B --> C[\"<b>AI brain</b><br/><span class='eg'>OpenAI, Claude, Gemini</span><br/>grades the call\"]\n  C --> D[\"<b>Evaluation report</b><br/><span class='eg'>Web page, Google Doc</span>\"]\n  D --> O[\"Opening + closing\"] & M[\"Missed chances\"] & R[\"Top fixes\"]\n  class A start\n  class O,M,R bucket"
  },
  {
   "title": "Client sessions tracker",
@@ -327,7 +334,8 @@
     "eg": "Coach portal, web page"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>CRM</b><br/><span class='eg'>GoHighLevel, HubSpot</span><br/>sessions + notes\"] --> B[\"<b>Data fetcher</b><br/><span class='eg'>GoHighLevel API</span>\"]\n  B --> C[\"<b>Where code runs</b><br/><span class='eg'>Cloudflare, Vercel, Netlify</span>\"]\n  C --> D[\"<b>Client view</b><br/>sessions left, expiry, link\"]\n  C --> E[\"<b>Coach view</b><br/>active clients + totals\"]\n  class A start"
  },
  {
   "title": "Team knowledge assistant",
@@ -370,7 +378,8 @@
     "eg": "Chat page"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Team docs</b><br/><span class='eg'>Google Drive, Slack, GoHighLevel</span>\"] --> B[\"<b>Search index</b><br/><span class='eg'>Vector database, custom code</span>\"]\n  Q[\"<b>New hire question</b><br/><span class='eg'>Chat page, Slack</span>\"] --> C\n  B --> C[\"<b>AI brain</b><br/><span class='eg'>OpenAI, Claude, Gemini</span>\"]\n  C --> D[\"<b>Answer with source</b><br/>SOP + steps in order\"]\n  D --> E[\"<b>Me, reviewing</b><br/>fixes each answer\"]\n  E -- corrections --> B\n  class A,Q start"
  },
  {
   "title": "Customer support chatbot",
@@ -412,7 +421,8 @@
     "eg": "Internal web page"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Client question</b><br/><span class='eg'>Chat widget, website</span>\"] --> B[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT, Gemini</span>\"]\n  B --> C[\"<b>CRM lookup</b><br/><span class='eg'>GoHighLevel, HubSpot</span><br/>real member data\"]\n  C -- answer --> A\n  C --> D[\"<b>Team dashboard</b><br/><span class='eg'>Internal web page</span>\"]\n  class A start"
  },
  {
   "title": "Overnight client content drafts",
@@ -453,7 +463,8 @@
     "eg": ""
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Scheduler</b><br/><span class='eg'>Cron, GitHub Actions</span><br/>overnight\"] --> B[\"<b>Client data</b><br/><span class='eg'>Search Console, analytics</span>\"]\n  B --> C[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT, Gemini</span><br/>strategy + drafts\"]\n  C --> W[\"Articles\"] & P[\"Photos\"]\n  W & P --> D[\"<b>Production board</b><br/><span class='eg'>Trello, ClickUp, Notion</span><br/>card per client\"]\n  D --> E[\"<b>Me, reviewing</b><br/>in the morning\"]\n  class A start\n  class W,P bucket"
  },
  {
   "title": "Sales team dashboard",
@@ -489,7 +500,8 @@
     "eg": "Web app, Looker Studio"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Business apps</b><br/><span class='eg'>HubSpot, Salesforce, Pipedrive</span><br/>CRM + sales data\"] --> B[\"<b>Data fetcher</b><br/><span class='eg'>CRM API, Zapier</span>\"]\n  R[\"<b>Rep login</b><br/><span class='eg'>Supabase Auth, Clerk</span>\"] --> D\n  B --> D[\"<b>Dashboard page</b><br/><span class='eg'>Web app, Looker Studio</span>\"]\n  D --> E[\"<b>My numbers</b><br/>greeted by name\"]\n  D --> F[\"<b>Market map</b><br/>leads + top competitor\"]\n  class A,R start"
  },
  {
   "title": "Meal prep delivery directory",
@@ -533,7 +545,8 @@
     "eg": "Google, AI search"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Listings database</b><br/><span class='eg'>Supabase, Airtable</span>\"] --> B[\"<b>Site builder</b><br/><span class='eg'>Next.js, Webflow</span>\"]\n  B --> C[\"<b>Where code runs</b><br/><span class='eg'>Vercel, Netlify</span>\"]\n  C --> D[\"<b>Search engines</b><br/><span class='eg'>Google, AI search</span>\"]\n  C --> E[\"<b>Checker agent</b><br/><span class='eg'>Claude, ChatGPT</span><br/>checks listings + links\"]\n  E -- fixes --> A\n  class A start"
  },
  {
   "title": "Podcast to editor brief",
@@ -580,7 +593,8 @@
     "eg": "Video team"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Recording</b><br/><span class='eg'>Riverside, Zoom</span>\"] --> C\n  S[\"<b>Team chat request</b><br/><span class='eg'>Slack</span>\"] --> C\n  C[\"<b>Automation</b><br/><span class='eg'>Zapier, Make, n8n</span>\"] --> D[\"<b>AI brain</b><br/><span class='eg'>Claude</span><br/>brief + content ideas\"]\n  D --> E[\"<b>Task board</b><br/><span class='eg'>ClickUp, Asana</span><br/>right client folder\"]\n  E -- one status click --> F[\"<b>Video editors</b>\"]\n  class A,S start"
  },
  {
   "title": "Foreign letter translator",
@@ -624,7 +638,8 @@
     "eg": "Google Drive, OneDrive"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Drop folder</b><br/><span class='eg'>Mac folder, Dropbox</span>\"] --> B[\"<b>Folder watcher</b><br/><span class='eg'>Python script</span>\"]\n  B --> C[\"<b>AI brain</b><br/><span class='eg'>Claude, Gemini</span><br/>translate + pull action items\"]\n  C --> D[\"<b>Email summary</b><br/><span class='eg'>Gmail, Outlook</span>\"]\n  C --> E[\"<b>File storage</b><br/><span class='eg'>Google Drive</span><br/>both versions\"]\n  B -. if it fails .-> F[\"<b>Error dashboard</b>\"]\n  class A start"
  },
  {
   "title": "Sales prospect finder",
@@ -667,7 +682,8 @@
     "eg": "Telegram, WhatsApp, Slack"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Signal scraper</b><br/><span class='eg'>Job boards, news sites</span><br/>companies expanding\"] --> B[\"<b>Contact finder</b><br/><span class='eg'>LinkedIn, Apollo</span>\"]\n  B --> C[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT, Gemini</span><br/>drafts outreach\"]\n  S[\"<b>Scheduler</b><br/><span class='eg'>Cron, n8n</span>\"] --> T\n  C --> T[\"<b>Chat alerts</b><br/><span class='eg'>Telegram, WhatsApp, Slack</span>\"]\n  T --> M[\"Monday brief\"] & F[\"Friday check-in\"]\n  class A,S start\n  class M,F bucket"
  },
  {
   "title": "Event promo kit, two languages",
@@ -709,7 +725,8 @@
     "eg": "WhatsApp, email"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Event details</b><br/><span class='eg'>Form, Luma</span>\"] --> B[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT, Gemini</span><br/>Spanish + English\"]\n  B --> L[\"Event page copy\"] & W[\"WhatsApp reminders\"] & F[\"Flyers\"]\n  class A start\n  class L,W,F bucket"
  },
  {
   "title": "AI client intake guide",
@@ -745,7 +762,8 @@
     "eg": "Database, Google Doc"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Passphrase gate</b><br/><span class='eg'>Custom page, Cloudflare</span>\"] --> B[\"<b>Where I type</b><br/><span class='eg'>Chat page</span>\"]\n  B --> C[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT, Gemini</span><br/>20-minute intake interview\"]\n  C -- next question --> B\n  C --> D[\"<b>Intake notes</b><br/><span class='eg'>Database, Google Doc</span>\"]\n  class A start"
  },
  {
   "title": "Small business numbers dashboard",
@@ -781,7 +799,8 @@
     "eg": "Web app, Looker Studio"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"Sticky notes\"] --> C\n  S[\"Spreadsheets\"] --> C\n  P[\"PayPal records\"] --> C\n  C[\"<b>Data cleaner</b><br/><span class='eg'>Claude, Python</span>\"]\n  C --> D[\"<b>Database</b><br/><span class='eg'>Google Sheets, Supabase</span>\"]\n  D --> E[\"<b>Dashboard page</b><br/><span class='eg'>Web app, Looker Studio</span><br/>bookings, revenue, KPIs\"]\n  class A,S,P start"
  },
  {
   "title": "Personal AI advisor panel",
@@ -819,7 +838,8 @@
     "eg": "Chat reply"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Where I type</b><br/><span class='eg'>Claude Code, terminal</span>\"] --> B[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT, Gemini</span>\"]\n  F[\"<b>Advisor briefs</b><br/><span class='eg'>Markdown files, Notion</span><br/>one per life area\"] --> B\n  B --> C[\"<b>Advice</b><br/><span class='eg'>Chat reply</span>\"]\n  class A,F start"
  },
  {
   "title": "Lead magnet and email sequence",
@@ -858,7 +878,8 @@
     "eg": "GoHighLevel, Kit, Mailchimp"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Source video</b><br/><span class='eg'>YouTube</span>\"] --> B[\"<b>Brand brain</b><br/><span class='eg'>Claude project, ChatGPT</span><br/>trained on his content\"]\n  B --> C[\"<b>Guide</b><br/>made from the video\"]\n  B --> E[\"<b>Email sequence</b><br/><span class='eg'>GoHighLevel, Kit, Mailchimp</span><br/>five days\"]\n  C --> D[\"<b>Landing page</b><br/><span class='eg'>GoHighLevel, Kit, Leadpages</span>\"]\n  D --> T[\"<b>Thank-you page</b><br/><span class='eg'>GoHighLevel</span>\"]\n  T --> E\n  class A start"
  },
  {
   "title": "Local meetup map app",
@@ -894,7 +915,8 @@
     "eg": "Vercel, app store"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>App backend</b><br/><span class='eg'>Supabase, Firebase</span>\"] --> B[\"<b>Map view</b><br/><span class='eg'>Google Maps, Mapbox</span>\"]\n  B --> E[\"Events + items\"] & P[\"Posts\"] & C[\"Communities\"]\n  C --> M[\"<b>Messaging</b><br/><span class='eg'>In-app chat</span>\"]\n  class A start\n  class E,P,C bucket"
  },
  {
   "title": "Partner recruiting tracker",
@@ -935,7 +957,8 @@
     "eg": ""
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Doctor finder</b><br/><span class='eg'>Instagram, LinkedIn</span>\"] --> B[\"<b>Tracker</b><br/><span class='eg'>Database, Airtable, Excel</span><br/>specialty, area, status\"]\n  B --> C[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT, Gemini</span>\"]\n  C --> D[\"<b>Email draft</b><br/><span class='eg'>Gmail, Outlook</span>\"]\n  D --> E[\"<b>Me, reviewing</b><br/>then send\"]\n  E -- status update --> B\n  class A start"
  },
  {
   "title": "Coaching call clip finder",
@@ -977,7 +1000,8 @@
     "eg": "Web app, Notion"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Call</b><br/><span class='eg'>Zoom, Google Meet</span>\"] --> B[\"<b>Call recorder</b><br/><span class='eg'>Fathom, Otter</span>\"]\n  B -- transcript --> C[\"<b>AI brain</b><br/><span class='eg'>Claude, Gemini</span><br/>finds the moments\"]\n  C --> D[\"<b>Clip cutter</b><br/><span class='eg'>ffmpeg, Descript</span>\"]\n  D --> W[\"Wins\"] & T[\"Testimonials\"] & L[\"Lessons\"]\n  W & T & L --> V[\"<b>Me or my VA</b><br/>caption + post\"]\n  class A start\n  class W,T,L bucket"
  },
  {
   "title": "Daily ad account watchdog",
@@ -1023,7 +1047,8 @@
     "eg": ""
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Scheduler</b><br/><span class='eg'>Claude Cowork, cron</span><br/>every morning\"] --> B[\"<b>Ad accounts</b><br/><span class='eg'>Google Ads, Meta Ads</span>\"]\n  T[\"<b>Client thresholds</b><br/>set per client\"] --> C\n  B --> C[\"<b>AI brain</b><br/><span class='eg'>Claude Code, Claude</span>\"]\n  C --> E[\"<b>Email alerts</b><br/><span class='eg'>Gmail, Outlook</span>\"]\n  C --> K[\"<b>Calendar</b><br/><span class='eg'>Google Calendar</span><br/>critical alerts\"]\n  C --> O[\"<b>Dry-run fixes</b><br/>proposed changes\"]\n  O --> M[\"<b>Me, approving</b><br/>approve or reject\"]\n  class A,T start"
  },
  {
   "title": "Dance practice app",
@@ -1061,7 +1086,8 @@
     "eg": "App Store, TestFlight"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Content admin</b><br/><span class='eg'>Admin app</span>\"] --> B[\"<b>Content database</b><br/><span class='eg'>Firebase, Supabase, CloudKit</span>\"]\n  B --> C[\"<b>Phone app</b><br/><span class='eg'>iOS app, Xcode</span><br/>videos, speed, socials, history\"]\n  C --> D[\"<b>App store</b><br/><span class='eg'>App Store, TestFlight</span>\"]\n  class A start"
  },
  {
   "title": "Photo picker that learns your taste",
@@ -1103,7 +1129,8 @@
     "eg": "iCloud, Google Drive"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Sample photos</b><br/>I score + say why\"] --> B[\"<b>Taste notes</b><br/><span class='eg'>ChatGPT project, Claude project</span>\"]\n  P[\"<b>Photo batch</b><br/><span class='eg'>Phone camera roll</span>\"] --> C\n  B --> C[\"<b>AI brain</b><br/><span class='eg'>ChatGPT, Claude, Gemini</span>\"]\n  C --> D[\"<b>Top picks</b><br/>shortlist\"]\n  B --> E[\"<b>Backup</b><br/><span class='eg'>iCloud, Google Drive</span>\"]\n  class A,P start"
  },
  {
   "title": "Voice note to a week of content",
@@ -1143,7 +1170,8 @@
     "eg": "Email, scheduler"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  R[\"<b>Weekly reminder</b><br/><span class='eg'>Email, scheduler</span><br/>Monday\"] --> A\n  A[\"<b>Voice note</b><br/><span class='eg'>Voice Memos, phone recorder</span>\"] --> B[\"<b>Transcriber</b><br/><span class='eg'>Whisper, Otter</span>\"]\n  B --> C[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT, Gemini</span>\"]\n  C --> Q[\"Quote graphics\"] & K[\"Captions + posts\"] & E[\"Emails\"]\n  class R start\n  class Q,K,E bucket"
  },
  {
   "title": "Music stem player",
@@ -1182,7 +1210,8 @@
     "eg": "Own site, Vercel"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Stem files</b><br/><span class='eg'>WAV, MP3</span><br/>one per instrument\"] --> B[\"<b>Audio engine</b><br/><span class='eg'>Web Audio API</span><br/>filters per stem\"]\n  K[\"<b>AI coder</b><br/><span class='eg'>Claude Code, Codex</span>\"] -. builds .-> B\n  B --> S[\"<b>Spectrum analyzer</b><br/>live\"]\n  B --> C[\"<b>Website page</b><br/><span class='eg'>Own site, Vercel</span>\"]\n  S --> C\n  class A start"
  },
  {
   "title": "Life assessment quiz",
@@ -1226,7 +1255,8 @@
     "eg": "Airtable, Kit"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Quiz page</b><br/><span class='eg'>Own site, Typeform</span><br/>10 questions\"] --> B[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT, Gemini</span>\"]\n  B --> C[\"<b>Personal report</b><br/><span class='eg'>Web page, PDF</span><br/>branded\"]\n  A --> D[\"<b>Command center</b><br/><span class='eg'>Airtable, Google Sheets</span><br/>every response\"]\n  D --> E[\"<b>Follow-up email</b><br/><span class='eg'>Airtable, Kit</span>\"]\n  class A start"
  },
  {
   "title": "Public speaking coach",
@@ -1268,7 +1298,8 @@
     "eg": "Web page"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Topic spinner</b><br/><span class='eg'>Web app</span><br/>15-minute research timer\"] --> B[\"<b>Recorder</b><br/><span class='eg'>Browser mic</span><br/>one take\"]\n  B --> C[\"<b>Transcriber</b><br/><span class='eg'>Whisper, Deepgram</span>\"]\n  C --> W[\"<b>Pace counter</b><br/><span class='eg'>Code</span><br/>words per minute\"]\n  C --> D[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT, Gemini</span><br/>five-part rubric\"]\n  W & D --> E[\"<b>Score report</b><br/><span class='eg'>Web page</span><br/>marked-up + better version\"]\n  E --> H[\"<b>Session history</b>\"]\n  class A start"
  },
  {
   "title": "Product page per QR code",
@@ -1312,7 +1343,8 @@
     "eg": "Web page"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  P[\"<b>Product data</b><br/><span class='eg'>Shopify, spreadsheet</span><br/>garment details\"]\n  B[\"<b>Bridge to my code</b><br/><span class='eg'>Codex, Claude Code</span><br/>one template per piece\"]\n  H[\"<b>Where code runs</b><br/><span class='eg'>Cloudflare, Vercel</span>\"]\n  Q[\"<b>QR code</b><br/><span class='eg'>Printed tag, sticker</span>\"]\n  E[\"<b>Passport page</b><br/><span class='eg'>Web page</span><br/>claim it + collect points\"]\n  P --> B\n  B --> H\n  H -- short link --> Q\n  Q -- scan --> E\n  class P start"
  },
  {
   "title": "Credit report analyzer",
@@ -1349,7 +1381,8 @@
     "eg": "Word, Google Docs"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Credit report</b><br/><span class='eg'>PDF, scanned report</span>\"]\n  U[\"<b>Where I upload</b><br/><span class='eg'>Claude, ChatGPT</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude skill, Gemini</span><br/>reads the whole report\"]\n  D[\"<b>Diagnostic doc</b><br/><span class='eg'>Word, Google Docs</span><br/>entity, report, next step\"]\n  M[\"<b>Me</b><br/>send to client\"]\n  A --> U\n  U --> C\n  C --> D\n  D --> M\n  class A start"
  },
  {
   "title": "Aging parents readiness quiz",
@@ -1394,7 +1427,8 @@
     "eg": "Google Sheets, Airtable"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  Q[\"<b>Quiz page</b><br/><span class='eg'>Company site, Carrd, Webflow</span><br/>10 questions\"]\n  F[\"<b>Form handler</b><br/><span class='eg'>Google Apps Script, Zapier</span>\"]\n  S[\"<b>Score and report</b><br/><span class='eg'>Apps Script, Claude</span><br/>score out of 100\"]\n  R[\"<b>PDF report email</b><br/><span class='eg'>Gmail, Mailchimp</span><br/>what is missing\"]\n  L[\"<b>Lead tracker</b><br/><span class='eg'>Google Sheets, Airtable</span>\"]\n  N[\"<b>New lead alert</b><br/><span class='eg'>Gmail</span>\"]\n  Q --> F\n  F --> S\n  S -- to the visitor --> R\n  F --> L\n  F --> N\n  class Q start"
  },
  {
   "title": "Policy updater for new regulations",
@@ -1433,7 +1467,8 @@
     "eg": "Tracked changes, table"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  P[\"<b>Current procedures</b><br/><span class='eg'>Word, PDF</span>\"]\n  G[\"<b>Current regulations</b><br/><span class='eg'>Government sites, legal databases</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT, Gemini</span><br/>compares line by line\"]\n  U[\"<b>Updated procedure</b><br/><span class='eg'>Word, Google Docs</span><br/>new version number\"]\n  L[\"<b>Change log</b><br/><span class='eg'>Tracked changes, table</span><br/>what changed and which rule\"]\n  P --> C\n  G --> C\n  C --> U\n  C --> L\n  class P,G start"
  },
  {
   "title": "Ask-the-map city explorer",
@@ -1474,7 +1509,8 @@
     "eg": "Vercel, Netlify"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  O[\"<b>Map data</b><br/><span class='eg'>City open data</span>\"]\n  U[\"<b>My uploaded layers</b><br/><span class='eg'>GeoJSON, CSV files</span>\"]\n  M[\"<b>Map layers</b><br/><span class='eg'>Leaflet, Mapbox, ArcGIS</span><br/>hospitals, works, metro\"]\n  P[\"<b>Map page</b><br/><span class='eg'>Vercel, Netlify</span>\"]\n  Q[\"<b>Where I ask</b><br/><span class='eg'>AI chat panel</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span><br/>answers from the layers\"]\n  O --> M\n  U --> M\n  M --> P\n  P --> Q\n  Q -- question --> C\n  C -- answer on the map --> P\n  class O,U start"
  },
  {
   "title": "Grant finder",
@@ -1517,7 +1553,8 @@
     "eg": "Google Doc, Word"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  G[\"<b>Grant listings</b><br/><span class='eg'>Government API, listings site</span>\"]\n  S[\"<b>Web search</b><br/><span class='eg'>SerpAPI</span>\"]\n  P[\"<b>Project profile</b><br/><span class='eg'>Doc, Markdown file</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Codex, Claude, ChatGPT</span><br/>scores every grant\"]\n  T[\"<b>Ranked top five</b><br/><span class='eg'>Table, spreadsheet</span><br/>funder, fit, phase\"]\n  A[\"<b>Application draft</b><br/><span class='eg'>Google Doc, Word</span>\"]\n  G & S --> C\n  P --> C\n  C --> T\n  T -- pick one --> A\n  class G,S,P start"
  },
  {
   "title": "Client email reply drafter",
@@ -1564,7 +1601,8 @@
     "eg": "Sent vs draft compare"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  S[\"<b>Scheduler</b><br/><span class='eg'>Hourly job, Power Automate</span>\"]\n  I[\"<b>Inbox</b><br/><span class='eg'>Outlook, Gmail</span><br/>new client questions\"]\n  H[\"<b>Client history</b><br/><span class='eg'>Past emails, client docs</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span><br/>reply + tax code citations\"]\n  D[\"<b>Email draft</b><br/><span class='eg'>Outlook drafts, Gmail drafts</span>\"]\n  M[\"<b>Me, reviewing</b><br/>edit and send\"]\n  S --> I\n  I --> C\n  H --> C\n  C --> D\n  D --> M\n  M -- sent vs draft --> C\n  class S start"
  },
  {
   "title": "Meeting prep brief",
@@ -1605,7 +1643,8 @@
     "eg": "Outlook, Gmail"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  K[\"<b>Calendar</b><br/><span class='eg'>Outlook, Google Calendar</span><br/>new client calls\"]\n  R[\"<b>Client files</b><br/><span class='eg'>Uploaded returns, email thread</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span><br/>meeting itinerary\"]\n  S[\"<b>Scheduler</b><br/><span class='eg'>Nightly job, Zapier</span>\"]\n  B[\"<b>Brief email</b><br/><span class='eg'>Outlook, Gmail</span><br/>night before\"]\n  K --> C\n  R --> C\n  S -- triggers --> C\n  C --> B\n  class K,S start"
  },
  {
   "title": "Workout coach app",
@@ -1649,7 +1688,8 @@
     "eg": "AI summary"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  K[\"<b>Check-in</b><br/><span class='eg'>React app</span><br/>how are you feeling\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>ChatGPT API, Claude, Gemini</span><br/>picks the session\"]\n  G[\"<b>Guided session</b><br/><span class='eg'>React app, timers</span><br/>one exercise at a time\"]\n  L[\"<b>Workout log</b><br/><span class='eg'>Supabase, Firebase</span><br/>what I really lifted\"]\n  F[\"<b>Coach feedback</b><br/><span class='eg'>ChatGPT API, Claude</span>\"]\n  T[\"<b>Test mode</b><br/>skips the database\"]\n  K --> C\n  C --> G\n  G --> L\n  L --> F\n  G -. testing .-> T\n  class K start"
  },
  {
   "title": "Tax return checker",
@@ -1691,7 +1731,8 @@
     "eg": "Flagged lines list"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  R[\"<b>Prepared return</b><br/><span class='eg'>Tax software PDF</span>\"]\n  S[\"<b>Source documents</b><br/><span class='eg'>W2s, 1099s, statements</span>\"]\n  H[\"<b>Where it runs</b><br/><span class='eg'>Cloudflare, Vercel</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span><br/>matches line to page\"]\n  M[\"<b>Matched lines</b><br/>file and page\"]\n  F[\"<b>Flagged lines</b><br/>no support found\"]\n  X[\"<b>Not needed</b><br/>old year documents\"]\n  R --> H\n  S --> H\n  H --> C\n  C --> M & F & X\n  class R,S start\n  class M,F,X bucket"
  },
  {
   "title": "Client document sorter",
@@ -1731,7 +1772,8 @@
     "eg": "One file plus review section"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  F[\"<b>Client folders</b><br/><span class='eg'>Local drive, Dropbox</span>\"]\n  A[\"<b>Desktop app</b><br/><span class='eg'>Python app</span><br/>Organize button\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span><br/>reads + renames each file\"]\n  P[\"<b>PDF merger</b><br/><span class='eg'>Local PDF tool</span><br/>firm's return order\"]\n  R[\"<b>Review section</b><br/>could not classify\"]\n  O[\"<b>Ordered PDF</b><br/><span class='eg'>One file</span><br/>+ count popup\"]\n  F --> A\n  A --> C\n  C --> P\n  C -. unsure .-> R\n  R --> P\n  P --> O\n  class F start"
  },
  {
   "title": "Missing documents request email",
@@ -1770,7 +1812,8 @@
     "eg": "Outlook drafts, Gmail drafts"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  F[\"<b>Client folder</b><br/><span class='eg'>Dropbox, Google Drive, OneDrive</span><br/>last two years\"]\n  K[\"<b>Contacts</b><br/><span class='eg'>Outlook, Gmail</span><br/>client address\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span><br/>lists each document by name\"]\n  D[\"<b>Email draft</b><br/><span class='eg'>Outlook drafts, Gmail drafts</span>\"]\n  M[\"<b>Me, reviewing</b><br/>send\"]\n  F --> C\n  K --> C\n  C --> D\n  D --> M\n  class F,K start"
  },
  {
   "title": "Quarterly client check-in drafter",
@@ -1806,7 +1849,8 @@
     "eg": "Outlook drafts, Gmail drafts"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  L[\"<b>Client list</b><br/><span class='eg'>Spreadsheet, CRM</span><br/>70 to 80 bigger clients\"]\n  H[\"<b>Inbox history</b><br/><span class='eg'>Outlook, Gmail</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span><br/>what we last talked about\"]\n  D[\"<b>Email drafts</b><br/><span class='eg'>Outlook drafts, Gmail drafts</span><br/>one per client\"]\n  L --> C\n  H --> C\n  C --> D\n  class L start"
  },
  {
   "title": "New inquiry reply drafter",
@@ -1846,7 +1890,8 @@
     "eg": ""
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  I[\"<b>Inbox</b><br/><span class='eg'>Outlook, Gmail</span>\"]\n  N[\"<b>New sender check</b><br/><span class='eg'>Contact lookup</span><br/>first time only\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span><br/>individual or business\"]\n  Q[\"<b>Standard questions</b><br/><span class='eg'>Doc</span>\"]\n  D[\"<b>Email draft</b><br/><span class='eg'>Outlook drafts, Gmail drafts</span>\"]\n  M[\"<b>Me, reviewing</b><br/>cut what they answered\"]\n  I --> N\n  N -- new sender --> C\n  Q --> C\n  C --> D\n  D --> M\n  class I start"
  },
  {
   "title": "Unanswered requests finder",
@@ -1883,7 +1928,8 @@
     "eg": "Asked, when, answered"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  T[\"<b>Email thread</b><br/><span class='eg'>Outlook, Gmail</span>\"]\n  P[\"<b>Where I paste</b><br/><span class='eg'>Claude, ChatGPT</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, Gemini</span><br/>reads the whole thread\"]\n  M[\"<b>My requests</b><br/>asked, when, how often\"]\n  O[\"<b>Open client questions</b><br/>never answered\"]\n  T -- copy --> P\n  P --> C\n  C --> M\n  C --> O\n  class T start\n  class M,O bucket"
  },
  {
   "title": "PDF statements to spreadsheet",
@@ -1920,7 +1966,8 @@
     "eg": "Excel, Google Sheets"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>PDF statements</b><br/><span class='eg'>Bank, card statements</span><br/>a full year\"]\n  U[\"<b>Where I upload</b><br/><span class='eg'>Claude, ChatGPT</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, Gemini</span><br/>pulls every transaction\"]\n  S[\"<b>Spreadsheet</b><br/><span class='eg'>Excel, Google Sheets</span><br/>one sheet per client\"]\n  A --> U\n  U --> C\n  C --> S\n  class A start"
  },
  {
   "title": "Interview to process map",
@@ -1965,7 +2012,8 @@
     "eg": "OneDrive, Google Drive"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  I[\"<b>Interview</b><br/><span class='eg'>Teams, Zoom</span>\"]\n  T[\"<b>Transcript</b><br/><span class='eg'>Teams transcript, Otter</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Codex, Claude, ChatGPT</span>\"]\n  B[\"<b>Bottlenecks list</b><br/>waste + delays\"]\n  P[\"<b>Process diagram</b><br/><span class='eg'>draw.io, Lucidchart</span><br/>open and edit\"]\n  S[\"<b>Saved output</b><br/><span class='eg'>OneDrive, Google Drive</span>\"]\n  I --> T\n  T --> C\n  C --> B\n  C --> P\n  B --> S\n  P --> S\n  class I start"
  },
  {
   "title": "VAT readiness quiz",
@@ -2005,7 +2053,8 @@
     "eg": "Calendly, HubSpot meetings"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  Q[\"<b>Quiz page</b><br/><span class='eg'>Website, Vercel</span><br/>8 questions + tooltips\"]\n  E[\"<b>Email capture</b><br/><span class='eg'>Form with privacy policy</span>\"]\n  R[\"<b>Result and tips</b><br/><span class='eg'>Readiness score</span><br/>3 tips\"]\n  L[\"<b>CRM lead</b><br/><span class='eg'>HubSpot, Pipedrive, Salesforce</span>\"]\n  B[\"<b>Book a call</b><br/><span class='eg'>Calendly, HubSpot meetings</span>\"]\n  Q --> E\n  E --> R\n  E --> L\n  R --> B\n  class Q start"
  },
  {
   "title": "Travel emergency readiness quiz",
@@ -2043,7 +2092,8 @@
     "eg": "Product beta page"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  Q[\"<b>Quiz page</b><br/><span class='eg'>Claude artifact, Vercel</span>\"]\n  J[\"<b>Journey picker</b><br/>four user groups\"]\n  W[\"<b>What if questions</b><br/>passport, phone, hospital\"]\n  S[\"<b>Score and report</b><br/><span class='eg'>Claude, rules</span><br/>percentage + fix first\"]\n  B[\"<b>Beta sign-up</b><br/><span class='eg'>Product beta page</span>\"]\n  Q --> J\n  J --> W\n  W --> S\n  S --> B\n  class Q start"
  },
  {
   "title": "Folder cleanup planner",
@@ -2084,7 +2134,8 @@
     "eg": "Created by Claude"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  F[\"<b>My folders</b><br/><span class='eg'>Local drive, Google Drive</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT</span><br/>reads everything\"]\n  P[\"<b>Proposed structure</b><br/><span class='eg'>Spreadsheet, Excel</span>\"]\n  M[\"<b>Me, approving</b>\"]\n  N[\"<b>New folders</b><br/><span class='eg'>Created by Claude</span>\"]\n  F --> C\n  C --> P\n  P --> M\n  M -- changes --> C\n  M -- approved --> N\n  class F start"
  },
  {
   "title": "Second brain capture",
@@ -2120,7 +2171,8 @@
     "eg": "Notes search, AI chat"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  Q[\"<b>Quick capture</b><br/><span class='eg'>Phone, chat, email</span><br/>notes + ideas\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span><br/>sorts and tags\"]\n  F[\"<b>Filed notes</b><br/><span class='eg'>Notion, Obsidian</span>\"]\n  S[\"<b>Search later</b><br/><span class='eg'>Notes search, AI chat</span>\"]\n  Q --> C\n  C --> F\n  F --> S\n  class Q start"
  },
  {
   "title": "Lead finder and qualifier",
@@ -2156,7 +2208,8 @@
     "eg": "Google Sheets, CRM"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  L[\"<b>Lead source</b><br/><span class='eg'>Apollo, LinkedIn, web search</span>\"]\n  I[\"<b>Ideal customer</b><br/><span class='eg'>Fit criteria doc</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span><br/>scores each fit\"]\n  S[\"<b>Scored list</b><br/><span class='eg'>Google Sheets, CRM</span><br/>before outreach\"]\n  L --> C\n  I --> C\n  C --> S\n  class L,I start"
  },
  {
   "title": "Singing practice app",
@@ -2192,7 +2245,8 @@
     "eg": "Phone, tablet, laptop"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  B[\"<b>Where I build</b><br/><span class='eg'>Claude, Lovable, Cursor</span>\"]\n  P[\"<b>Practice app</b><br/><span class='eg'>Installable web app</span>\"]\n  H[\"<b>Where it runs</b><br/><span class='eg'>Vercel, Netlify</span>\"]\n  Ph[\"<b>Phone</b>\"]\n  T[\"<b>Tablet</b>\"]\n  L[\"<b>Laptop</b>\"]\n  B --> P\n  P --> H\n  H --> Ph & T & L\n  class B start\n  class Ph,T,L bucket"
  },
  {
   "title": "Pokemon Go battle guide site",
@@ -2228,7 +2282,8 @@
     "eg": "Vercel, Netlify"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  G[\"<b>Game data</b><br/><span class='eg'>Public stats files</span>\"]\n  B[\"<b>Where I build</b><br/><span class='eg'>Claude, Cursor</span>\"]\n  S[\"<b>Guide site</b><br/><span class='eg'>Question pages, mini game</span>\"]\n  H[\"<b>Where it runs</b><br/><span class='eg'>Netlify, Vercel</span>\"]\n  P[\"<b>Players</b><br/>ask + play\"]\n  G --> B\n  B --> S\n  S --> H\n  H --> P\n  class G start"
  },
  {
   "title": "AI ad generator",
@@ -2269,7 +2324,8 @@
     "eg": "Images, copy"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  T[\"<b>Where I type</b><br/><span class='eg'>Telegram, Slack</span>\"]\n  A[\"<b>Always-on agent</b><br/><span class='eg'>VPS, Railway</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span><br/>ad copy\"]\n  I[\"<b>Image maker</b><br/><span class='eg'>OpenAI images, Gemini, Flux</span>\"]\n  O[\"<b>Ad creative</b><br/><span class='eg'>Images, copy</span>\"]\n  T --> A\n  A --> C\n  A --> I\n  C --> O\n  I --> O\n  O -- back in chat --> T\n  class T start"
  },
  {
   "title": "Pocket health coach",
@@ -2309,7 +2365,8 @@
     "eg": "Vercel, Webflow"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  W[\"<b>Website</b><br/><span class='eg'>Vercel, Webflow</span>\"]\n  K[\"<b>Client</b><br/><span class='eg'>Phone, browser</span>\"]\n  H[\"<b>Coach chat</b><br/><span class='eg'>Web app</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span>\"]\n  D[\"<b>Client data</b><br/><span class='eg'>Supabase, Firebase</span><br/>accounts + progress\"]\n  W -- sign up --> K\n  K --> H\n  H --> C\n  C --> D\n  D --> C\n  class W start"
  },
  {
   "title": "Financial statements on autopilot",
@@ -2345,7 +2402,8 @@
     "eg": "PDF, Excel"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  A[\"<b>Accounting data</b><br/><span class='eg'>Xero, QuickBooks export</span>\"]\n  T[\"<b>Statement template</b><br/><span class='eg'>Excel, Google Sheets</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span><br/>assembles the numbers\"]\n  F[\"<b>Financial statements</b><br/><span class='eg'>PDF, Excel</span>\"]\n  A --> C\n  T --> C\n  C --> F\n  class A start"
  },
  {
   "title": "Party invitation site",
@@ -2381,7 +2439,8 @@
     "eg": "Shared link"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  B[\"<b>Where I build</b><br/><span class='eg'>Lovable, Claude</span>\"]\n  P[\"<b>Invitation page</b><br/>date, place, details\"]\n  H[\"<b>Where it runs</b><br/><span class='eg'>Lovable, Netlify</span>\"]\n  G[\"<b>Guests</b><br/><span class='eg'>Shared link</span>\"]\n  B --> P\n  P --> H\n  H --> G\n  class B start"
  },
  {
   "title": "Menu scanner that picks your dish",
@@ -2421,7 +2480,8 @@
     "eg": "Web app"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  M[\"<b>Menu photo</b><br/><span class='eg'>Phone camera</span><br/>any language\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span><br/>reads + translates\"]\n  P[\"<b>My preferences</b><br/>vegetarian, budget, allergies\"]\n  I[\"<b>Dish pictures</b><br/><span class='eg'>Image search, AI images</span>\"]\n  S[\"<b>Shortlist</b><br/><span class='eg'>Web app</span><br/>dishes with pictures\"]\n  M --> C\n  P --> C\n  C --> I\n  C --> S\n  I --> S\n  class M,P start"
  },
  {
   "title": "Silent disco app",
@@ -2457,7 +2517,8 @@
     "eg": "Phones, headphones"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  M[\"<b>Music source</b><br/><span class='eg'>Playlist, DJ laptop</span>\"]\n  H[\"<b>Host controls</b><br/><span class='eg'>Web app</span>\"]\n  S[\"<b>Live sync</b><br/><span class='eg'>WebRTC, Firebase</span>\"]\n  L[\"<b>Listener devices</b><br/><span class='eg'>Phones, headphones</span>\"]\n  M --> H\n  H --> S\n  S --> L\n  class M start"
  },
  {
   "title": "Social post writer to Buffer",
@@ -2497,7 +2558,8 @@
     "eg": "LinkedIn, Instagram, X"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  I[\"<b>Ideas source</b><br/><span class='eg'>Google Sheets, Notion</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span>\"]\n  P[\"<b>Post drafts</b><br/>text + hashtags\"]\n  S[\"<b>Scheduler</b><br/><span class='eg'>Buffer, Hootsuite</span>\"]\n  O[\"<b>Social channels</b><br/><span class='eg'>LinkedIn, Instagram, X</span>\"]\n  I --> C\n  C --> P\n  P --> S\n  S --> O\n  class I start"
  },
  {
   "title": "PPC news drafting hub",
@@ -2538,7 +2600,8 @@
     "eg": "WordPress"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  N[\"<b>News sources</b><br/><span class='eg'>Ads blogs, status feeds, LinkedIn</span>\"]\n  K[\"<b>Scheduler</b><br/><span class='eg'>Cron job</span><br/>several times a day\"]\n  L[\"<b>Story list</b><br/><span class='eg'>Dashboard page</span>\"]\n  M[\"<b>Me, choosing</b><br/>one click\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span><br/>post in my style + image\"]\n  P[\"<b>Publisher</b><br/><span class='eg'>WordPress</span><br/>timed around newsletter\"]\n  K -- checks --> N\n  N --> L\n  L --> M\n  M --> C\n  C --> P\n  class K start"
  },
  {
   "title": "Cycle-aware training planner",
@@ -2579,6 +2642,7 @@
     "eg": "Product data"
    }
   ],
-  "section": "member"
+  "section": "member",
+  "diagram": "flowchart TD\n  T[\"<b>Training data</b><br/><span class='eg'>Strava, Garmin</span>\"]\n  Y[\"<b>Cycle data</b><br/><span class='eg'>Apple Health, Clue export</span>\"]\n  C[\"<b>AI brain</b><br/><span class='eg'>Claude, OpenAI, Gemini</span><br/>finds patterns\"]\n  P[\"<b>Product data</b><br/><span class='eg'>Nutrition facts</span>\"]\n  D[\"<b>Insights dashboard</b><br/><span class='eg'>Web app</span><br/>phases + daily insights\"]\n  N[\"<b>Nutrition tips</b><br/>from real products\"]\n  T --> C\n  Y --> C\n  C --> D\n  C --> N\n  P --> N\n  class T,Y start"
  }
 ]

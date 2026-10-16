@@ -6,7 +6,13 @@
   "builder": "Alex",
   "where": "Alex's builds, Oct 2026",
   "why": "Great moments from calls were stuck inside hour-long recordings. Cutting them by hand meant scrubbing video and fighting Zoom's laggy burned-in captions.",
-  "tools": ["Fathom", "Claude Code", "faster-whisper", "ffmpeg", "Google Drive"],
+  "tools": [
+   "Fathom",
+   "Claude Code",
+   "faster-whisper",
+   "ffmpeg",
+   "Google Drive"
+  ],
   "category": "content",
   "demo_url": null,
   "logged": "2026-10-15",
@@ -17,14 +23,33 @@
    "Cloud storage access, to share the finished video by link (Google Drive)"
   ],
   "flow": [
-   {"role": "Call", "eg": "Zoom, Google Meet"},
-   {"role": "Call recorder", "eg": "Fathom, Otter"},
-   {"role": "Video + transcript fetcher", "eg": "Fathom API"},
-   {"role": "AI picks the moments", "eg": "Claude Code"},
-   {"role": "Video cutter", "eg": "ffmpeg + faster-whisper"},
-   {"role": "Where it's shared", "eg": "Google Drive, a web page"}
+   {
+    "role": "Call",
+    "eg": "Zoom, Google Meet"
+   },
+   {
+    "role": "Call recorder",
+    "eg": "Fathom, Otter"
+   },
+   {
+    "role": "Video + transcript fetcher",
+    "eg": "Fathom API"
+   },
+   {
+    "role": "AI picks the moments",
+    "eg": "Claude Code"
+   },
+   {
+    "role": "Video cutter",
+    "eg": "ffmpeg + faster-whisper"
+   },
+   {
+    "role": "Where it's shared",
+    "eg": "Google Drive, a web page"
+   }
   ],
-  "starter_prompt": "I want to turn my recorded calls into short clips of the best moments. Before building anything, ask me: 1) where my calls are recorded (Fathom, Zoom, Otter) and whether it has an API or a download, 2) what counts as a great moment for me (a client win, a strong teaching line, an emotional peak), 3) where the finished clips should go. Then build the smallest working version: one script that takes one recording and its transcript, lists the 5 best moments with start and end times and a one-line reason, and cuts just the top one into a video file with captions. Show me that clip before adding a trailer or automation."
+  "starter_prompt": "I want to turn my recorded calls into short clips of the best moments. Before building anything, ask me: 1) where my calls are recorded (Fathom, Zoom, Otter) and whether it has an API or a download, 2) what counts as a great moment for me (a client win, a strong teaching line, an emotional peak), 3) where the finished clips should go. Then build the smallest working version: one script that takes one recording and its transcript, lists the 5 best moments with start and end times and a one-line reason, and cuts just the top one into a video file with captions. Show me that clip before adding a trailer or automation.",
+  "diagram": "flowchart TD\n  A[\"<b>Call recorder</b><br/><span class='eg'>Fathom, Otter</span>\"] -- video + transcript --> B[\"<b>AI brain</b><br/><span class='eg'>Claude Code, Claude</span><br/>picks the best moments\"]\n  B --> C[\"<b>Word-level timing</b><br/><span class='eg'>faster-whisper, Whisper</span>\"]\n  C --> D[\"<b>Video cutter</b><br/><span class='eg'>ffmpeg, Descript</span><br/>cuts on exact words + captions\"]\n  D --> X[\"Short clips\"] & T[\"Two-minute trailer\"]\n  X & T --> S[\"<b>Shared home</b><br/><span class='eg'>Google Drive, web page</span>\"]\n  class A start\n  class X,T bucket"
  },
  {
   "title": "Alumni outreach CRM",
@@ -33,7 +58,11 @@
   "builder": "Alex",
   "where": "Alex's builds, Oct 2026",
   "why": "He wanted to personally contact every alumnus in daily two-hour blocks, and keeping 300 conversations straight in his head and in WhatsApp wasn't going to work.",
-  "tools": ["Google Sheets", "Claude", "WhatsApp"],
+  "tools": [
+   "Google Sheets",
+   "Claude",
+   "WhatsApp"
+  ],
   "category": "sales",
   "demo_url": null,
   "logged": "2026-10-16",
@@ -44,14 +73,33 @@
    "An AI chat, to draft personal messages and run the co-pilot (Claude)"
   ],
   "flow": [
-   {"role": "Contact list", "eg": "Google Sheets, CSV export"},
-   {"role": "CRM page", "eg": "Claude artifact, Cloudflare"},
-   {"role": "AI drafts each message", "eg": "Claude"},
-   {"role": "One-click send", "eg": "WhatsApp link, email link"},
-   {"role": "Me, voice note", "eg": ""},
-   {"role": "Pipeline + follow-ups", "eg": "Same page, co-pilot chat"}
+   {
+    "role": "Contact list",
+    "eg": "Google Sheets, CSV export"
+   },
+   {
+    "role": "CRM page",
+    "eg": "Claude artifact, Cloudflare"
+   },
+   {
+    "role": "AI drafts each message",
+    "eg": "Claude"
+   },
+   {
+    "role": "One-click send",
+    "eg": "WhatsApp link, email link"
+   },
+   {
+    "role": "Me, voice note",
+    "eg": ""
+   },
+   {
+    "role": "Pipeline + follow-ups",
+    "eg": "Same page, co-pilot chat"
+   }
   ],
-  "starter_prompt": "I want a simple CRM for reaching out personally to a list of people (past clients, alumni, leads). Before building anything, ask me: 1) where the list lives now and what I know about each person, 2) the one or two things every message should say, 3) which channel I reach them on (WhatsApp, email, Instagram). Then build one HTML page that loads my list as a CSV and shows a pipeline board (To contact, Contacted, Replied, Done). Each card shows a short personal draft using the person's name and notes, and a button that opens the chat with that text filled in. Clicking it stamps today's date and moves the card. Use 5 fake rows first, then my real list."
+  "starter_prompt": "I want a simple CRM for reaching out personally to a list of people (past clients, alumni, leads). Before building anything, ask me: 1) where the list lives now and what I know about each person, 2) the one or two things every message should say, 3) which channel I reach them on (WhatsApp, email, Instagram). Then build one HTML page that loads my list as a CSV and shows a pipeline board (To contact, Contacted, Replied, Done). Each card shows a short personal draft using the person's name and notes, and a button that opens the chat with that text filled in. Clicking it stamps today's date and moves the card. Use 5 fake rows first, then my real list.",
+  "diagram": "flowchart TD\n  A[\"<b>Contact list</b><br/><span class='eg'>Google Sheets, CSV export</span>\"] --> B[\"<b>CRM page</b><br/><span class='eg'>Claude artifact, web page</span><br/>one card per person\"]\n  B --> C[\"<b>AI brain</b><br/><span class='eg'>Claude, ChatGPT</span><br/>drafts in their language\"]\n  C --> D[\"<b>One-click send</b><br/><span class='eg'>WhatsApp link, email link</span>\"]\n  D --> E[\"<b>Me, recording</b><br/>voice note\"]\n  E -- moves card + date --> B\n  B --> F[\"<b>Co-pilot chat</b><br/><span class='eg'>Claude</span><br/>flags no reply in a week\"]\n  class A start"
  },
  {
   "title": "WhatsApp calendar assistant",
@@ -60,7 +108,13 @@
   "builder": "Alex",
   "where": "Alex's builds, Oct 2026",
   "why": "He wanted an assistant that lives where he already types all day, and a build the group could copy with free tools.",
-  "tools": ["WhatsApp", "Twilio", "Google Apps Script", "Gemini", "Google Calendar"],
+  "tools": [
+   "WhatsApp",
+   "Twilio",
+   "Google Apps Script",
+   "Gemini",
+   "Google Calendar"
+  ],
   "category": "productivity",
   "demo_url": null,
   "logged": "2026-10-13",
@@ -71,12 +125,28 @@
    "Calendar access, to read and book events (Google Calendar)"
   ],
   "flow": [
-   {"role": "Where I type", "eg": "WhatsApp, Telegram"},
-   {"role": "Bridge to my code", "eg": "Twilio, Telegram Bot API"},
-   {"role": "Where code runs", "eg": "Apps Script, Cloudflare Worker"},
-   {"role": "AI brain", "eg": "Gemini, Claude"},
-   {"role": "What it acts on", "eg": "Google Calendar"}
+   {
+    "role": "Where I type",
+    "eg": "WhatsApp, Telegram"
+   },
+   {
+    "role": "Bridge to my code",
+    "eg": "Twilio, Telegram Bot API"
+   },
+   {
+    "role": "Where code runs",
+    "eg": "Apps Script, Cloudflare Worker"
+   },
+   {
+    "role": "AI brain",
+    "eg": "Gemini, Claude"
+   },
+   {
+    "role": "What it acts on",
+    "eg": "Google Calendar"
+   }
   ],
-  "starter_prompt": "I want a personal assistant I can text that answers questions about my calendar and books appointments. Before building anything, ask me: 1) where I want to text it (WhatsApp, Telegram, SMS), 2) which calendar I use, 3) what matters most to me: cheapest, easiest to set up, or most reliable. Then recommend one setup for the five boxes (where I type, bridge, where code runs, AI brain, calendar) and explain the trade-off in two lines. Build the smallest working version that answers one question, \"what's on my calendar tomorrow?\", and walk me through each setup step one at a time, waiting for me to confirm before the next."
+  "starter_prompt": "I want a personal assistant I can text that answers questions about my calendar and books appointments. Before building anything, ask me: 1) where I want to text it (WhatsApp, Telegram, SMS), 2) which calendar I use, 3) what matters most to me: cheapest, easiest to set up, or most reliable. Then recommend one setup for the five boxes (where I type, bridge, where code runs, AI brain, calendar) and explain the trade-off in two lines. Build the smallest working version that answers one question, \"what's on my calendar tomorrow?\", and walk me through each setup step one at a time, waiting for me to confirm before the next.",
+  "diagram": "flowchart TD\n  A[\"<b>Where I type</b><br/><span class='eg'>WhatsApp, Telegram</span>\"] --> B[\"<b>Bridge to my code</b><br/><span class='eg'>Twilio, Telegram Bot API</span>\"]\n  B --> C[\"<b>Where code runs</b><br/><span class='eg'>Google Apps Script, Cloudflare Worker</span>\"]\n  C --> D[\"<b>AI brain</b><br/><span class='eg'>Gemini, Claude</span><br/>works out what you mean\"]\n  D --> E[\"<b>Calendar</b><br/><span class='eg'>Google Calendar, Outlook</span><br/>read or book\"]\n  E -- answer --> A\n  class A start"
  }
 ]

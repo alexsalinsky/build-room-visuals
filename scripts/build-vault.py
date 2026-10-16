@@ -8,7 +8,7 @@ Sources:
 
 Each build: title, what_it_does, why, builder, where, category, tools[], demo_url,
 starter_prompt, integrations[] (what to connect, and why), flow[] ({role, eg}: generic
-role box, brand examples under it).
+role box, brand examples under it), diagram (Mermaid flowchart, shown inside "More about this build").
 
 Usage: python3 scripts/build-vault.py
 """
@@ -18,7 +18,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = ROOT / "build-vault-src"
-REQUIRED = ("title", "what_it_does", "builder", "category", "flow", "integrations")
+REQUIRED = ("title", "what_it_does", "builder", "category", "flow", "integrations", "diagram")
 
 
 def load(name, section):
