@@ -201,5 +201,105 @@
   ],
   "diagram": "flowchart TD\n  A[\"<b>Listing sites</b><br/><span class='eg'>Finca Raiz, Metrocuadrado</span>\"] --> B[\"<b>Search script</b><br/><span class='eg'>Node</span><br/>barrio by barrio\"]\n  B --> C[\"<b>Hard filters</b><br/><span class='eg'>Python</span><br/>beds, size, budget\"]\n  C --> D[\"<b>Walk check</b><br/><span class='eg'>Google Maps API</span><br/>gym, cafe, supermarket\"]\n  D --> E[\"<b>AI judge</b><br/><span class='eg'>Claude</span><br/>score out of 100\"]\n  E --> G[\"Gems\"] & H[\"All places\"]\n  G & H --> F[\"<b>Rating page</b><br/><span class='eg'>Claude artifact</span><br/>stars + notes\"]\n  F -. ratings feed gems .-> G\n  class A start\n  class G,H bucket",
   "starter_prompt": "I want help finding a place to rent without checking every listing by hand. Before building anything, ask me: 1) the city, neighborhoods, move-in date and my all-in budget ceiling, 2) my must-haves (a place that fails one never shows up) and my nice-to-haves, 3) which listing sites people actually use there. Then build the smallest working version: one script that pulls listings from one site for one neighborhood, drops anything that fails my must-haves, and scores the rest out of 100 with a one-line reason per point. Show the top 10 on a simple page with price, score and a link. Research only: never contact landlords, log in or submit forms."
+ },
+ {
+  "title": "Scheduled WhatsApp group messages",
+  "original_name": "WhatsApp Scheduler",
+  "what_it_does": "Queues WhatsApp messages to set groups at set times from his own number and sends them on time, with a confirmation ping after each one. Any of his AI sessions can add, change or cancel a message, or set a repeating one like \"every other Saturday at 9am, rotate these texts\", through one private web address with no laptop on. Each queue can only post to its own groups and follows quiet hours and each group's posting window. It runs the Silent Book Club reminders and the HvR community prompts.",
+  "builder": "Alex",
+  "where": "Alex's builds, Oct 2026",
+  "why": "Group reminders and community prompts went out by hand, and the first automated version needed his PC switched on to load each batch.",
+  "tools": [
+   "Claude Code",
+   "WhatsApp",
+   "Baileys",
+   "GitHub Actions"
+  ],
+  "category": "marketing",
+  "demo_url": null,
+  "logged": "2026-10-22",
+  "integrations": [
+   "A WhatsApp account linked as a device on an always-on server, to send the messages (Baileys on a small VPS)",
+   "A private web address with a secret token, so AI sessions can add, change and cancel messages (a small Node server)",
+   "A list of allowed groups per queue, so nothing posts somewhere new without review (a JSON file in the repo)",
+   "Optional: a WhatsApp Cloud API number, for sent and failed pings (Meta)"
+  ],
+  "flow": [
+   {
+    "role": "AI session or person",
+    "eg": "Claude Code, a script"
+   },
+   {
+    "role": "Private scheduling address",
+    "eg": "Node server with a token"
+   },
+   {
+    "role": "Queue rules check",
+    "eg": "allowed groups, quiet hours"
+   },
+   {
+    "role": "Message queue",
+    "eg": "a JSON file"
+   },
+   {
+    "role": "Always-on sender",
+    "eg": "Baileys on a VPS"
+   },
+   {
+    "role": "Groups",
+    "eg": "WhatsApp groups"
+   }
+  ],
+  "starter_prompt": "I want to schedule messages to my groups without sending each one by hand. Ask me first: 1) which app and which groups (WhatsApp, Telegram, Slack or email), 2) the messages I send on repeat and when, 3) where this can run all day (a small server, a free cloud function, or my own computer for now). Then build the simplest version: a JSON file of messages with a send time, a target and the text, and one script that checks the file every minute, sends what's due and marks it sent. Add a dry run that shows what would go out. Test it on a group with only me in it before any real group.",
+  "diagram": "flowchart TD\n  A[\"<b>AI session</b><br/><span class='eg'>Claude Code, a script</span>\"] -- add, edit, cancel --> B[\"<b>Private scheduling address</b><br/><span class='eg'>Node server, token</span>\"]\n  R[\"<b>Repeating rules</b><br/><span class='eg'>every other Saturday</span>\"] --> Q\n  B --> C[\"<b>Rules check</b><br/><span class='eg'>allowed groups, quiet hours</span>\"]\n  C -. if it breaks a rule .-> X[\"Rejected, nothing saved\"]\n  C --> Q[\"<b>Message queue</b><br/><span class='eg'>JSON file</span>\"]\n  Q --> S[\"<b>Always-on sender</b><br/><span class='eg'>Baileys on a VPS</span><br/>checks every minute\"]\n  S --> G[\"Group messages\"] & P[\"Sent ping to me\"]\n  class A,R start\n  class G,P bucket"
+ },
+ {
+  "title": "Community posts on autopilot",
+  "original_name": "hvr-community-pulse",
+  "what_it_does": "A Claude skill that plans two posts a week for the Humans V Robots WhatsApp community: a member win spotlight when there's a new one, a WhatsApp version of his latest LinkedIn post, or the next prompt from a bank he approved line by line. It queues them on his WhatsApp scheduler. Nothing goes out that he hasn't approved, and when he doesn't answer in time it falls back to the bank instead of stalling.",
+  "builder": "Alex",
+  "where": "Alex's builds, Oct 2026",
+  "why": "He wanted members sharing what they built without him writing or approving every post by hand.",
+  "tools": [
+   "Claude Code",
+   "WhatsApp"
+  ],
+  "category": "content",
+  "demo_url": null,
+  "logged": "2026-10-22",
+  "integrations": [
+   "A bank of approved posts, so only text he has seen goes out (a Markdown file)",
+   "The member builds sheet, to find new wins worth spotlighting (Google Sheets)",
+   "His LinkedIn posts, to rework into WhatsApp posts (read in his browser)",
+   "A scheduler that sends to the group at set times (his WhatsApp Scheduler)"
+  ],
+  "flow": [
+   {
+    "role": "Approved post bank",
+    "eg": "a Markdown file"
+   },
+   {
+    "role": "New member wins",
+    "eg": "Google Sheets"
+   },
+   {
+    "role": "His latest posts",
+    "eg": "LinkedIn"
+   },
+   {
+    "role": "AI picks and drafts",
+    "eg": "Claude Code skill"
+   },
+   {
+    "role": "Me, approving",
+    "eg": "WhatsApp reply"
+   },
+   {
+    "role": "Scheduler",
+    "eg": "WhatsApp Scheduler"
+   }
+  ],
+  "starter_prompt": "I run a community chat and want it active without writing every post myself. Ask me first: 1) where the community lives and who's in it, 2) which kinds of posts get people talking (questions, wins, tips), 3) how often I want to post. Then build the simplest version: a bank of 15 short posts in my voice that I approve one by one, saved in a file with an approved or pending column, plus a monthly plan that picks posts I haven't used in 6 weeks and lists their dates. Sending them on a schedule comes after the bank is right.",
+  "diagram": "flowchart TD\n  B[\"<b>Approved post bank</b><br/><span class='eg'>Markdown file</span>\"] --> AI\n  W[\"<b>New member wins</b><br/><span class='eg'>Google Sheets</span>\"] --> AI\n  L[\"<b>His latest posts</b><br/><span class='eg'>LinkedIn</span>\"] --> AI\n  AI[\"<b>AI picks the slot</b><br/><span class='eg'>Claude Code skill</span><br/>two posts a week\"] -- new spotlight --> M[\"<b>Me, approving</b>\"]\n  M -. no answer in time .-> B\n  M -- yes --> S\n  AI -- bank prompt --> S[\"<b>Scheduler</b><br/><span class='eg'>WhatsApp Scheduler</span>\"]\n  S --> G[\"Community posts\"]\n  class B,W,L start\n  class G bucket"
  }
 ]
