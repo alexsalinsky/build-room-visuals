@@ -32,7 +32,8 @@ main.inner{padding-block:28px 64px;display:flex;flex-direction:column;gap:22px}
 .chip[aria-pressed="true"]{background:var(--black);color:var(--paper)}
 .count{font-size:15px;color:var(--muted);font-variant-numeric:tabular-nums}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:18px;align-items:start}
-.card{border:2px solid var(--black);padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0;background:var(--paper)}
+.card:target{outline:4px solid var(--black);outline-offset:4px}
+.card{scroll-margin-top:16px;border:2px solid var(--black);padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0;background:var(--paper)}
 .meta{display:flex;justify-content:space-between;gap:10px;align-items:baseline;font-size:14px;color:var(--muted)}
 .cat{font:700 12px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--black)}
 .card h2{font:800 24px/1.1 var(--display);letter-spacing:-.03em;margin:0;text-wrap:balance}
@@ -106,6 +107,9 @@ footer b{color:var(--black)}
 <script id="builds" type="application/json">__BUILDS__</script>
 <script>
 const builds = JSON.parse(document.getElementById('builds').textContent);
+// Each card gets an anchor from its title, so a post can link straight to it: build-vault.html#media-list-builder
+const slug = t => String(t || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+builds.forEach(b => b.slug = slug(b.title));
 const grid = document.getElementById('grid'), chips = document.getElementById('chips');
 const q = document.getElementById('q'), count = document.getElementById('count'), empty = document.getElementById('empty');
 let cat = 'all', who = 'all';
@@ -132,7 +136,7 @@ function card(b, i) {
   const alex = b.section === 'alex';
   const flow = (b.flow || []).length ? `<div><p class="label">How it works</p><ol class="flow">${b.flow.map(f => `<li><span class="box"><b>${esc(f.role)}</b>${f.eg ? `<span class="eg">${esc(f.eg)}</span>` : ''}</span></li>`).join('')}</ol></div>` : '';
   const integ = (b.integrations || []).length ? `<div><p class="label">Integrations needed</p><ul class="integ">${b.integrations.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : '';
-  return `<article class="card${alex ? ' alex' : ''}">
+  return `<article class="card${alex ? ' alex' : ''}" id="${esc(b.slug)}">
     <div class="meta"><span class="cat">${esc((b.category || 'other').replace('-', ' '))}</span>${alex ? `<span class="tag">Alex's build</span>` : `<span>${esc(b.where)}</span>`}</div>
     <h2>${esc(b.title)}</h2>
     <p class="by">Built by ${esc(b.builder)}</p>
@@ -194,4 +198,19 @@ grid.addEventListener('toggle', async e => {
 }, true);
 q.addEventListener('input', render);
 render();
+// Linked build: clear filters if they hide it, then scroll to it and open its details.
+function showHash() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (!id || !builds.some(b => b.slug === id)) return;
+  if (!document.getElementById(id)) {
+    q.value = ''; cat = 'all'; who = 'all';
+    document.querySelectorAll('.chips .chip').forEach(x => x.setAttribute('aria-pressed', x.textContent === 'All' || x.textContent === 'Everyone'));
+    render();
+  }
+  const el = document.getElementById(id);
+  el.querySelector('details').open = true;
+  el.scrollIntoView({block: 'start'});
+}
+addEventListener('hashchange', showHash);
+showHash();
 </script>
