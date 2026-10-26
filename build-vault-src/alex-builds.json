@@ -1,5 +1,49 @@
 [
  {
+  "title": "Free voice dictation that replaced a paid app",
+  "original_name": "Voza",
+  "what_it_does": "A Windows tray app: press a hotkey from any app, talk, and your words land wherever the cursor is. Groq's Whisper transcribes (or a free model running on your own machine), an optional AI pass fixes punctuation and filler words, and it pastes the result. It transcribes in chunks while you speak, so a five-minute dictation is ready about a second after you stop. Open source.",
+  "builder": "Alex",
+  "where": "Alex's builds, Oct 2026",
+  "why": "He was paying $12 a month for Wispr Flow, a dictation app he uses every day. The tech under it costs almost nothing to call directly, so he built his own in about 2 hours. It runs for about $0.04 per hour of audio on Groq, or $0 fully offline, and he still uses it daily for emails, messages and long writing.",
+  "tools": [
+   "Claude Code",
+   "Python",
+   "Groq Whisper",
+   "Parakeet",
+   "faster-whisper"
+  ],
+  "category": "productivity",
+  "demo_url": "https://github.com/alexsalinsky/voza",
+  "logged": "2026-10-26",
+  "integrations": [
+   "A global hotkey and your microphone, so it starts from any app (Python keyboard and audio libraries)",
+   "A speech-to-text model that's fast and cheap (Groq Whisper, or Parakeet and faster-whisper offline for $0)",
+   "An optional small AI model to clean up punctuation and filler words (Groq)",
+   "Your clipboard, to paste the text at the cursor"
+  ],
+  "flow": [
+   {
+    "role": "Me, talking",
+    "eg": "hotkey + microphone"
+   },
+   {
+    "role": "Speech to text",
+    "eg": "Groq Whisper or a local model"
+   },
+   {
+    "role": "AI cleanup (optional)",
+    "eg": "Groq"
+   },
+   {
+    "role": "Text at the cursor",
+    "eg": "any app"
+   }
+  ],
+  "starter_prompt": "I pay for a voice dictation app and want my own free version. Ask me first: 1) Windows or Mac, 2) whether I'm OK sending audio to a cloud API or want it fully offline, 3) which hotkey I'd use. Then build the simplest version in Python: hold a hotkey to record from my mic, send the audio to Whisper (Groq's API, or a local model if I said offline), and paste the text where my cursor is. AI cleanup, custom vocabulary and a tray icon come after the basic loop works.",
+  "diagram": "flowchart TD\n  M[\"<b>Me, talking</b><br/><span class='eg'>hotkey + microphone</span>\"] --> T\n  T[\"<b>Speech to text</b><br/><span class='eg'>Groq Whisper</span><br/>transcribes while I speak\"] -- cleanup on --> C[\"<b>AI cleanup</b><br/><span class='eg'>Groq</span>\"]\n  T -. no internet .-> L[\"<b>Local model</b><br/><span class='eg'>Parakeet or faster-whisper</span><br/>$0\"]\n  L --> C\n  T -- cleanup off --> P\n  C --> P[\"Text at the cursor\"]\n  class M start\n  class P bucket"
+ },
+ {
   "title": "Call clips and trailer cutter",
   "original_name": "Best Moments + Amplified trailer",
   "what_it_does": "Pulls a recorded call from Fathom, finds the strongest moments in the transcript, cuts them on exact words with clean captions, and stitches them into clips or a two-minute trailer. Used to make the Humans V Robots: Amplified demo trailer and a Best Moments page of call highlights.",
