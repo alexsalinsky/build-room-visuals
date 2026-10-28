@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Build Room: Cohort Kick-off</title>
+<title>Humans v Robots: Cohort Kick-off</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100%; background: #fafafa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
+  html, body { height: 100%; background: #FFFFFF; color: #0B0B0B; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif; overflow: hidden; }
   .stage { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px; gap: 16px; }
   .slide-wrap { flex: 1; max-height: 82vh; width: 100%; max-width: 1100px; display: flex; align-items: center; justify-content: center; padding: 32px 32px 96px; }
   .slide { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; position: relative; }
   .slide.center { align-items: center; text-align: center; }
 
   .section-chip { position: absolute; top: 0; left: 0; font-size: 12px; font-weight: 700; color: #999; letter-spacing: 2px; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
-  .section-chip .timer { background: #1a1a1a; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 11px; letter-spacing: 1px; }
+  .section-chip .timer { background: #0B0B0B; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 11px; letter-spacing: 1px; }
   .slide.center .section-chip { left: 50%; transform: translateX(-50%); }
 
   h1 { font-size: 68px; font-weight: 800; line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 18px; }
@@ -21,57 +21,187 @@
   h2 { font-size: 36px; font-weight: 700; line-height: 1.15; margin-bottom: 24px; letter-spacing: -0.5px; }
   h3 { font-size: 22px; font-weight: 600; margin-bottom: 14px; color: #444; }
   p { font-size: 20px; line-height: 1.55; color: #333; margin-bottom: 14px; }
-  p.lead { font-size: 26px; color: #1a1a1a; }
+  p.lead { font-size: 26px; color: #0B0B0B; }
   .sub { font-size: 20px; color: #666; font-weight: 400; margin-top: 14px; }
 
   ul { list-style: none; padding: 0; }
   ul li { font-size: 20px; line-height: 1.6; color: #333; padding-left: 28px; position: relative; margin-bottom: 8px; }
-  ul li::before { content: "→"; position: absolute; left: 0; color: #1a1a1a; font-weight: 700; }
+  ul li::before { content: "→"; position: absolute; left: 0; color: #0B0B0B; font-weight: 700; }
 
   .three-words { display: flex; gap: 40px; justify-content: center; align-items: baseline; margin: 30px 0; flex-wrap: wrap; }
   .three-words .word { font-size: 68px; font-weight: 800; letter-spacing: -2px; }
   .three-words .dot { font-size: 50px; color: #999; }
 
   .arc { display: flex; gap: 16px; margin: 28px 0; justify-content: center; }
-  .arc-step { flex: 1; max-width: 220px; border: 2.5px solid #1a1a1a; border-radius: 10px; padding: 20px 16px; }
+  .arc-step { flex: 1; max-width: 220px; border: 2.5px solid #0B0B0B; border-radius: 10px; padding: 20px 16px; }
   .arc-step .num { font-size: 14px; font-weight: 700; color: #666; letter-spacing: 1.5px; }
   .arc-step .title { font-size: 18px; font-weight: 700; margin-top: 6px; line-height: 1.2; }
-  .arc-step.finale { background: #1a1a1a; color: #fff; }
+  .arc-step.finale { background: #0B0B0B; color: #fff; }
   .arc-step.finale .num { color: #999; }
 
-  .quote { background: #fff; border-left: 4px solid #1a1a1a; padding: 16px 22px; margin: 10px 0; font-size: 18px; font-style: italic; color: #222; }
+  .quote { background: #fff; border-left: 4px solid #0B0B0B; padding: 16px 22px; margin: 10px 0; font-size: 18px; font-style: italic; color: #222; }
 
-  .rule { background: #1a1a1a; color: #fff; padding: 26px 32px; border-radius: 12px; margin-bottom: 14px; font-size: 22px; font-weight: 600; }
+  .rule { background: #0B0B0B; color: #fff; padding: 26px 32px; border-radius: 12px; margin-bottom: 14px; font-size: 22px; font-weight: 600; }
 
   .gundam { font-size: 30px; line-height: 1.4; max-width: 800px; text-align: center; }
   .gundam strong { font-weight: 700; }
   .gundam .punch { font-size: 36px; font-weight: 800; margin-top: 20px; }
 
   .prize-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0; }
-  .prize-card { border: 2.5px solid #1a1a1a; border-radius: 12px; padding: 30px 26px; text-align: center; background: #fff; }
+  .prize-card { border: 2.5px solid #0B0B0B; border-radius: 12px; padding: 30px 26px; text-align: center; background: #fff; }
   .prize-card h3 { font-size: 16px; color: #888; letter-spacing: 2px; margin-bottom: 12px; }
   .prize-card .name { font-size: 26px; font-weight: 800; margin-bottom: 10px; }
   .prize-card .desc { font-size: 16px; color: #555; }
-  .prize-reward { background: #1a1a1a; color: #fff; padding: 18px 26px; border-radius: 10px; text-align: center; font-size: 18px; font-weight: 600; margin-top: 18px; }
+  .prize-reward { background: #0B0B0B; color: #fff; padding: 18px 26px; border-radius: 10px; text-align: center; font-size: 18px; font-weight: 600; margin-top: 18px; }
   .prize-reward span { color: #aaa; font-weight: 400; font-size: 15px; display: block; margin-top: 4px; }
 
-  .async-row { display: flex; gap: 20px; margin-bottom: 16px; align-items: flex-start; padding: 16px 20px; background: #fff; border: 1.5px solid #1a1a1a; border-radius: 10px; }
+  .async-row { display: flex; gap: 20px; margin-bottom: 16px; align-items: flex-start; padding: 16px 20px; background: #fff; border: 1.5px solid #0B0B0B; border-radius: 10px; }
   .async-icon { font-size: 28px; min-width: 50px; }
   .async-body strong { font-size: 19px; display: block; margin-bottom: 4px; }
   .async-body { font-size: 16px; color: #444; line-height: 1.5; }
 
   .hud { display: flex; gap: 24px; align-items: center; font-size: 14px; color: #666; position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); background: rgba(250,250,250,0.95); backdrop-filter: blur(8px); padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); z-index: 1000; }
-  .hud strong { color: #1a1a1a; font-size: 16px; }
+  .hud strong { color: #0B0B0B; font-size: 16px; }
   .controls { display: flex; gap: 10px; }
-  button { background: #fff; color: #1a1a1a; border: 1.5px solid #1a1a1a; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; touch-action: manipulation; position: relative; z-index: 1001; }
-  button:hover { background: #1a1a1a; color: #fff; }
+  button { background: #fff; color: #0B0B0B; border: 1.5px solid #0B0B0B; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; touch-action: manipulation; position: relative; z-index: 1001; }
+  button:hover { background: #0B0B0B; color: #fff; }
   button:disabled { opacity: 0.25; cursor: default; }
-  button:disabled:hover { background: #fff; color: #1a1a1a; }
+  button:disabled:hover { background: #fff; color: #0B0B0B; }
   .hint { position: fixed; bottom: 8px; right: 12px; opacity: 0.5; font-size: 11px; }
 </style>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Humans v Robots skin for the Session 1 slides (copied into the kickoff deck by hand).
+   Inlined last in <head> by scripts/build-room-skin-slides.js, so every rule here
+   overrides the slide's own styling without touching the source file.
+
+   Matched to humansvrobots.co, not to a reading of the brand guide. The site is
+   paper-first: ink #0B0B0B on white, square corners everywhere, 2px borders on
+   anything boxed, hairlines at rgba(11,11,11,.14), and volt used once or twice a
+   view rather than as a theme. Type is Bricolage Grotesque 800 with negative
+   tracking for display, Space Grotesk for everything else.
+
+   The source slides are already black on white, which is why this file is short.
+   It corrects the ground to pure paper, swaps the two fonts in, squares the
+   corners, and moves volt onto the one thing per slide the builder is heading
+   toward. Hot #FF5A1F is the dot in the mark, since volt never sits on white. */
+
+:root {
+  --ink: #0B0B0B; --paper: #FFFFFF; --volt: #C8FF3D; --hot: #FF5A1F;
+  --ink70: rgba(11,11,11,.72); --ink55: rgba(11,11,11,.55); --hair: rgba(11,11,11,.14);
+  --disp: 'Bricolage Grotesque','Space Grotesk',system-ui,-apple-system,sans-serif;
+  --body: 'Space Grotesk',system-ui,-apple-system,sans-serif;
+}
+
+html, body { background: var(--paper); color: var(--ink); font-family: var(--body); }
+.stage { background: var(--paper); }
+svg { font-family: var(--body); }
+
+/* Display type. SVG text keeps its own tracking, because the label positions in
+   those diagrams are hand-placed and negative tracking shifts them off their anchors. */
+h1, .heading h1, .title-screen, .slide-title, .card .body, .footer-line, .agreement .strong {
+  font-family: var(--disp); font-weight: 800; letter-spacing: -.03em;
+}
+.head-xl, .head-l, .head-l-white, .label-h, .label-h-white, .badge-text { font-family: var(--disp); }
+
+.eyebrow { color: var(--ink55); font-weight: 700; letter-spacing: .24em; text-transform: uppercase; }
+.sub, .caption, .card .detail, .byline, .hint, footer { color: var(--ink55); }
+.title-screen .sub, .heading .sub { color: var(--ink55); font-family: var(--body); font-weight: 500; }
+
+/* The site's signature move: volt behind the last line of the thesis. In the bilingual
+   view only the leading language takes it, since the site never fills two things at once. */
+.hl { background: var(--volt); color: var(--ink); padding: 0 .1em; }
+body.mode-both .thesis-es .hl { background: none; color: inherit; }
+
+/* Square everything. The site has no rounded corner anywhere, including the SVG rects. */
+.card, .chat, .bubble, .agreement, .lang-toggle, .hud, button, .badge, .box, .box-wrap { border-radius: 0; }
+rect { rx: 0; ry: 0; }
+
+/* Boxed surfaces: white fill, ink rule. */
+.card { background: var(--paper); border: 2px solid var(--ink); }
+.card .num { color: var(--hair); }
+.agreement { background: var(--paper); border: 2px solid var(--hair); }
+.agreement span { color: var(--ink70); }
+.footer-line { border-top: 1px solid var(--hair); color: var(--ink); }
+
+/* Diagram surfaces. The machine is white with an ink rule, never volt. */
+.box { fill: var(--paper); stroke: var(--ink); stroke-width: 2; }
+.box-wrap { fill: none; stroke: var(--hair); stroke-width: 2; }
+.line { stroke: var(--ink); }
+.line-thin { stroke: rgba(11,11,11,.32); }
+.arrow { fill: var(--ink); }
+.label-h, .label-b, .label-b-bold, .head-xl, .head-l { fill: var(--ink); }
+.label-edge, .label-sm, .head-q { fill: var(--ink55); }
+
+/* The finale box is what the builder is heading toward, so it takes the volt fill,
+   the way the site fills exactly one card in the four-weeks row. */
+.box-finale { fill: var(--volt); stroke: var(--volt); }
+.label-h-white, .label-b-white, .head-l-white { fill: var(--ink); }
+
+/* Callout badges: solid ink chip, paper type. */
+.badge { fill: var(--ink); stroke: var(--ink); stroke-width: 2; }
+.badge-text { fill: var(--paper); }
+
+/* The Spanish layer arrives blue, which is not a brand color. It becomes ink, and the
+   italic carries the separation the color used to. How strong that ink is depends on
+   which language is driving: in EN+ES Spanish is the second layer and steps back, but
+   in ES-only it is the whole slide and has to read at full strength. */
+.title-es, .thesis-es, .slide-title-es, .heading .h1-es, .es-text,
+.card .body-es, .agreement .strong-es, .footer-line .f-es { color: var(--ink); }
+.label-es, .label-es-white { fill: var(--ink); }
+/* Captions and detail lines are the quiet tier in either language. */
+.cap-es, .card .detail-es, .agreement .span-es { color: var(--ink55); }
+.head-q-es { fill: var(--ink55); }
+
+body.mode-both .title-es, body.mode-both .thesis-es, body.mode-both .slide-title-es,
+body.mode-both .heading .h1-es, body.mode-both .es-text, body.mode-both .card .body-es,
+body.mode-both .agreement .strong-es, body.mode-both .footer-line .f-es { color: var(--ink55); }
+body.mode-both .label-es, body.mode-both .label-es-white { fill: var(--ink55); }
+
+/* The SVG diagrams carry their Spanish as an inline fill, which no selector can reach,
+   so the generator points those at this variable instead of a fixed value. */
+:root { --es: var(--ink55); }
+body.mode-es { --es: var(--ink); }
+
+/* Bilingual language toggle. Needs its own rules because the generic button style
+   would otherwise outline each button inside the pill. */
+.lang-toggle { background: var(--paper); border: 2px solid var(--hair); }
+.lang-toggle button { background: transparent; border: none; border-radius: 0; color: var(--ink55); }
+.lang-toggle button:hover { background: transparent; color: var(--ink); }
+.lang-toggle button.active, .lang-toggle button.active:hover { background: var(--ink); color: var(--paper); }
+
+/* how-to-prompt chat */
+.chat { background: var(--paper); border: 2px solid var(--hair); }
+.chat-header { color: var(--ink55); border-bottom-color: var(--hair); }
+.bubble.user { background: var(--ink); color: var(--paper); }
+.bubble.user .role { color: rgba(255,255,255,.62); opacity: 1; }
+.bubble.user .es-text { color: rgba(255,255,255,.62); }
+body.mode-es .bubble.user .es-text { color: var(--paper); }
+.bubble.ai { background: transparent; border: 2px solid var(--hair); color: var(--ink); }
+.bubble.ai .role { color: var(--ink55); }
+/* The site's one repeated move: volt behind the words, not on them. */
+.highlight { background: var(--volt); color: var(--ink); padding: 1px 5px; font-weight: 700; }
+
+/* Chrome */
+.hud { color: var(--ink55); }
+.hud strong { color: var(--ink); }
+button { background: transparent; color: var(--ink); border: 2px solid var(--hair); font-family: var(--body); font-weight: 700; }
+button:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+button:disabled:hover { background: transparent; color: var(--ink); border-color: var(--hair); }
+
+/* Corner lockup */
+.hvr-mark { position: fixed; top: 16px; left: 18px; display: flex; align-items: center; gap: 7px;
+  font-family: var(--disp); font-weight: 800; font-size: 11px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--ink55); z-index: 50; pointer-events: none; }
+.hvr-mark svg { width: 17px; height: 17px; }
+@media print { .hvr-mark { position: absolute; } }
+</style>
 </head>
 <body>
+<div class="hvr-mark" aria-hidden="true">Humans<svg viewBox="0 0 120 120"><path d="M16 40 L60 104 L104 40" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="butt" stroke-linejoin="miter"/><circle cx="60" cy="30" r="18" fill="#FF5A1F"/></svg>Robots</div>
 <div class="stage">
   <div class="slide-wrap" id="slideWrap"></div>
   <div class="hud">
@@ -91,7 +221,7 @@ const slides = [
   // 1. Title
   {
     html: `<div class="slide center">
-      <h1>The Build Room</h1>
+      <h1>Humans v Robots</h1>
       <p class="lead" style="font-size:30px;color:#666;font-weight:400">Cohort</p>
     </div>`
   },
@@ -109,7 +239,7 @@ const slides = [
   {
     html: `<div class="slide center">
       <div class="section-chip">Mission Enrollment</div>
-      <h2>Humans V Robots</h2>
+      <h2>Humans v Robots</h2>
       <p class="gundam">AI is the <strong>tool</strong>.<br/>You are the <strong>builder</strong>.</p>
       <p class="gundam" style="margin-top:18px;font-size:22px;color:#555;max-width:760px">Most people will let the robot drive. This cohort builds the muscle to stay in the cockpit. The wins go to the humans who can think, decide, and ship.</p>
       <p class="punch" style="margin-top:24px;font-size:32px;font-weight:800">Team Human.</p>
@@ -123,17 +253,17 @@ const slides = [
       <h2 style="margin-top:30px">What's possible</h2>
       <p style="font-size:18px;color:#666;margin-bottom:22px">Three things I've built with AI. Personal, internal operations, external product.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-bottom:18px">
-        <div style="border:2.5px solid #1a1a1a;border-radius:12px;padding:22px 20px;background:#fff">
+        <div style="border:2.5px solid #0B0B0B;border-radius:12px;padding:22px 20px;background:#fff">
           <div style="font-size:13px;color:#888;letter-spacing:1.5px;font-weight:700;margin-bottom:8px">PERSONAL</div>
           <div style="font-size:22px;font-weight:800;margin-bottom:10px">EA-OS</div>
           <div style="font-size:15px;line-height:1.5;color:#444">A personal AI brain. Reads my calendar, manages my tasks, sends a WhatsApp briefing every morning. Tracks my goals and follow-ups so I don't drop them.</div>
         </div>
-        <div style="border:2.5px solid #1a1a1a;border-radius:12px;padding:22px 20px;background:#fff">
+        <div style="border:2.5px solid #0B0B0B;border-radius:12px;padding:22px 20px;background:#fff">
           <div style="font-size:13px;color:#888;letter-spacing:1.5px;font-weight:700;margin-bottom:8px">INTERNAL OPERATIONS</div>
           <div style="font-size:22px;font-weight:800;margin-bottom:10px">Daybreak</div>
           <div style="font-size:15px;line-height:1.5;color:#444">Listens to meetings and team chat, pulls out the actual commitments, gets them into project management. No more stale weekly lists.</div>
         </div>
-        <div style="border:2.5px solid #1a1a1a;border-radius:12px;padding:22px 20px;background:#fff">
+        <div style="border:2.5px solid #0B0B0B;border-radius:12px;padding:22px 20px;background:#fff">
           <div style="font-size:13px;color:#888;letter-spacing:1.5px;font-weight:700;margin-bottom:8px">EXTERNAL PRODUCT</div>
           <div style="font-size:22px;font-weight:800;margin-bottom:10px">Seeker OS</div>
           <div style="font-size:15px;line-height:1.5;color:#444">Multi-tenant AI job platform. Scrapes job boards, scores listings, generates research reports. Sold to career coaches.</div>
@@ -149,13 +279,13 @@ const slides = [
       <div class="section-chip">Mission Enrollment</div>
       <h2 style="margin-top:20px">Where you are right now</h2>
       <p style="font-size:18px;color:#666;margin-bottom:26px;max-width:760px">Based on what you told us in the survey.</p>
-      <div style="background:#fff;border:2.5px dashed #1a1a1a;border-radius:14px;padding:36px 44px;max-width:780px">
+      <div style="background:#fff;border:2.5px dashed #0B0B0B;border-radius:14px;padding:36px 44px;max-width:780px">
         <div style="font-size:12px;font-weight:700;color:#888;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px">OPEN IN ANOTHER TAB</div>
         <div style="font-size:28px;font-weight:800;letter-spacing:-0.5px;margin-bottom:10px">Your Org's Adoption Snapshot</div>
         <div style="font-size:16px;color:#555;line-height:1.5;margin-bottom:18px">Pie chart of where the team falls across the four levels: Exploring, Adopting, Operating, Multiplying.</div>
         <div style="font-size:13px;color:#888;font-style:italic">Pre-cohort: use the Pie Generator. Open the resulting page in a separate tab. Walk it. Come back here.</div>
       </div>
-      <div style="background:#1a1a1a;color:#fff;padding:18px 26px;border-radius:12px;font-size:19px;font-weight:600;text-align:center;margin-top:22px;max-width:780px">Strong foundation. The goal: bump everyone up to the next level.</div>
+      <div style="background:#0B0B0B;color:#fff;padding:18px 26px;border-radius:12px;font-size:19px;font-weight:600;text-align:center;margin-top:22px;max-width:780px">Strong foundation. The goal: bump everyone up to the next level.</div>
     </div>`
   },
 
@@ -165,7 +295,7 @@ const slides = [
       <div class="section-chip">Mission Enrollment</div>
       <h2 style="margin-top:20px">Your fears. Said out loud.</h2>
       <p style="font-size:18px;color:#666;margin-bottom:26px;max-width:760px">From the survey. Real things you wrote.</p>
-      <div style="background:#fff;border:2.5px dashed #1a1a1a;border-radius:14px;padding:36px 44px;max-width:780px">
+      <div style="background:#fff;border:2.5px dashed #0B0B0B;border-radius:14px;padding:36px 44px;max-width:780px">
         <div style="font-size:12px;font-weight:700;color:#888;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px">OPEN IN ANOTHER TAB</div>
         <div style="font-size:28px;font-weight:800;letter-spacing:-0.5px;margin-bottom:10px">Your Cohort's Fears</div>
         <div style="font-size:16px;color:#555;line-height:1.5;margin-bottom:18px">3-4 anonymized quotes from the cohort's pre-survey. The ones that landed the hardest. Worth naming so we can work with them, not pretend they're not there.</div>
@@ -197,19 +327,19 @@ const slides = [
       <div class="section-chip">Agreements</div>
       <h2 style="margin-top:18px;font-size:30px">Agreements</h2>
       <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
-        <div style="background:#1a1a1a;color:#fff;border-radius:10px;padding:14px 20px">
+        <div style="background:#0B0B0B;color:#fff;border-radius:10px;padding:14px 20px">
           <div style="font-size:19px;font-weight:800;letter-spacing:-0.3px;margin-bottom:6px">Presence</div>
           <ul style="list-style:none;padding:0;margin:0">
             <li style="color:#eee;font-size:14.5px;line-height:1.5;padding:1px 0 1px 16px;position:relative">→ Show up on time, fully present, in a quiet place you can work for the full session. Cameras on.</li>
           </ul>
         </div>
-        <div style="background:#1a1a1a;color:#fff;border-radius:10px;padding:14px 20px">
+        <div style="background:#0B0B0B;color:#fff;border-radius:10px;padding:14px 20px">
           <div style="font-size:19px;font-weight:800;letter-spacing:-0.3px;margin-bottom:6px">Teamwork</div>
           <ul style="list-style:none;padding:0;margin:0">
             <li style="color:#eee;font-size:14.5px;line-height:1.5;padding:1px 0 1px 16px;position:relative">→ We share doubt and we help each other out.</li>
           </ul>
         </div>
-        <div style="background:#1a1a1a;color:#fff;border-radius:10px;padding:14px 20px">
+        <div style="background:#0B0B0B;color:#fff;border-radius:10px;padding:14px 20px">
           <div style="font-size:19px;font-weight:800;letter-spacing:-0.3px;margin-bottom:6px">Positive Possibility</div>
           <ul style="list-style:none;padding:0;margin:0">
             <li style="color:#eee;font-size:14.5px;line-height:1.5;padding:1px 0 1px 16px;position:relative">→ I am open to the positive possibility that I can learn, build, and stay human in the process.</li>
@@ -289,7 +419,7 @@ const slides = [
         <li><strong>First build sprint</strong></li>
         <li><strong>Share back + close</strong></li>
       </ul>
-      <p style="margin-top:40px;font-size:36px;font-weight:800;color:#1a1a1a">Let's go.</p>
+      <p style="margin-top:40px;font-size:36px;font-weight:800;color:#0B0B0B">Let's go.</p>
     </div>`
   }
 ];
