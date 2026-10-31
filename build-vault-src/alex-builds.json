@@ -345,5 +345,51 @@
   ],
   "starter_prompt": "I run a community chat and want it active without writing every post myself. Ask me first: 1) where the community lives and who's in it, 2) which kinds of posts get people talking (questions, wins, tips), 3) how often I want to post. Then build the simplest version: a bank of 15 short posts in my voice that I approve one by one, saved in a file with an approved or pending column, plus a monthly plan that picks posts I haven't used in 6 weeks and lists their dates. Sending them on a schedule comes after the bank is right.",
   "diagram": "flowchart TD\n  B[\"<b>Approved post bank</b><br/><span class='eg'>Markdown file</span>\"] --> AI\n  W[\"<b>New member wins</b><br/><span class='eg'>Google Sheets</span>\"] --> AI\n  L[\"<b>His latest posts</b><br/><span class='eg'>LinkedIn</span>\"] --> AI\n  AI[\"<b>AI picks the slot</b><br/><span class='eg'>Claude Code skill</span><br/>two posts a week\"] -- new spotlight --> M[\"<b>Me, approving</b>\"]\n  M -. no answer in time .-> B\n  M -- yes --> S\n  AI -- bank prompt --> S[\"<b>Scheduler</b><br/><span class='eg'>WhatsApp Scheduler</span>\"]\n  S --> G[\"Community posts\"]\n  class B,W,L start\n  class G bucket"
+ },
+ {
+  "title": "Private chat app for two people",
+  "original_name": null,
+  "what_it_does": "A web chat for exactly two people that installs on iPhone and Android home screens like an app. It sends text, voice notes with an automatic transcript under each one, and a one-tap location pin that opens in Google Maps. It shows read ticks, online and typing status, and sends push notifications when a new message lands.",
+  "builder": "Alex",
+  "where": "Alex's builds, Oct 2026",
+  "why": "His phone went in for repair and he needed a way to stay in touch without moving WhatsApp to a spare phone. He built it and had it live in about an hour.",
+  "tools": [
+   "Claude Code",
+   "Cloudflare Workers",
+   "Workers AI"
+  ],
+  "category": "personal",
+  "demo_url": null,
+  "logged": "2026-10-31",
+  "integrations": [
+   "A host that runs the app and keeps the chat history, with no server to manage (Cloudflare Workers and Durable Objects)",
+   "A speech-to-text model, to transcribe voice notes (Whisper on Workers AI)",
+   "Browser push notifications, so the other phone buzzes on a new message (Web Push)",
+   "Map tiles and map links, for shared locations (OpenStreetMap, Google Maps)"
+  ],
+  "flow": [
+   {
+    "role": "Personal sign-in link",
+    "eg": "one private link per person"
+   },
+   {
+    "role": "Phone app",
+    "eg": "home screen web app"
+   },
+   {
+    "role": "Chat server and storage",
+    "eg": "Cloudflare Workers, Durable Objects"
+   },
+   {
+    "role": "Voice note transcript",
+    "eg": "Whisper on Workers AI"
+   },
+   {
+    "role": "The other phone",
+    "eg": "live update plus push notification"
+   }
+  ],
+  "starter_prompt": "Build me a private web chat for just two people that we can add to our phone home screens. Text, voice notes with automatic transcripts, and a button that shares my current location as a map pin that opens Google Maps. Host it on Cloudflare Workers with a Durable Object for storage, sign each of us in with a personal link, and send push notifications.",
+  "diagram": "flowchart TD\n  L[\"<b>Personal sign-in link</b><br/><span class='eg'>one link per person</span>\"] --> A\n  A[\"<b>Phone A</b><br/><span class='eg'>home screen web app</span><br/>text, voice, location\"] --> W\n  W[\"<b>Chat server</b><br/><span class='eg'>Cloudflare Workers</span>\"] --> D[\"<b>Message store</b><br/><span class='eg'>Durable Object, SQLite</span>\"]\n  W -- voice note --> T[\"<b>Transcript</b><br/><span class='eg'>Whisper on Workers AI</span>\"]\n  T --> D\n  W -- live update and push --> B[\"<b>Phone B</b><br/><span class='eg'>home screen web app</span>\"]\n  class L start\n  class B bucket"
  }
 ]
