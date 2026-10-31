@@ -391,5 +391,274 @@
   ],
   "starter_prompt": "Build me a private web chat for just two people that we can add to our phone home screens. Text, voice notes with automatic transcripts, and a button that shares my current location as a map pin that opens Google Maps. Host it on Cloudflare Workers with a Durable Object for storage, sign each of us in with a personal link, and send push notifications.",
   "diagram": "flowchart TD\n  L[\"<b>Personal sign-in link</b><br/><span class='eg'>one link per person</span>\"] --> A\n  A[\"<b>Phone A</b><br/><span class='eg'>home screen web app</span><br/>text, voice, location\"] --> W\n  W[\"<b>Chat server</b><br/><span class='eg'>Cloudflare Workers</span>\"] --> D[\"<b>Message store</b><br/><span class='eg'>Durable Object, SQLite</span>\"]\n  W -- voice note --> T[\"<b>Transcript</b><br/><span class='eg'>Whisper on Workers AI</span>\"]\n  T --> D\n  W -- live update and push --> B[\"<b>Phone B</b><br/><span class='eg'>home screen web app</span>\"]\n  class L start\n  class B bucket"
+ },
+ {
+  "title": "AI Scrum Master that keeps the work from piling up",
+  "original_name": "The Dojo, with Sensei Woodchip",
+  "what_it_does": "A web board that reads our tasks, epics and 20-week goals straight from Notion and shows them as a sprint board, a path of what has to come first, and a goals view. A cartoon coach sits in the corner: ask it what to focus on and it answers from the real board, and with your OK it adds stories, owners, estimates and dates back into Notion. Boop its nose to switch its look (a sensei, a healer elder, an old cowboy).",
+  "builder": "Alex",
+  "where": "Alex's builds, Oct 2026",
+  "why": "Building a business live with a partner means too many moving pieces. Alex has years of agile coaching and wanted a Scrum Master that keeps two busy people on the one thing that matters this week, without anyone maintaining a board by hand.",
+  "tools": [
+   "Claude Code",
+   "Cloudflare Workers",
+   "Workers AI",
+   "Notion API"
+  ],
+  "category": "business-process",
+  "demo_url": null,
+  "logged": "2026-10-30",
+  "integrations": [
+   "A Notion integration token, to read and write the task, epic and goal databases (Notion)",
+   "A free web host for the board and its chat (Cloudflare Workers)",
+   "An AI model for the coach (Workers AI Llama, free tier, or Claude)",
+   "A private link per person, so only the team can open it"
+  ],
+  "flow": [
+   {
+    "role": "Task tracker",
+    "eg": "Notion, Airtable"
+   },
+   {
+    "role": "Board page",
+    "eg": "Cloudflare Workers"
+   },
+   {
+    "role": "AI coach",
+    "eg": "Workers AI, Claude"
+   },
+   {
+    "role": "Me, deciding",
+    "eg": "approve or skip the change"
+   },
+   {
+    "role": "Back to the tracker",
+    "eg": "Notion API"
+   }
+  ],
+  "starter_prompt": "I want an AI Scrum Master for a small team so our project work doesn't pile up. Before building, ask me: 1) where our tasks live now (Notion, Trello, a sheet) and which fields we use, 2) how long our sprints are, 3) how private the board must be. Then build the smallest version: one web page that reads our tasks and shows them in three columns (Not started, In progress, Done), plus a chat box where I can ask what we should focus on this week and get an answer based on the real tasks. Let it suggest changes, but only write them back after I say yes.",
+  "diagram": "flowchart TD\n  T[\"<b>Task tracker</b><br/><span class='eg'>Notion, Airtable</span><br/>tasks, epics, goals\"] --> B\n  B[\"<b>Board page</b><br/><span class='eg'>Cloudflare Workers</span><br/>sprint, path, goals views\"] --> C\n  C[\"<b>AI coach</b><br/><span class='eg'>Workers AI, Claude</span><br/>what to focus on\"] --> M\n  M[\"<b>Me, deciding</b>\"] -- yes --> W[\"Changes saved to the tracker\"]\n  M -. no .-> B\n  W --> T\n  class T start\n  class W bucket"
+ },
+ {
+  "title": "Goal road trip where every person gets a car",
+  "original_name": "Amplified Road Trip",
+  "what_it_does": "A shared page where each person (or pair) is a cartoon car with their photo heads in it, driving down a road toward their goal. Log a step and your car moves forward; everyone in the group sees the cars move live. People can swap their car, and the road shows who is in the lead.",
+  "builder": "Alex",
+  "where": "Alex's builds, Oct 2026",
+  "why": "Goal trackers are spreadsheets nobody opens. On a group call, a car that moves when you do something makes progress visible and a little competitive, and it turned into the funniest moment of the first live session when the AI drew a Tesla and the humans wanted a 79 Trans Am.",
+  "tools": [
+   "Claude",
+   "Claude artifacts"
+  ],
+  "category": "productivity",
+  "demo_url": null,
+  "logged": "2026-10-30",
+  "integrations": [
+   "A page that remembers shared data for everyone who opens it (a Claude artifact with storage, or any small database)",
+   "A photo of each person's face, cut out for the car",
+   "A link you share with the group"
+  ],
+  "flow": [
+   {
+    "role": "Each person's goal",
+    "eg": "set on the call"
+   },
+   {
+    "role": "Step logged",
+    "eg": "button on the page"
+   },
+   {
+    "role": "Shared storage",
+    "eg": "artifact database, Supabase"
+   },
+   {
+    "role": "Road view",
+    "eg": "cars move for everyone"
+   }
+  ],
+  "starter_prompt": "I want a fun shared goal tracker for my group: each person is a car on a road that moves forward as they log steps toward their goal. Before building, ask me: 1) how many people and what their goals are, 2) how a step is counted (a checkbox, a number, a note), 3) where it should live and who can edit. Then build one page with one road per person, a button to log a step, and storage so everyone sees the same cars. Faces, custom cars and a leader badge come after the basic road works.",
+  "diagram": "flowchart TD\n  G[\"<b>Goal per person</b><br/><span class='eg'>set on the call</span>\"] --> L\n  L[\"<b>Step logged</b><br/><span class='eg'>button on the page</span>\"] --> S\n  S[\"<b>Shared storage</b><br/><span class='eg'>artifact database, Supabase</span>\"] --> R[\"Cars move for everyone\"]\n  R -- next step --> L\n  class G start\n  class R bucket"
+ },
+ {
+  "title": "Live call coach that listens and keeps commitments",
+  "original_name": "Sensei Live",
+  "what_it_does": "During a video call, a meeting bot streams the live transcript into the team's AI Scrum Master. A Live call view shows what is being said, and the coach can run a stand-up, catch commitments as people make them, and wrap up the call with who promised what by when, using the real words from the call.",
+  "builder": "Alex",
+  "where": "Alex's builds, Oct 2026",
+  "why": "Commitments made out loud on calls get lost. Alex wanted the coach to be in the room, so the wrap-up and next actions come from what people actually said, not from memory afterwards.",
+  "tools": [
+   "Claude Code",
+   "Recall.ai",
+   "Cloudflare Workers",
+   "Workers KV"
+  ],
+  "category": "business-process",
+  "demo_url": null,
+  "logged": "2026-10-30",
+  "integrations": [
+   "A meeting bot service that joins the call and sends the transcript live (Recall.ai, or Zoom's own AI notes as a fallback)",
+   "A webhook address to receive the transcript (Cloudflare Workers)",
+   "Small storage for today's transcript (Workers KV)",
+   "An AI coach that reads it (Workers AI or Claude)"
+  ],
+  "flow": [
+   {
+    "role": "Video call",
+    "eg": "Zoom, Google Meet"
+   },
+   {
+    "role": "Meeting bot",
+    "eg": "Recall.ai"
+   },
+   {
+    "role": "Transcript inbox",
+    "eg": "Cloudflare Worker + KV"
+   },
+   {
+    "role": "AI coach",
+    "eg": "Workers AI, Claude"
+   },
+   {
+    "role": "Wrap-up and commitments",
+    "eg": "on the board"
+   }
+  ],
+  "starter_prompt": "I want an AI coach that listens to my team's video calls live and wraps up each call with who committed to what. Before building, ask me: 1) which call platform we use, 2) whether a bot joining the call is OK with everyone, 3) where commitments should be saved. Then build the smallest version: a webhook that receives transcript lines from a meeting bot service and stores today's lines, and a button that asks an AI to list the commitments from that transcript with names and dates. Show me the list before saving anything anywhere.",
+  "diagram": "flowchart TD\n  Z[\"<b>Video call</b><br/><span class='eg'>Zoom, Google Meet</span>\"] --> R\n  R[\"<b>Meeting bot</b><br/><span class='eg'>Recall.ai</span><br/>sends lines live\"] --> K\n  K[\"<b>Transcript inbox</b><br/><span class='eg'>Cloudflare Worker + KV</span>\"] --> C\n  C[\"<b>AI coach</b><br/><span class='eg'>Workers AI, Claude</span>\"] --> U[\"Stand-up and wrap-up\"]\n  C --> P[\"Commitments\"]\n  R -. bot not allowed .-> F[\"<b>Fallback</b><br/><span class='eg'>Zoom AI notes</span>\"]\n  F --> C\n  class Z start\n  class U,P bucket"
+ },
+ {
+  "title": "Competitor watch for a new program",
+  "original_name": "Competitor Watch",
+  "what_it_does": "A dashboard of the programs we compete with: price, format, length, credential, and who they sell to, with a market view of where prices cluster and an alerts tab for changes. It also has a live demo showing why asking a chatbot once isn't market research.",
+  "builder": "Alex",
+  "where": "Alex's builds, Oct 2026",
+  "why": "Before pricing a new AI coaching credential, Alex needed to see the real market, not a guess. A one-time chatbot answer goes stale; a dashboard with sources can be refreshed every week.",
+  "tools": [
+   "Claude",
+   "Web search",
+   "Claude dashboards"
+  ],
+  "category": "marketing",
+  "demo_url": null,
+  "logged": "2026-10-30",
+  "integrations": [
+   "Web search, to find programs, prices and pages (Claude web search)",
+   "A dashboard page with data files that can be updated (Claude dashboard artifact, or a sheet)",
+   "Optional: a scheduled weekly run to check for changes"
+  ],
+  "flow": [
+   {
+    "role": "List of competitors",
+    "eg": "a sheet, Notion"
+   },
+   {
+    "role": "Research agent",
+    "eg": "Claude with web search"
+   },
+   {
+    "role": "Data files",
+    "eg": "JSON, a sheet"
+   },
+   {
+    "role": "Dashboard",
+    "eg": "market, competitors, alerts"
+   }
+  ],
+  "starter_prompt": "I'm launching a program and want to watch my competitors. Before building, ask me: 1) what I'm selling, to whom and at what price range, 2) any competitors I already know, 3) how often I want it refreshed. Then research 10 to 15 real competing programs with their price, format, length and who they target, each with a source link, and show them in a simple dashboard with a chart of where prices cluster. Alerts and weekly refreshes come after the first version is right.",
+  "diagram": "flowchart TD\n  L[\"<b>List of competitors</b><br/><span class='eg'>a sheet, Notion</span>\"] --> A\n  A[\"<b>Research agent</b><br/><span class='eg'>Claude with web search</span><br/>prices, formats, sources\"] --> D\n  D[\"<b>Data files</b><br/><span class='eg'>JSON, a sheet</span>\"] --> V[\"Dashboard\"]\n  W[\"<b>Weekly check</b><br/><span class='eg'>scheduled run</span>\"] -. changes .-> D\n  V --> X[\"Alerts\"]\n  class L start\n  class V,X bucket"
+ },
+ {
+  "title": "One call into a week of episodes and shorts, overnight",
+  "original_name": "HvR cut engine",
+  "what_it_does": "After a recorded group call, it cuts the whole ladder while we sleep: full episodes, standalone segments, vertical shorts, a clip per tool we built, teasers and a few experiments. Each piece is defined by the spoken words it starts and ends on, so cuts land on exact words. It removes dead air, evens out quiet speakers, adds titles and captions, then a separate AI reads each piece cold and flags anything a new viewer wouldn't follow. Everything lands in Drive and a Notion media library as drafts for a morning review.",
+  "builder": "Alex",
+  "where": "Alex's builds, Oct 2026",
+  "why": "One two-hour live session holds a week of content, but editing it by hand takes days. The first run turned one call into 27 videos in about an hour and a half, and Alex only reviews, he doesn't edit.",
+  "tools": [
+   "Claude Code",
+   "faster-whisper",
+   "ffmpeg",
+   "Google Drive API",
+   "Notion API"
+  ],
+  "category": "content",
+  "demo_url": null,
+  "logged": "2026-10-31",
+  "integrations": [
+   "The call recording and its separate speaker and screen videos (Zoom cloud recording)",
+   "A speech-to-text model with word timings (faster-whisper, free)",
+   "A video tool to cut, caption, level and join (ffmpeg, free)",
+   "Cloud storage, to file each piece by type (Google Drive)",
+   "A media database for review and status (Notion)"
+  ],
+  "flow": [
+   {
+    "role": "Call recording",
+    "eg": "Zoom cloud recording"
+   },
+   {
+    "role": "Word timings",
+    "eg": "faster-whisper"
+   },
+   {
+    "role": "Piece list",
+    "eg": "start and end words per piece"
+   },
+   {
+    "role": "Cutter",
+    "eg": "ffmpeg"
+   },
+   {
+    "role": "Cold-viewer check",
+    "eg": "a second AI"
+   },
+   {
+    "role": "Morning review",
+    "eg": "Drive + Notion"
+   }
+  ],
+  "starter_prompt": "I record a weekly group call and want it turned into short videos overnight. Before building, ask me: 1) where the recording lives and whether I have separate speaker and screen videos, 2) which shapes I need (vertical shorts, 16:9 episodes), 3) where finished pieces should go for my review. Then build the smallest version: transcribe the call with word timings, let me name one short by the exact words it starts and ends on, and cut it to a vertical video with captions and no dead air. Add more piece types, loudness leveling and a cold-viewer story check after the first short looks right.",
+  "diagram": "flowchart TD\n  Z[\"<b>Call recording</b><br/><span class='eg'>Zoom cloud recording</span>\"] --> W\n  W[\"<b>Word timings</b><br/><span class='eg'>faster-whisper</span>\"] --> P\n  P[\"<b>Piece list</b><br/><span class='eg'>start and end words</span>\"] --> C\n  C[\"<b>Cutter</b><br/><span class='eg'>ffmpeg</span><br/>dead air out, levels evened\"] --> S\n  S[\"<b>Cold-viewer check</b><br/><span class='eg'>a second AI</span>\"] -- fixes --> P\n  S --> E[\"Episodes and segments\"] & V[\"Shorts and tool clips\"]\n  E & V --> R[\"<b>Me, reviewing</b><br/><span class='eg'>Drive + Notion</span>\"]\n  class Z start\n  class E,V bucket"
+ },
+ {
+  "title": "One shared brain for two humans and their AIs",
+  "original_name": "Amplified HQ + shared Notion connector",
+  "what_it_does": "A Notion workspace holds the vision, goals, show plan, CRM and tasks, and a small connector lets each person's own AI read and edit it with their own key. Every edit any AI makes is logged on a changelog page with who made it and when, and one person's access can be switched off without touching anyone else's.",
+  "builder": "Alex",
+  "where": "Alex's builds, Oct 2026",
+  "why": "Alex and Andrew each work with their own AI. Without one shared place, every AI started from zero and decisions got lost in chats. Notion works for people and robots equally, and the log keeps it trustworthy.",
+  "tools": [
+   "Notion",
+   "Cloudflare Workers",
+   "MCP"
+  ],
+  "category": "business-process",
+  "demo_url": null,
+  "logged": "2026-10-16",
+  "integrations": [
+   "A Notion workspace and integration token (Notion)",
+   "A small server that gives each person's AI a private connector link (Cloudflare Workers, as an MCP server)",
+   "A changelog page in Notion to record each edit"
+  ],
+  "flow": [
+   {
+    "role": "Shared workspace",
+    "eg": "Notion, Google Docs"
+   },
+   {
+    "role": "Connector",
+    "eg": "Cloudflare Worker MCP"
+   },
+   {
+    "role": "Each person's AI",
+    "eg": "Claude, ChatGPT"
+   },
+   {
+    "role": "Changelog",
+    "eg": "who, what, when"
+   }
+  ],
+  "starter_prompt": "My partner and I each use our own AI and want both AIs to work from one shared workspace. Before building, ask me: 1) which workspace tool we use (Notion, Google Docs), 2) which AI apps each of us uses, 3) what an AI should never be allowed to change. Then build the smallest version: a connector each AI can call with its own key to read a page and add a line to it, and a changelog page that records every edit with who made it and when. Add more actions only after reading and logging work.",
+  "diagram": "flowchart TD\n  A[\"<b>Alex's AI</b>\"] & B[\"<b>Andrew's AI</b>\"] --> C\n  C[\"<b>Connector</b><br/><span class='eg'>Cloudflare Worker MCP</span><br/>one key per person\"] --> N\n  N[\"<b>Shared workspace</b><br/><span class='eg'>Notion, Google Docs</span>\"] --> L[\"Changelog\"]\n  C -. key revoked .-> X[\"Access off for one person\"]\n  class A,B start\n  class L bucket"
  }
 ]
