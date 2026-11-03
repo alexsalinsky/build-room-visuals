@@ -58,7 +58,7 @@
   body.pip #hint { display: none; }
   .matrix { position: absolute; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; z-index: 0; pointer-events: none; }
   .matrix div { border: 2px dashed var(--line); border-radius: 14px; padding: 12px 16px; background: var(--q); }
-  .matrix b { display: block; font-size: 22px; opacity: .55; }
+  .matrix b { display: block; font-size: 18px; opacity: .55; }
   .matrix span { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; opacity: .45; }
   .matrix .q1 { --q: #ff6b6b14; } .matrix .q2 { --q: #4a90e214; } .matrix .q3 { --q: #f5a62314; } .matrix .q4 { --q: #9b9b9b12; }
   #bar button.on { background: var(--ink); color: var(--bg); }
@@ -129,7 +129,7 @@
     let m = world.querySelector('.matrix');
     if (!state.matrix) { if (m) m.remove(); $('mtx').classList.remove('on'); return; }
     if (!m) { m = doc.createElement('div'); m.className = 'matrix';
-      m.innerHTML = '<div class="q1"><b>Do first</b><span>urgent · important</span></div><div class="q2"><b>Schedule</b><span>not urgent · important</span></div><div class="q3"><b>Delegate</b><span>urgent · not important</span></div><div class="q4"><b>Drop</b><span>not urgent · not important</span></div>';
+      m.innerHTML = '<div class="q1"><b>Urgent · Important</b></div><div class="q2"><b>Not urgent · Important</b></div><div class="q3"><b>Urgent · Not important</b></div><div class="q4"><b>Not urgent · Not important</b></div>';
       world.prepend(m); }
     const k = state.matrix; Object.assign(m.style, { left: k.x + 'px', top: k.y + 'px', width: k.w + 'px', height: k.h + 'px' });
     $('mtx').classList.add('on');
