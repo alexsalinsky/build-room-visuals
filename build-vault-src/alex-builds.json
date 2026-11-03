@@ -676,7 +676,6 @@
   ],
   "category": "productivity",
   "demo_url": "https://alexsalinsky.github.io/build-room-visuals/sticky-board/demo.mp4",
-  "try_url": "https://alexsalinsky.github.io/build-room-visuals/sticky-board/",
   "logged": "2026-11-03",
   "integrations": [
    "Nothing to connect: one HTML file that saves notes in the browser (localStorage)",
