@@ -51,6 +51,9 @@
     background: var(--note); color: var(--note-ink); border-radius: 6px; box-shadow: 0 10px 40px #0003;
     font-size: clamp(22px, 7vmin, 72px); line-height: 1.2; padding: 6vmin; white-space: pre-wrap; word-break: break-word; }
   #focus .ftools { position: absolute; top: calc(5vmin + 10px); right: calc(5vmin + 10px); display: flex; gap: 6px; }
+  #focus .ftools { opacity: 0; transition: opacity .15s; }
+  #focus:hover .ftools, #focus .ftools:focus-within { opacity: 1; }
+  @media (hover: none) { #focus .ftools { opacity: 1; } }
   #focus .ftools button { border: 0; background: #0000001a; color: var(--note-ink); border-radius: 6px; padding: 6px 10px;
     cursor: pointer; font: inherit; }
   #hint { position: absolute; left: 10px; bottom: 8px; font-size: 12px; opacity: .55; pointer-events: none; }
