@@ -347,7 +347,7 @@
   $('pip').onclick = async () => {
     if (pipWin) { pipWin.close(); return; }
     if (!('documentPictureInPicture' in window)) { alert('Pop out needs desktop Chrome or Edge (version 116+).'); return; }
-    pipWin = await documentPictureInPicture.requestWindow({ width: 210, height: 175, preferInitialWindowPlacement: true });
+    pipWin = await documentPictureInPicture.requestWindow({ width: 480, height: 240, preferInitialWindowPlacement: true });
     const st = $('app-style').cloneNode(true); pipWin.document.head.appendChild(st);
     pipWin.document.title = 'Sticky Notes';
     pipWin.document.body.classList.add('pip');
