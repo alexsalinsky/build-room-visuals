@@ -38,22 +38,26 @@ main.inner{padding-block:28px 64px;display:flex;flex-direction:column;gap:22px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:18px;align-items:start}
 .card:target{outline:4px solid var(--black);outline-offset:4px}
 .card{scroll-margin-top:16px;border:2px solid var(--black);min-width:0;background:var(--paper)}
-.card>details{border:0;padding:0}
-.card>details>summary{list-style:none;padding:18px 20px;display:flex;flex-direction:column;gap:8px;cursor:pointer;font-weight:400;font-size:16px}
-.card>details>summary::-webkit-details-marker{display:none}
-.card>details>summary:hover{background:var(--soft)}
-.card>details>summary:focus-visible{outline-offset:-4px}
-.card:has(details[open]){grid-column:1/-1}
+.open{all:unset;box-sizing:border-box;width:100%;padding:18px 20px;display:flex;flex-direction:column;gap:8px;cursor:pointer;font-size:16px}
+.open:hover{background:var(--soft)}
+.open:focus-visible{outline:2px solid var(--black);outline-offset:-4px}
 .brief{margin:0;color:var(--muted);font-size:15px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-details[open] .brief{display:none}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
 .tags span{font:700 11px var(--body);letter-spacing:.12em;text-transform:uppercase;border:2px solid var(--black);padding:2px 7px}
 .tags .tag{border-color:var(--volt)}
 .tags .c{background:var(--black);color:var(--paper)}
 .toggle{font-size:14px;font-weight:700}
-.toggle::after{content:"Show details \2193"}
-details[open] .toggle::after{content:"Hide details \2191"}
-.body{padding:0 20px 20px;display:flex;flex-direction:column;gap:12px;max-width:820px}
+.toggle::after{content:"Show details \2192"}
+html.locked{overflow:hidden}
+#dlg{border:2px solid var(--black);border-radius:0;padding:0;width:min(880px,calc(100vw - 32px));max-height:calc(100dvh - 32px);background:var(--paper);color:var(--black);box-shadow:8px 8px 0 var(--volt)}
+#dlg::backdrop{background:rgba(11,11,11,.72)}
+.dlg-head{position:sticky;top:0;z-index:2;background:var(--paper);border-bottom:2px solid var(--black);padding:16px 20px;display:flex;gap:14px;align-items:flex-start;justify-content:space-between}
+.dlg-head h2{font:800 28px/1.1 var(--display);letter-spacing:-.03em;margin:0 0 8px;text-wrap:balance}
+.x{flex:0 0 auto;font:700 22px/1 var(--body);width:44px;height:44px;border:2px solid var(--black);border-radius:0;background:var(--paper);color:var(--black);cursor:pointer}
+.x:hover{background:var(--soft)}
+#dlg .body{padding:18px 20px 22px}
+#dlg p{margin:0}
+.body{display:flex;flex-direction:column;gap:12px}
 .meta{display:flex;justify-content:space-between;gap:10px;align-items:baseline;font-size:14px;color:var(--muted)}
 .cat{font:700 12px var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--black)}
 .card h2{font:800 24px/1.1 var(--display);letter-spacing:-.03em;margin:0;text-wrap:balance}
@@ -102,8 +106,11 @@ pre{font:15px/1.5 var(--body);background:var(--soft);padding:12px;white-space:pr
   .chips{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-inline:-20px;padding-inline:20px}
   .chips::-webkit-scrollbar{display:none}
   .chip{flex:0 0 auto;font-size:14px;padding:7px 11px;min-height:38px}
-  .card>details>summary{padding:14px 16px}
-  .body{padding:0 16px 16px;gap:10px}
+  .open{padding:14px 16px}
+  #dlg{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border:0;box-shadow:none}
+  .dlg-head{padding:12px 16px}
+  .dlg-head h2{font-size:23px}
+  #dlg .body{padding:14px 16px 20px;gap:10px}
   .card h2{font-size:22px}
   .integ{font-size:14px}
   .card.alex{box-shadow:4px 4px 0 var(--volt)}
@@ -136,6 +143,8 @@ footer b{color:var(--black)}
   <footer><span>Starter prompts build the smallest version first. Expect a rough working draft, then improve it. The boxes in each flow are roles: swap in whatever tool you already use.</span><span>Learn AI. Build Robots. <b>Stay Human.</b></span></footer>
 </main>
 
+<dialog id="dlg" aria-labelledby="dlg-title"></dialog>
+
 <script id="builds" type="application/json">__BUILDS__</script>
 <script>
 const builds = JSON.parse(document.getElementById('builds').textContent);
@@ -166,19 +175,32 @@ cats.forEach(c => {
 // Card preview: an optional short `summary`, else the first sentence of what_it_does.
 const brief = b => b.summary || (String(b.what_it_does || '').match(/^.*?[.!?](?=\s|$)/) || [b.what_it_does || ''])[0];
 
+const tagsOf = b => [`<span class="c">${esc((b.category || 'other').replace('-', ' '))}</span>`, ...(b.section === 'alex' ? [`<span class="tag">Alex's build</span>`] : []), ...(b.tools || []).slice(0, 2).map(t => `<span>${esc(t)}</span>`)].join('');
+
 function card(b, i) {
   const isVideo = /fathom\.video|\.mp4$/.test(b.demo_url || '');
   const alex = b.section === 'alex';
   const flow = (b.flow || []).length ? `<div><p class="label">How it works</p><ol class="flow">${b.flow.map(f => `<li><span class="box"><b>${esc(f.role)}</b>${f.eg ? `<span class="eg">${esc(f.eg)}</span>` : ''}</span></li>`).join('')}</ol></div>` : '';
   const integ = (b.integrations || []).length ? `<div><p class="label">Integrations needed</p><ul class="integ">${b.integrations.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : '';
-  const tags = [`<span class="c">${esc((b.category || 'other').replace('-', ' '))}</span>`, ...(alex ? [`<span class="tag">Alex's build</span>`] : []), ...(b.tools || []).slice(0, 2).map(t => `<span>${esc(t)}</span>`)].join('');
+  const tags = tagsOf(b);
   return `<article class="card${alex ? ' alex' : ''}" id="${esc(b.slug)}">
-    <details data-i="${i}"><summary>
+    <button class="open" data-open="${i}" aria-haspopup="dialog">
       <h2>${esc(b.title)}</h2>
       <p class="brief">${esc(brief(b))}</p>
       <div class="tags">${tags}</div>
       <span class="toggle"></span>
-    </summary><div class="body">
+    </button>
+  </article>`;
+}
+
+// Full details, shown in the overlay.
+function detail(b, i) {
+  const isVideo = /fathom\.video|\.mp4$/.test(b.demo_url || '');
+  const alex = b.section === 'alex';
+  const flow = (b.flow || []).length ? `<div><p class="label">How it works</p><ol class="flow">${b.flow.map(f => `<li><span class="box"><b>${esc(f.role)}</b>${f.eg ? `<span class="eg">${esc(f.eg)}</span>` : ''}</span></li>`).join('')}</ol></div>` : '';
+  const integ = (b.integrations || []).length ? `<div><p class="label">Integrations needed</p><ul class="integ">${b.integrations.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : '';
+  return `<div class="dlg-head"><div><h2 id="dlg-title">${esc(b.title)}</h2><div class="tags">${tagsOf(b)}</div></div><button class="x" data-close aria-label="Close">&times;</button></div>
+    <div class="body">
     <p class="by">Built by ${esc(b.builder)}${!alex && b.where ? ` &middot; ${esc(b.where)}` : ''}</p>
     <p>${esc(b.what_it_does)}</p>
     ${b.why ? `<p class="why">${esc(b.why)}</p>` : ''}
@@ -193,8 +215,7 @@ function card(b, i) {
       ${b.original_name ? `<div><dt>What they called it</dt><dd>${esc(b.original_name)}</dd></div>` : ''}
       ${b.tools && b.tools.length ? `<div><dt>Tools</dt><dd>${esc(b.tools.join(', '))}</dd></div>` : ''}
       ${b.starter_prompt ? `<div><dt>Starter prompt</dt><dd><pre id="p${i}">${esc(b.starter_prompt)}</pre></dd></div>` : ''}
-    </dl></div></details>
-  </article>`;
+    </dl></div>`;
 }
 
 function render() {
@@ -207,12 +228,14 @@ function render() {
   empty.hidden = list.length > 0;
 }
 
-grid.addEventListener('click', e => {
+const dlg = document.getElementById('dlg');
+grid.addEventListener('click', e => { const o = e.target.closest('[data-open]'); if (o) openBuild(+o.dataset.open, true); });
+dlg.addEventListener('click', e => {
+  if (e.target === dlg || e.target.closest('[data-close]')) { dlg.close(); return; }
   const btn = e.target.closest('[data-copy]'); if (!btn) return;
   const text = builds[+btn.dataset.copy].starter_prompt;
   const done = () => { btn.textContent = 'Copied'; setTimeout(() => btn.textContent = 'Copy starter prompt', 1600); };
   const fallback = () => {
-    const d = btn.closest('.card').querySelector('details'); d.open = true;
     const r = document.createRange(); r.selectNodeContents(document.getElementById('p' + btn.dataset.copy));
     const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected, press Ctrl+C';
   };
@@ -228,30 +251,42 @@ function mm() {
     return m;
   });
 }
-grid.addEventListener('toggle', async e => {
-  const d = e.target; if (!d.open || d.dataset.i == null) return;
-  const i = +d.dataset.i, box = document.getElementById('d' + i);
-  if (!box || !builds[i].diagram || box.dataset.done) return;
+let opener = null;
+async function openBuild(i, push) {
+  const b = builds[i];
+  dlg.innerHTML = detail(b, i);
+  if (!dlg.open) { opener = document.activeElement; dlg.showModal(); document.documentElement.classList.add('locked'); }
+  dlg.scrollTop = 0; dlg.querySelector('.x').focus();
+  if (push && location.hash !== '#' + b.slug) history.pushState(null, '', '#' + b.slug);
+  const box = document.getElementById('d' + i);
+  if (!box || !b.diagram) return;
   try {
-    svgCache[i] ||= (await (await mm()).render('mm' + i, builds[i].diagram)).svg;
-    box.innerHTML = svgCache[i]; box.dataset.done = 1;
-  } catch { box.textContent = (builds[i].flow || []).map(f => f.role).join(' > '); }
-}, true);
+    svgCache[i] ||= (await (await mm()).render('mm' + i, b.diagram)).svg;
+    box.innerHTML = svgCache[i];
+  } catch { box.textContent = (b.flow || []).map(f => f.role).join(' > '); }
+}
+dlg.addEventListener('close', () => {
+  document.documentElement.classList.remove('locked');
+  if (location.hash) history.pushState(null, '', location.pathname + location.search);
+  const card = opener && opener.closest && opener.closest('.card');
+  if (card && document.contains(opener)) opener.focus({preventScroll: true});
+});
 q.addEventListener('input', render);
 render();
-// Linked build: clear filters if they hide it, then scroll to it and open its details.
+// Linked build (#slug): clear filters if they hide it, then open it in the overlay.
 function showHash() {
   const id = decodeURIComponent(location.hash.slice(1));
-  if (!id || !builds.some(b => b.slug === id)) return;
+  const i = builds.findIndex(b => b.slug === id);
+  if (i < 0) { if (dlg.open) dlg.close(); return; }
   if (!document.getElementById(id)) {
     q.value = ''; cat = 'all'; who = 'all';
     document.querySelectorAll('.chips .chip').forEach(x => x.setAttribute('aria-pressed', x.textContent === 'All' || x.textContent === 'Everyone'));
     render();
   }
-  const el = document.getElementById(id);
-  el.querySelector('details').open = true;
-  el.scrollIntoView({block: 'start'});
+  document.getElementById(id).scrollIntoView({block: 'center'});
+  openBuild(i, false);
 }
+addEventListener('popstate', showHash);
 addEventListener('hashchange', showHash);
 showHash();
 </script>
