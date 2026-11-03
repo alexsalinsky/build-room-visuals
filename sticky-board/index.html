@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sticky Notes</title>
+<style id="app-style">
+  :root {
+    --bg: #f3f1ec; --dot: #d8d4ca; --ink: #2b2a27; --bar: #ffffffee; --line: #ddd8cc;
+    --note: #ffe680; --note-ink: #2b2a27; --accent: #2b2a27;
+    --nw: 180px; --nh: 130px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #1d1d1b; --dot: #33332f; --ink: #eceae4; --bar: #262624ee; --line: #3a3935; --accent: #eceae4; }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); color: var(--ink);
+    font: 14px/1.35 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  #app { position: fixed; inset: 0; display: flex; flex-direction: column; background: var(--bg); }
+  #bar { display: flex; gap: 6px; align-items: center; padding: 8px; background: var(--bar);
+    border-bottom: 1px solid var(--line); z-index: 10; flex-wrap: wrap; }
+  #entry { flex: 1 1 160px; min-width: 0; padding: 8px 10px; font: inherit; font-size: 15px; color: var(--ink);
+    background: transparent; border: 1px solid var(--line); border-radius: 8px; outline: none; }
+  #entry:focus { border-color: var(--accent); }
+  #bar button { font: inherit; font-size: 13px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px;
+    background: transparent; color: var(--ink); cursor: pointer; white-space: nowrap; }
+  #bar button:hover { border-color: var(--accent); }
+  #zoomlbl { font-size: 12px; opacity: .7; width: 40px; text-align: center; }
+  #viewport { position: relative; flex: 1; overflow: hidden; cursor: grab; touch-action: none;
+    background-image: radial-gradient(var(--dot) 1px, transparent 1px); background-size: 24px 24px; }
+  #viewport.panning { cursor: grabbing; }
+  #world { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+  .note { position: absolute; width: var(--nw); height: var(--nh); padding: 12px 12px 26px; border-radius: 3px;
+    background: var(--note); color: var(--note-ink); box-shadow: 0 1px 2px #0002, 0 6px 14px #0002;
+    cursor: grab; user-select: none; overflow: hidden; word-wrap: break-word; font-size: 15px; }
+  .note.dragging { cursor: grabbing; box-shadow: 0 2px 4px #0003, 0 14px 28px #0003; }
+  .note.done .txt { text-decoration: line-through; opacity: .5; }
+  .note .txt { outline: none; height: 100%; overflow: hidden; white-space: pre-wrap; }
+  .note .txt[contenteditable="true"] { cursor: text; user-select: text; }
+  .note .tools { position: absolute; left: 6px; right: 6px; bottom: 4px; display: flex; gap: 2px; justify-content: flex-end;
+    opacity: 0; transition: opacity .12s; }
+  .note:hover .tools { opacity: 1; }
+  .note .tools button { border: 0; background: #0000000f; color: inherit; border-radius: 4px; font-size: 12px;
+    padding: 2px 6px; cursor: pointer; }
+  .note .tools button:hover { background: #00000022; }
+  .c1 { --note: #ffe680; } .c2 { --note: #ffc2d1; } .c3 { --note: #b9e6c9; } .c4 { --note: #bcd8ff; } .c5 { --note: #ffd2a8; }
+  #focus { position: absolute; inset: 0; display: none; z-index: 20; padding: 5vmin; background: var(--bg); }
+  #focus.on { display: flex; }
+  #focus .big[contenteditable="true"] { outline: 2px dashed #0004; outline-offset: -12px; cursor: text; }
+  #focus .big { flex: 1; display: flex; align-items: center; justify-content: center; text-align: center;
+    background: var(--note); color: var(--note-ink); border-radius: 6px; box-shadow: 0 10px 40px #0003;
+    font-size: clamp(22px, 7vmin, 72px); line-height: 1.2; padding: 6vmin; white-space: pre-wrap; word-break: break-word; }
+  #focus .ftools { position: absolute; top: calc(5vmin + 10px); right: calc(5vmin + 10px); display: flex; gap: 6px; }
+  #focus .ftools button { border: 0; background: #0000001a; color: var(--note-ink); border-radius: 6px; padding: 6px 10px;
+    cursor: pointer; font: inherit; }
+  #hint { position: absolute; left: 10px; bottom: 8px; font-size: 12px; opacity: .55; pointer-events: none; }
+  body.pip .wide { display: none; }
+  body.pip #hint { display: none; }
+  .matrix { position: absolute; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; z-index: 0; pointer-events: none; }
+  .matrix div { border: 2px dashed var(--line); border-radius: 14px; padding: 12px 16px; background: var(--q); }
+  .matrix b { display: block; font-size: 22px; opacity: .55; }
+  .matrix span { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; opacity: .45; }
+  .matrix .q1 { --q: #ff6b6b14; } .matrix .q2 { --q: #4a90e214; } .matrix .q3 { --q: #f5a62314; } .matrix .q4 { --q: #9b9b9b12; }
+  #bar button.on { background: var(--ink); color: var(--bg); }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="bar">
+    <input id="entry" placeholder="Type a task, press Enter" autocomplete="off" autofocus>
+    <button id="zout" title="Zoom out">−</button><span id="zoomlbl">100%</span><button id="zin" title="Zoom in">+</button>
+    <button id="tidy" title="Line notes up in a grid">Tidy</button><button id="mtx" title="Show or hide the urgent / important matrix">Matrix</button><button id="clear" title="Delete every note and start over">Clear</button>
+    <button id="pip" title="Float on top of other windows">Pop out</button>
+    <button id="more" class="wide" title="Import / export / clear">⋯</button>
+  </div>
+  <div id="viewport">
+    <div id="world"></div>
+    <div id="hint">Enter = new note · drag notes · drag empty space to pan · Ctrl+wheel to zoom · ✎ or right-click to edit · double-click to focus or go back</div>
+  </div>
+  <div id="focus"><div class="big"></div>
+    <div class="ftools"><button data-f="pip" class="wide">Pop out</button><button data-f="edit">Edit</button><button data-f="done">Done</button><button data-f="next">Next</button><button data-f="close">Close (Esc)</button></div>
+  </div>
+</div>
+<script>
+(() => {
+  const KEY = 'sticky-notes-v1';
+  const NW = 180, NH = 130, GAP = 16;
+  let state = { notes: [], view: { x: 20, y: 20, z: 1 }, seq: 0 };
+  let doc = document; // switches to the PiP document when popped out
+  let app = null;
+  const $ = id => (app && app.querySelector('#' + id)) || document.getElementById(id);
+  app = $('app'); const world = $('world'), vp = $('viewport'), entry = $('entry'), focusEl = $('focus');
+  let focusId = null;
+
+  // ---------- persistence ----------
+  function load() {
+    try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && Array.isArray(s.notes)) state = Object.assign(state, s); } catch {}
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} }
+
+  // ---------- notes ----------
+  const uid = () => Math.random().toString(36).slice(2, 9);
+  function nextSlot() {
+    // first free grid cell, left to right, top to bottom, sized to the visible width
+    const cols = Math.max(1, Math.floor((vp.clientWidth / state.view.z - 20) / (NW + GAP)));
+    const taken = new Set(state.notes.map(n => n.slot).filter(s => s != null));
+    let i = 0; while (taken.has(i)) i++;
+    const ox = -state.view.x / state.view.z + 10, oy = -state.view.y / state.view.z + 10;
+    return { slot: i, x: Math.round(ox + (i % cols) * (NW + GAP)), y: Math.round(oy + Math.floor(i / cols) * (NH + GAP)) };
+  }
+  function addNote(text, extra = {}) {
+    text = String(text).trim(); if (!text) return;
+    const p = (extra.x != null && extra.y != null) ? { slot: null, x: extra.x, y: extra.y } : nextSlot();
+    const n = { id: uid(), text, x: p.x, y: p.y, slot: p.slot, z: ++state.seq, color: extra.color || 1, done: !!extra.done };
+    state.notes.push(n); render(); save(); return n;
+  }
+  function find(id) { return state.notes.find(n => n.id === id); }
+  function removeNote(id) { state.notes = state.notes.filter(n => n.id !== id); if (focusId === id) closeFocus(); render(); save(); }
+  function tidy() {
+    const cols = Math.max(1, Math.floor((vp.clientWidth / state.view.z - 20) / (NW + GAP)));
+    const ox = -state.view.x / state.view.z + 10, oy = -state.view.y / state.view.z + 10;
+    const sorted = [...state.notes].sort((a, b) => (a.done - b.done) || (a.y - b.y) || (a.x - b.x));
+    sorted.forEach((n, i) => { n.slot = i; n.x = ox + (i % cols) * (NW + GAP); n.y = oy + Math.floor(i / cols) * (NH + GAP); });
+    render(); save();
+  }
+
+  // ---------- render ----------
+  function renderMatrix() {
+    let m = world.querySelector('.matrix');
+    if (!state.matrix) { if (m) m.remove(); $('mtx').classList.remove('on'); return; }
+    if (!m) { m = doc.createElement('div'); m.className = 'matrix';
+      m.innerHTML = '<div class="q1"><b>Do first</b><span>urgent · important</span></div><div class="q2"><b>Schedule</b><span>not urgent · important</span></div><div class="q3"><b>Delegate</b><span>urgent · not important</span></div><div class="q4"><b>Drop</b><span>not urgent · not important</span></div>';
+      world.prepend(m); }
+    const k = state.matrix; Object.assign(m.style, { left: k.x + 'px', top: k.y + 'px', width: k.w + 'px', height: k.h + 'px' });
+    $('mtx').classList.add('on');
+  }
+  function toggleMatrix() {
+    if (state.matrix) state.matrix = null;
+    else { const z = state.view.z;
+      state.matrix = { x: Math.round(-state.view.x / z + 10), y: Math.round(-state.view.y / z + 10),
+        w: Math.max(560, Math.round(vp.clientWidth / z - 20)), h: Math.max(380, Math.round(vp.clientHeight / z - 20)) }; }
+    render(); save();
+  }
+  function applyView() {
+    const v = state.view;
+    world.style.transform = `translate(${v.x}px, ${v.y}px) scale(${v.z})`;
+    vp.style.backgroundSize = `${24 * v.z}px ${24 * v.z}px`;
+    vp.style.backgroundPosition = `${v.x}px ${v.y}px`;
+    $('zoomlbl').textContent = Math.round(v.z * 100) + '%';
+  }
+  function render() {
+    const seen = new Set();
+    for (const n of state.notes) {
+      seen.add(n.id);
+      let el = world.querySelector(`[data-id="${n.id}"]`);
+      if (!el) {
+        el = doc.createElement('div'); el.className = 'note'; el.dataset.id = n.id;
+        el.innerHTML = `<div class="txt"></div><div class="tools">
+          <button data-a="edit" title="Edit text">✎</button><button data-a="color" title="Change color">●</button><button data-a="done" title="Done">✓</button>
+          <button data-a="focus" title="Focus">⤢</button><button data-a="del" title="Delete">✕</button></div>`;
+        world.appendChild(el);
+      }
+      el.className = `note c${n.color}${n.done ? ' done' : ''}`;
+      el.style.left = n.x + 'px'; el.style.top = n.y + 'px'; el.style.zIndex = n.z;
+      const t = el.querySelector('.txt'); if (t.getAttribute('contenteditable') !== 'true' && t.textContent !== n.text) t.textContent = n.text;
+    }
+    world.querySelectorAll('.note').forEach(el => { if (!seen.has(el.dataset.id)) el.remove(); });
+    renderMatrix();
+    applyView();
+    if (focusId) showFocus(focusId);
+  }
+
+  // ---------- drag notes / pan canvas ----------
+  let drag = null;
+  vp.addEventListener('pointerdown', e => {
+    if (e.button !== 0) return;
+    const btn = e.target.closest('.tools button'); if (btn) return;
+    const el = e.target.closest('.note');
+    if (el && e.target.closest('.txt[contenteditable="true"]')) return;
+    if (el) {
+      const n = find(el.dataset.id); n.z = ++state.seq; el.style.zIndex = n.z;
+      drag = { kind: 'note', n, el, sx: e.clientX, sy: e.clientY, ox: n.x, oy: n.y, moved: false };
+    } else {
+      drag = { kind: 'pan', sx: e.clientX, sy: e.clientY, ox: state.view.x, oy: state.view.y };
+      vp.classList.add('panning');
+    }
+    vp.setPointerCapture(e.pointerId);
+  });
+  vp.addEventListener('pointermove', e => {
+    if (!drag) return;
+    const dx = e.clientX - drag.sx, dy = e.clientY - drag.sy;
+    if (drag.kind === 'note') {
+      if (!drag.moved && Math.hypot(dx, dy) < 3) return;
+      drag.moved = true; drag.el.classList.add('dragging');
+      drag.n.x = drag.ox + dx / state.view.z; drag.n.y = drag.oy + dy / state.view.z; drag.n.slot = null;
+      drag.el.style.left = drag.n.x + 'px'; drag.el.style.top = drag.n.y + 'px';
+    } else {
+      state.view.x = drag.ox + dx; state.view.y = drag.oy + dy; applyView();
+    }
+  });
+  const endDrag = () => { if (!drag) return; if (drag.el) drag.el.classList.remove('dragging'); vp.classList.remove('panning'); drag = null; save(); };
+  vp.addEventListener('pointerup', endDrag); vp.addEventListener('pointercancel', endDrag);
+
+  // note toolbar + double-click
+  vp.addEventListener('click', e => {
+    const btn = e.target.closest('.tools button'); if (!btn) return;
+    const n = find(btn.closest('.note').dataset.id); const a = btn.dataset.a;
+    if (a === 'del') return removeNote(n.id);
+    if (a === 'edit') return startEdit(btn.closest('.note'));
+    if (a === 'done') n.done = !n.done;
+    if (a === 'color') n.color = n.color % 5 + 1;
+    if (a === 'focus') return openFocus(n.id);
+    render(); save();
+  });
+  vp.addEventListener('dblclick', e => {
+    const hit = doc.elementFromPoint(e.clientX, e.clientY) || e.target;
+    const el = hit.closest('.note'); if (!el || hit.closest('.tools')) return;
+    openFocus(el.dataset.id);
+  });
+  // right-click a note to edit its text
+  vp.addEventListener('contextmenu', e => {
+    const el = e.target.closest('.note'); if (!el) return;
+    e.preventDefault(); startEdit(el);
+  });
+  function startEdit(el) {
+    const t = el.querySelector('.txt'); t.setAttribute('contenteditable', 'true'); t.focus();
+    const sel = doc.getSelection(); sel.selectAllChildren(t); sel.collapseToEnd();
+    const finish = () => { t.removeAttribute('contenteditable'); const n = find(el.dataset.id);
+      const v = t.textContent.trim(); if (v) n.text = v; else return removeNote(n.id); render(); save(); };
+    t.addEventListener('blur', finish, { once: true });
+    t.addEventListener('keydown', k => { k.stopPropagation(); if (k.key === 'Enter' && !k.shiftKey) { k.preventDefault(); t.blur(); } if (k.key === 'Escape') t.blur(); });
+  }
+
+  // ---------- zoom ----------
+  function zoomAt(f, cx, cy) {
+    const v = state.view, nz = Math.min(3, Math.max(0.25, v.z * f));
+    const r = vp.getBoundingClientRect(); cx = cx ?? r.width / 2; cy = cy ?? r.height / 2;
+    v.x = cx - (cx - v.x) * (nz / v.z); v.y = cy - (cy - v.y) * (nz / v.z); v.z = nz; applyView(); save();
+  }
+  vp.addEventListener('wheel', e => {
+    e.preventDefault();
+    const r = vp.getBoundingClientRect();
+    if (e.ctrlKey || e.metaKey) zoomAt(Math.exp(-e.deltaY * 0.0015), e.clientX - r.left, e.clientY - r.top);
+    else { state.view.x -= e.deltaX; state.view.y -= e.deltaY; applyView(); save(); }
+  }, { passive: false });
+  $('zin').onclick = () => zoomAt(1.2); $('zout').onclick = () => zoomAt(1 / 1.2);
+  $('tidy').onclick = tidy;
+  $('mtx').onclick = toggleMatrix;
+  let clearTimer = null;
+  $('clear').onclick = () => {
+    const btn = $('clear');
+    if (!clearTimer) { btn.textContent = 'Sure? Click again'; clearTimer = setTimeout(() => { btn.textContent = 'Clear'; clearTimer = null; }, 3000); return; }
+    clearTimeout(clearTimer); clearTimer = null; btn.textContent = 'Clear';
+    state.notes = []; closeFocus(); render(); save();
+  };
+
+  // ---------- focus mode ----------
+  function showFocus(id) {
+    const n = find(id); if (!n) return closeFocus();
+    focusEl.className = `on c${n.color}`;
+    focusEl.querySelector('.big').textContent = n.text;
+    focusEl.querySelector('[data-f="done"]').textContent = n.done ? 'Undo done' : 'Done';
+  }
+  function openFocus(id) { focusId = id; showFocus(id); }
+  function closeFocus() { focusId = null; focusEl.className = ''; entry.focus(); }
+  focusEl.addEventListener('click', e => {
+    const f = e.target.dataset.f; if (!f) return;
+    const n = find(focusId);
+    if (f === 'pip') return $('pip').click();
+    if (f === 'close') return closeFocus();
+    if (f === 'edit') {
+      const big = focusEl.querySelector('.big'); big.setAttribute('contenteditable', 'true'); big.focus();
+      const sel = doc.getSelection(); sel.selectAllChildren(big); sel.collapseToEnd();
+      big.addEventListener('blur', () => { big.removeAttribute('contenteditable'); const v = big.textContent.trim();
+        if (v) { n.text = v; render(); save(); } else showFocus(n.id); }, { once: true });
+      big.onkeydown = k => { k.stopPropagation(); if ((k.key === 'Enter' && !k.shiftKey) || k.key === 'Escape') { k.preventDefault(); big.blur(); } };
+      return;
+    }
+    if (f === 'done') { n.done = !n.done; render(); save(); if (n.done) nextFocus(); }
+    if (f === 'next') nextFocus();
+  });
+  focusEl.addEventListener('dblclick', e => {
+    if (e.target.closest('button') || e.target.closest('[contenteditable="true"]')) return;
+    doc.getSelection()?.removeAllRanges(); closeFocus();
+  });
+  function nextFocus() {
+    const open = state.notes.filter(n => !n.done).sort((a, b) => (a.y - b.y) || (a.x - b.x));
+    if (!open.length) return closeFocus();
+    const i = open.findIndex(n => n.id === focusId);
+    openFocus(open[(i + 1) % open.length].id);
+  }
+
+  // ---------- typing ----------
+  entry.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); addNote(entry.value); entry.value = ''; }
+  });
+  // paste several lines = several notes (brain dump)
+  entry.addEventListener('paste', e => {
+    const t = (e.clipboardData || window.clipboardData).getData('text');
+    if (t.includes('\n')) { e.preventDefault(); t.split(/\r?\n/).map(s => s.replace(/^\s*([-*•]|\d+[.)]|\[ ?\])\s*/, '')).forEach(s => addNote(s)); }
+  });
+  function onKey(e) {
+    if (e.key === 'Escape' && focusId) closeFocus();
+    else if (e.key === 'f' && !focusId && e.target === doc.body) { const top = [...state.notes].filter(n => !n.done).sort((a, b) => b.z - a.z)[0]; if (top) openFocus(top.id); }
+  }
+  window.addEventListener('keydown', onKey);
+
+  // ---------- import / export (the door for Claude) ----------
+  function importData(data, replace) {
+    const list = Array.isArray(data) ? data : (data.notes || []);
+    if (replace) state.notes = [];
+    for (const item of list) {
+      if (typeof item === 'string') addNote(item);
+      else if (item && item.text) addNote(item.text, item);
+    }
+    render(); save();
+  }
+  function exportJSON() {
+    return JSON.stringify({ notes: state.notes.map(({ text, x, y, color, done }) => ({ text, x: Math.round(x), y: Math.round(y), color, done })) }, null, 2);
+  }
+  $('more').onclick = () => {
+    const choice = prompt('Type a number:\n1 = Copy notes as JSON\n2 = Import JSON or a list (adds)\n3 = Import and replace all\n4 = Delete done notes\n5 = Delete ALL notes');
+    if (choice === '1') { navigator.clipboard.writeText(exportJSON()).then(() => alert('Copied ' + state.notes.length + ' notes.'), () => prompt('Copy this:', exportJSON())); }
+    if (choice === '2' || choice === '3') {
+      const raw = prompt('Paste JSON (["task", ...] or {"notes":[...]}) or one task per line:'); if (!raw) return;
+      let data; try { data = JSON.parse(raw); } catch { data = raw.split(/\r?\n/); }
+      importData(data, choice === '3');
+    }
+    if (choice === '4') { state.notes = state.notes.filter(n => !n.done); render(); save(); }
+    if (choice === '5' && confirm('Delete every note?')) { state.notes = []; render(); save(); }
+  };
+  // URL door: sticky-notes.html#add=Task%20one|Task%20two   or   #json=<base64 of JSON>   (add &replace to clear first)
+  function fromHash() {
+    const h = new URLSearchParams(location.hash.slice(1)); if (!h.size) return;
+    const replace = h.has('replace');
+    if (h.get('add')) importData(h.get('add').split('|'), replace);
+    if (h.get('json')) { try { importData(JSON.parse(decodeURIComponent(escape(atob(h.get('json'))))), replace); } catch (e) { alert('Could not read #json: ' + e.message); } }
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+  window.stickyNotes = { add: addNote, import: importData, export: exportJSON, clear: () => { state.notes = []; render(); save(); } };
+
+  // ---------- pop out (Document Picture-in-Picture, same API Spotify web uses) ----------
+  let pipWin = null;
+  $('pip').onclick = async () => {
+    if (pipWin) { pipWin.close(); return; }
+    if (!('documentPictureInPicture' in window)) { alert('Pop out needs desktop Chrome or Edge (version 116+).'); return; }
+    pipWin = await documentPictureInPicture.requestWindow({ width: 420, height: 520 });
+    const st = $('app-style').cloneNode(true); pipWin.document.head.appendChild(st);
+    pipWin.document.title = 'Sticky Notes';
+    pipWin.document.body.classList.add('pip');
+    pipWin.document.body.appendChild(app);
+    doc = pipWin.document; pipWin.addEventListener('keydown', onKey);
+    $('pip').textContent = 'Back';
+    document.body.insertAdjacentHTML('beforeend', '<p id="pipnote" style="padding:24px;opacity:.6">Notes are floating in the pop-out window. Close it to bring them back here.</p>');
+    pipWin.addEventListener('pagehide', () => {
+      // notes are already saved; reloading is the most reliable way to bring the board back
+      save(); location.reload();
+    });
+    entry.focus();
+  };
+  // getElementById on the PiP doc: keep references we already hold
+  const _byId = $;
+
+  // keep other tabs in sync
+  window.addEventListener('storage', e => { if (e.key === KEY) { load(); render(); } });
+  window.addEventListener('hashchange', fromHash);
+
+  load(); render(); fromHash(); entry.focus();
+})();
+</script>
+</body>
+</html>
