@@ -25,6 +25,8 @@ plus:
   - `class A start` on entry nodes (drawn black); `class X,Y bucket` for output categories (drawn volt).
   - Examples: `diagrams-examples.json`. Preview: build-vault-flow-test.html.
 
+- `summary` (optional): one short line for the card preview. Without it, the card shows the first sentence of `what_it_does`. Cards show title, that line and tags (category, Alex's build, first two tools); clicking expands the rest.
+
 Every build needs all of these: the script refuses a build without `flow`, `integrations` or `diagram`. Then run the script and push. No em dashes (the script refuses them).
 
 Note: the laptop renderer (my-work/scripts/build-vault.py) only writes the gated copy; don't copy its output over this page, or the flows and Alex's builds disappear.
