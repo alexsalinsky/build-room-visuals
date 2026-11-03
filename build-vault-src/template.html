@@ -167,7 +167,7 @@ cats.forEach(c => {
 const brief = b => b.summary || (String(b.what_it_does || '').match(/^.*?[.!?](?=\s|$)/) || [b.what_it_does || ''])[0];
 
 function card(b, i) {
-  const isVideo = /fathom\.video/.test(b.demo_url || '');
+  const isVideo = /fathom\.video|\.mp4$/.test(b.demo_url || '');
   const alex = b.section === 'alex';
   const flow = (b.flow || []).length ? `<div><p class="label">How it works</p><ol class="flow">${b.flow.map(f => `<li><span class="box"><b>${esc(f.role)}</b>${f.eg ? `<span class="eg">${esc(f.eg)}</span>` : ''}</span></li>`).join('')}</ol></div>` : '';
   const integ = (b.integrations || []).length ? `<div><p class="label">Integrations needed</p><ul class="integ">${b.integrations.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : '';
@@ -186,6 +186,7 @@ function card(b, i) {
     <div class="actions">
       ${b.starter_prompt ? `<button class="btn primary" data-copy="${i}">Copy starter prompt</button>` : ''}
       ${b.demo_url ? `<a class="btn ghost" href="${esc(b.demo_url)}" target="_blank" rel="noopener">${isVideo ? 'Watch the demo' : 'Open the project'}</a>` : ''}
+      ${b.try_url ? `<a class="btn ghost" href="${esc(b.try_url)}" target="_blank" rel="noopener">Try it</a>` : ''}
     </div>
     <dl class="more">
       ${b.diagram ? `<div><dt>How it works</dt><dd><div class="diagram" id="d${i}">Drawing the flow...</div></dd></div>` : (flow ? `<div><dt>How it works</dt><dd>${flow.replace('<p class="label">How it works</p>','')}</dd></div>` : '')}

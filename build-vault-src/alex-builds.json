@@ -660,5 +660,52 @@
   ],
   "starter_prompt": "My partner and I each use our own AI and want both AIs to work from one shared workspace. Before building, ask me: 1) which workspace tool we use (Notion, Google Docs), 2) which AI apps each of us uses, 3) what an AI should never be allowed to change. Then build the smallest version: a connector each AI can call with its own key to read a page and add a line to it, and a changelog page that records every edit with who made it and when. Add more actions only after reading and logging work.",
   "diagram": "flowchart TD\n  A[\"<b>Alex's AI</b>\"] & B[\"<b>Andrew's AI</b>\"] --> C\n  C[\"<b>Connector</b><br/><span class='eg'>Cloudflare Worker MCP</span><br/>one key per person\"] --> N\n  N[\"<b>Shared workspace</b><br/><span class='eg'>Notion, Google Docs</span>\"] --> L[\"Changelog\"]\n  C -. key revoked .-> X[\"Access off for one person\"]\n  class A,B start\n  class L bucket"
+ },
+ {
+  "title": "Sticky notes that float over your work",
+  "original_name": "Sticky Board",
+  "summary": "Brain-dump to-dos as sticky notes, then float the one you're on above every other window.",
+  "what_it_does": "Type a task and press Enter, and it becomes a sticky note on a canvas. Drag notes around, zoom, sort them on an urgent/important matrix, and double-click one to focus on it full size. Pop out floats that one note above every other window, so it stays in view while you work. One HTML file, notes saved in the browser, no account or server. Claude can fill the board by sending a link with the tasks in it.",
+  "builder": "Alex",
+  "where": "Alex's builds, Nov 2026",
+  "why": "To-dos in a notes app disappear behind other windows. Alex wanted to dump everything fast, pick one, and keep it on screen while doing it, the way Spotify's miniplayer floats over the browser.",
+  "tools": [
+   "HTML",
+   "Chrome Picture-in-Picture",
+   "Claude"
+  ],
+  "category": "productivity",
+  "demo_url": "https://alexsalinsky.github.io/build-room-visuals/sticky-board/demo.mp4",
+  "try_url": "https://alexsalinsky.github.io/build-room-visuals/sticky-board/",
+  "logged": "2026-11-03",
+  "integrations": [
+   "Nothing to connect: one HTML file that saves notes in the browser (localStorage)",
+   "Chrome or Edge on desktop for the floating window (Document Picture-in-Picture)",
+   "Optional: a link format so an AI can add notes for you (#add=task one|task two)"
+  ],
+  "flow": [
+   {
+    "role": "Quick capture",
+    "eg": "type, Enter, repeat"
+   },
+   {
+    "role": "Canvas",
+    "eg": "drag, zoom, matrix"
+   },
+   {
+    "role": "Focus",
+    "eg": "one note, full size"
+   },
+   {
+    "role": "Floating window",
+    "eg": "Chrome Picture-in-Picture"
+   },
+   {
+    "role": "Browser storage",
+    "eg": "localStorage"
+   }
+  ],
+  "starter_prompt": "I want a tiny to-do board as one HTML file with no server. Ask me first: 1) which browser I use, 2) whether I need it on more than one device, 3) how I like to sort tasks. Then build: type a task and press Enter to make a sticky note, drag notes on a canvas, double-click one to focus on it full screen, and save everything in the browser. After that works, add a Pop out button using Chrome's Document Picture-in-Picture so the focused note floats over other windows.",
+  "diagram": "flowchart TD\n  M[\"<b>Me, typing</b><br/>task, Enter, task, Enter\"] --> B\n  C[\"<b>AI assistant</b><br/><span class='eg'>Claude</span><br/>sends a link with tasks\"] --> B\n  B[\"<b>Canvas</b><br/><span class='eg'>one HTML file</span><br/>drag, zoom, matrix\"] --> F\n  B <--> S[\"<b>Browser storage</b><br/><span class='eg'>localStorage</span>\"]\n  F[\"<b>Focus</b><br/>one note, full size\"] --> P[\"<b>Floating window</b><br/><span class='eg'>Chrome Picture-in-Picture</span>\"]\n  P -- Done --> F\n  class M,C start\n  class P bucket"
  }
 ]
