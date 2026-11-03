@@ -87,7 +87,7 @@ pre{font:15px/1.5 var(--body);background:var(--soft);padding:12px;white-space:pr
 .card.alex{border-color:var(--black);box-shadow:6px 6px 0 var(--volt)}
 .tag{font:700 11px var(--body);letter-spacing:.14em;text-transform:uppercase;background:var(--volt);color:var(--black);padding:3px 7px}
 .filters{display:flex;flex-direction:column;gap:8px;width:100%}
-.diagram{min-height:40px;font-size:14px;color:var(--muted)}
+.diagram{min-height:40px;font-size:14px;color:var(--muted);overflow-x:auto}
 .diagram svg{max-width:100%!important;height:auto;display:block;margin:0 auto}
 .diagram .node rect,.diagram .node polygon{stroke-width:2px!important}
 .diagram .start rect{fill:#0B0B0B!important}
@@ -251,6 +251,17 @@ function mm() {
     return m;
   });
 }
+// Size each diagram to the screen: as big as fits the panel width and the window height
+// (so a simple flow shows whole), capped at 1.6x so it never balloons, and never below 0.8x
+// so labels stay readable (a wider diagram scrolls sideways inside its box on phones).
+function fitDiagram(box) {
+  const svg = box.querySelector('svg'); if (!svg || !svg.viewBox.baseVal) return;
+  const {width: w, height: h} = svg.viewBox.baseVal; if (!w || !h) return;
+  const scale = Math.max(0.8, Math.min(box.clientWidth / w, (innerHeight - 160) / h, 1.6));
+  svg.style.width = Math.round(w * scale) + 'px';
+  svg.style.setProperty('max-width', 'none', 'important');
+  svg.removeAttribute('height');
+}
 let opener = null;
 async function openBuild(i, push) {
   const b = builds[i];
@@ -262,7 +273,7 @@ async function openBuild(i, push) {
   if (!box || !b.diagram) return;
   try {
     svgCache[i] ||= (await (await mm()).render('mm' + i, b.diagram)).svg;
-    box.innerHTML = svgCache[i];
+    box.innerHTML = svgCache[i]; fitDiagram(box);
   } catch { box.textContent = (b.flow || []).map(f => f.role).join(' > '); }
 }
 dlg.addEventListener('close', () => {
