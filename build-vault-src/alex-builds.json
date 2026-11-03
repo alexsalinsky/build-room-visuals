@@ -706,5 +706,48 @@
   ],
   "starter_prompt": "I want a tiny to-do board as one HTML file with no server. Ask me first: 1) which browser I use, 2) whether I need it on more than one device, 3) how I like to sort tasks. Then build: type a task and press Enter to make a sticky note, drag notes on a canvas, double-click one to focus on it full screen, and save everything in the browser. After that works, add a Pop out button using Chrome's Document Picture-in-Picture so the focused note floats over other windows.",
   "diagram": "flowchart TD\n  M[\"<b>Me, typing</b><br/>task, Enter, task, Enter\"] --> B\n  C[\"<b>AI assistant</b><br/><span class='eg'>Claude</span><br/>sends a link with tasks\"] --> B\n  B[\"<b>Canvas</b><br/><span class='eg'>one HTML file</span><br/>drag, zoom, matrix\"] --> F\n  B <--> S[\"<b>Browser storage</b><br/><span class='eg'>localStorage</span>\"]\n  F[\"<b>Focus</b><br/>one note, full size\"] --> P[\"<b>Floating window</b><br/><span class='eg'>Chrome Picture-in-Picture</span>\"]\n  P -- Done --> F\n  class M,C start\n  class P bucket"
+ },
+ {
+  "title": "A showcase of what members built, with a prompt to build your own",
+  "original_name": "Build Vault",
+  "summary": "This page: every member build as a short card that opens into how it works, what to connect, and a starter prompt.",
+  "what_it_does": "A public page of real builds from cohorts and sessions. Each card shows a headline, one line and a few tags; clicking opens an overlay with the full story, the integrations needed, a flow diagram and a copy-paste starter prompt for Claude Code or Codex. Search and filters by area and builder. The builds live in two JSON files, and one script checks each entry and renders the page, so logging a new build is one entry plus one command.",
+  "builder": "Alex",
+  "where": "Alex's builds, Nov 2026",
+  "why": "New members keep asking what they could build. A list of names didn't answer it; seeing a real tool close to their problem, how it works box by box, and a prompt that starts the smallest version does.",
+  "tools": [
+   "Claude Code",
+   "Python",
+   "Mermaid",
+   "GitHub Pages"
+  ],
+  "category": "content",
+  "demo_url": "https://alexsalinsky.github.io/build-room-visuals/build-vault.html",
+  "logged": "2026-11-03",
+  "integrations": [
+   "A list of builds, one entry each (JSON file, or a Google Sheet exported to JSON)",
+   "A free place to host a static page (GitHub Pages, Cloudflare Pages)",
+   "A diagram library that draws flows from text (Mermaid, loaded from a CDN)"
+  ],
+  "flow": [
+   {
+    "role": "Build list",
+    "eg": "JSON file, Google Sheet"
+   },
+   {
+    "role": "Render script",
+    "eg": "Python"
+   },
+   {
+    "role": "Static page",
+    "eg": "GitHub Pages, Cloudflare Pages"
+   },
+   {
+    "role": "Card overlay",
+    "eg": "flow diagram, starter prompt"
+   }
+  ],
+  "starter_prompt": "I want a public page that shows things people in my community built, so newcomers see what they could make. Ask me first: 1) where my list of builds lives today, 2) what each entry should show, 3) where I can host a static page for free. Then build the smallest version: a JSON file of builds and a script that turns it into one HTML page of short cards (title, one line, tags) with search. After that works, make a card open into full details with a copy button for a starter prompt.",
+  "diagram": "flowchart TD\n  L[\"<b>Build list</b><br/><span class='eg'>JSON file, Google Sheet</span><br/>one entry per build\"] --> R\n  M[\"<b>Me, logging a build</b><br/>one entry, one command\"] --> L\n  R[\"<b>Render script</b><br/><span class='eg'>Python</span><br/>checks every entry\"] -- missing a field --> M\n  R --> H[\"<b>Static page</b><br/><span class='eg'>GitHub Pages, Cloudflare Pages</span>\"]\n  H --> V[\"<b>Visitor</b><br/>search, filter, tap a card\"]\n  V --> O[\"<b>Card overlay</b><br/>flow diagram, starter prompt\"]\n  class M start\n  class O bucket"
  }
 ]
