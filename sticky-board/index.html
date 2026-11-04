@@ -8,7 +8,7 @@
   :root {
     --bg: #f3f1ec; --dot: #d8d4ca; --ink: #2b2a27; --bar: #ffffffee; --line: #ddd8cc;
     --note: #ffe680; --note-ink: #2b2a27; --accent: #2b2a27;
-    --nw: 180px; --nh: 130px;
+    --nw: 150px; --nh: 110px;
   }
   @media (prefers-color-scheme: dark) {
     :root { --bg: #1d1d1b; --dot: #33332f; --ink: #eceae4; --bar: #262624ee; --line: #3a3935; --accent: #eceae4; }
@@ -32,7 +32,7 @@
   #world { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
   .note { position: absolute; width: var(--nw); height: var(--nh); padding: 12px 12px 26px; border-radius: 3px;
     background: var(--note); color: var(--note-ink); box-shadow: 0 1px 2px #0002, 0 6px 14px #0002;
-    cursor: grab; user-select: none; overflow: hidden; word-wrap: break-word; font-size: 15px; }
+    cursor: grab; user-select: none; overflow: hidden; word-wrap: break-word; font-size: 17px; line-height: 1.25; }
   .note.dragging { cursor: grabbing; box-shadow: 0 2px 4px #0003, 0 14px 28px #0003; }
   .note.done .txt { text-decoration: line-through; opacity: .5; }
   .note .txt { outline: none; height: 100%; overflow: hidden; white-space: pre-wrap; }
@@ -87,7 +87,7 @@
 <script>
 (() => {
   const KEY = 'sticky-notes-v1';
-  const NW = 180, NH = 130, GAP = 16;
+  const NW = 150, NH = 110, GAP = 14;
   let state = { notes: [], view: { x: 20, y: 20, z: 1 }, seq: 0 };
   let doc = document; // switches to the PiP document when popped out
   let app = null;
@@ -343,13 +343,16 @@
   window.stickyNotes = { add: addNote, import: importData, export: exportJSON, clear: () => { state.notes = []; render(); save(); } };
 
   // ---------- pop out (Document Picture-in-Picture, same API Spotify web uses) ----------
-  let pipWin = null;
+  let pipWin = null; const PIP_W = 240, PIP_H = 168;
   $('pip').onclick = async () => {
     if (pipWin) { pipWin.close(); return; }
     if (!('documentPictureInPicture' in window)) { alert('Pop out needs desktop Chrome or Edge (version 116+).'); return; }
-    pipWin = await documentPictureInPicture.requestWindow({ width: 480, height: 240, preferInitialWindowPlacement: true });
+    pipWin = await documentPictureInPicture.requestWindow({ width: PIP_W, height: PIP_H, preferInitialWindowPlacement: true });
     const st = $('app-style').cloneNode(true); pipWin.document.head.appendChild(st);
     pipWin.document.title = 'Sticky Notes';
+    // Chrome may reuse a remembered size; nudge it to the target if it lets us
+    try { if (pipWin.innerWidth > PIP_W + 4 || pipWin.innerHeight > PIP_H + 4)
+      pipWin.resizeTo(PIP_W + (pipWin.outerWidth - pipWin.innerWidth), PIP_H + (pipWin.outerHeight - pipWin.innerHeight)); } catch {}
     pipWin.document.body.classList.add('pip');
     pipWin.document.body.appendChild(app);
     doc = pipWin.document; pipWin.addEventListener('keydown', onKey);
