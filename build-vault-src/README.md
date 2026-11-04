@@ -14,6 +14,8 @@ Add an object to `alex-builds.json` (or `member-builds.json`) with:
 `title, what_it_does, why, builder, where, category, tools[], demo_url, logged (YYYY-MM-DD), starter_prompt`,
 plus:
 
+- `repo_url` (optional): a public repo members can fork. Shows a "Steal the repo" button. Never a link to someone's own live copy.
+
 - `integrations`: what someone has to connect, each with what it's for, e.g. "Call recorder API key, to pull transcripts (Fathom)".
 - `flow`: the main workflow as 3 to 6 generic role boxes, brand examples under each, e.g.
   `{"role": "Call recorder", "eg": "Fathom, Otter"}`. Roles never name a brand; swap the fillings, keep the boxes.
