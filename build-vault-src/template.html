@@ -209,6 +209,7 @@ function detail(b, i) {
       ${b.starter_prompt ? `<button class="btn primary" data-copy="${i}">Copy starter prompt</button>` : ''}
       ${b.demo_url ? `<a class="btn ghost" href="${esc(b.demo_url)}" target="_blank" rel="noopener">${isVideo ? 'Watch the demo' : 'Open the project'}</a>` : ''}
       ${b.try_url ? `<a class="btn ghost" href="${esc(b.try_url)}" target="_blank" rel="noopener">Try it</a>` : ''}
+      ${b.repo_url ? `<a class="btn ghost" href="${esc(b.repo_url)}" target="_blank" rel="noopener">Steal the repo</a>` : ''}
     </div>
     <dl class="more">
       ${b.diagram ? `<div><dt>How it works</dt><dd><div class="diagram" id="d${i}">Drawing the flow...</div></dd></div>` : (flow ? `<div><dt>How it works</dt><dd>${flow.replace('<p class="label">How it works</p>','')}</dd></div>` : '')}
