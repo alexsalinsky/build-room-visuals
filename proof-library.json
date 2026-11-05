@@ -1,7 +1,7 @@
 {
   "$schema_doc": "proof-library-schema.md",
   "version": 1,
-  "last_updated": "2026-09-07",
+  "last_updated": "2026-11-05",
   "entries": [
     {
       "id": "linkedin-how-to-get-your-team-to-actually-use-ai",
@@ -7767,6 +7767,30 @@
       ],
       "notes": "AI-with-security explained on the spot to a CPA, in his terms, without alarmism. Note the client (Vlad) originated the pattern; Alex named why it's stronger. TODO: cut clip from https://fathom.video/share/7XuXis1_EEYsUmpWbZu8ShuCHJb1Yjh1 around 00:20:22 - 00:20:55.",
       "consent_note": "Alex's own words in a client call. His to reuse once client-identifying detail is stripped. The client's voice is not on this line."
+    },
+    {
+      "id": "hvr-amplified-ls2-beth-it-works",
+      "type": "testimonial",
+      "cohort": "none",
+      "title": "One week after the outreach challenge: a client, a podcast, a first post",
+      "source_url": "Zoom cloud recording, Humans V Robots: Amplified Live Session 2 (2026-11-05); notetaker transcript /mnt/project-files/show/live2/work/recall-transcript.txt",
+      "media_url": "clips/hvr-amplified/beth-it-works.mp4",
+      "thumbnail": null,
+      "quote": "That little challenge that we did, it made me do something. Like I actually did it. I reached out to 10 business owners that I know personally... I got a client... I got invited on a podcast... for the first time I made a post on social media to announce that I have this business. It's a testament that it works.",
+      "attribution": "Beth Purcell (Build With Beth), Humans V Robots: Amplified live session",
+      "timestamp": "1:50:35",
+      "tags": [
+        "testimonial",
+        "win",
+        "outreach",
+        "hvr-amplified",
+        "live-session-2"
+      ],
+      "status": "cleared-for-public",
+      "date_captured": "2026-11-05",
+      "date_cleared": "2026-11-05",
+      "notes": "41 s vertical clip, cut Nov 5 at Alex's request (wins and testimonials cut first). Also in Drive (Live Session 2 > Cuts > Wins and testimonials) and the Notion Media library as Draft.",
+      "consent_note": "Said on the publicly live-streamed show (YouTube/LinkedIn) on 2026-11-05. Alex asked for it on the testimonials page."
     }
   ],
   "blocked_quotes": [
