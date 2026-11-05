@@ -749,5 +749,59 @@
   ],
   "starter_prompt": "I want a public page that shows things people in my community built, so newcomers see what they could make. Ask me first: 1) where my list of builds lives today, 2) what each entry should show, 3) where I can host a static page for free. Then build the smallest version: a JSON file of builds and a script that turns it into one HTML page of short cards (title, one line, tags) with search. After that works, make a card open into full details with a copy button for a starter prompt.",
   "diagram": "flowchart TD\n  L[\"<b>Build list</b><br/><span class='eg'>JSON file, Google Sheet</span><br/>one entry per build\"] --> R\n  M[\"<b>Me, logging a build</b><br/>one entry, one command\"] --> L\n  R[\"<b>Render script</b><br/><span class='eg'>Python</span><br/>checks every entry\"] -- missing a field --> M\n  R --> H[\"<b>Static page</b><br/><span class='eg'>GitHub Pages, Cloudflare Pages</span>\"]\n  H --> V[\"<b>Visitor</b><br/>search, filter, tap a card\"]\n  V --> O[\"<b>Card overlay</b><br/>flow diagram, starter prompt\"]\n  class M start\n  class O bucket"
+ },
+ {
+  "title": "Content engine: one big video into a ranked week of posts",
+  "original_name": "HvR content engine",
+  "summary": "In progress. Turns each weekly live into ranked, captioned posts on a calendar, ready for one approval.",
+  "what_it_does": "Builds on the overnight cut engine. After each weekly live it pulls the recording, cuts every piece, runs a cold-viewer story check, then has a separate AI score each piece on hook, standing alone, payoff, audience fit and message fit. The top shorts and long pieces get the week's slots on a content calendar with titles and captions written; the rest are banked by theme. One approval session a week, then a scheduler posts. Each Monday it pulls watch time and sign-ups per piece and uses them to adjust the scoring. Still being built: ranking and the calendar work, scheduling and the feedback loop are next.",
+  "builder": "Alex",
+  "where": "Alex's builds, Nov 2026",
+  "why": "One live session makes more pieces than we can post, and picking by gut takes time. Scoring every piece the same way, then learning from real numbers, keeps the best ones going out and the review down to about 20 minutes a week.",
+  "tools": [
+   "Claude Code",
+   "faster-whisper",
+   "ffmpeg",
+   "Notion API",
+   "Late API"
+  ],
+  "category": "content",
+  "demo_url": null,
+  "logged": "2026-11-05",
+  "integrations": [
+   "The weekly call recording (Zoom cloud recording)",
+   "The cut engine that makes the pieces (faster-whisper and ffmpeg, free)",
+   "A content calendar with a status per post (Notion database)",
+   "A social scheduler with an API, to post approved pieces (Late, Buffer)",
+   "Analytics per post, to feed the ranking (YouTube, LinkedIn, Luma sign-ups)"
+  ],
+  "flow": [
+   {
+    "role": "Call recording",
+    "eg": "Zoom cloud recording"
+   },
+   {
+    "role": "Cutter and story check",
+    "eg": "faster-whisper, ffmpeg, a second AI"
+   },
+   {
+    "role": "Ranker",
+    "eg": "a third AI with a 5-point rubric"
+   },
+   {
+    "role": "Content calendar",
+    "eg": "Notion"
+   },
+   {
+    "role": "Scheduler",
+    "eg": "Late, Buffer"
+   },
+   {
+    "role": "Weekly numbers",
+    "eg": "watch time, sign-ups"
+   }
+  ],
+  "starter_prompt": "I have more video clips than I can post and I want to pick the best ones the same way every week. Ask me first: 1) who my audience is and what my core message is, 2) where my clips and their transcripts live, 3) where I keep my content calendar. Then build the smallest version: score each clip 1 to 5 on hook, makes sense alone, strong ending, audience fit and message fit, using only what a viewer sees and hears, and give me a ranked table with one line of why. Once I trust the ranking, add filling my calendar with the top picks as drafts.",
+  "diagram": "flowchart TD\n  Z[\"<b>Call recording</b><br/><span class='eg'>Zoom cloud recording</span>\"] --> C\n  C[\"<b>Cutter and story check</b><br/><span class='eg'>ffmpeg, a second AI</span>\"] --> K\n  K[\"<b>Ranker</b><br/><span class='eg'>a third AI</span><br/>5-point rubric\"] --> T & B\n  T[\"Top picks\"] --> N[\"<b>Content calendar</b><br/><span class='eg'>Notion</span>\"]\n  B[\"Bank by theme\"]\n  N --> A[\"<b>Me, approving</b><br/>once a week\"]\n  A --> S[\"<b>Scheduler</b><br/><span class='eg'>Late, Buffer</span>\"]\n  S --> M[\"<b>Weekly numbers</b><br/><span class='eg'>watch time, sign-ups</span>\"]\n  M -- adjusts scoring --> K\n  class Z start\n  class T,B bucket"
  }
 ]
