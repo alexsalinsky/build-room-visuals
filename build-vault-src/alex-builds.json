@@ -750,5 +750,49 @@
   ],
   "starter_prompt": "I want a public page that shows things people in my community built, so newcomers see what they could make. Ask me first: 1) where my list of builds lives today, 2) what each entry should show, 3) where I can host a static page for free. Then build the smallest version: a JSON file of builds and a script that turns it into one HTML page of short cards (title, one line, tags) with search. After that works, make a card open into full details with a copy button for a starter prompt.",
   "diagram": "flowchart TD\n  L[\"<b>Build list</b><br/><span class='eg'>JSON file, Google Sheet</span><br/>one entry per build\"] --> R\n  M[\"<b>Me, logging a build</b><br/>one entry, one command\"] --> L\n  R[\"<b>Render script</b><br/><span class='eg'>Python</span><br/>checks every entry\"] -- missing a field --> M\n  R --> H[\"<b>Static page</b><br/><span class='eg'>GitHub Pages, Cloudflare Pages</span>\"]\n  H --> V[\"<b>Visitor</b><br/>search, filter, tap a card\"]\n  V --> O[\"<b>Card overlay</b><br/>flow diagram, starter prompt\"]\n  class M start\n  class O bucket"
+ },
+ {
+  "title": "Map any business's funnel as a flowchart, then review it live",
+  "original_name": "Funnel mapper",
+  "summary": "Describe a business, or point it at a guest's Instagram and site, and Claude draws its whole funnel as a flowchart to review together.",
+  "what_it_does": "You tell Claude how people find a business, what they get for free, how they get invited and how they pay. Claude reads the public pages too, then draws the funnel on a shared whiteboard, stage by stage from left to right: find you, check you out, free taste, follow-up, invited and pay, stay. Colours show what runs today, what is only proposed, the free taste and where money changes hands. Gaps get a question mark box and a short list of questions to settle with the owner. A proposed version can sit right under today's version, so the change is easy to see.",
+  "builder": "Alex",
+  "where": "Humans V Robots weekly live, Nov 12 2026 (Roast My Funnel with Sindija Berzina)",
+  "why": "Funnel advice stays vague until everyone can see the same picture. Drawing the funnel first turned a roast into a real review: we mapped Humans V Robots, Andrew's coaching business today, a ManyChat version of it, and a hypothetical certification, and the missing steps jumped out.",
+  "tools": [
+   "Claude",
+   "Whiteboard artifact"
+  ],
+  "category": "content",
+  "demo_url": "https://claude.ai/artifact/Xx2dRrPqsnGLvCn4UcbtSq",
+  "logged": "2026-11-12",
+  "integrations": [
+   "A whiteboard Claude can draw on (Claude Whiteboard artifact, Miro, FigJam)",
+   "The business's public pages for Claude to read (website, Instagram, LinkedIn)"
+  ],
+  "flow": [
+   {
+    "role": "Owner describes the business",
+    "eg": "chat, voice note"
+   },
+   {
+    "role": "Public pages",
+    "eg": "website, Instagram, LinkedIn"
+   },
+   {
+    "role": "AI funnel mapper",
+    "eg": "Claude, ChatGPT"
+   },
+   {
+    "role": "Shared whiteboard",
+    "eg": "Claude Whiteboard, Miro, FigJam"
+   },
+   {
+    "role": "Live review",
+    "eg": "Zoom, a coaching call"
+   }
+  ],
+  "starter_prompt": "I want to see my business's funnel as one picture. Ask me first: 1) how people first find me, 2) what they can get for free, 3) how I invite them to pay and what it costs, 4) what happens after they buy. Then read my website and social pages if I share links. Draw the funnel left to right in six stages: find you, check you out, free taste, follow-up, invited and pay, stay. Colour what runs today differently from ideas, mark the free taste and where money changes hands, and put a question mark box wherever a step is missing. End with three questions I should answer to fix the biggest gap.",
+  "diagram": "flowchart TD\n  O[\"<b>Owner</b><br/><span class='eg'>chat, voice note</span><br/>how people find and buy\"] --> M\n  P[\"<b>Public pages</b><br/><span class='eg'>website, Instagram</span>\"] --> M\n  M[\"<b>AI funnel mapper</b><br/><span class='eg'>Claude, ChatGPT</span><br/>six stages, left to right\"] --> W[\"<b>Shared whiteboard</b><br/><span class='eg'>Claude Whiteboard, Miro</span>\"]\n  W --> R[\"<b>Me and the owner, reviewing live</b>\"]\n  R -- corrections --> M\n  R --> G[\"<b>Gaps and next steps</b><br/>question marks, a proposed version\"]\n  class O start\n  class G bucket"
  }
 ]
