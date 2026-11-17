@@ -835,54 +835,52 @@
   "diagram": "flowchart TD\n  A[\"<b>You open a page</b><br/><span class='eg'>reddit.com, r/popular</span>\"] --> R\n  C[\"<b>You click inside the site</b><br/><span class='eg'>the logo, Popular</span>\"] --> W\n  R[\"<b>Page rule</b><br/><span class='eg'>declarativeNetRequest</span><br/>checks the address\"] -- a feed --> B\n  W[\"<b>Click watcher</b><br/><span class='eg'>content script</span>\"] -- a feed --> B\n  R -- a subreddit or post --> S[\"<b>Page opens as usual</b>\"]\n  W -- a subreddit or post --> S\n  B[\"<b>Reminder page</b><br/><span class='eg'>alien bouncer</span><br/>breathe or drink water\"]\n  class A,C start\n  class B,S bucket"
  },
  {
-  "title": "A notetaker that joins any call and emails you the notes",
+  "title": "One-click call recorder that transcribes live, no bot on the call",
   "original_name": "Call Recorder",
-  "summary": "Tag a calendar call with #rec, or paste a Zoom, Meet or Teams link, and a bot joins, records it and sends back a summary with action items.",
-  "what_it_does": "Any calendar event tagged #rec, or a meeting link pasted on a simple page, gets a notetaker bot sent to it, even for calls you aren't on. When the call ends it pulls the transcript, has AI write a summary with action items, saves the transcript and notes as a Google Doc in a Drive folder, and emails the notes to you.",
+  "summary": "A tray app on a Windows laptop records your mic and the computer's audio together, transcribes as you go, and saves notes with action items when you stop.",
+  "what_it_does": "A tray app on a Windows laptop. One click or Ctrl+Alt+R starts recording the mic and the computer's audio together, so it covers Zoom, Meet in the browser, or a conversation in the room, with no bot joining the call. Every minute of audio goes to a small cloud worker that transcribes it with Whisper, so the transcript fills in live. On stop it adds a summary, action items, decisions and follow-ups, and saves it all as a Markdown file in a synced notes repo where Claude and its skills can read it. Lines are labelled Me (mic) and Them (computer audio), and echo from the laptop speakers is filtered out.",
   "builder": "Alex",
   "where": "Alex's own stack, Nov 2026",
-  "why": "Plenty of calls are worth knowing about but not worth sitting through. Tagging one with #rec means the notes still show up without anyone having to be there or remember to hit record.",
+  "why": "Meeting bots announce themselves, only work on scheduled video calls, and miss the conversations that happen in the room. Recording straight from the laptop catches all of it, and landing the notes as Markdown means Claude can pick up the action items without anyone copying them over.",
   "tools": [
+   "Python",
    "Cloudflare Workers",
-   "Recall.ai",
    "Workers AI",
-   "Google Calendar",
-   "Google Drive",
-   "Gmail"
+   "Whisper",
+   "Llama 3.3",
+   "GitHub"
   ],
   "category": "productivity",
   "demo_url": null,
   "logged": "2026-11-17",
   "integrations": [
-   "Meeting bot API key, to send a notetaker into the call (Recall.ai)",
-   "Calendar access, to find events tagged #rec (Google Calendar)",
-   "Docs storage, to save the transcript and notes (Google Drive)",
-   "Email sending, to deliver the notes (Gmail)",
-   "A small always-on server and an AI model for the summary (Cloudflare Workers with Workers AI)"
+   "System audio capture on Windows, to record the mic and what the speakers play (Python soundcard with WASAPI loopback)",
+   "A small always-on server with speech-to-text and an AI model (Cloudflare Workers with Workers AI Whisper and Llama)",
+   "A synced folder or repo for the notes (GitHub, Dropbox, Obsidian)"
   ],
   "flow": [
    {
-    "role": "Calendar or pasted link",
-    "eg": "Google Calendar #rec, Zoom, Meet, Teams"
+    "role": "One-click recorder",
+    "eg": "Python tray app, hotkey"
    },
    {
-    "role": "Scheduler",
-    "eg": "Cloudflare Worker, cron"
+    "role": "Mic plus computer audio",
+    "eg": "WASAPI loopback"
    },
    {
-    "role": "Notetaker bot",
-    "eg": "Recall.ai"
+    "role": "Live transcription",
+    "eg": "Whisper on Workers AI"
    },
    {
     "role": "AI summary",
-    "eg": "Workers AI, Claude"
+    "eg": "Llama 3.3, Claude"
    },
    {
-    "role": "Notes delivered",
-    "eg": "Google Doc, Gmail"
+    "role": "Notes in a synced repo",
+    "eg": "Markdown, GitHub"
    }
   ],
-  "starter_prompt": "Build me a notetaker that works without me being on the call. Every few minutes, check my calendar for events whose title or description contains #rec and grab their Zoom, Meet or Teams link. Also give me a simple page where I can paste a meeting link. For each one, send a meeting bot (for example Recall.ai) to join at the start time. When the call ends, fetch the transcript, write a summary with decisions and action items, save transcript and summary as a Google Doc in a Drive folder, and email me the summary with the Doc link. Run it on a free always-on host like Cloudflare Workers, keep keys in its secrets, and test it on one real recording before turning on the calendar.",
-  "diagram": "flowchart TD\n  C[\"<b>Calendar event tagged #rec</b><br/><span class='eg'>Google Calendar, Outlook</span>\"] --> S\n  L[\"<b>Pasted meeting link</b><br/><span class='eg'>Zoom, Meet, Teams</span>\"] --> S\n  S[\"<b>Scheduler</b><br/><span class='eg'>Cloudflare Worker, cron</span>\"] --> B[\"<b>Notetaker bot joins</b><br/><span class='eg'>Recall.ai</span>\"]\n  B --> T[\"<b>Transcript after the call</b>\"]\n  T --> A[\"<b>AI summary</b><br/><span class='eg'>Workers AI, Claude</span><br/>action items\"]\n  A --> D[\"<b>Doc in Drive</b><br/><span class='eg'>Google Docs</span>\"]\n  A --> E[\"<b>Email with the notes</b><br/><span class='eg'>Gmail</span>\"]\n  class C,L start\n  class D,E bucket"
+  "starter_prompt": "Build me a call recorder for my Windows laptop that needs no bot on the call. Make it a tray app with a start/stop click and a hotkey. Record the microphone and the computer's own audio at the same time, label mic lines Me and computer-audio lines Them, and filter out speaker echo picked up by the mic. Send each minute of audio to a speech-to-text API so the transcript builds up live. When I stop, write a summary with action items, decisions and follow-ups, and save everything as a Markdown file in a folder I choose. Test it on a 5-minute call before I rely on it.",
+  "diagram": "flowchart TD\n  R[\"<b>Me, clicking record</b><br/><span class='eg'>tray app, Ctrl+Alt+R</span>\"] --> M\n  R --> L\n  M[\"<b>Mic</b><br/><span class='eg'>labelled Me</span>\"] --> W\n  L[\"<b>Computer audio</b><br/><span class='eg'>Zoom, Meet, a video</span><br/>labelled Them\"] --> W\n  W[\"<b>Live transcription</b><br/><span class='eg'>Whisper, Workers AI</span><br/>every minute, echo filtered\"] --> S\n  S[\"<b>AI summary on stop</b><br/><span class='eg'>Llama, Claude</span>\"] --> N[\"<b>Markdown notes</b><br/><span class='eg'>synced repo</span><br/>action items, decisions\"]\n  N --> C[\"<b>Claude and skills read them</b>\"]\n  class R start\n  class N bucket"
  }
 ]
