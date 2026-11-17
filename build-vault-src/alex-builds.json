@@ -833,5 +833,56 @@
   ],
   "starter_prompt": "Build me a small Chrome extension (Manifest V3) that blocks only the feed pages of a site I waste time on, not the whole site. For Reddit that means the home page, r/popular and r/all, while subreddits and posts still open. Use a declarativeNetRequest redirect for full page loads, plus a content script that catches in-site navigation that changes the URL without a reload. Send blocked pages to a local page with an original cartoon character who reminds me I decided this feed is bad for me, and suggests a few slow breaths or a glass of water. Test it on real URLs in a clean browser, then tell me how to load it unpacked.",
   "diagram": "flowchart TD\n  A[\"<b>You open a page</b><br/><span class='eg'>reddit.com, r/popular</span>\"] --> R\n  C[\"<b>You click inside the site</b><br/><span class='eg'>the logo, Popular</span>\"] --> W\n  R[\"<b>Page rule</b><br/><span class='eg'>declarativeNetRequest</span><br/>checks the address\"] -- a feed --> B\n  W[\"<b>Click watcher</b><br/><span class='eg'>content script</span>\"] -- a feed --> B\n  R -- a subreddit or post --> S[\"<b>Page opens as usual</b>\"]\n  W -- a subreddit or post --> S\n  B[\"<b>Reminder page</b><br/><span class='eg'>alien bouncer</span><br/>breathe or drink water\"]\n  class A,C start\n  class B,S bucket"
+ },
+ {
+  "title": "A notetaker that joins any call and emails you the notes",
+  "original_name": "Call Recorder",
+  "summary": "Tag a calendar call with #rec, or paste a Zoom, Meet or Teams link, and a bot joins, records it and sends back a summary with action items.",
+  "what_it_does": "Any calendar event tagged #rec, or a meeting link pasted on a simple page, gets a notetaker bot sent to it, even for calls you aren't on. When the call ends it pulls the transcript, has AI write a summary with action items, saves the transcript and notes as a Google Doc in a Drive folder, and emails the notes to you.",
+  "builder": "Alex",
+  "where": "Alex's own stack, Nov 2026",
+  "why": "Plenty of calls are worth knowing about but not worth sitting through. Tagging one with #rec means the notes still show up without anyone having to be there or remember to hit record.",
+  "tools": [
+   "Cloudflare Workers",
+   "Recall.ai",
+   "Workers AI",
+   "Google Calendar",
+   "Google Drive",
+   "Gmail"
+  ],
+  "category": "productivity",
+  "demo_url": null,
+  "logged": "2026-11-17",
+  "integrations": [
+   "Meeting bot API key, to send a notetaker into the call (Recall.ai)",
+   "Calendar access, to find events tagged #rec (Google Calendar)",
+   "Docs storage, to save the transcript and notes (Google Drive)",
+   "Email sending, to deliver the notes (Gmail)",
+   "A small always-on server and an AI model for the summary (Cloudflare Workers with Workers AI)"
+  ],
+  "flow": [
+   {
+    "role": "Calendar or pasted link",
+    "eg": "Google Calendar #rec, Zoom, Meet, Teams"
+   },
+   {
+    "role": "Scheduler",
+    "eg": "Cloudflare Worker, cron"
+   },
+   {
+    "role": "Notetaker bot",
+    "eg": "Recall.ai"
+   },
+   {
+    "role": "AI summary",
+    "eg": "Workers AI, Claude"
+   },
+   {
+    "role": "Notes delivered",
+    "eg": "Google Doc, Gmail"
+   }
+  ],
+  "starter_prompt": "Build me a notetaker that works without me being on the call. Every few minutes, check my calendar for events whose title or description contains #rec and grab their Zoom, Meet or Teams link. Also give me a simple page where I can paste a meeting link. For each one, send a meeting bot (for example Recall.ai) to join at the start time. When the call ends, fetch the transcript, write a summary with decisions and action items, save transcript and summary as a Google Doc in a Drive folder, and email me the summary with the Doc link. Run it on a free always-on host like Cloudflare Workers, keep keys in its secrets, and test it on one real recording before turning on the calendar.",
+  "diagram": "flowchart TD\n  C[\"<b>Calendar event tagged #rec</b><br/><span class='eg'>Google Calendar, Outlook</span>\"] --> S\n  L[\"<b>Pasted meeting link</b><br/><span class='eg'>Zoom, Meet, Teams</span>\"] --> S\n  S[\"<b>Scheduler</b><br/><span class='eg'>Cloudflare Worker, cron</span>\"] --> B[\"<b>Notetaker bot joins</b><br/><span class='eg'>Recall.ai</span>\"]\n  B --> T[\"<b>Transcript after the call</b>\"]\n  T --> A[\"<b>AI summary</b><br/><span class='eg'>Workers AI, Claude</span><br/>action items\"]\n  A --> D[\"<b>Doc in Drive</b><br/><span class='eg'>Google Docs</span>\"]\n  A --> E[\"<b>Email with the notes</b><br/><span class='eg'>Gmail</span>\"]\n  class C,L start\n  class D,E bucket"
  }
 ]
