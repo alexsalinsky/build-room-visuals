@@ -44,6 +44,8 @@ ul{margin:0;padding-left:20px} li{margin:4px 0}
 .diagram .eg{font-size:12px} .diagram .eg::before{content:""}
 pre{white-space:pre-wrap;background:var(--soft);border:2px solid var(--black);padding:14px;margin:10px 0 0;font:15px/1.5 var(--body)}
 .copy{font:700 15px var(--body);padding:10px 14px;min-height:44px;border:2px solid var(--black);background:var(--black);color:var(--paper);cursor:pointer;margin-top:10px}
+.install{border:2px solid var(--black);padding:18px 20px;background:var(--volt)}
+.install ol{margin:0;padding-left:22px;font-size:17px} .small{margin-top:8px;font-size:15px} .install a{color:var(--black);font-weight:700}
 footer{border-top:2px solid var(--black);padding-top:16px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;color:var(--muted);font-size:14px}
 footer b{color:var(--black)}
 @media (max-width:640px){.demo iframe{height:820px}}
@@ -53,9 +55,10 @@ footer b{color:var(--black)}
   <span class="eyebrow">Build Vault</span>
   <h1>Cut the feeds out of Reddit, Instagram, YouTube and Facebook</h1>
   <p class="lede">A small Chrome extension that keeps messages and search but blocks the feeds, or makes you breathe and chase a button to get to them.</p>
-  <div class="buttons"><a class="btn primary" href="https://github.com/alexsalinsky/feed-blocker">Get the code</a><a class="btn ghost" href="https://alexsalinsky.github.io/build-room-visuals/reddit-feed-blocker/demo.html">Open the demo</a></div>
+  <div class="buttons"><a class="btn primary" href="https://github.com/alexsalinsky/feed-blocker/archive/refs/heads/main.zip">Download the extension</a><a class="btn ghost" href="https://github.com/alexsalinsky/feed-blocker">See the code</a><a class="btn ghost" href="https://alexsalinsky.github.io/build-room-visuals/reddit-feed-blocker/demo.html">Open the demo</a></div>
 </div></header>
 <main class="inner">
+  <section class="install"><h2>Install it (about a minute)</h2><ol><li>Unzip the download somewhere you will keep it.</li><li>In Chrome, Edge or Brave, go to chrome://extensions.</li><li>Turn on Developer mode (top right).</li><li>Click Load unpacked and pick the unzipped folder.</li></ol><p class="small">After that it runs on its own. <a href="https://github.com/alexsalinsky/feed-blocker/archive/refs/heads/main.zip">Download it here.</a></p></section>
   <section class="demo"><iframe src="../reddit-feed-blocker/demo.html" title="Demo" loading="lazy"></iframe></section>
   <section><h2>What it does</h2><p>One Chrome extension, a different level of friction per site. Reddit&#x27;s home page and the popular feeds go to a grumpy cartoon bouncer who reminds you that you decided Reddit is bad for you, with a breathing circle and a nudge to drink water; subreddits and posts still open. Instagram&#x27;s home feed, Explore and Reels open blank: you take three guided breaths, then catch a Show the feed button that runs from your mouse five times. Messages, notifications and profiles open normally. YouTube&#x27;s home page gets the same gate, Shorts always get the bouncer, and videos play with no up-next column, no end-screen suggestions and autoplay off. Facebook&#x27;s feed, stories, reels and Watch always land on Messages; Marketplace, groups and profiles still work.</p><div class="tags"><span>Claude Code</span><span>Chrome extension</span></div></section>
   <section><h2>Why</h2><p>The feeds are where the negativity and the lost hours come from, but the useful parts of these sites (messages, a specific subreddit, a search) live next door. Blocking whole sites throws those away, so this only cuts the parts built to hijack attention, and makes the rest a deliberate choice.</p></section>

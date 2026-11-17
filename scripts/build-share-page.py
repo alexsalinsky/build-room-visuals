@@ -26,8 +26,11 @@ embed = demo.startswith("https://alexsalinsky.github.io/build-room-visuals/") an
 demo_src = "../" + demo.split("/build-room-visuals/", 1)[1] if embed else ""
 
 buttons = []
+download = build.get("download_url") or ""
+if download:
+    buttons.append(f'<a class="btn primary" href="{e(download)}">{e(build.get("download_label") or "Download it")}</a>')
 if repo:
-    buttons.append(f'<a class="btn primary" href="{e(repo)}">Get the code</a>')
+    buttons.append(f'<a class="btn {"ghost" if download else "primary"}" href="{e(repo)}">See the code</a>')
 if demo:
     buttons.append(f'<a class="btn ghost" href="{e(demo)}">Open the demo</a>')
 
@@ -38,6 +41,12 @@ lede = build.get("summary") or build["what_it_does"].split(". ")[0] + "."
 diagram_json = json.dumps(build["diagram"]).replace("</", "<\\/")
 demo_block = f'<section class="demo"><iframe src="{e(demo_src)}" title="Demo" loading="lazy"></iframe></section>' if embed else ""
 button_html = "".join(buttons)
+steps = build.get("install") or []
+install_block = ""
+if steps:
+    lis = "".join(f"<li>{e(s)}</li>" for s in steps)
+    dl = f' <a href="{e(download)}">Download it here.</a>' if download else ""
+    install_block = f'<section class="install"><h2>Install it (about a minute)</h2><ol>{lis}</ol><p class="small">After that it runs on its own.{dl}</p></section>'
 
 page = f"""<!doctype html>
 <html lang="en">
@@ -85,6 +94,8 @@ ul{{margin:0;padding-left:20px}} li{{margin:4px 0}}
 .diagram .eg{{font-size:12px}} .diagram .eg::before{{content:""}}
 pre{{white-space:pre-wrap;background:var(--soft);border:2px solid var(--black);padding:14px;margin:10px 0 0;font:15px/1.5 var(--body)}}
 .copy{{font:700 15px var(--body);padding:10px 14px;min-height:44px;border:2px solid var(--black);background:var(--black);color:var(--paper);cursor:pointer;margin-top:10px}}
+.install{{border:2px solid var(--black);padding:18px 20px;background:var(--volt)}}
+.install ol{{margin:0;padding-left:22px;font-size:17px}} .small{{margin-top:8px;font-size:15px}} .install a{{color:var(--black);font-weight:700}}
 footer{{border-top:2px solid var(--black);padding-top:16px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;color:var(--muted);font-size:14px}}
 footer b{{color:var(--black)}}
 @media (max-width:640px){{.demo iframe{{height:820px}}}}
@@ -97,7 +108,8 @@ footer b{{color:var(--black)}}
   <div class="buttons">{button_html}</div>
 </div></header>
 <main class="inner">
-  {f'<section class="demo"><iframe src="{e(demo_src)}" title="Demo" loading="lazy"></iframe></section>' if embed else ""}
+  {install_block}
+  {demo_block}
   <section><h2>What it does</h2><p>{e(build["what_it_does"])}</p><div class="tags">{tools}</div></section>
   <section><h2>Why</h2><p>{e(build["why"])}</p></section>
   <section><h2>How it works</h2><div class="diagram" id="diagram"><ol>{flow}</ol></div></section>
