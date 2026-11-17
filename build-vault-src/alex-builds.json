@@ -796,13 +796,13 @@
   "diagram": "flowchart TD\n  O[\"<b>Owner</b><br/><span class='eg'>chat, voice note</span><br/>how people find and buy\"] --> M\n  P[\"<b>Public pages</b><br/><span class='eg'>website, Instagram</span>\"] --> M\n  M[\"<b>AI funnel mapper</b><br/><span class='eg'>Claude, ChatGPT</span><br/>six stages, left to right\"] --> W[\"<b>Shared whiteboard</b><br/><span class='eg'>Claude Whiteboard, Miro</span>\"]\n  W --> R[\"<b>Me and the owner, reviewing live</b>\"]\n  R -- corrections --> M\n  R --> G[\"<b>Gaps and next steps</b><br/>question marks, a proposed version\"]\n  class O start\n  class G bucket"
  },
  {
-  "title": "Block the Reddit home feed but keep the subreddits you choose",
-  "original_name": "Reddit feed blocker",
-  "summary": "A small Chrome extension that swaps Reddit's home page and popular feeds for a grumpy alien who tells you to breathe or drink water.",
-  "what_it_does": "Going to reddit.com, r/popular or r/all lands you on a page with a cartoon alien bouncer, arms crossed, reminding you that you decided the feed is bad for you, with a breathing circle and a nudge to drink some water. Subreddits and posts you go to on purpose still open. A network rule catches normal page loads, and a tiny script catches the clicks inside Reddit that change the page without reloading, like hitting the logo from a subreddit.",
+  "title": "Cut the feeds out of Reddit, Instagram, YouTube and Facebook",
+  "original_name": "Feed blocker",
+  "summary": "A small Chrome extension that keeps messages and search but blocks the feeds, or makes you breathe and chase a button to get to them.",
+  "what_it_does": "One Chrome extension, a different level of friction per site. Reddit's home page and the popular feeds go to a grumpy cartoon bouncer who reminds you that you decided Reddit is bad for you, with a breathing circle and a nudge to drink water; subreddits and posts still open. Instagram's home feed, Explore and Reels open blank: you take three guided breaths, then catch a Show the feed button that runs from your mouse five times. Messages, notifications and profiles open normally. YouTube's home page gets the same gate, Shorts always get the bouncer, and videos play with no up-next column, no end-screen suggestions and autoplay off. Facebook's feed, stories, reels and Watch always land on Messages; Marketplace, groups and profiles still work.",
   "builder": "Alex",
   "where": "Alex's laptop, Nov 2026",
-  "why": "The front page is full of strangers being negative, and it was rubbing off. Blocking the whole site would lose the useful subreddits, and a hosts file can only block a whole site, so this blocks only the feeds.",
+  "why": "The feeds are where the negativity and the lost hours come from, but the useful parts of these sites (messages, a specific subreddit, a search) live next door. Blocking whole sites throws those away, so this only cuts the parts built to hijack attention, and makes the rest a deliberate choice.",
   "tools": [
    "Claude Code",
    "Chrome extension"
@@ -815,24 +815,24 @@
   ],
   "flow": [
    {
-    "role": "You open a page",
-    "eg": "reddit.com, r/popular"
+    "role": "You open a page or click inside a site",
+    "eg": "reddit.com, Reels, Shorts, Facebook home"
    },
    {
-    "role": "Page rule checks the address",
+    "role": "Page rules check the address",
     "eg": "Chrome declarativeNetRequest"
    },
    {
-    "role": "In-site click watcher",
-    "eg": "content script"
+    "role": "In-site watchers",
+    "eg": "content scripts"
    },
    {
-    "role": "Reminder page",
-    "eg": "alien bouncer, breathing circle"
+    "role": "Block, gate or redirect",
+    "eg": "bouncer page, breathe-and-chase, Messages"
    }
   ],
-  "starter_prompt": "Build me a small Chrome extension (Manifest V3) that blocks only the feed pages of a site I waste time on, not the whole site. For Reddit that means the home page, r/popular and r/all, while subreddits and posts still open. Use a declarativeNetRequest redirect for full page loads, plus a content script that catches in-site navigation that changes the URL without a reload. Send blocked pages to a local page with an original cartoon character who reminds me I decided this feed is bad for me, and suggests a few slow breaths or a glass of water. Test it on real URLs in a clean browser, then tell me how to load it unpacked.",
-  "diagram": "flowchart TD\n  A[\"<b>You open a page</b><br/><span class='eg'>reddit.com, r/popular</span>\"] --> R\n  C[\"<b>You click inside the site</b><br/><span class='eg'>the logo, Popular</span>\"] --> W\n  R[\"<b>Page rule</b><br/><span class='eg'>declarativeNetRequest</span><br/>checks the address\"] -- a feed --> B\n  W[\"<b>Click watcher</b><br/><span class='eg'>content script</span>\"] -- a feed --> B\n  R -- a subreddit or post --> S[\"<b>Page opens as usual</b>\"]\n  W -- a subreddit or post --> S\n  B[\"<b>Reminder page</b><br/><span class='eg'>alien bouncer</span><br/>breathe or drink water\"]\n  class A,C start\n  class B,S bucket"
+  "starter_prompt": "Build me a Chrome extension (Manifest V3) that cuts the feeds out of the sites I waste time on but keeps the useful parts. For each site, ask me which pages are feeds, which I want blocked outright, which I want behind friction (for example three guided breaths, then a button that runs from the mouse a few times), and which must always work, like messages and search. Use declarativeNetRequest redirects for full page loads, plus content scripts that catch in-site navigation that changes the URL without a reload. Send blocked pages to a local page with an original cartoon character who reminds me I decided this is bad for me and suggests a few breaths or a glass of water. Test it on real URLs in a clean browser, then tell me how to load it unpacked.",
+  "diagram": "flowchart TD\n  A[\"<b>You open a page</b><br/><span class='eg'>reddit.com, instagram.com</span>\"] --> R\n  C[\"<b>You click inside the site</b><br/><span class='eg'>Reels tab, Shorts, logo</span>\"] --> W\n  R[\"<b>Page rules</b><br/><span class='eg'>declarativeNetRequest</span>\"] --> K\n  W[\"<b>In-site watchers</b><br/><span class='eg'>content scripts</span>\"] --> K\n  K[\"<b>Which kind of page?</b>\"] -- blocked feed --> B[\"<b>Bouncer page</b><br/>breathe or drink water\"]\n  K -- gated feed --> G[\"<b>Breathe, then chase the button</b>\"]\n  K -- messages, search, profiles --> S[\"<b>Opens as usual</b>\"]\n  G -- caught it --> S\n  class A,C start\n  class B,G,S bucket"
  },
  {
   "title": "One-click call recorder that transcribes live, no bot on the call",

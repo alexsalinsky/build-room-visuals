@@ -44,8 +44,8 @@
 </head>
 <body>
 <header>
-  <h1>Reddit feed blocker</h1>
-  <p>Subreddits you pick on purpose open as usual. The home page and the popular feeds get a grumpy bouncer instead.</p>
+  <h1>Feed blocker</h1>
+  <p>Messages, search and the things you open on purpose work as usual. The feeds on Reddit, Instagram, YouTube and Facebook get blocked or put behind some effort.</p>
 </header>
 
 <div class="win">
@@ -53,35 +53,48 @@
   <div class="view">
     <section class="sub" id="sub">
       <span class="tag">Allowed</span>
-      <h2>r/woodworking</h2>
-      <div class="post"><b>Finished my first dovetail box</b><span>142 comments</span></div>
-      <div class="post"><b>Which hand plane should a beginner buy?</b><span>87 comments</span></div>
-      <div class="post"><b>Walnut offcuts, what would you make?</b><span>36 comments</span></div>
+      <h2 id="subTitle"></h2>
+      <div id="subPosts"></div>
     </section>
     <section class="blocked" id="blocked">
       <div>
         <img src="alien.svg" alt="A grumpy green alien bouncer with crossed arms">
-        <div><div class="bubble"><strong>Nope.</strong><span>You decided Reddit is bad for you.</span></div></div>
+        <div><div class="bubble"><strong>Nope.</strong><span id="why"></span></div></div>
         <p>Take a few slow breaths with the circle, or go drink a glass of water.</p>
         <div class="breathe" aria-hidden="true"></div>
+      </div>
+    </section>
+    <section class="blocked" id="gate">
+      <div>
+        <div class="bubble" style="max-width:320px"><strong>Feed's hidden.</strong>
+          <span>Messages, notifications and profiles still work. Want the feed? Breathe first.</span></div>
+        <div class="breathe" aria-hidden="true"></div>
+        <p style="margin-top:10px">Three slow breaths, then a "Show the feed" button that runs from your mouse five times.</p>
       </div>
     </section>
   </div>
 </div>
 
 <div class="steps" id="steps"></div>
-<footer>A small Chrome extension: a network rule catches full page loads, and a tiny script catches the clicks inside Reddit that change the page without reloading.</footer>
+<footer>A small Chrome extension. Network rules catch full page loads, and tiny scripts catch the clicks inside each site that change the page without reloading.</footer>
 
 <script>
 const scenes = [
-  { url: "reddit.com/r/woodworking", show: "sub", label: "A subreddit" },
-  { url: "reddit.com", show: "blocked", label: "The home page" },
-  { url: "reddit.com/r/woodworking/comments/dovetail_box", show: "sub", label: "A post" },
-  { url: "reddit.com/r/popular", show: "blocked", label: "r/popular" },
+  { url: "reddit.com/r/woodworking", show: "sub", label: "A subreddit", title: "r/woodworking",
+    posts: [["Finished my first dovetail box", "142 comments"], ["Which hand plane should a beginner buy?", "87 comments"]] },
+  { url: "reddit.com", show: "blocked", label: "Reddit home", why: "You decided Reddit is bad for you." },
+  { url: "instagram.com", show: "gate", label: "Instagram feed" },
+  { url: "instagram.com/direct/inbox", show: "sub", label: "Instagram messages", title: "Messages",
+    posts: [["Sam", "See you at 7?"], ["Climbing crew", "Who's in for Saturday"]] },
+  { url: "youtube.com/shorts/abc123", show: "blocked", label: "YouTube Shorts", why: "You decided Shorts are bad for you." },
+  { url: "youtube.com/results?search_query=dovetail", show: "sub", label: "YouTube search", title: "Search: dovetail",
+    posts: [["Hand-cut dovetails, start to finish", "No up-next column, autoplay off"], ["Sharpening a chisel in 10 minutes", "Search still works"]] },
+  { url: "facebook.com", show: "sub", label: "Facebook", title: "Messages (the feed sends you here)",
+    posts: [["Mom", "Call me when you land"], ["Marketplace seller", "Still available"]] },
 ];
 const urlEl = document.getElementById("url");
 const stepsEl = document.getElementById("steps");
-let i = 0, timer = null, typing = null;
+let timer = null, typing = null;
 
 scenes.forEach((s, n) => {
   const b = document.createElement("button");
@@ -90,8 +103,26 @@ scenes.forEach((s, n) => {
   stepsEl.appendChild(b);
 });
 
+function render(s) {
+  if (s.show === "sub") {
+    document.getElementById("subTitle").textContent = s.title;
+    const box = document.getElementById("subPosts");
+    box.innerHTML = "";
+    s.posts.forEach(([a, b]) => {
+      const d = document.createElement("div");
+      d.className = "post";
+      d.innerHTML = "<b></b><span></span>";
+      d.querySelector("b").textContent = a;
+      d.querySelector("span").textContent = b;
+      box.appendChild(d);
+    });
+  }
+  if (s.why) document.getElementById("why").textContent = s.why;
+  for (const id of ["sub", "blocked", "gate"]) document.getElementById(id).classList.toggle("on", s.show === id);
+}
+
 function play(n, auto = true) {
-  i = n; clearInterval(typing);
+  clearInterval(typing);
   const s = scenes[n];
   [...stepsEl.children].forEach((b, k) => b.classList.toggle("on", k === n));
   let shown = 0;
@@ -101,9 +132,8 @@ function play(n, auto = true) {
     if (shown >= s.url.length) {
       clearInterval(typing);
       setTimeout(() => {
-        urlEl.textContent = s.show === "blocked" ? "Reddit Feed Blocker" : s.url;
-        document.getElementById("sub").classList.toggle("on", s.show === "sub");
-        document.getElementById("blocked").classList.toggle("on", s.show === "blocked");
+        urlEl.textContent = s.show === "blocked" ? "Feed Blocker" : s.show === "sub" && s.label === "Facebook" ? "facebook.com/messages" : s.url;
+        render(s);
         if (auto) timer = setTimeout(() => play((n + 1) % scenes.length), 3600);
       }, 350);
     }
