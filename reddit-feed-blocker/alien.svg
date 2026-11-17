@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 380" role="img" aria-label="A grumpy green alien bouncer with crossed arms">
+  <!-- shadow -->
+  <ellipse cx="160" cy="362" rx="110" ry="12" fill="#000" opacity=".25"/>
+  <!-- antennae -->
+  <path d="M120 72 Q100 30 82 22" stroke="#4c9a3a" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M200 72 Q222 34 244 30" stroke="#4c9a3a" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <circle cx="80" cy="20" r="11" fill="#f2c94c" stroke="#2b2b2b" stroke-width="4"/>
+  <circle cx="246" cy="28" r="11" fill="#f2c94c" stroke="#2b2b2b" stroke-width="4"/>
+  <!-- legs -->
+  <rect x="112" y="300" width="36" height="54" rx="10" fill="#3b3f58" stroke="#2b2b2b" stroke-width="4"/>
+  <rect x="172" y="300" width="36" height="54" rx="10" fill="#3b3f58" stroke="#2b2b2b" stroke-width="4"/>
+  <path d="M100 356 h52 v-10 a10 10 0 0 0 -10 -10 h-32 a10 10 0 0 0 -10 10z" fill="#2b2b2b"/>
+  <path d="M168 356 h52 v-10 a10 10 0 0 0 -10 -10 h-32 a10 10 0 0 0 -10 10z" fill="#2b2b2b"/>
+  <!-- body / jacket -->
+  <path d="M78 300 Q70 210 112 186 L208 186 Q250 210 242 300 Z" fill="#6b3fa0" stroke="#2b2b2b" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M142 186 L160 236 L178 186 Z" fill="#7fd36a" stroke="#2b2b2b" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M132 186 L160 250 L150 300" stroke="#2b2b2b" stroke-width="4" fill="none"/>
+  <path d="M188 186 L160 250 L170 300" stroke="#2b2b2b" stroke-width="4" fill="none"/>
+  <!-- crossed arms -->
+  <path d="M84 238 Q120 270 214 252 Q232 248 230 236 Q228 224 210 228 Q140 244 104 222 Z" fill="#5a3489" stroke="#2b2b2b" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M236 240 Q200 276 106 262 Q88 258 90 246 Q92 234 110 238 Q180 252 216 228 Z" fill="#6b3fa0" stroke="#2b2b2b" stroke-width="5" stroke-linejoin="round"/>
+  <circle cx="98" cy="252" r="15" fill="#7fd36a" stroke="#2b2b2b" stroke-width="4"/>
+  <circle cx="224" cy="236" r="15" fill="#7fd36a" stroke="#2b2b2b" stroke-width="4"/>
+  <!-- head -->
+  <path d="M60 128 Q60 58 160 58 Q260 58 260 128 Q260 196 160 200 Q60 196 60 128 Z" fill="#7fd36a" stroke="#2b2b2b" stroke-width="5"/>
+  <!-- ears -->
+  <path d="M62 122 Q34 110 30 132 Q36 150 64 146" fill="#7fd36a" stroke="#2b2b2b" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M258 122 Q286 110 290 132 Q284 150 256 146" fill="#7fd36a" stroke="#2b2b2b" stroke-width="5" stroke-linejoin="round"/>
+  <!-- angry unibrow -->
+  <path d="M92 104 Q126 92 156 118 Q160 122 164 118 Q194 92 228 104 L226 116 Q196 108 166 132 L154 132 Q124 108 94 116 Z" fill="#2b2b2b"/>
+  <!-- squinty eyes -->
+  <path d="M104 134 Q126 120 148 136 Q126 148 104 134 Z" fill="#fff" stroke="#2b2b2b" stroke-width="4"/>
+  <path d="M172 136 Q194 120 216 134 Q194 148 172 136 Z" fill="#fff" stroke="#2b2b2b" stroke-width="4"/>
+  <circle cx="132" cy="136" r="6" fill="#2b2b2b"/>
+  <circle cx="188" cy="136" r="6" fill="#2b2b2b"/>
+  <!-- nose scar -->
+  <path d="M222 82 l14 18 M224 94 l8 -6" stroke="#4c9a3a" stroke-width="4" stroke-linecap="round"/>
+  <!-- smirk with tooth -->
+  <path d="M120 172 Q156 160 200 166" stroke="#2b2b2b" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M176 164 l6 12 l7 -11 Z" fill="#fff" stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round"/>
+</svg>
