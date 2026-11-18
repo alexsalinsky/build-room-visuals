@@ -891,5 +891,56 @@
   ],
   "starter_prompt": "Build me a call recorder for my Windows laptop that needs no bot on the call. Make it a tray app with a start/stop click and a hotkey. Record the microphone and the computer's own audio at the same time, label mic lines Me and computer-audio lines Them, and filter out speaker echo picked up by the mic. Send each minute of audio to a speech-to-text API so the transcript builds up live. When I stop, write a summary with action items, decisions and follow-ups, and save everything as a Markdown file in a folder I choose. Test it on a 5-minute call before I rely on it.",
   "diagram": "flowchart TD\n  R[\"<b>Me, clicking record</b><br/><span class='eg'>tray app, Ctrl+Alt+R</span>\"] --> M\n  R --> L\n  M[\"<b>Mic</b><br/><span class='eg'>labelled Me</span>\"] --> W\n  L[\"<b>Computer audio</b><br/><span class='eg'>Zoom, Meet, a video</span><br/>labelled Them\"] --> W\n  W[\"<b>Live transcription</b><br/><span class='eg'>Whisper, Workers AI</span><br/>every minute, echo filtered\"] --> S\n  S[\"<b>AI summary on stop</b><br/><span class='eg'>Llama, Claude</span>\"] --> N[\"<b>Markdown notes</b><br/><span class='eg'>synced repo</span><br/>action items, decisions\"]\n  N --> C[\"<b>Claude and skills read them</b>\"]\n  class R start\n  class N bucket"
+ },
+ {
+  "title": "Offline meditation timer with singing bowl bells and your own guided tracks",
+  "original_name": "Sit",
+  "summary": "A meditation app that installs from a web page onto an Android home screen and runs with no internet: swipe a time, tap begin, and a soft bowl bell starts and ends the sit.",
+  "what_it_does": "A meditation app that installs from a web page onto an Android home screen and runs with no internet. You swipe a band left or right to pick the minutes, and it opens at the last time you used. Tap begin, get a few seconds to settle, then a soft singing bowl bell rings; three bells close the sit, with an optional bell every 5 to 30 minutes to refocus. Below the timer sit your own guided meditations, copied onto the phone from its files and played inside the app. The bell is synthesized in the browser, and the whole sit is rendered as one audio track so it keeps going with the screen locked, the way music does.",
+  "builder": "Alex",
+  "where": "Alex's phone, Nov 2026",
+  "why": "The meditation timer app Alex relied on stopped starting. He wanted the same simple ritual back, plus a few guided tracks one tap away, with nothing that needs a connection or an account.",
+  "tools": [
+   "Claude Code",
+   "Progressive web app",
+   "Service worker",
+   "IndexedDB",
+   "Cloudflare Pages"
+  ],
+  "category": "personal",
+  "demo_url": null,
+  "download_url": "https://sit-meditate.pages.dev",
+  "download_label": "Open Sit",
+  "install": [
+   "Open the link on your Android phone in Chrome.",
+   "Tap the three dots, then Add to home screen, then Install.",
+   "Open it from the new icon and tap add to load your own guided audio files.",
+   "Turn your media volume up: the app cannot change it for you."
+  ],
+  "logged": "2026-11-18",
+  "integrations": [
+   "A static web host for the one-time install (Cloudflare Pages, GitHub Pages, Netlify)",
+   "Your own audio files on the phone, mp3 or m4a"
+  ],
+  "flow": [
+   {
+    "role": "Pick a time",
+    "eg": "swipe band, remembers last"
+   },
+   {
+    "role": "Render the sit",
+    "eg": "bell plus silence, one audio file"
+   },
+   {
+    "role": "Play with screen locked",
+    "eg": "browser audio player"
+   },
+   {
+    "role": "Guided tracks",
+    "eg": "files saved on the phone"
+   }
+  ],
+  "starter_prompt": "Build me an offline meditation app I can install on my Android home screen from a web page, no app store. Let me pick the minutes by swiping a horizontal band, and remember my last choice. When I tap begin, wait a few seconds, ring one soft singing bowl bell, and ring three at the end, with an optional bell every 10 minutes. Synthesize the bell, don't use anyone's recording. It has to keep going with the screen locked, so render the whole session as one audio track instead of using timers. Add a list of my own guided audio files that I pick from my phone, stored on the device and playable offline. Keep the look calm: dark, soft colors, thin line icons, almost no text.",
+  "diagram": "flowchart TD\n  A[\"<b>Me, swiping a time</b><br/><span class='eg'>band, remembers last</span>\"] --> B\n  B[\"<b>Render the sit</b><br/><span class='eg'>synthesized bowl, silence</span><br/>one audio track\"] --> C\n  C[\"<b>Play with screen locked</b><br/><span class='eg'>browser audio player</span>\"] --> D\n  D[\"<b>Closing bells</b><br/><span class='eg'>three strikes</span>\"]\n  G[\"<b>Me, adding files</b><br/><span class='eg'>phone file picker</span>\"] --> H\n  H[\"<b>Saved on the phone</b><br/><span class='eg'>IndexedDB</span><br/>works offline\"] --> P\n  P[\"<b>Guided tracks</b><br/><span class='eg'>recorded talks, chants</span>\"]\n  class A,G start\n  class D,P bucket"
  }
 ]

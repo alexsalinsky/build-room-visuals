@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sit</title>
+<meta name="description" content="A meditation app that installs from a web page onto an Android home screen and runs with no internet: swipe a time, tap begin, and a soft bowl bell starts and ends the sit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Space+Grotesk:wght@400;500;700&display=swap">
+<style>
+:root{--black:#0B0B0B;--volt:#C8FF3D;--paper:#FFFFFF;--muted:#4a4a44;--soft:#f2f2ee;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Space Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--black);font:16px/1.55 var(--body);margin:0}
+.band{background:var(--black);color:var(--paper)}
+.inner{max-width:920px;margin:0 auto;padding-inline:16px}
+.band .inner{padding-block:26px 36px;display:flex;flex-direction:column;gap:18px}
+.lockup{display:flex;align-items:center;gap:.28em;font:800 20px/1 var(--display);letter-spacing:-.03em}
+.lockup svg{height:.9em;width:auto}
+.eyebrow{font:700 13px var(--body);letter-spacing:.24em;text-transform:uppercase;color:#bdbdb4}
+h1{font:800 clamp(32px,5.5vw,52px)/1.05 var(--display);letter-spacing:-.03em;margin:0;text-wrap:balance}
+.lede{margin:0;max-width:62ch;font-size:18px;color:#e4e4dc}
+.buttons{display:flex;flex-wrap:wrap;gap:10px}
+.btn{font:700 15px var(--body);padding:10px 16px;min-height:44px;border:2px solid var(--volt);text-decoration:none;display:inline-flex;align-items:center}
+.btn.primary{background:var(--volt);color:var(--black)}
+.btn.ghost{background:transparent;color:var(--paper)}
+main.inner{padding-block:28px 56px;display:flex;flex-direction:column;gap:30px}
+h2{font:800 24px/1.1 var(--display);letter-spacing:-.02em;margin:0 0 10px}
+p{margin:0}
+.demo{border:2px solid var(--black);box-shadow:8px 8px 0 var(--volt)}
+.demo iframe{display:block;width:100%;height:760px;border:0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tags span{font:700 11px var(--body);letter-spacing:.12em;text-transform:uppercase;border:2px solid var(--black);padding:2px 7px}
+ul{margin:0;padding-left:20px} li{margin:4px 0}
+.eg{color:var(--muted)} .eg::before{content:" \00b7  "}
+.diagram{border:2px solid var(--black);padding:14px;overflow-x:auto;min-height:60px}
+.diagram svg{max-width:100%!important;height:auto;display:block;margin:0 auto}
+.diagram .node rect,.diagram .node polygon{stroke-width:2px!important}
+.diagram .start rect{fill:#0B0B0B!important}
+.diagram .start .nodeLabel,.diagram .start .nodeLabel *{color:#FFFFFF!important}
+.diagram .bucket rect{fill:#C8FF3D!important}
+.diagram .nodeLabel,.diagram .edgeLabel{font:500 13px/1.3 var(--body)!important;color:var(--black)}
+.diagram .eg{font-size:12px} .diagram .eg::before{content:""}
+pre{white-space:pre-wrap;background:var(--soft);border:2px solid var(--black);padding:14px;margin:10px 0 0;font:15px/1.5 var(--body)}
+.copy{font:700 15px var(--body);padding:10px 14px;min-height:44px;border:2px solid var(--black);background:var(--black);color:var(--paper);cursor:pointer;margin-top:10px}
+.install{border:2px solid var(--black);padding:18px 20px;background:var(--volt)}
+.install ol{margin:0;padding-left:22px;font-size:17px} .small{margin-top:8px;font-size:15px} .install a{color:var(--black);font-weight:700}
+footer{border-top:2px solid var(--black);padding-top:16px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;color:var(--muted);font-size:14px}
+footer b{color:var(--black)}
+@media (max-width:640px){.demo iframe{height:820px}}
+</style>
+<header class="band"><div class="inner">
+  <div class="lockup" aria-label="Humans v Robots">HUMANS<svg viewBox="7 12 106 106" aria-hidden="true"><path d="M16 40 L60 104 L104 40" fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linejoin="miter"/><circle cx="60" cy="30" r="18" fill="#C8FF3D"/></svg>ROBOTS</div>
+  <span class="eyebrow">Build Vault</span>
+  <h1>Offline meditation timer with singing bowl bells and your own guided tracks</h1>
+  <p class="lede">A meditation app that installs from a web page onto an Android home screen and runs with no internet: swipe a time, tap begin, and a soft bowl bell starts and ends the sit.</p>
+  <div class="buttons"><a class="btn primary" href="https://sit-meditate.pages.dev">Open Sit</a></div>
+</div></header>
+<main class="inner">
+  <section class="install"><h2>Install it (about a minute)</h2><ol><li>Open the link on your Android phone in Chrome.</li><li>Tap the three dots, then Add to home screen, then Install.</li><li>Open it from the new icon and tap add to load your own guided audio files.</li><li>Turn your media volume up: the app cannot change it for you.</li></ol><p class="small">After that it runs on its own. <a href="https://sit-meditate.pages.dev">Download it here.</a></p></section>
+  
+  <section><h2>What it does</h2><p>A meditation app that installs from a web page onto an Android home screen and runs with no internet. You swipe a band left or right to pick the minutes, and it opens at the last time you used. Tap begin, get a few seconds to settle, then a soft singing bowl bell rings; three bells close the sit, with an optional bell every 5 to 30 minutes to refocus. Below the timer sit your own guided meditations, copied onto the phone from its files and played inside the app. The bell is synthesized in the browser, and the whole sit is rendered as one audio track so it keeps going with the screen locked, the way music does.</p><div class="tags"><span>Claude Code</span><span>Progressive web app</span><span>Service worker</span><span>IndexedDB</span><span>Cloudflare Pages</span></div></section>
+  <section><h2>Why</h2><p>The meditation timer app Alex relied on stopped starting. He wanted the same simple ritual back, plus a few guided tracks one tap away, with nothing that needs a connection or an account.</p></section>
+  <section><h2>How it works</h2><div class="diagram" id="diagram"><ol><li><b>Pick a time</b> <span class="eg">swipe band, remembers last</span></li><li><b>Render the sit</b> <span class="eg">bell plus silence, one audio file</span></li><li><b>Play with screen locked</b> <span class="eg">browser audio player</span></li><li><b>Guided tracks</b> <span class="eg">files saved on the phone</span></li></ol></div></section>
+  <section><h2>What you connect</h2><ul><li>A static web host for the one-time install (Cloudflare Pages, GitHub Pages, Netlify)</li><li>Your own audio files on the phone, mp3 or m4a</li></ul></section>
+  <section><h2>Build your own</h2><p>Paste this into Claude Code or Codex. It builds the smallest version first, then you improve it.</p>
+    <pre id="prompt">Build me an offline meditation app I can install on my Android home screen from a web page, no app store. Let me pick the minutes by swiping a horizontal band, and remember my last choice. When I tap begin, wait a few seconds, ring one soft singing bowl bell, and ring three at the end, with an optional bell every 10 minutes. Synthesize the bell, don&#x27;t use anyone&#x27;s recording. It has to keep going with the screen locked, so render the whole session as one audio track instead of using timers. Add a list of my own guided audio files that I pick from my phone, stored on the device and playable offline. Keep the look calm: dark, soft colors, thin line icons, almost no text.</pre><button class="copy" id="copy" type="button">Copy starter prompt</button></section>
+  <footer><span>Built by Alex.</span><span>Learn AI. Build Robots. <b>Stay Human.</b></span></footer>
+</main>
+<script type="application/json" id="src">"flowchart TD\n  A[\"<b>Me, swiping a time<\/b><br/><span class='eg'>band, remembers last<\/span>\"] --> B\n  B[\"<b>Render the sit<\/b><br/><span class='eg'>synthesized bowl, silence<\/span><br/>one audio track\"] --> C\n  C[\"<b>Play with screen locked<\/b><br/><span class='eg'>browser audio player<\/span>\"] --> D\n  D[\"<b>Closing bells<\/b><br/><span class='eg'>three strikes<\/span>\"]\n  G[\"<b>Me, adding files<\/b><br/><span class='eg'>phone file picker<\/span>\"] --> H\n  H[\"<b>Saved on the phone<\/b><br/><span class='eg'>IndexedDB<\/span><br/>works offline\"] --> P\n  P[\"<b>Guided tracks<\/b><br/><span class='eg'>recorded talks, chants<\/span>\"]\n  class A,G start\n  class D,P bucket"</script>
+<script type="module">
+document.getElementById('copy').onclick = async (ev) => {
+  const btn = ev.currentTarget;
+  try { await navigator.clipboard.writeText(document.getElementById('prompt').textContent); btn.textContent = 'Copied'; }
+  catch { const r = document.createRange(); r.selectNodeContents(document.getElementById('prompt'));
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected, press Ctrl+C'; }
+  setTimeout(() => btn.textContent = 'Copy starter prompt', 1800);
+};
+try {
+  const {default: m} = await import('https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs');
+  m.initialize({startOnLoad:false, securityLevel:'loose', theme:'base',
+    themeVariables:{fontFamily:'Space Grotesk, sans-serif', fontSize:'14px', primaryColor:'#FFFFFF', primaryBorderColor:'#0B0B0B', primaryTextColor:'#0B0B0B', lineColor:'#0B0B0B', edgeLabelBackground:'#FFFFFF'},
+    flowchart:{htmlLabels:true, curve:'basis', nodeSpacing:22, rankSpacing:30, padding:10}});
+  const {svg} = await m.render('flow', JSON.parse(document.getElementById('src').textContent));
+  document.getElementById('diagram').innerHTML = svg;
+} catch (err) { /* the plain list stays */ }
+</script>
+</html>
